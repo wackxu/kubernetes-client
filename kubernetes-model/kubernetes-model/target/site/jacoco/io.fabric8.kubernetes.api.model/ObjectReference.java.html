@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ObjectReference.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ObjectReference.java</span></div><h1>ObjectReference.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;fieldPath&quot;,
+    &quot;name&quot;,
+    &quot;namespace&quot;,
+    &quot;resourceVersion&quot;,
+    &quot;uid&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L38">@ToString</span>
+<span class="pc bpc" id="L39" title="58 of 70 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class ObjectReference implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    private String apiVersion;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;fieldPath&quot;)
+    private String fieldPath;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;kind&quot;)
+    private String kind;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;name&quot;)
+    private String name;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;namespace&quot;)
+    private String namespace;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;resourceVersion&quot;)
+    private String resourceVersion;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;uid&quot;)
+    private String uid;
+<span class="fc" id="L86">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L93">    public ObjectReference() {</span>
+<span class="fc" id="L94">    }</span>
+
+    /**
+     * 
+     * @param uid
+     * @param apiVersion
+     * @param kind
+     * @param resourceVersion
+     * @param fieldPath
+     * @param name
+     * @param namespace
+     */
+<span class="fc" id="L106">    public ObjectReference(String apiVersion, String fieldPath, String kind, String name, String namespace, String resourceVersion, String uid) {</span>
+<span class="fc" id="L107">        this.apiVersion = apiVersion;</span>
+<span class="fc" id="L108">        this.fieldPath = fieldPath;</span>
+<span class="fc" id="L109">        this.kind = kind;</span>
+<span class="fc" id="L110">        this.name = name;</span>
+<span class="fc" id="L111">        this.namespace = namespace;</span>
+<span class="fc" id="L112">        this.resourceVersion = resourceVersion;</span>
+<span class="fc" id="L113">        this.uid = uid;</span>
+<span class="fc" id="L114">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public String getApiVersion() {
+<span class="fc" id="L124">        return apiVersion;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param apiVersion
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public void setApiVersion(String apiVersion) {
+<span class="fc" id="L135">        this.apiVersion = apiVersion;</span>
+<span class="fc" id="L136">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The fieldPath
+     */
+    @JsonProperty(&quot;fieldPath&quot;)
+    public String getFieldPath() {
+<span class="fc" id="L146">        return fieldPath;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param fieldPath
+     *     The fieldPath
+     */
+    @JsonProperty(&quot;fieldPath&quot;)
+    public void setFieldPath(String fieldPath) {
+<span class="fc" id="L157">        this.fieldPath = fieldPath;</span>
+<span class="fc" id="L158">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public String getKind() {
+<span class="fc" id="L168">        return kind;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param kind
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public void setKind(String kind) {
+<span class="fc" id="L179">        this.kind = kind;</span>
+<span class="fc" id="L180">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The name
+     */
+    @JsonProperty(&quot;name&quot;)
+    public String getName() {
+<span class="fc" id="L190">        return name;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param name
+     *     The name
+     */
+    @JsonProperty(&quot;name&quot;)
+    public void setName(String name) {
+<span class="fc" id="L201">        this.name = name;</span>
+<span class="fc" id="L202">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The namespace
+     */
+    @JsonProperty(&quot;namespace&quot;)
+    public String getNamespace() {
+<span class="fc" id="L212">        return namespace;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param namespace
+     *     The namespace
+     */
+    @JsonProperty(&quot;namespace&quot;)
+    public void setNamespace(String namespace) {
+<span class="fc" id="L223">        this.namespace = namespace;</span>
+<span class="fc" id="L224">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The resourceVersion
+     */
+    @JsonProperty(&quot;resourceVersion&quot;)
+    public String getResourceVersion() {
+<span class="fc" id="L234">        return resourceVersion;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param resourceVersion
+     *     The resourceVersion
+     */
+    @JsonProperty(&quot;resourceVersion&quot;)
+    public void setResourceVersion(String resourceVersion) {
+<span class="nc" id="L245">        this.resourceVersion = resourceVersion;</span>
+<span class="nc" id="L246">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The uid
+     */
+    @JsonProperty(&quot;uid&quot;)
+    public String getUid() {
+<span class="fc" id="L256">        return uid;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param uid
+     *     The uid
+     */
+    @JsonProperty(&quot;uid&quot;)
+    public void setUid(String uid) {
+<span class="fc" id="L267">        this.uid = uid;</span>
+<span class="fc" id="L268">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L272">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L277">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L278">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

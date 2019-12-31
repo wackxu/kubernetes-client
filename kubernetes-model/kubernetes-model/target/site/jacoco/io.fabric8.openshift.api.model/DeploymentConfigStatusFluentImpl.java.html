@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeploymentConfigStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">DeploymentConfigStatusFluentImpl.java</span></div><h1>DeploymentConfigStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import java.lang.Integer;
+import javax.validation.Valid;
+import java.lang.Long;
+import java.util.Collection;
+import java.lang.Object;
+
+public class DeploymentConfigStatusFluentImpl&lt;A extends DeploymentConfigStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements DeploymentConfigStatusFluent&lt;A&gt;{
+
+    private Integer availableReplicas;
+    private List&lt;io.fabric8.openshift.api.model.DeploymentConditionBuilder&gt; conditions;
+    private DeploymentDetailsBuilder details;
+    private Long latestVersion;
+    private Long observedGeneration;
+    private Integer readyReplicas;
+    private Integer replicas;
+    private Integer unavailableReplicas;
+    private Integer updatedReplicas;
+
+<span class="nc" id="L31">    public DeploymentConfigStatusFluentImpl(){</span>
+<span class="nc" id="L32">    }</span>
+<span class="nc" id="L33">    public DeploymentConfigStatusFluentImpl(DeploymentConfigStatus instance){</span>
+<span class="nc" id="L34">            this.withAvailableReplicas(instance.getAvailableReplicas()); </span>
+<span class="nc" id="L35">            this.withConditions(instance.getConditions()); </span>
+<span class="nc" id="L36">            this.withDetails(instance.getDetails()); </span>
+<span class="nc" id="L37">            this.withLatestVersion(instance.getLatestVersion()); </span>
+<span class="nc" id="L38">            this.withObservedGeneration(instance.getObservedGeneration()); </span>
+<span class="nc" id="L39">            this.withReadyReplicas(instance.getReadyReplicas()); </span>
+<span class="nc" id="L40">            this.withReplicas(instance.getReplicas()); </span>
+<span class="nc" id="L41">            this.withUnavailableReplicas(instance.getUnavailableReplicas()); </span>
+<span class="nc" id="L42">            this.withUpdatedReplicas(instance.getUpdatedReplicas()); </span>
+<span class="nc" id="L43">    }</span>
+
+    public Integer getAvailableReplicas(){
+<span class="nc" id="L46">            return this.availableReplicas;</span>
+    }
+
+    public A withAvailableReplicas(Integer availableReplicas){
+<span class="nc" id="L50">            this.availableReplicas=availableReplicas; return (A) this;</span>
+    }
+
+    public Boolean hasAvailableReplicas(){
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            return this.availableReplicas != null;</span>
+    }
+
+    public A addToConditions(int index,io.fabric8.openshift.api.model.DeploymentCondition item){
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;io.fabric8.openshift.api.model.DeploymentConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L59" title="All 4 branches missed.">            io.fabric8.openshift.api.model.DeploymentConditionBuilder builder = new io.fabric8.openshift.api.model.DeploymentConditionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.conditions.add(index &gt;= 0 ? index : conditions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToConditions(int index,io.fabric8.openshift.api.model.DeploymentCondition item){
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;io.fabric8.openshift.api.model.DeploymentConditionBuilder&gt;();}</span>
+<span class="nc" id="L64">            io.fabric8.openshift.api.model.DeploymentConditionBuilder builder = new io.fabric8.openshift.api.model.DeploymentConditionBuilder(item);</span>
+<span class="nc bnc" id="L65" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L66" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= conditions.size()) { conditions.add(builder); } else { conditions.set(index, builder);}</span>
+<span class="nc" id="L67">             return (A)this;</span>
+    }
+
+    public A addToConditions(io.fabric8.openshift.api.model.DeploymentCondition... items){
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;io.fabric8.openshift.api.model.DeploymentConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">            for (io.fabric8.openshift.api.model.DeploymentCondition item : items) {io.fabric8.openshift.api.model.DeploymentConditionBuilder builder = new io.fabric8.openshift.api.model.DeploymentConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToConditions(Collection&lt;io.fabric8.openshift.api.model.DeploymentCondition&gt; items){
+<span class="nc bnc" id="L76" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;io.fabric8.openshift.api.model.DeploymentConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            for (io.fabric8.openshift.api.model.DeploymentCondition item : items) {io.fabric8.openshift.api.model.DeploymentConditionBuilder builder = new io.fabric8.openshift.api.model.DeploymentConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromConditions(io.fabric8.openshift.api.model.DeploymentCondition... items){
+<span class="nc bnc" id="L81" title="All 4 branches missed.">            for (io.fabric8.openshift.api.model.DeploymentCondition item : items) {io.fabric8.openshift.api.model.DeploymentConditionBuilder builder = new io.fabric8.openshift.api.model.DeploymentConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromConditions(Collection&lt;io.fabric8.openshift.api.model.DeploymentCondition&gt; items){
+<span class="nc bnc" id="L85" title="All 4 branches missed.">            for (io.fabric8.openshift.api.model.DeploymentCondition item : items) {io.fabric8.openshift.api.model.DeploymentConditionBuilder builder = new io.fabric8.openshift.api.model.DeploymentConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildConditions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;io.fabric8.openshift.api.model.DeploymentCondition&gt; getConditions(){
+<span class="nc" id="L94">            return build(conditions);</span>
+    }
+
+    public List&lt;io.fabric8.openshift.api.model.DeploymentCondition&gt; buildConditions(){
+<span class="nc" id="L98">            return build(conditions);</span>
+    }
+
+    public io.fabric8.openshift.api.model.DeploymentCondition buildCondition(int index){
+<span class="nc" id="L102">            return this.conditions.get(index).build();</span>
+    }
+
+    public io.fabric8.openshift.api.model.DeploymentCondition buildFirstCondition(){
+<span class="nc" id="L106">            return this.conditions.get(0).build();</span>
+    }
+
+    public io.fabric8.openshift.api.model.DeploymentCondition buildLastCondition(){
+<span class="nc" id="L110">            return this.conditions.get(conditions.size() - 1).build();</span>
+    }
+
+    public io.fabric8.openshift.api.model.DeploymentCondition buildMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;io.fabric8.openshift.api.model.DeploymentConditionBuilder&gt; predicate){
+<span class="nc bnc" id="L114" title="All 4 branches missed.">            for (io.fabric8.openshift.api.model.DeploymentConditionBuilder item: conditions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withConditions(List&lt;io.fabric8.openshift.api.model.DeploymentCondition&gt; conditions){
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            if (this.conditions != null) { _visitables.removeAll(this.conditions);}</span>
+<span class="nc bnc" id="L119" title="All 4 branches missed.">            if (conditions != null) {this.conditions = new ArrayList&lt;io.fabric8.openshift.api.model.DeploymentConditionBuilder&gt;(); for (io.fabric8.openshift.api.model.DeploymentCondition item : conditions){this.addToConditions(item);}} else { this.conditions = new ArrayList&lt;io.fabric8.openshift.api.model.DeploymentConditionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withConditions(io.fabric8.openshift.api.model.DeploymentCondition... conditions){
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            if (this.conditions != null) {this.conditions.clear();}</span>
+<span class="nc bnc" id="L124" title="All 4 branches missed.">            if (conditions != null) {for (io.fabric8.openshift.api.model.DeploymentCondition item :conditions){ this.addToConditions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasConditions(){
+<span class="nc bnc" id="L128" title="All 4 branches missed.">            return conditions != null &amp;&amp; !conditions.isEmpty();</span>
+    }
+
+    public DeploymentConfigStatusFluent.ConditionsNested&lt;A&gt; addNewCondition(){
+<span class="nc" id="L132">            return new ConditionsNestedImpl();</span>
+    }
+
+    public DeploymentConfigStatusFluent.ConditionsNested&lt;A&gt; addNewConditionLike(io.fabric8.openshift.api.model.DeploymentCondition item){
+<span class="nc" id="L136">            return new ConditionsNestedImpl(-1, item);</span>
+    }
+
+    public DeploymentConfigStatusFluent.ConditionsNested&lt;A&gt; setNewConditionLike(int index,io.fabric8.openshift.api.model.DeploymentCondition item){
+<span class="nc" id="L140">            return new ConditionsNestedImpl(index, item);</span>
+    }
+
+    public DeploymentConfigStatusFluent.ConditionsNested&lt;A&gt; editCondition(int index){
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            if (conditions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit conditions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L145">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public DeploymentConfigStatusFluent.ConditionsNested&lt;A&gt; editFirstCondition(){
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (conditions.size() == 0) throw new RuntimeException(&quot;Can't edit first conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L150">            return setNewConditionLike(0, buildCondition(0));</span>
+    }
+
+    public DeploymentConfigStatusFluent.ConditionsNested&lt;A&gt; editLastCondition(){
+<span class="nc" id="L154">            int index = conditions.size() - 1;</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L156">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public DeploymentConfigStatusFluent.ConditionsNested&lt;A&gt; editMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;io.fabric8.openshift.api.model.DeploymentConditionBuilder&gt; predicate){
+<span class="nc" id="L160">            int index = -1;</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            for (int i=0;i&lt;conditions.size();i++) { </span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (predicate.apply(conditions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching conditions. No match found.&quot;);</span>
+<span class="nc" id="L165">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildDetails instead.
+ * @return The buildable object.
+ */
+@Deprecated public DeploymentDetails getDetails(){
+<span class="nc bnc" id="L174" title="All 2 branches missed.">            return this.details!=null?this.details.build():null;</span>
+    }
+
+    public DeploymentDetails buildDetails(){
+<span class="nc bnc" id="L178" title="All 2 branches missed.">            return this.details!=null?this.details.build():null;</span>
+    }
+
+    public A withDetails(DeploymentDetails details){
+<span class="nc" id="L182">            _visitables.remove(this.details);</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">            if (details!=null){ this.details= new DeploymentDetailsBuilder(details); _visitables.add(this.details);} return (A) this;</span>
+    }
+
+    public Boolean hasDetails(){
+<span class="nc bnc" id="L187" title="All 2 branches missed.">            return this.details != null;</span>
+    }
+
+    public DeploymentConfigStatusFluent.DetailsNested&lt;A&gt; withNewDetails(){
+<span class="nc" id="L191">            return new DetailsNestedImpl();</span>
+    }
+
+    public DeploymentConfigStatusFluent.DetailsNested&lt;A&gt; withNewDetailsLike(DeploymentDetails item){
+<span class="nc" id="L195">            return new DetailsNestedImpl(item);</span>
+    }
+
+    public DeploymentConfigStatusFluent.DetailsNested&lt;A&gt; editDetails(){
+<span class="nc" id="L199">            return withNewDetailsLike(getDetails());</span>
+    }
+
+    public DeploymentConfigStatusFluent.DetailsNested&lt;A&gt; editOrNewDetails(){
+<span class="nc bnc" id="L203" title="All 2 branches missed.">            return withNewDetailsLike(getDetails() != null ? getDetails(): new DeploymentDetailsBuilder().build());</span>
+    }
+
+    public DeploymentConfigStatusFluent.DetailsNested&lt;A&gt; editOrNewDetailsLike(DeploymentDetails item){
+<span class="nc bnc" id="L207" title="All 2 branches missed.">            return withNewDetailsLike(getDetails() != null ? getDetails(): item);</span>
+    }
+
+    public Long getLatestVersion(){
+<span class="nc" id="L211">            return this.latestVersion;</span>
+    }
+
+    public A withLatestVersion(Long latestVersion){
+<span class="nc" id="L215">            this.latestVersion=latestVersion; return (A) this;</span>
+    }
+
+    public Boolean hasLatestVersion(){
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            return this.latestVersion != null;</span>
+    }
+
+    public A withNewLatestVersion(String arg1){
+<span class="nc" id="L223">            return (A)withLatestVersion(new Long(arg1));</span>
+    }
+
+    public A withNewLatestVersion(long arg1){
+<span class="nc" id="L227">            return (A)withLatestVersion(new Long(arg1));</span>
+    }
+
+    public Long getObservedGeneration(){
+<span class="nc" id="L231">            return this.observedGeneration;</span>
+    }
+
+    public A withObservedGeneration(Long observedGeneration){
+<span class="nc" id="L235">            this.observedGeneration=observedGeneration; return (A) this;</span>
+    }
+
+    public Boolean hasObservedGeneration(){
+<span class="nc bnc" id="L239" title="All 2 branches missed.">            return this.observedGeneration != null;</span>
+    }
+
+    public A withNewObservedGeneration(String arg1){
+<span class="nc" id="L243">            return (A)withObservedGeneration(new Long(arg1));</span>
+    }
+
+    public A withNewObservedGeneration(long arg1){
+<span class="nc" id="L247">            return (A)withObservedGeneration(new Long(arg1));</span>
+    }
+
+    public Integer getReadyReplicas(){
+<span class="nc" id="L251">            return this.readyReplicas;</span>
+    }
+
+    public A withReadyReplicas(Integer readyReplicas){
+<span class="nc" id="L255">            this.readyReplicas=readyReplicas; return (A) this;</span>
+    }
+
+    public Boolean hasReadyReplicas(){
+<span class="nc bnc" id="L259" title="All 2 branches missed.">            return this.readyReplicas != null;</span>
+    }
+
+    public Integer getReplicas(){
+<span class="nc" id="L263">            return this.replicas;</span>
+    }
+
+    public A withReplicas(Integer replicas){
+<span class="nc" id="L267">            this.replicas=replicas; return (A) this;</span>
+    }
+
+    public Boolean hasReplicas(){
+<span class="nc bnc" id="L271" title="All 2 branches missed.">            return this.replicas != null;</span>
+    }
+
+    public Integer getUnavailableReplicas(){
+<span class="nc" id="L275">            return this.unavailableReplicas;</span>
+    }
+
+    public A withUnavailableReplicas(Integer unavailableReplicas){
+<span class="nc" id="L279">            this.unavailableReplicas=unavailableReplicas; return (A) this;</span>
+    }
+
+    public Boolean hasUnavailableReplicas(){
+<span class="nc bnc" id="L283" title="All 2 branches missed.">            return this.unavailableReplicas != null;</span>
+    }
+
+    public Integer getUpdatedReplicas(){
+<span class="nc" id="L287">            return this.updatedReplicas;</span>
+    }
+
+    public A withUpdatedReplicas(Integer updatedReplicas){
+<span class="nc" id="L291">            this.updatedReplicas=updatedReplicas; return (A) this;</span>
+    }
+
+    public Boolean hasUpdatedReplicas(){
+<span class="nc bnc" id="L295" title="All 2 branches missed.">            return this.updatedReplicas != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L299" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L300" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L301" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L302">            DeploymentConfigStatusFluentImpl that = (DeploymentConfigStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L303" title="All 6 branches missed.">            if (availableReplicas != null ? !availableReplicas.equals(that.availableReplicas) :that.availableReplicas != null) return false;</span>
+<span class="nc bnc" id="L304" title="All 6 branches missed.">            if (conditions != null ? !conditions.equals(that.conditions) :that.conditions != null) return false;</span>
+<span class="nc bnc" id="L305" title="All 6 branches missed.">            if (details != null ? !details.equals(that.details) :that.details != null) return false;</span>
+<span class="nc bnc" id="L306" title="All 6 branches missed.">            if (latestVersion != null ? !latestVersion.equals(that.latestVersion) :that.latestVersion != null) return false;</span>
+<span class="nc bnc" id="L307" title="All 6 branches missed.">            if (observedGeneration != null ? !observedGeneration.equals(that.observedGeneration) :that.observedGeneration != null) return false;</span>
+<span class="nc bnc" id="L308" title="All 6 branches missed.">            if (readyReplicas != null ? !readyReplicas.equals(that.readyReplicas) :that.readyReplicas != null) return false;</span>
+<span class="nc bnc" id="L309" title="All 6 branches missed.">            if (replicas != null ? !replicas.equals(that.replicas) :that.replicas != null) return false;</span>
+<span class="nc bnc" id="L310" title="All 6 branches missed.">            if (unavailableReplicas != null ? !unavailableReplicas.equals(that.unavailableReplicas) :that.unavailableReplicas != null) return false;</span>
+<span class="nc bnc" id="L311" title="All 6 branches missed.">            if (updatedReplicas != null ? !updatedReplicas.equals(that.updatedReplicas) :that.updatedReplicas != null) return false;</span>
+<span class="nc" id="L312">            return true;</span>
+    }
+
+
+    public class ConditionsNestedImpl&lt;N&gt; extends io.fabric8.openshift.api.model.DeploymentConditionFluentImpl&lt;DeploymentConfigStatusFluent.ConditionsNested&lt;N&gt;&gt; implements DeploymentConfigStatusFluent.ConditionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final io.fabric8.openshift.api.model.DeploymentConditionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L321">            ConditionsNestedImpl(int index,io.fabric8.openshift.api.model.DeploymentCondition item){</span>
+<span class="nc" id="L322">                    this.index = index;</span>
+<span class="nc" id="L323">                    this.builder = new io.fabric8.openshift.api.model.DeploymentConditionBuilder(this, item);</span>
+<span class="nc" id="L324">            }</span>
+<span class="nc" id="L325">            ConditionsNestedImpl(){</span>
+<span class="nc" id="L326">                    this.index = -1;</span>
+<span class="nc" id="L327">                    this.builder = new io.fabric8.openshift.api.model.DeploymentConditionBuilder(this);</span>
+<span class="nc" id="L328">            }</span>
+    
+    public N and(){
+<span class="nc" id="L331">            return (N) DeploymentConfigStatusFluentImpl.this.setToConditions(index, builder.build());</span>
+    }
+    public N endCondition(){
+<span class="nc" id="L334">            return and();</span>
+    }
+
+}
+    public class DetailsNestedImpl&lt;N&gt; extends DeploymentDetailsFluentImpl&lt;DeploymentConfigStatusFluent.DetailsNested&lt;N&gt;&gt; implements DeploymentConfigStatusFluent.DetailsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final DeploymentDetailsBuilder builder;
+    
+<span class="nc" id="L342">            DetailsNestedImpl(DeploymentDetails item){</span>
+<span class="nc" id="L343">                    this.builder = new DeploymentDetailsBuilder(this, item);</span>
+<span class="nc" id="L344">            }</span>
+<span class="nc" id="L345">            DetailsNestedImpl(){</span>
+<span class="nc" id="L346">                    this.builder = new DeploymentDetailsBuilder(this);</span>
+<span class="nc" id="L347">            }</span>
+    
+    public N and(){
+<span class="nc" id="L350">            return (N) DeploymentConfigStatusFluentImpl.this.withDetails(builder.build());</span>
+    }
+    public N endDetails(){
+<span class="nc" id="L353">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

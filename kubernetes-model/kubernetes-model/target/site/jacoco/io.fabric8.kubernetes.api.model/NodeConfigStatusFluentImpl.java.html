@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NodeConfigStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">NodeConfigStatusFluentImpl.java</span></div><h1>NodeConfigStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class NodeConfigStatusFluentImpl&lt;A extends NodeConfigStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements NodeConfigStatusFluent&lt;A&gt;{
+
+    private NodeConfigSourceBuilder active;
+    private NodeConfigSourceBuilder assigned;
+    private String error;
+    private NodeConfigSourceBuilder lastKnownGood;
+
+<span class="nc" id="L19">    public NodeConfigStatusFluentImpl(){</span>
+<span class="nc" id="L20">    }</span>
+<span class="nc" id="L21">    public NodeConfigStatusFluentImpl(NodeConfigStatus instance){</span>
+<span class="nc" id="L22">            this.withActive(instance.getActive()); </span>
+<span class="nc" id="L23">            this.withAssigned(instance.getAssigned()); </span>
+<span class="nc" id="L24">            this.withError(instance.getError()); </span>
+<span class="nc" id="L25">            this.withLastKnownGood(instance.getLastKnownGood()); </span>
+<span class="nc" id="L26">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildActive instead.
+ * @return The buildable object.
+ */
+@Deprecated public NodeConfigSource getActive(){
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            return this.active!=null?this.active.build():null;</span>
+    }
+
+    public NodeConfigSource buildActive(){
+<span class="nc bnc" id="L38" title="All 2 branches missed.">            return this.active!=null?this.active.build():null;</span>
+    }
+
+    public A withActive(NodeConfigSource active){
+<span class="nc" id="L42">            _visitables.remove(this.active);</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            if (active!=null){ this.active= new NodeConfigSourceBuilder(active); _visitables.add(this.active);} return (A) this;</span>
+    }
+
+    public Boolean hasActive(){
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            return this.active != null;</span>
+    }
+
+    public NodeConfigStatusFluent.ActiveNested&lt;A&gt; withNewActive(){
+<span class="nc" id="L51">            return new ActiveNestedImpl();</span>
+    }
+
+    public NodeConfigStatusFluent.ActiveNested&lt;A&gt; withNewActiveLike(NodeConfigSource item){
+<span class="nc" id="L55">            return new ActiveNestedImpl(item);</span>
+    }
+
+    public NodeConfigStatusFluent.ActiveNested&lt;A&gt; editActive(){
+<span class="nc" id="L59">            return withNewActiveLike(getActive());</span>
+    }
+
+    public NodeConfigStatusFluent.ActiveNested&lt;A&gt; editOrNewActive(){
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            return withNewActiveLike(getActive() != null ? getActive(): new NodeConfigSourceBuilder().build());</span>
+    }
+
+    public NodeConfigStatusFluent.ActiveNested&lt;A&gt; editOrNewActiveLike(NodeConfigSource item){
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            return withNewActiveLike(getActive() != null ? getActive(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildAssigned instead.
+ * @return The buildable object.
+ */
+@Deprecated public NodeConfigSource getAssigned(){
+<span class="nc bnc" id="L76" title="All 2 branches missed.">            return this.assigned!=null?this.assigned.build():null;</span>
+    }
+
+    public NodeConfigSource buildAssigned(){
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            return this.assigned!=null?this.assigned.build():null;</span>
+    }
+
+    public A withAssigned(NodeConfigSource assigned){
+<span class="nc" id="L84">            _visitables.remove(this.assigned);</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            if (assigned!=null){ this.assigned= new NodeConfigSourceBuilder(assigned); _visitables.add(this.assigned);} return (A) this;</span>
+    }
+
+    public Boolean hasAssigned(){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            return this.assigned != null;</span>
+    }
+
+    public NodeConfigStatusFluent.AssignedNested&lt;A&gt; withNewAssigned(){
+<span class="nc" id="L93">            return new AssignedNestedImpl();</span>
+    }
+
+    public NodeConfigStatusFluent.AssignedNested&lt;A&gt; withNewAssignedLike(NodeConfigSource item){
+<span class="nc" id="L97">            return new AssignedNestedImpl(item);</span>
+    }
+
+    public NodeConfigStatusFluent.AssignedNested&lt;A&gt; editAssigned(){
+<span class="nc" id="L101">            return withNewAssignedLike(getAssigned());</span>
+    }
+
+    public NodeConfigStatusFluent.AssignedNested&lt;A&gt; editOrNewAssigned(){
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            return withNewAssignedLike(getAssigned() != null ? getAssigned(): new NodeConfigSourceBuilder().build());</span>
+    }
+
+    public NodeConfigStatusFluent.AssignedNested&lt;A&gt; editOrNewAssignedLike(NodeConfigSource item){
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            return withNewAssignedLike(getAssigned() != null ? getAssigned(): item);</span>
+    }
+
+    public String getError(){
+<span class="nc" id="L113">            return this.error;</span>
+    }
+
+    public A withError(String error){
+<span class="nc" id="L117">            this.error=error; return (A) this;</span>
+    }
+
+    public Boolean hasError(){
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            return this.error != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildLastKnownGood instead.
+ * @return The buildable object.
+ */
+@Deprecated public NodeConfigSource getLastKnownGood(){
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            return this.lastKnownGood!=null?this.lastKnownGood.build():null;</span>
+    }
+
+    public NodeConfigSource buildLastKnownGood(){
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            return this.lastKnownGood!=null?this.lastKnownGood.build():null;</span>
+    }
+
+    public A withLastKnownGood(NodeConfigSource lastKnownGood){
+<span class="nc" id="L138">            _visitables.remove(this.lastKnownGood);</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            if (lastKnownGood!=null){ this.lastKnownGood= new NodeConfigSourceBuilder(lastKnownGood); _visitables.add(this.lastKnownGood);} return (A) this;</span>
+    }
+
+    public Boolean hasLastKnownGood(){
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            return this.lastKnownGood != null;</span>
+    }
+
+    public NodeConfigStatusFluent.LastKnownGoodNested&lt;A&gt; withNewLastKnownGood(){
+<span class="nc" id="L147">            return new LastKnownGoodNestedImpl();</span>
+    }
+
+    public NodeConfigStatusFluent.LastKnownGoodNested&lt;A&gt; withNewLastKnownGoodLike(NodeConfigSource item){
+<span class="nc" id="L151">            return new LastKnownGoodNestedImpl(item);</span>
+    }
+
+    public NodeConfigStatusFluent.LastKnownGoodNested&lt;A&gt; editLastKnownGood(){
+<span class="nc" id="L155">            return withNewLastKnownGoodLike(getLastKnownGood());</span>
+    }
+
+    public NodeConfigStatusFluent.LastKnownGoodNested&lt;A&gt; editOrNewLastKnownGood(){
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            return withNewLastKnownGoodLike(getLastKnownGood() != null ? getLastKnownGood(): new NodeConfigSourceBuilder().build());</span>
+    }
+
+    public NodeConfigStatusFluent.LastKnownGoodNested&lt;A&gt; editOrNewLastKnownGoodLike(NodeConfigSource item){
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            return withNewLastKnownGoodLike(getLastKnownGood() != null ? getLastKnownGood(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L168" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L170">            NodeConfigStatusFluentImpl that = (NodeConfigStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L171" title="All 6 branches missed.">            if (active != null ? !active.equals(that.active) :that.active != null) return false;</span>
+<span class="nc bnc" id="L172" title="All 6 branches missed.">            if (assigned != null ? !assigned.equals(that.assigned) :that.assigned != null) return false;</span>
+<span class="nc bnc" id="L173" title="All 6 branches missed.">            if (error != null ? !error.equals(that.error) :that.error != null) return false;</span>
+<span class="nc bnc" id="L174" title="All 6 branches missed.">            if (lastKnownGood != null ? !lastKnownGood.equals(that.lastKnownGood) :that.lastKnownGood != null) return false;</span>
+<span class="nc" id="L175">            return true;</span>
+    }
+
+
+    public class ActiveNestedImpl&lt;N&gt; extends NodeConfigSourceFluentImpl&lt;NodeConfigStatusFluent.ActiveNested&lt;N&gt;&gt; implements NodeConfigStatusFluent.ActiveNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NodeConfigSourceBuilder builder;
+    
+<span class="nc" id="L183">            ActiveNestedImpl(NodeConfigSource item){</span>
+<span class="nc" id="L184">                    this.builder = new NodeConfigSourceBuilder(this, item);</span>
+<span class="nc" id="L185">            }</span>
+<span class="nc" id="L186">            ActiveNestedImpl(){</span>
+<span class="nc" id="L187">                    this.builder = new NodeConfigSourceBuilder(this);</span>
+<span class="nc" id="L188">            }</span>
+    
+    public N and(){
+<span class="nc" id="L191">            return (N) NodeConfigStatusFluentImpl.this.withActive(builder.build());</span>
+    }
+    public N endActive(){
+<span class="nc" id="L194">            return and();</span>
+    }
+
+}
+    public class AssignedNestedImpl&lt;N&gt; extends NodeConfigSourceFluentImpl&lt;NodeConfigStatusFluent.AssignedNested&lt;N&gt;&gt; implements NodeConfigStatusFluent.AssignedNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NodeConfigSourceBuilder builder;
+    
+<span class="nc" id="L202">            AssignedNestedImpl(NodeConfigSource item){</span>
+<span class="nc" id="L203">                    this.builder = new NodeConfigSourceBuilder(this, item);</span>
+<span class="nc" id="L204">            }</span>
+<span class="nc" id="L205">            AssignedNestedImpl(){</span>
+<span class="nc" id="L206">                    this.builder = new NodeConfigSourceBuilder(this);</span>
+<span class="nc" id="L207">            }</span>
+    
+    public N and(){
+<span class="nc" id="L210">            return (N) NodeConfigStatusFluentImpl.this.withAssigned(builder.build());</span>
+    }
+    public N endAssigned(){
+<span class="nc" id="L213">            return and();</span>
+    }
+
+}
+    public class LastKnownGoodNestedImpl&lt;N&gt; extends NodeConfigSourceFluentImpl&lt;NodeConfigStatusFluent.LastKnownGoodNested&lt;N&gt;&gt; implements NodeConfigStatusFluent.LastKnownGoodNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NodeConfigSourceBuilder builder;
+    
+<span class="nc" id="L221">            LastKnownGoodNestedImpl(NodeConfigSource item){</span>
+<span class="nc" id="L222">                    this.builder = new NodeConfigSourceBuilder(this, item);</span>
+<span class="nc" id="L223">            }</span>
+<span class="nc" id="L224">            LastKnownGoodNestedImpl(){</span>
+<span class="nc" id="L225">                    this.builder = new NodeConfigSourceBuilder(this);</span>
+<span class="nc" id="L226">            }</span>
+    
+    public N and(){
+<span class="nc" id="L229">            return (N) NodeConfigStatusFluentImpl.this.withLastKnownGood(builder.build());</span>
+    }
+    public N endLastKnownGood(){
+<span class="nc" id="L232">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

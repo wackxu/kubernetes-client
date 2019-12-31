@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CinderVolumeSourceFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">CinderVolumeSourceFluentImpl.java</span></div><h1>CinderVolumeSourceFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class CinderVolumeSourceFluentImpl&lt;A extends CinderVolumeSourceFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements CinderVolumeSourceFluent&lt;A&gt;{
+
+    private String fsType;
+    private Boolean readOnly;
+    private LocalObjectReferenceBuilder secretRef;
+    private String volumeID;
+
+<span class="nc" id="L19">    public CinderVolumeSourceFluentImpl(){</span>
+<span class="nc" id="L20">    }</span>
+<span class="nc" id="L21">    public CinderVolumeSourceFluentImpl(CinderVolumeSource instance){</span>
+<span class="nc" id="L22">            this.withFsType(instance.getFsType()); </span>
+<span class="nc" id="L23">            this.withReadOnly(instance.getReadOnly()); </span>
+<span class="nc" id="L24">            this.withSecretRef(instance.getSecretRef()); </span>
+<span class="nc" id="L25">            this.withVolumeID(instance.getVolumeID()); </span>
+<span class="nc" id="L26">    }</span>
+
+    public String getFsType(){
+<span class="nc" id="L29">            return this.fsType;</span>
+    }
+
+    public A withFsType(String fsType){
+<span class="nc" id="L33">            this.fsType=fsType; return (A) this;</span>
+    }
+
+    public Boolean hasFsType(){
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            return this.fsType != null;</span>
+    }
+
+    public Boolean isReadOnly(){
+<span class="nc" id="L41">            return this.readOnly;</span>
+    }
+
+    public A withReadOnly(Boolean readOnly){
+<span class="nc" id="L45">            this.readOnly=readOnly; return (A) this;</span>
+    }
+
+    public Boolean hasReadOnly(){
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            return this.readOnly != null;</span>
+    }
+
+    public A withNewReadOnly(String arg1){
+<span class="nc" id="L53">            return (A)withReadOnly(new Boolean(arg1));</span>
+    }
+
+    public A withNewReadOnly(boolean arg1){
+<span class="nc" id="L57">            return (A)withReadOnly(new Boolean(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSecretRef instead.
+ * @return The buildable object.
+ */
+@Deprecated public LocalObjectReference getSecretRef(){
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            return this.secretRef!=null?this.secretRef.build():null;</span>
+    }
+
+    public LocalObjectReference buildSecretRef(){
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            return this.secretRef!=null?this.secretRef.build():null;</span>
+    }
+
+    public A withSecretRef(LocalObjectReference secretRef){
+<span class="nc" id="L74">            _visitables.remove(this.secretRef);</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            if (secretRef!=null){ this.secretRef= new LocalObjectReferenceBuilder(secretRef); _visitables.add(this.secretRef);} return (A) this;</span>
+    }
+
+    public Boolean hasSecretRef(){
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            return this.secretRef != null;</span>
+    }
+
+    public A withNewSecretRef(String name){
+<span class="nc" id="L83">            return (A)withSecretRef(new LocalObjectReference(name));</span>
+    }
+
+    public CinderVolumeSourceFluent.SecretRefNested&lt;A&gt; withNewSecretRef(){
+<span class="nc" id="L87">            return new SecretRefNestedImpl();</span>
+    }
+
+    public CinderVolumeSourceFluent.SecretRefNested&lt;A&gt; withNewSecretRefLike(LocalObjectReference item){
+<span class="nc" id="L91">            return new SecretRefNestedImpl(item);</span>
+    }
+
+    public CinderVolumeSourceFluent.SecretRefNested&lt;A&gt; editSecretRef(){
+<span class="nc" id="L95">            return withNewSecretRefLike(getSecretRef());</span>
+    }
+
+    public CinderVolumeSourceFluent.SecretRefNested&lt;A&gt; editOrNewSecretRef(){
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            return withNewSecretRefLike(getSecretRef() != null ? getSecretRef(): new LocalObjectReferenceBuilder().build());</span>
+    }
+
+    public CinderVolumeSourceFluent.SecretRefNested&lt;A&gt; editOrNewSecretRefLike(LocalObjectReference item){
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            return withNewSecretRefLike(getSecretRef() != null ? getSecretRef(): item);</span>
+    }
+
+    public String getVolumeID(){
+<span class="nc" id="L107">            return this.volumeID;</span>
+    }
+
+    public A withVolumeID(String volumeID){
+<span class="nc" id="L111">            this.volumeID=volumeID; return (A) this;</span>
+    }
+
+    public Boolean hasVolumeID(){
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            return this.volumeID != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L120" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L122">            CinderVolumeSourceFluentImpl that = (CinderVolumeSourceFluentImpl) o;</span>
+<span class="nc bnc" id="L123" title="All 6 branches missed.">            if (fsType != null ? !fsType.equals(that.fsType) :that.fsType != null) return false;</span>
+<span class="nc bnc" id="L124" title="All 6 branches missed.">            if (readOnly != null ? !readOnly.equals(that.readOnly) :that.readOnly != null) return false;</span>
+<span class="nc bnc" id="L125" title="All 6 branches missed.">            if (secretRef != null ? !secretRef.equals(that.secretRef) :that.secretRef != null) return false;</span>
+<span class="nc bnc" id="L126" title="All 6 branches missed.">            if (volumeID != null ? !volumeID.equals(that.volumeID) :that.volumeID != null) return false;</span>
+<span class="nc" id="L127">            return true;</span>
+    }
+
+
+    public class SecretRefNestedImpl&lt;N&gt; extends LocalObjectReferenceFluentImpl&lt;CinderVolumeSourceFluent.SecretRefNested&lt;N&gt;&gt; implements CinderVolumeSourceFluent.SecretRefNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LocalObjectReferenceBuilder builder;
+    
+<span class="nc" id="L135">            SecretRefNestedImpl(LocalObjectReference item){</span>
+<span class="nc" id="L136">                    this.builder = new LocalObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L137">            }</span>
+<span class="nc" id="L138">            SecretRefNestedImpl(){</span>
+<span class="nc" id="L139">                    this.builder = new LocalObjectReferenceBuilder(this);</span>
+<span class="nc" id="L140">            }</span>
+    
+    public N and(){
+<span class="nc" id="L143">            return (N) CinderVolumeSourceFluentImpl.this.withSecretRef(builder.build());</span>
+    }
+    public N endSecretRef(){
+<span class="nc" id="L146">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

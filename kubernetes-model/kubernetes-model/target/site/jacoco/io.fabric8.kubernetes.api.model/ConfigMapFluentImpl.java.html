@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConfigMapFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ConfigMapFluentImpl.java</span></div><h1>ConfigMapFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import java.util.LinkedHashMap;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+import java.util.Map;
+
+public class ConfigMapFluentImpl&lt;A extends ConfigMapFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ConfigMapFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private Map&lt;String,String&gt; binaryData;
+    private Map&lt;String,String&gt; data;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+
+<span class="fc" id="L24">    public ConfigMapFluentImpl(){</span>
+<span class="fc" id="L25">    }</span>
+<span class="nc" id="L26">    public ConfigMapFluentImpl(ConfigMap instance){</span>
+<span class="nc" id="L27">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L28">            this.withBinaryData(instance.getBinaryData()); </span>
+<span class="nc" id="L29">            this.withData(instance.getData()); </span>
+<span class="nc" id="L30">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L31">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L32">    }</span>
+
+    public String getApiVersion(){
+<span class="fc" id="L35">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="fc" id="L39">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public A addToBinaryData(String key,String value){
+<span class="nc bnc" id="L47" title="All 6 branches missed.">            if(this.binaryData == null &amp;&amp; key != null &amp;&amp; value != null) { this.binaryData = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L48" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.binaryData.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToBinaryData(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L52" title="All 4 branches missed.">            if(this.binaryData == null &amp;&amp; map != null) { this.binaryData = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            if(map != null) { this.binaryData.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromBinaryData(String key){
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            if(this.binaryData == null) { return (A) this; }</span>
+<span class="nc bnc" id="L58" title="All 4 branches missed.">            if(key != null &amp;&amp; this.binaryData != null) {this.binaryData.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromBinaryData(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            if(this.binaryData == null) { return (A) this; }</span>
+<span class="nc bnc" id="L63" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.binaryData != null){this.binaryData.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getBinaryData(){
+<span class="fc" id="L67">            return this.binaryData;</span>
+    }
+
+    public A withBinaryData(Map&lt;String,String&gt; binaryData){
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">            if (binaryData == null) { this.binaryData =  new LinkedHashMap&lt;String,String&gt;();} else {this.binaryData = new LinkedHashMap&lt;String,String&gt;(binaryData);} return (A) this;</span>
+    }
+
+    public Boolean hasBinaryData(){
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            return this.binaryData != null;</span>
+    }
+
+    public A addToData(String key,String value){
+<span class="nc bnc" id="L79" title="All 6 branches missed.">            if(this.data == null &amp;&amp; key != null &amp;&amp; value != null) { this.data = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L80" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.data.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToData(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L84" title="All 4 branches missed.">            if(this.data == null &amp;&amp; map != null) { this.data = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            if(map != null) { this.data.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromData(String key){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if(this.data == null) { return (A) this; }</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">            if(key != null &amp;&amp; this.data != null) {this.data.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromData(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            if(this.data == null) { return (A) this; }</span>
+<span class="nc bnc" id="L95" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.data != null){this.data.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getData(){
+<span class="fc" id="L99">            return this.data;</span>
+    }
+
+    public A withData(Map&lt;String,String&gt; data){
+<span class="fc bfc" id="L103" title="All 2 branches covered.">            if (data == null) { this.data =  new LinkedHashMap&lt;String,String&gt;();} else {this.data = new LinkedHashMap&lt;String,String&gt;(data);} return (A) this;</span>
+    }
+
+    public Boolean hasData(){
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            return this.data != null;</span>
+    }
+
+    public String getKind(){
+<span class="fc" id="L111">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="fc" id="L115">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="pc bpc" id="L128" title="1 of 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="fc" id="L136">            _visitables.remove(this.metadata);</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public ConfigMapFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="fc" id="L145">            return new MetadataNestedImpl();</span>
+    }
+
+    public ConfigMapFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L149">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public ConfigMapFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L153">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public ConfigMapFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public ConfigMapFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L165" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L166" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L168">            ConfigMapFluentImpl that = (ConfigMapFluentImpl) o;</span>
+<span class="nc bnc" id="L169" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L170" title="All 6 branches missed.">            if (binaryData != null ? !binaryData.equals(that.binaryData) :that.binaryData != null) return false;</span>
+<span class="nc bnc" id="L171" title="All 6 branches missed.">            if (data != null ? !data.equals(that.data) :that.data != null) return false;</span>
+<span class="nc bnc" id="L172" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L173" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc" id="L174">            return true;</span>
+    }
+
+
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;ConfigMapFluent.MetadataNested&lt;N&gt;&gt; implements ConfigMapFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L182">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L183">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L184">            }</span>
+<span class="fc" id="L185">            MetadataNestedImpl(){</span>
+<span class="fc" id="L186">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="fc" id="L187">            }</span>
+    
+    public N and(){
+<span class="fc" id="L190">            return (N) ConfigMapFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="fc" id="L193">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CronJobStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.batch</a> &gt; <span class="el_source">CronJobStatusFluentImpl.java</span></div><h1>CronJobStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.batch;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.model.ObjectReferenceFluentImpl;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.ObjectReferenceBuilder;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class CronJobStatusFluentImpl&lt;A extends CronJobStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements CronJobStatusFluent&lt;A&gt;{
+
+    private List&lt;ObjectReferenceBuilder&gt; active;
+    private String lastScheduleTime;
+
+<span class="nc" id="L25">    public CronJobStatusFluentImpl(){</span>
+<span class="nc" id="L26">    }</span>
+<span class="nc" id="L27">    public CronJobStatusFluentImpl(CronJobStatus instance){</span>
+<span class="nc" id="L28">            this.withActive(instance.getActive()); </span>
+<span class="nc" id="L29">            this.withLastScheduleTime(instance.getLastScheduleTime()); </span>
+<span class="nc" id="L30">    }</span>
+
+    public A addToActive(int index,ObjectReference item){
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            if (this.active == null) {this.active = new ArrayList&lt;ObjectReferenceBuilder&gt;();}</span>
+<span class="nc bnc" id="L34" title="All 4 branches missed.">            ObjectReferenceBuilder builder = new ObjectReferenceBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.active.add(index &gt;= 0 ? index : active.size(), builder); return (A)this;</span>
+    }
+
+    public A setToActive(int index,ObjectReference item){
+<span class="nc bnc" id="L38" title="All 2 branches missed.">            if (this.active == null) {this.active = new ArrayList&lt;ObjectReferenceBuilder&gt;();}</span>
+<span class="nc" id="L39">            ObjectReferenceBuilder builder = new ObjectReferenceBuilder(item);</span>
+<span class="nc bnc" id="L40" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L41" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= active.size()) { active.add(builder); } else { active.set(index, builder);}</span>
+<span class="nc" id="L42">             return (A)this;</span>
+    }
+
+    public A addToActive(ObjectReference... items){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (this.active == null) {this.active = new ArrayList&lt;ObjectReferenceBuilder&gt;();}</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            for (ObjectReference item : items) {ObjectReferenceBuilder builder = new ObjectReferenceBuilder(item);_visitables.add(builder);this.active.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToActive(Collection&lt;ObjectReference&gt; items){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            if (this.active == null) {this.active = new ArrayList&lt;ObjectReferenceBuilder&gt;();}</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            for (ObjectReference item : items) {ObjectReferenceBuilder builder = new ObjectReferenceBuilder(item);_visitables.add(builder);this.active.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromActive(ObjectReference... items){
+<span class="nc bnc" id="L56" title="All 4 branches missed.">            for (ObjectReference item : items) {ObjectReferenceBuilder builder = new ObjectReferenceBuilder(item);_visitables.remove(builder);if (this.active != null) {this.active.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromActive(Collection&lt;ObjectReference&gt; items){
+<span class="nc bnc" id="L60" title="All 4 branches missed.">            for (ObjectReference item : items) {ObjectReferenceBuilder builder = new ObjectReferenceBuilder(item);_visitables.remove(builder);if (this.active != null) {this.active.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildActive instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;ObjectReference&gt; getActive(){
+<span class="nc" id="L69">            return build(active);</span>
+    }
+
+    public List&lt;ObjectReference&gt; buildActive(){
+<span class="nc" id="L73">            return build(active);</span>
+    }
+
+    public ObjectReference buildActive(int index){
+<span class="nc" id="L77">            return this.active.get(index).build();</span>
+    }
+
+    public ObjectReference buildFirstActive(){
+<span class="nc" id="L81">            return this.active.get(0).build();</span>
+    }
+
+    public ObjectReference buildLastActive(){
+<span class="nc" id="L85">            return this.active.get(active.size() - 1).build();</span>
+    }
+
+    public ObjectReference buildMatchingActive(io.fabric8.kubernetes.api.builder.Predicate&lt;ObjectReferenceBuilder&gt; predicate){
+<span class="nc bnc" id="L89" title="All 4 branches missed.">            for (ObjectReferenceBuilder item: active) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withActive(List&lt;ObjectReference&gt; active){
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            if (this.active != null) { _visitables.removeAll(this.active);}</span>
+<span class="nc bnc" id="L94" title="All 4 branches missed.">            if (active != null) {this.active = new ArrayList&lt;ObjectReferenceBuilder&gt;(); for (ObjectReference item : active){this.addToActive(item);}} else { this.active = new ArrayList&lt;ObjectReferenceBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withActive(ObjectReference... active){
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            if (this.active != null) {this.active.clear();}</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            if (active != null) {for (ObjectReference item :active){ this.addToActive(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasActive(){
+<span class="nc bnc" id="L103" title="All 4 branches missed.">            return active != null &amp;&amp; !active.isEmpty();</span>
+    }
+
+    public CronJobStatusFluent.ActiveNested&lt;A&gt; addNewActive(){
+<span class="nc" id="L107">            return new ActiveNestedImpl();</span>
+    }
+
+    public CronJobStatusFluent.ActiveNested&lt;A&gt; addNewActiveLike(ObjectReference item){
+<span class="nc" id="L111">            return new ActiveNestedImpl(-1, item);</span>
+    }
+
+    public CronJobStatusFluent.ActiveNested&lt;A&gt; setNewActiveLike(int index,ObjectReference item){
+<span class="nc" id="L115">            return new ActiveNestedImpl(index, item);</span>
+    }
+
+    public CronJobStatusFluent.ActiveNested&lt;A&gt; editActive(int index){
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            if (active.size() &lt;= index) throw new RuntimeException(&quot;Can't edit active. Index exceeds size.&quot;);</span>
+<span class="nc" id="L120">            return setNewActiveLike(index, buildActive(index));</span>
+    }
+
+    public CronJobStatusFluent.ActiveNested&lt;A&gt; editFirstActive(){
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            if (active.size() == 0) throw new RuntimeException(&quot;Can't edit first active. The list is empty.&quot;);</span>
+<span class="nc" id="L125">            return setNewActiveLike(0, buildActive(0));</span>
+    }
+
+    public CronJobStatusFluent.ActiveNested&lt;A&gt; editLastActive(){
+<span class="nc" id="L129">            int index = active.size() - 1;</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last active. The list is empty.&quot;);</span>
+<span class="nc" id="L131">            return setNewActiveLike(index, buildActive(index));</span>
+    }
+
+    public CronJobStatusFluent.ActiveNested&lt;A&gt; editMatchingActive(io.fabric8.kubernetes.api.builder.Predicate&lt;ObjectReferenceBuilder&gt; predicate){
+<span class="nc" id="L135">            int index = -1;</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            for (int i=0;i&lt;active.size();i++) { </span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            if (predicate.apply(active.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching active. No match found.&quot;);</span>
+<span class="nc" id="L140">            return setNewActiveLike(index, buildActive(index));</span>
+    }
+
+    public String getLastScheduleTime(){
+<span class="nc" id="L144">            return this.lastScheduleTime;</span>
+    }
+
+    public A withLastScheduleTime(String lastScheduleTime){
+<span class="nc" id="L148">            this.lastScheduleTime=lastScheduleTime; return (A) this;</span>
+    }
+
+    public Boolean hasLastScheduleTime(){
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            return this.lastScheduleTime != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L156" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L157" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L159">            CronJobStatusFluentImpl that = (CronJobStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L160" title="All 6 branches missed.">            if (active != null ? !active.equals(that.active) :that.active != null) return false;</span>
+<span class="nc bnc" id="L161" title="All 6 branches missed.">            if (lastScheduleTime != null ? !lastScheduleTime.equals(that.lastScheduleTime) :that.lastScheduleTime != null) return false;</span>
+<span class="nc" id="L162">            return true;</span>
+    }
+
+
+    public class ActiveNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;CronJobStatusFluent.ActiveNested&lt;N&gt;&gt; implements CronJobStatusFluent.ActiveNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L171">            ActiveNestedImpl(int index,ObjectReference item){</span>
+<span class="nc" id="L172">                    this.index = index;</span>
+<span class="nc" id="L173">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L174">            }</span>
+<span class="nc" id="L175">            ActiveNestedImpl(){</span>
+<span class="nc" id="L176">                    this.index = -1;</span>
+<span class="nc" id="L177">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L178">            }</span>
+    
+    public N and(){
+<span class="nc" id="L181">            return (N) CronJobStatusFluentImpl.this.setToActive(index, builder.build());</span>
+    }
+    public N endActive(){
+<span class="nc" id="L184">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

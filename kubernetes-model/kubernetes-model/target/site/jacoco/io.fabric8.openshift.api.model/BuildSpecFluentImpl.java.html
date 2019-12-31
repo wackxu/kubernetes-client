@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuildSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">BuildSpecFluentImpl.java</span></div><h1>BuildSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.model.ResourceRequirements;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.util.LinkedHashMap;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ResourceRequirementsFluentImpl;
+import javax.validation.Valid;
+import java.lang.Long;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.Map;
+import io.fabric8.kubernetes.api.model.ResourceRequirementsBuilder;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.Deprecated;
+
+public class BuildSpecFluentImpl&lt;A extends BuildSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements BuildSpecFluent&lt;A&gt;{
+
+    private Long completionDeadlineSeconds;
+    private Map&lt;String,String&gt; nodeSelector;
+    private BuildOutputBuilder output;
+    private BuildPostCommitSpecBuilder postCommit;
+    private ResourceRequirementsBuilder resources;
+    private SourceRevisionBuilder revision;
+    private String serviceAccount;
+    private BuildSourceBuilder source;
+    private BuildStrategyBuilder strategy;
+    private List&lt;BuildTriggerCauseBuilder&gt; triggeredBy;
+
+<span class="nc" id="L35">    public BuildSpecFluentImpl(){</span>
+<span class="nc" id="L36">    }</span>
+<span class="nc" id="L37">    public BuildSpecFluentImpl(BuildSpec instance){</span>
+<span class="nc" id="L38">            this.withCompletionDeadlineSeconds(instance.getCompletionDeadlineSeconds()); </span>
+<span class="nc" id="L39">            this.withNodeSelector(instance.getNodeSelector()); </span>
+<span class="nc" id="L40">            this.withOutput(instance.getOutput()); </span>
+<span class="nc" id="L41">            this.withPostCommit(instance.getPostCommit()); </span>
+<span class="nc" id="L42">            this.withResources(instance.getResources()); </span>
+<span class="nc" id="L43">            this.withRevision(instance.getRevision()); </span>
+<span class="nc" id="L44">            this.withServiceAccount(instance.getServiceAccount()); </span>
+<span class="nc" id="L45">            this.withSource(instance.getSource()); </span>
+<span class="nc" id="L46">            this.withStrategy(instance.getStrategy()); </span>
+<span class="nc" id="L47">            this.withTriggeredBy(instance.getTriggeredBy()); </span>
+<span class="nc" id="L48">    }</span>
+
+    public Long getCompletionDeadlineSeconds(){
+<span class="nc" id="L51">            return this.completionDeadlineSeconds;</span>
+    }
+
+    public A withCompletionDeadlineSeconds(Long completionDeadlineSeconds){
+<span class="nc" id="L55">            this.completionDeadlineSeconds=completionDeadlineSeconds; return (A) this;</span>
+    }
+
+    public Boolean hasCompletionDeadlineSeconds(){
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            return this.completionDeadlineSeconds != null;</span>
+    }
+
+    public A withNewCompletionDeadlineSeconds(String arg1){
+<span class="nc" id="L63">            return (A)withCompletionDeadlineSeconds(new Long(arg1));</span>
+    }
+
+    public A withNewCompletionDeadlineSeconds(long arg1){
+<span class="nc" id="L67">            return (A)withCompletionDeadlineSeconds(new Long(arg1));</span>
+    }
+
+    public A addToNodeSelector(String key,String value){
+<span class="nc bnc" id="L71" title="All 6 branches missed.">            if(this.nodeSelector == null &amp;&amp; key != null &amp;&amp; value != null) { this.nodeSelector = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L72" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.nodeSelector.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToNodeSelector(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L76" title="All 4 branches missed.">            if(this.nodeSelector == null &amp;&amp; map != null) { this.nodeSelector = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            if(map != null) { this.nodeSelector.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromNodeSelector(String key){
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            if(this.nodeSelector == null) { return (A) this; }</span>
+<span class="nc bnc" id="L82" title="All 4 branches missed.">            if(key != null &amp;&amp; this.nodeSelector != null) {this.nodeSelector.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromNodeSelector(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            if(this.nodeSelector == null) { return (A) this; }</span>
+<span class="nc bnc" id="L87" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.nodeSelector != null){this.nodeSelector.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getNodeSelector(){
+<span class="nc" id="L91">            return this.nodeSelector;</span>
+    }
+
+    public A withNodeSelector(Map&lt;String,String&gt; nodeSelector){
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (nodeSelector == null) { this.nodeSelector =  new LinkedHashMap&lt;String,String&gt;();} else {this.nodeSelector = new LinkedHashMap&lt;String,String&gt;(nodeSelector);} return (A) this;</span>
+    }
+
+    public Boolean hasNodeSelector(){
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            return this.nodeSelector != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildOutput instead.
+ * @return The buildable object.
+ */
+@Deprecated public BuildOutput getOutput(){
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            return this.output!=null?this.output.build():null;</span>
+    }
+
+    public BuildOutput buildOutput(){
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            return this.output!=null?this.output.build():null;</span>
+    }
+
+    public A withOutput(BuildOutput output){
+<span class="nc" id="L116">            _visitables.remove(this.output);</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            if (output!=null){ this.output= new BuildOutputBuilder(output); _visitables.add(this.output);} return (A) this;</span>
+    }
+
+    public Boolean hasOutput(){
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            return this.output != null;</span>
+    }
+
+    public BuildSpecFluent.OutputNested&lt;A&gt; withNewOutput(){
+<span class="nc" id="L125">            return new OutputNestedImpl();</span>
+    }
+
+    public BuildSpecFluent.OutputNested&lt;A&gt; withNewOutputLike(BuildOutput item){
+<span class="nc" id="L129">            return new OutputNestedImpl(item);</span>
+    }
+
+    public BuildSpecFluent.OutputNested&lt;A&gt; editOutput(){
+<span class="nc" id="L133">            return withNewOutputLike(getOutput());</span>
+    }
+
+    public BuildSpecFluent.OutputNested&lt;A&gt; editOrNewOutput(){
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            return withNewOutputLike(getOutput() != null ? getOutput(): new BuildOutputBuilder().build());</span>
+    }
+
+    public BuildSpecFluent.OutputNested&lt;A&gt; editOrNewOutputLike(BuildOutput item){
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            return withNewOutputLike(getOutput() != null ? getOutput(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPostCommit instead.
+ * @return The buildable object.
+ */
+@Deprecated public BuildPostCommitSpec getPostCommit(){
+<span class="nc bnc" id="L150" title="All 2 branches missed.">            return this.postCommit!=null?this.postCommit.build():null;</span>
+    }
+
+    public BuildPostCommitSpec buildPostCommit(){
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            return this.postCommit!=null?this.postCommit.build():null;</span>
+    }
+
+    public A withPostCommit(BuildPostCommitSpec postCommit){
+<span class="nc" id="L158">            _visitables.remove(this.postCommit);</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            if (postCommit!=null){ this.postCommit= new BuildPostCommitSpecBuilder(postCommit); _visitables.add(this.postCommit);} return (A) this;</span>
+    }
+
+    public Boolean hasPostCommit(){
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            return this.postCommit != null;</span>
+    }
+
+    public BuildSpecFluent.PostCommitNested&lt;A&gt; withNewPostCommit(){
+<span class="nc" id="L167">            return new PostCommitNestedImpl();</span>
+    }
+
+    public BuildSpecFluent.PostCommitNested&lt;A&gt; withNewPostCommitLike(BuildPostCommitSpec item){
+<span class="nc" id="L171">            return new PostCommitNestedImpl(item);</span>
+    }
+
+    public BuildSpecFluent.PostCommitNested&lt;A&gt; editPostCommit(){
+<span class="nc" id="L175">            return withNewPostCommitLike(getPostCommit());</span>
+    }
+
+    public BuildSpecFluent.PostCommitNested&lt;A&gt; editOrNewPostCommit(){
+<span class="nc bnc" id="L179" title="All 2 branches missed.">            return withNewPostCommitLike(getPostCommit() != null ? getPostCommit(): new BuildPostCommitSpecBuilder().build());</span>
+    }
+
+    public BuildSpecFluent.PostCommitNested&lt;A&gt; editOrNewPostCommitLike(BuildPostCommitSpec item){
+<span class="nc bnc" id="L183" title="All 2 branches missed.">            return withNewPostCommitLike(getPostCommit() != null ? getPostCommit(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildResources instead.
+ * @return The buildable object.
+ */
+@Deprecated public ResourceRequirements getResources(){
+<span class="nc bnc" id="L192" title="All 2 branches missed.">            return this.resources!=null?this.resources.build():null;</span>
+    }
+
+    public ResourceRequirements buildResources(){
+<span class="nc bnc" id="L196" title="All 2 branches missed.">            return this.resources!=null?this.resources.build():null;</span>
+    }
+
+    public A withResources(ResourceRequirements resources){
+<span class="nc" id="L200">            _visitables.remove(this.resources);</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">            if (resources!=null){ this.resources= new ResourceRequirementsBuilder(resources); _visitables.add(this.resources);} return (A) this;</span>
+    }
+
+    public Boolean hasResources(){
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            return this.resources != null;</span>
+    }
+
+    public BuildSpecFluent.ResourcesNested&lt;A&gt; withNewResources(){
+<span class="nc" id="L209">            return new ResourcesNestedImpl();</span>
+    }
+
+    public BuildSpecFluent.ResourcesNested&lt;A&gt; withNewResourcesLike(ResourceRequirements item){
+<span class="nc" id="L213">            return new ResourcesNestedImpl(item);</span>
+    }
+
+    public BuildSpecFluent.ResourcesNested&lt;A&gt; editResources(){
+<span class="nc" id="L217">            return withNewResourcesLike(getResources());</span>
+    }
+
+    public BuildSpecFluent.ResourcesNested&lt;A&gt; editOrNewResources(){
+<span class="nc bnc" id="L221" title="All 2 branches missed.">            return withNewResourcesLike(getResources() != null ? getResources(): new ResourceRequirementsBuilder().build());</span>
+    }
+
+    public BuildSpecFluent.ResourcesNested&lt;A&gt; editOrNewResourcesLike(ResourceRequirements item){
+<span class="nc bnc" id="L225" title="All 2 branches missed.">            return withNewResourcesLike(getResources() != null ? getResources(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildRevision instead.
+ * @return The buildable object.
+ */
+@Deprecated public SourceRevision getRevision(){
+<span class="nc bnc" id="L234" title="All 2 branches missed.">            return this.revision!=null?this.revision.build():null;</span>
+    }
+
+    public SourceRevision buildRevision(){
+<span class="nc bnc" id="L238" title="All 2 branches missed.">            return this.revision!=null?this.revision.build():null;</span>
+    }
+
+    public A withRevision(SourceRevision revision){
+<span class="nc" id="L242">            _visitables.remove(this.revision);</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            if (revision!=null){ this.revision= new SourceRevisionBuilder(revision); _visitables.add(this.revision);} return (A) this;</span>
+    }
+
+    public Boolean hasRevision(){
+<span class="nc bnc" id="L247" title="All 2 branches missed.">            return this.revision != null;</span>
+    }
+
+    public BuildSpecFluent.RevisionNested&lt;A&gt; withNewRevision(){
+<span class="nc" id="L251">            return new RevisionNestedImpl();</span>
+    }
+
+    public BuildSpecFluent.RevisionNested&lt;A&gt; withNewRevisionLike(SourceRevision item){
+<span class="nc" id="L255">            return new RevisionNestedImpl(item);</span>
+    }
+
+    public BuildSpecFluent.RevisionNested&lt;A&gt; editRevision(){
+<span class="nc" id="L259">            return withNewRevisionLike(getRevision());</span>
+    }
+
+    public BuildSpecFluent.RevisionNested&lt;A&gt; editOrNewRevision(){
+<span class="nc bnc" id="L263" title="All 2 branches missed.">            return withNewRevisionLike(getRevision() != null ? getRevision(): new SourceRevisionBuilder().build());</span>
+    }
+
+    public BuildSpecFluent.RevisionNested&lt;A&gt; editOrNewRevisionLike(SourceRevision item){
+<span class="nc bnc" id="L267" title="All 2 branches missed.">            return withNewRevisionLike(getRevision() != null ? getRevision(): item);</span>
+    }
+
+    public String getServiceAccount(){
+<span class="nc" id="L271">            return this.serviceAccount;</span>
+    }
+
+    public A withServiceAccount(String serviceAccount){
+<span class="nc" id="L275">            this.serviceAccount=serviceAccount; return (A) this;</span>
+    }
+
+    public Boolean hasServiceAccount(){
+<span class="nc bnc" id="L279" title="All 2 branches missed.">            return this.serviceAccount != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSource instead.
+ * @return The buildable object.
+ */
+@Deprecated public BuildSource getSource(){
+<span class="nc bnc" id="L288" title="All 2 branches missed.">            return this.source!=null?this.source.build():null;</span>
+    }
+
+    public BuildSource buildSource(){
+<span class="nc bnc" id="L292" title="All 2 branches missed.">            return this.source!=null?this.source.build():null;</span>
+    }
+
+    public A withSource(BuildSource source){
+<span class="nc" id="L296">            _visitables.remove(this.source);</span>
+<span class="nc bnc" id="L297" title="All 2 branches missed.">            if (source!=null){ this.source= new BuildSourceBuilder(source); _visitables.add(this.source);} return (A) this;</span>
+    }
+
+    public Boolean hasSource(){
+<span class="nc bnc" id="L301" title="All 2 branches missed.">            return this.source != null;</span>
+    }
+
+    public BuildSpecFluent.SourceNested&lt;A&gt; withNewSource(){
+<span class="nc" id="L305">            return new SourceNestedImpl();</span>
+    }
+
+    public BuildSpecFluent.SourceNested&lt;A&gt; withNewSourceLike(BuildSource item){
+<span class="nc" id="L309">            return new SourceNestedImpl(item);</span>
+    }
+
+    public BuildSpecFluent.SourceNested&lt;A&gt; editSource(){
+<span class="nc" id="L313">            return withNewSourceLike(getSource());</span>
+    }
+
+    public BuildSpecFluent.SourceNested&lt;A&gt; editOrNewSource(){
+<span class="nc bnc" id="L317" title="All 2 branches missed.">            return withNewSourceLike(getSource() != null ? getSource(): new BuildSourceBuilder().build());</span>
+    }
+
+    public BuildSpecFluent.SourceNested&lt;A&gt; editOrNewSourceLike(BuildSource item){
+<span class="nc bnc" id="L321" title="All 2 branches missed.">            return withNewSourceLike(getSource() != null ? getSource(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildStrategy instead.
+ * @return The buildable object.
+ */
+@Deprecated public BuildStrategy getStrategy(){
+<span class="nc bnc" id="L330" title="All 2 branches missed.">            return this.strategy!=null?this.strategy.build():null;</span>
+    }
+
+    public BuildStrategy buildStrategy(){
+<span class="nc bnc" id="L334" title="All 2 branches missed.">            return this.strategy!=null?this.strategy.build():null;</span>
+    }
+
+    public A withStrategy(BuildStrategy strategy){
+<span class="nc" id="L338">            _visitables.remove(this.strategy);</span>
+<span class="nc bnc" id="L339" title="All 2 branches missed.">            if (strategy!=null){ this.strategy= new BuildStrategyBuilder(strategy); _visitables.add(this.strategy);} return (A) this;</span>
+    }
+
+    public Boolean hasStrategy(){
+<span class="nc bnc" id="L343" title="All 2 branches missed.">            return this.strategy != null;</span>
+    }
+
+    public BuildSpecFluent.StrategyNested&lt;A&gt; withNewStrategy(){
+<span class="nc" id="L347">            return new StrategyNestedImpl();</span>
+    }
+
+    public BuildSpecFluent.StrategyNested&lt;A&gt; withNewStrategyLike(BuildStrategy item){
+<span class="nc" id="L351">            return new StrategyNestedImpl(item);</span>
+    }
+
+    public BuildSpecFluent.StrategyNested&lt;A&gt; editStrategy(){
+<span class="nc" id="L355">            return withNewStrategyLike(getStrategy());</span>
+    }
+
+    public BuildSpecFluent.StrategyNested&lt;A&gt; editOrNewStrategy(){
+<span class="nc bnc" id="L359" title="All 2 branches missed.">            return withNewStrategyLike(getStrategy() != null ? getStrategy(): new BuildStrategyBuilder().build());</span>
+    }
+
+    public BuildSpecFluent.StrategyNested&lt;A&gt; editOrNewStrategyLike(BuildStrategy item){
+<span class="nc bnc" id="L363" title="All 2 branches missed.">            return withNewStrategyLike(getStrategy() != null ? getStrategy(): item);</span>
+    }
+
+    public A addToTriggeredBy(int index,BuildTriggerCause item){
+<span class="nc bnc" id="L367" title="All 2 branches missed.">            if (this.triggeredBy == null) {this.triggeredBy = new ArrayList&lt;BuildTriggerCauseBuilder&gt;();}</span>
+<span class="nc bnc" id="L368" title="All 4 branches missed.">            BuildTriggerCauseBuilder builder = new BuildTriggerCauseBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.triggeredBy.add(index &gt;= 0 ? index : triggeredBy.size(), builder); return (A)this;</span>
+    }
+
+    public A setToTriggeredBy(int index,BuildTriggerCause item){
+<span class="nc bnc" id="L372" title="All 2 branches missed.">            if (this.triggeredBy == null) {this.triggeredBy = new ArrayList&lt;BuildTriggerCauseBuilder&gt;();}</span>
+<span class="nc" id="L373">            BuildTriggerCauseBuilder builder = new BuildTriggerCauseBuilder(item);</span>
+<span class="nc bnc" id="L374" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L375" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= triggeredBy.size()) { triggeredBy.add(builder); } else { triggeredBy.set(index, builder);}</span>
+<span class="nc" id="L376">             return (A)this;</span>
+    }
+
+    public A addToTriggeredBy(BuildTriggerCause... items){
+<span class="nc bnc" id="L380" title="All 2 branches missed.">            if (this.triggeredBy == null) {this.triggeredBy = new ArrayList&lt;BuildTriggerCauseBuilder&gt;();}</span>
+<span class="nc bnc" id="L381" title="All 2 branches missed.">            for (BuildTriggerCause item : items) {BuildTriggerCauseBuilder builder = new BuildTriggerCauseBuilder(item);_visitables.add(builder);this.triggeredBy.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToTriggeredBy(Collection&lt;BuildTriggerCause&gt; items){
+<span class="nc bnc" id="L385" title="All 2 branches missed.">            if (this.triggeredBy == null) {this.triggeredBy = new ArrayList&lt;BuildTriggerCauseBuilder&gt;();}</span>
+<span class="nc bnc" id="L386" title="All 2 branches missed.">            for (BuildTriggerCause item : items) {BuildTriggerCauseBuilder builder = new BuildTriggerCauseBuilder(item);_visitables.add(builder);this.triggeredBy.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromTriggeredBy(BuildTriggerCause... items){
+<span class="nc bnc" id="L390" title="All 4 branches missed.">            for (BuildTriggerCause item : items) {BuildTriggerCauseBuilder builder = new BuildTriggerCauseBuilder(item);_visitables.remove(builder);if (this.triggeredBy != null) {this.triggeredBy.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromTriggeredBy(Collection&lt;BuildTriggerCause&gt; items){
+<span class="nc bnc" id="L394" title="All 4 branches missed.">            for (BuildTriggerCause item : items) {BuildTriggerCauseBuilder builder = new BuildTriggerCauseBuilder(item);_visitables.remove(builder);if (this.triggeredBy != null) {this.triggeredBy.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTriggeredBy instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;BuildTriggerCause&gt; getTriggeredBy(){
+<span class="nc" id="L403">            return build(triggeredBy);</span>
+    }
+
+    public List&lt;BuildTriggerCause&gt; buildTriggeredBy(){
+<span class="nc" id="L407">            return build(triggeredBy);</span>
+    }
+
+    public BuildTriggerCause buildTriggeredBy(int index){
+<span class="nc" id="L411">            return this.triggeredBy.get(index).build();</span>
+    }
+
+    public BuildTriggerCause buildFirstTriggeredBy(){
+<span class="nc" id="L415">            return this.triggeredBy.get(0).build();</span>
+    }
+
+    public BuildTriggerCause buildLastTriggeredBy(){
+<span class="nc" id="L419">            return this.triggeredBy.get(triggeredBy.size() - 1).build();</span>
+    }
+
+    public BuildTriggerCause buildMatchingTriggeredBy(io.fabric8.kubernetes.api.builder.Predicate&lt;BuildTriggerCauseBuilder&gt; predicate){
+<span class="nc bnc" id="L423" title="All 4 branches missed.">            for (BuildTriggerCauseBuilder item: triggeredBy) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withTriggeredBy(List&lt;BuildTriggerCause&gt; triggeredBy){
+<span class="nc bnc" id="L427" title="All 2 branches missed.">            if (this.triggeredBy != null) { _visitables.removeAll(this.triggeredBy);}</span>
+<span class="nc bnc" id="L428" title="All 4 branches missed.">            if (triggeredBy != null) {this.triggeredBy = new ArrayList&lt;BuildTriggerCauseBuilder&gt;(); for (BuildTriggerCause item : triggeredBy){this.addToTriggeredBy(item);}} else { this.triggeredBy = new ArrayList&lt;BuildTriggerCauseBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withTriggeredBy(BuildTriggerCause... triggeredBy){
+<span class="nc bnc" id="L432" title="All 2 branches missed.">            if (this.triggeredBy != null) {this.triggeredBy.clear();}</span>
+<span class="nc bnc" id="L433" title="All 4 branches missed.">            if (triggeredBy != null) {for (BuildTriggerCause item :triggeredBy){ this.addToTriggeredBy(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasTriggeredBy(){
+<span class="nc bnc" id="L437" title="All 4 branches missed.">            return triggeredBy != null &amp;&amp; !triggeredBy.isEmpty();</span>
+    }
+
+    public BuildSpecFluent.TriggeredByNested&lt;A&gt; addNewTriggeredBy(){
+<span class="nc" id="L441">            return new TriggeredByNestedImpl();</span>
+    }
+
+    public BuildSpecFluent.TriggeredByNested&lt;A&gt; addNewTriggeredByLike(BuildTriggerCause item){
+<span class="nc" id="L445">            return new TriggeredByNestedImpl(-1, item);</span>
+    }
+
+    public BuildSpecFluent.TriggeredByNested&lt;A&gt; setNewTriggeredByLike(int index,BuildTriggerCause item){
+<span class="nc" id="L449">            return new TriggeredByNestedImpl(index, item);</span>
+    }
+
+    public BuildSpecFluent.TriggeredByNested&lt;A&gt; editTriggeredBy(int index){
+<span class="nc bnc" id="L453" title="All 2 branches missed.">            if (triggeredBy.size() &lt;= index) throw new RuntimeException(&quot;Can't edit triggeredBy. Index exceeds size.&quot;);</span>
+<span class="nc" id="L454">            return setNewTriggeredByLike(index, buildTriggeredBy(index));</span>
+    }
+
+    public BuildSpecFluent.TriggeredByNested&lt;A&gt; editFirstTriggeredBy(){
+<span class="nc bnc" id="L458" title="All 2 branches missed.">            if (triggeredBy.size() == 0) throw new RuntimeException(&quot;Can't edit first triggeredBy. The list is empty.&quot;);</span>
+<span class="nc" id="L459">            return setNewTriggeredByLike(0, buildTriggeredBy(0));</span>
+    }
+
+    public BuildSpecFluent.TriggeredByNested&lt;A&gt; editLastTriggeredBy(){
+<span class="nc" id="L463">            int index = triggeredBy.size() - 1;</span>
+<span class="nc bnc" id="L464" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last triggeredBy. The list is empty.&quot;);</span>
+<span class="nc" id="L465">            return setNewTriggeredByLike(index, buildTriggeredBy(index));</span>
+    }
+
+    public BuildSpecFluent.TriggeredByNested&lt;A&gt; editMatchingTriggeredBy(io.fabric8.kubernetes.api.builder.Predicate&lt;BuildTriggerCauseBuilder&gt; predicate){
+<span class="nc" id="L469">            int index = -1;</span>
+<span class="nc bnc" id="L470" title="All 2 branches missed.">            for (int i=0;i&lt;triggeredBy.size();i++) { </span>
+<span class="nc bnc" id="L471" title="All 2 branches missed.">            if (predicate.apply(triggeredBy.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L473" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching triggeredBy. No match found.&quot;);</span>
+<span class="nc" id="L474">            return setNewTriggeredByLike(index, buildTriggeredBy(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L478" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L479" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L480" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L481">            BuildSpecFluentImpl that = (BuildSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L482" title="All 6 branches missed.">            if (completionDeadlineSeconds != null ? !completionDeadlineSeconds.equals(that.completionDeadlineSeconds) :that.completionDeadlineSeconds != null) return false;</span>
+<span class="nc bnc" id="L483" title="All 6 branches missed.">            if (nodeSelector != null ? !nodeSelector.equals(that.nodeSelector) :that.nodeSelector != null) return false;</span>
+<span class="nc bnc" id="L484" title="All 6 branches missed.">            if (output != null ? !output.equals(that.output) :that.output != null) return false;</span>
+<span class="nc bnc" id="L485" title="All 6 branches missed.">            if (postCommit != null ? !postCommit.equals(that.postCommit) :that.postCommit != null) return false;</span>
+<span class="nc bnc" id="L486" title="All 6 branches missed.">            if (resources != null ? !resources.equals(that.resources) :that.resources != null) return false;</span>
+<span class="nc bnc" id="L487" title="All 6 branches missed.">            if (revision != null ? !revision.equals(that.revision) :that.revision != null) return false;</span>
+<span class="nc bnc" id="L488" title="All 6 branches missed.">            if (serviceAccount != null ? !serviceAccount.equals(that.serviceAccount) :that.serviceAccount != null) return false;</span>
+<span class="nc bnc" id="L489" title="All 6 branches missed.">            if (source != null ? !source.equals(that.source) :that.source != null) return false;</span>
+<span class="nc bnc" id="L490" title="All 6 branches missed.">            if (strategy != null ? !strategy.equals(that.strategy) :that.strategy != null) return false;</span>
+<span class="nc bnc" id="L491" title="All 6 branches missed.">            if (triggeredBy != null ? !triggeredBy.equals(that.triggeredBy) :that.triggeredBy != null) return false;</span>
+<span class="nc" id="L492">            return true;</span>
+    }
+
+
+    public class OutputNestedImpl&lt;N&gt; extends BuildOutputFluentImpl&lt;BuildSpecFluent.OutputNested&lt;N&gt;&gt; implements BuildSpecFluent.OutputNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BuildOutputBuilder builder;
+    
+<span class="nc" id="L500">            OutputNestedImpl(BuildOutput item){</span>
+<span class="nc" id="L501">                    this.builder = new BuildOutputBuilder(this, item);</span>
+<span class="nc" id="L502">            }</span>
+<span class="nc" id="L503">            OutputNestedImpl(){</span>
+<span class="nc" id="L504">                    this.builder = new BuildOutputBuilder(this);</span>
+<span class="nc" id="L505">            }</span>
+    
+    public N and(){
+<span class="nc" id="L508">            return (N) BuildSpecFluentImpl.this.withOutput(builder.build());</span>
+    }
+    public N endOutput(){
+<span class="nc" id="L511">            return and();</span>
+    }
+
+}
+    public class PostCommitNestedImpl&lt;N&gt; extends BuildPostCommitSpecFluentImpl&lt;BuildSpecFluent.PostCommitNested&lt;N&gt;&gt; implements BuildSpecFluent.PostCommitNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BuildPostCommitSpecBuilder builder;
+    
+<span class="nc" id="L519">            PostCommitNestedImpl(BuildPostCommitSpec item){</span>
+<span class="nc" id="L520">                    this.builder = new BuildPostCommitSpecBuilder(this, item);</span>
+<span class="nc" id="L521">            }</span>
+<span class="nc" id="L522">            PostCommitNestedImpl(){</span>
+<span class="nc" id="L523">                    this.builder = new BuildPostCommitSpecBuilder(this);</span>
+<span class="nc" id="L524">            }</span>
+    
+    public N and(){
+<span class="nc" id="L527">            return (N) BuildSpecFluentImpl.this.withPostCommit(builder.build());</span>
+    }
+    public N endPostCommit(){
+<span class="nc" id="L530">            return and();</span>
+    }
+
+}
+    public class ResourcesNestedImpl&lt;N&gt; extends ResourceRequirementsFluentImpl&lt;BuildSpecFluent.ResourcesNested&lt;N&gt;&gt; implements BuildSpecFluent.ResourcesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ResourceRequirementsBuilder builder;
+    
+<span class="nc" id="L538">            ResourcesNestedImpl(ResourceRequirements item){</span>
+<span class="nc" id="L539">                    this.builder = new ResourceRequirementsBuilder(this, item);</span>
+<span class="nc" id="L540">            }</span>
+<span class="nc" id="L541">            ResourcesNestedImpl(){</span>
+<span class="nc" id="L542">                    this.builder = new ResourceRequirementsBuilder(this);</span>
+<span class="nc" id="L543">            }</span>
+    
+    public N and(){
+<span class="nc" id="L546">            return (N) BuildSpecFluentImpl.this.withResources(builder.build());</span>
+    }
+    public N endResources(){
+<span class="nc" id="L549">            return and();</span>
+    }
+
+}
+    public class RevisionNestedImpl&lt;N&gt; extends SourceRevisionFluentImpl&lt;BuildSpecFluent.RevisionNested&lt;N&gt;&gt; implements BuildSpecFluent.RevisionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SourceRevisionBuilder builder;
+    
+<span class="nc" id="L557">            RevisionNestedImpl(SourceRevision item){</span>
+<span class="nc" id="L558">                    this.builder = new SourceRevisionBuilder(this, item);</span>
+<span class="nc" id="L559">            }</span>
+<span class="nc" id="L560">            RevisionNestedImpl(){</span>
+<span class="nc" id="L561">                    this.builder = new SourceRevisionBuilder(this);</span>
+<span class="nc" id="L562">            }</span>
+    
+    public N and(){
+<span class="nc" id="L565">            return (N) BuildSpecFluentImpl.this.withRevision(builder.build());</span>
+    }
+    public N endRevision(){
+<span class="nc" id="L568">            return and();</span>
+    }
+
+}
+    public class SourceNestedImpl&lt;N&gt; extends BuildSourceFluentImpl&lt;BuildSpecFluent.SourceNested&lt;N&gt;&gt; implements BuildSpecFluent.SourceNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BuildSourceBuilder builder;
+    
+<span class="nc" id="L576">            SourceNestedImpl(BuildSource item){</span>
+<span class="nc" id="L577">                    this.builder = new BuildSourceBuilder(this, item);</span>
+<span class="nc" id="L578">            }</span>
+<span class="nc" id="L579">            SourceNestedImpl(){</span>
+<span class="nc" id="L580">                    this.builder = new BuildSourceBuilder(this);</span>
+<span class="nc" id="L581">            }</span>
+    
+    public N and(){
+<span class="nc" id="L584">            return (N) BuildSpecFluentImpl.this.withSource(builder.build());</span>
+    }
+    public N endSource(){
+<span class="nc" id="L587">            return and();</span>
+    }
+
+}
+    public class StrategyNestedImpl&lt;N&gt; extends BuildStrategyFluentImpl&lt;BuildSpecFluent.StrategyNested&lt;N&gt;&gt; implements BuildSpecFluent.StrategyNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BuildStrategyBuilder builder;
+    
+<span class="nc" id="L595">            StrategyNestedImpl(BuildStrategy item){</span>
+<span class="nc" id="L596">                    this.builder = new BuildStrategyBuilder(this, item);</span>
+<span class="nc" id="L597">            }</span>
+<span class="nc" id="L598">            StrategyNestedImpl(){</span>
+<span class="nc" id="L599">                    this.builder = new BuildStrategyBuilder(this);</span>
+<span class="nc" id="L600">            }</span>
+    
+    public N and(){
+<span class="nc" id="L603">            return (N) BuildSpecFluentImpl.this.withStrategy(builder.build());</span>
+    }
+    public N endStrategy(){
+<span class="nc" id="L606">            return and();</span>
+    }
+
+}
+    public class TriggeredByNestedImpl&lt;N&gt; extends BuildTriggerCauseFluentImpl&lt;BuildSpecFluent.TriggeredByNested&lt;N&gt;&gt; implements BuildSpecFluent.TriggeredByNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BuildTriggerCauseBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L615">            TriggeredByNestedImpl(int index,BuildTriggerCause item){</span>
+<span class="nc" id="L616">                    this.index = index;</span>
+<span class="nc" id="L617">                    this.builder = new BuildTriggerCauseBuilder(this, item);</span>
+<span class="nc" id="L618">            }</span>
+<span class="nc" id="L619">            TriggeredByNestedImpl(){</span>
+<span class="nc" id="L620">                    this.index = -1;</span>
+<span class="nc" id="L621">                    this.builder = new BuildTriggerCauseBuilder(this);</span>
+<span class="nc" id="L622">            }</span>
+    
+    public N and(){
+<span class="nc" id="L625">            return (N) BuildSpecFluentImpl.this.setToTriggeredBy(index, builder.build());</span>
+    }
+    public N endTriggeredBy(){
+<span class="nc" id="L628">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

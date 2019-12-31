@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PodAffinityTermFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">PodAffinityTermFluentImpl.java</span></div><h1>PodAffinityTermFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class PodAffinityTermFluentImpl&lt;A extends PodAffinityTermFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements PodAffinityTermFluent&lt;A&gt;{
+
+    private LabelSelectorBuilder labelSelector;
+    private List&lt;String&gt; namespaces;
+    private String topologyKey;
+
+<span class="nc" id="L23">    public PodAffinityTermFluentImpl(){</span>
+<span class="nc" id="L24">    }</span>
+<span class="nc" id="L25">    public PodAffinityTermFluentImpl(PodAffinityTerm instance){</span>
+<span class="nc" id="L26">            this.withLabelSelector(instance.getLabelSelector()); </span>
+<span class="nc" id="L27">            this.withNamespaces(instance.getNamespaces()); </span>
+<span class="nc" id="L28">            this.withTopologyKey(instance.getTopologyKey()); </span>
+<span class="nc" id="L29">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildLabelSelector instead.
+ * @return The buildable object.
+ */
+@Deprecated public LabelSelector getLabelSelector(){
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            return this.labelSelector!=null?this.labelSelector.build():null;</span>
+    }
+
+    public LabelSelector buildLabelSelector(){
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            return this.labelSelector!=null?this.labelSelector.build():null;</span>
+    }
+
+    public A withLabelSelector(LabelSelector labelSelector){
+<span class="nc" id="L45">            _visitables.remove(this.labelSelector);</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (labelSelector!=null){ this.labelSelector= new LabelSelectorBuilder(labelSelector); _visitables.add(this.labelSelector);} return (A) this;</span>
+    }
+
+    public Boolean hasLabelSelector(){
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            return this.labelSelector != null;</span>
+    }
+
+    public PodAffinityTermFluent.LabelSelectorNested&lt;A&gt; withNewLabelSelector(){
+<span class="nc" id="L54">            return new LabelSelectorNestedImpl();</span>
+    }
+
+    public PodAffinityTermFluent.LabelSelectorNested&lt;A&gt; withNewLabelSelectorLike(LabelSelector item){
+<span class="nc" id="L58">            return new LabelSelectorNestedImpl(item);</span>
+    }
+
+    public PodAffinityTermFluent.LabelSelectorNested&lt;A&gt; editLabelSelector(){
+<span class="nc" id="L62">            return withNewLabelSelectorLike(getLabelSelector());</span>
+    }
+
+    public PodAffinityTermFluent.LabelSelectorNested&lt;A&gt; editOrNewLabelSelector(){
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            return withNewLabelSelectorLike(getLabelSelector() != null ? getLabelSelector(): new LabelSelectorBuilder().build());</span>
+    }
+
+    public PodAffinityTermFluent.LabelSelectorNested&lt;A&gt; editOrNewLabelSelectorLike(LabelSelector item){
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            return withNewLabelSelectorLike(getLabelSelector() != null ? getLabelSelector(): item);</span>
+    }
+
+    public A addToNamespaces(int index,String item){
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            if (this.namespaces == null) {this.namespaces = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L75">            this.namespaces.add(index, item);</span>
+<span class="nc" id="L76">            return (A)this;</span>
+    }
+
+    public A setToNamespaces(int index,String item){
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            if (this.namespaces == null) {this.namespaces = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L81">            this.namespaces.set(index, item); return (A)this;</span>
+    }
+
+    public A addToNamespaces(String... items){
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            if (this.namespaces == null) {this.namespaces = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            for (String item : items) {this.namespaces.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToNamespaces(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            if (this.namespaces == null) {this.namespaces = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            for (String item : items) {this.namespaces.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromNamespaces(String... items){
+<span class="nc bnc" id="L95" title="All 4 branches missed.">            for (String item : items) {if (this.namespaces!= null){ this.namespaces.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromNamespaces(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            for (String item : items) {if (this.namespaces!= null){ this.namespaces.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getNamespaces(){
+<span class="nc" id="L103">            return this.namespaces;</span>
+    }
+
+    public String getNamespace(int index){
+<span class="nc" id="L107">            return this.namespaces.get(index);</span>
+    }
+
+    public String getFirstNamespace(){
+<span class="nc" id="L111">            return this.namespaces.get(0);</span>
+    }
+
+    public String getLastNamespace(){
+<span class="nc" id="L115">            return this.namespaces.get(namespaces.size() - 1);</span>
+    }
+
+    public String getMatchingNamespace(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L119" title="All 4 branches missed.">            for (String item: namespaces) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withNamespaces(List&lt;String&gt; namespaces){
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            if (this.namespaces != null) { _visitables.removeAll(this.namespaces);}</span>
+<span class="nc bnc" id="L124" title="All 4 branches missed.">            if (namespaces != null) {this.namespaces = new ArrayList&lt;String&gt;(); for (String item : namespaces){this.addToNamespaces(item);}} else { this.namespaces = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withNamespaces(String... namespaces){
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            if (this.namespaces != null) {this.namespaces.clear();}</span>
+<span class="nc bnc" id="L129" title="All 4 branches missed.">            if (namespaces != null) {for (String item :namespaces){ this.addToNamespaces(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasNamespaces(){
+<span class="nc bnc" id="L133" title="All 4 branches missed.">            return namespaces != null &amp;&amp; !namespaces.isEmpty();</span>
+    }
+
+    public String getTopologyKey(){
+<span class="nc" id="L137">            return this.topologyKey;</span>
+    }
+
+    public A withTopologyKey(String topologyKey){
+<span class="nc" id="L141">            this.topologyKey=topologyKey; return (A) this;</span>
+    }
+
+    public Boolean hasTopologyKey(){
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            return this.topologyKey != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L150" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L152">            PodAffinityTermFluentImpl that = (PodAffinityTermFluentImpl) o;</span>
+<span class="nc bnc" id="L153" title="All 6 branches missed.">            if (labelSelector != null ? !labelSelector.equals(that.labelSelector) :that.labelSelector != null) return false;</span>
+<span class="nc bnc" id="L154" title="All 6 branches missed.">            if (namespaces != null ? !namespaces.equals(that.namespaces) :that.namespaces != null) return false;</span>
+<span class="nc bnc" id="L155" title="All 6 branches missed.">            if (topologyKey != null ? !topologyKey.equals(that.topologyKey) :that.topologyKey != null) return false;</span>
+<span class="nc" id="L156">            return true;</span>
+    }
+
+
+    public class LabelSelectorNestedImpl&lt;N&gt; extends LabelSelectorFluentImpl&lt;PodAffinityTermFluent.LabelSelectorNested&lt;N&gt;&gt; implements PodAffinityTermFluent.LabelSelectorNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LabelSelectorBuilder builder;
+    
+<span class="nc" id="L164">            LabelSelectorNestedImpl(LabelSelector item){</span>
+<span class="nc" id="L165">                    this.builder = new LabelSelectorBuilder(this, item);</span>
+<span class="nc" id="L166">            }</span>
+<span class="nc" id="L167">            LabelSelectorNestedImpl(){</span>
+<span class="nc" id="L168">                    this.builder = new LabelSelectorBuilder(this);</span>
+<span class="nc" id="L169">            }</span>
+    
+    public N and(){
+<span class="nc" id="L172">            return (N) PodAffinityTermFluentImpl.this.withLabelSelector(builder.build());</span>
+    }
+    public N endLabelSelector(){
+<span class="nc" id="L175">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

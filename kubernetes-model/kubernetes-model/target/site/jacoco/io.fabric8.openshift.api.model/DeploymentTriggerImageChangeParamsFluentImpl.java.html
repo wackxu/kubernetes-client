@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeploymentTriggerImageChangeParamsFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">DeploymentTriggerImageChangeParamsFluentImpl.java</span></div><h1>DeploymentTriggerImageChangeParamsFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.model.ObjectReferenceFluentImpl;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.ObjectReferenceBuilder;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class DeploymentTriggerImageChangeParamsFluentImpl&lt;A extends DeploymentTriggerImageChangeParamsFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements DeploymentTriggerImageChangeParamsFluent&lt;A&gt;{
+
+    private Boolean automatic;
+    private List&lt;String&gt; containerNames;
+    private ObjectReferenceBuilder from;
+    private String lastTriggeredImage;
+
+<span class="fc" id="L27">    public DeploymentTriggerImageChangeParamsFluentImpl(){</span>
+<span class="fc" id="L28">    }</span>
+<span class="nc" id="L29">    public DeploymentTriggerImageChangeParamsFluentImpl(DeploymentTriggerImageChangeParams instance){</span>
+<span class="nc" id="L30">            this.withAutomatic(instance.getAutomatic()); </span>
+<span class="nc" id="L31">            this.withContainerNames(instance.getContainerNames()); </span>
+<span class="nc" id="L32">            this.withFrom(instance.getFrom()); </span>
+<span class="nc" id="L33">            this.withLastTriggeredImage(instance.getLastTriggeredImage()); </span>
+<span class="nc" id="L34">    }</span>
+
+    public Boolean isAutomatic(){
+<span class="fc" id="L37">            return this.automatic;</span>
+    }
+
+    public A withAutomatic(Boolean automatic){
+<span class="fc" id="L41">            this.automatic=automatic; return (A) this;</span>
+    }
+
+    public Boolean hasAutomatic(){
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            return this.automatic != null;</span>
+    }
+
+    public A withNewAutomatic(String arg1){
+<span class="nc" id="L49">            return (A)withAutomatic(new Boolean(arg1));</span>
+    }
+
+    public A withNewAutomatic(boolean arg1){
+<span class="nc" id="L53">            return (A)withAutomatic(new Boolean(arg1));</span>
+    }
+
+    public A addToContainerNames(int index,String item){
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            if (this.containerNames == null) {this.containerNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L58">            this.containerNames.add(index, item);</span>
+<span class="nc" id="L59">            return (A)this;</span>
+    }
+
+    public A setToContainerNames(int index,String item){
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            if (this.containerNames == null) {this.containerNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L64">            this.containerNames.set(index, item); return (A)this;</span>
+    }
+
+    public A addToContainerNames(String... items){
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">            if (this.containerNames == null) {this.containerNames = new ArrayList&lt;String&gt;();}</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">            for (String item : items) {this.containerNames.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToContainerNames(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if (this.containerNames == null) {this.containerNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            for (String item : items) {this.containerNames.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromContainerNames(String... items){
+<span class="nc bnc" id="L78" title="All 4 branches missed.">            for (String item : items) {if (this.containerNames!= null){ this.containerNames.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromContainerNames(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L82" title="All 4 branches missed.">            for (String item : items) {if (this.containerNames!= null){ this.containerNames.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getContainerNames(){
+<span class="fc" id="L86">            return this.containerNames;</span>
+    }
+
+    public String getContainerName(int index){
+<span class="nc" id="L90">            return this.containerNames.get(index);</span>
+    }
+
+    public String getFirstContainerName(){
+<span class="nc" id="L94">            return this.containerNames.get(0);</span>
+    }
+
+    public String getLastContainerName(){
+<span class="nc" id="L98">            return this.containerNames.get(containerNames.size() - 1);</span>
+    }
+
+    public String getMatchingContainerName(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L102" title="All 4 branches missed.">            for (String item: containerNames) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withContainerNames(List&lt;String&gt; containerNames){
+<span class="pc bpc" id="L106" title="1 of 2 branches missed.">            if (this.containerNames != null) { _visitables.removeAll(this.containerNames);}</span>
+<span class="pc bpc" id="L107" title="1 of 4 branches missed.">            if (containerNames != null) {this.containerNames = new ArrayList&lt;String&gt;(); for (String item : containerNames){this.addToContainerNames(item);}} else { this.containerNames = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withContainerNames(String... containerNames){
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            if (this.containerNames != null) {this.containerNames.clear();}</span>
+<span class="nc bnc" id="L112" title="All 4 branches missed.">            if (containerNames != null) {for (String item :containerNames){ this.addToContainerNames(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasContainerNames(){
+<span class="nc bnc" id="L116" title="All 4 branches missed.">            return containerNames != null &amp;&amp; !containerNames.isEmpty();</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildFrom instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getFrom(){
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public ObjectReference buildFrom(){
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public A withFrom(ObjectReference from){
+<span class="fc" id="L133">            _visitables.remove(this.from);</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">            if (from!=null){ this.from= new ObjectReferenceBuilder(from); _visitables.add(this.from);} return (A) this;</span>
+    }
+
+    public Boolean hasFrom(){
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            return this.from != null;</span>
+    }
+
+    public DeploymentTriggerImageChangeParamsFluent.FromNested&lt;A&gt; withNewFrom(){
+<span class="fc" id="L142">            return new FromNestedImpl();</span>
+    }
+
+    public DeploymentTriggerImageChangeParamsFluent.FromNested&lt;A&gt; withNewFromLike(ObjectReference item){
+<span class="nc" id="L146">            return new FromNestedImpl(item);</span>
+    }
+
+    public DeploymentTriggerImageChangeParamsFluent.FromNested&lt;A&gt; editFrom(){
+<span class="nc" id="L150">            return withNewFromLike(getFrom());</span>
+    }
+
+    public DeploymentTriggerImageChangeParamsFluent.FromNested&lt;A&gt; editOrNewFrom(){
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public DeploymentTriggerImageChangeParamsFluent.FromNested&lt;A&gt; editOrNewFromLike(ObjectReference item){
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): item);</span>
+    }
+
+    public String getLastTriggeredImage(){
+<span class="fc" id="L162">            return this.lastTriggeredImage;</span>
+    }
+
+    public A withLastTriggeredImage(String lastTriggeredImage){
+<span class="fc" id="L166">            this.lastTriggeredImage=lastTriggeredImage; return (A) this;</span>
+    }
+
+    public Boolean hasLastTriggeredImage(){
+<span class="nc bnc" id="L170" title="All 2 branches missed.">            return this.lastTriggeredImage != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L174" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L175" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L177">            DeploymentTriggerImageChangeParamsFluentImpl that = (DeploymentTriggerImageChangeParamsFluentImpl) o;</span>
+<span class="nc bnc" id="L178" title="All 6 branches missed.">            if (automatic != null ? !automatic.equals(that.automatic) :that.automatic != null) return false;</span>
+<span class="nc bnc" id="L179" title="All 6 branches missed.">            if (containerNames != null ? !containerNames.equals(that.containerNames) :that.containerNames != null) return false;</span>
+<span class="nc bnc" id="L180" title="All 6 branches missed.">            if (from != null ? !from.equals(that.from) :that.from != null) return false;</span>
+<span class="nc bnc" id="L181" title="All 6 branches missed.">            if (lastTriggeredImage != null ? !lastTriggeredImage.equals(that.lastTriggeredImage) :that.lastTriggeredImage != null) return false;</span>
+<span class="nc" id="L182">            return true;</span>
+    }
+
+
+    public class FromNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;DeploymentTriggerImageChangeParamsFluent.FromNested&lt;N&gt;&gt; implements DeploymentTriggerImageChangeParamsFluent.FromNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L190">            FromNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L191">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L192">            }</span>
+<span class="fc" id="L193">            FromNestedImpl(){</span>
+<span class="fc" id="L194">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="fc" id="L195">            }</span>
+    
+    public N and(){
+<span class="fc" id="L198">            return (N) DeploymentTriggerImageChangeParamsFluentImpl.this.withFrom(builder.build());</span>
+    }
+    public N endFrom(){
+<span class="fc" id="L201">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

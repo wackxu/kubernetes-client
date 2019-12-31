@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuildStrategyFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">BuildStrategyFluentImpl.java</span></div><h1>BuildStrategyFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.lang.Object;
+
+public class BuildStrategyFluentImpl&lt;A extends BuildStrategyFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements BuildStrategyFluent&lt;A&gt;{
+
+    private CustomBuildStrategyBuilder customStrategy;
+    private DockerBuildStrategyBuilder dockerStrategy;
+    private JenkinsPipelineBuildStrategyBuilder jenkinsPipelineStrategy;
+    private SourceBuildStrategyBuilder sourceStrategy;
+    private String type;
+
+<span class="fc" id="L20">    public BuildStrategyFluentImpl(){</span>
+<span class="fc" id="L21">    }</span>
+<span class="nc" id="L22">    public BuildStrategyFluentImpl(BuildStrategy instance){</span>
+<span class="nc" id="L23">            this.withCustomStrategy(instance.getCustomStrategy()); </span>
+<span class="nc" id="L24">            this.withDockerStrategy(instance.getDockerStrategy()); </span>
+<span class="nc" id="L25">            this.withJenkinsPipelineStrategy(instance.getJenkinsPipelineStrategy()); </span>
+<span class="nc" id="L26">            this.withSourceStrategy(instance.getSourceStrategy()); </span>
+<span class="nc" id="L27">            this.withType(instance.getType()); </span>
+<span class="nc" id="L28">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildCustomStrategy instead.
+ * @return The buildable object.
+ */
+@Deprecated public CustomBuildStrategy getCustomStrategy(){
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">            return this.customStrategy!=null?this.customStrategy.build():null;</span>
+    }
+
+    public CustomBuildStrategy buildCustomStrategy(){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            return this.customStrategy!=null?this.customStrategy.build():null;</span>
+    }
+
+    public A withCustomStrategy(CustomBuildStrategy customStrategy){
+<span class="fc" id="L44">            _visitables.remove(this.customStrategy);</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">            if (customStrategy!=null){ this.customStrategy= new CustomBuildStrategyBuilder(customStrategy); _visitables.add(this.customStrategy);} return (A) this;</span>
+    }
+
+    public Boolean hasCustomStrategy(){
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            return this.customStrategy != null;</span>
+    }
+
+    public BuildStrategyFluent.CustomStrategyNested&lt;A&gt; withNewCustomStrategy(){
+<span class="nc" id="L53">            return new CustomStrategyNestedImpl();</span>
+    }
+
+    public BuildStrategyFluent.CustomStrategyNested&lt;A&gt; withNewCustomStrategyLike(CustomBuildStrategy item){
+<span class="nc" id="L57">            return new CustomStrategyNestedImpl(item);</span>
+    }
+
+    public BuildStrategyFluent.CustomStrategyNested&lt;A&gt; editCustomStrategy(){
+<span class="nc" id="L61">            return withNewCustomStrategyLike(getCustomStrategy());</span>
+    }
+
+    public BuildStrategyFluent.CustomStrategyNested&lt;A&gt; editOrNewCustomStrategy(){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            return withNewCustomStrategyLike(getCustomStrategy() != null ? getCustomStrategy(): new CustomBuildStrategyBuilder().build());</span>
+    }
+
+    public BuildStrategyFluent.CustomStrategyNested&lt;A&gt; editOrNewCustomStrategyLike(CustomBuildStrategy item){
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            return withNewCustomStrategyLike(getCustomStrategy() != null ? getCustomStrategy(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildDockerStrategy instead.
+ * @return The buildable object.
+ */
+@Deprecated public DockerBuildStrategy getDockerStrategy(){
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">            return this.dockerStrategy!=null?this.dockerStrategy.build():null;</span>
+    }
+
+    public DockerBuildStrategy buildDockerStrategy(){
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            return this.dockerStrategy!=null?this.dockerStrategy.build():null;</span>
+    }
+
+    public A withDockerStrategy(DockerBuildStrategy dockerStrategy){
+<span class="fc" id="L86">            _visitables.remove(this.dockerStrategy);</span>
+<span class="pc bpc" id="L87" title="1 of 2 branches missed.">            if (dockerStrategy!=null){ this.dockerStrategy= new DockerBuildStrategyBuilder(dockerStrategy); _visitables.add(this.dockerStrategy);} return (A) this;</span>
+    }
+
+    public Boolean hasDockerStrategy(){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            return this.dockerStrategy != null;</span>
+    }
+
+    public BuildStrategyFluent.DockerStrategyNested&lt;A&gt; withNewDockerStrategy(){
+<span class="nc" id="L95">            return new DockerStrategyNestedImpl();</span>
+    }
+
+    public BuildStrategyFluent.DockerStrategyNested&lt;A&gt; withNewDockerStrategyLike(DockerBuildStrategy item){
+<span class="nc" id="L99">            return new DockerStrategyNestedImpl(item);</span>
+    }
+
+    public BuildStrategyFluent.DockerStrategyNested&lt;A&gt; editDockerStrategy(){
+<span class="nc" id="L103">            return withNewDockerStrategyLike(getDockerStrategy());</span>
+    }
+
+    public BuildStrategyFluent.DockerStrategyNested&lt;A&gt; editOrNewDockerStrategy(){
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            return withNewDockerStrategyLike(getDockerStrategy() != null ? getDockerStrategy(): new DockerBuildStrategyBuilder().build());</span>
+    }
+
+    public BuildStrategyFluent.DockerStrategyNested&lt;A&gt; editOrNewDockerStrategyLike(DockerBuildStrategy item){
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            return withNewDockerStrategyLike(getDockerStrategy() != null ? getDockerStrategy(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildJenkinsPipelineStrategy instead.
+ * @return The buildable object.
+ */
+@Deprecated public JenkinsPipelineBuildStrategy getJenkinsPipelineStrategy(){
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">            return this.jenkinsPipelineStrategy!=null?this.jenkinsPipelineStrategy.build():null;</span>
+    }
+
+    public JenkinsPipelineBuildStrategy buildJenkinsPipelineStrategy(){
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            return this.jenkinsPipelineStrategy!=null?this.jenkinsPipelineStrategy.build():null;</span>
+    }
+
+    public A withJenkinsPipelineStrategy(JenkinsPipelineBuildStrategy jenkinsPipelineStrategy){
+<span class="fc" id="L128">            _visitables.remove(this.jenkinsPipelineStrategy);</span>
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">            if (jenkinsPipelineStrategy!=null){ this.jenkinsPipelineStrategy= new JenkinsPipelineBuildStrategyBuilder(jenkinsPipelineStrategy); _visitables.add(this.jenkinsPipelineStrategy);} return (A) this;</span>
+    }
+
+    public Boolean hasJenkinsPipelineStrategy(){
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            return this.jenkinsPipelineStrategy != null;</span>
+    }
+
+    public BuildStrategyFluent.JenkinsPipelineStrategyNested&lt;A&gt; withNewJenkinsPipelineStrategy(){
+<span class="nc" id="L137">            return new JenkinsPipelineStrategyNestedImpl();</span>
+    }
+
+    public BuildStrategyFluent.JenkinsPipelineStrategyNested&lt;A&gt; withNewJenkinsPipelineStrategyLike(JenkinsPipelineBuildStrategy item){
+<span class="nc" id="L141">            return new JenkinsPipelineStrategyNestedImpl(item);</span>
+    }
+
+    public BuildStrategyFluent.JenkinsPipelineStrategyNested&lt;A&gt; editJenkinsPipelineStrategy(){
+<span class="nc" id="L145">            return withNewJenkinsPipelineStrategyLike(getJenkinsPipelineStrategy());</span>
+    }
+
+    public BuildStrategyFluent.JenkinsPipelineStrategyNested&lt;A&gt; editOrNewJenkinsPipelineStrategy(){
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            return withNewJenkinsPipelineStrategyLike(getJenkinsPipelineStrategy() != null ? getJenkinsPipelineStrategy(): new JenkinsPipelineBuildStrategyBuilder().build());</span>
+    }
+
+    public BuildStrategyFluent.JenkinsPipelineStrategyNested&lt;A&gt; editOrNewJenkinsPipelineStrategyLike(JenkinsPipelineBuildStrategy item){
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            return withNewJenkinsPipelineStrategyLike(getJenkinsPipelineStrategy() != null ? getJenkinsPipelineStrategy(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSourceStrategy instead.
+ * @return The buildable object.
+ */
+@Deprecated public SourceBuildStrategy getSourceStrategy(){
+<span class="pc bpc" id="L162" title="1 of 2 branches missed.">            return this.sourceStrategy!=null?this.sourceStrategy.build():null;</span>
+    }
+
+    public SourceBuildStrategy buildSourceStrategy(){
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            return this.sourceStrategy!=null?this.sourceStrategy.build():null;</span>
+    }
+
+    public A withSourceStrategy(SourceBuildStrategy sourceStrategy){
+<span class="fc" id="L170">            _visitables.remove(this.sourceStrategy);</span>
+<span class="fc bfc" id="L171" title="All 2 branches covered.">            if (sourceStrategy!=null){ this.sourceStrategy= new SourceBuildStrategyBuilder(sourceStrategy); _visitables.add(this.sourceStrategy);} return (A) this;</span>
+    }
+
+    public Boolean hasSourceStrategy(){
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            return this.sourceStrategy != null;</span>
+    }
+
+    public BuildStrategyFluent.SourceStrategyNested&lt;A&gt; withNewSourceStrategy(){
+<span class="nc" id="L179">            return new SourceStrategyNestedImpl();</span>
+    }
+
+    public BuildStrategyFluent.SourceStrategyNested&lt;A&gt; withNewSourceStrategyLike(SourceBuildStrategy item){
+<span class="nc" id="L183">            return new SourceStrategyNestedImpl(item);</span>
+    }
+
+    public BuildStrategyFluent.SourceStrategyNested&lt;A&gt; editSourceStrategy(){
+<span class="nc" id="L187">            return withNewSourceStrategyLike(getSourceStrategy());</span>
+    }
+
+    public BuildStrategyFluent.SourceStrategyNested&lt;A&gt; editOrNewSourceStrategy(){
+<span class="nc bnc" id="L191" title="All 2 branches missed.">            return withNewSourceStrategyLike(getSourceStrategy() != null ? getSourceStrategy(): new SourceBuildStrategyBuilder().build());</span>
+    }
+
+    public BuildStrategyFluent.SourceStrategyNested&lt;A&gt; editOrNewSourceStrategyLike(SourceBuildStrategy item){
+<span class="nc bnc" id="L195" title="All 2 branches missed.">            return withNewSourceStrategyLike(getSourceStrategy() != null ? getSourceStrategy(): item);</span>
+    }
+
+    public String getType(){
+<span class="fc" id="L199">            return this.type;</span>
+    }
+
+    public A withType(String type){
+<span class="fc" id="L203">            this.type=type; return (A) this;</span>
+    }
+
+    public Boolean hasType(){
+<span class="nc bnc" id="L207" title="All 2 branches missed.">            return this.type != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L211" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L212" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L213" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L214">            BuildStrategyFluentImpl that = (BuildStrategyFluentImpl) o;</span>
+<span class="nc bnc" id="L215" title="All 6 branches missed.">            if (customStrategy != null ? !customStrategy.equals(that.customStrategy) :that.customStrategy != null) return false;</span>
+<span class="nc bnc" id="L216" title="All 6 branches missed.">            if (dockerStrategy != null ? !dockerStrategy.equals(that.dockerStrategy) :that.dockerStrategy != null) return false;</span>
+<span class="nc bnc" id="L217" title="All 6 branches missed.">            if (jenkinsPipelineStrategy != null ? !jenkinsPipelineStrategy.equals(that.jenkinsPipelineStrategy) :that.jenkinsPipelineStrategy != null) return false;</span>
+<span class="nc bnc" id="L218" title="All 6 branches missed.">            if (sourceStrategy != null ? !sourceStrategy.equals(that.sourceStrategy) :that.sourceStrategy != null) return false;</span>
+<span class="nc bnc" id="L219" title="All 6 branches missed.">            if (type != null ? !type.equals(that.type) :that.type != null) return false;</span>
+<span class="nc" id="L220">            return true;</span>
+    }
+
+
+    public class CustomStrategyNestedImpl&lt;N&gt; extends CustomBuildStrategyFluentImpl&lt;BuildStrategyFluent.CustomStrategyNested&lt;N&gt;&gt; implements BuildStrategyFluent.CustomStrategyNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CustomBuildStrategyBuilder builder;
+    
+<span class="nc" id="L228">            CustomStrategyNestedImpl(CustomBuildStrategy item){</span>
+<span class="nc" id="L229">                    this.builder = new CustomBuildStrategyBuilder(this, item);</span>
+<span class="nc" id="L230">            }</span>
+<span class="nc" id="L231">            CustomStrategyNestedImpl(){</span>
+<span class="nc" id="L232">                    this.builder = new CustomBuildStrategyBuilder(this);</span>
+<span class="nc" id="L233">            }</span>
+    
+    public N and(){
+<span class="nc" id="L236">            return (N) BuildStrategyFluentImpl.this.withCustomStrategy(builder.build());</span>
+    }
+    public N endCustomStrategy(){
+<span class="nc" id="L239">            return and();</span>
+    }
+
+}
+    public class DockerStrategyNestedImpl&lt;N&gt; extends DockerBuildStrategyFluentImpl&lt;BuildStrategyFluent.DockerStrategyNested&lt;N&gt;&gt; implements BuildStrategyFluent.DockerStrategyNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final DockerBuildStrategyBuilder builder;
+    
+<span class="nc" id="L247">            DockerStrategyNestedImpl(DockerBuildStrategy item){</span>
+<span class="nc" id="L248">                    this.builder = new DockerBuildStrategyBuilder(this, item);</span>
+<span class="nc" id="L249">            }</span>
+<span class="nc" id="L250">            DockerStrategyNestedImpl(){</span>
+<span class="nc" id="L251">                    this.builder = new DockerBuildStrategyBuilder(this);</span>
+<span class="nc" id="L252">            }</span>
+    
+    public N and(){
+<span class="nc" id="L255">            return (N) BuildStrategyFluentImpl.this.withDockerStrategy(builder.build());</span>
+    }
+    public N endDockerStrategy(){
+<span class="nc" id="L258">            return and();</span>
+    }
+
+}
+    public class JenkinsPipelineStrategyNestedImpl&lt;N&gt; extends JenkinsPipelineBuildStrategyFluentImpl&lt;BuildStrategyFluent.JenkinsPipelineStrategyNested&lt;N&gt;&gt; implements BuildStrategyFluent.JenkinsPipelineStrategyNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JenkinsPipelineBuildStrategyBuilder builder;
+    
+<span class="nc" id="L266">            JenkinsPipelineStrategyNestedImpl(JenkinsPipelineBuildStrategy item){</span>
+<span class="nc" id="L267">                    this.builder = new JenkinsPipelineBuildStrategyBuilder(this, item);</span>
+<span class="nc" id="L268">            }</span>
+<span class="nc" id="L269">            JenkinsPipelineStrategyNestedImpl(){</span>
+<span class="nc" id="L270">                    this.builder = new JenkinsPipelineBuildStrategyBuilder(this);</span>
+<span class="nc" id="L271">            }</span>
+    
+    public N and(){
+<span class="nc" id="L274">            return (N) BuildStrategyFluentImpl.this.withJenkinsPipelineStrategy(builder.build());</span>
+    }
+    public N endJenkinsPipelineStrategy(){
+<span class="nc" id="L277">            return and();</span>
+    }
+
+}
+    public class SourceStrategyNestedImpl&lt;N&gt; extends SourceBuildStrategyFluentImpl&lt;BuildStrategyFluent.SourceStrategyNested&lt;N&gt;&gt; implements BuildStrategyFluent.SourceStrategyNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SourceBuildStrategyBuilder builder;
+    
+<span class="nc" id="L285">            SourceStrategyNestedImpl(SourceBuildStrategy item){</span>
+<span class="nc" id="L286">                    this.builder = new SourceBuildStrategyBuilder(this, item);</span>
+<span class="nc" id="L287">            }</span>
+<span class="nc" id="L288">            SourceStrategyNestedImpl(){</span>
+<span class="nc" id="L289">                    this.builder = new SourceBuildStrategyBuilder(this);</span>
+<span class="nc" id="L290">            }</span>
+    
+    public N and(){
+<span class="nc" id="L293">            return (N) BuildStrategyFluentImpl.this.withSourceStrategy(builder.build());</span>
+    }
+    public N endSourceStrategy(){
+<span class="nc" id="L296">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

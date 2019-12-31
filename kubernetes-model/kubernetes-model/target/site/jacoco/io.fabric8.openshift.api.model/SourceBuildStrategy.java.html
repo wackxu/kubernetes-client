@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SourceBuildStrategy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">SourceBuildStrategy.java</span></div><h1>SourceBuildStrategy.java</h1><pre class="source lang-java linenums">
+package io.fabric8.openshift.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.EnvVar;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.fabric8.kubernetes.api.model.LocalObjectReference;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;env&quot;,
+    &quot;forcePull&quot;,
+    &quot;from&quot;,
+    &quot;incremental&quot;,
+    &quot;pullSecret&quot;,
+    &quot;scripts&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L46">@ToString</span>
+<span class="pc bpc" id="L47" title="54 of 62 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class SourceBuildStrategy implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L56">    @JsonProperty(&quot;env&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;EnvVar&gt; env = new ArrayList&lt;EnvVar&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;forcePull&quot;)
+    private Boolean forcePull;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;from&quot;)
+    @Valid
+    private ObjectReference from;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;incremental&quot;)
+    private Boolean incremental;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;pullSecret&quot;)
+    @Valid
+    private LocalObjectReference pullSecret;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;scripts&quot;)
+    private String scripts;
+<span class="fc" id="L92">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L99">    public SourceBuildStrategy() {</span>
+<span class="fc" id="L100">    }</span>
+
+    /**
+     * 
+     * @param forcePull
+     * @param from
+     * @param incremental
+     * @param env
+     * @param scripts
+     * @param pullSecret
+     */
+<span class="fc" id="L111">    public SourceBuildStrategy(List&lt;EnvVar&gt; env, Boolean forcePull, ObjectReference from, Boolean incremental, LocalObjectReference pullSecret, String scripts) {</span>
+<span class="fc" id="L112">        this.env = env;</span>
+<span class="fc" id="L113">        this.forcePull = forcePull;</span>
+<span class="fc" id="L114">        this.from = from;</span>
+<span class="fc" id="L115">        this.incremental = incremental;</span>
+<span class="fc" id="L116">        this.pullSecret = pullSecret;</span>
+<span class="fc" id="L117">        this.scripts = scripts;</span>
+<span class="fc" id="L118">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The env
+     */
+    @JsonProperty(&quot;env&quot;)
+    public List&lt;EnvVar&gt; getEnv() {
+<span class="fc" id="L128">        return env;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param env
+     *     The env
+     */
+    @JsonProperty(&quot;env&quot;)
+    public void setEnv(List&lt;EnvVar&gt; env) {
+<span class="fc" id="L139">        this.env = env;</span>
+<span class="fc" id="L140">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The forcePull
+     */
+    @JsonProperty(&quot;forcePull&quot;)
+    public Boolean getForcePull() {
+<span class="fc" id="L150">        return forcePull;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param forcePull
+     *     The forcePull
+     */
+    @JsonProperty(&quot;forcePull&quot;)
+    public void setForcePull(Boolean forcePull) {
+<span class="fc" id="L161">        this.forcePull = forcePull;</span>
+<span class="fc" id="L162">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The from
+     */
+    @JsonProperty(&quot;from&quot;)
+    public ObjectReference getFrom() {
+<span class="fc" id="L172">        return from;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param from
+     *     The from
+     */
+    @JsonProperty(&quot;from&quot;)
+    public void setFrom(ObjectReference from) {
+<span class="fc" id="L183">        this.from = from;</span>
+<span class="fc" id="L184">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The incremental
+     */
+    @JsonProperty(&quot;incremental&quot;)
+    public Boolean getIncremental() {
+<span class="fc" id="L194">        return incremental;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param incremental
+     *     The incremental
+     */
+    @JsonProperty(&quot;incremental&quot;)
+    public void setIncremental(Boolean incremental) {
+<span class="fc" id="L205">        this.incremental = incremental;</span>
+<span class="fc" id="L206">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The pullSecret
+     */
+    @JsonProperty(&quot;pullSecret&quot;)
+    public LocalObjectReference getPullSecret() {
+<span class="fc" id="L216">        return pullSecret;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param pullSecret
+     *     The pullSecret
+     */
+    @JsonProperty(&quot;pullSecret&quot;)
+    public void setPullSecret(LocalObjectReference pullSecret) {
+<span class="fc" id="L227">        this.pullSecret = pullSecret;</span>
+<span class="fc" id="L228">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The scripts
+     */
+    @JsonProperty(&quot;scripts&quot;)
+    public String getScripts() {
+<span class="fc" id="L238">        return scripts;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param scripts
+     *     The scripts
+     */
+    @JsonProperty(&quot;scripts&quot;)
+    public void setScripts(String scripts) {
+<span class="fc" id="L249">        this.scripts = scripts;</span>
+<span class="fc" id="L250">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L254">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L259">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L260">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

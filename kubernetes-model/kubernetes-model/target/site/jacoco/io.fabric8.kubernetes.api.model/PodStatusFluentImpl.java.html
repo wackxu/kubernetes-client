@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PodStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">PodStatusFluentImpl.java</span></div><h1>PodStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class PodStatusFluentImpl&lt;A extends PodStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements PodStatusFluent&lt;A&gt;{
+
+    private List&lt;PodConditionBuilder&gt; conditions;
+    private List&lt;ContainerStatusBuilder&gt; containerStatuses;
+    private String hostIP;
+    private List&lt;ContainerStatusBuilder&gt; initContainerStatuses;
+    private String message;
+    private String nominatedNodeName;
+    private String phase;
+    private String podIP;
+    private String qosClass;
+    private String reason;
+    private String startTime;
+
+<span class="nc" id="L31">    public PodStatusFluentImpl(){</span>
+<span class="nc" id="L32">    }</span>
+<span class="nc" id="L33">    public PodStatusFluentImpl(PodStatus instance){</span>
+<span class="nc" id="L34">            this.withConditions(instance.getConditions()); </span>
+<span class="nc" id="L35">            this.withContainerStatuses(instance.getContainerStatuses()); </span>
+<span class="nc" id="L36">            this.withHostIP(instance.getHostIP()); </span>
+<span class="nc" id="L37">            this.withInitContainerStatuses(instance.getInitContainerStatuses()); </span>
+<span class="nc" id="L38">            this.withMessage(instance.getMessage()); </span>
+<span class="nc" id="L39">            this.withNominatedNodeName(instance.getNominatedNodeName()); </span>
+<span class="nc" id="L40">            this.withPhase(instance.getPhase()); </span>
+<span class="nc" id="L41">            this.withPodIP(instance.getPodIP()); </span>
+<span class="nc" id="L42">            this.withQosClass(instance.getQosClass()); </span>
+<span class="nc" id="L43">            this.withReason(instance.getReason()); </span>
+<span class="nc" id="L44">            this.withStartTime(instance.getStartTime()); </span>
+<span class="nc" id="L45">    }</span>
+
+    public A addToConditions(int index,PodCondition item){
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;PodConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L49" title="All 4 branches missed.">            PodConditionBuilder builder = new PodConditionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.conditions.add(index &gt;= 0 ? index : conditions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToConditions(int index,PodCondition item){
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;PodConditionBuilder&gt;();}</span>
+<span class="nc" id="L54">            PodConditionBuilder builder = new PodConditionBuilder(item);</span>
+<span class="nc bnc" id="L55" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L56" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= conditions.size()) { conditions.add(builder); } else { conditions.set(index, builder);}</span>
+<span class="nc" id="L57">             return (A)this;</span>
+    }
+
+    public A addToConditions(PodCondition... items){
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;PodConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            for (PodCondition item : items) {PodConditionBuilder builder = new PodConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToConditions(Collection&lt;PodCondition&gt; items){
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;PodConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            for (PodCondition item : items) {PodConditionBuilder builder = new PodConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromConditions(PodCondition... items){
+<span class="nc bnc" id="L71" title="All 4 branches missed.">            for (PodCondition item : items) {PodConditionBuilder builder = new PodConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromConditions(Collection&lt;PodCondition&gt; items){
+<span class="nc bnc" id="L75" title="All 4 branches missed.">            for (PodCondition item : items) {PodConditionBuilder builder = new PodConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildConditions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;PodCondition&gt; getConditions(){
+<span class="nc" id="L84">            return build(conditions);</span>
+    }
+
+    public List&lt;PodCondition&gt; buildConditions(){
+<span class="nc" id="L88">            return build(conditions);</span>
+    }
+
+    public PodCondition buildCondition(int index){
+<span class="nc" id="L92">            return this.conditions.get(index).build();</span>
+    }
+
+    public PodCondition buildFirstCondition(){
+<span class="nc" id="L96">            return this.conditions.get(0).build();</span>
+    }
+
+    public PodCondition buildLastCondition(){
+<span class="nc" id="L100">            return this.conditions.get(conditions.size() - 1).build();</span>
+    }
+
+    public PodCondition buildMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;PodConditionBuilder&gt; predicate){
+<span class="nc bnc" id="L104" title="All 4 branches missed.">            for (PodConditionBuilder item: conditions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withConditions(List&lt;PodCondition&gt; conditions){
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            if (this.conditions != null) { _visitables.removeAll(this.conditions);}</span>
+<span class="nc bnc" id="L109" title="All 4 branches missed.">            if (conditions != null) {this.conditions = new ArrayList&lt;PodConditionBuilder&gt;(); for (PodCondition item : conditions){this.addToConditions(item);}} else { this.conditions = new ArrayList&lt;PodConditionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withConditions(PodCondition... conditions){
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            if (this.conditions != null) {this.conditions.clear();}</span>
+<span class="nc bnc" id="L114" title="All 4 branches missed.">            if (conditions != null) {for (PodCondition item :conditions){ this.addToConditions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasConditions(){
+<span class="nc bnc" id="L118" title="All 4 branches missed.">            return conditions != null &amp;&amp; !conditions.isEmpty();</span>
+    }
+
+    public PodStatusFluent.ConditionsNested&lt;A&gt; addNewCondition(){
+<span class="nc" id="L122">            return new ConditionsNestedImpl();</span>
+    }
+
+    public PodStatusFluent.ConditionsNested&lt;A&gt; addNewConditionLike(PodCondition item){
+<span class="nc" id="L126">            return new ConditionsNestedImpl(-1, item);</span>
+    }
+
+    public PodStatusFluent.ConditionsNested&lt;A&gt; setNewConditionLike(int index,PodCondition item){
+<span class="nc" id="L130">            return new ConditionsNestedImpl(index, item);</span>
+    }
+
+    public PodStatusFluent.ConditionsNested&lt;A&gt; editCondition(int index){
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            if (conditions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit conditions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L135">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public PodStatusFluent.ConditionsNested&lt;A&gt; editFirstCondition(){
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            if (conditions.size() == 0) throw new RuntimeException(&quot;Can't edit first conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L140">            return setNewConditionLike(0, buildCondition(0));</span>
+    }
+
+    public PodStatusFluent.ConditionsNested&lt;A&gt; editLastCondition(){
+<span class="nc" id="L144">            int index = conditions.size() - 1;</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L146">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public PodStatusFluent.ConditionsNested&lt;A&gt; editMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;PodConditionBuilder&gt; predicate){
+<span class="nc" id="L150">            int index = -1;</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            for (int i=0;i&lt;conditions.size();i++) { </span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            if (predicate.apply(conditions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching conditions. No match found.&quot;);</span>
+<span class="nc" id="L155">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public A addToContainerStatuses(int index,ContainerStatus item){
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            if (this.containerStatuses == null) {this.containerStatuses = new ArrayList&lt;ContainerStatusBuilder&gt;();}</span>
+<span class="nc bnc" id="L160" title="All 4 branches missed.">            ContainerStatusBuilder builder = new ContainerStatusBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.containerStatuses.add(index &gt;= 0 ? index : containerStatuses.size(), builder); return (A)this;</span>
+    }
+
+    public A setToContainerStatuses(int index,ContainerStatus item){
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            if (this.containerStatuses == null) {this.containerStatuses = new ArrayList&lt;ContainerStatusBuilder&gt;();}</span>
+<span class="nc" id="L165">            ContainerStatusBuilder builder = new ContainerStatusBuilder(item);</span>
+<span class="nc bnc" id="L166" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L167" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= containerStatuses.size()) { containerStatuses.add(builder); } else { containerStatuses.set(index, builder);}</span>
+<span class="nc" id="L168">             return (A)this;</span>
+    }
+
+    public A addToContainerStatuses(ContainerStatus... items){
+<span class="nc bnc" id="L172" title="All 2 branches missed.">            if (this.containerStatuses == null) {this.containerStatuses = new ArrayList&lt;ContainerStatusBuilder&gt;();}</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            for (ContainerStatus item : items) {ContainerStatusBuilder builder = new ContainerStatusBuilder(item);_visitables.add(builder);this.containerStatuses.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToContainerStatuses(Collection&lt;ContainerStatus&gt; items){
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            if (this.containerStatuses == null) {this.containerStatuses = new ArrayList&lt;ContainerStatusBuilder&gt;();}</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">            for (ContainerStatus item : items) {ContainerStatusBuilder builder = new ContainerStatusBuilder(item);_visitables.add(builder);this.containerStatuses.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromContainerStatuses(ContainerStatus... items){
+<span class="nc bnc" id="L182" title="All 4 branches missed.">            for (ContainerStatus item : items) {ContainerStatusBuilder builder = new ContainerStatusBuilder(item);_visitables.remove(builder);if (this.containerStatuses != null) {this.containerStatuses.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromContainerStatuses(Collection&lt;ContainerStatus&gt; items){
+<span class="nc bnc" id="L186" title="All 4 branches missed.">            for (ContainerStatus item : items) {ContainerStatusBuilder builder = new ContainerStatusBuilder(item);_visitables.remove(builder);if (this.containerStatuses != null) {this.containerStatuses.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildContainerStatuses instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;ContainerStatus&gt; getContainerStatuses(){
+<span class="nc" id="L195">            return build(containerStatuses);</span>
+    }
+
+    public List&lt;ContainerStatus&gt; buildContainerStatuses(){
+<span class="nc" id="L199">            return build(containerStatuses);</span>
+    }
+
+    public ContainerStatus buildContainerStatus(int index){
+<span class="nc" id="L203">            return this.containerStatuses.get(index).build();</span>
+    }
+
+    public ContainerStatus buildFirstContainerStatus(){
+<span class="nc" id="L207">            return this.containerStatuses.get(0).build();</span>
+    }
+
+    public ContainerStatus buildLastContainerStatus(){
+<span class="nc" id="L211">            return this.containerStatuses.get(containerStatuses.size() - 1).build();</span>
+    }
+
+    public ContainerStatus buildMatchingContainerStatus(io.fabric8.kubernetes.api.builder.Predicate&lt;ContainerStatusBuilder&gt; predicate){
+<span class="nc bnc" id="L215" title="All 4 branches missed.">            for (ContainerStatusBuilder item: containerStatuses) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withContainerStatuses(List&lt;ContainerStatus&gt; containerStatuses){
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            if (this.containerStatuses != null) { _visitables.removeAll(this.containerStatuses);}</span>
+<span class="nc bnc" id="L220" title="All 4 branches missed.">            if (containerStatuses != null) {this.containerStatuses = new ArrayList&lt;ContainerStatusBuilder&gt;(); for (ContainerStatus item : containerStatuses){this.addToContainerStatuses(item);}} else { this.containerStatuses = new ArrayList&lt;ContainerStatusBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withContainerStatuses(ContainerStatus... containerStatuses){
+<span class="nc bnc" id="L224" title="All 2 branches missed.">            if (this.containerStatuses != null) {this.containerStatuses.clear();}</span>
+<span class="nc bnc" id="L225" title="All 4 branches missed.">            if (containerStatuses != null) {for (ContainerStatus item :containerStatuses){ this.addToContainerStatuses(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasContainerStatuses(){
+<span class="nc bnc" id="L229" title="All 4 branches missed.">            return containerStatuses != null &amp;&amp; !containerStatuses.isEmpty();</span>
+    }
+
+    public PodStatusFluent.ContainerStatusesNested&lt;A&gt; addNewContainerStatus(){
+<span class="nc" id="L233">            return new ContainerStatusesNestedImpl();</span>
+    }
+
+    public PodStatusFluent.ContainerStatusesNested&lt;A&gt; addNewContainerStatusLike(ContainerStatus item){
+<span class="nc" id="L237">            return new ContainerStatusesNestedImpl(-1, item);</span>
+    }
+
+    public PodStatusFluent.ContainerStatusesNested&lt;A&gt; setNewContainerStatusLike(int index,ContainerStatus item){
+<span class="nc" id="L241">            return new ContainerStatusesNestedImpl(index, item);</span>
+    }
+
+    public PodStatusFluent.ContainerStatusesNested&lt;A&gt; editContainerStatus(int index){
+<span class="nc bnc" id="L245" title="All 2 branches missed.">            if (containerStatuses.size() &lt;= index) throw new RuntimeException(&quot;Can't edit containerStatuses. Index exceeds size.&quot;);</span>
+<span class="nc" id="L246">            return setNewContainerStatusLike(index, buildContainerStatus(index));</span>
+    }
+
+    public PodStatusFluent.ContainerStatusesNested&lt;A&gt; editFirstContainerStatus(){
+<span class="nc bnc" id="L250" title="All 2 branches missed.">            if (containerStatuses.size() == 0) throw new RuntimeException(&quot;Can't edit first containerStatuses. The list is empty.&quot;);</span>
+<span class="nc" id="L251">            return setNewContainerStatusLike(0, buildContainerStatus(0));</span>
+    }
+
+    public PodStatusFluent.ContainerStatusesNested&lt;A&gt; editLastContainerStatus(){
+<span class="nc" id="L255">            int index = containerStatuses.size() - 1;</span>
+<span class="nc bnc" id="L256" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last containerStatuses. The list is empty.&quot;);</span>
+<span class="nc" id="L257">            return setNewContainerStatusLike(index, buildContainerStatus(index));</span>
+    }
+
+    public PodStatusFluent.ContainerStatusesNested&lt;A&gt; editMatchingContainerStatus(io.fabric8.kubernetes.api.builder.Predicate&lt;ContainerStatusBuilder&gt; predicate){
+<span class="nc" id="L261">            int index = -1;</span>
+<span class="nc bnc" id="L262" title="All 2 branches missed.">            for (int i=0;i&lt;containerStatuses.size();i++) { </span>
+<span class="nc bnc" id="L263" title="All 2 branches missed.">            if (predicate.apply(containerStatuses.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L265" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching containerStatuses. No match found.&quot;);</span>
+<span class="nc" id="L266">            return setNewContainerStatusLike(index, buildContainerStatus(index));</span>
+    }
+
+    public String getHostIP(){
+<span class="nc" id="L270">            return this.hostIP;</span>
+    }
+
+    public A withHostIP(String hostIP){
+<span class="nc" id="L274">            this.hostIP=hostIP; return (A) this;</span>
+    }
+
+    public Boolean hasHostIP(){
+<span class="nc bnc" id="L278" title="All 2 branches missed.">            return this.hostIP != null;</span>
+    }
+
+    public A addToInitContainerStatuses(int index,ContainerStatus item){
+<span class="nc bnc" id="L282" title="All 2 branches missed.">            if (this.initContainerStatuses == null) {this.initContainerStatuses = new ArrayList&lt;ContainerStatusBuilder&gt;();}</span>
+<span class="nc bnc" id="L283" title="All 4 branches missed.">            ContainerStatusBuilder builder = new ContainerStatusBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.initContainerStatuses.add(index &gt;= 0 ? index : initContainerStatuses.size(), builder); return (A)this;</span>
+    }
+
+    public A setToInitContainerStatuses(int index,ContainerStatus item){
+<span class="nc bnc" id="L287" title="All 2 branches missed.">            if (this.initContainerStatuses == null) {this.initContainerStatuses = new ArrayList&lt;ContainerStatusBuilder&gt;();}</span>
+<span class="nc" id="L288">            ContainerStatusBuilder builder = new ContainerStatusBuilder(item);</span>
+<span class="nc bnc" id="L289" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L290" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= initContainerStatuses.size()) { initContainerStatuses.add(builder); } else { initContainerStatuses.set(index, builder);}</span>
+<span class="nc" id="L291">             return (A)this;</span>
+    }
+
+    public A addToInitContainerStatuses(ContainerStatus... items){
+<span class="nc bnc" id="L295" title="All 2 branches missed.">            if (this.initContainerStatuses == null) {this.initContainerStatuses = new ArrayList&lt;ContainerStatusBuilder&gt;();}</span>
+<span class="nc bnc" id="L296" title="All 2 branches missed.">            for (ContainerStatus item : items) {ContainerStatusBuilder builder = new ContainerStatusBuilder(item);_visitables.add(builder);this.initContainerStatuses.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToInitContainerStatuses(Collection&lt;ContainerStatus&gt; items){
+<span class="nc bnc" id="L300" title="All 2 branches missed.">            if (this.initContainerStatuses == null) {this.initContainerStatuses = new ArrayList&lt;ContainerStatusBuilder&gt;();}</span>
+<span class="nc bnc" id="L301" title="All 2 branches missed.">            for (ContainerStatus item : items) {ContainerStatusBuilder builder = new ContainerStatusBuilder(item);_visitables.add(builder);this.initContainerStatuses.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromInitContainerStatuses(ContainerStatus... items){
+<span class="nc bnc" id="L305" title="All 4 branches missed.">            for (ContainerStatus item : items) {ContainerStatusBuilder builder = new ContainerStatusBuilder(item);_visitables.remove(builder);if (this.initContainerStatuses != null) {this.initContainerStatuses.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromInitContainerStatuses(Collection&lt;ContainerStatus&gt; items){
+<span class="nc bnc" id="L309" title="All 4 branches missed.">            for (ContainerStatus item : items) {ContainerStatusBuilder builder = new ContainerStatusBuilder(item);_visitables.remove(builder);if (this.initContainerStatuses != null) {this.initContainerStatuses.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildInitContainerStatuses instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;ContainerStatus&gt; getInitContainerStatuses(){
+<span class="nc" id="L318">            return build(initContainerStatuses);</span>
+    }
+
+    public List&lt;ContainerStatus&gt; buildInitContainerStatuses(){
+<span class="nc" id="L322">            return build(initContainerStatuses);</span>
+    }
+
+    public ContainerStatus buildInitContainerStatus(int index){
+<span class="nc" id="L326">            return this.initContainerStatuses.get(index).build();</span>
+    }
+
+    public ContainerStatus buildFirstInitContainerStatus(){
+<span class="nc" id="L330">            return this.initContainerStatuses.get(0).build();</span>
+    }
+
+    public ContainerStatus buildLastInitContainerStatus(){
+<span class="nc" id="L334">            return this.initContainerStatuses.get(initContainerStatuses.size() - 1).build();</span>
+    }
+
+    public ContainerStatus buildMatchingInitContainerStatus(io.fabric8.kubernetes.api.builder.Predicate&lt;ContainerStatusBuilder&gt; predicate){
+<span class="nc bnc" id="L338" title="All 4 branches missed.">            for (ContainerStatusBuilder item: initContainerStatuses) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withInitContainerStatuses(List&lt;ContainerStatus&gt; initContainerStatuses){
+<span class="nc bnc" id="L342" title="All 2 branches missed.">            if (this.initContainerStatuses != null) { _visitables.removeAll(this.initContainerStatuses);}</span>
+<span class="nc bnc" id="L343" title="All 4 branches missed.">            if (initContainerStatuses != null) {this.initContainerStatuses = new ArrayList&lt;ContainerStatusBuilder&gt;(); for (ContainerStatus item : initContainerStatuses){this.addToInitContainerStatuses(item);}} else { this.initContainerStatuses = new ArrayList&lt;ContainerStatusBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withInitContainerStatuses(ContainerStatus... initContainerStatuses){
+<span class="nc bnc" id="L347" title="All 2 branches missed.">            if (this.initContainerStatuses != null) {this.initContainerStatuses.clear();}</span>
+<span class="nc bnc" id="L348" title="All 4 branches missed.">            if (initContainerStatuses != null) {for (ContainerStatus item :initContainerStatuses){ this.addToInitContainerStatuses(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasInitContainerStatuses(){
+<span class="nc bnc" id="L352" title="All 4 branches missed.">            return initContainerStatuses != null &amp;&amp; !initContainerStatuses.isEmpty();</span>
+    }
+
+    public PodStatusFluent.InitContainerStatusesNested&lt;A&gt; addNewInitContainerStatus(){
+<span class="nc" id="L356">            return new InitContainerStatusesNestedImpl();</span>
+    }
+
+    public PodStatusFluent.InitContainerStatusesNested&lt;A&gt; addNewInitContainerStatusLike(ContainerStatus item){
+<span class="nc" id="L360">            return new InitContainerStatusesNestedImpl(-1, item);</span>
+    }
+
+    public PodStatusFluent.InitContainerStatusesNested&lt;A&gt; setNewInitContainerStatusLike(int index,ContainerStatus item){
+<span class="nc" id="L364">            return new InitContainerStatusesNestedImpl(index, item);</span>
+    }
+
+    public PodStatusFluent.InitContainerStatusesNested&lt;A&gt; editInitContainerStatus(int index){
+<span class="nc bnc" id="L368" title="All 2 branches missed.">            if (initContainerStatuses.size() &lt;= index) throw new RuntimeException(&quot;Can't edit initContainerStatuses. Index exceeds size.&quot;);</span>
+<span class="nc" id="L369">            return setNewInitContainerStatusLike(index, buildInitContainerStatus(index));</span>
+    }
+
+    public PodStatusFluent.InitContainerStatusesNested&lt;A&gt; editFirstInitContainerStatus(){
+<span class="nc bnc" id="L373" title="All 2 branches missed.">            if (initContainerStatuses.size() == 0) throw new RuntimeException(&quot;Can't edit first initContainerStatuses. The list is empty.&quot;);</span>
+<span class="nc" id="L374">            return setNewInitContainerStatusLike(0, buildInitContainerStatus(0));</span>
+    }
+
+    public PodStatusFluent.InitContainerStatusesNested&lt;A&gt; editLastInitContainerStatus(){
+<span class="nc" id="L378">            int index = initContainerStatuses.size() - 1;</span>
+<span class="nc bnc" id="L379" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last initContainerStatuses. The list is empty.&quot;);</span>
+<span class="nc" id="L380">            return setNewInitContainerStatusLike(index, buildInitContainerStatus(index));</span>
+    }
+
+    public PodStatusFluent.InitContainerStatusesNested&lt;A&gt; editMatchingInitContainerStatus(io.fabric8.kubernetes.api.builder.Predicate&lt;ContainerStatusBuilder&gt; predicate){
+<span class="nc" id="L384">            int index = -1;</span>
+<span class="nc bnc" id="L385" title="All 2 branches missed.">            for (int i=0;i&lt;initContainerStatuses.size();i++) { </span>
+<span class="nc bnc" id="L386" title="All 2 branches missed.">            if (predicate.apply(initContainerStatuses.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L388" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching initContainerStatuses. No match found.&quot;);</span>
+<span class="nc" id="L389">            return setNewInitContainerStatusLike(index, buildInitContainerStatus(index));</span>
+    }
+
+    public String getMessage(){
+<span class="nc" id="L393">            return this.message;</span>
+    }
+
+    public A withMessage(String message){
+<span class="nc" id="L397">            this.message=message; return (A) this;</span>
+    }
+
+    public Boolean hasMessage(){
+<span class="nc bnc" id="L401" title="All 2 branches missed.">            return this.message != null;</span>
+    }
+
+    public String getNominatedNodeName(){
+<span class="nc" id="L405">            return this.nominatedNodeName;</span>
+    }
+
+    public A withNominatedNodeName(String nominatedNodeName){
+<span class="nc" id="L409">            this.nominatedNodeName=nominatedNodeName; return (A) this;</span>
+    }
+
+    public Boolean hasNominatedNodeName(){
+<span class="nc bnc" id="L413" title="All 2 branches missed.">            return this.nominatedNodeName != null;</span>
+    }
+
+    public String getPhase(){
+<span class="nc" id="L417">            return this.phase;</span>
+    }
+
+    public A withPhase(String phase){
+<span class="nc" id="L421">            this.phase=phase; return (A) this;</span>
+    }
+
+    public Boolean hasPhase(){
+<span class="nc bnc" id="L425" title="All 2 branches missed.">            return this.phase != null;</span>
+    }
+
+    public String getPodIP(){
+<span class="nc" id="L429">            return this.podIP;</span>
+    }
+
+    public A withPodIP(String podIP){
+<span class="nc" id="L433">            this.podIP=podIP; return (A) this;</span>
+    }
+
+    public Boolean hasPodIP(){
+<span class="nc bnc" id="L437" title="All 2 branches missed.">            return this.podIP != null;</span>
+    }
+
+    public String getQosClass(){
+<span class="nc" id="L441">            return this.qosClass;</span>
+    }
+
+    public A withQosClass(String qosClass){
+<span class="nc" id="L445">            this.qosClass=qosClass; return (A) this;</span>
+    }
+
+    public Boolean hasQosClass(){
+<span class="nc bnc" id="L449" title="All 2 branches missed.">            return this.qosClass != null;</span>
+    }
+
+    public String getReason(){
+<span class="nc" id="L453">            return this.reason;</span>
+    }
+
+    public A withReason(String reason){
+<span class="nc" id="L457">            this.reason=reason; return (A) this;</span>
+    }
+
+    public Boolean hasReason(){
+<span class="nc bnc" id="L461" title="All 2 branches missed.">            return this.reason != null;</span>
+    }
+
+    public String getStartTime(){
+<span class="nc" id="L465">            return this.startTime;</span>
+    }
+
+    public A withStartTime(String startTime){
+<span class="nc" id="L469">            this.startTime=startTime; return (A) this;</span>
+    }
+
+    public Boolean hasStartTime(){
+<span class="nc bnc" id="L473" title="All 2 branches missed.">            return this.startTime != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L477" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L478" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L479" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L480">            PodStatusFluentImpl that = (PodStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L481" title="All 6 branches missed.">            if (conditions != null ? !conditions.equals(that.conditions) :that.conditions != null) return false;</span>
+<span class="nc bnc" id="L482" title="All 6 branches missed.">            if (containerStatuses != null ? !containerStatuses.equals(that.containerStatuses) :that.containerStatuses != null) return false;</span>
+<span class="nc bnc" id="L483" title="All 6 branches missed.">            if (hostIP != null ? !hostIP.equals(that.hostIP) :that.hostIP != null) return false;</span>
+<span class="nc bnc" id="L484" title="All 6 branches missed.">            if (initContainerStatuses != null ? !initContainerStatuses.equals(that.initContainerStatuses) :that.initContainerStatuses != null) return false;</span>
+<span class="nc bnc" id="L485" title="All 6 branches missed.">            if (message != null ? !message.equals(that.message) :that.message != null) return false;</span>
+<span class="nc bnc" id="L486" title="All 6 branches missed.">            if (nominatedNodeName != null ? !nominatedNodeName.equals(that.nominatedNodeName) :that.nominatedNodeName != null) return false;</span>
+<span class="nc bnc" id="L487" title="All 6 branches missed.">            if (phase != null ? !phase.equals(that.phase) :that.phase != null) return false;</span>
+<span class="nc bnc" id="L488" title="All 6 branches missed.">            if (podIP != null ? !podIP.equals(that.podIP) :that.podIP != null) return false;</span>
+<span class="nc bnc" id="L489" title="All 6 branches missed.">            if (qosClass != null ? !qosClass.equals(that.qosClass) :that.qosClass != null) return false;</span>
+<span class="nc bnc" id="L490" title="All 6 branches missed.">            if (reason != null ? !reason.equals(that.reason) :that.reason != null) return false;</span>
+<span class="nc bnc" id="L491" title="All 6 branches missed.">            if (startTime != null ? !startTime.equals(that.startTime) :that.startTime != null) return false;</span>
+<span class="nc" id="L492">            return true;</span>
+    }
+
+
+    public class ConditionsNestedImpl&lt;N&gt; extends PodConditionFluentImpl&lt;PodStatusFluent.ConditionsNested&lt;N&gt;&gt; implements PodStatusFluent.ConditionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodConditionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L501">            ConditionsNestedImpl(int index,PodCondition item){</span>
+<span class="nc" id="L502">                    this.index = index;</span>
+<span class="nc" id="L503">                    this.builder = new PodConditionBuilder(this, item);</span>
+<span class="nc" id="L504">            }</span>
+<span class="nc" id="L505">            ConditionsNestedImpl(){</span>
+<span class="nc" id="L506">                    this.index = -1;</span>
+<span class="nc" id="L507">                    this.builder = new PodConditionBuilder(this);</span>
+<span class="nc" id="L508">            }</span>
+    
+    public N and(){
+<span class="nc" id="L511">            return (N) PodStatusFluentImpl.this.setToConditions(index, builder.build());</span>
+    }
+    public N endCondition(){
+<span class="nc" id="L514">            return and();</span>
+    }
+
+}
+    public class ContainerStatusesNestedImpl&lt;N&gt; extends ContainerStatusFluentImpl&lt;PodStatusFluent.ContainerStatusesNested&lt;N&gt;&gt; implements PodStatusFluent.ContainerStatusesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ContainerStatusBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L523">            ContainerStatusesNestedImpl(int index,ContainerStatus item){</span>
+<span class="nc" id="L524">                    this.index = index;</span>
+<span class="nc" id="L525">                    this.builder = new ContainerStatusBuilder(this, item);</span>
+<span class="nc" id="L526">            }</span>
+<span class="nc" id="L527">            ContainerStatusesNestedImpl(){</span>
+<span class="nc" id="L528">                    this.index = -1;</span>
+<span class="nc" id="L529">                    this.builder = new ContainerStatusBuilder(this);</span>
+<span class="nc" id="L530">            }</span>
+    
+    public N and(){
+<span class="nc" id="L533">            return (N) PodStatusFluentImpl.this.setToContainerStatuses(index, builder.build());</span>
+    }
+    public N endContainerStatus(){
+<span class="nc" id="L536">            return and();</span>
+    }
+
+}
+    public class InitContainerStatusesNestedImpl&lt;N&gt; extends ContainerStatusFluentImpl&lt;PodStatusFluent.InitContainerStatusesNested&lt;N&gt;&gt; implements PodStatusFluent.InitContainerStatusesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ContainerStatusBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L545">            InitContainerStatusesNestedImpl(int index,ContainerStatus item){</span>
+<span class="nc" id="L546">                    this.index = index;</span>
+<span class="nc" id="L547">                    this.builder = new ContainerStatusBuilder(this, item);</span>
+<span class="nc" id="L548">            }</span>
+<span class="nc" id="L549">            InitContainerStatusesNestedImpl(){</span>
+<span class="nc" id="L550">                    this.index = -1;</span>
+<span class="nc" id="L551">                    this.builder = new ContainerStatusBuilder(this);</span>
+<span class="nc" id="L552">            }</span>
+    
+    public N and(){
+<span class="nc" id="L555">            return (N) PodStatusFluentImpl.this.setToInitContainerStatuses(index, builder.build());</span>
+    }
+    public N endInitContainerStatus(){
+<span class="nc" id="L558">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

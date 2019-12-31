@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ObjectMetaFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ObjectMetaFluentImpl.java</span></div><h1>ObjectMetaFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.util.LinkedHashMap;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.constraints.Pattern;
+import javax.validation.Valid;
+import java.lang.Long;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.Map;
+
+public class ObjectMetaFluentImpl&lt;A extends ObjectMetaFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ObjectMetaFluent&lt;A&gt;{
+
+    private Map&lt;String,String&gt; annotations;
+    private String clusterName;
+    private String creationTimestamp;
+    private Long deletionGracePeriodSeconds;
+    private String deletionTimestamp;
+    private List&lt;String&gt; finalizers;
+    private String generateName;
+    private Long generation;
+    private InitializersBuilder initializers;
+    private Map&lt;String,String&gt; labels;
+    private String name;
+    private String namespace;
+    private List&lt;OwnerReferenceBuilder&gt; ownerReferences;
+    private String resourceVersion;
+    private String selfLink;
+    private String uid;
+
+<span class="fc" id="L41">    public ObjectMetaFluentImpl(){</span>
+<span class="fc" id="L42">    }</span>
+<span class="nc" id="L43">    public ObjectMetaFluentImpl(ObjectMeta instance){</span>
+<span class="nc" id="L44">            this.withAnnotations(instance.getAnnotations()); </span>
+<span class="nc" id="L45">            this.withClusterName(instance.getClusterName()); </span>
+<span class="nc" id="L46">            this.withCreationTimestamp(instance.getCreationTimestamp()); </span>
+<span class="nc" id="L47">            this.withDeletionGracePeriodSeconds(instance.getDeletionGracePeriodSeconds()); </span>
+<span class="nc" id="L48">            this.withDeletionTimestamp(instance.getDeletionTimestamp()); </span>
+<span class="nc" id="L49">            this.withFinalizers(instance.getFinalizers()); </span>
+<span class="nc" id="L50">            this.withGenerateName(instance.getGenerateName()); </span>
+<span class="nc" id="L51">            this.withGeneration(instance.getGeneration()); </span>
+<span class="nc" id="L52">            this.withInitializers(instance.getInitializers()); </span>
+<span class="nc" id="L53">            this.withLabels(instance.getLabels()); </span>
+<span class="nc" id="L54">            this.withName(instance.getName()); </span>
+<span class="nc" id="L55">            this.withNamespace(instance.getNamespace()); </span>
+<span class="nc" id="L56">            this.withOwnerReferences(instance.getOwnerReferences()); </span>
+<span class="nc" id="L57">            this.withResourceVersion(instance.getResourceVersion()); </span>
+<span class="nc" id="L58">            this.withSelfLink(instance.getSelfLink()); </span>
+<span class="nc" id="L59">            this.withUid(instance.getUid()); </span>
+<span class="nc" id="L60">    }</span>
+
+    public A addToAnnotations(String key,String value){
+<span class="pc bpc" id="L63" title="5 of 6 branches missed.">            if(this.annotations == null &amp;&amp; key != null &amp;&amp; value != null) { this.annotations = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="pc bpc" id="L64" title="2 of 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.annotations.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToAnnotations(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L68" title="All 4 branches missed.">            if(this.annotations == null &amp;&amp; map != null) { this.annotations = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if(map != null) { this.annotations.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromAnnotations(String key){
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if(this.annotations == null) { return (A) this; }</span>
+<span class="nc bnc" id="L74" title="All 4 branches missed.">            if(key != null &amp;&amp; this.annotations != null) {this.annotations.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromAnnotations(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if(this.annotations == null) { return (A) this; }</span>
+<span class="nc bnc" id="L79" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.annotations != null){this.annotations.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getAnnotations(){
+<span class="fc" id="L83">            return this.annotations;</span>
+    }
+
+    public A withAnnotations(Map&lt;String,String&gt; annotations){
+<span class="fc bfc" id="L87" title="All 2 branches covered.">            if (annotations == null) { this.annotations =  new LinkedHashMap&lt;String,String&gt;();} else {this.annotations = new LinkedHashMap&lt;String,String&gt;(annotations);} return (A) this;</span>
+    }
+
+    public Boolean hasAnnotations(){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            return this.annotations != null;</span>
+    }
+
+    public String getClusterName(){
+<span class="fc" id="L95">            return this.clusterName;</span>
+    }
+
+    public A withClusterName(String clusterName){
+<span class="fc" id="L99">            this.clusterName=clusterName; return (A) this;</span>
+    }
+
+    public Boolean hasClusterName(){
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            return this.clusterName != null;</span>
+    }
+
+    public String getCreationTimestamp(){
+<span class="fc" id="L107">            return this.creationTimestamp;</span>
+    }
+
+    public A withCreationTimestamp(String creationTimestamp){
+<span class="fc" id="L111">            this.creationTimestamp=creationTimestamp; return (A) this;</span>
+    }
+
+    public Boolean hasCreationTimestamp(){
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            return this.creationTimestamp != null;</span>
+    }
+
+    public Long getDeletionGracePeriodSeconds(){
+<span class="fc" id="L119">            return this.deletionGracePeriodSeconds;</span>
+    }
+
+    public A withDeletionGracePeriodSeconds(Long deletionGracePeriodSeconds){
+<span class="fc" id="L123">            this.deletionGracePeriodSeconds=deletionGracePeriodSeconds; return (A) this;</span>
+    }
+
+    public Boolean hasDeletionGracePeriodSeconds(){
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            return this.deletionGracePeriodSeconds != null;</span>
+    }
+
+    public A withNewDeletionGracePeriodSeconds(String arg1){
+<span class="nc" id="L131">            return (A)withDeletionGracePeriodSeconds(new Long(arg1));</span>
+    }
+
+    public A withNewDeletionGracePeriodSeconds(long arg1){
+<span class="nc" id="L135">            return (A)withDeletionGracePeriodSeconds(new Long(arg1));</span>
+    }
+
+    public String getDeletionTimestamp(){
+<span class="fc" id="L139">            return this.deletionTimestamp;</span>
+    }
+
+    public A withDeletionTimestamp(String deletionTimestamp){
+<span class="fc" id="L143">            this.deletionTimestamp=deletionTimestamp; return (A) this;</span>
+    }
+
+    public Boolean hasDeletionTimestamp(){
+<span class="nc bnc" id="L147" title="All 2 branches missed.">            return this.deletionTimestamp != null;</span>
+    }
+
+    public A addToFinalizers(int index,String item){
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (this.finalizers == null) {this.finalizers = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L152">            this.finalizers.add(index, item);</span>
+<span class="nc" id="L153">            return (A)this;</span>
+    }
+
+    public A setToFinalizers(int index,String item){
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            if (this.finalizers == null) {this.finalizers = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L158">            this.finalizers.set(index, item); return (A)this;</span>
+    }
+
+    public A addToFinalizers(String... items){
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (this.finalizers == null) {this.finalizers = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            for (String item : items) {this.finalizers.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToFinalizers(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (this.finalizers == null) {this.finalizers = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">            for (String item : items) {this.finalizers.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromFinalizers(String... items){
+<span class="nc bnc" id="L172" title="All 4 branches missed.">            for (String item : items) {if (this.finalizers!= null){ this.finalizers.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromFinalizers(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L176" title="All 4 branches missed.">            for (String item : items) {if (this.finalizers!= null){ this.finalizers.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getFinalizers(){
+<span class="fc" id="L180">            return this.finalizers;</span>
+    }
+
+    public String getFinalizer(int index){
+<span class="nc" id="L184">            return this.finalizers.get(index);</span>
+    }
+
+    public String getFirstFinalizer(){
+<span class="nc" id="L188">            return this.finalizers.get(0);</span>
+    }
+
+    public String getLastFinalizer(){
+<span class="nc" id="L192">            return this.finalizers.get(finalizers.size() - 1);</span>
+    }
+
+    public String getMatchingFinalizer(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L196" title="All 4 branches missed.">            for (String item: finalizers) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withFinalizers(List&lt;String&gt; finalizers){
+<span class="pc bpc" id="L200" title="1 of 2 branches missed.">            if (this.finalizers != null) { _visitables.removeAll(this.finalizers);}</span>
+<span class="pc bpc" id="L201" title="2 of 4 branches missed.">            if (finalizers != null) {this.finalizers = new ArrayList&lt;String&gt;(); for (String item : finalizers){this.addToFinalizers(item);}} else { this.finalizers = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withFinalizers(String... finalizers){
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            if (this.finalizers != null) {this.finalizers.clear();}</span>
+<span class="nc bnc" id="L206" title="All 4 branches missed.">            if (finalizers != null) {for (String item :finalizers){ this.addToFinalizers(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasFinalizers(){
+<span class="nc bnc" id="L210" title="All 4 branches missed.">            return finalizers != null &amp;&amp; !finalizers.isEmpty();</span>
+    }
+
+    public String getGenerateName(){
+<span class="fc" id="L214">            return this.generateName;</span>
+    }
+
+    public A withGenerateName(String generateName){
+<span class="fc" id="L218">            this.generateName=generateName; return (A) this;</span>
+    }
+
+    public Boolean hasGenerateName(){
+<span class="nc bnc" id="L222" title="All 2 branches missed.">            return this.generateName != null;</span>
+    }
+
+    public Long getGeneration(){
+<span class="fc" id="L226">            return this.generation;</span>
+    }
+
+    public A withGeneration(Long generation){
+<span class="fc" id="L230">            this.generation=generation; return (A) this;</span>
+    }
+
+    public Boolean hasGeneration(){
+<span class="nc bnc" id="L234" title="All 2 branches missed.">            return this.generation != null;</span>
+    }
+
+    public A withNewGeneration(String arg1){
+<span class="nc" id="L238">            return (A)withGeneration(new Long(arg1));</span>
+    }
+
+    public A withNewGeneration(long arg1){
+<span class="nc" id="L242">            return (A)withGeneration(new Long(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildInitializers instead.
+ * @return The buildable object.
+ */
+@Deprecated public Initializers getInitializers(){
+<span class="fc bfc" id="L251" title="All 2 branches covered.">            return this.initializers!=null?this.initializers.build():null;</span>
+    }
+
+    public Initializers buildInitializers(){
+<span class="nc bnc" id="L255" title="All 2 branches missed.">            return this.initializers!=null?this.initializers.build():null;</span>
+    }
+
+    public A withInitializers(Initializers initializers){
+<span class="fc" id="L259">            _visitables.remove(this.initializers);</span>
+<span class="fc bfc" id="L260" title="All 2 branches covered.">            if (initializers!=null){ this.initializers= new InitializersBuilder(initializers); _visitables.add(this.initializers);} return (A) this;</span>
+    }
+
+    public Boolean hasInitializers(){
+<span class="nc bnc" id="L264" title="All 2 branches missed.">            return this.initializers != null;</span>
+    }
+
+    public ObjectMetaFluent.InitializersNested&lt;A&gt; withNewInitializers(){
+<span class="fc" id="L268">            return new InitializersNestedImpl();</span>
+    }
+
+    public ObjectMetaFluent.InitializersNested&lt;A&gt; withNewInitializersLike(Initializers item){
+<span class="nc" id="L272">            return new InitializersNestedImpl(item);</span>
+    }
+
+    public ObjectMetaFluent.InitializersNested&lt;A&gt; editInitializers(){
+<span class="nc" id="L276">            return withNewInitializersLike(getInitializers());</span>
+    }
+
+    public ObjectMetaFluent.InitializersNested&lt;A&gt; editOrNewInitializers(){
+<span class="nc bnc" id="L280" title="All 2 branches missed.">            return withNewInitializersLike(getInitializers() != null ? getInitializers(): new InitializersBuilder().build());</span>
+    }
+
+    public ObjectMetaFluent.InitializersNested&lt;A&gt; editOrNewInitializersLike(Initializers item){
+<span class="nc bnc" id="L284" title="All 2 branches missed.">            return withNewInitializersLike(getInitializers() != null ? getInitializers(): item);</span>
+    }
+
+    public A addToLabels(String key,String value){
+<span class="pc bpc" id="L288" title="5 of 6 branches missed.">            if(this.labels == null &amp;&amp; key != null &amp;&amp; value != null) { this.labels = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="pc bpc" id="L289" title="2 of 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.labels.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToLabels(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L293" title="All 4 branches missed.">            if(this.labels == null &amp;&amp; map != null) { this.labels = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L294" title="All 2 branches missed.">            if(map != null) { this.labels.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromLabels(String key){
+<span class="nc bnc" id="L298" title="All 2 branches missed.">            if(this.labels == null) { return (A) this; }</span>
+<span class="nc bnc" id="L299" title="All 4 branches missed.">            if(key != null &amp;&amp; this.labels != null) {this.labels.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromLabels(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L303" title="All 2 branches missed.">            if(this.labels == null) { return (A) this; }</span>
+<span class="nc bnc" id="L304" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.labels != null){this.labels.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getLabels(){
+<span class="fc" id="L308">            return this.labels;</span>
+    }
+
+    public A withLabels(Map&lt;String,String&gt; labels){
+<span class="fc bfc" id="L312" title="All 2 branches covered.">            if (labels == null) { this.labels =  new LinkedHashMap&lt;String,String&gt;();} else {this.labels = new LinkedHashMap&lt;String,String&gt;(labels);} return (A) this;</span>
+    }
+
+    public Boolean hasLabels(){
+<span class="nc bnc" id="L316" title="All 2 branches missed.">            return this.labels != null;</span>
+    }
+
+    public String getName(){
+<span class="fc" id="L320">            return this.name;</span>
+    }
+
+    public A withName(String name){
+<span class="fc" id="L324">            this.name=name; return (A) this;</span>
+    }
+
+    public Boolean hasName(){
+<span class="nc bnc" id="L328" title="All 2 branches missed.">            return this.name != null;</span>
+    }
+
+    public String getNamespace(){
+<span class="fc" id="L332">            return this.namespace;</span>
+    }
+
+    public A withNamespace(String namespace){
+<span class="fc" id="L336">            this.namespace=namespace; return (A) this;</span>
+    }
+
+    public Boolean hasNamespace(){
+<span class="nc bnc" id="L340" title="All 2 branches missed.">            return this.namespace != null;</span>
+    }
+
+    public A addToOwnerReferences(int index,OwnerReference item){
+<span class="nc bnc" id="L344" title="All 2 branches missed.">            if (this.ownerReferences == null) {this.ownerReferences = new ArrayList&lt;OwnerReferenceBuilder&gt;();}</span>
+<span class="nc bnc" id="L345" title="All 4 branches missed.">            OwnerReferenceBuilder builder = new OwnerReferenceBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.ownerReferences.add(index &gt;= 0 ? index : ownerReferences.size(), builder); return (A)this;</span>
+    }
+
+    public A setToOwnerReferences(int index,OwnerReference item){
+<span class="nc bnc" id="L349" title="All 2 branches missed.">            if (this.ownerReferences == null) {this.ownerReferences = new ArrayList&lt;OwnerReferenceBuilder&gt;();}</span>
+<span class="nc" id="L350">            OwnerReferenceBuilder builder = new OwnerReferenceBuilder(item);</span>
+<span class="nc bnc" id="L351" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L352" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= ownerReferences.size()) { ownerReferences.add(builder); } else { ownerReferences.set(index, builder);}</span>
+<span class="nc" id="L353">             return (A)this;</span>
+    }
+
+    public A addToOwnerReferences(OwnerReference... items){
+<span class="nc bnc" id="L357" title="All 2 branches missed.">            if (this.ownerReferences == null) {this.ownerReferences = new ArrayList&lt;OwnerReferenceBuilder&gt;();}</span>
+<span class="nc bnc" id="L358" title="All 2 branches missed.">            for (OwnerReference item : items) {OwnerReferenceBuilder builder = new OwnerReferenceBuilder(item);_visitables.add(builder);this.ownerReferences.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToOwnerReferences(Collection&lt;OwnerReference&gt; items){
+<span class="nc bnc" id="L362" title="All 2 branches missed.">            if (this.ownerReferences == null) {this.ownerReferences = new ArrayList&lt;OwnerReferenceBuilder&gt;();}</span>
+<span class="nc bnc" id="L363" title="All 2 branches missed.">            for (OwnerReference item : items) {OwnerReferenceBuilder builder = new OwnerReferenceBuilder(item);_visitables.add(builder);this.ownerReferences.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromOwnerReferences(OwnerReference... items){
+<span class="nc bnc" id="L367" title="All 4 branches missed.">            for (OwnerReference item : items) {OwnerReferenceBuilder builder = new OwnerReferenceBuilder(item);_visitables.remove(builder);if (this.ownerReferences != null) {this.ownerReferences.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromOwnerReferences(Collection&lt;OwnerReference&gt; items){
+<span class="nc bnc" id="L371" title="All 4 branches missed.">            for (OwnerReference item : items) {OwnerReferenceBuilder builder = new OwnerReferenceBuilder(item);_visitables.remove(builder);if (this.ownerReferences != null) {this.ownerReferences.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildOwnerReferences instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;OwnerReference&gt; getOwnerReferences(){
+<span class="fc" id="L380">            return build(ownerReferences);</span>
+    }
+
+    public List&lt;OwnerReference&gt; buildOwnerReferences(){
+<span class="nc" id="L384">            return build(ownerReferences);</span>
+    }
+
+    public OwnerReference buildOwnerReference(int index){
+<span class="nc" id="L388">            return this.ownerReferences.get(index).build();</span>
+    }
+
+    public OwnerReference buildFirstOwnerReference(){
+<span class="nc" id="L392">            return this.ownerReferences.get(0).build();</span>
+    }
+
+    public OwnerReference buildLastOwnerReference(){
+<span class="nc" id="L396">            return this.ownerReferences.get(ownerReferences.size() - 1).build();</span>
+    }
+
+    public OwnerReference buildMatchingOwnerReference(io.fabric8.kubernetes.api.builder.Predicate&lt;OwnerReferenceBuilder&gt; predicate){
+<span class="nc bnc" id="L400" title="All 4 branches missed.">            for (OwnerReferenceBuilder item: ownerReferences) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withOwnerReferences(List&lt;OwnerReference&gt; ownerReferences){
+<span class="pc bpc" id="L404" title="1 of 2 branches missed.">            if (this.ownerReferences != null) { _visitables.removeAll(this.ownerReferences);}</span>
+<span class="pc bpc" id="L405" title="2 of 4 branches missed.">            if (ownerReferences != null) {this.ownerReferences = new ArrayList&lt;OwnerReferenceBuilder&gt;(); for (OwnerReference item : ownerReferences){this.addToOwnerReferences(item);}} else { this.ownerReferences = new ArrayList&lt;OwnerReferenceBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withOwnerReferences(OwnerReference... ownerReferences){
+<span class="pc bpc" id="L409" title="1 of 2 branches missed.">            if (this.ownerReferences != null) {this.ownerReferences.clear();}</span>
+<span class="pc bpc" id="L410" title="2 of 4 branches missed.">            if (ownerReferences != null) {for (OwnerReference item :ownerReferences){ this.addToOwnerReferences(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasOwnerReferences(){
+<span class="nc bnc" id="L414" title="All 4 branches missed.">            return ownerReferences != null &amp;&amp; !ownerReferences.isEmpty();</span>
+    }
+
+    public ObjectMetaFluent.OwnerReferencesNested&lt;A&gt; addNewOwnerReference(){
+<span class="nc" id="L418">            return new OwnerReferencesNestedImpl();</span>
+    }
+
+    public ObjectMetaFluent.OwnerReferencesNested&lt;A&gt; addNewOwnerReferenceLike(OwnerReference item){
+<span class="nc" id="L422">            return new OwnerReferencesNestedImpl(-1, item);</span>
+    }
+
+    public ObjectMetaFluent.OwnerReferencesNested&lt;A&gt; setNewOwnerReferenceLike(int index,OwnerReference item){
+<span class="nc" id="L426">            return new OwnerReferencesNestedImpl(index, item);</span>
+    }
+
+    public ObjectMetaFluent.OwnerReferencesNested&lt;A&gt; editOwnerReference(int index){
+<span class="nc bnc" id="L430" title="All 2 branches missed.">            if (ownerReferences.size() &lt;= index) throw new RuntimeException(&quot;Can't edit ownerReferences. Index exceeds size.&quot;);</span>
+<span class="nc" id="L431">            return setNewOwnerReferenceLike(index, buildOwnerReference(index));</span>
+    }
+
+    public ObjectMetaFluent.OwnerReferencesNested&lt;A&gt; editFirstOwnerReference(){
+<span class="nc bnc" id="L435" title="All 2 branches missed.">            if (ownerReferences.size() == 0) throw new RuntimeException(&quot;Can't edit first ownerReferences. The list is empty.&quot;);</span>
+<span class="nc" id="L436">            return setNewOwnerReferenceLike(0, buildOwnerReference(0));</span>
+    }
+
+    public ObjectMetaFluent.OwnerReferencesNested&lt;A&gt; editLastOwnerReference(){
+<span class="nc" id="L440">            int index = ownerReferences.size() - 1;</span>
+<span class="nc bnc" id="L441" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last ownerReferences. The list is empty.&quot;);</span>
+<span class="nc" id="L442">            return setNewOwnerReferenceLike(index, buildOwnerReference(index));</span>
+    }
+
+    public ObjectMetaFluent.OwnerReferencesNested&lt;A&gt; editMatchingOwnerReference(io.fabric8.kubernetes.api.builder.Predicate&lt;OwnerReferenceBuilder&gt; predicate){
+<span class="nc" id="L446">            int index = -1;</span>
+<span class="nc bnc" id="L447" title="All 2 branches missed.">            for (int i=0;i&lt;ownerReferences.size();i++) { </span>
+<span class="nc bnc" id="L448" title="All 2 branches missed.">            if (predicate.apply(ownerReferences.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L450" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching ownerReferences. No match found.&quot;);</span>
+<span class="nc" id="L451">            return setNewOwnerReferenceLike(index, buildOwnerReference(index));</span>
+    }
+
+    public String getResourceVersion(){
+<span class="fc" id="L455">            return this.resourceVersion;</span>
+    }
+
+    public A withResourceVersion(String resourceVersion){
+<span class="fc" id="L459">            this.resourceVersion=resourceVersion; return (A) this;</span>
+    }
+
+    public Boolean hasResourceVersion(){
+<span class="nc bnc" id="L463" title="All 2 branches missed.">            return this.resourceVersion != null;</span>
+    }
+
+    public String getSelfLink(){
+<span class="fc" id="L467">            return this.selfLink;</span>
+    }
+
+    public A withSelfLink(String selfLink){
+<span class="fc" id="L471">            this.selfLink=selfLink; return (A) this;</span>
+    }
+
+    public Boolean hasSelfLink(){
+<span class="nc bnc" id="L475" title="All 2 branches missed.">            return this.selfLink != null;</span>
+    }
+
+    public String getUid(){
+<span class="fc" id="L479">            return this.uid;</span>
+    }
+
+    public A withUid(String uid){
+<span class="fc" id="L483">            this.uid=uid; return (A) this;</span>
+    }
+
+    public Boolean hasUid(){
+<span class="nc bnc" id="L487" title="All 2 branches missed.">            return this.uid != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L491" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L492" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L493" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L494">            ObjectMetaFluentImpl that = (ObjectMetaFluentImpl) o;</span>
+<span class="nc bnc" id="L495" title="All 6 branches missed.">            if (annotations != null ? !annotations.equals(that.annotations) :that.annotations != null) return false;</span>
+<span class="nc bnc" id="L496" title="All 6 branches missed.">            if (clusterName != null ? !clusterName.equals(that.clusterName) :that.clusterName != null) return false;</span>
+<span class="nc bnc" id="L497" title="All 6 branches missed.">            if (creationTimestamp != null ? !creationTimestamp.equals(that.creationTimestamp) :that.creationTimestamp != null) return false;</span>
+<span class="nc bnc" id="L498" title="All 6 branches missed.">            if (deletionGracePeriodSeconds != null ? !deletionGracePeriodSeconds.equals(that.deletionGracePeriodSeconds) :that.deletionGracePeriodSeconds != null) return false;</span>
+<span class="nc bnc" id="L499" title="All 6 branches missed.">            if (deletionTimestamp != null ? !deletionTimestamp.equals(that.deletionTimestamp) :that.deletionTimestamp != null) return false;</span>
+<span class="nc bnc" id="L500" title="All 6 branches missed.">            if (finalizers != null ? !finalizers.equals(that.finalizers) :that.finalizers != null) return false;</span>
+<span class="nc bnc" id="L501" title="All 6 branches missed.">            if (generateName != null ? !generateName.equals(that.generateName) :that.generateName != null) return false;</span>
+<span class="nc bnc" id="L502" title="All 6 branches missed.">            if (generation != null ? !generation.equals(that.generation) :that.generation != null) return false;</span>
+<span class="nc bnc" id="L503" title="All 6 branches missed.">            if (initializers != null ? !initializers.equals(that.initializers) :that.initializers != null) return false;</span>
+<span class="nc bnc" id="L504" title="All 6 branches missed.">            if (labels != null ? !labels.equals(that.labels) :that.labels != null) return false;</span>
+<span class="nc bnc" id="L505" title="All 6 branches missed.">            if (name != null ? !name.equals(that.name) :that.name != null) return false;</span>
+<span class="nc bnc" id="L506" title="All 6 branches missed.">            if (namespace != null ? !namespace.equals(that.namespace) :that.namespace != null) return false;</span>
+<span class="nc bnc" id="L507" title="All 6 branches missed.">            if (ownerReferences != null ? !ownerReferences.equals(that.ownerReferences) :that.ownerReferences != null) return false;</span>
+<span class="nc bnc" id="L508" title="All 6 branches missed.">            if (resourceVersion != null ? !resourceVersion.equals(that.resourceVersion) :that.resourceVersion != null) return false;</span>
+<span class="nc bnc" id="L509" title="All 6 branches missed.">            if (selfLink != null ? !selfLink.equals(that.selfLink) :that.selfLink != null) return false;</span>
+<span class="nc bnc" id="L510" title="All 6 branches missed.">            if (uid != null ? !uid.equals(that.uid) :that.uid != null) return false;</span>
+<span class="nc" id="L511">            return true;</span>
+    }
+
+
+    public class InitializersNestedImpl&lt;N&gt; extends InitializersFluentImpl&lt;ObjectMetaFluent.InitializersNested&lt;N&gt;&gt; implements ObjectMetaFluent.InitializersNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final InitializersBuilder builder;
+    
+<span class="nc" id="L519">            InitializersNestedImpl(Initializers item){</span>
+<span class="nc" id="L520">                    this.builder = new InitializersBuilder(this, item);</span>
+<span class="nc" id="L521">            }</span>
+<span class="fc" id="L522">            InitializersNestedImpl(){</span>
+<span class="fc" id="L523">                    this.builder = new InitializersBuilder(this);</span>
+<span class="fc" id="L524">            }</span>
+    
+    public N and(){
+<span class="fc" id="L527">            return (N) ObjectMetaFluentImpl.this.withInitializers(builder.build());</span>
+    }
+    public N endInitializers(){
+<span class="fc" id="L530">            return and();</span>
+    }
+
+}
+    public class OwnerReferencesNestedImpl&lt;N&gt; extends OwnerReferenceFluentImpl&lt;ObjectMetaFluent.OwnerReferencesNested&lt;N&gt;&gt; implements ObjectMetaFluent.OwnerReferencesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OwnerReferenceBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L539">            OwnerReferencesNestedImpl(int index,OwnerReference item){</span>
+<span class="nc" id="L540">                    this.index = index;</span>
+<span class="nc" id="L541">                    this.builder = new OwnerReferenceBuilder(this, item);</span>
+<span class="nc" id="L542">            }</span>
+<span class="nc" id="L543">            OwnerReferencesNestedImpl(){</span>
+<span class="nc" id="L544">                    this.index = -1;</span>
+<span class="nc" id="L545">                    this.builder = new OwnerReferenceBuilder(this);</span>
+<span class="nc" id="L546">            }</span>
+    
+    public N and(){
+<span class="nc" id="L549">            return (N) ObjectMetaFluentImpl.this.setToOwnerReferences(index, builder.build());</span>
+    }
+    public N endOwnerReference(){
+<span class="nc" id="L552">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

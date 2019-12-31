@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PreferredSchedulingTermFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">PreferredSchedulingTermFluentImpl.java</span></div><h1>PreferredSchedulingTermFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.Integer;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class PreferredSchedulingTermFluentImpl&lt;A extends PreferredSchedulingTermFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements PreferredSchedulingTermFluent&lt;A&gt;{
+
+    private NodeSelectorTermBuilder preference;
+    private Integer weight;
+
+<span class="nc" id="L17">    public PreferredSchedulingTermFluentImpl(){</span>
+<span class="nc" id="L18">    }</span>
+<span class="nc" id="L19">    public PreferredSchedulingTermFluentImpl(PreferredSchedulingTerm instance){</span>
+<span class="nc" id="L20">            this.withPreference(instance.getPreference()); </span>
+<span class="nc" id="L21">            this.withWeight(instance.getWeight()); </span>
+<span class="nc" id="L22">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildPreference instead.
+ * @return The buildable object.
+ */
+@Deprecated public NodeSelectorTerm getPreference(){
+<span class="nc bnc" id="L30" title="All 2 branches missed.">            return this.preference!=null?this.preference.build():null;</span>
+    }
+
+    public NodeSelectorTerm buildPreference(){
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            return this.preference!=null?this.preference.build():null;</span>
+    }
+
+    public A withPreference(NodeSelectorTerm preference){
+<span class="nc" id="L38">            _visitables.remove(this.preference);</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            if (preference!=null){ this.preference= new NodeSelectorTermBuilder(preference); _visitables.add(this.preference);} return (A) this;</span>
+    }
+
+    public Boolean hasPreference(){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            return this.preference != null;</span>
+    }
+
+    public PreferredSchedulingTermFluent.PreferenceNested&lt;A&gt; withNewPreference(){
+<span class="nc" id="L47">            return new PreferenceNestedImpl();</span>
+    }
+
+    public PreferredSchedulingTermFluent.PreferenceNested&lt;A&gt; withNewPreferenceLike(NodeSelectorTerm item){
+<span class="nc" id="L51">            return new PreferenceNestedImpl(item);</span>
+    }
+
+    public PreferredSchedulingTermFluent.PreferenceNested&lt;A&gt; editPreference(){
+<span class="nc" id="L55">            return withNewPreferenceLike(getPreference());</span>
+    }
+
+    public PreferredSchedulingTermFluent.PreferenceNested&lt;A&gt; editOrNewPreference(){
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            return withNewPreferenceLike(getPreference() != null ? getPreference(): new NodeSelectorTermBuilder().build());</span>
+    }
+
+    public PreferredSchedulingTermFluent.PreferenceNested&lt;A&gt; editOrNewPreferenceLike(NodeSelectorTerm item){
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            return withNewPreferenceLike(getPreference() != null ? getPreference(): item);</span>
+    }
+
+    public Integer getWeight(){
+<span class="nc" id="L67">            return this.weight;</span>
+    }
+
+    public A withWeight(Integer weight){
+<span class="nc" id="L71">            this.weight=weight; return (A) this;</span>
+    }
+
+    public Boolean hasWeight(){
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            return this.weight != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L80" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L82">            PreferredSchedulingTermFluentImpl that = (PreferredSchedulingTermFluentImpl) o;</span>
+<span class="nc bnc" id="L83" title="All 6 branches missed.">            if (preference != null ? !preference.equals(that.preference) :that.preference != null) return false;</span>
+<span class="nc bnc" id="L84" title="All 6 branches missed.">            if (weight != null ? !weight.equals(that.weight) :that.weight != null) return false;</span>
+<span class="nc" id="L85">            return true;</span>
+    }
+
+
+    public class PreferenceNestedImpl&lt;N&gt; extends NodeSelectorTermFluentImpl&lt;PreferredSchedulingTermFluent.PreferenceNested&lt;N&gt;&gt; implements PreferredSchedulingTermFluent.PreferenceNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NodeSelectorTermBuilder builder;
+    
+<span class="nc" id="L93">            PreferenceNestedImpl(NodeSelectorTerm item){</span>
+<span class="nc" id="L94">                    this.builder = new NodeSelectorTermBuilder(this, item);</span>
+<span class="nc" id="L95">            }</span>
+<span class="nc" id="L96">            PreferenceNestedImpl(){</span>
+<span class="nc" id="L97">                    this.builder = new NodeSelectorTermBuilder(this);</span>
+<span class="nc" id="L98">            }</span>
+    
+    public N and(){
+<span class="nc" id="L101">            return (N) PreferredSchedulingTermFluentImpl.this.withPreference(builder.build());</span>
+    }
+    public N endPreference(){
+<span class="nc" id="L104">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

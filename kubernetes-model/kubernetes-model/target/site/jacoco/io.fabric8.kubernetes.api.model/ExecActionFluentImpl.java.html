@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExecActionFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ExecActionFluentImpl.java</span></div><h1>ExecActionFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class ExecActionFluentImpl&lt;A extends ExecActionFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ExecActionFluent&lt;A&gt;{
+
+    private List&lt;String&gt; command;
+
+<span class="fc" id="L19">    public ExecActionFluentImpl(){</span>
+<span class="fc" id="L20">    }</span>
+<span class="nc" id="L21">    public ExecActionFluentImpl(ExecAction instance){</span>
+<span class="nc" id="L22">            this.withCommand(instance.getCommand()); </span>
+<span class="nc" id="L23">    }</span>
+
+    public A addToCommand(int index,String item){
+<span class="nc bnc" id="L26" title="All 2 branches missed.">            if (this.command == null) {this.command = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L27">            this.command.add(index, item);</span>
+<span class="nc" id="L28">            return (A)this;</span>
+    }
+
+    public A setToCommand(int index,String item){
+<span class="nc bnc" id="L32" title="All 2 branches missed.">            if (this.command == null) {this.command = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L33">            this.command.set(index, item); return (A)this;</span>
+    }
+
+    public A addToCommand(String... items){
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">            if (this.command == null) {this.command = new ArrayList&lt;String&gt;();}</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">            for (String item : items) {this.command.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToCommand(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            if (this.command == null) {this.command = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            for (String item : items) {this.command.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromCommand(String... items){
+<span class="nc bnc" id="L47" title="All 4 branches missed.">            for (String item : items) {if (this.command!= null){ this.command.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromCommand(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L51" title="All 4 branches missed.">            for (String item : items) {if (this.command!= null){ this.command.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getCommand(){
+<span class="fc" id="L55">            return this.command;</span>
+    }
+
+    public String getCommand(int index){
+<span class="nc" id="L59">            return this.command.get(index);</span>
+    }
+
+    public String getFirstCommand(){
+<span class="nc" id="L63">            return this.command.get(0);</span>
+    }
+
+    public String getLastCommand(){
+<span class="nc" id="L67">            return this.command.get(command.size() - 1);</span>
+    }
+
+    public String getMatchingCommand(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L71" title="All 4 branches missed.">            for (String item: command) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withCommand(List&lt;String&gt; command){
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">            if (this.command != null) { _visitables.removeAll(this.command);}</span>
+<span class="pc bpc" id="L76" title="1 of 4 branches missed.">            if (command != null) {this.command = new ArrayList&lt;String&gt;(); for (String item : command){this.addToCommand(item);}} else { this.command = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withCommand(String... command){
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            if (this.command != null) {this.command.clear();}</span>
+<span class="nc bnc" id="L81" title="All 4 branches missed.">            if (command != null) {for (String item :command){ this.addToCommand(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasCommand(){
+<span class="nc bnc" id="L85" title="All 4 branches missed.">            return command != null &amp;&amp; !command.isEmpty();</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L92">            ExecActionFluentImpl that = (ExecActionFluentImpl) o;</span>
+<span class="nc bnc" id="L93" title="All 6 branches missed.">            if (command != null ? !command.equals(that.command) :that.command != null) return false;</span>
+<span class="nc" id="L94">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

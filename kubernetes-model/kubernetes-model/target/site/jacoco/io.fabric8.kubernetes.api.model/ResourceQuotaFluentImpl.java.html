@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ResourceQuotaFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ResourceQuotaFluentImpl.java</span></div><h1>ResourceQuotaFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.lang.Object;
+
+public class ResourceQuotaFluentImpl&lt;A extends ResourceQuotaFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ResourceQuotaFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+    private ResourceQuotaSpecBuilder spec;
+    private ResourceQuotaStatusBuilder status;
+
+<span class="nc" id="L22">    public ResourceQuotaFluentImpl(){</span>
+<span class="nc" id="L23">    }</span>
+<span class="nc" id="L24">    public ResourceQuotaFluentImpl(ResourceQuota instance){</span>
+<span class="nc" id="L25">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L26">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L27">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L28">            this.withSpec(instance.getSpec()); </span>
+<span class="nc" id="L29">            this.withStatus(instance.getStatus()); </span>
+<span class="nc" id="L30">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L33">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L37">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L45">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L49">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L70">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public ResourceQuotaFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L79">            return new MetadataNestedImpl();</span>
+    }
+
+    public ResourceQuotaFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L83">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public ResourceQuotaFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L87">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public ResourceQuotaFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public ResourceQuotaFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSpec instead.
+ * @return The buildable object.
+ */
+@Deprecated public ResourceQuotaSpec getSpec(){
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            return this.spec!=null?this.spec.build():null;</span>
+    }
+
+    public ResourceQuotaSpec buildSpec(){
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            return this.spec!=null?this.spec.build():null;</span>
+    }
+
+    public A withSpec(ResourceQuotaSpec spec){
+<span class="nc" id="L112">            _visitables.remove(this.spec);</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            if (spec!=null){ this.spec= new ResourceQuotaSpecBuilder(spec); _visitables.add(this.spec);} return (A) this;</span>
+    }
+
+    public Boolean hasSpec(){
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            return this.spec != null;</span>
+    }
+
+    public ResourceQuotaFluent.SpecNested&lt;A&gt; withNewSpec(){
+<span class="nc" id="L121">            return new SpecNestedImpl();</span>
+    }
+
+    public ResourceQuotaFluent.SpecNested&lt;A&gt; withNewSpecLike(ResourceQuotaSpec item){
+<span class="nc" id="L125">            return new SpecNestedImpl(item);</span>
+    }
+
+    public ResourceQuotaFluent.SpecNested&lt;A&gt; editSpec(){
+<span class="nc" id="L129">            return withNewSpecLike(getSpec());</span>
+    }
+
+    public ResourceQuotaFluent.SpecNested&lt;A&gt; editOrNewSpec(){
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            return withNewSpecLike(getSpec() != null ? getSpec(): new ResourceQuotaSpecBuilder().build());</span>
+    }
+
+    public ResourceQuotaFluent.SpecNested&lt;A&gt; editOrNewSpecLike(ResourceQuotaSpec item){
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            return withNewSpecLike(getSpec() != null ? getSpec(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildStatus instead.
+ * @return The buildable object.
+ */
+@Deprecated public ResourceQuotaStatus getStatus(){
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            return this.status!=null?this.status.build():null;</span>
+    }
+
+    public ResourceQuotaStatus buildStatus(){
+<span class="nc bnc" id="L150" title="All 2 branches missed.">            return this.status!=null?this.status.build():null;</span>
+    }
+
+    public A withStatus(ResourceQuotaStatus status){
+<span class="nc" id="L154">            _visitables.remove(this.status);</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            if (status!=null){ this.status= new ResourceQuotaStatusBuilder(status); _visitables.add(this.status);} return (A) this;</span>
+    }
+
+    public Boolean hasStatus(){
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            return this.status != null;</span>
+    }
+
+    public ResourceQuotaFluent.StatusNested&lt;A&gt; withNewStatus(){
+<span class="nc" id="L163">            return new StatusNestedImpl();</span>
+    }
+
+    public ResourceQuotaFluent.StatusNested&lt;A&gt; withNewStatusLike(ResourceQuotaStatus item){
+<span class="nc" id="L167">            return new StatusNestedImpl(item);</span>
+    }
+
+    public ResourceQuotaFluent.StatusNested&lt;A&gt; editStatus(){
+<span class="nc" id="L171">            return withNewStatusLike(getStatus());</span>
+    }
+
+    public ResourceQuotaFluent.StatusNested&lt;A&gt; editOrNewStatus(){
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            return withNewStatusLike(getStatus() != null ? getStatus(): new ResourceQuotaStatusBuilder().build());</span>
+    }
+
+    public ResourceQuotaFluent.StatusNested&lt;A&gt; editOrNewStatusLike(ResourceQuotaStatus item){
+<span class="nc bnc" id="L179" title="All 2 branches missed.">            return withNewStatusLike(getStatus() != null ? getStatus(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L183" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L184" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L185" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L186">            ResourceQuotaFluentImpl that = (ResourceQuotaFluentImpl) o;</span>
+<span class="nc bnc" id="L187" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L188" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L189" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L190" title="All 6 branches missed.">            if (spec != null ? !spec.equals(that.spec) :that.spec != null) return false;</span>
+<span class="nc bnc" id="L191" title="All 6 branches missed.">            if (status != null ? !status.equals(that.status) :that.status != null) return false;</span>
+<span class="nc" id="L192">            return true;</span>
+    }
+
+
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;ResourceQuotaFluent.MetadataNested&lt;N&gt;&gt; implements ResourceQuotaFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L200">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L201">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L202">            }</span>
+<span class="nc" id="L203">            MetadataNestedImpl(){</span>
+<span class="nc" id="L204">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L205">            }</span>
+    
+    public N and(){
+<span class="nc" id="L208">            return (N) ResourceQuotaFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L211">            return and();</span>
+    }
+
+}
+    public class SpecNestedImpl&lt;N&gt; extends ResourceQuotaSpecFluentImpl&lt;ResourceQuotaFluent.SpecNested&lt;N&gt;&gt; implements ResourceQuotaFluent.SpecNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ResourceQuotaSpecBuilder builder;
+    
+<span class="nc" id="L219">            SpecNestedImpl(ResourceQuotaSpec item){</span>
+<span class="nc" id="L220">                    this.builder = new ResourceQuotaSpecBuilder(this, item);</span>
+<span class="nc" id="L221">            }</span>
+<span class="nc" id="L222">            SpecNestedImpl(){</span>
+<span class="nc" id="L223">                    this.builder = new ResourceQuotaSpecBuilder(this);</span>
+<span class="nc" id="L224">            }</span>
+    
+    public N and(){
+<span class="nc" id="L227">            return (N) ResourceQuotaFluentImpl.this.withSpec(builder.build());</span>
+    }
+    public N endSpec(){
+<span class="nc" id="L230">            return and();</span>
+    }
+
+}
+    public class StatusNestedImpl&lt;N&gt; extends ResourceQuotaStatusFluentImpl&lt;ResourceQuotaFluent.StatusNested&lt;N&gt;&gt; implements ResourceQuotaFluent.StatusNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ResourceQuotaStatusBuilder builder;
+    
+<span class="nc" id="L238">            StatusNestedImpl(ResourceQuotaStatus item){</span>
+<span class="nc" id="L239">                    this.builder = new ResourceQuotaStatusBuilder(this, item);</span>
+<span class="nc" id="L240">            }</span>
+<span class="nc" id="L241">            StatusNestedImpl(){</span>
+<span class="nc" id="L242">                    this.builder = new ResourceQuotaStatusBuilder(this);</span>
+<span class="nc" id="L243">            }</span>
+    
+    public N and(){
+<span class="nc" id="L246">            return (N) ResourceQuotaFluentImpl.this.withStatus(builder.build());</span>
+    }
+    public N endStatus(){
+<span class="nc" id="L249">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExecNewPodHookFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">ExecNewPodHookFluentImpl.java</span></div><h1>ExecNewPodHookFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.model.EnvVarBuilder;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import io.fabric8.kubernetes.api.model.EnvVar;
+import java.util.Collection;
+import io.fabric8.kubernetes.api.model.EnvVarFluentImpl;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class ExecNewPodHookFluentImpl&lt;A extends ExecNewPodHookFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ExecNewPodHookFluent&lt;A&gt;{
+
+    private List&lt;String&gt; command;
+    private String containerName;
+    private List&lt;EnvVarBuilder&gt; env;
+    private List&lt;String&gt; volumes;
+
+<span class="fc" id="L27">    public ExecNewPodHookFluentImpl(){</span>
+<span class="fc" id="L28">    }</span>
+<span class="nc" id="L29">    public ExecNewPodHookFluentImpl(ExecNewPodHook instance){</span>
+<span class="nc" id="L30">            this.withCommand(instance.getCommand()); </span>
+<span class="nc" id="L31">            this.withContainerName(instance.getContainerName()); </span>
+<span class="nc" id="L32">            this.withEnv(instance.getEnv()); </span>
+<span class="nc" id="L33">            this.withVolumes(instance.getVolumes()); </span>
+<span class="nc" id="L34">    }</span>
+
+    public A addToCommand(int index,String item){
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            if (this.command == null) {this.command = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L38">            this.command.add(index, item);</span>
+<span class="nc" id="L39">            return (A)this;</span>
+    }
+
+    public A setToCommand(int index,String item){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            if (this.command == null) {this.command = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L44">            this.command.set(index, item); return (A)this;</span>
+    }
+
+    public A addToCommand(String... items){
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">            if (this.command == null) {this.command = new ArrayList&lt;String&gt;();}</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">            for (String item : items) {this.command.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToCommand(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            if (this.command == null) {this.command = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            for (String item : items) {this.command.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromCommand(String... items){
+<span class="nc bnc" id="L58" title="All 4 branches missed.">            for (String item : items) {if (this.command!= null){ this.command.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromCommand(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L62" title="All 4 branches missed.">            for (String item : items) {if (this.command!= null){ this.command.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getCommand(){
+<span class="fc" id="L66">            return this.command;</span>
+    }
+
+    public String getCommand(int index){
+<span class="nc" id="L70">            return this.command.get(index);</span>
+    }
+
+    public String getFirstCommand(){
+<span class="nc" id="L74">            return this.command.get(0);</span>
+    }
+
+    public String getLastCommand(){
+<span class="nc" id="L78">            return this.command.get(command.size() - 1);</span>
+    }
+
+    public String getMatchingCommand(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L82" title="All 4 branches missed.">            for (String item: command) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withCommand(List&lt;String&gt; command){
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">            if (this.command != null) { _visitables.removeAll(this.command);}</span>
+<span class="pc bpc" id="L87" title="1 of 4 branches missed.">            if (command != null) {this.command = new ArrayList&lt;String&gt;(); for (String item : command){this.addToCommand(item);}} else { this.command = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withCommand(String... command){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (this.command != null) {this.command.clear();}</span>
+<span class="nc bnc" id="L92" title="All 4 branches missed.">            if (command != null) {for (String item :command){ this.addToCommand(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasCommand(){
+<span class="nc bnc" id="L96" title="All 4 branches missed.">            return command != null &amp;&amp; !command.isEmpty();</span>
+    }
+
+    public String getContainerName(){
+<span class="fc" id="L100">            return this.containerName;</span>
+    }
+
+    public A withContainerName(String containerName){
+<span class="fc" id="L104">            this.containerName=containerName; return (A) this;</span>
+    }
+
+    public Boolean hasContainerName(){
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            return this.containerName != null;</span>
+    }
+
+    public A addToEnv(int index,EnvVar item){
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L113" title="All 4 branches missed.">            EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.env.add(index &gt;= 0 ? index : env.size(), builder); return (A)this;</span>
+    }
+
+    public A setToEnv(int index,EnvVar item){
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc" id="L118">            EnvVarBuilder builder = new EnvVarBuilder(item);</span>
+<span class="nc bnc" id="L119" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L120" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= env.size()) { env.add(builder); } else { env.set(index, builder);}</span>
+<span class="nc" id="L121">             return (A)this;</span>
+    }
+
+    public A addToEnv(EnvVar... items){
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(builder);this.env.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToEnv(Collection&lt;EnvVar&gt; items){
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(builder);this.env.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromEnv(EnvVar... items){
+<span class="nc bnc" id="L135" title="All 4 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.remove(builder);if (this.env != null) {this.env.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromEnv(Collection&lt;EnvVar&gt; items){
+<span class="nc bnc" id="L139" title="All 4 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.remove(builder);if (this.env != null) {this.env.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildEnv instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;EnvVar&gt; getEnv(){
+<span class="fc" id="L148">            return build(env);</span>
+    }
+
+    public List&lt;EnvVar&gt; buildEnv(){
+<span class="nc" id="L152">            return build(env);</span>
+    }
+
+    public EnvVar buildEnv(int index){
+<span class="nc" id="L156">            return this.env.get(index).build();</span>
+    }
+
+    public EnvVar buildFirstEnv(){
+<span class="nc" id="L160">            return this.env.get(0).build();</span>
+    }
+
+    public EnvVar buildLastEnv(){
+<span class="nc" id="L164">            return this.env.get(env.size() - 1).build();</span>
+    }
+
+    public EnvVar buildMatchingEnv(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvVarBuilder&gt; predicate){
+<span class="nc bnc" id="L168" title="All 4 branches missed.">            for (EnvVarBuilder item: env) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withEnv(List&lt;EnvVar&gt; env){
+<span class="pc bpc" id="L172" title="1 of 2 branches missed.">            if (this.env != null) { _visitables.removeAll(this.env);}</span>
+<span class="pc bpc" id="L173" title="1 of 4 branches missed.">            if (env != null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;(); for (EnvVar item : env){this.addToEnv(item);}} else { this.env = new ArrayList&lt;EnvVarBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withEnv(EnvVar... env){
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            if (this.env != null) {this.env.clear();}</span>
+<span class="nc bnc" id="L178" title="All 4 branches missed.">            if (env != null) {for (EnvVar item :env){ this.addToEnv(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasEnv(){
+<span class="nc bnc" id="L182" title="All 4 branches missed.">            return env != null &amp;&amp; !env.isEmpty();</span>
+    }
+
+    public ExecNewPodHookFluent.EnvNested&lt;A&gt; addNewEnv(){
+<span class="nc" id="L186">            return new EnvNestedImpl();</span>
+    }
+
+    public ExecNewPodHookFluent.EnvNested&lt;A&gt; addNewEnvLike(EnvVar item){
+<span class="nc" id="L190">            return new EnvNestedImpl(-1, item);</span>
+    }
+
+    public ExecNewPodHookFluent.EnvNested&lt;A&gt; setNewEnvLike(int index,EnvVar item){
+<span class="nc" id="L194">            return new EnvNestedImpl(index, item);</span>
+    }
+
+    public ExecNewPodHookFluent.EnvNested&lt;A&gt; editEnv(int index){
+<span class="nc bnc" id="L198" title="All 2 branches missed.">            if (env.size() &lt;= index) throw new RuntimeException(&quot;Can't edit env. Index exceeds size.&quot;);</span>
+<span class="nc" id="L199">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    public ExecNewPodHookFluent.EnvNested&lt;A&gt; editFirstEnv(){
+<span class="nc bnc" id="L203" title="All 2 branches missed.">            if (env.size() == 0) throw new RuntimeException(&quot;Can't edit first env. The list is empty.&quot;);</span>
+<span class="nc" id="L204">            return setNewEnvLike(0, buildEnv(0));</span>
+    }
+
+    public ExecNewPodHookFluent.EnvNested&lt;A&gt; editLastEnv(){
+<span class="nc" id="L208">            int index = env.size() - 1;</span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last env. The list is empty.&quot;);</span>
+<span class="nc" id="L210">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    public ExecNewPodHookFluent.EnvNested&lt;A&gt; editMatchingEnv(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvVarBuilder&gt; predicate){
+<span class="nc" id="L214">            int index = -1;</span>
+<span class="nc bnc" id="L215" title="All 2 branches missed.">            for (int i=0;i&lt;env.size();i++) { </span>
+<span class="nc bnc" id="L216" title="All 2 branches missed.">            if (predicate.apply(env.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L218" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching env. No match found.&quot;);</span>
+<span class="nc" id="L219">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    public A addToVolumes(int index,String item){
+<span class="nc bnc" id="L223" title="All 2 branches missed.">            if (this.volumes == null) {this.volumes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L224">            this.volumes.add(index, item);</span>
+<span class="nc" id="L225">            return (A)this;</span>
+    }
+
+    public A setToVolumes(int index,String item){
+<span class="nc bnc" id="L229" title="All 2 branches missed.">            if (this.volumes == null) {this.volumes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L230">            this.volumes.set(index, item); return (A)this;</span>
+    }
+
+    public A addToVolumes(String... items){
+<span class="pc bpc" id="L234" title="1 of 2 branches missed.">            if (this.volumes == null) {this.volumes = new ArrayList&lt;String&gt;();}</span>
+<span class="fc bfc" id="L235" title="All 2 branches covered.">            for (String item : items) {this.volumes.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToVolumes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L239" title="All 2 branches missed.">            if (this.volumes == null) {this.volumes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L240" title="All 2 branches missed.">            for (String item : items) {this.volumes.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromVolumes(String... items){
+<span class="nc bnc" id="L244" title="All 4 branches missed.">            for (String item : items) {if (this.volumes!= null){ this.volumes.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromVolumes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L248" title="All 4 branches missed.">            for (String item : items) {if (this.volumes!= null){ this.volumes.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getVolumes(){
+<span class="fc" id="L252">            return this.volumes;</span>
+    }
+
+    public String getVolume(int index){
+<span class="nc" id="L256">            return this.volumes.get(index);</span>
+    }
+
+    public String getFirstVolume(){
+<span class="nc" id="L260">            return this.volumes.get(0);</span>
+    }
+
+    public String getLastVolume(){
+<span class="nc" id="L264">            return this.volumes.get(volumes.size() - 1);</span>
+    }
+
+    public String getMatchingVolume(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L268" title="All 4 branches missed.">            for (String item: volumes) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withVolumes(List&lt;String&gt; volumes){
+<span class="pc bpc" id="L272" title="1 of 2 branches missed.">            if (this.volumes != null) { _visitables.removeAll(this.volumes);}</span>
+<span class="pc bpc" id="L273" title="1 of 4 branches missed.">            if (volumes != null) {this.volumes = new ArrayList&lt;String&gt;(); for (String item : volumes){this.addToVolumes(item);}} else { this.volumes = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withVolumes(String... volumes){
+<span class="nc bnc" id="L277" title="All 2 branches missed.">            if (this.volumes != null) {this.volumes.clear();}</span>
+<span class="nc bnc" id="L278" title="All 4 branches missed.">            if (volumes != null) {for (String item :volumes){ this.addToVolumes(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasVolumes(){
+<span class="nc bnc" id="L282" title="All 4 branches missed.">            return volumes != null &amp;&amp; !volumes.isEmpty();</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L286" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L287" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L288" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L289">            ExecNewPodHookFluentImpl that = (ExecNewPodHookFluentImpl) o;</span>
+<span class="nc bnc" id="L290" title="All 6 branches missed.">            if (command != null ? !command.equals(that.command) :that.command != null) return false;</span>
+<span class="nc bnc" id="L291" title="All 6 branches missed.">            if (containerName != null ? !containerName.equals(that.containerName) :that.containerName != null) return false;</span>
+<span class="nc bnc" id="L292" title="All 6 branches missed.">            if (env != null ? !env.equals(that.env) :that.env != null) return false;</span>
+<span class="nc bnc" id="L293" title="All 6 branches missed.">            if (volumes != null ? !volumes.equals(that.volumes) :that.volumes != null) return false;</span>
+<span class="nc" id="L294">            return true;</span>
+    }
+
+
+    public class EnvNestedImpl&lt;N&gt; extends EnvVarFluentImpl&lt;ExecNewPodHookFluent.EnvNested&lt;N&gt;&gt; implements ExecNewPodHookFluent.EnvNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EnvVarBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L303">            EnvNestedImpl(int index,EnvVar item){</span>
+<span class="nc" id="L304">                    this.index = index;</span>
+<span class="nc" id="L305">                    this.builder = new EnvVarBuilder(this, item);</span>
+<span class="nc" id="L306">            }</span>
+<span class="nc" id="L307">            EnvNestedImpl(){</span>
+<span class="nc" id="L308">                    this.index = -1;</span>
+<span class="nc" id="L309">                    this.builder = new EnvVarBuilder(this);</span>
+<span class="nc" id="L310">            }</span>
+    
+    public N and(){
+<span class="nc" id="L313">            return (N) ExecNewPodHookFluentImpl.this.setToEnv(index, builder.build());</span>
+    }
+    public N endEnv(){
+<span class="nc" id="L316">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

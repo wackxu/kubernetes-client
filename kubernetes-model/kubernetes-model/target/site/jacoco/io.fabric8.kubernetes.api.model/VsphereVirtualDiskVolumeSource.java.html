@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VsphereVirtualDiskVolumeSource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">VsphereVirtualDiskVolumeSource.java</span></div><h1>VsphereVirtualDiskVolumeSource.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;fsType&quot;,
+    &quot;storagePolicyID&quot;,
+    &quot;storagePolicyName&quot;,
+    &quot;volumePath&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L37">@ToString</span>
+<span class="nc bnc" id="L38" title="All 46 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class VsphereVirtualDiskVolumeSource implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    private String fsType;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;storagePolicyID&quot;)
+    private String storagePolicyID;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;storagePolicyName&quot;)
+    private String storagePolicyName;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;volumePath&quot;)
+    private String volumePath;
+<span class="nc" id="L67">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L74">    public VsphereVirtualDiskVolumeSource() {</span>
+<span class="nc" id="L75">    }</span>
+
+    /**
+     * 
+     * @param storagePolicyName
+     * @param storagePolicyID
+     * @param volumePath
+     * @param fsType
+     */
+<span class="nc" id="L84">    public VsphereVirtualDiskVolumeSource(String fsType, String storagePolicyID, String storagePolicyName, String volumePath) {</span>
+<span class="nc" id="L85">        this.fsType = fsType;</span>
+<span class="nc" id="L86">        this.storagePolicyID = storagePolicyID;</span>
+<span class="nc" id="L87">        this.storagePolicyName = storagePolicyName;</span>
+<span class="nc" id="L88">        this.volumePath = volumePath;</span>
+<span class="nc" id="L89">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The fsType
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    public String getFsType() {
+<span class="nc" id="L99">        return fsType;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param fsType
+     *     The fsType
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    public void setFsType(String fsType) {
+<span class="nc" id="L110">        this.fsType = fsType;</span>
+<span class="nc" id="L111">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The storagePolicyID
+     */
+    @JsonProperty(&quot;storagePolicyID&quot;)
+    public String getStoragePolicyID() {
+<span class="nc" id="L121">        return storagePolicyID;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param storagePolicyID
+     *     The storagePolicyID
+     */
+    @JsonProperty(&quot;storagePolicyID&quot;)
+    public void setStoragePolicyID(String storagePolicyID) {
+<span class="nc" id="L132">        this.storagePolicyID = storagePolicyID;</span>
+<span class="nc" id="L133">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The storagePolicyName
+     */
+    @JsonProperty(&quot;storagePolicyName&quot;)
+    public String getStoragePolicyName() {
+<span class="nc" id="L143">        return storagePolicyName;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param storagePolicyName
+     *     The storagePolicyName
+     */
+    @JsonProperty(&quot;storagePolicyName&quot;)
+    public void setStoragePolicyName(String storagePolicyName) {
+<span class="nc" id="L154">        this.storagePolicyName = storagePolicyName;</span>
+<span class="nc" id="L155">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The volumePath
+     */
+    @JsonProperty(&quot;volumePath&quot;)
+    public String getVolumePath() {
+<span class="nc" id="L165">        return volumePath;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param volumePath
+     *     The volumePath
+     */
+    @JsonProperty(&quot;volumePath&quot;)
+    public void setVolumePath(String volumePath) {
+<span class="nc" id="L176">        this.volumePath = volumePath;</span>
+<span class="nc" id="L177">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L181">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L186">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L187">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

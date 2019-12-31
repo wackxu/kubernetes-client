@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeploymentStrategyFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.apps</a> &gt; <span class="el_source">DeploymentStrategyFluentImpl.java</span></div><h1>DeploymentStrategyFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.apps;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class DeploymentStrategyFluentImpl&lt;A extends DeploymentStrategyFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements DeploymentStrategyFluent&lt;A&gt;{
+
+    private RollingUpdateDeploymentBuilder rollingUpdate;
+    private String type;
+
+<span class="fc" id="L17">    public DeploymentStrategyFluentImpl(){</span>
+<span class="fc" id="L18">    }</span>
+<span class="nc" id="L19">    public DeploymentStrategyFluentImpl(DeploymentStrategy instance){</span>
+<span class="nc" id="L20">            this.withRollingUpdate(instance.getRollingUpdate()); </span>
+<span class="nc" id="L21">            this.withType(instance.getType()); </span>
+<span class="nc" id="L22">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildRollingUpdate instead.
+ * @return The buildable object.
+ */
+@Deprecated public RollingUpdateDeployment getRollingUpdate(){
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">            return this.rollingUpdate!=null?this.rollingUpdate.build():null;</span>
+    }
+
+    public RollingUpdateDeployment buildRollingUpdate(){
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            return this.rollingUpdate!=null?this.rollingUpdate.build():null;</span>
+    }
+
+    public A withRollingUpdate(RollingUpdateDeployment rollingUpdate){
+<span class="fc" id="L38">            _visitables.remove(this.rollingUpdate);</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            if (rollingUpdate!=null){ this.rollingUpdate= new RollingUpdateDeploymentBuilder(rollingUpdate); _visitables.add(this.rollingUpdate);} return (A) this;</span>
+    }
+
+    public Boolean hasRollingUpdate(){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            return this.rollingUpdate != null;</span>
+    }
+
+    public DeploymentStrategyFluent.RollingUpdateNested&lt;A&gt; withNewRollingUpdate(){
+<span class="fc" id="L47">            return new RollingUpdateNestedImpl();</span>
+    }
+
+    public DeploymentStrategyFluent.RollingUpdateNested&lt;A&gt; withNewRollingUpdateLike(RollingUpdateDeployment item){
+<span class="nc" id="L51">            return new RollingUpdateNestedImpl(item);</span>
+    }
+
+    public DeploymentStrategyFluent.RollingUpdateNested&lt;A&gt; editRollingUpdate(){
+<span class="nc" id="L55">            return withNewRollingUpdateLike(getRollingUpdate());</span>
+    }
+
+    public DeploymentStrategyFluent.RollingUpdateNested&lt;A&gt; editOrNewRollingUpdate(){
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            return withNewRollingUpdateLike(getRollingUpdate() != null ? getRollingUpdate(): new RollingUpdateDeploymentBuilder().build());</span>
+    }
+
+    public DeploymentStrategyFluent.RollingUpdateNested&lt;A&gt; editOrNewRollingUpdateLike(RollingUpdateDeployment item){
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            return withNewRollingUpdateLike(getRollingUpdate() != null ? getRollingUpdate(): item);</span>
+    }
+
+    public String getType(){
+<span class="fc" id="L67">            return this.type;</span>
+    }
+
+    public A withType(String type){
+<span class="fc" id="L71">            this.type=type; return (A) this;</span>
+    }
+
+    public Boolean hasType(){
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            return this.type != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L80" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L82">            DeploymentStrategyFluentImpl that = (DeploymentStrategyFluentImpl) o;</span>
+<span class="nc bnc" id="L83" title="All 6 branches missed.">            if (rollingUpdate != null ? !rollingUpdate.equals(that.rollingUpdate) :that.rollingUpdate != null) return false;</span>
+<span class="nc bnc" id="L84" title="All 6 branches missed.">            if (type != null ? !type.equals(that.type) :that.type != null) return false;</span>
+<span class="nc" id="L85">            return true;</span>
+    }
+
+
+    public class RollingUpdateNestedImpl&lt;N&gt; extends RollingUpdateDeploymentFluentImpl&lt;DeploymentStrategyFluent.RollingUpdateNested&lt;N&gt;&gt; implements DeploymentStrategyFluent.RollingUpdateNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RollingUpdateDeploymentBuilder builder;
+    
+<span class="nc" id="L93">            RollingUpdateNestedImpl(RollingUpdateDeployment item){</span>
+<span class="nc" id="L94">                    this.builder = new RollingUpdateDeploymentBuilder(this, item);</span>
+<span class="nc" id="L95">            }</span>
+<span class="fc" id="L96">            RollingUpdateNestedImpl(){</span>
+<span class="fc" id="L97">                    this.builder = new RollingUpdateDeploymentBuilder(this);</span>
+<span class="fc" id="L98">            }</span>
+    
+    public N and(){
+<span class="fc" id="L101">            return (N) DeploymentStrategyFluentImpl.this.withRollingUpdate(builder.build());</span>
+    }
+    public N endRollingUpdate(){
+<span class="fc" id="L104">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

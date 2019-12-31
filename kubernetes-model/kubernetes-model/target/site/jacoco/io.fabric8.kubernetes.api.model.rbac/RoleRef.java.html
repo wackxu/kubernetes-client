@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RoleRef.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.rbac</a> &gt; <span class="el_source">RoleRef.java</span></div><h1>RoleRef.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.rbac;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;apiGroup&quot;,
+    &quot;name&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L36">@ToString</span>
+<span class="pc bpc" id="L37" title="34 of 38 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class RoleRef implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;apiGroup&quot;)
+    private String apiGroup;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;kind&quot;)
+    private String kind;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;name&quot;)
+    private String name;
+<span class="fc" id="L60">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L67">    public RoleRef() {</span>
+<span class="fc" id="L68">    }</span>
+
+    /**
+     * 
+     * @param apiGroup
+     * @param kind
+     * @param name
+     */
+<span class="fc" id="L76">    public RoleRef(String apiGroup, String kind, String name) {</span>
+<span class="fc" id="L77">        this.apiGroup = apiGroup;</span>
+<span class="fc" id="L78">        this.kind = kind;</span>
+<span class="fc" id="L79">        this.name = name;</span>
+<span class="fc" id="L80">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The apiGroup
+     */
+    @JsonProperty(&quot;apiGroup&quot;)
+    public String getApiGroup() {
+<span class="fc" id="L90">        return apiGroup;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param apiGroup
+     *     The apiGroup
+     */
+    @JsonProperty(&quot;apiGroup&quot;)
+    public void setApiGroup(String apiGroup) {
+<span class="fc" id="L101">        this.apiGroup = apiGroup;</span>
+<span class="fc" id="L102">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public String getKind() {
+<span class="fc" id="L112">        return kind;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param kind
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public void setKind(String kind) {
+<span class="fc" id="L123">        this.kind = kind;</span>
+<span class="fc" id="L124">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The name
+     */
+    @JsonProperty(&quot;name&quot;)
+    public String getName() {
+<span class="fc" id="L134">        return name;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param name
+     *     The name
+     */
+    @JsonProperty(&quot;name&quot;)
+    public void setName(String name) {
+<span class="fc" id="L145">        this.name = name;</span>
+<span class="fc" id="L146">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L150">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L155">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L156">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

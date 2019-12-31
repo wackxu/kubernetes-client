@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OpenshiftAdapterSupport.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Openshift :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.client</a> &gt; <span class="el_source">OpenshiftAdapterSupport.java</span></div><h1>OpenshiftAdapterSupport.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.fabric8.openshift.client;
+
+import io.fabric8.kubernetes.api.model.RootPaths;
+import io.fabric8.kubernetes.client.Client;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+
+import java.net.URI;
+import java.net.URL;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
+<span class="nc" id="L30">public class OpenshiftAdapterSupport {</span>
+
+<span class="fc" id="L32">    static final ConcurrentMap&lt;URL, Boolean&gt; IS_OPENSHIFT = new ConcurrentHashMap&lt;&gt;();</span>
+<span class="fc" id="L33">    static final ConcurrentMap&lt;URL, Boolean&gt; USES_OPENSHIFT_APIGROUPS = new ConcurrentHashMap&lt;&gt;();</span>
+
+    public Boolean isAdaptable(Client client) {
+<span class="nc" id="L36">        OpenShiftConfig config = new OpenShiftConfig(client.getConfiguration());</span>
+<span class="nc bnc" id="L37" title="All 4 branches missed.">        if (!hasCustomOpenShiftUrl(config) &amp;&amp; !isOpenShift(client)) {</span>
+<span class="nc" id="L38">            return false;</span>
+        }
+<span class="nc" id="L40">        return true;</span>
+    }
+
+    /**
+     * Check if OpenShift is available.
+     * @param client   The client.
+     * @return         True if oapi is found in the root paths.
+     */
+    static boolean isOpenShift(Client client) {
+<span class="nc" id="L49">        URL masterUrl = client.getMasterUrl();</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        if (IS_OPENSHIFT.containsKey(masterUrl)) {</span>
+<span class="nc" id="L51">            return IS_OPENSHIFT.get(masterUrl);</span>
+        } else {
+<span class="nc" id="L53">            RootPaths rootPaths = client.rootPaths();</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            if (rootPaths != null) {</span>
+<span class="nc" id="L55">                List&lt;String&gt; paths = rootPaths.getPaths();</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">                if (paths != null) {</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">                    for (String path : paths) {</span>
+                        // lets detect the new API Groups APIs for OpenShift
+<span class="nc bnc" id="L59" title="All 4 branches missed.">                        if (path.endsWith(&quot;.openshift.io&quot;) || path.contains(&quot;.openshift.io/&quot;)) {</span>
+<span class="nc" id="L60">                            USES_OPENSHIFT_APIGROUPS.putIfAbsent(masterUrl, true);</span>
+<span class="nc" id="L61">                            IS_OPENSHIFT.putIfAbsent(masterUrl, true);</span>
+<span class="nc" id="L62">                            return true;</span>
+                        }
+<span class="nc" id="L64">                    }</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">                    for (String path : paths) {</span>
+<span class="nc bnc" id="L66" title="All 4 branches missed.">                        if (java.util.Objects.equals(&quot;/oapi&quot;, path) || java.util.Objects.equals(&quot;oapi&quot;, path)) {</span>
+<span class="nc" id="L67">                            IS_OPENSHIFT.putIfAbsent(masterUrl, true);</span>
+<span class="nc" id="L68">                            return true;</span>
+                        }
+<span class="nc" id="L70">                    }</span>
+                }
+            }
+        }
+<span class="nc" id="L74">        IS_OPENSHIFT.putIfAbsent(masterUrl, false);</span>
+<span class="nc" id="L75">        return false;</span>
+    }
+
+    /**
+     * Check if OpenShift API Groups are available
+     * @param client   The client.
+     * @return         True if the new &lt;code&gt;/apis/*.openshift.io/&lt;/code&gt; APIs are found in the root paths.
+     */
+    static boolean isOpenShiftAPIGroups(Client client) {
+<span class="nc" id="L84">        Config configuration = client.getConfiguration();</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        if (configuration instanceof OpenShiftConfig) {</span>
+<span class="nc" id="L86">            OpenShiftConfig openShiftConfig = (OpenShiftConfig) configuration;</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">            if (openShiftConfig.isDisableApiGroupCheck()) {</span>
+<span class="nc" id="L88">                return false;</span>
+            }
+        }
+<span class="nc" id="L91">        URL masterUrl = client.getMasterUrl();</span>
+<span class="nc bnc" id="L92" title="All 4 branches missed.">        if (isOpenShift(client) &amp;&amp; USES_OPENSHIFT_APIGROUPS.containsKey(masterUrl)) {</span>
+<span class="nc" id="L93">            return USES_OPENSHIFT_APIGROUPS.get(masterUrl);</span>
+        }
+<span class="nc" id="L95">        return false;</span>
+    }
+
+
+    /**
+     * Checks if a custom URL for OpenShift has been used.
+     * @param config  The openshift configuration.
+     * @return        True if both master and openshift url have the same root.
+     */
+    static boolean hasCustomOpenShiftUrl(OpenShiftConfig config) {
+        try {
+<span class="fc" id="L106">            URI masterUri = new URI(config.getMasterUrl()).resolve(&quot;/&quot;);</span>
+<span class="fc" id="L107">            URI openshfitUri = new URI(config.getOpenShiftUrl()).resolve(&quot;/&quot;);</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">            return !masterUri.equals(openshfitUri);</span>
+<span class="nc" id="L109">        } catch (Exception e) {</span>
+<span class="nc" id="L110">            throw KubernetesClientException.launderThrowable(e);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

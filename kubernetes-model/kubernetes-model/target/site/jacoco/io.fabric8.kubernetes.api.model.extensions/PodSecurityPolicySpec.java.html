@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PodSecurityPolicySpec.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.extensions</a> &gt; <span class="el_source">PodSecurityPolicySpec.java</span></div><h1>PodSecurityPolicySpec.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.extensions;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;allowPrivilegeEscalation&quot;,
+    &quot;allowedCapabilities&quot;,
+    &quot;allowedFlexVolumes&quot;,
+    &quot;allowedHostPaths&quot;,
+    &quot;allowedProcMountTypes&quot;,
+    &quot;allowedUnsafeSysctls&quot;,
+    &quot;defaultAddCapabilities&quot;,
+    &quot;defaultAllowPrivilegeEscalation&quot;,
+    &quot;forbiddenSysctls&quot;,
+    &quot;fsGroup&quot;,
+    &quot;hostIPC&quot;,
+    &quot;hostNetwork&quot;,
+    &quot;hostPID&quot;,
+    &quot;hostPorts&quot;,
+    &quot;privileged&quot;,
+    &quot;readOnlyRootFilesystem&quot;,
+    &quot;requiredDropCapabilities&quot;,
+    &quot;runAsGroup&quot;,
+    &quot;runAsUser&quot;,
+    &quot;seLinux&quot;,
+    &quot;supplementalGroups&quot;,
+    &quot;volumes&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L59">@ToString</span>
+<span class="nc bnc" id="L60" title="All 190 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class PodSecurityPolicySpec implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;allowPrivilegeEscalation&quot;)
+    private Boolean allowPrivilegeEscalation;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L75">    @JsonProperty(&quot;allowedCapabilities&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;String&gt; allowedCapabilities = new ArrayList&lt;String&gt;();
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L83">    @JsonProperty(&quot;allowedFlexVolumes&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;AllowedFlexVolume&gt; allowedFlexVolumes = new ArrayList&lt;AllowedFlexVolume&gt;();
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L91">    @JsonProperty(&quot;allowedHostPaths&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;AllowedHostPath&gt; allowedHostPaths = new ArrayList&lt;AllowedHostPath&gt;();
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L99">    @JsonProperty(&quot;allowedProcMountTypes&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;String&gt; allowedProcMountTypes = new ArrayList&lt;String&gt;();
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L107">    @JsonProperty(&quot;allowedUnsafeSysctls&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;String&gt; allowedUnsafeSysctls = new ArrayList&lt;String&gt;();
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L115">    @JsonProperty(&quot;defaultAddCapabilities&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;String&gt; defaultAddCapabilities = new ArrayList&lt;String&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;defaultAllowPrivilegeEscalation&quot;)
+    private Boolean defaultAllowPrivilegeEscalation;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L129">    @JsonProperty(&quot;forbiddenSysctls&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;String&gt; forbiddenSysctls = new ArrayList&lt;String&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;fsGroup&quot;)
+    @Valid
+    private FSGroupStrategyOptions fsGroup;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;hostIPC&quot;)
+    private Boolean hostIPC;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;hostNetwork&quot;)
+    private Boolean hostNetwork;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;hostPID&quot;)
+    private Boolean hostPID;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L162">    @JsonProperty(&quot;hostPorts&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;HostPortRange&gt; hostPorts = new ArrayList&lt;HostPortRange&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;privileged&quot;)
+    private Boolean privileged;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;readOnlyRootFilesystem&quot;)
+    private Boolean readOnlyRootFilesystem;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L182">    @JsonProperty(&quot;requiredDropCapabilities&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;String&gt; requiredDropCapabilities = new ArrayList&lt;String&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;runAsGroup&quot;)
+    @Valid
+    private RunAsGroupStrategyOptions runAsGroup;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;runAsUser&quot;)
+    @Valid
+    private KubernetesRunAsUserStrategyOptions runAsUser;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;seLinux&quot;)
+    @Valid
+    private SELinuxStrategyOptions seLinux;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;supplementalGroups&quot;)
+    @Valid
+    private SupplementalGroupsStrategyOptions supplementalGroups;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L218">    @JsonProperty(&quot;volumes&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;String&gt; volumes = new ArrayList&lt;String&gt;();
+<span class="nc" id="L222">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L229">    public PodSecurityPolicySpec() {</span>
+<span class="nc" id="L230">    }</span>
+
+    /**
+     * 
+     * @param defaultAddCapabilities
+     * @param hostPorts
+     * @param allowedProcMountTypes
+     * @param fsGroup
+     * @param seLinux
+     * @param hostNetwork
+     * @param hostIPC
+     * @param volumes
+     * @param requiredDropCapabilities
+     * @param runAsGroup
+     * @param allowedCapabilities
+     * @param readOnlyRootFilesystem
+     * @param privileged
+     * @param runAsUser
+     * @param allowedHostPaths
+     * @param forbiddenSysctls
+     * @param supplementalGroups
+     * @param defaultAllowPrivilegeEscalation
+     * @param allowedUnsafeSysctls
+     * @param allowPrivilegeEscalation
+     * @param allowedFlexVolumes
+     * @param hostPID
+     */
+<span class="nc" id="L257">    public PodSecurityPolicySpec(Boolean allowPrivilegeEscalation, List&lt;String&gt; allowedCapabilities, List&lt;AllowedFlexVolume&gt; allowedFlexVolumes, List&lt;AllowedHostPath&gt; allowedHostPaths, List&lt;String&gt; allowedProcMountTypes, List&lt;String&gt; allowedUnsafeSysctls, List&lt;String&gt; defaultAddCapabilities, Boolean defaultAllowPrivilegeEscalation, List&lt;String&gt; forbiddenSysctls, FSGroupStrategyOptions fsGroup, Boolean hostIPC, Boolean hostNetwork, Boolean hostPID, List&lt;HostPortRange&gt; hostPorts, Boolean privileged, Boolean readOnlyRootFilesystem, List&lt;String&gt; requiredDropCapabilities, RunAsGroupStrategyOptions runAsGroup, KubernetesRunAsUserStrategyOptions runAsUser, SELinuxStrategyOptions seLinux, SupplementalGroupsStrategyOptions supplementalGroups, List&lt;String&gt; volumes) {</span>
+<span class="nc" id="L258">        this.allowPrivilegeEscalation = allowPrivilegeEscalation;</span>
+<span class="nc" id="L259">        this.allowedCapabilities = allowedCapabilities;</span>
+<span class="nc" id="L260">        this.allowedFlexVolumes = allowedFlexVolumes;</span>
+<span class="nc" id="L261">        this.allowedHostPaths = allowedHostPaths;</span>
+<span class="nc" id="L262">        this.allowedProcMountTypes = allowedProcMountTypes;</span>
+<span class="nc" id="L263">        this.allowedUnsafeSysctls = allowedUnsafeSysctls;</span>
+<span class="nc" id="L264">        this.defaultAddCapabilities = defaultAddCapabilities;</span>
+<span class="nc" id="L265">        this.defaultAllowPrivilegeEscalation = defaultAllowPrivilegeEscalation;</span>
+<span class="nc" id="L266">        this.forbiddenSysctls = forbiddenSysctls;</span>
+<span class="nc" id="L267">        this.fsGroup = fsGroup;</span>
+<span class="nc" id="L268">        this.hostIPC = hostIPC;</span>
+<span class="nc" id="L269">        this.hostNetwork = hostNetwork;</span>
+<span class="nc" id="L270">        this.hostPID = hostPID;</span>
+<span class="nc" id="L271">        this.hostPorts = hostPorts;</span>
+<span class="nc" id="L272">        this.privileged = privileged;</span>
+<span class="nc" id="L273">        this.readOnlyRootFilesystem = readOnlyRootFilesystem;</span>
+<span class="nc" id="L274">        this.requiredDropCapabilities = requiredDropCapabilities;</span>
+<span class="nc" id="L275">        this.runAsGroup = runAsGroup;</span>
+<span class="nc" id="L276">        this.runAsUser = runAsUser;</span>
+<span class="nc" id="L277">        this.seLinux = seLinux;</span>
+<span class="nc" id="L278">        this.supplementalGroups = supplementalGroups;</span>
+<span class="nc" id="L279">        this.volumes = volumes;</span>
+<span class="nc" id="L280">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The allowPrivilegeEscalation
+     */
+    @JsonProperty(&quot;allowPrivilegeEscalation&quot;)
+    public Boolean getAllowPrivilegeEscalation() {
+<span class="nc" id="L290">        return allowPrivilegeEscalation;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param allowPrivilegeEscalation
+     *     The allowPrivilegeEscalation
+     */
+    @JsonProperty(&quot;allowPrivilegeEscalation&quot;)
+    public void setAllowPrivilegeEscalation(Boolean allowPrivilegeEscalation) {
+<span class="nc" id="L301">        this.allowPrivilegeEscalation = allowPrivilegeEscalation;</span>
+<span class="nc" id="L302">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The allowedCapabilities
+     */
+    @JsonProperty(&quot;allowedCapabilities&quot;)
+    public List&lt;String&gt; getAllowedCapabilities() {
+<span class="nc" id="L312">        return allowedCapabilities;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param allowedCapabilities
+     *     The allowedCapabilities
+     */
+    @JsonProperty(&quot;allowedCapabilities&quot;)
+    public void setAllowedCapabilities(List&lt;String&gt; allowedCapabilities) {
+<span class="nc" id="L323">        this.allowedCapabilities = allowedCapabilities;</span>
+<span class="nc" id="L324">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The allowedFlexVolumes
+     */
+    @JsonProperty(&quot;allowedFlexVolumes&quot;)
+    public List&lt;AllowedFlexVolume&gt; getAllowedFlexVolumes() {
+<span class="nc" id="L334">        return allowedFlexVolumes;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param allowedFlexVolumes
+     *     The allowedFlexVolumes
+     */
+    @JsonProperty(&quot;allowedFlexVolumes&quot;)
+    public void setAllowedFlexVolumes(List&lt;AllowedFlexVolume&gt; allowedFlexVolumes) {
+<span class="nc" id="L345">        this.allowedFlexVolumes = allowedFlexVolumes;</span>
+<span class="nc" id="L346">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The allowedHostPaths
+     */
+    @JsonProperty(&quot;allowedHostPaths&quot;)
+    public List&lt;AllowedHostPath&gt; getAllowedHostPaths() {
+<span class="nc" id="L356">        return allowedHostPaths;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param allowedHostPaths
+     *     The allowedHostPaths
+     */
+    @JsonProperty(&quot;allowedHostPaths&quot;)
+    public void setAllowedHostPaths(List&lt;AllowedHostPath&gt; allowedHostPaths) {
+<span class="nc" id="L367">        this.allowedHostPaths = allowedHostPaths;</span>
+<span class="nc" id="L368">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The allowedProcMountTypes
+     */
+    @JsonProperty(&quot;allowedProcMountTypes&quot;)
+    public List&lt;String&gt; getAllowedProcMountTypes() {
+<span class="nc" id="L378">        return allowedProcMountTypes;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param allowedProcMountTypes
+     *     The allowedProcMountTypes
+     */
+    @JsonProperty(&quot;allowedProcMountTypes&quot;)
+    public void setAllowedProcMountTypes(List&lt;String&gt; allowedProcMountTypes) {
+<span class="nc" id="L389">        this.allowedProcMountTypes = allowedProcMountTypes;</span>
+<span class="nc" id="L390">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The allowedUnsafeSysctls
+     */
+    @JsonProperty(&quot;allowedUnsafeSysctls&quot;)
+    public List&lt;String&gt; getAllowedUnsafeSysctls() {
+<span class="nc" id="L400">        return allowedUnsafeSysctls;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param allowedUnsafeSysctls
+     *     The allowedUnsafeSysctls
+     */
+    @JsonProperty(&quot;allowedUnsafeSysctls&quot;)
+    public void setAllowedUnsafeSysctls(List&lt;String&gt; allowedUnsafeSysctls) {
+<span class="nc" id="L411">        this.allowedUnsafeSysctls = allowedUnsafeSysctls;</span>
+<span class="nc" id="L412">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The defaultAddCapabilities
+     */
+    @JsonProperty(&quot;defaultAddCapabilities&quot;)
+    public List&lt;String&gt; getDefaultAddCapabilities() {
+<span class="nc" id="L422">        return defaultAddCapabilities;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param defaultAddCapabilities
+     *     The defaultAddCapabilities
+     */
+    @JsonProperty(&quot;defaultAddCapabilities&quot;)
+    public void setDefaultAddCapabilities(List&lt;String&gt; defaultAddCapabilities) {
+<span class="nc" id="L433">        this.defaultAddCapabilities = defaultAddCapabilities;</span>
+<span class="nc" id="L434">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The defaultAllowPrivilegeEscalation
+     */
+    @JsonProperty(&quot;defaultAllowPrivilegeEscalation&quot;)
+    public Boolean getDefaultAllowPrivilegeEscalation() {
+<span class="nc" id="L444">        return defaultAllowPrivilegeEscalation;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param defaultAllowPrivilegeEscalation
+     *     The defaultAllowPrivilegeEscalation
+     */
+    @JsonProperty(&quot;defaultAllowPrivilegeEscalation&quot;)
+    public void setDefaultAllowPrivilegeEscalation(Boolean defaultAllowPrivilegeEscalation) {
+<span class="nc" id="L455">        this.defaultAllowPrivilegeEscalation = defaultAllowPrivilegeEscalation;</span>
+<span class="nc" id="L456">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The forbiddenSysctls
+     */
+    @JsonProperty(&quot;forbiddenSysctls&quot;)
+    public List&lt;String&gt; getForbiddenSysctls() {
+<span class="nc" id="L466">        return forbiddenSysctls;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param forbiddenSysctls
+     *     The forbiddenSysctls
+     */
+    @JsonProperty(&quot;forbiddenSysctls&quot;)
+    public void setForbiddenSysctls(List&lt;String&gt; forbiddenSysctls) {
+<span class="nc" id="L477">        this.forbiddenSysctls = forbiddenSysctls;</span>
+<span class="nc" id="L478">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The fsGroup
+     */
+    @JsonProperty(&quot;fsGroup&quot;)
+    public FSGroupStrategyOptions getFsGroup() {
+<span class="nc" id="L488">        return fsGroup;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param fsGroup
+     *     The fsGroup
+     */
+    @JsonProperty(&quot;fsGroup&quot;)
+    public void setFsGroup(FSGroupStrategyOptions fsGroup) {
+<span class="nc" id="L499">        this.fsGroup = fsGroup;</span>
+<span class="nc" id="L500">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The hostIPC
+     */
+    @JsonProperty(&quot;hostIPC&quot;)
+    public Boolean getHostIPC() {
+<span class="nc" id="L510">        return hostIPC;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param hostIPC
+     *     The hostIPC
+     */
+    @JsonProperty(&quot;hostIPC&quot;)
+    public void setHostIPC(Boolean hostIPC) {
+<span class="nc" id="L521">        this.hostIPC = hostIPC;</span>
+<span class="nc" id="L522">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The hostNetwork
+     */
+    @JsonProperty(&quot;hostNetwork&quot;)
+    public Boolean getHostNetwork() {
+<span class="nc" id="L532">        return hostNetwork;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param hostNetwork
+     *     The hostNetwork
+     */
+    @JsonProperty(&quot;hostNetwork&quot;)
+    public void setHostNetwork(Boolean hostNetwork) {
+<span class="nc" id="L543">        this.hostNetwork = hostNetwork;</span>
+<span class="nc" id="L544">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The hostPID
+     */
+    @JsonProperty(&quot;hostPID&quot;)
+    public Boolean getHostPID() {
+<span class="nc" id="L554">        return hostPID;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param hostPID
+     *     The hostPID
+     */
+    @JsonProperty(&quot;hostPID&quot;)
+    public void setHostPID(Boolean hostPID) {
+<span class="nc" id="L565">        this.hostPID = hostPID;</span>
+<span class="nc" id="L566">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The hostPorts
+     */
+    @JsonProperty(&quot;hostPorts&quot;)
+    public List&lt;HostPortRange&gt; getHostPorts() {
+<span class="nc" id="L576">        return hostPorts;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param hostPorts
+     *     The hostPorts
+     */
+    @JsonProperty(&quot;hostPorts&quot;)
+    public void setHostPorts(List&lt;HostPortRange&gt; hostPorts) {
+<span class="nc" id="L587">        this.hostPorts = hostPorts;</span>
+<span class="nc" id="L588">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The privileged
+     */
+    @JsonProperty(&quot;privileged&quot;)
+    public Boolean getPrivileged() {
+<span class="nc" id="L598">        return privileged;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param privileged
+     *     The privileged
+     */
+    @JsonProperty(&quot;privileged&quot;)
+    public void setPrivileged(Boolean privileged) {
+<span class="nc" id="L609">        this.privileged = privileged;</span>
+<span class="nc" id="L610">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The readOnlyRootFilesystem
+     */
+    @JsonProperty(&quot;readOnlyRootFilesystem&quot;)
+    public Boolean getReadOnlyRootFilesystem() {
+<span class="nc" id="L620">        return readOnlyRootFilesystem;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param readOnlyRootFilesystem
+     *     The readOnlyRootFilesystem
+     */
+    @JsonProperty(&quot;readOnlyRootFilesystem&quot;)
+    public void setReadOnlyRootFilesystem(Boolean readOnlyRootFilesystem) {
+<span class="nc" id="L631">        this.readOnlyRootFilesystem = readOnlyRootFilesystem;</span>
+<span class="nc" id="L632">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The requiredDropCapabilities
+     */
+    @JsonProperty(&quot;requiredDropCapabilities&quot;)
+    public List&lt;String&gt; getRequiredDropCapabilities() {
+<span class="nc" id="L642">        return requiredDropCapabilities;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param requiredDropCapabilities
+     *     The requiredDropCapabilities
+     */
+    @JsonProperty(&quot;requiredDropCapabilities&quot;)
+    public void setRequiredDropCapabilities(List&lt;String&gt; requiredDropCapabilities) {
+<span class="nc" id="L653">        this.requiredDropCapabilities = requiredDropCapabilities;</span>
+<span class="nc" id="L654">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The runAsGroup
+     */
+    @JsonProperty(&quot;runAsGroup&quot;)
+    public RunAsGroupStrategyOptions getRunAsGroup() {
+<span class="nc" id="L664">        return runAsGroup;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param runAsGroup
+     *     The runAsGroup
+     */
+    @JsonProperty(&quot;runAsGroup&quot;)
+    public void setRunAsGroup(RunAsGroupStrategyOptions runAsGroup) {
+<span class="nc" id="L675">        this.runAsGroup = runAsGroup;</span>
+<span class="nc" id="L676">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The runAsUser
+     */
+    @JsonProperty(&quot;runAsUser&quot;)
+    public KubernetesRunAsUserStrategyOptions getRunAsUser() {
+<span class="nc" id="L686">        return runAsUser;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param runAsUser
+     *     The runAsUser
+     */
+    @JsonProperty(&quot;runAsUser&quot;)
+    public void setRunAsUser(KubernetesRunAsUserStrategyOptions runAsUser) {
+<span class="nc" id="L697">        this.runAsUser = runAsUser;</span>
+<span class="nc" id="L698">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The seLinux
+     */
+    @JsonProperty(&quot;seLinux&quot;)
+    public SELinuxStrategyOptions getSeLinux() {
+<span class="nc" id="L708">        return seLinux;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param seLinux
+     *     The seLinux
+     */
+    @JsonProperty(&quot;seLinux&quot;)
+    public void setSeLinux(SELinuxStrategyOptions seLinux) {
+<span class="nc" id="L719">        this.seLinux = seLinux;</span>
+<span class="nc" id="L720">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The supplementalGroups
+     */
+    @JsonProperty(&quot;supplementalGroups&quot;)
+    public SupplementalGroupsStrategyOptions getSupplementalGroups() {
+<span class="nc" id="L730">        return supplementalGroups;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param supplementalGroups
+     *     The supplementalGroups
+     */
+    @JsonProperty(&quot;supplementalGroups&quot;)
+    public void setSupplementalGroups(SupplementalGroupsStrategyOptions supplementalGroups) {
+<span class="nc" id="L741">        this.supplementalGroups = supplementalGroups;</span>
+<span class="nc" id="L742">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The volumes
+     */
+    @JsonProperty(&quot;volumes&quot;)
+    public List&lt;String&gt; getVolumes() {
+<span class="nc" id="L752">        return volumes;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param volumes
+     *     The volumes
+     */
+    @JsonProperty(&quot;volumes&quot;)
+    public void setVolumes(List&lt;String&gt; volumes) {
+<span class="nc" id="L763">        this.volumes = volumes;</span>
+<span class="nc" id="L764">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L768">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L773">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L774">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

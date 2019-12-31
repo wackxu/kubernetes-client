@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OpenShiftConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Openshift :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.client</a> &gt; <span class="el_source">OpenShiftConfig.java</span></div><h1>OpenShiftConfig.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.openshift.client;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
+import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.utils.URLUtils;
+import io.fabric8.kubernetes.client.utils.Utils;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.BuildableReference;
+import okhttp3.TlsVersion;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true, allowGetters = true, allowSetters = true)
+public class OpenShiftConfig extends Config {
+
+  public static final String KUBERNETES_OAPI_VERSION_SYSTEM_PROPERTY = &quot;kubernetes.oapi.version&quot;;
+  public static final String OPENSHIFT_URL_SYTEM_PROPERTY = &quot;openshift.url&quot;;
+  public static final String OPENSHIFT_BUILD_TIMEOUT_SYSTEM_PROPERTY = &quot;openshift.build.timeout&quot;;
+
+<span class="fc" id="L41">  public static final Long DEFAULT_BUILD_TIMEOUT = 5 * 60 * 1000L;</span>
+
+<span class="fc" id="L43">  private String oapiVersion = &quot;v1&quot;;</span>
+  private String openShiftUrl;
+  private boolean disableApiGroupCheck;
+<span class="fc" id="L46">  private long buildTimeout = DEFAULT_BUILD_TIMEOUT;</span>
+
+  //This is not meant to be used. This constructor is used only by the generated builder.
+<span class="fc" id="L49">  OpenShiftConfig() {</span>
+<span class="fc" id="L50">  }</span>
+
+  public OpenShiftConfig(Config kubernetesConfig) {
+<span class="fc" id="L53">    this(kubernetesConfig,</span>
+<span class="fc" id="L54">      getDefaultOpenShiftUrl(kubernetesConfig), getDefaultOapiVersion(kubernetesConfig), DEFAULT_BUILD_TIMEOUT</span>
+    );
+<span class="fc" id="L56">  }</span>
+
+  public OpenShiftConfig(Config kubernetesConfig, String openShiftUrl) {
+<span class="nc" id="L59">    this(kubernetesConfig,</span>
+<span class="nc" id="L60">      getDefaultOpenShiftUrl(kubernetesConfig), getDefaultOapiVersion(kubernetesConfig), DEFAULT_BUILD_TIMEOUT</span>
+    );
+<span class="nc" id="L62">    this.openShiftUrl = openShiftUrl;</span>
+<span class="nc" id="L63">  }</span>
+
+  @Buildable(builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, editableEnabled = false, refs = {@BuildableReference(Config.class)})
+  public OpenShiftConfig(String openShiftUrl, String oapiVersion, String masterUrl, String apiVersion, String namespace, Boolean trustCerts, Boolean disableHostnameVerification, String caCertFile, String caCertData, String clientCertFile, String clientCertData, String clientKeyFile, String clientKeyData, String clientKeyAlgo, String clientKeyPassphrase, String username, String password, String oauthToken, int watchReconnectInterval, int watchReconnectLimit, int connectionTimeout, int requestTimeout, long rollingTimeout, long scaleTimeout, int loggingInterval, Integer maxConcurrentRequestsPerHost, String httpProxy, String httpsProxy, String[] noProxy, Map&lt;Integer, String&gt; errorMessages, String userAgent, TlsVersion[] tlsVersions, long buildTimeout, long websocketTimeout, long websocketPingInterval, String proxyUsername, String proxyPassword, String trustStoreFile, String trustStorePassphrase, String keyStoreFile, String keyStorePassphrase, String impersonateUsername, String[] impersonateGroups, Map&lt;String, List&lt;String&gt;&gt; impersonateExtras) {
+<span class="fc" id="L67">    super(masterUrl, apiVersion, namespace, trustCerts, disableHostnameVerification, caCertFile, caCertData, clientCertFile, clientCertData, clientKeyFile, clientKeyData, clientKeyAlgo, clientKeyPassphrase, username, password, oauthToken, watchReconnectInterval, watchReconnectLimit, connectionTimeout, requestTimeout, rollingTimeout, scaleTimeout, loggingInterval, maxConcurrentRequestsPerHost, httpProxy, httpsProxy, noProxy, errorMessages, userAgent, tlsVersions, websocketTimeout, websocketPingInterval, proxyUsername, proxyPassword, trustStoreFile, trustStorePassphrase, keyStoreFile, keyStorePassphrase, impersonateUsername, impersonateGroups, impersonateExtras);</span>
+<span class="fc" id="L68">    this.oapiVersion = oapiVersion;</span>
+<span class="fc" id="L69">    this.openShiftUrl = openShiftUrl;</span>
+<span class="fc" id="L70">    this.buildTimeout = buildTimeout;</span>
+
+<span class="pc bpc" id="L72" title="1 of 4 branches missed.">    if (this.openShiftUrl == null || this.openShiftUrl.isEmpty()) {</span>
+<span class="fc" id="L73">      this.openShiftUrl = URLUtils.join(getMasterUrl(), &quot;oapi&quot;, this.oapiVersion);</span>
+    }
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">    if (!this.openShiftUrl.endsWith(&quot;/&quot;)) {</span>
+<span class="fc" id="L76">      this.openShiftUrl = this.openShiftUrl + &quot;/&quot;;</span>
+    }
+<span class="fc" id="L78">  }</span>
+
+  public OpenShiftConfig(Config kubernetesConfig, String openShiftUrl, String oapiVersion, long buildTimeout) {
+<span class="fc" id="L81">    this(openShiftUrl, oapiVersion, kubernetesConfig.getMasterUrl(), kubernetesConfig.getApiVersion(), kubernetesConfig.getNamespace(), kubernetesConfig.isTrustCerts(), kubernetesConfig.isDisableHostnameVerification(),</span>
+<span class="fc" id="L82">      kubernetesConfig.getCaCertFile(), kubernetesConfig.getCaCertData(),</span>
+<span class="fc" id="L83">      kubernetesConfig.getClientCertFile(), kubernetesConfig.getClientCertData(),</span>
+<span class="fc" id="L84">      kubernetesConfig.getClientKeyFile(), kubernetesConfig.getClientKeyData(),</span>
+<span class="fc" id="L85">      kubernetesConfig.getClientKeyAlgo(), kubernetesConfig.getClientKeyPassphrase(),</span>
+<span class="fc" id="L86">      kubernetesConfig.getUsername(), kubernetesConfig.getPassword(), kubernetesConfig.getOauthToken(),</span>
+<span class="fc" id="L87">      kubernetesConfig.getWatchReconnectInterval(), kubernetesConfig.getWatchReconnectLimit(),</span>
+<span class="fc" id="L88">      kubernetesConfig.getConnectionTimeout(), kubernetesConfig.getRequestTimeout(),</span>
+<span class="fc" id="L89">      kubernetesConfig.getRollingTimeout(), kubernetesConfig.getScaleTimeout(),</span>
+<span class="fc" id="L90">      kubernetesConfig.getLoggingInterval(),</span>
+<span class="fc" id="L91">      kubernetesConfig.getMaxConcurrentRequestsPerHost(),</span>
+<span class="fc" id="L92">      kubernetesConfig.getHttpProxy(),</span>
+<span class="fc" id="L93">      kubernetesConfig.getHttpsProxy(),</span>
+<span class="fc" id="L94">      kubernetesConfig.getNoProxy(),</span>
+<span class="fc" id="L95">      kubernetesConfig.getErrorMessages(),</span>
+<span class="fc" id="L96">      kubernetesConfig.getUserAgent(),</span>
+<span class="fc" id="L97">      kubernetesConfig.getTlsVersions(),</span>
+      buildTimeout,
+<span class="fc" id="L99">      kubernetesConfig.getWebsocketTimeout(),</span>
+<span class="fc" id="L100">      kubernetesConfig.getWebsocketPingInterval(),</span>
+<span class="fc" id="L101">      kubernetesConfig.getProxyUsername(),</span>
+<span class="fc" id="L102">      kubernetesConfig.getProxyPassword(),</span>
+<span class="fc" id="L103">      kubernetesConfig.getTrustStoreFile(),</span>
+<span class="fc" id="L104">      kubernetesConfig.getTrustStorePassphrase(),</span>
+<span class="fc" id="L105">      kubernetesConfig.getKeyStoreFile(),</span>
+<span class="fc" id="L106">      kubernetesConfig.getKeyStorePassphrase(),</span>
+<span class="fc" id="L107">      kubernetesConfig.getImpersonateUsername(),</span>
+<span class="fc" id="L108">      kubernetesConfig.getImpersonateGroups(),</span>
+<span class="fc" id="L109">      kubernetesConfig.getImpersonateExtras()</span>
+      );
+<span class="fc" id="L111">  }</span>
+
+  public static OpenShiftConfig wrap(Config config) {
+<span class="pc bpc" id="L114" title="1 of 2 branches missed.">    return config instanceof OpenShiftConfig ? (OpenShiftConfig) config : new OpenShiftConfig(config);</span>
+  }
+
+  public boolean isOpenShiftAPIGroups(OpenShiftClient openShiftClient) {
+<span class="nc bnc" id="L118" title="All 2 branches missed.">    if (isDisableApiGroupCheck()) {</span>
+<span class="nc" id="L119">      return false;</span>
+    }
+<span class="nc" id="L121">    return OpenshiftAdapterSupport.isOpenShiftAPIGroups(openShiftClient);</span>
+  }
+
+  private static String getDefaultOapiVersion(Config config) {
+<span class="fc" id="L125">    return Utils.getSystemPropertyOrEnvVar(KUBERNETES_OAPI_VERSION_SYSTEM_PROPERTY, config.getApiVersion());</span>
+  }
+
+  private static String getDefaultOpenShiftUrl(Config config) {
+<span class="fc" id="L129">    String openshiftUrl = Utils.getSystemPropertyOrEnvVar(OPENSHIFT_URL_SYTEM_PROPERTY);</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">    if (openshiftUrl != null) {</span>
+      // The OPENSHIFT_URL environment variable may be set to the root url (i.e. without the '/oapi/version' path) in some configurations
+<span class="fc bfc" id="L132" title="All 2 branches covered.">      if (isRootURL(openshiftUrl)) {</span>
+<span class="fc" id="L133">        openshiftUrl = URLUtils.join(openshiftUrl, &quot;oapi&quot;, getDefaultOapiVersion(config));</span>
+      }
+<span class="fc" id="L135">      return openshiftUrl;</span>
+    } else {
+<span class="fc" id="L137">      return URLUtils.join(config.getMasterUrl(), &quot;oapi&quot;, getDefaultOapiVersion(config));</span>
+    }
+  }
+
+  private static boolean isRootURL(String url) {
+    try {
+<span class="fc" id="L143">      String path = new URL(url).getPath();</span>
+<span class="fc bfc" id="L144" title="All 4 branches covered.">      return &quot;&quot;.equals(path) || &quot;/&quot;.equals(path);</span>
+<span class="nc" id="L145">    } catch (MalformedURLException e) {</span>
+<span class="nc" id="L146">      return false;</span>
+    }
+  }
+
+  @JsonProperty(&quot;oapiVersion&quot;)
+  public String getOapiVersion() {
+<span class="fc" id="L152">    return oapiVersion;</span>
+  }
+
+  public void setOapiVersion(String oapiVersion) {
+<span class="fc" id="L156">    this.oapiVersion = oapiVersion;</span>
+<span class="fc" id="L157">  }</span>
+
+  @JsonProperty(&quot;openShiftUrl&quot;)
+  public String getOpenShiftUrl() {
+<span class="fc" id="L161">    return openShiftUrl;</span>
+  }
+
+  public void setOpenShiftUrl(String openShiftUrl) {
+<span class="fc" id="L165">    this.openShiftUrl = openShiftUrl;</span>
+<span class="fc" id="L166">  }</span>
+
+  @JsonProperty(&quot;buildTimeout&quot;)
+  public long getBuildTimeout() {
+<span class="fc" id="L170">    return buildTimeout;</span>
+  }
+
+  public void setBuildTimeout(long buildTimeout) {
+<span class="fc" id="L174">    this.buildTimeout = buildTimeout;</span>
+<span class="fc" id="L175">  }</span>
+
+  public boolean isDisableApiGroupCheck() {
+<span class="fc" id="L178">    return disableApiGroupCheck;</span>
+  }
+
+  public void setDisableApiGroupCheck(boolean disableApiGroupCheck) {
+<span class="fc" id="L182">    this.disableApiGroupCheck = disableApiGroupCheck;</span>
+<span class="fc" id="L183">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PodOperationsImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.dsl.internal</a> &gt; <span class="el_source">PodOperationsImpl.java</span></div><h1>PodOperationsImpl.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.dsl.internal;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
+import java.io.Reader;
+import java.net.URL;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.WritableByteChannel;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
+
+import io.fabric8.kubernetes.api.model.DoneablePod;
+import io.fabric8.kubernetes.api.model.Pod;
+import io.fabric8.kubernetes.api.model.PodList;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.LocalPortForward;
+import io.fabric8.kubernetes.client.PortForward;
+import io.fabric8.kubernetes.client.dsl.PodResource;
+import io.fabric8.kubernetes.client.dsl.ContainerResource;
+import io.fabric8.kubernetes.client.dsl.ExecListenable;
+import io.fabric8.kubernetes.client.dsl.ExecListener;
+import io.fabric8.kubernetes.client.dsl.ExecWatch;
+import io.fabric8.kubernetes.client.dsl.Execable;
+import io.fabric8.kubernetes.client.dsl.LogWatch;
+import io.fabric8.kubernetes.client.dsl.Loggable;
+import io.fabric8.kubernetes.client.dsl.PrettyLoggable;
+import io.fabric8.kubernetes.client.dsl.TailPrettyLoggable;
+import io.fabric8.kubernetes.client.dsl.TimeTailPrettyLoggable;
+import io.fabric8.kubernetes.client.dsl.TtyExecErrorChannelable;
+import io.fabric8.kubernetes.client.dsl.BytesLimitTerminateTimeTailPrettyLoggable;
+import io.fabric8.kubernetes.client.dsl.TtyExecErrorable;
+import io.fabric8.kubernetes.client.dsl.TtyExecOutputErrorable;
+import io.fabric8.kubernetes.client.dsl.TtyExecable;
+import io.fabric8.kubernetes.client.dsl.base.HasMetadataOperation;
+import io.fabric8.kubernetes.client.utils.URLUtils;
+import okhttp3.*;
+
+public class PodOperationsImpl extends HasMetadataOperation&lt;Pod, PodList, DoneablePod, PodResource&lt;Pod, DoneablePod&gt;&gt; implements PodResource&lt;Pod, DoneablePod&gt; {
+
+<span class="nc" id="L60">    private static final String[] EMPTY_COMMAND = {&quot;/bin/sh&quot;, &quot;-i&quot;};</span>
+
+    private final String containerId;
+    private final InputStream in;
+    private final OutputStream out;
+    private final OutputStream err;
+    private final OutputStream errChannel;
+
+    private final PipedOutputStream inPipe;
+    private final PipedInputStream outPipe;
+    private final PipedInputStream errPipe;
+    private final PipedInputStream errChannelPipe;
+    private final boolean withTTY;
+    private final boolean withTerminatedStatus;
+    private final boolean withTimestamps;
+    private final String sinceTimestamp;
+    private final Integer sinceSeconds;
+    private final Integer withTailingLines;
+    private final boolean withPrettyOutput;
+    private final ExecListener execListener;
+    private final Integer limitBytes;
+
+
+  public PodOperationsImpl(OkHttpClient client, Config config, String namespace) {
+<span class="nc" id="L84">        this(client, config, null, null, namespace, null, true, null, null, false, -1, new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String&gt;());</span>
+<span class="nc" id="L85">    }</span>
+
+    public PodOperationsImpl(OkHttpClient client, Config config, String apiGroup, String apiVersion, String namespace, String name, Boolean cascading, Pod item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields) {
+<span class="nc" id="L88">        this(client, config, apiGroup, apiVersion, namespace, name, cascading, item, resourceVersion, reloadingFromServer, gracePeriodSeconds, labels, labelsNot, labelsIn, labelsNotIn, fields,</span>
+             null, null, null, null, null, null, null, null, null, false, false, false, null, null, null, false, null, null);
+<span class="nc" id="L90">    }</span>
+
+    public PodOperationsImpl(OkHttpClient client, Config config, String apiGroup, String apiVersion, String namespace, String name, Boolean cascading, Pod item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields, String containerId, InputStream in, PipedOutputStream inPipe, OutputStream out, PipedInputStream outPipe, OutputStream err, PipedInputStream errPipe, OutputStream errChannel, PipedInputStream errChannelPipe, boolean withTTY, boolean withTerminatedStatus, boolean withTimestamps, String sinceTimestamp, Integer sinceSeconds, Integer withTailingLines, boolean withPrettyOutput, ExecListener execListener, Integer limitBytes) {
+<span class="nc" id="L93">        super(client, config, apiGroup, apiVersion, &quot;pods&quot;, namespace, name, cascading, item, resourceVersion, reloadingFromServer, gracePeriodSeconds, labels, labelsNot, labelsIn, labelsNotIn, fields);</span>
+<span class="nc" id="L94">        this.containerId = containerId;</span>
+<span class="nc" id="L95">        this.in = in;</span>
+<span class="nc" id="L96">        this.inPipe = inPipe;</span>
+<span class="nc" id="L97">        this.out = out;</span>
+<span class="nc" id="L98">        this.outPipe = outPipe;</span>
+<span class="nc" id="L99">        this.err = err;</span>
+<span class="nc" id="L100">        this.errPipe = errPipe;</span>
+<span class="nc" id="L101">        this.errChannel = errChannel;</span>
+<span class="nc" id="L102">        this.errChannelPipe = errChannelPipe;</span>
+<span class="nc" id="L103">        this.withTTY = withTTY;</span>
+<span class="nc" id="L104">        this.withTerminatedStatus = withTerminatedStatus;</span>
+<span class="nc" id="L105">        this.withTimestamps = withTimestamps;</span>
+<span class="nc" id="L106">        this.sinceTimestamp = sinceTimestamp;</span>
+<span class="nc" id="L107">        this.sinceSeconds = sinceSeconds;</span>
+<span class="nc" id="L108">        this.withTailingLines = withTailingLines;</span>
+<span class="nc" id="L109">        this.withPrettyOutput = withPrettyOutput;</span>
+<span class="nc" id="L110">        this.execListener = execListener;</span>
+<span class="nc" id="L111">        this.limitBytes =limitBytes;</span>
+<span class="nc" id="L112">    }</span>
+
+    protected String getLogParameters() {
+<span class="nc" id="L115">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L116">        sb.append(&quot;log?pretty=&quot;).append(withPrettyOutput);</span>
+<span class="nc bnc" id="L117" title="All 4 branches missed.">        if (containerId != null &amp;&amp; !containerId.isEmpty()) {</span>
+<span class="nc" id="L118">            sb.append(&quot;&amp;container=&quot;).append(containerId);</span>
+        }
+<span class="nc bnc" id="L120" title="All 2 branches missed.">        if (withTerminatedStatus) {</span>
+<span class="nc" id="L121">            sb.append(&quot;&amp;previous=true&quot;);</span>
+        }
+<span class="nc bnc" id="L123" title="All 2 branches missed.">        if (sinceSeconds != null) {</span>
+<span class="nc" id="L124">            sb.append(&quot;&amp;sinceSeconds=&quot;).append(sinceSeconds);</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">        } else if (sinceTimestamp != null) {</span>
+<span class="nc" id="L126">            sb.append(&quot;&amp;sinceTime=&quot;).append(sinceTimestamp);</span>
+        }
+<span class="nc bnc" id="L128" title="All 2 branches missed.">        if (withTailingLines != null) {</span>
+<span class="nc" id="L129">            sb.append(&quot;&amp;tailLines=&quot;).append(withTailingLines);</span>
+        }
+<span class="nc bnc" id="L131" title="All 2 branches missed.">        if (limitBytes != null) {</span>
+<span class="nc" id="L132">          sb.append(&quot;&amp;limitBytes=&quot;).append(limitBytes);</span>
+        }
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        if (withTimestamps) {</span>
+<span class="nc" id="L135">          sb.append(&quot;&amp;timestamps=true&quot;);</span>
+        }
+<span class="nc" id="L137">        return sb.toString();</span>
+    }
+
+    protected ResponseBody doGetLog(){
+      try {
+<span class="nc" id="L142">        URL url = new URL(URLUtils.join(getResourceUrl().toString(), getLogParameters()));</span>
+<span class="nc" id="L143">        Request.Builder requestBuilder = new Request.Builder().get().url(url);</span>
+<span class="nc" id="L144">        Request request = requestBuilder.build();</span>
+<span class="nc" id="L145">        Response response = client.newCall(request).execute();</span>
+<span class="nc" id="L146">        ResponseBody body = response.body();</span>
+<span class="nc" id="L147">        assertResponseCode(request, response);</span>
+<span class="nc" id="L148">        return body;</span>
+<span class="nc" id="L149">      } catch (Throwable t) {</span>
+<span class="nc" id="L150">        throw KubernetesClientException.launderThrowable(forOperationType(&quot;doGetLog&quot;), t);</span>
+      }
+    }
+
+    @Override
+    public String getLog() {
+<span class="nc" id="L156">      try(ResponseBody body = doGetLog()) {</span>
+<span class="nc" id="L157">        return body.string();</span>
+<span class="nc" id="L158">      } catch (IOException e) {</span>
+<span class="nc" id="L159">        throw KubernetesClientException.launderThrowable(forOperationType(&quot;getLog&quot;), e);</span>
+      }
+    }
+
+  /**
+   * Returns an unclosed Reader. It's the caller responsibility to close it.
+   * @return Reader                                                                                                                                                             
+   */
+  @Override
+    public Reader getLogReader() {
+<span class="nc" id="L169">        return doGetLog().charStream();</span>
+    }
+
+    @Override
+    public String getLog(Boolean isPretty) {
+<span class="nc" id="L174">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, isPretty, execListener, limitBytes).getLog();</span>
+    }
+
+    @Override
+    public LogWatch watchLog() {
+<span class="nc" id="L179">        return watchLog(null);</span>
+    }
+
+    @Override
+    public LogWatch watchLog(OutputStream out) {
+        try {
+<span class="nc" id="L185">            URL url = new URL(URLUtils.join(getResourceUrl().toString(), getLogParameters() + &quot;&amp;follow=true&quot;));</span>
+<span class="nc" id="L186">            Request request = new Request.Builder().url(url).get().build();</span>
+<span class="nc" id="L187">            final LogWatchCallback callback = new LogWatchCallback(out);</span>
+<span class="nc" id="L188">            OkHttpClient clone = client.newBuilder().readTimeout(0, TimeUnit.MILLISECONDS).build();</span>
+<span class="nc" id="L189">            clone.newCall(request).enqueue(callback);</span>
+<span class="nc" id="L190">            callback.waitUntilReady();</span>
+<span class="nc" id="L191">            return callback;</span>
+<span class="nc" id="L192">        } catch (Throwable t) {</span>
+<span class="nc" id="L193">            throw KubernetesClientException.launderThrowable(forOperationType(&quot;watchLog&quot;), t);</span>
+        }
+    }
+
+  @Override
+  public PortForward portForward(int port, ReadableByteChannel in, WritableByteChannel out) {
+    try {
+<span class="nc" id="L200">      return new PortForwarderWebsocket(client).forward(getResourceUrl(), port, in, out);</span>
+<span class="nc" id="L201">    } catch (Throwable t) {</span>
+<span class="nc" id="L202">      throw KubernetesClientException.launderThrowable(t);</span>
+    }
+  }
+
+  @Override
+  public LocalPortForward portForward(int port) {
+    try {
+<span class="nc" id="L209">      return new PortForwarderWebsocket(client).forward(getResourceUrl(), port);</span>
+<span class="nc" id="L210">    } catch (Throwable t) {</span>
+<span class="nc" id="L211">      throw KubernetesClientException.launderThrowable(t);</span>
+    }
+  }
+
+  @Override
+  public LocalPortForward portForward(int port, int localPort) {
+    try {
+<span class="nc" id="L218">      return new PortForwarderWebsocket(client).forward(getResourceUrl(), port, localPort);</span>
+<span class="nc" id="L219">    } catch (Throwable t) {</span>
+<span class="nc" id="L220">      throw KubernetesClientException.launderThrowable(t);</span>
+    }
+  }
+
+  @Override
+    public ContainerResource&lt;String, LogWatch, InputStream, PipedOutputStream, OutputStream, PipedInputStream, String, ExecWatch&gt; inContainer(String containerId) {
+<span class="nc" id="L226">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, execListener, limitBytes);</span>
+    }
+
+    @Override
+    public ExecWatch exec(String... command) {
+<span class="nc" id="L231">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">        String[] actualCommands = command.length &gt;= 1 ? command : EMPTY_COMMAND;</span>
+
+<span class="nc" id="L234">        sb.append(&quot;exec?command=&quot;);</span>
+
+<span class="nc" id="L236">        boolean first = true;</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">        for (String cmd : actualCommands) {</span>
+<span class="nc bnc" id="L238" title="All 2 branches missed.">            if (first) {</span>
+<span class="nc" id="L239">                first = false;</span>
+            } else {
+<span class="nc" id="L241">                sb.append(&quot;&amp;command=&quot;);</span>
+            }
+<span class="nc" id="L243">            sb.append(cmd);</span>
+        }
+
+<span class="nc bnc" id="L246" title="All 4 branches missed.">        if (containerId != null &amp;&amp; !containerId.isEmpty()) {</span>
+<span class="nc" id="L247">            sb.append(&quot;&amp;container=&quot;).append(containerId);</span>
+        }
+<span class="nc bnc" id="L249" title="All 2 branches missed.">        if (withTTY) {</span>
+<span class="nc" id="L250">            sb.append(&quot;&amp;tty=true&quot;);</span>
+        }
+<span class="nc bnc" id="L252" title="All 4 branches missed.">        if (in != null || inPipe != null) {</span>
+<span class="nc" id="L253">            sb.append(&quot;&amp;stdin=true&quot;);</span>
+        }
+<span class="nc bnc" id="L255" title="All 4 branches missed.">        if (out != null || outPipe != null) {</span>
+<span class="nc" id="L256">            sb.append(&quot;&amp;stdout=true&quot;);</span>
+        }
+<span class="nc bnc" id="L258" title="All 4 branches missed.">        if (err != null || errPipe != null) {</span>
+<span class="nc" id="L259">            sb.append(&quot;&amp;stderr=true&quot;);</span>
+        }
+
+        try {
+<span class="nc" id="L263">            URL url = new URL(URLUtils.join(getResourceUrl().toString(), sb.toString()));</span>
+<span class="nc" id="L264">            Request.Builder r = new Request.Builder().url(url).header(&quot;Sec-WebSocket-Protocol&quot;, &quot;v4.channel.k8s.io&quot;).get();</span>
+<span class="nc" id="L265">            OkHttpClient clone = client.newBuilder().readTimeout(0, TimeUnit.MILLISECONDS).build();</span>
+<span class="nc" id="L266">            final ExecWebSocketListener execWebSocketListener = new ExecWebSocketListener(getConfig(), in, out, err, errChannel, inPipe, outPipe, errPipe, errChannelPipe, execListener);</span>
+<span class="nc" id="L267">            clone.newWebSocket(r.build(), execWebSocketListener);</span>
+<span class="nc" id="L268">            execWebSocketListener.waitUntilReady();</span>
+<span class="nc" id="L269">            return execWebSocketListener;</span>
+<span class="nc" id="L270">        } catch (Throwable t) {</span>
+<span class="nc" id="L271">            throw KubernetesClientException.launderThrowable(forOperationType(&quot;exec&quot;), t);</span>
+        }
+    }
+
+    @Override
+    public TtyExecOutputErrorable&lt;String, OutputStream, PipedInputStream, ExecWatch&gt; readingInput(InputStream in) {
+<span class="nc" id="L277">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, execListener, limitBytes);</span>
+    }
+
+    @Override
+    public TtyExecOutputErrorable&lt;String, OutputStream, PipedInputStream, ExecWatch&gt; writingInput(PipedOutputStream inPipe) {
+<span class="nc" id="L282">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, execListener, limitBytes);</span>
+    }
+
+    @Override
+    public TtyExecOutputErrorable&lt;String, OutputStream, PipedInputStream, ExecWatch&gt; redirectingInput() {
+<span class="nc" id="L287">        return writingInput(new PipedOutputStream());</span>
+    }
+
+    @Override
+    public TtyExecErrorable&lt;String, OutputStream, PipedInputStream, ExecWatch&gt; writingOutput(OutputStream out) {
+<span class="nc" id="L292">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, execListener, limitBytes);</span>
+    }
+
+    @Override
+    public TtyExecErrorable&lt;String, OutputStream, PipedInputStream, ExecWatch&gt; readingOutput(PipedInputStream outPipe) {
+<span class="nc" id="L297">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, execListener, limitBytes);</span>
+    }
+
+    @Override
+    public TtyExecErrorable&lt;String, OutputStream, PipedInputStream, ExecWatch&gt; redirectingOutput() {
+<span class="nc" id="L302">        return readingOutput(new PipedInputStream());</span>
+    }
+
+    @Override
+    public TtyExecErrorChannelable&lt;String, OutputStream, PipedInputStream, ExecWatch&gt; writingError(OutputStream err) {
+<span class="nc" id="L307">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, execListener, limitBytes);</span>
+    }
+
+    @Override
+    public TtyExecErrorChannelable&lt;String, OutputStream, PipedInputStream, ExecWatch&gt; readingError(PipedInputStream errPipe) {
+<span class="nc" id="L312">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, execListener, limitBytes);</span>
+    }
+
+    @Override
+    public TtyExecErrorChannelable&lt;String, OutputStream, PipedInputStream, ExecWatch&gt; redirectingError() {
+<span class="nc" id="L317">        return readingError(new PipedInputStream());</span>
+    }
+
+    @Override
+    public TtyExecable&lt;String, ExecWatch&gt; writingErrorChannel(OutputStream errChannel) {
+<span class="nc" id="L322">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, execListener, limitBytes);</span>
+    }
+
+    @Override
+    public TtyExecable&lt;String, ExecWatch&gt; readingErrorChannel(PipedInputStream errChannelPipe) {
+<span class="nc" id="L327">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, execListener, limitBytes);</span>
+    }
+
+    @Override
+    public TtyExecable&lt;String, ExecWatch&gt; redirectingErrorChannel() {
+<span class="nc" id="L332">        return readingErrorChannel(new PipedInputStream());</span>
+    }
+
+
+
+    @Override
+    public ExecListenable&lt;String, ExecWatch&gt; withTTY() {
+<span class="nc" id="L339">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, true, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, execListener, limitBytes);</span>
+    }
+
+    @Override
+    public Loggable&lt;String, LogWatch&gt; withPrettyOutput() {
+<span class="nc" id="L344">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, true, execListener, limitBytes);</span>
+    }
+
+
+    @Override
+    public PrettyLoggable&lt;String, LogWatch&gt; tailingLines(int withTailingLines) {
+<span class="nc" id="L350">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, execListener, limitBytes);</span>
+    }
+
+    @Override
+    public TailPrettyLoggable&lt;String, LogWatch&gt; sinceTime(String sinceTimestamp) {
+<span class="nc" id="L355">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, execListener, limitBytes);</span>
+    }
+
+    @Override
+    public TailPrettyLoggable&lt;String, LogWatch&gt; sinceSeconds(int sinceSeconds) {
+<span class="nc" id="L360">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, execListener, limitBytes);</span>
+    }
+
+    @Override
+    public TimeTailPrettyLoggable&lt;String, LogWatch&gt; terminated() {
+<span class="nc" id="L365">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, true, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, execListener, limitBytes);</span>
+    }
+
+    @Override
+    public Execable&lt;String, ExecWatch&gt; usingListener(ExecListener execListener) {
+<span class="nc" id="L370">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, execListener, limitBytes);</span>
+    }
+
+    @Override
+    public BytesLimitTerminateTimeTailPrettyLoggable&lt;String, LogWatch&gt; limitBytes(int limitBytes) {
+<span class="nc" id="L375">        return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, execListener, limitBytes);</span>
+    }
+
+  @Override
+  public BytesLimitTerminateTimeTailPrettyLoggable&lt;String, LogWatch&gt; usingTimestamps() {
+<span class="nc" id="L380">    return new PodOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), containerId, in, inPipe, out, outPipe, err, errPipe, errChannel, errChannelPipe, withTTY, withTerminatedStatus, true, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, execListener, limitBytes);</span>
+  }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

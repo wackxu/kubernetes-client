@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReplicationControllerStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ReplicationControllerStatus.java</span></div><h1>ReplicationControllerStatus.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;availableReplicas&quot;,
+    &quot;conditions&quot;,
+    &quot;fullyLabeledReplicas&quot;,
+    &quot;observedGeneration&quot;,
+    &quot;readyReplicas&quot;,
+    &quot;replicas&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L42">@ToString</span>
+<span class="nc bnc" id="L43" title="All 62 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class ReplicationControllerStatus implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;availableReplicas&quot;)
+    private Integer availableReplicas;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L58">    @JsonProperty(&quot;conditions&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;ReplicationControllerCondition&gt; conditions = new ArrayList&lt;ReplicationControllerCondition&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;fullyLabeledReplicas&quot;)
+    private Integer fullyLabeledReplicas;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;observedGeneration&quot;)
+    private Long observedGeneration;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;readyReplicas&quot;)
+    private Integer readyReplicas;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;replicas&quot;)
+    private Integer replicas;
+<span class="nc" id="L86">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L93">    public ReplicationControllerStatus() {</span>
+<span class="nc" id="L94">    }</span>
+
+    /**
+     * 
+     * @param fullyLabeledReplicas
+     * @param replicas
+     * @param readyReplicas
+     * @param conditions
+     * @param availableReplicas
+     * @param observedGeneration
+     */
+<span class="nc" id="L105">    public ReplicationControllerStatus(Integer availableReplicas, List&lt;ReplicationControllerCondition&gt; conditions, Integer fullyLabeledReplicas, Long observedGeneration, Integer readyReplicas, Integer replicas) {</span>
+<span class="nc" id="L106">        this.availableReplicas = availableReplicas;</span>
+<span class="nc" id="L107">        this.conditions = conditions;</span>
+<span class="nc" id="L108">        this.fullyLabeledReplicas = fullyLabeledReplicas;</span>
+<span class="nc" id="L109">        this.observedGeneration = observedGeneration;</span>
+<span class="nc" id="L110">        this.readyReplicas = readyReplicas;</span>
+<span class="nc" id="L111">        this.replicas = replicas;</span>
+<span class="nc" id="L112">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The availableReplicas
+     */
+    @JsonProperty(&quot;availableReplicas&quot;)
+    public Integer getAvailableReplicas() {
+<span class="nc" id="L122">        return availableReplicas;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param availableReplicas
+     *     The availableReplicas
+     */
+    @JsonProperty(&quot;availableReplicas&quot;)
+    public void setAvailableReplicas(Integer availableReplicas) {
+<span class="nc" id="L133">        this.availableReplicas = availableReplicas;</span>
+<span class="nc" id="L134">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The conditions
+     */
+    @JsonProperty(&quot;conditions&quot;)
+    public List&lt;ReplicationControllerCondition&gt; getConditions() {
+<span class="nc" id="L144">        return conditions;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param conditions
+     *     The conditions
+     */
+    @JsonProperty(&quot;conditions&quot;)
+    public void setConditions(List&lt;ReplicationControllerCondition&gt; conditions) {
+<span class="nc" id="L155">        this.conditions = conditions;</span>
+<span class="nc" id="L156">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The fullyLabeledReplicas
+     */
+    @JsonProperty(&quot;fullyLabeledReplicas&quot;)
+    public Integer getFullyLabeledReplicas() {
+<span class="nc" id="L166">        return fullyLabeledReplicas;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param fullyLabeledReplicas
+     *     The fullyLabeledReplicas
+     */
+    @JsonProperty(&quot;fullyLabeledReplicas&quot;)
+    public void setFullyLabeledReplicas(Integer fullyLabeledReplicas) {
+<span class="nc" id="L177">        this.fullyLabeledReplicas = fullyLabeledReplicas;</span>
+<span class="nc" id="L178">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The observedGeneration
+     */
+    @JsonProperty(&quot;observedGeneration&quot;)
+    public Long getObservedGeneration() {
+<span class="nc" id="L188">        return observedGeneration;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param observedGeneration
+     *     The observedGeneration
+     */
+    @JsonProperty(&quot;observedGeneration&quot;)
+    public void setObservedGeneration(Long observedGeneration) {
+<span class="nc" id="L199">        this.observedGeneration = observedGeneration;</span>
+<span class="nc" id="L200">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The readyReplicas
+     */
+    @JsonProperty(&quot;readyReplicas&quot;)
+    public Integer getReadyReplicas() {
+<span class="nc" id="L210">        return readyReplicas;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param readyReplicas
+     *     The readyReplicas
+     */
+    @JsonProperty(&quot;readyReplicas&quot;)
+    public void setReadyReplicas(Integer readyReplicas) {
+<span class="nc" id="L221">        this.readyReplicas = readyReplicas;</span>
+<span class="nc" id="L222">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The replicas
+     */
+    @JsonProperty(&quot;replicas&quot;)
+    public Integer getReplicas() {
+<span class="nc" id="L232">        return replicas;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param replicas
+     *     The replicas
+     */
+    @JsonProperty(&quot;replicas&quot;)
+    public void setReplicas(Integer replicas) {
+<span class="nc" id="L243">        this.replicas = replicas;</span>
+<span class="nc" id="L244">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L248">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L253">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L254">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PriorityClassFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.scheduling</a> &gt; <span class="el_source">PriorityClassFluentImpl.java</span></div><h1>PriorityClassFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.scheduling;
+
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.ObjectMetaFluentImpl;
+import io.fabric8.kubernetes.api.builder.Nested;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import javax.validation.constraints.NotNull;
+import java.lang.Integer;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class PriorityClassFluentImpl&lt;A extends PriorityClassFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements PriorityClassFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private String description;
+    private Boolean globalDefault;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+    private Integer value;
+
+<span class="nc" id="L27">    public PriorityClassFluentImpl(){</span>
+<span class="nc" id="L28">    }</span>
+<span class="nc" id="L29">    public PriorityClassFluentImpl(PriorityClass instance){</span>
+<span class="nc" id="L30">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L31">            this.withDescription(instance.getDescription()); </span>
+<span class="nc" id="L32">            this.withGlobalDefault(instance.getGlobalDefault()); </span>
+<span class="nc" id="L33">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L34">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L35">            this.withValue(instance.getValue()); </span>
+<span class="nc" id="L36">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L39">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L43">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public String getDescription(){
+<span class="nc" id="L51">            return this.description;</span>
+    }
+
+    public A withDescription(String description){
+<span class="nc" id="L55">            this.description=description; return (A) this;</span>
+    }
+
+    public Boolean hasDescription(){
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            return this.description != null;</span>
+    }
+
+    public Boolean isGlobalDefault(){
+<span class="nc" id="L63">            return this.globalDefault;</span>
+    }
+
+    public A withGlobalDefault(Boolean globalDefault){
+<span class="nc" id="L67">            this.globalDefault=globalDefault; return (A) this;</span>
+    }
+
+    public Boolean hasGlobalDefault(){
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            return this.globalDefault != null;</span>
+    }
+
+    public A withNewGlobalDefault(String arg1){
+<span class="nc" id="L75">            return (A)withGlobalDefault(new Boolean(arg1));</span>
+    }
+
+    public A withNewGlobalDefault(boolean arg1){
+<span class="nc" id="L79">            return (A)withGlobalDefault(new Boolean(arg1));</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L83">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L87">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L108">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public PriorityClassFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L117">            return new MetadataNestedImpl();</span>
+    }
+
+    public PriorityClassFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L121">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public PriorityClassFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L125">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public PriorityClassFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public PriorityClassFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    public Integer getValue(){
+<span class="nc" id="L137">            return this.value;</span>
+    }
+
+    public A withValue(Integer value){
+<span class="nc" id="L141">            this.value=value; return (A) this;</span>
+    }
+
+    public Boolean hasValue(){
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            return this.value != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L150" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L152">            PriorityClassFluentImpl that = (PriorityClassFluentImpl) o;</span>
+<span class="nc bnc" id="L153" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L154" title="All 6 branches missed.">            if (description != null ? !description.equals(that.description) :that.description != null) return false;</span>
+<span class="nc bnc" id="L155" title="All 6 branches missed.">            if (globalDefault != null ? !globalDefault.equals(that.globalDefault) :that.globalDefault != null) return false;</span>
+<span class="nc bnc" id="L156" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L157" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L158" title="All 6 branches missed.">            if (value != null ? !value.equals(that.value) :that.value != null) return false;</span>
+<span class="nc" id="L159">            return true;</span>
+    }
+
+
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;PriorityClassFluent.MetadataNested&lt;N&gt;&gt; implements PriorityClassFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L167">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L168">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L169">            }</span>
+<span class="nc" id="L170">            MetadataNestedImpl(){</span>
+<span class="nc" id="L171">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L172">            }</span>
+    
+    public N and(){
+<span class="nc" id="L175">            return (N) PriorityClassFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L178">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

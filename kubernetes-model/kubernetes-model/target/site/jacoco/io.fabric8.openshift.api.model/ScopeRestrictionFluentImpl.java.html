@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ScopeRestrictionFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">ScopeRestrictionFluentImpl.java</span></div><h1>ScopeRestrictionFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class ScopeRestrictionFluentImpl&lt;A extends ScopeRestrictionFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ScopeRestrictionFluent&lt;A&gt;{
+
+    private OpenshiftClusterRoleScopeRestrictionBuilder clusterRole;
+    private List&lt;String&gt; literals;
+
+<span class="nc" id="L22">    public ScopeRestrictionFluentImpl(){</span>
+<span class="nc" id="L23">    }</span>
+<span class="nc" id="L24">    public ScopeRestrictionFluentImpl(ScopeRestriction instance){</span>
+<span class="nc" id="L25">            this.withClusterRole(instance.getClusterRole()); </span>
+<span class="nc" id="L26">            this.withLiterals(instance.getLiterals()); </span>
+<span class="nc" id="L27">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildClusterRole instead.
+ * @return The buildable object.
+ */
+@Deprecated public OpenshiftClusterRoleScopeRestriction getClusterRole(){
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            return this.clusterRole!=null?this.clusterRole.build():null;</span>
+    }
+
+    public OpenshiftClusterRoleScopeRestriction buildClusterRole(){
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            return this.clusterRole!=null?this.clusterRole.build():null;</span>
+    }
+
+    public A withClusterRole(OpenshiftClusterRoleScopeRestriction clusterRole){
+<span class="nc" id="L43">            _visitables.remove(this.clusterRole);</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            if (clusterRole!=null){ this.clusterRole= new OpenshiftClusterRoleScopeRestrictionBuilder(clusterRole); _visitables.add(this.clusterRole);} return (A) this;</span>
+    }
+
+    public Boolean hasClusterRole(){
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            return this.clusterRole != null;</span>
+    }
+
+    public ScopeRestrictionFluent.ClusterRoleNested&lt;A&gt; withNewClusterRole(){
+<span class="nc" id="L52">            return new ClusterRoleNestedImpl();</span>
+    }
+
+    public ScopeRestrictionFluent.ClusterRoleNested&lt;A&gt; withNewClusterRoleLike(OpenshiftClusterRoleScopeRestriction item){
+<span class="nc" id="L56">            return new ClusterRoleNestedImpl(item);</span>
+    }
+
+    public ScopeRestrictionFluent.ClusterRoleNested&lt;A&gt; editClusterRole(){
+<span class="nc" id="L60">            return withNewClusterRoleLike(getClusterRole());</span>
+    }
+
+    public ScopeRestrictionFluent.ClusterRoleNested&lt;A&gt; editOrNewClusterRole(){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            return withNewClusterRoleLike(getClusterRole() != null ? getClusterRole(): new OpenshiftClusterRoleScopeRestrictionBuilder().build());</span>
+    }
+
+    public ScopeRestrictionFluent.ClusterRoleNested&lt;A&gt; editOrNewClusterRoleLike(OpenshiftClusterRoleScopeRestriction item){
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            return withNewClusterRoleLike(getClusterRole() != null ? getClusterRole(): item);</span>
+    }
+
+    public A addToLiterals(int index,String item){
+<span class="nc bnc" id="L72" title="All 2 branches missed.">            if (this.literals == null) {this.literals = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L73">            this.literals.add(index, item);</span>
+<span class="nc" id="L74">            return (A)this;</span>
+    }
+
+    public A setToLiterals(int index,String item){
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (this.literals == null) {this.literals = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L79">            this.literals.set(index, item); return (A)this;</span>
+    }
+
+    public A addToLiterals(String... items){
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            if (this.literals == null) {this.literals = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            for (String item : items) {this.literals.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToLiterals(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            if (this.literals == null) {this.literals = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            for (String item : items) {this.literals.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromLiterals(String... items){
+<span class="nc bnc" id="L93" title="All 4 branches missed.">            for (String item : items) {if (this.literals!= null){ this.literals.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromLiterals(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L97" title="All 4 branches missed.">            for (String item : items) {if (this.literals!= null){ this.literals.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getLiterals(){
+<span class="nc" id="L101">            return this.literals;</span>
+    }
+
+    public String getLiteral(int index){
+<span class="nc" id="L105">            return this.literals.get(index);</span>
+    }
+
+    public String getFirstLiteral(){
+<span class="nc" id="L109">            return this.literals.get(0);</span>
+    }
+
+    public String getLastLiteral(){
+<span class="nc" id="L113">            return this.literals.get(literals.size() - 1);</span>
+    }
+
+    public String getMatchingLiteral(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L117" title="All 4 branches missed.">            for (String item: literals) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withLiterals(List&lt;String&gt; literals){
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            if (this.literals != null) { _visitables.removeAll(this.literals);}</span>
+<span class="nc bnc" id="L122" title="All 4 branches missed.">            if (literals != null) {this.literals = new ArrayList&lt;String&gt;(); for (String item : literals){this.addToLiterals(item);}} else { this.literals = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withLiterals(String... literals){
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            if (this.literals != null) {this.literals.clear();}</span>
+<span class="nc bnc" id="L127" title="All 4 branches missed.">            if (literals != null) {for (String item :literals){ this.addToLiterals(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasLiterals(){
+<span class="nc bnc" id="L131" title="All 4 branches missed.">            return literals != null &amp;&amp; !literals.isEmpty();</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L136" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L138">            ScopeRestrictionFluentImpl that = (ScopeRestrictionFluentImpl) o;</span>
+<span class="nc bnc" id="L139" title="All 6 branches missed.">            if (clusterRole != null ? !clusterRole.equals(that.clusterRole) :that.clusterRole != null) return false;</span>
+<span class="nc bnc" id="L140" title="All 6 branches missed.">            if (literals != null ? !literals.equals(that.literals) :that.literals != null) return false;</span>
+<span class="nc" id="L141">            return true;</span>
+    }
+
+
+    public class ClusterRoleNestedImpl&lt;N&gt; extends OpenshiftClusterRoleScopeRestrictionFluentImpl&lt;ScopeRestrictionFluent.ClusterRoleNested&lt;N&gt;&gt; implements ScopeRestrictionFluent.ClusterRoleNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OpenshiftClusterRoleScopeRestrictionBuilder builder;
+    
+<span class="nc" id="L149">            ClusterRoleNestedImpl(OpenshiftClusterRoleScopeRestriction item){</span>
+<span class="nc" id="L150">                    this.builder = new OpenshiftClusterRoleScopeRestrictionBuilder(this, item);</span>
+<span class="nc" id="L151">            }</span>
+<span class="nc" id="L152">            ClusterRoleNestedImpl(){</span>
+<span class="nc" id="L153">                    this.builder = new OpenshiftClusterRoleScopeRestrictionBuilder(this);</span>
+<span class="nc" id="L154">            }</span>
+    
+    public N and(){
+<span class="nc" id="L157">            return (N) ScopeRestrictionFluentImpl.this.withClusterRole(builder.build());</span>
+    }
+    public N endClusterRole(){
+<span class="nc" id="L160">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

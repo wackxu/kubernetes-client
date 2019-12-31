@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HandlerFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">HandlerFluentImpl.java</span></div><h1>HandlerFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.lang.Object;
+
+public class HandlerFluentImpl&lt;A extends HandlerFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements HandlerFluent&lt;A&gt;{
+
+    private ExecActionBuilder exec;
+    private HTTPGetActionBuilder httpGet;
+    private TCPSocketActionBuilder tcpSocket;
+
+<span class="fc" id="L17">    public HandlerFluentImpl(){</span>
+<span class="fc" id="L18">    }</span>
+<span class="nc" id="L19">    public HandlerFluentImpl(Handler instance){</span>
+<span class="nc" id="L20">            this.withExec(instance.getExec()); </span>
+<span class="nc" id="L21">            this.withHttpGet(instance.getHttpGet()); </span>
+<span class="nc" id="L22">            this.withTcpSocket(instance.getTcpSocket()); </span>
+<span class="nc" id="L23">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildExec instead.
+ * @return The buildable object.
+ */
+@Deprecated public ExecAction getExec(){
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">            return this.exec!=null?this.exec.build():null;</span>
+    }
+
+    public ExecAction buildExec(){
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            return this.exec!=null?this.exec.build():null;</span>
+    }
+
+    public A withExec(ExecAction exec){
+<span class="fc" id="L39">            _visitables.remove(this.exec);</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">            if (exec!=null){ this.exec= new ExecActionBuilder(exec); _visitables.add(this.exec);} return (A) this;</span>
+    }
+
+    public Boolean hasExec(){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            return this.exec != null;</span>
+    }
+
+    public HandlerFluent.ExecNested&lt;A&gt; withNewExec(){
+<span class="fc" id="L48">            return new ExecNestedImpl();</span>
+    }
+
+    public HandlerFluent.ExecNested&lt;A&gt; withNewExecLike(ExecAction item){
+<span class="nc" id="L52">            return new ExecNestedImpl(item);</span>
+    }
+
+    public HandlerFluent.ExecNested&lt;A&gt; editExec(){
+<span class="nc" id="L56">            return withNewExecLike(getExec());</span>
+    }
+
+    public HandlerFluent.ExecNested&lt;A&gt; editOrNewExec(){
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            return withNewExecLike(getExec() != null ? getExec(): new ExecActionBuilder().build());</span>
+    }
+
+    public HandlerFluent.ExecNested&lt;A&gt; editOrNewExecLike(ExecAction item){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            return withNewExecLike(getExec() != null ? getExec(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildHttpGet instead.
+ * @return The buildable object.
+ */
+@Deprecated public HTTPGetAction getHttpGet(){
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">            return this.httpGet!=null?this.httpGet.build():null;</span>
+    }
+
+    public HTTPGetAction buildHttpGet(){
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            return this.httpGet!=null?this.httpGet.build():null;</span>
+    }
+
+    public A withHttpGet(HTTPGetAction httpGet){
+<span class="fc" id="L81">            _visitables.remove(this.httpGet);</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">            if (httpGet!=null){ this.httpGet= new HTTPGetActionBuilder(httpGet); _visitables.add(this.httpGet);} return (A) this;</span>
+    }
+
+    public Boolean hasHttpGet(){
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            return this.httpGet != null;</span>
+    }
+
+    public HandlerFluent.HttpGetNested&lt;A&gt; withNewHttpGet(){
+<span class="nc" id="L90">            return new HttpGetNestedImpl();</span>
+    }
+
+    public HandlerFluent.HttpGetNested&lt;A&gt; withNewHttpGetLike(HTTPGetAction item){
+<span class="nc" id="L94">            return new HttpGetNestedImpl(item);</span>
+    }
+
+    public HandlerFluent.HttpGetNested&lt;A&gt; editHttpGet(){
+<span class="nc" id="L98">            return withNewHttpGetLike(getHttpGet());</span>
+    }
+
+    public HandlerFluent.HttpGetNested&lt;A&gt; editOrNewHttpGet(){
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            return withNewHttpGetLike(getHttpGet() != null ? getHttpGet(): new HTTPGetActionBuilder().build());</span>
+    }
+
+    public HandlerFluent.HttpGetNested&lt;A&gt; editOrNewHttpGetLike(HTTPGetAction item){
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            return withNewHttpGetLike(getHttpGet() != null ? getHttpGet(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTcpSocket instead.
+ * @return The buildable object.
+ */
+@Deprecated public TCPSocketAction getTcpSocket(){
+<span class="pc bpc" id="L115" title="1 of 2 branches missed.">            return this.tcpSocket!=null?this.tcpSocket.build():null;</span>
+    }
+
+    public TCPSocketAction buildTcpSocket(){
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            return this.tcpSocket!=null?this.tcpSocket.build():null;</span>
+    }
+
+    public A withTcpSocket(TCPSocketAction tcpSocket){
+<span class="fc" id="L123">            _visitables.remove(this.tcpSocket);</span>
+<span class="pc bpc" id="L124" title="1 of 2 branches missed.">            if (tcpSocket!=null){ this.tcpSocket= new TCPSocketActionBuilder(tcpSocket); _visitables.add(this.tcpSocket);} return (A) this;</span>
+    }
+
+    public Boolean hasTcpSocket(){
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            return this.tcpSocket != null;</span>
+    }
+
+    public HandlerFluent.TcpSocketNested&lt;A&gt; withNewTcpSocket(){
+<span class="nc" id="L132">            return new TcpSocketNestedImpl();</span>
+    }
+
+    public HandlerFluent.TcpSocketNested&lt;A&gt; withNewTcpSocketLike(TCPSocketAction item){
+<span class="nc" id="L136">            return new TcpSocketNestedImpl(item);</span>
+    }
+
+    public HandlerFluent.TcpSocketNested&lt;A&gt; editTcpSocket(){
+<span class="nc" id="L140">            return withNewTcpSocketLike(getTcpSocket());</span>
+    }
+
+    public HandlerFluent.TcpSocketNested&lt;A&gt; editOrNewTcpSocket(){
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            return withNewTcpSocketLike(getTcpSocket() != null ? getTcpSocket(): new TCPSocketActionBuilder().build());</span>
+    }
+
+    public HandlerFluent.TcpSocketNested&lt;A&gt; editOrNewTcpSocketLike(TCPSocketAction item){
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            return withNewTcpSocketLike(getTcpSocket() != null ? getTcpSocket(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L153" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L155">            HandlerFluentImpl that = (HandlerFluentImpl) o;</span>
+<span class="nc bnc" id="L156" title="All 6 branches missed.">            if (exec != null ? !exec.equals(that.exec) :that.exec != null) return false;</span>
+<span class="nc bnc" id="L157" title="All 6 branches missed.">            if (httpGet != null ? !httpGet.equals(that.httpGet) :that.httpGet != null) return false;</span>
+<span class="nc bnc" id="L158" title="All 6 branches missed.">            if (tcpSocket != null ? !tcpSocket.equals(that.tcpSocket) :that.tcpSocket != null) return false;</span>
+<span class="nc" id="L159">            return true;</span>
+    }
+
+
+    public class ExecNestedImpl&lt;N&gt; extends ExecActionFluentImpl&lt;HandlerFluent.ExecNested&lt;N&gt;&gt; implements HandlerFluent.ExecNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ExecActionBuilder builder;
+    
+<span class="nc" id="L167">            ExecNestedImpl(ExecAction item){</span>
+<span class="nc" id="L168">                    this.builder = new ExecActionBuilder(this, item);</span>
+<span class="nc" id="L169">            }</span>
+<span class="fc" id="L170">            ExecNestedImpl(){</span>
+<span class="fc" id="L171">                    this.builder = new ExecActionBuilder(this);</span>
+<span class="fc" id="L172">            }</span>
+    
+    public N and(){
+<span class="fc" id="L175">            return (N) HandlerFluentImpl.this.withExec(builder.build());</span>
+    }
+    public N endExec(){
+<span class="fc" id="L178">            return and();</span>
+    }
+
+}
+    public class HttpGetNestedImpl&lt;N&gt; extends HTTPGetActionFluentImpl&lt;HandlerFluent.HttpGetNested&lt;N&gt;&gt; implements HandlerFluent.HttpGetNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final HTTPGetActionBuilder builder;
+    
+<span class="nc" id="L186">            HttpGetNestedImpl(HTTPGetAction item){</span>
+<span class="nc" id="L187">                    this.builder = new HTTPGetActionBuilder(this, item);</span>
+<span class="nc" id="L188">            }</span>
+<span class="nc" id="L189">            HttpGetNestedImpl(){</span>
+<span class="nc" id="L190">                    this.builder = new HTTPGetActionBuilder(this);</span>
+<span class="nc" id="L191">            }</span>
+    
+    public N and(){
+<span class="nc" id="L194">            return (N) HandlerFluentImpl.this.withHttpGet(builder.build());</span>
+    }
+    public N endHttpGet(){
+<span class="nc" id="L197">            return and();</span>
+    }
+
+}
+    public class TcpSocketNestedImpl&lt;N&gt; extends TCPSocketActionFluentImpl&lt;HandlerFluent.TcpSocketNested&lt;N&gt;&gt; implements HandlerFluent.TcpSocketNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TCPSocketActionBuilder builder;
+    
+<span class="nc" id="L205">            TcpSocketNestedImpl(TCPSocketAction item){</span>
+<span class="nc" id="L206">                    this.builder = new TCPSocketActionBuilder(this, item);</span>
+<span class="nc" id="L207">            }</span>
+<span class="nc" id="L208">            TcpSocketNestedImpl(){</span>
+<span class="nc" id="L209">                    this.builder = new TCPSocketActionBuilder(this);</span>
+<span class="nc" id="L210">            }</span>
+    
+    public N and(){
+<span class="nc" id="L213">            return (N) HandlerFluentImpl.this.withTcpSocket(builder.build());</span>
+    }
+    public N endTcpSocket(){
+<span class="nc" id="L216">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

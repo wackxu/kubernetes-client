@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RBDPersistentVolumeSource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">RBDPersistentVolumeSource.java</span></div><h1>RBDPersistentVolumeSource.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;fsType&quot;,
+    &quot;image&quot;,
+    &quot;keyring&quot;,
+    &quot;monitors&quot;,
+    &quot;pool&quot;,
+    &quot;readOnly&quot;,
+    &quot;secretRef&quot;,
+    &quot;user&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L44">@ToString</span>
+<span class="nc bnc" id="L45" title="All 78 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class RBDPersistentVolumeSource implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    private String fsType;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;image&quot;)
+    private String image;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;keyring&quot;)
+    private String keyring;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L72">    @JsonProperty(&quot;monitors&quot;)</span>
+    @Valid
+    private List&lt;String&gt; monitors = new ArrayList&lt;String&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;pool&quot;)
+    private String pool;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    private Boolean readOnly;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;secretRef&quot;)
+    @Valid
+    private SecretReference secretRef;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;user&quot;)
+    private String user;
+<span class="nc" id="L100">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L107">    public RBDPersistentVolumeSource() {</span>
+<span class="nc" id="L108">    }</span>
+
+    /**
+     * 
+     * @param image
+     * @param pool
+     * @param secretRef
+     * @param readOnly
+     * @param fsType
+     * @param keyring
+     * @param user
+     * @param monitors
+     */
+<span class="nc" id="L121">    public RBDPersistentVolumeSource(String fsType, String image, String keyring, List&lt;String&gt; monitors, String pool, Boolean readOnly, SecretReference secretRef, String user) {</span>
+<span class="nc" id="L122">        this.fsType = fsType;</span>
+<span class="nc" id="L123">        this.image = image;</span>
+<span class="nc" id="L124">        this.keyring = keyring;</span>
+<span class="nc" id="L125">        this.monitors = monitors;</span>
+<span class="nc" id="L126">        this.pool = pool;</span>
+<span class="nc" id="L127">        this.readOnly = readOnly;</span>
+<span class="nc" id="L128">        this.secretRef = secretRef;</span>
+<span class="nc" id="L129">        this.user = user;</span>
+<span class="nc" id="L130">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The fsType
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    public String getFsType() {
+<span class="nc" id="L140">        return fsType;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param fsType
+     *     The fsType
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    public void setFsType(String fsType) {
+<span class="nc" id="L151">        this.fsType = fsType;</span>
+<span class="nc" id="L152">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The image
+     */
+    @JsonProperty(&quot;image&quot;)
+    public String getImage() {
+<span class="nc" id="L162">        return image;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param image
+     *     The image
+     */
+    @JsonProperty(&quot;image&quot;)
+    public void setImage(String image) {
+<span class="nc" id="L173">        this.image = image;</span>
+<span class="nc" id="L174">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The keyring
+     */
+    @JsonProperty(&quot;keyring&quot;)
+    public String getKeyring() {
+<span class="nc" id="L184">        return keyring;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param keyring
+     *     The keyring
+     */
+    @JsonProperty(&quot;keyring&quot;)
+    public void setKeyring(String keyring) {
+<span class="nc" id="L195">        this.keyring = keyring;</span>
+<span class="nc" id="L196">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The monitors
+     */
+    @JsonProperty(&quot;monitors&quot;)
+    public List&lt;String&gt; getMonitors() {
+<span class="nc" id="L206">        return monitors;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param monitors
+     *     The monitors
+     */
+    @JsonProperty(&quot;monitors&quot;)
+    public void setMonitors(List&lt;String&gt; monitors) {
+<span class="nc" id="L217">        this.monitors = monitors;</span>
+<span class="nc" id="L218">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The pool
+     */
+    @JsonProperty(&quot;pool&quot;)
+    public String getPool() {
+<span class="nc" id="L228">        return pool;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param pool
+     *     The pool
+     */
+    @JsonProperty(&quot;pool&quot;)
+    public void setPool(String pool) {
+<span class="nc" id="L239">        this.pool = pool;</span>
+<span class="nc" id="L240">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The readOnly
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    public Boolean getReadOnly() {
+<span class="nc" id="L250">        return readOnly;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param readOnly
+     *     The readOnly
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    public void setReadOnly(Boolean readOnly) {
+<span class="nc" id="L261">        this.readOnly = readOnly;</span>
+<span class="nc" id="L262">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The secretRef
+     */
+    @JsonProperty(&quot;secretRef&quot;)
+    public SecretReference getSecretRef() {
+<span class="nc" id="L272">        return secretRef;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param secretRef
+     *     The secretRef
+     */
+    @JsonProperty(&quot;secretRef&quot;)
+    public void setSecretRef(SecretReference secretRef) {
+<span class="nc" id="L283">        this.secretRef = secretRef;</span>
+<span class="nc" id="L284">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The user
+     */
+    @JsonProperty(&quot;user&quot;)
+    public String getUser() {
+<span class="nc" id="L294">        return user;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param user
+     *     The user
+     */
+    @JsonProperty(&quot;user&quot;)
+    public void setUser(String user) {
+<span class="nc" id="L305">        this.user = user;</span>
+<span class="nc" id="L306">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L310">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L315">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L316">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

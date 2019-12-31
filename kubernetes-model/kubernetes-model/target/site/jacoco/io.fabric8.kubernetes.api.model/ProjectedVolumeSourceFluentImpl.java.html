@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProjectedVolumeSourceFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ProjectedVolumeSourceFluentImpl.java</span></div><h1>ProjectedVolumeSourceFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Integer;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class ProjectedVolumeSourceFluentImpl&lt;A extends ProjectedVolumeSourceFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ProjectedVolumeSourceFluent&lt;A&gt;{
+
+    private Integer defaultMode;
+    private List&lt;VolumeProjectionBuilder&gt; sources;
+
+<span class="nc" id="L21">    public ProjectedVolumeSourceFluentImpl(){</span>
+<span class="nc" id="L22">    }</span>
+<span class="nc" id="L23">    public ProjectedVolumeSourceFluentImpl(ProjectedVolumeSource instance){</span>
+<span class="nc" id="L24">            this.withDefaultMode(instance.getDefaultMode()); </span>
+<span class="nc" id="L25">            this.withSources(instance.getSources()); </span>
+<span class="nc" id="L26">    }</span>
+
+    public Integer getDefaultMode(){
+<span class="nc" id="L29">            return this.defaultMode;</span>
+    }
+
+    public A withDefaultMode(Integer defaultMode){
+<span class="nc" id="L33">            this.defaultMode=defaultMode; return (A) this;</span>
+    }
+
+    public Boolean hasDefaultMode(){
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            return this.defaultMode != null;</span>
+    }
+
+    public A addToSources(int index,VolumeProjection item){
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            if (this.sources == null) {this.sources = new ArrayList&lt;VolumeProjectionBuilder&gt;();}</span>
+<span class="nc bnc" id="L42" title="All 4 branches missed.">            VolumeProjectionBuilder builder = new VolumeProjectionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.sources.add(index &gt;= 0 ? index : sources.size(), builder); return (A)this;</span>
+    }
+
+    public A setToSources(int index,VolumeProjection item){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (this.sources == null) {this.sources = new ArrayList&lt;VolumeProjectionBuilder&gt;();}</span>
+<span class="nc" id="L47">            VolumeProjectionBuilder builder = new VolumeProjectionBuilder(item);</span>
+<span class="nc bnc" id="L48" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L49" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= sources.size()) { sources.add(builder); } else { sources.set(index, builder);}</span>
+<span class="nc" id="L50">             return (A)this;</span>
+    }
+
+    public A addToSources(VolumeProjection... items){
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            if (this.sources == null) {this.sources = new ArrayList&lt;VolumeProjectionBuilder&gt;();}</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            for (VolumeProjection item : items) {VolumeProjectionBuilder builder = new VolumeProjectionBuilder(item);_visitables.add(builder);this.sources.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToSources(Collection&lt;VolumeProjection&gt; items){
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            if (this.sources == null) {this.sources = new ArrayList&lt;VolumeProjectionBuilder&gt;();}</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            for (VolumeProjection item : items) {VolumeProjectionBuilder builder = new VolumeProjectionBuilder(item);_visitables.add(builder);this.sources.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromSources(VolumeProjection... items){
+<span class="nc bnc" id="L64" title="All 4 branches missed.">            for (VolumeProjection item : items) {VolumeProjectionBuilder builder = new VolumeProjectionBuilder(item);_visitables.remove(builder);if (this.sources != null) {this.sources.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromSources(Collection&lt;VolumeProjection&gt; items){
+<span class="nc bnc" id="L68" title="All 4 branches missed.">            for (VolumeProjection item : items) {VolumeProjectionBuilder builder = new VolumeProjectionBuilder(item);_visitables.remove(builder);if (this.sources != null) {this.sources.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSources instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;VolumeProjection&gt; getSources(){
+<span class="nc" id="L77">            return build(sources);</span>
+    }
+
+    public List&lt;VolumeProjection&gt; buildSources(){
+<span class="nc" id="L81">            return build(sources);</span>
+    }
+
+    public VolumeProjection buildSource(int index){
+<span class="nc" id="L85">            return this.sources.get(index).build();</span>
+    }
+
+    public VolumeProjection buildFirstSource(){
+<span class="nc" id="L89">            return this.sources.get(0).build();</span>
+    }
+
+    public VolumeProjection buildLastSource(){
+<span class="nc" id="L93">            return this.sources.get(sources.size() - 1).build();</span>
+    }
+
+    public VolumeProjection buildMatchingSource(io.fabric8.kubernetes.api.builder.Predicate&lt;VolumeProjectionBuilder&gt; predicate){
+<span class="nc bnc" id="L97" title="All 4 branches missed.">            for (VolumeProjectionBuilder item: sources) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withSources(List&lt;VolumeProjection&gt; sources){
+<span class="nc bnc" id="L101" title="All 2 branches missed.">            if (this.sources != null) { _visitables.removeAll(this.sources);}</span>
+<span class="nc bnc" id="L102" title="All 4 branches missed.">            if (sources != null) {this.sources = new ArrayList&lt;VolumeProjectionBuilder&gt;(); for (VolumeProjection item : sources){this.addToSources(item);}} else { this.sources = new ArrayList&lt;VolumeProjectionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withSources(VolumeProjection... sources){
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            if (this.sources != null) {this.sources.clear();}</span>
+<span class="nc bnc" id="L107" title="All 4 branches missed.">            if (sources != null) {for (VolumeProjection item :sources){ this.addToSources(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasSources(){
+<span class="nc bnc" id="L111" title="All 4 branches missed.">            return sources != null &amp;&amp; !sources.isEmpty();</span>
+    }
+
+    public ProjectedVolumeSourceFluent.SourcesNested&lt;A&gt; addNewSource(){
+<span class="nc" id="L115">            return new SourcesNestedImpl();</span>
+    }
+
+    public ProjectedVolumeSourceFluent.SourcesNested&lt;A&gt; addNewSourceLike(VolumeProjection item){
+<span class="nc" id="L119">            return new SourcesNestedImpl(-1, item);</span>
+    }
+
+    public ProjectedVolumeSourceFluent.SourcesNested&lt;A&gt; setNewSourceLike(int index,VolumeProjection item){
+<span class="nc" id="L123">            return new SourcesNestedImpl(index, item);</span>
+    }
+
+    public ProjectedVolumeSourceFluent.SourcesNested&lt;A&gt; editSource(int index){
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            if (sources.size() &lt;= index) throw new RuntimeException(&quot;Can't edit sources. Index exceeds size.&quot;);</span>
+<span class="nc" id="L128">            return setNewSourceLike(index, buildSource(index));</span>
+    }
+
+    public ProjectedVolumeSourceFluent.SourcesNested&lt;A&gt; editFirstSource(){
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            if (sources.size() == 0) throw new RuntimeException(&quot;Can't edit first sources. The list is empty.&quot;);</span>
+<span class="nc" id="L133">            return setNewSourceLike(0, buildSource(0));</span>
+    }
+
+    public ProjectedVolumeSourceFluent.SourcesNested&lt;A&gt; editLastSource(){
+<span class="nc" id="L137">            int index = sources.size() - 1;</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last sources. The list is empty.&quot;);</span>
+<span class="nc" id="L139">            return setNewSourceLike(index, buildSource(index));</span>
+    }
+
+    public ProjectedVolumeSourceFluent.SourcesNested&lt;A&gt; editMatchingSource(io.fabric8.kubernetes.api.builder.Predicate&lt;VolumeProjectionBuilder&gt; predicate){
+<span class="nc" id="L143">            int index = -1;</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            for (int i=0;i&lt;sources.size();i++) { </span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (predicate.apply(sources.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L147" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching sources. No match found.&quot;);</span>
+<span class="nc" id="L148">            return setNewSourceLike(index, buildSource(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L153" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L155">            ProjectedVolumeSourceFluentImpl that = (ProjectedVolumeSourceFluentImpl) o;</span>
+<span class="nc bnc" id="L156" title="All 6 branches missed.">            if (defaultMode != null ? !defaultMode.equals(that.defaultMode) :that.defaultMode != null) return false;</span>
+<span class="nc bnc" id="L157" title="All 6 branches missed.">            if (sources != null ? !sources.equals(that.sources) :that.sources != null) return false;</span>
+<span class="nc" id="L158">            return true;</span>
+    }
+
+
+    public class SourcesNestedImpl&lt;N&gt; extends VolumeProjectionFluentImpl&lt;ProjectedVolumeSourceFluent.SourcesNested&lt;N&gt;&gt; implements ProjectedVolumeSourceFluent.SourcesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final VolumeProjectionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L167">            SourcesNestedImpl(int index,VolumeProjection item){</span>
+<span class="nc" id="L168">                    this.index = index;</span>
+<span class="nc" id="L169">                    this.builder = new VolumeProjectionBuilder(this, item);</span>
+<span class="nc" id="L170">            }</span>
+<span class="nc" id="L171">            SourcesNestedImpl(){</span>
+<span class="nc" id="L172">                    this.index = -1;</span>
+<span class="nc" id="L173">                    this.builder = new VolumeProjectionBuilder(this);</span>
+<span class="nc" id="L174">            }</span>
+    
+    public N and(){
+<span class="nc" id="L177">            return (N) ProjectedVolumeSourceFluentImpl.this.setToSources(index, builder.build());</span>
+    }
+    public N endSource(){
+<span class="nc" id="L180">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

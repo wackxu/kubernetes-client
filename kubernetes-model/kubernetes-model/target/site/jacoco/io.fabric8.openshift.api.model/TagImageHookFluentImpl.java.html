@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TagImageHookFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">TagImageHookFluentImpl.java</span></div><h1>TagImageHookFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import io.fabric8.kubernetes.api.model.ObjectReferenceFluentImpl;
+import java.lang.String;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.ObjectReferenceBuilder;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class TagImageHookFluentImpl&lt;A extends TagImageHookFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements TagImageHookFluent&lt;A&gt;{
+
+    private String containerName;
+    private ObjectReferenceBuilder to;
+
+<span class="nc" id="L20">    public TagImageHookFluentImpl(){</span>
+<span class="nc" id="L21">    }</span>
+<span class="nc" id="L22">    public TagImageHookFluentImpl(TagImageHook instance){</span>
+<span class="nc" id="L23">            this.withContainerName(instance.getContainerName()); </span>
+<span class="nc" id="L24">            this.withTo(instance.getTo()); </span>
+<span class="nc" id="L25">    }</span>
+
+    public String getContainerName(){
+<span class="nc" id="L28">            return this.containerName;</span>
+    }
+
+    public A withContainerName(String containerName){
+<span class="nc" id="L32">            this.containerName=containerName; return (A) this;</span>
+    }
+
+    public Boolean hasContainerName(){
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            return this.containerName != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTo instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getTo(){
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            return this.to!=null?this.to.build():null;</span>
+    }
+
+    public ObjectReference buildTo(){
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            return this.to!=null?this.to.build():null;</span>
+    }
+
+    public A withTo(ObjectReference to){
+<span class="nc" id="L53">            _visitables.remove(this.to);</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            if (to!=null){ this.to= new ObjectReferenceBuilder(to); _visitables.add(this.to);} return (A) this;</span>
+    }
+
+    public Boolean hasTo(){
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            return this.to != null;</span>
+    }
+
+    public TagImageHookFluent.ToNested&lt;A&gt; withNewTo(){
+<span class="nc" id="L62">            return new ToNestedImpl();</span>
+    }
+
+    public TagImageHookFluent.ToNested&lt;A&gt; withNewToLike(ObjectReference item){
+<span class="nc" id="L66">            return new ToNestedImpl(item);</span>
+    }
+
+    public TagImageHookFluent.ToNested&lt;A&gt; editTo(){
+<span class="nc" id="L70">            return withNewToLike(getTo());</span>
+    }
+
+    public TagImageHookFluent.ToNested&lt;A&gt; editOrNewTo(){
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            return withNewToLike(getTo() != null ? getTo(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public TagImageHookFluent.ToNested&lt;A&gt; editOrNewToLike(ObjectReference item){
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            return withNewToLike(getTo() != null ? getTo(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L83" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L85">            TagImageHookFluentImpl that = (TagImageHookFluentImpl) o;</span>
+<span class="nc bnc" id="L86" title="All 6 branches missed.">            if (containerName != null ? !containerName.equals(that.containerName) :that.containerName != null) return false;</span>
+<span class="nc bnc" id="L87" title="All 6 branches missed.">            if (to != null ? !to.equals(that.to) :that.to != null) return false;</span>
+<span class="nc" id="L88">            return true;</span>
+    }
+
+
+    public class ToNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;TagImageHookFluent.ToNested&lt;N&gt;&gt; implements TagImageHookFluent.ToNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L96">            ToNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L97">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L98">            }</span>
+<span class="nc" id="L99">            ToNestedImpl(){</span>
+<span class="nc" id="L100">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L101">            }</span>
+    
+    public N and(){
+<span class="nc" id="L104">            return (N) TagImageHookFluentImpl.this.withTo(builder.build());</span>
+    }
+    public N endTo(){
+<span class="nc" id="L107">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PortForwarderWebsocket.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.dsl.internal</a> &gt; <span class="el_source">PortForwarderWebsocket.java</span></div><h1>PortForwarderWebsocket.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.dsl.internal;
+
+import java.io.Closeable;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.URL;
+import java.nio.ByteBuffer;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+import java.nio.channels.WritableByteChannel;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import io.fabric8.kubernetes.client.LocalPortForward;
+import io.fabric8.kubernetes.client.PortForward;
+import io.fabric8.kubernetes.client.utils.URLUtils;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.WebSocket;
+import okhttp3.WebSocketListener;
+import okio.ByteString;
+
+/**
+ * A port-forwarder using the websocket protocol.
+ * It requires Kubernetes 1.6+ (previous versions support the SPDY protocol only).
+ */
+public class PortForwarderWebsocket implements PortForwarder {
+
+<span class="nc" id="L54">  private static final Logger LOG = LoggerFactory.getLogger(PortForwarderWebsocket.class);</span>
+
+  private OkHttpClient client;
+
+<span class="nc" id="L58">  public PortForwarderWebsocket(OkHttpClient client) {</span>
+<span class="nc" id="L59">    this.client = client;</span>
+<span class="nc" id="L60">  }</span>
+
+  @Override
+  public LocalPortForward forward(URL resourceBaseUrl, int port) {
+<span class="nc" id="L64">    return forward(resourceBaseUrl, port, 0);</span>
+  }
+
+  @Override
+  public LocalPortForward forward(URL resourceBaseUrl, int port, int localPort) {
+<span class="nc" id="L69">    return forward(resourceBaseUrl, port, null, localPort);</span>
+  }
+
+  @Override
+  public LocalPortForward forward(final URL resourceBaseUrl, final int port, final InetAddress localHost, final int localPort) {
+    try {
+      final ServerSocketChannel server;
+<span class="nc bnc" id="L76" title="All 2 branches missed.">      if (localHost == null) {</span>
+<span class="nc" id="L77">        server = ServerSocketChannel.open().bind(new InetSocketAddress(localPort));</span>
+      } else {
+<span class="nc" id="L79">        server = ServerSocketChannel.open().bind(new InetSocketAddress(localHost, localPort));</span>
+      }
+
+<span class="nc" id="L82">      final AtomicBoolean alive = new AtomicBoolean(true);</span>
+<span class="nc" id="L83">      final CopyOnWriteArrayList&lt;PortForward&gt; handles = new CopyOnWriteArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L85">      final ExecutorService executorService = Executors.newSingleThreadExecutor();</span>
+
+      // Create a handle that can be used to retrieve information and stop the port-forward
+<span class="nc" id="L88">      final LocalPortForward localPortForwardHandle = new LocalPortForward() {</span>
+        @Override
+        public void close() throws IOException {
+<span class="nc" id="L91">          alive.set(false);</span>
+          try {
+<span class="nc" id="L93">            server.close();</span>
+          } finally {
+<span class="nc" id="L95">            closeQuietly(handles.toArray(new Closeable[]{}));</span>
+<span class="nc" id="L96">            closeExecutor(executorService);</span>
+          }
+<span class="nc" id="L98">        }</span>
+
+        @Override
+        public boolean isAlive() {
+<span class="nc" id="L102">          return alive.get();</span>
+        }
+
+        @Override
+        public InetAddress getLocalAddress() {
+          try {
+<span class="nc" id="L108">            return ((InetSocketAddress) server.getLocalAddress()).getAddress();</span>
+<span class="nc" id="L109">          } catch (IOException e) {</span>
+<span class="nc" id="L110">            throw new IllegalStateException(&quot;Cannot determine local address&quot;, e);</span>
+          }
+        }
+
+        @Override
+        public int getLocalPort() {
+          try {
+<span class="nc" id="L117">            return ((InetSocketAddress) server.getLocalAddress()).getPort();</span>
+<span class="nc" id="L118">          } catch (IOException e) {</span>
+<span class="nc" id="L119">            throw new IllegalStateException(&quot;Cannot determine local address&quot;, e);</span>
+          }
+        }
+      };
+
+      // Start listening on localhost for new connections.
+      // Every new connection will open its own stream on the remote resource.
+<span class="nc" id="L126">      executorService.execute(new Runnable() {</span>
+        @Override
+        public void run() {
+          // accept cycle
+<span class="nc bnc" id="L130" title="All 2 branches missed.">          while (alive.get()) {</span>
+            try {
+<span class="nc" id="L132">              SocketChannel socket = server.accept();</span>
+<span class="nc" id="L133">              handles.add(forward(resourceBaseUrl, port, socket, socket));</span>
+<span class="nc" id="L134">            } catch (IOException e) {</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">              if (alive.get()) {</span>
+<span class="nc" id="L136">                LOG.error(&quot;Error while listening for connections&quot;, e);</span>
+              }
+<span class="nc" id="L138">              closeQuietly(localPortForwardHandle);</span>
+<span class="nc" id="L139">            }</span>
+          }
+<span class="nc" id="L141">        }</span>
+      });
+
+<span class="nc" id="L144">      return localPortForwardHandle;</span>
+<span class="nc" id="L145">    } catch (IOException e) {</span>
+<span class="nc" id="L146">      throw new IllegalStateException(&quot;Unable to port forward&quot;, e);</span>
+    }
+  }
+
+  @Override
+  public PortForward forward(URL resourceBaseUrl, int port, final ReadableByteChannel in, final WritableByteChannel out) {
+<span class="nc" id="L152">    final AtomicBoolean alive = new AtomicBoolean(true);</span>
+<span class="nc" id="L153">    final String logPrefix = &quot;FWD&quot;;</span>
+
+<span class="nc" id="L155">    Request request = new Request.Builder()</span>
+<span class="nc" id="L156">      .get()</span>
+<span class="nc" id="L157">      .url(URLUtils.join(resourceBaseUrl.toString(), &quot;portforward?ports=&quot; + port))</span>
+<span class="nc" id="L158">      .build();</span>
+
+<span class="nc" id="L160">    final WebSocket socket = client.newWebSocket(request, new WebSocketListener() {</span>
+
+<span class="nc" id="L162">      private int messagesRead = 0;</span>
+
+<span class="nc" id="L164">      private ExecutorService pumperService = Executors.newSingleThreadExecutor();</span>
+
+      @Override
+      public void onOpen(final WebSocket webSocket, Response response) {
+<span class="nc" id="L168">        LOG.debug(&quot;{}: onOpen&quot;, logPrefix);</span>
+
+<span class="nc bnc" id="L170" title="All 2 branches missed.">        if (in != null) {</span>
+<span class="nc" id="L171">          pumperService.execute(new Runnable() {</span>
+            @Override
+            public void run() {
+<span class="nc" id="L174">              ByteBuffer buffer = ByteBuffer.allocate(4096);</span>
+              int read;
+              try {
+                do {
+<span class="nc" id="L178">                  buffer.clear();</span>
+<span class="nc" id="L179">                  buffer.put((byte) 0); // channel byte</span>
+<span class="nc" id="L180">                  read = in.read(buffer);</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">                  if (read &gt; 0) {</span>
+<span class="nc" id="L182">                    buffer.flip();</span>
+<span class="nc" id="L183">                    ByteString data = ByteString.of(buffer);</span>
+<span class="nc" id="L184">                    webSocket.send(data);</span>
+                  }
+<span class="nc bnc" id="L186" title="All 4 branches missed.">                } while (alive.get() &amp;&amp; read &gt;= 0);</span>
+
+<span class="nc" id="L188">              } catch (IOException e) {</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">                if (alive.get()) {</span>
+<span class="nc" id="L190">                  LOG.error(&quot;Error while writing client data&quot;);</span>
+<span class="nc" id="L191">                  closeBothWays(webSocket, 1001, &quot;Client error&quot;);</span>
+                }
+<span class="nc" id="L193">              }</span>
+<span class="nc" id="L194">            }</span>
+          });
+        }
+<span class="nc" id="L197">      }</span>
+
+      @Override
+      public void onMessage(WebSocket webSocket, String text) {
+<span class="nc" id="L201">        LOG.debug(&quot;{}: onMessage(String)&quot;, logPrefix);</span>
+        try {
+<span class="nc" id="L203">          onMessage(webSocket, ByteBuffer.wrap(text.getBytes(&quot;UTF-8&quot;)));</span>
+<span class="nc" id="L204">        } catch (IOException e) {</span>
+<span class="nc" id="L205">          LOG.error(&quot;Error while converting string to byte buffer&quot;, e);</span>
+<span class="nc" id="L206">          closeBothWays(webSocket, 1002, &quot;Protocol error&quot;);</span>
+<span class="nc" id="L207">        }</span>
+<span class="nc" id="L208">      }</span>
+
+      @Override
+      public void onMessage(WebSocket webSocket, ByteString bytes) {
+<span class="nc" id="L212">        LOG.debug(&quot;{}: onMessage(ByteString)&quot;, logPrefix);</span>
+<span class="nc" id="L213">        onMessage(webSocket, bytes.asByteBuffer());</span>
+<span class="nc" id="L214">      }</span>
+
+      private void onMessage(WebSocket webSocket, ByteBuffer buffer) {
+<span class="nc" id="L217">        messagesRead++;</span>
+<span class="nc bnc" id="L218" title="All 2 branches missed.">        if (messagesRead &lt;= 2) {</span>
+          // skip the first two messages, containing the ports used internally
+<span class="nc" id="L220">          return;</span>
+        }
+
+<span class="nc bnc" id="L223" title="All 2 branches missed.">        if (!buffer.hasRemaining()) {</span>
+<span class="nc" id="L224">          LOG.error(&quot;Received an empty message&quot;);</span>
+<span class="nc" id="L225">          closeBothWays(webSocket, 1002, &quot;Protocol error&quot;);</span>
+        }
+
+<span class="nc" id="L228">        byte channel = buffer.get();</span>
+<span class="nc bnc" id="L229" title="All 4 branches missed.">        if (channel &lt; 0 || channel &gt; 1) {</span>
+<span class="nc" id="L230">          LOG.error(&quot;Received a wrong channel from the remote socket: {}&quot;, channel);</span>
+<span class="nc" id="L231">          closeBothWays(webSocket, 1002, &quot;Protocol error&quot;);</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">        } else if (channel == 1) {</span>
+          // Error channel
+<span class="nc" id="L234">          LOG.error(&quot;Received an error from the remote socket&quot;);</span>
+<span class="nc" id="L235">          closeForwarder();</span>
+        } else {
+          // Data
+<span class="nc bnc" id="L238" title="All 2 branches missed.">          if (out != null) {</span>
+            try {
+<span class="nc" id="L240">              out.write(buffer); // channel byte already skipped</span>
+<span class="nc" id="L241">            } catch (IOException e) {</span>
+<span class="nc bnc" id="L242" title="All 2 branches missed.">              if (alive.get()) {</span>
+<span class="nc" id="L243">                LOG.error(&quot;Error while forwarding data to the client&quot;, e);</span>
+<span class="nc" id="L244">                closeBothWays(webSocket, 1002, &quot;Protocol error&quot;);</span>
+              }
+<span class="nc" id="L246">            }</span>
+          }
+        }
+<span class="nc" id="L249">      }</span>
+
+      @Override
+      public void onClosing(WebSocket webSocket, int code, String reason) {
+<span class="nc" id="L253">        LOG.debug(&quot;{}: onClosing. Code={}, Reason={}&quot;, logPrefix, code, reason);</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">        if (alive.get()) {</span>
+<span class="nc" id="L255">          closeForwarder();</span>
+        }
+<span class="nc" id="L257">      }</span>
+
+      @Override
+      public void onClosed(WebSocket webSocket, int code, String reason) {
+<span class="nc" id="L261">        LOG.debug(&quot;{}: onClosed. Code={}, Reason={}&quot;, logPrefix, code, reason);</span>
+<span class="nc bnc" id="L262" title="All 2 branches missed.">        if (alive.get()) {</span>
+<span class="nc" id="L263">          closeForwarder();</span>
+        }
+<span class="nc" id="L265">      }</span>
+
+      @Override
+      public void onFailure(WebSocket webSocket, Throwable t, Response response) {
+<span class="nc" id="L269">        LOG.debug(&quot;{}: onFailure&quot;, logPrefix);</span>
+<span class="nc bnc" id="L270" title="All 2 branches missed.">        if (alive.get()) {</span>
+<span class="nc" id="L271">          LOG.error(logPrefix + &quot;: Throwable received from websocket&quot;, t);</span>
+<span class="nc" id="L272">          closeForwarder();</span>
+        }
+<span class="nc" id="L274">      }</span>
+
+      private void closeBothWays(WebSocket webSocket, int code, String message) {
+<span class="nc" id="L277">        LOG.debug(&quot;{}: Closing with code {} and reason: {}&quot;, logPrefix, code, message);</span>
+<span class="nc" id="L278">        alive.set(false);</span>
+        try {
+<span class="nc" id="L280">          webSocket.close(code, message);</span>
+<span class="nc" id="L281">        } catch (Exception e) {</span>
+<span class="nc" id="L282">          LOG.error(&quot;Error while closing the websocket&quot;, e);</span>
+<span class="nc" id="L283">        }</span>
+<span class="nc" id="L284">        closeForwarder();</span>
+<span class="nc" id="L285">      }</span>
+
+      private void closeForwarder() {
+<span class="nc" id="L288">        alive.set(false);</span>
+<span class="nc bnc" id="L289" title="All 2 branches missed.">        if (in != null) {</span>
+          try {
+<span class="nc" id="L291">            in.close();</span>
+<span class="nc" id="L292">          } catch (IOException e) {</span>
+<span class="nc" id="L293">            LOG.error(logPrefix + &quot;: Error while closing the client input channel&quot;, e);</span>
+<span class="nc" id="L294">          }</span>
+        }
+<span class="nc bnc" id="L296" title="All 4 branches missed.">        if (out != null &amp;&amp; out != in) {</span>
+          try {
+<span class="nc" id="L298">            out.close();</span>
+<span class="nc" id="L299">          } catch (IOException e) {</span>
+<span class="nc" id="L300">            LOG.error(logPrefix + &quot;: Error while closing the client output channel&quot;, e);</span>
+<span class="nc" id="L301">          }</span>
+        }
+<span class="nc" id="L303">        closeExecutor(pumperService);</span>
+<span class="nc" id="L304">      }</span>
+
+    });
+
+<span class="nc" id="L308">    return new PortForward() {</span>
+      @Override
+      public void close() throws IOException {
+<span class="nc" id="L311">        socket.close(1001, &quot;User closing&quot;);</span>
+<span class="nc" id="L312">      }</span>
+
+      @Override
+      public boolean isAlive() {
+<span class="nc" id="L316">        return alive.get();</span>
+      }
+    };
+  }
+
+  private void closeExecutor(ExecutorService executor) {
+    try {
+<span class="nc" id="L323">      executor.shutdown();</span>
+<span class="nc bnc" id="L324" title="All 2 branches missed.">      if (!executor.awaitTermination(5, TimeUnit.SECONDS)) {</span>
+<span class="nc" id="L325">        executor.shutdownNow();</span>
+<span class="nc bnc" id="L326" title="All 2 branches missed.">        if (!executor.awaitTermination(10, TimeUnit.SECONDS)) {</span>
+<span class="nc" id="L327">          LOG.error(&quot;The executor service did not terminate&quot;);</span>
+        }
+      }
+<span class="nc" id="L330">    } catch (InterruptedException e) {</span>
+<span class="nc" id="L331">      Thread.currentThread().interrupt();</span>
+<span class="nc" id="L332">    } catch (Exception e) {</span>
+<span class="nc" id="L333">      LOG.error(&quot;Error while closing the executor&quot;, e);</span>
+<span class="nc" id="L334">    }</span>
+<span class="nc" id="L335">  }</span>
+
+  public static void closeQuietly(Closeable... cloaseables) {
+<span class="nc bnc" id="L338" title="All 2 branches missed.">    if(cloaseables != null) {</span>
+<span class="nc bnc" id="L339" title="All 2 branches missed.">      for(Closeable c : cloaseables) {</span>
+        try {
+<span class="nc bnc" id="L341" title="All 2 branches missed.">          if(c != null) {</span>
+<span class="nc" id="L342">            c.close();</span>
+          }
+<span class="nc" id="L344">        } catch (IOException ioe) {</span>
+<span class="nc" id="L345">        }</span>
+      }
+    }
+<span class="nc" id="L348">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TopologySelectorTermFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">TopologySelectorTermFluentImpl.java</span></div><h1>TopologySelectorTermFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class TopologySelectorTermFluentImpl&lt;A extends TopologySelectorTermFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements TopologySelectorTermFluent&lt;A&gt;{
+
+    private List&lt;TopologySelectorLabelRequirementBuilder&gt; matchLabelExpressions;
+
+<span class="nc" id="L20">    public TopologySelectorTermFluentImpl(){</span>
+<span class="nc" id="L21">    }</span>
+<span class="nc" id="L22">    public TopologySelectorTermFluentImpl(TopologySelectorTerm instance){</span>
+<span class="nc" id="L23">            this.withMatchLabelExpressions(instance.getMatchLabelExpressions()); </span>
+<span class="nc" id="L24">    }</span>
+
+    public A addToMatchLabelExpressions(int index,TopologySelectorLabelRequirement item){
+<span class="nc bnc" id="L27" title="All 2 branches missed.">            if (this.matchLabelExpressions == null) {this.matchLabelExpressions = new ArrayList&lt;TopologySelectorLabelRequirementBuilder&gt;();}</span>
+<span class="nc bnc" id="L28" title="All 4 branches missed.">            TopologySelectorLabelRequirementBuilder builder = new TopologySelectorLabelRequirementBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.matchLabelExpressions.add(index &gt;= 0 ? index : matchLabelExpressions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToMatchLabelExpressions(int index,TopologySelectorLabelRequirement item){
+<span class="nc bnc" id="L32" title="All 2 branches missed.">            if (this.matchLabelExpressions == null) {this.matchLabelExpressions = new ArrayList&lt;TopologySelectorLabelRequirementBuilder&gt;();}</span>
+<span class="nc" id="L33">            TopologySelectorLabelRequirementBuilder builder = new TopologySelectorLabelRequirementBuilder(item);</span>
+<span class="nc bnc" id="L34" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L35" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= matchLabelExpressions.size()) { matchLabelExpressions.add(builder); } else { matchLabelExpressions.set(index, builder);}</span>
+<span class="nc" id="L36">             return (A)this;</span>
+    }
+
+    public A addToMatchLabelExpressions(TopologySelectorLabelRequirement... items){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            if (this.matchLabelExpressions == null) {this.matchLabelExpressions = new ArrayList&lt;TopologySelectorLabelRequirementBuilder&gt;();}</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            for (TopologySelectorLabelRequirement item : items) {TopologySelectorLabelRequirementBuilder builder = new TopologySelectorLabelRequirementBuilder(item);_visitables.add(builder);this.matchLabelExpressions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToMatchLabelExpressions(Collection&lt;TopologySelectorLabelRequirement&gt; items){
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            if (this.matchLabelExpressions == null) {this.matchLabelExpressions = new ArrayList&lt;TopologySelectorLabelRequirementBuilder&gt;();}</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            for (TopologySelectorLabelRequirement item : items) {TopologySelectorLabelRequirementBuilder builder = new TopologySelectorLabelRequirementBuilder(item);_visitables.add(builder);this.matchLabelExpressions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromMatchLabelExpressions(TopologySelectorLabelRequirement... items){
+<span class="nc bnc" id="L50" title="All 4 branches missed.">            for (TopologySelectorLabelRequirement item : items) {TopologySelectorLabelRequirementBuilder builder = new TopologySelectorLabelRequirementBuilder(item);_visitables.remove(builder);if (this.matchLabelExpressions != null) {this.matchLabelExpressions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromMatchLabelExpressions(Collection&lt;TopologySelectorLabelRequirement&gt; items){
+<span class="nc bnc" id="L54" title="All 4 branches missed.">            for (TopologySelectorLabelRequirement item : items) {TopologySelectorLabelRequirementBuilder builder = new TopologySelectorLabelRequirementBuilder(item);_visitables.remove(builder);if (this.matchLabelExpressions != null) {this.matchLabelExpressions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMatchLabelExpressions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;TopologySelectorLabelRequirement&gt; getMatchLabelExpressions(){
+<span class="nc" id="L63">            return build(matchLabelExpressions);</span>
+    }
+
+    public List&lt;TopologySelectorLabelRequirement&gt; buildMatchLabelExpressions(){
+<span class="nc" id="L67">            return build(matchLabelExpressions);</span>
+    }
+
+    public TopologySelectorLabelRequirement buildMatchLabelExpression(int index){
+<span class="nc" id="L71">            return this.matchLabelExpressions.get(index).build();</span>
+    }
+
+    public TopologySelectorLabelRequirement buildFirstMatchLabelExpression(){
+<span class="nc" id="L75">            return this.matchLabelExpressions.get(0).build();</span>
+    }
+
+    public TopologySelectorLabelRequirement buildLastMatchLabelExpression(){
+<span class="nc" id="L79">            return this.matchLabelExpressions.get(matchLabelExpressions.size() - 1).build();</span>
+    }
+
+    public TopologySelectorLabelRequirement buildMatchingMatchLabelExpression(io.fabric8.kubernetes.api.builder.Predicate&lt;TopologySelectorLabelRequirementBuilder&gt; predicate){
+<span class="nc bnc" id="L83" title="All 4 branches missed.">            for (TopologySelectorLabelRequirementBuilder item: matchLabelExpressions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withMatchLabelExpressions(List&lt;TopologySelectorLabelRequirement&gt; matchLabelExpressions){
+<span class="nc bnc" id="L87" title="All 2 branches missed.">            if (this.matchLabelExpressions != null) { _visitables.removeAll(this.matchLabelExpressions);}</span>
+<span class="nc bnc" id="L88" title="All 4 branches missed.">            if (matchLabelExpressions != null) {this.matchLabelExpressions = new ArrayList&lt;TopologySelectorLabelRequirementBuilder&gt;(); for (TopologySelectorLabelRequirement item : matchLabelExpressions){this.addToMatchLabelExpressions(item);}} else { this.matchLabelExpressions = new ArrayList&lt;TopologySelectorLabelRequirementBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withMatchLabelExpressions(TopologySelectorLabelRequirement... matchLabelExpressions){
+<span class="nc bnc" id="L92" title="All 2 branches missed.">            if (this.matchLabelExpressions != null) {this.matchLabelExpressions.clear();}</span>
+<span class="nc bnc" id="L93" title="All 4 branches missed.">            if (matchLabelExpressions != null) {for (TopologySelectorLabelRequirement item :matchLabelExpressions){ this.addToMatchLabelExpressions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasMatchLabelExpressions(){
+<span class="nc bnc" id="L97" title="All 4 branches missed.">            return matchLabelExpressions != null &amp;&amp; !matchLabelExpressions.isEmpty();</span>
+    }
+
+    public TopologySelectorTermFluent.MatchLabelExpressionsNested&lt;A&gt; addNewMatchLabelExpression(){
+<span class="nc" id="L101">            return new MatchLabelExpressionsNestedImpl();</span>
+    }
+
+    public TopologySelectorTermFluent.MatchLabelExpressionsNested&lt;A&gt; addNewMatchLabelExpressionLike(TopologySelectorLabelRequirement item){
+<span class="nc" id="L105">            return new MatchLabelExpressionsNestedImpl(-1, item);</span>
+    }
+
+    public TopologySelectorTermFluent.MatchLabelExpressionsNested&lt;A&gt; setNewMatchLabelExpressionLike(int index,TopologySelectorLabelRequirement item){
+<span class="nc" id="L109">            return new MatchLabelExpressionsNestedImpl(index, item);</span>
+    }
+
+    public TopologySelectorTermFluent.MatchLabelExpressionsNested&lt;A&gt; editMatchLabelExpression(int index){
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            if (matchLabelExpressions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit matchLabelExpressions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L114">            return setNewMatchLabelExpressionLike(index, buildMatchLabelExpression(index));</span>
+    }
+
+    public TopologySelectorTermFluent.MatchLabelExpressionsNested&lt;A&gt; editFirstMatchLabelExpression(){
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            if (matchLabelExpressions.size() == 0) throw new RuntimeException(&quot;Can't edit first matchLabelExpressions. The list is empty.&quot;);</span>
+<span class="nc" id="L119">            return setNewMatchLabelExpressionLike(0, buildMatchLabelExpression(0));</span>
+    }
+
+    public TopologySelectorTermFluent.MatchLabelExpressionsNested&lt;A&gt; editLastMatchLabelExpression(){
+<span class="nc" id="L123">            int index = matchLabelExpressions.size() - 1;</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last matchLabelExpressions. The list is empty.&quot;);</span>
+<span class="nc" id="L125">            return setNewMatchLabelExpressionLike(index, buildMatchLabelExpression(index));</span>
+    }
+
+    public TopologySelectorTermFluent.MatchLabelExpressionsNested&lt;A&gt; editMatchingMatchLabelExpression(io.fabric8.kubernetes.api.builder.Predicate&lt;TopologySelectorLabelRequirementBuilder&gt; predicate){
+<span class="nc" id="L129">            int index = -1;</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            for (int i=0;i&lt;matchLabelExpressions.size();i++) { </span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">            if (predicate.apply(matchLabelExpressions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching matchLabelExpressions. No match found.&quot;);</span>
+<span class="nc" id="L134">            return setNewMatchLabelExpressionLike(index, buildMatchLabelExpression(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L139" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L141">            TopologySelectorTermFluentImpl that = (TopologySelectorTermFluentImpl) o;</span>
+<span class="nc bnc" id="L142" title="All 6 branches missed.">            if (matchLabelExpressions != null ? !matchLabelExpressions.equals(that.matchLabelExpressions) :that.matchLabelExpressions != null) return false;</span>
+<span class="nc" id="L143">            return true;</span>
+    }
+
+
+    public class MatchLabelExpressionsNestedImpl&lt;N&gt; extends TopologySelectorLabelRequirementFluentImpl&lt;TopologySelectorTermFluent.MatchLabelExpressionsNested&lt;N&gt;&gt; implements TopologySelectorTermFluent.MatchLabelExpressionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TopologySelectorLabelRequirementBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L152">            MatchLabelExpressionsNestedImpl(int index,TopologySelectorLabelRequirement item){</span>
+<span class="nc" id="L153">                    this.index = index;</span>
+<span class="nc" id="L154">                    this.builder = new TopologySelectorLabelRequirementBuilder(this, item);</span>
+<span class="nc" id="L155">            }</span>
+<span class="nc" id="L156">            MatchLabelExpressionsNestedImpl(){</span>
+<span class="nc" id="L157">                    this.index = -1;</span>
+<span class="nc" id="L158">                    this.builder = new TopologySelectorLabelRequirementBuilder(this);</span>
+<span class="nc" id="L159">            }</span>
+    
+    public N and(){
+<span class="nc" id="L162">            return (N) TopologySelectorTermFluentImpl.this.setToMatchLabelExpressions(index, builder.build());</span>
+    }
+    public N endMatchLabelExpression(){
+<span class="nc" id="L165">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

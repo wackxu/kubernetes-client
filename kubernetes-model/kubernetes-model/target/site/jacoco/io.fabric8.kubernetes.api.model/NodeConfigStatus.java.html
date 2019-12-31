@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NodeConfigStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">NodeConfigStatus.java</span></div><h1>NodeConfigStatus.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;active&quot;,
+    &quot;assigned&quot;,
+    &quot;error&quot;,
+    &quot;lastKnownGood&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L38">@ToString</span>
+<span class="nc bnc" id="L39" title="All 46 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class NodeConfigStatus implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;active&quot;)
+    @Valid
+    private NodeConfigSource active;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;assigned&quot;)
+    @Valid
+    private NodeConfigSource assigned;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;error&quot;)
+    private String error;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;lastKnownGood&quot;)
+    @Valid
+    private NodeConfigSource lastKnownGood;
+<span class="nc" id="L71">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L78">    public NodeConfigStatus() {</span>
+<span class="nc" id="L79">    }</span>
+
+    /**
+     * 
+     * @param lastKnownGood
+     * @param active
+     * @param assigned
+     * @param error
+     */
+<span class="nc" id="L88">    public NodeConfigStatus(NodeConfigSource active, NodeConfigSource assigned, String error, NodeConfigSource lastKnownGood) {</span>
+<span class="nc" id="L89">        this.active = active;</span>
+<span class="nc" id="L90">        this.assigned = assigned;</span>
+<span class="nc" id="L91">        this.error = error;</span>
+<span class="nc" id="L92">        this.lastKnownGood = lastKnownGood;</span>
+<span class="nc" id="L93">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The active
+     */
+    @JsonProperty(&quot;active&quot;)
+    public NodeConfigSource getActive() {
+<span class="nc" id="L103">        return active;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param active
+     *     The active
+     */
+    @JsonProperty(&quot;active&quot;)
+    public void setActive(NodeConfigSource active) {
+<span class="nc" id="L114">        this.active = active;</span>
+<span class="nc" id="L115">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The assigned
+     */
+    @JsonProperty(&quot;assigned&quot;)
+    public NodeConfigSource getAssigned() {
+<span class="nc" id="L125">        return assigned;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param assigned
+     *     The assigned
+     */
+    @JsonProperty(&quot;assigned&quot;)
+    public void setAssigned(NodeConfigSource assigned) {
+<span class="nc" id="L136">        this.assigned = assigned;</span>
+<span class="nc" id="L137">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The error
+     */
+    @JsonProperty(&quot;error&quot;)
+    public String getError() {
+<span class="nc" id="L147">        return error;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param error
+     *     The error
+     */
+    @JsonProperty(&quot;error&quot;)
+    public void setError(String error) {
+<span class="nc" id="L158">        this.error = error;</span>
+<span class="nc" id="L159">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The lastKnownGood
+     */
+    @JsonProperty(&quot;lastKnownGood&quot;)
+    public NodeConfigSource getLastKnownGood() {
+<span class="nc" id="L169">        return lastKnownGood;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param lastKnownGood
+     *     The lastKnownGood
+     */
+    @JsonProperty(&quot;lastKnownGood&quot;)
+    public void setLastKnownGood(NodeConfigSource lastKnownGood) {
+<span class="nc" id="L180">        this.lastKnownGood = lastKnownGood;</span>
+<span class="nc" id="L181">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L185">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L190">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L191">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomResourceSubresources.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.apiextensions</a> &gt; <span class="el_source">CustomResourceSubresources.java</span></div><h1>CustomResourceSubresources.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.apiextensions;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;scale&quot;,
+    &quot;status&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L37">@ToString</span>
+<span class="nc bnc" id="L38" title="All 30 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class CustomResourceSubresources implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;scale&quot;)
+    @Valid
+    private CustomResourceSubresourceScale scale;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;status&quot;)
+    @Valid
+    private CustomResourceSubresourceStatus status;
+<span class="nc" id="L57">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L64">    public CustomResourceSubresources() {</span>
+<span class="nc" id="L65">    }</span>
+
+    /**
+     * 
+     * @param scale
+     * @param status
+     */
+<span class="nc" id="L72">    public CustomResourceSubresources(CustomResourceSubresourceScale scale, CustomResourceSubresourceStatus status) {</span>
+<span class="nc" id="L73">        this.scale = scale;</span>
+<span class="nc" id="L74">        this.status = status;</span>
+<span class="nc" id="L75">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The scale
+     */
+    @JsonProperty(&quot;scale&quot;)
+    public CustomResourceSubresourceScale getScale() {
+<span class="nc" id="L85">        return scale;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param scale
+     *     The scale
+     */
+    @JsonProperty(&quot;scale&quot;)
+    public void setScale(CustomResourceSubresourceScale scale) {
+<span class="nc" id="L96">        this.scale = scale;</span>
+<span class="nc" id="L97">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The status
+     */
+    @JsonProperty(&quot;status&quot;)
+    public CustomResourceSubresourceStatus getStatus() {
+<span class="nc" id="L107">        return status;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param status
+     *     The status
+     */
+    @JsonProperty(&quot;status&quot;)
+    public void setStatus(CustomResourceSubresourceStatus status) {
+<span class="nc" id="L118">        this.status = status;</span>
+<span class="nc" id="L119">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L123">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L128">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L129">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

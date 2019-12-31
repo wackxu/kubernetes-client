@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IntOrStringFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">IntOrStringFluentImpl.java</span></div><h1>IntOrStringFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import java.lang.Integer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.String;
+import java.lang.Boolean;
+import java.util.Map;
+import java.util.LinkedHashMap;
+
+public class IntOrStringFluentImpl&lt;A extends IntOrStringFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements IntOrStringFluent&lt;A&gt;{
+
+    private Integer IntVal;
+    private Integer Kind;
+    private String StrVal;
+    private Map&lt;String,Object&gt; additionalProperties;
+
+<span class="fc" id="L20">    public IntOrStringFluentImpl(){</span>
+<span class="fc" id="L21">    }</span>
+<span class="nc" id="L22">    public IntOrStringFluentImpl(IntOrString instance){</span>
+<span class="nc" id="L23">            this.withIntVal(instance.getIntVal()); </span>
+<span class="nc" id="L24">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L25">            this.withStrVal(instance.getStrVal()); </span>
+<span class="nc" id="L26">            this.withAdditionalProperties(instance.getAdditionalProperties()); </span>
+<span class="nc" id="L27">            this.withIntVal(instance.getIntVal());</span>
+
+<span class="nc" id="L29">            this.withKind(instance.getKind());</span>
+
+<span class="nc" id="L31">            this.withStrVal(instance.getStrVal());</span>
+
+<span class="nc" id="L33">    }</span>
+
+    public Integer getIntVal(){
+<span class="fc" id="L36">            return this.IntVal;</span>
+    }
+
+    public A withIntVal(Integer IntVal){
+<span class="fc" id="L40">            this.IntVal=IntVal; return (A) this;</span>
+    }
+
+    public Boolean hasIntVal(){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            return this.IntVal != null;</span>
+    }
+
+    public Integer getKind(){
+<span class="fc" id="L48">            return this.Kind;</span>
+    }
+
+    public A withKind(Integer Kind){
+<span class="fc" id="L52">            this.Kind=Kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            return this.Kind != null;</span>
+    }
+
+    public String getStrVal(){
+<span class="fc" id="L60">            return this.StrVal;</span>
+    }
+
+    public A withStrVal(String StrVal){
+<span class="fc" id="L64">            this.StrVal=StrVal; return (A) this;</span>
+    }
+
+    public Boolean hasStrVal(){
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            return this.StrVal != null;</span>
+    }
+
+    public A addToAdditionalProperties(String key,Object value){
+<span class="nc bnc" id="L72" title="All 6 branches missed.">            if(this.additionalProperties == null &amp;&amp; key != null &amp;&amp; value != null) { this.additionalProperties = new LinkedHashMap&lt;String,Object&gt;(); }</span>
+<span class="nc bnc" id="L73" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.additionalProperties.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToAdditionalProperties(Map&lt;String,Object&gt; map){
+<span class="nc bnc" id="L77" title="All 4 branches missed.">            if(this.additionalProperties == null &amp;&amp; map != null) { this.additionalProperties = new LinkedHashMap&lt;String,Object&gt;(); }</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if(map != null) { this.additionalProperties.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromAdditionalProperties(String key){
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            if(this.additionalProperties == null) { return (A) this; }</span>
+<span class="nc bnc" id="L83" title="All 4 branches missed.">            if(key != null &amp;&amp; this.additionalProperties != null) {this.additionalProperties.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromAdditionalProperties(Map&lt;String,Object&gt; map){
+<span class="nc bnc" id="L87" title="All 2 branches missed.">            if(this.additionalProperties == null) { return (A) this; }</span>
+<span class="nc bnc" id="L88" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.additionalProperties != null){this.additionalProperties.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,Object&gt; getAdditionalProperties(){
+<span class="fc" id="L92">            return this.additionalProperties;</span>
+    }
+
+    public A withAdditionalProperties(Map&lt;String,Object&gt; additionalProperties){
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">            if (additionalProperties == null) { this.additionalProperties =  new LinkedHashMap&lt;String,Object&gt;();} else {this.additionalProperties = new LinkedHashMap&lt;String,Object&gt;(additionalProperties);} return (A) this;</span>
+    }
+
+    public Boolean hasAdditionalProperties(){
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            return this.additionalProperties != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L105" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L107">            IntOrStringFluentImpl that = (IntOrStringFluentImpl) o;</span>
+<span class="nc bnc" id="L108" title="All 6 branches missed.">            if (IntVal != null ? !IntVal.equals(that.IntVal) :that.IntVal != null) return false;</span>
+<span class="nc bnc" id="L109" title="All 6 branches missed.">            if (Kind != null ? !Kind.equals(that.Kind) :that.Kind != null) return false;</span>
+<span class="nc bnc" id="L110" title="All 6 branches missed.">            if (StrVal != null ? !StrVal.equals(that.StrVal) :that.StrVal != null) return false;</span>
+<span class="nc bnc" id="L111" title="All 6 branches missed.">            if (additionalProperties != null ? !additionalProperties.equals(that.additionalProperties) :that.additionalProperties != null) return false;</span>
+<span class="nc" id="L112">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClusterRoleBinding.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.rbac</a> &gt; <span class="el_source">ClusterRoleBinding.java</span></div><h1>ClusterRoleBinding.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.rbac;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import io.fabric8.kubernetes.model.annotation.ApiGroup;
+import io.fabric8.kubernetes.model.annotation.ApiVersion;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import io.sundr.transform.annotations.VelocityTransformation;
+import io.sundr.transform.annotations.VelocityTransformations;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;roleRef&quot;,
+    &quot;subjects&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L46">@ToString</span>
+<span class="pc bpc" id="L47" title="47 of 54 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+@ApiVersion(&quot;v1&quot;)
+@ApiGroup(&quot;rbac.authorization.k8s.io&quot;)
+@VelocityTransformations({
+    @VelocityTransformation(value = &quot;/manifest.vm&quot;, outputPath = &quot;kubernetes.properties&quot;, gather = true)
+})
+public class ClusterRoleBinding implements HasMetadata
+{
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="fc" id="L62">    @NotNull</span>
+    @JsonProperty(&quot;apiVersion&quot;)
+    private String apiVersion = &quot;rbac.authorization.k8s.io/v1&quot;;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="fc" id="L70">    @NotNull</span>
+    @JsonProperty(&quot;kind&quot;)
+    private String kind = &quot;ClusterRoleBinding&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    @Valid
+    @CheckObjectMeta(regexp = &quot;^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$&quot;, max = 253)
+    private ObjectMeta metadata;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;roleRef&quot;)
+    @Valid
+    private RoleRef roleRef;
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L92">    @JsonProperty(&quot;subjects&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;Subject&gt; subjects = new ArrayList&lt;Subject&gt;();
+<span class="fc" id="L96">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L103">    public ClusterRoleBinding() {</span>
+<span class="fc" id="L104">    }</span>
+
+    /**
+     * 
+     * @param metadata
+     * @param apiVersion
+     * @param kind
+     * @param subjects
+     * @param roleRef
+     */
+<span class="fc" id="L114">    public ClusterRoleBinding(String apiVersion, String kind, ObjectMeta metadata, RoleRef roleRef, List&lt;Subject&gt; subjects) {</span>
+<span class="fc" id="L115">        this.apiVersion = apiVersion;</span>
+<span class="fc" id="L116">        this.kind = kind;</span>
+<span class="fc" id="L117">        this.metadata = metadata;</span>
+<span class="fc" id="L118">        this.roleRef = roleRef;</span>
+<span class="fc" id="L119">        this.subjects = subjects;</span>
+<span class="fc" id="L120">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public String getApiVersion() {
+<span class="fc" id="L131">        return apiVersion;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param apiVersion
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public void setApiVersion(String apiVersion) {
+<span class="fc" id="L143">        this.apiVersion = apiVersion;</span>
+<span class="fc" id="L144">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public String getKind() {
+<span class="fc" id="L155">        return kind;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param kind
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public void setKind(String kind) {
+<span class="fc" id="L167">        this.kind = kind;</span>
+<span class="fc" id="L168">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public ObjectMeta getMetadata() {
+<span class="fc" id="L178">        return metadata;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param metadata
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public void setMetadata(ObjectMeta metadata) {
+<span class="fc" id="L189">        this.metadata = metadata;</span>
+<span class="fc" id="L190">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The roleRef
+     */
+    @JsonProperty(&quot;roleRef&quot;)
+    public RoleRef getRoleRef() {
+<span class="fc" id="L200">        return roleRef;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param roleRef
+     *     The roleRef
+     */
+    @JsonProperty(&quot;roleRef&quot;)
+    public void setRoleRef(RoleRef roleRef) {
+<span class="fc" id="L211">        this.roleRef = roleRef;</span>
+<span class="fc" id="L212">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The subjects
+     */
+    @JsonProperty(&quot;subjects&quot;)
+    public List&lt;Subject&gt; getSubjects() {
+<span class="fc" id="L222">        return subjects;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param subjects
+     *     The subjects
+     */
+    @JsonProperty(&quot;subjects&quot;)
+    public void setSubjects(List&lt;Subject&gt; subjects) {
+<span class="fc" id="L233">        this.subjects = subjects;</span>
+<span class="fc" id="L234">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L238">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L243">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L244">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

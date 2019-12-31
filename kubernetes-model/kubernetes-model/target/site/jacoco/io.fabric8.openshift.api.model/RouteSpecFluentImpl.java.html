@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RouteSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">RouteSpecFluentImpl.java</span></div><h1>RouteSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import java.lang.Integer;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class RouteSpecFluentImpl&lt;A extends RouteSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements RouteSpecFluent&lt;A&gt;{
+
+    private List&lt;RouteTargetReferenceBuilder&gt; alternateBackends;
+    private String host;
+    private String path;
+    private RoutePortBuilder port;
+    private TLSConfigBuilder tls;
+    private RouteTargetReferenceBuilder to;
+    private String wildcardPolicy;
+
+<span class="fc" id="L28">    public RouteSpecFluentImpl(){</span>
+<span class="fc" id="L29">    }</span>
+<span class="nc" id="L30">    public RouteSpecFluentImpl(RouteSpec instance){</span>
+<span class="nc" id="L31">            this.withAlternateBackends(instance.getAlternateBackends()); </span>
+<span class="nc" id="L32">            this.withHost(instance.getHost()); </span>
+<span class="nc" id="L33">            this.withPath(instance.getPath()); </span>
+<span class="nc" id="L34">            this.withPort(instance.getPort()); </span>
+<span class="nc" id="L35">            this.withTls(instance.getTls()); </span>
+<span class="nc" id="L36">            this.withTo(instance.getTo()); </span>
+<span class="nc" id="L37">            this.withWildcardPolicy(instance.getWildcardPolicy()); </span>
+<span class="nc" id="L38">    }</span>
+
+    public A addToAlternateBackends(int index,RouteTargetReference item){
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            if (this.alternateBackends == null) {this.alternateBackends = new ArrayList&lt;RouteTargetReferenceBuilder&gt;();}</span>
+<span class="nc bnc" id="L42" title="All 4 branches missed.">            RouteTargetReferenceBuilder builder = new RouteTargetReferenceBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.alternateBackends.add(index &gt;= 0 ? index : alternateBackends.size(), builder); return (A)this;</span>
+    }
+
+    public A setToAlternateBackends(int index,RouteTargetReference item){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (this.alternateBackends == null) {this.alternateBackends = new ArrayList&lt;RouteTargetReferenceBuilder&gt;();}</span>
+<span class="nc" id="L47">            RouteTargetReferenceBuilder builder = new RouteTargetReferenceBuilder(item);</span>
+<span class="nc bnc" id="L48" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L49" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= alternateBackends.size()) { alternateBackends.add(builder); } else { alternateBackends.set(index, builder);}</span>
+<span class="nc" id="L50">             return (A)this;</span>
+    }
+
+    public A addToAlternateBackends(RouteTargetReference... items){
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">            if (this.alternateBackends == null) {this.alternateBackends = new ArrayList&lt;RouteTargetReferenceBuilder&gt;();}</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">            for (RouteTargetReference item : items) {RouteTargetReferenceBuilder builder = new RouteTargetReferenceBuilder(item);_visitables.add(builder);this.alternateBackends.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToAlternateBackends(Collection&lt;RouteTargetReference&gt; items){
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            if (this.alternateBackends == null) {this.alternateBackends = new ArrayList&lt;RouteTargetReferenceBuilder&gt;();}</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            for (RouteTargetReference item : items) {RouteTargetReferenceBuilder builder = new RouteTargetReferenceBuilder(item);_visitables.add(builder);this.alternateBackends.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromAlternateBackends(RouteTargetReference... items){
+<span class="nc bnc" id="L64" title="All 4 branches missed.">            for (RouteTargetReference item : items) {RouteTargetReferenceBuilder builder = new RouteTargetReferenceBuilder(item);_visitables.remove(builder);if (this.alternateBackends != null) {this.alternateBackends.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAlternateBackends(Collection&lt;RouteTargetReference&gt; items){
+<span class="nc bnc" id="L68" title="All 4 branches missed.">            for (RouteTargetReference item : items) {RouteTargetReferenceBuilder builder = new RouteTargetReferenceBuilder(item);_visitables.remove(builder);if (this.alternateBackends != null) {this.alternateBackends.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildAlternateBackends instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;RouteTargetReference&gt; getAlternateBackends(){
+<span class="fc" id="L77">            return build(alternateBackends);</span>
+    }
+
+    public List&lt;RouteTargetReference&gt; buildAlternateBackends(){
+<span class="nc" id="L81">            return build(alternateBackends);</span>
+    }
+
+    public RouteTargetReference buildAlternateBackend(int index){
+<span class="nc" id="L85">            return this.alternateBackends.get(index).build();</span>
+    }
+
+    public RouteTargetReference buildFirstAlternateBackend(){
+<span class="nc" id="L89">            return this.alternateBackends.get(0).build();</span>
+    }
+
+    public RouteTargetReference buildLastAlternateBackend(){
+<span class="nc" id="L93">            return this.alternateBackends.get(alternateBackends.size() - 1).build();</span>
+    }
+
+    public RouteTargetReference buildMatchingAlternateBackend(io.fabric8.kubernetes.api.builder.Predicate&lt;RouteTargetReferenceBuilder&gt; predicate){
+<span class="nc bnc" id="L97" title="All 4 branches missed.">            for (RouteTargetReferenceBuilder item: alternateBackends) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withAlternateBackends(List&lt;RouteTargetReference&gt; alternateBackends){
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">            if (this.alternateBackends != null) { _visitables.removeAll(this.alternateBackends);}</span>
+<span class="pc bpc" id="L102" title="1 of 4 branches missed.">            if (alternateBackends != null) {this.alternateBackends = new ArrayList&lt;RouteTargetReferenceBuilder&gt;(); for (RouteTargetReference item : alternateBackends){this.addToAlternateBackends(item);}} else { this.alternateBackends = new ArrayList&lt;RouteTargetReferenceBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withAlternateBackends(RouteTargetReference... alternateBackends){
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            if (this.alternateBackends != null) {this.alternateBackends.clear();}</span>
+<span class="nc bnc" id="L107" title="All 4 branches missed.">            if (alternateBackends != null) {for (RouteTargetReference item :alternateBackends){ this.addToAlternateBackends(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAlternateBackends(){
+<span class="nc bnc" id="L111" title="All 4 branches missed.">            return alternateBackends != null &amp;&amp; !alternateBackends.isEmpty();</span>
+    }
+
+    public A addNewAlternateBackend(String kind,String name,Integer weight){
+<span class="nc" id="L115">            return (A)addToAlternateBackends(new RouteTargetReference(kind, name, weight));</span>
+    }
+
+    public RouteSpecFluent.AlternateBackendsNested&lt;A&gt; addNewAlternateBackend(){
+<span class="nc" id="L119">            return new AlternateBackendsNestedImpl();</span>
+    }
+
+    public RouteSpecFluent.AlternateBackendsNested&lt;A&gt; addNewAlternateBackendLike(RouteTargetReference item){
+<span class="nc" id="L123">            return new AlternateBackendsNestedImpl(-1, item);</span>
+    }
+
+    public RouteSpecFluent.AlternateBackendsNested&lt;A&gt; setNewAlternateBackendLike(int index,RouteTargetReference item){
+<span class="nc" id="L127">            return new AlternateBackendsNestedImpl(index, item);</span>
+    }
+
+    public RouteSpecFluent.AlternateBackendsNested&lt;A&gt; editAlternateBackend(int index){
+<span class="nc bnc" id="L131" title="All 2 branches missed.">            if (alternateBackends.size() &lt;= index) throw new RuntimeException(&quot;Can't edit alternateBackends. Index exceeds size.&quot;);</span>
+<span class="nc" id="L132">            return setNewAlternateBackendLike(index, buildAlternateBackend(index));</span>
+    }
+
+    public RouteSpecFluent.AlternateBackendsNested&lt;A&gt; editFirstAlternateBackend(){
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            if (alternateBackends.size() == 0) throw new RuntimeException(&quot;Can't edit first alternateBackends. The list is empty.&quot;);</span>
+<span class="nc" id="L137">            return setNewAlternateBackendLike(0, buildAlternateBackend(0));</span>
+    }
+
+    public RouteSpecFluent.AlternateBackendsNested&lt;A&gt; editLastAlternateBackend(){
+<span class="nc" id="L141">            int index = alternateBackends.size() - 1;</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last alternateBackends. The list is empty.&quot;);</span>
+<span class="nc" id="L143">            return setNewAlternateBackendLike(index, buildAlternateBackend(index));</span>
+    }
+
+    public RouteSpecFluent.AlternateBackendsNested&lt;A&gt; editMatchingAlternateBackend(io.fabric8.kubernetes.api.builder.Predicate&lt;RouteTargetReferenceBuilder&gt; predicate){
+<span class="nc" id="L147">            int index = -1;</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            for (int i=0;i&lt;alternateBackends.size();i++) { </span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (predicate.apply(alternateBackends.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching alternateBackends. No match found.&quot;);</span>
+<span class="nc" id="L152">            return setNewAlternateBackendLike(index, buildAlternateBackend(index));</span>
+    }
+
+    public String getHost(){
+<span class="fc" id="L156">            return this.host;</span>
+    }
+
+    public A withHost(String host){
+<span class="fc" id="L160">            this.host=host; return (A) this;</span>
+    }
+
+    public Boolean hasHost(){
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            return this.host != null;</span>
+    }
+
+    public String getPath(){
+<span class="fc" id="L168">            return this.path;</span>
+    }
+
+    public A withPath(String path){
+<span class="fc" id="L172">            this.path=path; return (A) this;</span>
+    }
+
+    public Boolean hasPath(){
+<span class="nc bnc" id="L176" title="All 2 branches missed.">            return this.path != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPort instead.
+ * @return The buildable object.
+ */
+@Deprecated public RoutePort getPort(){
+<span class="pc bpc" id="L185" title="1 of 2 branches missed.">            return this.port!=null?this.port.build():null;</span>
+    }
+
+    public RoutePort buildPort(){
+<span class="nc bnc" id="L189" title="All 2 branches missed.">            return this.port!=null?this.port.build():null;</span>
+    }
+
+    public A withPort(RoutePort port){
+<span class="fc" id="L193">            _visitables.remove(this.port);</span>
+<span class="fc bfc" id="L194" title="All 2 branches covered.">            if (port!=null){ this.port= new RoutePortBuilder(port); _visitables.add(this.port);} return (A) this;</span>
+    }
+
+    public Boolean hasPort(){
+<span class="nc bnc" id="L198" title="All 2 branches missed.">            return this.port != null;</span>
+    }
+
+    public RouteSpecFluent.PortNested&lt;A&gt; withNewPort(){
+<span class="fc" id="L202">            return new PortNestedImpl();</span>
+    }
+
+    public RouteSpecFluent.PortNested&lt;A&gt; withNewPortLike(RoutePort item){
+<span class="nc" id="L206">            return new PortNestedImpl(item);</span>
+    }
+
+    public RouteSpecFluent.PortNested&lt;A&gt; editPort(){
+<span class="nc" id="L210">            return withNewPortLike(getPort());</span>
+    }
+
+    public RouteSpecFluent.PortNested&lt;A&gt; editOrNewPort(){
+<span class="nc bnc" id="L214" title="All 2 branches missed.">            return withNewPortLike(getPort() != null ? getPort(): new RoutePortBuilder().build());</span>
+    }
+
+    public RouteSpecFluent.PortNested&lt;A&gt; editOrNewPortLike(RoutePort item){
+<span class="nc bnc" id="L218" title="All 2 branches missed.">            return withNewPortLike(getPort() != null ? getPort(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTls instead.
+ * @return The buildable object.
+ */
+@Deprecated public TLSConfig getTls(){
+<span class="pc bpc" id="L227" title="1 of 2 branches missed.">            return this.tls!=null?this.tls.build():null;</span>
+    }
+
+    public TLSConfig buildTls(){
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            return this.tls!=null?this.tls.build():null;</span>
+    }
+
+    public A withTls(TLSConfig tls){
+<span class="fc" id="L235">            _visitables.remove(this.tls);</span>
+<span class="fc bfc" id="L236" title="All 2 branches covered.">            if (tls!=null){ this.tls= new TLSConfigBuilder(tls); _visitables.add(this.tls);} return (A) this;</span>
+    }
+
+    public Boolean hasTls(){
+<span class="nc bnc" id="L240" title="All 2 branches missed.">            return this.tls != null;</span>
+    }
+
+    public RouteSpecFluent.TlsNested&lt;A&gt; withNewTls(){
+<span class="fc" id="L244">            return new TlsNestedImpl();</span>
+    }
+
+    public RouteSpecFluent.TlsNested&lt;A&gt; withNewTlsLike(TLSConfig item){
+<span class="nc" id="L248">            return new TlsNestedImpl(item);</span>
+    }
+
+    public RouteSpecFluent.TlsNested&lt;A&gt; editTls(){
+<span class="nc" id="L252">            return withNewTlsLike(getTls());</span>
+    }
+
+    public RouteSpecFluent.TlsNested&lt;A&gt; editOrNewTls(){
+<span class="nc bnc" id="L256" title="All 2 branches missed.">            return withNewTlsLike(getTls() != null ? getTls(): new TLSConfigBuilder().build());</span>
+    }
+
+    public RouteSpecFluent.TlsNested&lt;A&gt; editOrNewTlsLike(TLSConfig item){
+<span class="nc bnc" id="L260" title="All 2 branches missed.">            return withNewTlsLike(getTls() != null ? getTls(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTo instead.
+ * @return The buildable object.
+ */
+@Deprecated public RouteTargetReference getTo(){
+<span class="pc bpc" id="L269" title="1 of 2 branches missed.">            return this.to!=null?this.to.build():null;</span>
+    }
+
+    public RouteTargetReference buildTo(){
+<span class="nc bnc" id="L273" title="All 2 branches missed.">            return this.to!=null?this.to.build():null;</span>
+    }
+
+    public A withTo(RouteTargetReference to){
+<span class="fc" id="L277">            _visitables.remove(this.to);</span>
+<span class="fc bfc" id="L278" title="All 2 branches covered.">            if (to!=null){ this.to= new RouteTargetReferenceBuilder(to); _visitables.add(this.to);} return (A) this;</span>
+    }
+
+    public Boolean hasTo(){
+<span class="nc bnc" id="L282" title="All 2 branches missed.">            return this.to != null;</span>
+    }
+
+    public A withNewTo(String kind,String name,Integer weight){
+<span class="nc" id="L286">            return (A)withTo(new RouteTargetReference(kind, name, weight));</span>
+    }
+
+    public RouteSpecFluent.ToNested&lt;A&gt; withNewTo(){
+<span class="fc" id="L290">            return new ToNestedImpl();</span>
+    }
+
+    public RouteSpecFluent.ToNested&lt;A&gt; withNewToLike(RouteTargetReference item){
+<span class="nc" id="L294">            return new ToNestedImpl(item);</span>
+    }
+
+    public RouteSpecFluent.ToNested&lt;A&gt; editTo(){
+<span class="nc" id="L298">            return withNewToLike(getTo());</span>
+    }
+
+    public RouteSpecFluent.ToNested&lt;A&gt; editOrNewTo(){
+<span class="nc bnc" id="L302" title="All 2 branches missed.">            return withNewToLike(getTo() != null ? getTo(): new RouteTargetReferenceBuilder().build());</span>
+    }
+
+    public RouteSpecFluent.ToNested&lt;A&gt; editOrNewToLike(RouteTargetReference item){
+<span class="nc bnc" id="L306" title="All 2 branches missed.">            return withNewToLike(getTo() != null ? getTo(): item);</span>
+    }
+
+    public String getWildcardPolicy(){
+<span class="fc" id="L310">            return this.wildcardPolicy;</span>
+    }
+
+    public A withWildcardPolicy(String wildcardPolicy){
+<span class="fc" id="L314">            this.wildcardPolicy=wildcardPolicy; return (A) this;</span>
+    }
+
+    public Boolean hasWildcardPolicy(){
+<span class="nc bnc" id="L318" title="All 2 branches missed.">            return this.wildcardPolicy != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L322" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L323" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L324" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L325">            RouteSpecFluentImpl that = (RouteSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L326" title="All 6 branches missed.">            if (alternateBackends != null ? !alternateBackends.equals(that.alternateBackends) :that.alternateBackends != null) return false;</span>
+<span class="nc bnc" id="L327" title="All 6 branches missed.">            if (host != null ? !host.equals(that.host) :that.host != null) return false;</span>
+<span class="nc bnc" id="L328" title="All 6 branches missed.">            if (path != null ? !path.equals(that.path) :that.path != null) return false;</span>
+<span class="nc bnc" id="L329" title="All 6 branches missed.">            if (port != null ? !port.equals(that.port) :that.port != null) return false;</span>
+<span class="nc bnc" id="L330" title="All 6 branches missed.">            if (tls != null ? !tls.equals(that.tls) :that.tls != null) return false;</span>
+<span class="nc bnc" id="L331" title="All 6 branches missed.">            if (to != null ? !to.equals(that.to) :that.to != null) return false;</span>
+<span class="nc bnc" id="L332" title="All 6 branches missed.">            if (wildcardPolicy != null ? !wildcardPolicy.equals(that.wildcardPolicy) :that.wildcardPolicy != null) return false;</span>
+<span class="nc" id="L333">            return true;</span>
+    }
+
+
+    public class AlternateBackendsNestedImpl&lt;N&gt; extends RouteTargetReferenceFluentImpl&lt;RouteSpecFluent.AlternateBackendsNested&lt;N&gt;&gt; implements RouteSpecFluent.AlternateBackendsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RouteTargetReferenceBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L342">            AlternateBackendsNestedImpl(int index,RouteTargetReference item){</span>
+<span class="nc" id="L343">                    this.index = index;</span>
+<span class="nc" id="L344">                    this.builder = new RouteTargetReferenceBuilder(this, item);</span>
+<span class="nc" id="L345">            }</span>
+<span class="nc" id="L346">            AlternateBackendsNestedImpl(){</span>
+<span class="nc" id="L347">                    this.index = -1;</span>
+<span class="nc" id="L348">                    this.builder = new RouteTargetReferenceBuilder(this);</span>
+<span class="nc" id="L349">            }</span>
+    
+    public N and(){
+<span class="nc" id="L352">            return (N) RouteSpecFluentImpl.this.setToAlternateBackends(index, builder.build());</span>
+    }
+    public N endAlternateBackend(){
+<span class="nc" id="L355">            return and();</span>
+    }
+
+}
+    public class PortNestedImpl&lt;N&gt; extends RoutePortFluentImpl&lt;RouteSpecFluent.PortNested&lt;N&gt;&gt; implements RouteSpecFluent.PortNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RoutePortBuilder builder;
+    
+<span class="nc" id="L363">            PortNestedImpl(RoutePort item){</span>
+<span class="nc" id="L364">                    this.builder = new RoutePortBuilder(this, item);</span>
+<span class="nc" id="L365">            }</span>
+<span class="fc" id="L366">            PortNestedImpl(){</span>
+<span class="fc" id="L367">                    this.builder = new RoutePortBuilder(this);</span>
+<span class="fc" id="L368">            }</span>
+    
+    public N and(){
+<span class="fc" id="L371">            return (N) RouteSpecFluentImpl.this.withPort(builder.build());</span>
+    }
+    public N endPort(){
+<span class="fc" id="L374">            return and();</span>
+    }
+
+}
+    public class TlsNestedImpl&lt;N&gt; extends TLSConfigFluentImpl&lt;RouteSpecFluent.TlsNested&lt;N&gt;&gt; implements RouteSpecFluent.TlsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TLSConfigBuilder builder;
+    
+<span class="nc" id="L382">            TlsNestedImpl(TLSConfig item){</span>
+<span class="nc" id="L383">                    this.builder = new TLSConfigBuilder(this, item);</span>
+<span class="nc" id="L384">            }</span>
+<span class="fc" id="L385">            TlsNestedImpl(){</span>
+<span class="fc" id="L386">                    this.builder = new TLSConfigBuilder(this);</span>
+<span class="fc" id="L387">            }</span>
+    
+    public N and(){
+<span class="fc" id="L390">            return (N) RouteSpecFluentImpl.this.withTls(builder.build());</span>
+    }
+    public N endTls(){
+<span class="fc" id="L393">            return and();</span>
+    }
+
+}
+    public class ToNestedImpl&lt;N&gt; extends RouteTargetReferenceFluentImpl&lt;RouteSpecFluent.ToNested&lt;N&gt;&gt; implements RouteSpecFluent.ToNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RouteTargetReferenceBuilder builder;
+    
+<span class="nc" id="L401">            ToNestedImpl(RouteTargetReference item){</span>
+<span class="nc" id="L402">                    this.builder = new RouteTargetReferenceBuilder(this, item);</span>
+<span class="nc" id="L403">            }</span>
+<span class="fc" id="L404">            ToNestedImpl(){</span>
+<span class="fc" id="L405">                    this.builder = new RouteTargetReferenceBuilder(this);</span>
+<span class="fc" id="L406">            }</span>
+    
+    public N and(){
+<span class="fc" id="L409">            return (N) RouteSpecFluentImpl.this.withTo(builder.build());</span>
+    }
+    public N endTo(){
+<span class="fc" id="L412">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

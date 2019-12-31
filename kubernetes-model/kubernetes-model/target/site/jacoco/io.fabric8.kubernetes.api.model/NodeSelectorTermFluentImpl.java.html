@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NodeSelectorTermFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">NodeSelectorTermFluentImpl.java</span></div><h1>NodeSelectorTermFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class NodeSelectorTermFluentImpl&lt;A extends NodeSelectorTermFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements NodeSelectorTermFluent&lt;A&gt;{
+
+    private List&lt;NodeSelectorRequirementBuilder&gt; matchExpressions;
+    private List&lt;NodeSelectorRequirementBuilder&gt; matchFields;
+
+<span class="nc" id="L21">    public NodeSelectorTermFluentImpl(){</span>
+<span class="nc" id="L22">    }</span>
+<span class="nc" id="L23">    public NodeSelectorTermFluentImpl(NodeSelectorTerm instance){</span>
+<span class="nc" id="L24">            this.withMatchExpressions(instance.getMatchExpressions()); </span>
+<span class="nc" id="L25">            this.withMatchFields(instance.getMatchFields()); </span>
+<span class="nc" id="L26">    }</span>
+
+    public A addToMatchExpressions(int index,NodeSelectorRequirement item){
+<span class="nc bnc" id="L29" title="All 2 branches missed.">            if (this.matchExpressions == null) {this.matchExpressions = new ArrayList&lt;NodeSelectorRequirementBuilder&gt;();}</span>
+<span class="nc bnc" id="L30" title="All 4 branches missed.">            NodeSelectorRequirementBuilder builder = new NodeSelectorRequirementBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.matchExpressions.add(index &gt;= 0 ? index : matchExpressions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToMatchExpressions(int index,NodeSelectorRequirement item){
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            if (this.matchExpressions == null) {this.matchExpressions = new ArrayList&lt;NodeSelectorRequirementBuilder&gt;();}</span>
+<span class="nc" id="L35">            NodeSelectorRequirementBuilder builder = new NodeSelectorRequirementBuilder(item);</span>
+<span class="nc bnc" id="L36" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L37" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= matchExpressions.size()) { matchExpressions.add(builder); } else { matchExpressions.set(index, builder);}</span>
+<span class="nc" id="L38">             return (A)this;</span>
+    }
+
+    public A addToMatchExpressions(NodeSelectorRequirement... items){
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            if (this.matchExpressions == null) {this.matchExpressions = new ArrayList&lt;NodeSelectorRequirementBuilder&gt;();}</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            for (NodeSelectorRequirement item : items) {NodeSelectorRequirementBuilder builder = new NodeSelectorRequirementBuilder(item);_visitables.add(builder);this.matchExpressions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToMatchExpressions(Collection&lt;NodeSelectorRequirement&gt; items){
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            if (this.matchExpressions == null) {this.matchExpressions = new ArrayList&lt;NodeSelectorRequirementBuilder&gt;();}</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            for (NodeSelectorRequirement item : items) {NodeSelectorRequirementBuilder builder = new NodeSelectorRequirementBuilder(item);_visitables.add(builder);this.matchExpressions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromMatchExpressions(NodeSelectorRequirement... items){
+<span class="nc bnc" id="L52" title="All 4 branches missed.">            for (NodeSelectorRequirement item : items) {NodeSelectorRequirementBuilder builder = new NodeSelectorRequirementBuilder(item);_visitables.remove(builder);if (this.matchExpressions != null) {this.matchExpressions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromMatchExpressions(Collection&lt;NodeSelectorRequirement&gt; items){
+<span class="nc bnc" id="L56" title="All 4 branches missed.">            for (NodeSelectorRequirement item : items) {NodeSelectorRequirementBuilder builder = new NodeSelectorRequirementBuilder(item);_visitables.remove(builder);if (this.matchExpressions != null) {this.matchExpressions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMatchExpressions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;NodeSelectorRequirement&gt; getMatchExpressions(){
+<span class="nc" id="L65">            return build(matchExpressions);</span>
+    }
+
+    public List&lt;NodeSelectorRequirement&gt; buildMatchExpressions(){
+<span class="nc" id="L69">            return build(matchExpressions);</span>
+    }
+
+    public NodeSelectorRequirement buildMatchExpression(int index){
+<span class="nc" id="L73">            return this.matchExpressions.get(index).build();</span>
+    }
+
+    public NodeSelectorRequirement buildFirstMatchExpression(){
+<span class="nc" id="L77">            return this.matchExpressions.get(0).build();</span>
+    }
+
+    public NodeSelectorRequirement buildLastMatchExpression(){
+<span class="nc" id="L81">            return this.matchExpressions.get(matchExpressions.size() - 1).build();</span>
+    }
+
+    public NodeSelectorRequirement buildMatchingMatchExpression(io.fabric8.kubernetes.api.builder.Predicate&lt;NodeSelectorRequirementBuilder&gt; predicate){
+<span class="nc bnc" id="L85" title="All 4 branches missed.">            for (NodeSelectorRequirementBuilder item: matchExpressions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withMatchExpressions(List&lt;NodeSelectorRequirement&gt; matchExpressions){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (this.matchExpressions != null) { _visitables.removeAll(this.matchExpressions);}</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">            if (matchExpressions != null) {this.matchExpressions = new ArrayList&lt;NodeSelectorRequirementBuilder&gt;(); for (NodeSelectorRequirement item : matchExpressions){this.addToMatchExpressions(item);}} else { this.matchExpressions = new ArrayList&lt;NodeSelectorRequirementBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withMatchExpressions(NodeSelectorRequirement... matchExpressions){
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            if (this.matchExpressions != null) {this.matchExpressions.clear();}</span>
+<span class="nc bnc" id="L95" title="All 4 branches missed.">            if (matchExpressions != null) {for (NodeSelectorRequirement item :matchExpressions){ this.addToMatchExpressions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasMatchExpressions(){
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            return matchExpressions != null &amp;&amp; !matchExpressions.isEmpty();</span>
+    }
+
+    public NodeSelectorTermFluent.MatchExpressionsNested&lt;A&gt; addNewMatchExpression(){
+<span class="nc" id="L103">            return new MatchExpressionsNestedImpl();</span>
+    }
+
+    public NodeSelectorTermFluent.MatchExpressionsNested&lt;A&gt; addNewMatchExpressionLike(NodeSelectorRequirement item){
+<span class="nc" id="L107">            return new MatchExpressionsNestedImpl(-1, item);</span>
+    }
+
+    public NodeSelectorTermFluent.MatchExpressionsNested&lt;A&gt; setNewMatchExpressionLike(int index,NodeSelectorRequirement item){
+<span class="nc" id="L111">            return new MatchExpressionsNestedImpl(index, item);</span>
+    }
+
+    public NodeSelectorTermFluent.MatchExpressionsNested&lt;A&gt; editMatchExpression(int index){
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            if (matchExpressions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit matchExpressions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L116">            return setNewMatchExpressionLike(index, buildMatchExpression(index));</span>
+    }
+
+    public NodeSelectorTermFluent.MatchExpressionsNested&lt;A&gt; editFirstMatchExpression(){
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            if (matchExpressions.size() == 0) throw new RuntimeException(&quot;Can't edit first matchExpressions. The list is empty.&quot;);</span>
+<span class="nc" id="L121">            return setNewMatchExpressionLike(0, buildMatchExpression(0));</span>
+    }
+
+    public NodeSelectorTermFluent.MatchExpressionsNested&lt;A&gt; editLastMatchExpression(){
+<span class="nc" id="L125">            int index = matchExpressions.size() - 1;</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last matchExpressions. The list is empty.&quot;);</span>
+<span class="nc" id="L127">            return setNewMatchExpressionLike(index, buildMatchExpression(index));</span>
+    }
+
+    public NodeSelectorTermFluent.MatchExpressionsNested&lt;A&gt; editMatchingMatchExpression(io.fabric8.kubernetes.api.builder.Predicate&lt;NodeSelectorRequirementBuilder&gt; predicate){
+<span class="nc" id="L131">            int index = -1;</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            for (int i=0;i&lt;matchExpressions.size();i++) { </span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (predicate.apply(matchExpressions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching matchExpressions. No match found.&quot;);</span>
+<span class="nc" id="L136">            return setNewMatchExpressionLike(index, buildMatchExpression(index));</span>
+    }
+
+    public A addToMatchFields(int index,NodeSelectorRequirement item){
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            if (this.matchFields == null) {this.matchFields = new ArrayList&lt;NodeSelectorRequirementBuilder&gt;();}</span>
+<span class="nc bnc" id="L141" title="All 4 branches missed.">            NodeSelectorRequirementBuilder builder = new NodeSelectorRequirementBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.matchFields.add(index &gt;= 0 ? index : matchFields.size(), builder); return (A)this;</span>
+    }
+
+    public A setToMatchFields(int index,NodeSelectorRequirement item){
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (this.matchFields == null) {this.matchFields = new ArrayList&lt;NodeSelectorRequirementBuilder&gt;();}</span>
+<span class="nc" id="L146">            NodeSelectorRequirementBuilder builder = new NodeSelectorRequirementBuilder(item);</span>
+<span class="nc bnc" id="L147" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L148" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= matchFields.size()) { matchFields.add(builder); } else { matchFields.set(index, builder);}</span>
+<span class="nc" id="L149">             return (A)this;</span>
+    }
+
+    public A addToMatchFields(NodeSelectorRequirement... items){
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            if (this.matchFields == null) {this.matchFields = new ArrayList&lt;NodeSelectorRequirementBuilder&gt;();}</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            for (NodeSelectorRequirement item : items) {NodeSelectorRequirementBuilder builder = new NodeSelectorRequirementBuilder(item);_visitables.add(builder);this.matchFields.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToMatchFields(Collection&lt;NodeSelectorRequirement&gt; items){
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            if (this.matchFields == null) {this.matchFields = new ArrayList&lt;NodeSelectorRequirementBuilder&gt;();}</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            for (NodeSelectorRequirement item : items) {NodeSelectorRequirementBuilder builder = new NodeSelectorRequirementBuilder(item);_visitables.add(builder);this.matchFields.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromMatchFields(NodeSelectorRequirement... items){
+<span class="nc bnc" id="L163" title="All 4 branches missed.">            for (NodeSelectorRequirement item : items) {NodeSelectorRequirementBuilder builder = new NodeSelectorRequirementBuilder(item);_visitables.remove(builder);if (this.matchFields != null) {this.matchFields.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromMatchFields(Collection&lt;NodeSelectorRequirement&gt; items){
+<span class="nc bnc" id="L167" title="All 4 branches missed.">            for (NodeSelectorRequirement item : items) {NodeSelectorRequirementBuilder builder = new NodeSelectorRequirementBuilder(item);_visitables.remove(builder);if (this.matchFields != null) {this.matchFields.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMatchFields instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;NodeSelectorRequirement&gt; getMatchFields(){
+<span class="nc" id="L176">            return build(matchFields);</span>
+    }
+
+    public List&lt;NodeSelectorRequirement&gt; buildMatchFields(){
+<span class="nc" id="L180">            return build(matchFields);</span>
+    }
+
+    public NodeSelectorRequirement buildMatchField(int index){
+<span class="nc" id="L184">            return this.matchFields.get(index).build();</span>
+    }
+
+    public NodeSelectorRequirement buildFirstMatchField(){
+<span class="nc" id="L188">            return this.matchFields.get(0).build();</span>
+    }
+
+    public NodeSelectorRequirement buildLastMatchField(){
+<span class="nc" id="L192">            return this.matchFields.get(matchFields.size() - 1).build();</span>
+    }
+
+    public NodeSelectorRequirement buildMatchingMatchField(io.fabric8.kubernetes.api.builder.Predicate&lt;NodeSelectorRequirementBuilder&gt; predicate){
+<span class="nc bnc" id="L196" title="All 4 branches missed.">            for (NodeSelectorRequirementBuilder item: matchFields) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withMatchFields(List&lt;NodeSelectorRequirement&gt; matchFields){
+<span class="nc bnc" id="L200" title="All 2 branches missed.">            if (this.matchFields != null) { _visitables.removeAll(this.matchFields);}</span>
+<span class="nc bnc" id="L201" title="All 4 branches missed.">            if (matchFields != null) {this.matchFields = new ArrayList&lt;NodeSelectorRequirementBuilder&gt;(); for (NodeSelectorRequirement item : matchFields){this.addToMatchFields(item);}} else { this.matchFields = new ArrayList&lt;NodeSelectorRequirementBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withMatchFields(NodeSelectorRequirement... matchFields){
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            if (this.matchFields != null) {this.matchFields.clear();}</span>
+<span class="nc bnc" id="L206" title="All 4 branches missed.">            if (matchFields != null) {for (NodeSelectorRequirement item :matchFields){ this.addToMatchFields(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasMatchFields(){
+<span class="nc bnc" id="L210" title="All 4 branches missed.">            return matchFields != null &amp;&amp; !matchFields.isEmpty();</span>
+    }
+
+    public NodeSelectorTermFluent.MatchFieldsNested&lt;A&gt; addNewMatchField(){
+<span class="nc" id="L214">            return new MatchFieldsNestedImpl();</span>
+    }
+
+    public NodeSelectorTermFluent.MatchFieldsNested&lt;A&gt; addNewMatchFieldLike(NodeSelectorRequirement item){
+<span class="nc" id="L218">            return new MatchFieldsNestedImpl(-1, item);</span>
+    }
+
+    public NodeSelectorTermFluent.MatchFieldsNested&lt;A&gt; setNewMatchFieldLike(int index,NodeSelectorRequirement item){
+<span class="nc" id="L222">            return new MatchFieldsNestedImpl(index, item);</span>
+    }
+
+    public NodeSelectorTermFluent.MatchFieldsNested&lt;A&gt; editMatchField(int index){
+<span class="nc bnc" id="L226" title="All 2 branches missed.">            if (matchFields.size() &lt;= index) throw new RuntimeException(&quot;Can't edit matchFields. Index exceeds size.&quot;);</span>
+<span class="nc" id="L227">            return setNewMatchFieldLike(index, buildMatchField(index));</span>
+    }
+
+    public NodeSelectorTermFluent.MatchFieldsNested&lt;A&gt; editFirstMatchField(){
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            if (matchFields.size() == 0) throw new RuntimeException(&quot;Can't edit first matchFields. The list is empty.&quot;);</span>
+<span class="nc" id="L232">            return setNewMatchFieldLike(0, buildMatchField(0));</span>
+    }
+
+    public NodeSelectorTermFluent.MatchFieldsNested&lt;A&gt; editLastMatchField(){
+<span class="nc" id="L236">            int index = matchFields.size() - 1;</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last matchFields. The list is empty.&quot;);</span>
+<span class="nc" id="L238">            return setNewMatchFieldLike(index, buildMatchField(index));</span>
+    }
+
+    public NodeSelectorTermFluent.MatchFieldsNested&lt;A&gt; editMatchingMatchField(io.fabric8.kubernetes.api.builder.Predicate&lt;NodeSelectorRequirementBuilder&gt; predicate){
+<span class="nc" id="L242">            int index = -1;</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            for (int i=0;i&lt;matchFields.size();i++) { </span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">            if (predicate.apply(matchFields.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L246" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching matchFields. No match found.&quot;);</span>
+<span class="nc" id="L247">            return setNewMatchFieldLike(index, buildMatchField(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L251" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L252" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L253" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L254">            NodeSelectorTermFluentImpl that = (NodeSelectorTermFluentImpl) o;</span>
+<span class="nc bnc" id="L255" title="All 6 branches missed.">            if (matchExpressions != null ? !matchExpressions.equals(that.matchExpressions) :that.matchExpressions != null) return false;</span>
+<span class="nc bnc" id="L256" title="All 6 branches missed.">            if (matchFields != null ? !matchFields.equals(that.matchFields) :that.matchFields != null) return false;</span>
+<span class="nc" id="L257">            return true;</span>
+    }
+
+
+    public class MatchExpressionsNestedImpl&lt;N&gt; extends NodeSelectorRequirementFluentImpl&lt;NodeSelectorTermFluent.MatchExpressionsNested&lt;N&gt;&gt; implements NodeSelectorTermFluent.MatchExpressionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NodeSelectorRequirementBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L266">            MatchExpressionsNestedImpl(int index,NodeSelectorRequirement item){</span>
+<span class="nc" id="L267">                    this.index = index;</span>
+<span class="nc" id="L268">                    this.builder = new NodeSelectorRequirementBuilder(this, item);</span>
+<span class="nc" id="L269">            }</span>
+<span class="nc" id="L270">            MatchExpressionsNestedImpl(){</span>
+<span class="nc" id="L271">                    this.index = -1;</span>
+<span class="nc" id="L272">                    this.builder = new NodeSelectorRequirementBuilder(this);</span>
+<span class="nc" id="L273">            }</span>
+    
+    public N and(){
+<span class="nc" id="L276">            return (N) NodeSelectorTermFluentImpl.this.setToMatchExpressions(index, builder.build());</span>
+    }
+    public N endMatchExpression(){
+<span class="nc" id="L279">            return and();</span>
+    }
+
+}
+    public class MatchFieldsNestedImpl&lt;N&gt; extends NodeSelectorRequirementFluentImpl&lt;NodeSelectorTermFluent.MatchFieldsNested&lt;N&gt;&gt; implements NodeSelectorTermFluent.MatchFieldsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NodeSelectorRequirementBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L288">            MatchFieldsNestedImpl(int index,NodeSelectorRequirement item){</span>
+<span class="nc" id="L289">                    this.index = index;</span>
+<span class="nc" id="L290">                    this.builder = new NodeSelectorRequirementBuilder(this, item);</span>
+<span class="nc" id="L291">            }</span>
+<span class="nc" id="L292">            MatchFieldsNestedImpl(){</span>
+<span class="nc" id="L293">                    this.index = -1;</span>
+<span class="nc" id="L294">                    this.builder = new NodeSelectorRequirementBuilder(this);</span>
+<span class="nc" id="L295">            }</span>
+    
+    public N and(){
+<span class="nc" id="L298">            return (N) NodeSelectorTermFluentImpl.this.setToMatchFields(index, builder.build());</span>
+    }
+    public N endMatchField(){
+<span class="nc" id="L301">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

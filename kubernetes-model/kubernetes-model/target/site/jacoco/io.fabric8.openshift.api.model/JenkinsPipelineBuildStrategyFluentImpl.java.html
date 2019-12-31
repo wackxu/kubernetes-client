@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JenkinsPipelineBuildStrategyFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">JenkinsPipelineBuildStrategyFluentImpl.java</span></div><h1>JenkinsPipelineBuildStrategyFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.model.EnvVarBuilder;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import io.fabric8.kubernetes.api.model.EnvVar;
+import java.util.Collection;
+import io.fabric8.kubernetes.api.model.EnvVarFluentImpl;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class JenkinsPipelineBuildStrategyFluentImpl&lt;A extends JenkinsPipelineBuildStrategyFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements JenkinsPipelineBuildStrategyFluent&lt;A&gt;{
+
+    private List&lt;EnvVarBuilder&gt; env;
+    private String jenkinsfile;
+    private String jenkinsfilePath;
+
+<span class="nc" id="L26">    public JenkinsPipelineBuildStrategyFluentImpl(){</span>
+<span class="nc" id="L27">    }</span>
+<span class="nc" id="L28">    public JenkinsPipelineBuildStrategyFluentImpl(JenkinsPipelineBuildStrategy instance){</span>
+<span class="nc" id="L29">            this.withEnv(instance.getEnv()); </span>
+<span class="nc" id="L30">            this.withJenkinsfile(instance.getJenkinsfile()); </span>
+<span class="nc" id="L31">            this.withJenkinsfilePath(instance.getJenkinsfilePath()); </span>
+<span class="nc" id="L32">    }</span>
+
+    public A addToEnv(int index,EnvVar item){
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L36" title="All 4 branches missed.">            EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.env.add(index &gt;= 0 ? index : env.size(), builder); return (A)this;</span>
+    }
+
+    public A setToEnv(int index,EnvVar item){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc" id="L41">            EnvVarBuilder builder = new EnvVarBuilder(item);</span>
+<span class="nc bnc" id="L42" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L43" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= env.size()) { env.add(builder); } else { env.set(index, builder);}</span>
+<span class="nc" id="L44">             return (A)this;</span>
+    }
+
+    public A addToEnv(EnvVar... items){
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(builder);this.env.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToEnv(Collection&lt;EnvVar&gt; items){
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(builder);this.env.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromEnv(EnvVar... items){
+<span class="nc bnc" id="L58" title="All 4 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.remove(builder);if (this.env != null) {this.env.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromEnv(Collection&lt;EnvVar&gt; items){
+<span class="nc bnc" id="L62" title="All 4 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.remove(builder);if (this.env != null) {this.env.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildEnv instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;EnvVar&gt; getEnv(){
+<span class="nc" id="L71">            return build(env);</span>
+    }
+
+    public List&lt;EnvVar&gt; buildEnv(){
+<span class="nc" id="L75">            return build(env);</span>
+    }
+
+    public EnvVar buildEnv(int index){
+<span class="nc" id="L79">            return this.env.get(index).build();</span>
+    }
+
+    public EnvVar buildFirstEnv(){
+<span class="nc" id="L83">            return this.env.get(0).build();</span>
+    }
+
+    public EnvVar buildLastEnv(){
+<span class="nc" id="L87">            return this.env.get(env.size() - 1).build();</span>
+    }
+
+    public EnvVar buildMatchingEnv(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvVarBuilder&gt; predicate){
+<span class="nc bnc" id="L91" title="All 4 branches missed.">            for (EnvVarBuilder item: env) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withEnv(List&lt;EnvVar&gt; env){
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (this.env != null) { _visitables.removeAll(this.env);}</span>
+<span class="nc bnc" id="L96" title="All 4 branches missed.">            if (env != null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;(); for (EnvVar item : env){this.addToEnv(item);}} else { this.env = new ArrayList&lt;EnvVarBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withEnv(EnvVar... env){
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            if (this.env != null) {this.env.clear();}</span>
+<span class="nc bnc" id="L101" title="All 4 branches missed.">            if (env != null) {for (EnvVar item :env){ this.addToEnv(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasEnv(){
+<span class="nc bnc" id="L105" title="All 4 branches missed.">            return env != null &amp;&amp; !env.isEmpty();</span>
+    }
+
+    public JenkinsPipelineBuildStrategyFluent.EnvNested&lt;A&gt; addNewEnv(){
+<span class="nc" id="L109">            return new EnvNestedImpl();</span>
+    }
+
+    public JenkinsPipelineBuildStrategyFluent.EnvNested&lt;A&gt; addNewEnvLike(EnvVar item){
+<span class="nc" id="L113">            return new EnvNestedImpl(-1, item);</span>
+    }
+
+    public JenkinsPipelineBuildStrategyFluent.EnvNested&lt;A&gt; setNewEnvLike(int index,EnvVar item){
+<span class="nc" id="L117">            return new EnvNestedImpl(index, item);</span>
+    }
+
+    public JenkinsPipelineBuildStrategyFluent.EnvNested&lt;A&gt; editEnv(int index){
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            if (env.size() &lt;= index) throw new RuntimeException(&quot;Can't edit env. Index exceeds size.&quot;);</span>
+<span class="nc" id="L122">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    public JenkinsPipelineBuildStrategyFluent.EnvNested&lt;A&gt; editFirstEnv(){
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            if (env.size() == 0) throw new RuntimeException(&quot;Can't edit first env. The list is empty.&quot;);</span>
+<span class="nc" id="L127">            return setNewEnvLike(0, buildEnv(0));</span>
+    }
+
+    public JenkinsPipelineBuildStrategyFluent.EnvNested&lt;A&gt; editLastEnv(){
+<span class="nc" id="L131">            int index = env.size() - 1;</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last env. The list is empty.&quot;);</span>
+<span class="nc" id="L133">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    public JenkinsPipelineBuildStrategyFluent.EnvNested&lt;A&gt; editMatchingEnv(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvVarBuilder&gt; predicate){
+<span class="nc" id="L137">            int index = -1;</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            for (int i=0;i&lt;env.size();i++) { </span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            if (predicate.apply(env.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching env. No match found.&quot;);</span>
+<span class="nc" id="L142">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    public String getJenkinsfile(){
+<span class="nc" id="L146">            return this.jenkinsfile;</span>
+    }
+
+    public A withJenkinsfile(String jenkinsfile){
+<span class="nc" id="L150">            this.jenkinsfile=jenkinsfile; return (A) this;</span>
+    }
+
+    public Boolean hasJenkinsfile(){
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            return this.jenkinsfile != null;</span>
+    }
+
+    public String getJenkinsfilePath(){
+<span class="nc" id="L158">            return this.jenkinsfilePath;</span>
+    }
+
+    public A withJenkinsfilePath(String jenkinsfilePath){
+<span class="nc" id="L162">            this.jenkinsfilePath=jenkinsfilePath; return (A) this;</span>
+    }
+
+    public Boolean hasJenkinsfilePath(){
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            return this.jenkinsfilePath != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L170" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L171" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L173">            JenkinsPipelineBuildStrategyFluentImpl that = (JenkinsPipelineBuildStrategyFluentImpl) o;</span>
+<span class="nc bnc" id="L174" title="All 6 branches missed.">            if (env != null ? !env.equals(that.env) :that.env != null) return false;</span>
+<span class="nc bnc" id="L175" title="All 6 branches missed.">            if (jenkinsfile != null ? !jenkinsfile.equals(that.jenkinsfile) :that.jenkinsfile != null) return false;</span>
+<span class="nc bnc" id="L176" title="All 6 branches missed.">            if (jenkinsfilePath != null ? !jenkinsfilePath.equals(that.jenkinsfilePath) :that.jenkinsfilePath != null) return false;</span>
+<span class="nc" id="L177">            return true;</span>
+    }
+
+
+    public class EnvNestedImpl&lt;N&gt; extends EnvVarFluentImpl&lt;JenkinsPipelineBuildStrategyFluent.EnvNested&lt;N&gt;&gt; implements JenkinsPipelineBuildStrategyFluent.EnvNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EnvVarBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L186">            EnvNestedImpl(int index,EnvVar item){</span>
+<span class="nc" id="L187">                    this.index = index;</span>
+<span class="nc" id="L188">                    this.builder = new EnvVarBuilder(this, item);</span>
+<span class="nc" id="L189">            }</span>
+<span class="nc" id="L190">            EnvNestedImpl(){</span>
+<span class="nc" id="L191">                    this.index = -1;</span>
+<span class="nc" id="L192">                    this.builder = new EnvVarBuilder(this);</span>
+<span class="nc" id="L193">            }</span>
+    
+    public N and(){
+<span class="nc" id="L196">            return (N) JenkinsPipelineBuildStrategyFluentImpl.this.setToEnv(index, builder.build());</span>
+    }
+    public N endEnv(){
+<span class="nc" id="L199">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

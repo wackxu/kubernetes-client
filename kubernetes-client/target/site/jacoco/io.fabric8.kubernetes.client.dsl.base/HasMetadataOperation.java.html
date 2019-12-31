@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HasMetadataOperation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.dsl.base</a> &gt; <span class="el_source">HasMetadataOperation.java</span></div><h1>HasMetadataOperation.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.fabric8.kubernetes.client.dsl.base;
+
+import io.fabric8.kubernetes.api.builder.Function;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.KubernetesResourceList;
+import io.fabric8.kubernetes.api.model.ReplicationController;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.KubernetesClientTimeoutException;
+import io.fabric8.kubernetes.client.Watch;
+import io.fabric8.kubernetes.client.dsl.Resource;
+import io.fabric8.kubernetes.client.internal.readiness.Readiness;
+import io.fabric8.kubernetes.client.internal.readiness.ReadinessWatcher;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import okhttp3.OkHttpClient;
+
+public class HasMetadataOperation&lt;T extends HasMetadata, L extends KubernetesResourceList, D extends Doneable&lt;T&gt;, R extends Resource&lt;T, D&gt;&gt;
+  extends BaseOperation&lt; T, L, D, R&gt; {
+
+  protected HasMetadataOperation(OkHttpClient client, Config config, String apiGroup, String apiVersion, String resourceT, String namespace, String name, Boolean cascading, T item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields) {
+<span class="nc" id="L40">    super(client, config, apiGroup, apiVersion, resourceT, namespace, name, cascading, item, resourceVersion, reloadingFromServer, gracePeriodSeconds, labels, labelsNot, labelsIn, labelsNotIn, fields);</span>
+<span class="nc" id="L41">  }</span>
+
+  public HasMetadataOperation(OkHttpClient client, Config config, String apiGroup, String apiVersion, String resourceT, String namespace, String name, Boolean cascading, T item, String resourceVersion, Boolean reloadingFromServer, Class&lt;T&gt; type, Class&lt;L&gt; listType, Class&lt;D&gt; doneableType) {
+<span class="nc" id="L44">    super(client, config, apiGroup, apiVersion, resourceT, namespace, name, cascading, item, resourceVersion, reloadingFromServer, type, listType, doneableType);</span>
+<span class="nc" id="L45">  }</span>
+
+  @Override
+  public D edit() throws KubernetesClientException {
+<span class="nc" id="L49">    final Function&lt;T, T&gt; visitor = new Function&lt;T, T&gt;() {</span>
+      @Override
+      public T apply(T resource) {
+        try {
+<span class="nc bnc" id="L53" title="All 4 branches missed.">          if (isCascading() &amp;&amp; !isReaping()) {</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            if (reaper != null) {</span>
+<span class="nc" id="L55">              setReaping(true);</span>
+<span class="nc" id="L56">              reaper.reap();</span>
+            }
+          }
+<span class="nc" id="L59">          return patch(resource);</span>
+<span class="nc" id="L60">        } catch (Exception e) {</span>
+<span class="nc" id="L61">          throw KubernetesClientException.launderThrowable(forOperationType(&quot;edit&quot;), e);</span>
+        }
+      }
+    };
+
+    try {
+<span class="nc" id="L67">      T item = getMandatory();</span>
+<span class="nc" id="L68">      return (D) getDoneableType().getDeclaredConstructor(getType(), Function.class).newInstance(item, visitor);</span>
+<span class="nc" id="L69">    } catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException | InstantiationException e) {</span>
+<span class="nc" id="L70">      throw KubernetesClientException.launderThrowable(forOperationType(&quot;edit&quot;), e);</span>
+    }
+  }
+
+  @Override
+  public T replace(T item) {
+<span class="nc" id="L76">    String fixedResourceVersion = getResourceVersion();</span>
+<span class="nc" id="L77">    Exception caught = null;</span>
+<span class="nc" id="L78">    int maxTries = 10;</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">    for (int i = 0; i &lt; maxTries; i++) {</span>
+      try {
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        if (isCascading()) {</span>
+<span class="nc bnc" id="L82" title="All 4 branches missed.">          if (reaper != null &amp;&amp; !isReaping()) {</span>
+<span class="nc" id="L83">            setReaping(true);</span>
+<span class="nc" id="L84">            reaper.reap();</span>
+          }
+        }
+
+        final String resourceVersion;
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        if (fixedResourceVersion != null) {</span>
+<span class="nc" id="L90">          resourceVersion = fixedResourceVersion;</span>
+        } else {
+<span class="nc" id="L92">          T got = get();</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">          if (got == null) {</span>
+<span class="nc" id="L94">            return null;</span>
+          }
+<span class="nc bnc" id="L96" title="All 2 branches missed.">          if (got.getMetadata() != null) {</span>
+<span class="nc" id="L97">            resourceVersion = got.getMetadata().getResourceVersion();</span>
+          } else {
+<span class="nc" id="L99">            resourceVersion = null;</span>
+          }
+        }
+
+<span class="nc" id="L103">        final Function&lt;T, T&gt; visitor = new Function&lt;T, T&gt;() {</span>
+          @Override
+          public T apply(T resource) {
+            try {
+<span class="nc" id="L107">              resource.getMetadata().setResourceVersion(resourceVersion);</span>
+<span class="nc" id="L108">              return handleReplace(resource);</span>
+<span class="nc" id="L109">            } catch (Exception e) {</span>
+<span class="nc" id="L110">              throw KubernetesClientException.launderThrowable(forOperationType(&quot;replace&quot;), e);</span>
+            }
+          }
+        };
+<span class="nc" id="L114">        D doneable = (D) getDoneableType().getDeclaredConstructor(getType(), Function.class).newInstance(item, visitor);</span>
+<span class="nc" id="L115">        return doneable.done();</span>
+<span class="nc" id="L116">      } catch (KubernetesClientException e) {</span>
+<span class="nc" id="L117">        caught = e;</span>
+        // Only retry if there's a conflict and using dynamic resource version - this is normally to do with resource version &amp; server updates.
+<span class="nc bnc" id="L119" title="All 4 branches missed.">        if (e.getCode() != 409 || fixedResourceVersion != null) {</span>
+<span class="nc" id="L120">          break;</span>
+        }
+<span class="nc bnc" id="L122" title="All 2 branches missed.">        if (i &lt; maxTries - 1) {</span>
+          try {
+<span class="nc" id="L124">            TimeUnit.SECONDS.sleep(1);</span>
+<span class="nc" id="L125">          } catch (InterruptedException e1) {</span>
+            // Ignore this... would only hide the proper exception
+            // ...but make sure to preserve the interrupted status
+<span class="nc" id="L128">            Thread.currentThread().interrupt();</span>
+<span class="nc" id="L129">          }</span>
+        }
+<span class="nc" id="L131">      } catch (Exception e) {</span>
+<span class="nc" id="L132">        caught = e;</span>
+<span class="nc" id="L133">      }</span>
+    }
+<span class="nc" id="L135">    throw KubernetesClientException.launderThrowable(forOperationType(&quot;replace&quot;), caught);</span>
+  }
+
+  public T patch(T item) {
+<span class="nc" id="L139">    Exception caught = null;</span>
+<span class="nc" id="L140">    int maxTries = 10;</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">    for (int i = 0; i &lt; maxTries; i++) {</span>
+      try {
+<span class="nc bnc" id="L143" title="All 2 branches missed.">        if (isCascading()) {</span>
+<span class="nc bnc" id="L144" title="All 4 branches missed.">          if (reaper != null &amp;&amp; !isReaping()) {</span>
+<span class="nc" id="L145">            setReaping(true);</span>
+<span class="nc" id="L146">            reaper.reap();</span>
+          }
+        }
+<span class="nc" id="L149">        final T got = get();</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">        if (got == null) {</span>
+<span class="nc" id="L151">          return null;</span>
+        }
+<span class="nc" id="L153">        final Function&lt;T, T&gt; visitor = new Function&lt;T, T&gt;() {</span>
+          @Override
+          public T apply(T resource) {
+            try {
+<span class="nc" id="L157">              return handlePatch(got, resource);</span>
+<span class="nc" id="L158">            } catch (Exception e) {</span>
+<span class="nc" id="L159">              throw KubernetesClientException.launderThrowable(forOperationType(&quot;patch&quot;), e);</span>
+            }
+          }
+        };
+<span class="nc" id="L163">        D doneable = (D) getDoneableType().getDeclaredConstructor(getType(), Function.class).newInstance(item, visitor);</span>
+<span class="nc" id="L164">        return doneable.done();</span>
+<span class="nc" id="L165">      } catch (KubernetesClientException e) {</span>
+<span class="nc" id="L166">        caught = e;</span>
+        // Only retry if there's a conflict - this is normally to do with resource version &amp; server updates.
+<span class="nc bnc" id="L168" title="All 2 branches missed.">        if (e.getCode() != 409) {</span>
+<span class="nc" id="L169">          break;</span>
+        }
+<span class="nc bnc" id="L171" title="All 2 branches missed.">        if (i &lt; maxTries - 1) {</span>
+          try {
+<span class="nc" id="L173">            TimeUnit.SECONDS.sleep(1);</span>
+<span class="nc" id="L174">          } catch (InterruptedException e1) {</span>
+            // Ignore this... would only hide the proper exception
+            // ...but make sure to preserve the interrupted status
+<span class="nc" id="L177">            Thread.currentThread().interrupt();</span>
+<span class="nc" id="L178">          }</span>
+        }
+<span class="nc" id="L180">      } catch (Exception e) {</span>
+<span class="nc" id="L181">        caught = e;</span>
+<span class="nc" id="L182">      }</span>
+    }
+<span class="nc" id="L184">    throw KubernetesClientException.launderThrowable(forOperationType(&quot;patch&quot;), caught);</span>
+  }
+
+  /**
+   * A wait method that combines watching and polling.
+   * The need for that is that in some cases a pure watcher approach consistently fails.
+   * @param i           The number of iterations to perform.
+   * @param started     Time in milliseconds where the watch started.
+   * @param interval    The amount of time in millis to wait on each iteration.
+   * @param amount      The maximum amount in millis of time since started to wait.
+   * @return            The {@link ReplicationController} if ready.
+   */
+  protected T periodicWatchUntilReady(int i, long started, long interval, long amount) {
+<span class="nc" id="L197">    T item = fromServer().get();</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">    if (Readiness.isReady(item)) {</span>
+<span class="nc" id="L199">      return item;</span>
+    }
+
+<span class="nc" id="L202">    ReadinessWatcher&lt;T&gt; watcher = new ReadinessWatcher&lt;&gt;(item);</span>
+<span class="nc" id="L203">    try (Watch watch = watch(item.getMetadata().getResourceVersion(), watcher)) {</span>
+      try {
+<span class="nc" id="L205">        return watcher.await(interval, TimeUnit.MILLISECONDS);</span>
+<span class="nc" id="L206">      } catch (KubernetesClientTimeoutException e) {</span>
+<span class="nc bnc" id="L207" title="All 2 branches missed.">        if (i &lt;= 0) {</span>
+<span class="nc" id="L208">          throw e;</span>
+        }
+      }
+
+<span class="nc" id="L212">      long remaining =  (started + amount) - System.currentTimeMillis();</span>
+<span class="nc" id="L213">      long next = Math.max(0, Math.min(remaining, interval));</span>
+<span class="nc" id="L214">      return periodicWatchUntilReady(i - 1, started, next, amount);</span>
+    }
+  }
+
+  @Override
+  public T waitUntilReady(long amount, TimeUnit timeUnit) throws InterruptedException {
+<span class="nc bnc" id="L220" title="All 2 branches missed.">    if (Readiness.isReadinessApplicable(getType())) {</span>
+<span class="nc" id="L221">      long started = System.currentTimeMillis();</span>
+<span class="nc" id="L222">      waitUntilExists(amount, timeUnit);</span>
+<span class="nc" id="L223">      long alreadySpent = System.currentTimeMillis() - started;</span>
+
+<span class="nc" id="L225">      long remaining = timeUnit.toMillis(amount) - alreadySpent;</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">      if (remaining &lt;= 0) {</span>
+<span class="nc" id="L227">        return periodicWatchUntilReady(0, System.currentTimeMillis(), 0, 0);</span>
+      }
+
+<span class="nc" id="L230">      return periodicWatchUntilReady(10, System.currentTimeMillis(), Math.max(remaining / 10, 1000L), remaining);</span>
+    }
+
+<span class="nc" id="L233">    return super.waitUntilReady(amount, timeUnit);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

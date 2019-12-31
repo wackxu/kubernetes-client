@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Adapters.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client</a> &gt; <span class="el_source">Adapters.java</span></div><h1>Adapters.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.fabric8.kubernetes.client;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.ServiceLoader;
+import java.util.Set;
+
+import okhttp3.OkHttpClient;
+
+public final class Adapters {
+
+<span class="fc" id="L35">  private static final Logger LOGGER = LoggerFactory.getLogger(Adapters.class);</span>
+
+<span class="fc" id="L37">  private static final Set&lt;ClassLoader&gt; CLASS_LOADERS = new HashSet&lt;&gt;();</span>
+<span class="fc" id="L38">  private static final Map&lt;Class, ExtensionAdapter&gt; EXTENSION_ADAPTER_MAP = new HashMap&lt;&gt;();</span>
+
+<span class="fc" id="L40">  private static final ExtensionAdapter&lt;OkHttpClient&gt; OK_HTTP_CLIENT_EXTENSION_ADAPTER = new ExtensionAdapter&lt;OkHttpClient&gt;() {</span>
+
+    @Override
+    public Class&lt;OkHttpClient&gt; getExtensionType() {
+<span class="fc" id="L44">      return OkHttpClient.class;</span>
+    }
+
+    @Override
+    public Boolean isAdaptable(Client client) {
+<span class="fc" id="L49">      return client instanceof HttpClientAware;</span>
+    }
+
+    @Override
+    public OkHttpClient adapt(Client client) {
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">      if (client instanceof HttpClientAware) {</span>
+<span class="fc" id="L55">        return ((HttpClientAware)client).getHttpClient().newBuilder().build();</span>
+      }
+<span class="nc" id="L57">      throw new IllegalArgumentException(&quot;This adapter only supports instances of HttpClientAware.&quot;);</span>
+    }
+  };
+
+  static {
+    //Register adapters
+<span class="fc" id="L63">    discoverServices(Adapters.class.getClassLoader());</span>
+<span class="fc" id="L64">    register(OK_HTTP_CLIENT_EXTENSION_ADAPTER);</span>
+<span class="fc" id="L65">  }</span>
+
+  private Adapters() {
+    //Utility
+  }
+
+  public static &lt;C&gt; void register(ExtensionAdapter&lt;C&gt; adapter) {
+<span class="fc" id="L72">    EXTENSION_ADAPTER_MAP.put(adapter.getExtensionType(), adapter);</span>
+<span class="fc" id="L73">  }</span>
+
+  public static &lt;C&gt; void unregister(ExtensionAdapter&lt;C&gt; adapter) {
+<span class="nc" id="L76">    EXTENSION_ADAPTER_MAP.remove(adapter.getExtensionType());</span>
+<span class="nc" id="L77">  }</span>
+
+  public static &lt;C&gt; ExtensionAdapter&lt;C&gt; get(Class&lt;C&gt; type) {
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">    if (EXTENSION_ADAPTER_MAP.containsKey(type)) {</span>
+<span class="fc" id="L81">      return EXTENSION_ADAPTER_MAP.get(type);</span>
+    } else {
+
+      try {
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        for (ExtensionAdapter adapter : ServiceLoader.load(ExtensionAdapter.class, ExtensionAdapter.class.getClassLoader())) {</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">          if (adapter.getExtensionType().equals(type)) {</span>
+<span class="nc" id="L87">            return adapter;</span>
+          }
+<span class="nc" id="L89">        }</span>
+<span class="nc" id="L90">      } catch (Throwable t) {</span>
+<span class="nc" id="L91">        LOGGER.warn(&quot;Can't read ExtensionAdapter using the ExtensionAdapter class loader. Falling back to type class loader&quot;);</span>
+<span class="nc" id="L92">      }</span>
+
+      try {
+<span class="nc bnc" id="L95" title="All 2 branches missed.">        for (ExtensionAdapter adapter : ServiceLoader.load(ExtensionAdapter.class, type.getClassLoader())) {</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">          if (adapter.getExtensionType().equals(type)) {</span>
+<span class="nc" id="L97">            return adapter;</span>
+          }
+<span class="nc" id="L99">        }</span>
+<span class="nc" id="L100">      } catch (Throwable t) {</span>
+<span class="nc" id="L101">        LOGGER.warn(&quot;Can't read ExtensionAdapter using type class loader. Falling back to Thread context class loader&quot;);</span>
+<span class="nc" id="L102">      }</span>
+
+      try {
+<span class="nc bnc" id="L105" title="All 2 branches missed.">        for (ExtensionAdapter adapter : ServiceLoader.load(ExtensionAdapter.class, Thread.currentThread().getContextClassLoader())) {</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">          if (adapter.getExtensionType().equals(type)) {</span>
+<span class="nc" id="L107">            return adapter;</span>
+          }
+<span class="nc" id="L109">        }</span>
+<span class="nc" id="L110">      } catch (Throwable t) {</span>
+<span class="nc" id="L111">        LOGGER.error(&quot;Can't read ExtensionAdapter using type Thread context class loader.&quot;);</span>
+<span class="nc" id="L112">      }</span>
+<span class="nc" id="L113">      return null;</span>
+    }
+  }
+
+  public static &lt;C&gt; Collection&lt;ExtensionAdapter&lt;? extends C&gt;&gt; list(Class&lt;C&gt; type) {
+<span class="nc" id="L118">    List&lt;ExtensionAdapter&lt;? extends C&gt;&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">    for (ExtensionAdapter candidate : EXTENSION_ADAPTER_MAP.values()) {</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">        if (type.isAssignableFrom(candidate.getExtensionType())) {</span>
+<span class="nc" id="L121">            result.add(candidate);</span>
+        }
+<span class="nc" id="L123">    }</span>
+<span class="nc" id="L124">    return result;</span>
+  }
+
+  private static void discoverServices(ClassLoader classLoader) {
+<span class="pc bpc" id="L128" title="2 of 4 branches missed.">    if (classLoader != null &amp;&amp; CLASS_LOADERS.add(classLoader)) {</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">      for (ExtensionAdapter adapter : ServiceLoader.load(ExtensionAdapter.class, classLoader)) {</span>
+<span class="fc" id="L130">        register(adapter);</span>
+<span class="fc" id="L131">      }</span>
+    }
+<span class="fc" id="L133">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

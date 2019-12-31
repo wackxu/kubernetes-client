@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EventFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">EventFluentImpl.java</span></div><h1>EventFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Boolean;
+import java.lang.Integer;
+import javax.validation.Valid;
+import java.lang.Object;
+
+public class EventFluentImpl&lt;A extends EventFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements EventFluent&lt;A&gt;{
+
+    private String action;
+    private String apiVersion;
+    private Integer count;
+    private MicroTimeBuilder eventTime;
+    private String firstTimestamp;
+    private ObjectReferenceBuilder involvedObject;
+    private String kind;
+    private String lastTimestamp;
+    private String message;
+    private ObjectMetaBuilder metadata;
+    private String reason;
+    private ObjectReferenceBuilder related;
+    private String reportingComponent;
+    private String reportingInstance;
+    private EventSeriesBuilder series;
+    private EventSourceBuilder source;
+    private String type;
+
+<span class="nc" id="L35">    public EventFluentImpl(){</span>
+<span class="nc" id="L36">    }</span>
+<span class="nc" id="L37">    public EventFluentImpl(Event instance){</span>
+<span class="nc" id="L38">            this.withAction(instance.getAction()); </span>
+<span class="nc" id="L39">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L40">            this.withCount(instance.getCount()); </span>
+<span class="nc" id="L41">            this.withEventTime(instance.getEventTime()); </span>
+<span class="nc" id="L42">            this.withFirstTimestamp(instance.getFirstTimestamp()); </span>
+<span class="nc" id="L43">            this.withInvolvedObject(instance.getInvolvedObject()); </span>
+<span class="nc" id="L44">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L45">            this.withLastTimestamp(instance.getLastTimestamp()); </span>
+<span class="nc" id="L46">            this.withMessage(instance.getMessage()); </span>
+<span class="nc" id="L47">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L48">            this.withReason(instance.getReason()); </span>
+<span class="nc" id="L49">            this.withRelated(instance.getRelated()); </span>
+<span class="nc" id="L50">            this.withReportingComponent(instance.getReportingComponent()); </span>
+<span class="nc" id="L51">            this.withReportingInstance(instance.getReportingInstance()); </span>
+<span class="nc" id="L52">            this.withSeries(instance.getSeries()); </span>
+<span class="nc" id="L53">            this.withSource(instance.getSource()); </span>
+<span class="nc" id="L54">            this.withType(instance.getType()); </span>
+<span class="nc" id="L55">    }</span>
+
+    public String getAction(){
+<span class="nc" id="L58">            return this.action;</span>
+    }
+
+    public A withAction(String action){
+<span class="nc" id="L62">            this.action=action; return (A) this;</span>
+    }
+
+    public Boolean hasAction(){
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            return this.action != null;</span>
+    }
+
+    public String getApiVersion(){
+<span class="nc" id="L70">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L74">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public Integer getCount(){
+<span class="nc" id="L82">            return this.count;</span>
+    }
+
+    public A withCount(Integer count){
+<span class="nc" id="L86">            this.count=count; return (A) this;</span>
+    }
+
+    public Boolean hasCount(){
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            return this.count != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildEventTime instead.
+ * @return The buildable object.
+ */
+@Deprecated public MicroTime getEventTime(){
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            return this.eventTime!=null?this.eventTime.build():null;</span>
+    }
+
+    public MicroTime buildEventTime(){
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            return this.eventTime!=null?this.eventTime.build():null;</span>
+    }
+
+    public A withEventTime(MicroTime eventTime){
+<span class="nc" id="L107">            _visitables.remove(this.eventTime);</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            if (eventTime!=null){ this.eventTime= new MicroTimeBuilder(eventTime); _visitables.add(this.eventTime);} return (A) this;</span>
+    }
+
+    public Boolean hasEventTime(){
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            return this.eventTime != null;</span>
+    }
+
+    public A withNewEventTime(String time){
+<span class="nc" id="L116">            return (A)withEventTime(new MicroTime(time));</span>
+    }
+
+    public EventFluent.EventTimeNested&lt;A&gt; withNewEventTime(){
+<span class="nc" id="L120">            return new EventTimeNestedImpl();</span>
+    }
+
+    public EventFluent.EventTimeNested&lt;A&gt; withNewEventTimeLike(MicroTime item){
+<span class="nc" id="L124">            return new EventTimeNestedImpl(item);</span>
+    }
+
+    public EventFluent.EventTimeNested&lt;A&gt; editEventTime(){
+<span class="nc" id="L128">            return withNewEventTimeLike(getEventTime());</span>
+    }
+
+    public EventFluent.EventTimeNested&lt;A&gt; editOrNewEventTime(){
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            return withNewEventTimeLike(getEventTime() != null ? getEventTime(): new MicroTimeBuilder().build());</span>
+    }
+
+    public EventFluent.EventTimeNested&lt;A&gt; editOrNewEventTimeLike(MicroTime item){
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            return withNewEventTimeLike(getEventTime() != null ? getEventTime(): item);</span>
+    }
+
+    public String getFirstTimestamp(){
+<span class="nc" id="L140">            return this.firstTimestamp;</span>
+    }
+
+    public A withFirstTimestamp(String firstTimestamp){
+<span class="nc" id="L144">            this.firstTimestamp=firstTimestamp; return (A) this;</span>
+    }
+
+    public Boolean hasFirstTimestamp(){
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            return this.firstTimestamp != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildInvolvedObject instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getInvolvedObject(){
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            return this.involvedObject!=null?this.involvedObject.build():null;</span>
+    }
+
+    public ObjectReference buildInvolvedObject(){
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            return this.involvedObject!=null?this.involvedObject.build():null;</span>
+    }
+
+    public A withInvolvedObject(ObjectReference involvedObject){
+<span class="nc" id="L165">            _visitables.remove(this.involvedObject);</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            if (involvedObject!=null){ this.involvedObject= new ObjectReferenceBuilder(involvedObject); _visitables.add(this.involvedObject);} return (A) this;</span>
+    }
+
+    public Boolean hasInvolvedObject(){
+<span class="nc bnc" id="L170" title="All 2 branches missed.">            return this.involvedObject != null;</span>
+    }
+
+    public EventFluent.InvolvedObjectNested&lt;A&gt; withNewInvolvedObject(){
+<span class="nc" id="L174">            return new InvolvedObjectNestedImpl();</span>
+    }
+
+    public EventFluent.InvolvedObjectNested&lt;A&gt; withNewInvolvedObjectLike(ObjectReference item){
+<span class="nc" id="L178">            return new InvolvedObjectNestedImpl(item);</span>
+    }
+
+    public EventFluent.InvolvedObjectNested&lt;A&gt; editInvolvedObject(){
+<span class="nc" id="L182">            return withNewInvolvedObjectLike(getInvolvedObject());</span>
+    }
+
+    public EventFluent.InvolvedObjectNested&lt;A&gt; editOrNewInvolvedObject(){
+<span class="nc bnc" id="L186" title="All 2 branches missed.">            return withNewInvolvedObjectLike(getInvolvedObject() != null ? getInvolvedObject(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public EventFluent.InvolvedObjectNested&lt;A&gt; editOrNewInvolvedObjectLike(ObjectReference item){
+<span class="nc bnc" id="L190" title="All 2 branches missed.">            return withNewInvolvedObjectLike(getInvolvedObject() != null ? getInvolvedObject(): item);</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L194">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L198">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L202" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    public String getLastTimestamp(){
+<span class="nc" id="L206">            return this.lastTimestamp;</span>
+    }
+
+    public A withLastTimestamp(String lastTimestamp){
+<span class="nc" id="L210">            this.lastTimestamp=lastTimestamp; return (A) this;</span>
+    }
+
+    public Boolean hasLastTimestamp(){
+<span class="nc bnc" id="L214" title="All 2 branches missed.">            return this.lastTimestamp != null;</span>
+    }
+
+    public String getMessage(){
+<span class="nc" id="L218">            return this.message;</span>
+    }
+
+    public A withMessage(String message){
+<span class="nc" id="L222">            this.message=message; return (A) this;</span>
+    }
+
+    public Boolean hasMessage(){
+<span class="nc bnc" id="L226" title="All 2 branches missed.">            return this.message != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L235" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L239" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L243">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L248" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public EventFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L252">            return new MetadataNestedImpl();</span>
+    }
+
+    public EventFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L256">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public EventFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L260">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public EventFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L264" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public EventFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L268" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    public String getReason(){
+<span class="nc" id="L272">            return this.reason;</span>
+    }
+
+    public A withReason(String reason){
+<span class="nc" id="L276">            this.reason=reason; return (A) this;</span>
+    }
+
+    public Boolean hasReason(){
+<span class="nc bnc" id="L280" title="All 2 branches missed.">            return this.reason != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildRelated instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getRelated(){
+<span class="nc bnc" id="L289" title="All 2 branches missed.">            return this.related!=null?this.related.build():null;</span>
+    }
+
+    public ObjectReference buildRelated(){
+<span class="nc bnc" id="L293" title="All 2 branches missed.">            return this.related!=null?this.related.build():null;</span>
+    }
+
+    public A withRelated(ObjectReference related){
+<span class="nc" id="L297">            _visitables.remove(this.related);</span>
+<span class="nc bnc" id="L298" title="All 2 branches missed.">            if (related!=null){ this.related= new ObjectReferenceBuilder(related); _visitables.add(this.related);} return (A) this;</span>
+    }
+
+    public Boolean hasRelated(){
+<span class="nc bnc" id="L302" title="All 2 branches missed.">            return this.related != null;</span>
+    }
+
+    public EventFluent.RelatedNested&lt;A&gt; withNewRelated(){
+<span class="nc" id="L306">            return new RelatedNestedImpl();</span>
+    }
+
+    public EventFluent.RelatedNested&lt;A&gt; withNewRelatedLike(ObjectReference item){
+<span class="nc" id="L310">            return new RelatedNestedImpl(item);</span>
+    }
+
+    public EventFluent.RelatedNested&lt;A&gt; editRelated(){
+<span class="nc" id="L314">            return withNewRelatedLike(getRelated());</span>
+    }
+
+    public EventFluent.RelatedNested&lt;A&gt; editOrNewRelated(){
+<span class="nc bnc" id="L318" title="All 2 branches missed.">            return withNewRelatedLike(getRelated() != null ? getRelated(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public EventFluent.RelatedNested&lt;A&gt; editOrNewRelatedLike(ObjectReference item){
+<span class="nc bnc" id="L322" title="All 2 branches missed.">            return withNewRelatedLike(getRelated() != null ? getRelated(): item);</span>
+    }
+
+    public String getReportingComponent(){
+<span class="nc" id="L326">            return this.reportingComponent;</span>
+    }
+
+    public A withReportingComponent(String reportingComponent){
+<span class="nc" id="L330">            this.reportingComponent=reportingComponent; return (A) this;</span>
+    }
+
+    public Boolean hasReportingComponent(){
+<span class="nc bnc" id="L334" title="All 2 branches missed.">            return this.reportingComponent != null;</span>
+    }
+
+    public String getReportingInstance(){
+<span class="nc" id="L338">            return this.reportingInstance;</span>
+    }
+
+    public A withReportingInstance(String reportingInstance){
+<span class="nc" id="L342">            this.reportingInstance=reportingInstance; return (A) this;</span>
+    }
+
+    public Boolean hasReportingInstance(){
+<span class="nc bnc" id="L346" title="All 2 branches missed.">            return this.reportingInstance != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSeries instead.
+ * @return The buildable object.
+ */
+@Deprecated public EventSeries getSeries(){
+<span class="nc bnc" id="L355" title="All 2 branches missed.">            return this.series!=null?this.series.build():null;</span>
+    }
+
+    public EventSeries buildSeries(){
+<span class="nc bnc" id="L359" title="All 2 branches missed.">            return this.series!=null?this.series.build():null;</span>
+    }
+
+    public A withSeries(EventSeries series){
+<span class="nc" id="L363">            _visitables.remove(this.series);</span>
+<span class="nc bnc" id="L364" title="All 2 branches missed.">            if (series!=null){ this.series= new EventSeriesBuilder(series); _visitables.add(this.series);} return (A) this;</span>
+    }
+
+    public Boolean hasSeries(){
+<span class="nc bnc" id="L368" title="All 2 branches missed.">            return this.series != null;</span>
+    }
+
+    public EventFluent.SeriesNested&lt;A&gt; withNewSeries(){
+<span class="nc" id="L372">            return new SeriesNestedImpl();</span>
+    }
+
+    public EventFluent.SeriesNested&lt;A&gt; withNewSeriesLike(EventSeries item){
+<span class="nc" id="L376">            return new SeriesNestedImpl(item);</span>
+    }
+
+    public EventFluent.SeriesNested&lt;A&gt; editSeries(){
+<span class="nc" id="L380">            return withNewSeriesLike(getSeries());</span>
+    }
+
+    public EventFluent.SeriesNested&lt;A&gt; editOrNewSeries(){
+<span class="nc bnc" id="L384" title="All 2 branches missed.">            return withNewSeriesLike(getSeries() != null ? getSeries(): new EventSeriesBuilder().build());</span>
+    }
+
+    public EventFluent.SeriesNested&lt;A&gt; editOrNewSeriesLike(EventSeries item){
+<span class="nc bnc" id="L388" title="All 2 branches missed.">            return withNewSeriesLike(getSeries() != null ? getSeries(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSource instead.
+ * @return The buildable object.
+ */
+@Deprecated public EventSource getSource(){
+<span class="nc bnc" id="L397" title="All 2 branches missed.">            return this.source!=null?this.source.build():null;</span>
+    }
+
+    public EventSource buildSource(){
+<span class="nc bnc" id="L401" title="All 2 branches missed.">            return this.source!=null?this.source.build():null;</span>
+    }
+
+    public A withSource(EventSource source){
+<span class="nc" id="L405">            _visitables.remove(this.source);</span>
+<span class="nc bnc" id="L406" title="All 2 branches missed.">            if (source!=null){ this.source= new EventSourceBuilder(source); _visitables.add(this.source);} return (A) this;</span>
+    }
+
+    public Boolean hasSource(){
+<span class="nc bnc" id="L410" title="All 2 branches missed.">            return this.source != null;</span>
+    }
+
+    public A withNewSource(String component,String host){
+<span class="nc" id="L414">            return (A)withSource(new EventSource(component, host));</span>
+    }
+
+    public EventFluent.SourceNested&lt;A&gt; withNewSource(){
+<span class="nc" id="L418">            return new SourceNestedImpl();</span>
+    }
+
+    public EventFluent.SourceNested&lt;A&gt; withNewSourceLike(EventSource item){
+<span class="nc" id="L422">            return new SourceNestedImpl(item);</span>
+    }
+
+    public EventFluent.SourceNested&lt;A&gt; editSource(){
+<span class="nc" id="L426">            return withNewSourceLike(getSource());</span>
+    }
+
+    public EventFluent.SourceNested&lt;A&gt; editOrNewSource(){
+<span class="nc bnc" id="L430" title="All 2 branches missed.">            return withNewSourceLike(getSource() != null ? getSource(): new EventSourceBuilder().build());</span>
+    }
+
+    public EventFluent.SourceNested&lt;A&gt; editOrNewSourceLike(EventSource item){
+<span class="nc bnc" id="L434" title="All 2 branches missed.">            return withNewSourceLike(getSource() != null ? getSource(): item);</span>
+    }
+
+    public String getType(){
+<span class="nc" id="L438">            return this.type;</span>
+    }
+
+    public A withType(String type){
+<span class="nc" id="L442">            this.type=type; return (A) this;</span>
+    }
+
+    public Boolean hasType(){
+<span class="nc bnc" id="L446" title="All 2 branches missed.">            return this.type != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L450" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L451" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L452" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L453">            EventFluentImpl that = (EventFluentImpl) o;</span>
+<span class="nc bnc" id="L454" title="All 6 branches missed.">            if (action != null ? !action.equals(that.action) :that.action != null) return false;</span>
+<span class="nc bnc" id="L455" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L456" title="All 6 branches missed.">            if (count != null ? !count.equals(that.count) :that.count != null) return false;</span>
+<span class="nc bnc" id="L457" title="All 6 branches missed.">            if (eventTime != null ? !eventTime.equals(that.eventTime) :that.eventTime != null) return false;</span>
+<span class="nc bnc" id="L458" title="All 6 branches missed.">            if (firstTimestamp != null ? !firstTimestamp.equals(that.firstTimestamp) :that.firstTimestamp != null) return false;</span>
+<span class="nc bnc" id="L459" title="All 6 branches missed.">            if (involvedObject != null ? !involvedObject.equals(that.involvedObject) :that.involvedObject != null) return false;</span>
+<span class="nc bnc" id="L460" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L461" title="All 6 branches missed.">            if (lastTimestamp != null ? !lastTimestamp.equals(that.lastTimestamp) :that.lastTimestamp != null) return false;</span>
+<span class="nc bnc" id="L462" title="All 6 branches missed.">            if (message != null ? !message.equals(that.message) :that.message != null) return false;</span>
+<span class="nc bnc" id="L463" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L464" title="All 6 branches missed.">            if (reason != null ? !reason.equals(that.reason) :that.reason != null) return false;</span>
+<span class="nc bnc" id="L465" title="All 6 branches missed.">            if (related != null ? !related.equals(that.related) :that.related != null) return false;</span>
+<span class="nc bnc" id="L466" title="All 6 branches missed.">            if (reportingComponent != null ? !reportingComponent.equals(that.reportingComponent) :that.reportingComponent != null) return false;</span>
+<span class="nc bnc" id="L467" title="All 6 branches missed.">            if (reportingInstance != null ? !reportingInstance.equals(that.reportingInstance) :that.reportingInstance != null) return false;</span>
+<span class="nc bnc" id="L468" title="All 6 branches missed.">            if (series != null ? !series.equals(that.series) :that.series != null) return false;</span>
+<span class="nc bnc" id="L469" title="All 6 branches missed.">            if (source != null ? !source.equals(that.source) :that.source != null) return false;</span>
+<span class="nc bnc" id="L470" title="All 6 branches missed.">            if (type != null ? !type.equals(that.type) :that.type != null) return false;</span>
+<span class="nc" id="L471">            return true;</span>
+    }
+
+
+    public class EventTimeNestedImpl&lt;N&gt; extends MicroTimeFluentImpl&lt;EventFluent.EventTimeNested&lt;N&gt;&gt; implements EventFluent.EventTimeNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final MicroTimeBuilder builder;
+    
+<span class="nc" id="L479">            EventTimeNestedImpl(MicroTime item){</span>
+<span class="nc" id="L480">                    this.builder = new MicroTimeBuilder(this, item);</span>
+<span class="nc" id="L481">            }</span>
+<span class="nc" id="L482">            EventTimeNestedImpl(){</span>
+<span class="nc" id="L483">                    this.builder = new MicroTimeBuilder(this);</span>
+<span class="nc" id="L484">            }</span>
+    
+    public N and(){
+<span class="nc" id="L487">            return (N) EventFluentImpl.this.withEventTime(builder.build());</span>
+    }
+    public N endEventTime(){
+<span class="nc" id="L490">            return and();</span>
+    }
+
+}
+    public class InvolvedObjectNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;EventFluent.InvolvedObjectNested&lt;N&gt;&gt; implements EventFluent.InvolvedObjectNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L498">            InvolvedObjectNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L499">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L500">            }</span>
+<span class="nc" id="L501">            InvolvedObjectNestedImpl(){</span>
+<span class="nc" id="L502">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L503">            }</span>
+    
+    public N and(){
+<span class="nc" id="L506">            return (N) EventFluentImpl.this.withInvolvedObject(builder.build());</span>
+    }
+    public N endInvolvedObject(){
+<span class="nc" id="L509">            return and();</span>
+    }
+
+}
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;EventFluent.MetadataNested&lt;N&gt;&gt; implements EventFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L517">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L518">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L519">            }</span>
+<span class="nc" id="L520">            MetadataNestedImpl(){</span>
+<span class="nc" id="L521">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L522">            }</span>
+    
+    public N and(){
+<span class="nc" id="L525">            return (N) EventFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L528">            return and();</span>
+    }
+
+}
+    public class RelatedNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;EventFluent.RelatedNested&lt;N&gt;&gt; implements EventFluent.RelatedNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L536">            RelatedNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L537">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L538">            }</span>
+<span class="nc" id="L539">            RelatedNestedImpl(){</span>
+<span class="nc" id="L540">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L541">            }</span>
+    
+    public N and(){
+<span class="nc" id="L544">            return (N) EventFluentImpl.this.withRelated(builder.build());</span>
+    }
+    public N endRelated(){
+<span class="nc" id="L547">            return and();</span>
+    }
+
+}
+    public class SeriesNestedImpl&lt;N&gt; extends EventSeriesFluentImpl&lt;EventFluent.SeriesNested&lt;N&gt;&gt; implements EventFluent.SeriesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EventSeriesBuilder builder;
+    
+<span class="nc" id="L555">            SeriesNestedImpl(EventSeries item){</span>
+<span class="nc" id="L556">                    this.builder = new EventSeriesBuilder(this, item);</span>
+<span class="nc" id="L557">            }</span>
+<span class="nc" id="L558">            SeriesNestedImpl(){</span>
+<span class="nc" id="L559">                    this.builder = new EventSeriesBuilder(this);</span>
+<span class="nc" id="L560">            }</span>
+    
+    public N and(){
+<span class="nc" id="L563">            return (N) EventFluentImpl.this.withSeries(builder.build());</span>
+    }
+    public N endSeries(){
+<span class="nc" id="L566">            return and();</span>
+    }
+
+}
+    public class SourceNestedImpl&lt;N&gt; extends EventSourceFluentImpl&lt;EventFluent.SourceNested&lt;N&gt;&gt; implements EventFluent.SourceNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EventSourceBuilder builder;
+    
+<span class="nc" id="L574">            SourceNestedImpl(EventSource item){</span>
+<span class="nc" id="L575">                    this.builder = new EventSourceBuilder(this, item);</span>
+<span class="nc" id="L576">            }</span>
+<span class="nc" id="L577">            SourceNestedImpl(){</span>
+<span class="nc" id="L578">                    this.builder = new EventSourceBuilder(this);</span>
+<span class="nc" id="L579">            }</span>
+    
+    public N and(){
+<span class="nc" id="L582">            return (N) EventFluentImpl.this.withSource(builder.build());</span>
+    }
+    public N endSource(){
+<span class="nc" id="L585">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

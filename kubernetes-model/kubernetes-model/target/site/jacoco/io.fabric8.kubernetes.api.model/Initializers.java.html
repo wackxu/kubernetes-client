@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Initializers.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">Initializers.java</span></div><h1>Initializers.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;pending&quot;,
+    &quot;result&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L38">@ToString</span>
+<span class="pc bpc" id="L39" title="26 of 30 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class Initializers implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L48">    @JsonProperty(&quot;pending&quot;)</span>
+    @Valid
+    private List&lt;Initializer&gt; pending = new ArrayList&lt;Initializer&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;result&quot;)
+    @Valid
+    private Status result;
+<span class="fc" id="L58">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L65">    public Initializers() {</span>
+<span class="fc" id="L66">    }</span>
+
+    /**
+     * 
+     * @param result
+     * @param pending
+     */
+<span class="fc" id="L73">    public Initializers(List&lt;Initializer&gt; pending, Status result) {</span>
+<span class="fc" id="L74">        this.pending = pending;</span>
+<span class="fc" id="L75">        this.result = result;</span>
+<span class="fc" id="L76">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The pending
+     */
+    @JsonProperty(&quot;pending&quot;)
+    public List&lt;Initializer&gt; getPending() {
+<span class="fc" id="L86">        return pending;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param pending
+     *     The pending
+     */
+    @JsonProperty(&quot;pending&quot;)
+    public void setPending(List&lt;Initializer&gt; pending) {
+<span class="fc" id="L97">        this.pending = pending;</span>
+<span class="fc" id="L98">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The result
+     */
+    @JsonProperty(&quot;result&quot;)
+    public Status getResult() {
+<span class="fc" id="L108">        return result;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param result
+     *     The result
+     */
+    @JsonProperty(&quot;result&quot;)
+    public void setResult(Status result) {
+<span class="nc" id="L119">        this.result = result;</span>
+<span class="nc" id="L120">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L124">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L129">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L130">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

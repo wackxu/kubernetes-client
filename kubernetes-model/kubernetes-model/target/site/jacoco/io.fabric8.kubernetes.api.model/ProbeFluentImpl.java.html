@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProbeFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ProbeFluentImpl.java</span></div><h1>ProbeFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Boolean;
+import java.lang.Integer;
+import javax.validation.Valid;
+import java.lang.Object;
+
+public class ProbeFluentImpl&lt;A extends ProbeFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ProbeFluent&lt;A&gt;{
+
+    private ExecActionBuilder exec;
+    private Integer failureThreshold;
+    private HTTPGetActionBuilder httpGet;
+    private Integer initialDelaySeconds;
+    private Integer periodSeconds;
+    private Integer successThreshold;
+    private TCPSocketActionBuilder tcpSocket;
+    private Integer timeoutSeconds;
+
+<span class="fc" id="L23">    public ProbeFluentImpl(){</span>
+<span class="fc" id="L24">    }</span>
+<span class="nc" id="L25">    public ProbeFluentImpl(Probe instance){</span>
+<span class="nc" id="L26">            this.withExec(instance.getExec()); </span>
+<span class="nc" id="L27">            this.withFailureThreshold(instance.getFailureThreshold()); </span>
+<span class="nc" id="L28">            this.withHttpGet(instance.getHttpGet()); </span>
+<span class="nc" id="L29">            this.withInitialDelaySeconds(instance.getInitialDelaySeconds()); </span>
+<span class="nc" id="L30">            this.withPeriodSeconds(instance.getPeriodSeconds()); </span>
+<span class="nc" id="L31">            this.withSuccessThreshold(instance.getSuccessThreshold()); </span>
+<span class="nc" id="L32">            this.withTcpSocket(instance.getTcpSocket()); </span>
+<span class="nc" id="L33">            this.withTimeoutSeconds(instance.getTimeoutSeconds()); </span>
+<span class="nc" id="L34">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildExec instead.
+ * @return The buildable object.
+ */
+@Deprecated public ExecAction getExec(){
+<span class="fc bfc" id="L42" title="All 2 branches covered.">            return this.exec!=null?this.exec.build():null;</span>
+    }
+
+    public ExecAction buildExec(){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            return this.exec!=null?this.exec.build():null;</span>
+    }
+
+    public A withExec(ExecAction exec){
+<span class="fc" id="L50">            _visitables.remove(this.exec);</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">            if (exec!=null){ this.exec= new ExecActionBuilder(exec); _visitables.add(this.exec);} return (A) this;</span>
+    }
+
+    public Boolean hasExec(){
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            return this.exec != null;</span>
+    }
+
+    public ProbeFluent.ExecNested&lt;A&gt; withNewExec(){
+<span class="fc" id="L59">            return new ExecNestedImpl();</span>
+    }
+
+    public ProbeFluent.ExecNested&lt;A&gt; withNewExecLike(ExecAction item){
+<span class="nc" id="L63">            return new ExecNestedImpl(item);</span>
+    }
+
+    public ProbeFluent.ExecNested&lt;A&gt; editExec(){
+<span class="nc" id="L67">            return withNewExecLike(getExec());</span>
+    }
+
+    public ProbeFluent.ExecNested&lt;A&gt; editOrNewExec(){
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            return withNewExecLike(getExec() != null ? getExec(): new ExecActionBuilder().build());</span>
+    }
+
+    public ProbeFluent.ExecNested&lt;A&gt; editOrNewExecLike(ExecAction item){
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            return withNewExecLike(getExec() != null ? getExec(): item);</span>
+    }
+
+    public Integer getFailureThreshold(){
+<span class="fc" id="L79">            return this.failureThreshold;</span>
+    }
+
+    public A withFailureThreshold(Integer failureThreshold){
+<span class="fc" id="L83">            this.failureThreshold=failureThreshold; return (A) this;</span>
+    }
+
+    public Boolean hasFailureThreshold(){
+<span class="nc bnc" id="L87" title="All 2 branches missed.">            return this.failureThreshold != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildHttpGet instead.
+ * @return The buildable object.
+ */
+@Deprecated public HTTPGetAction getHttpGet(){
+<span class="fc bfc" id="L96" title="All 2 branches covered.">            return this.httpGet!=null?this.httpGet.build():null;</span>
+    }
+
+    public HTTPGetAction buildHttpGet(){
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            return this.httpGet!=null?this.httpGet.build():null;</span>
+    }
+
+    public A withHttpGet(HTTPGetAction httpGet){
+<span class="fc" id="L104">            _visitables.remove(this.httpGet);</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">            if (httpGet!=null){ this.httpGet= new HTTPGetActionBuilder(httpGet); _visitables.add(this.httpGet);} return (A) this;</span>
+    }
+
+    public Boolean hasHttpGet(){
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            return this.httpGet != null;</span>
+    }
+
+    public ProbeFluent.HttpGetNested&lt;A&gt; withNewHttpGet(){
+<span class="fc" id="L113">            return new HttpGetNestedImpl();</span>
+    }
+
+    public ProbeFluent.HttpGetNested&lt;A&gt; withNewHttpGetLike(HTTPGetAction item){
+<span class="nc" id="L117">            return new HttpGetNestedImpl(item);</span>
+    }
+
+    public ProbeFluent.HttpGetNested&lt;A&gt; editHttpGet(){
+<span class="nc" id="L121">            return withNewHttpGetLike(getHttpGet());</span>
+    }
+
+    public ProbeFluent.HttpGetNested&lt;A&gt; editOrNewHttpGet(){
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            return withNewHttpGetLike(getHttpGet() != null ? getHttpGet(): new HTTPGetActionBuilder().build());</span>
+    }
+
+    public ProbeFluent.HttpGetNested&lt;A&gt; editOrNewHttpGetLike(HTTPGetAction item){
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            return withNewHttpGetLike(getHttpGet() != null ? getHttpGet(): item);</span>
+    }
+
+    public Integer getInitialDelaySeconds(){
+<span class="fc" id="L133">            return this.initialDelaySeconds;</span>
+    }
+
+    public A withInitialDelaySeconds(Integer initialDelaySeconds){
+<span class="fc" id="L137">            this.initialDelaySeconds=initialDelaySeconds; return (A) this;</span>
+    }
+
+    public Boolean hasInitialDelaySeconds(){
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            return this.initialDelaySeconds != null;</span>
+    }
+
+    public Integer getPeriodSeconds(){
+<span class="fc" id="L145">            return this.periodSeconds;</span>
+    }
+
+    public A withPeriodSeconds(Integer periodSeconds){
+<span class="fc" id="L149">            this.periodSeconds=periodSeconds; return (A) this;</span>
+    }
+
+    public Boolean hasPeriodSeconds(){
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            return this.periodSeconds != null;</span>
+    }
+
+    public Integer getSuccessThreshold(){
+<span class="fc" id="L157">            return this.successThreshold;</span>
+    }
+
+    public A withSuccessThreshold(Integer successThreshold){
+<span class="fc" id="L161">            this.successThreshold=successThreshold; return (A) this;</span>
+    }
+
+    public Boolean hasSuccessThreshold(){
+<span class="nc bnc" id="L165" title="All 2 branches missed.">            return this.successThreshold != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTcpSocket instead.
+ * @return The buildable object.
+ */
+@Deprecated public TCPSocketAction getTcpSocket(){
+<span class="pc bpc" id="L174" title="1 of 2 branches missed.">            return this.tcpSocket!=null?this.tcpSocket.build():null;</span>
+    }
+
+    public TCPSocketAction buildTcpSocket(){
+<span class="nc bnc" id="L178" title="All 2 branches missed.">            return this.tcpSocket!=null?this.tcpSocket.build():null;</span>
+    }
+
+    public A withTcpSocket(TCPSocketAction tcpSocket){
+<span class="fc" id="L182">            _visitables.remove(this.tcpSocket);</span>
+<span class="pc bpc" id="L183" title="1 of 2 branches missed.">            if (tcpSocket!=null){ this.tcpSocket= new TCPSocketActionBuilder(tcpSocket); _visitables.add(this.tcpSocket);} return (A) this;</span>
+    }
+
+    public Boolean hasTcpSocket(){
+<span class="nc bnc" id="L187" title="All 2 branches missed.">            return this.tcpSocket != null;</span>
+    }
+
+    public ProbeFluent.TcpSocketNested&lt;A&gt; withNewTcpSocket(){
+<span class="nc" id="L191">            return new TcpSocketNestedImpl();</span>
+    }
+
+    public ProbeFluent.TcpSocketNested&lt;A&gt; withNewTcpSocketLike(TCPSocketAction item){
+<span class="nc" id="L195">            return new TcpSocketNestedImpl(item);</span>
+    }
+
+    public ProbeFluent.TcpSocketNested&lt;A&gt; editTcpSocket(){
+<span class="nc" id="L199">            return withNewTcpSocketLike(getTcpSocket());</span>
+    }
+
+    public ProbeFluent.TcpSocketNested&lt;A&gt; editOrNewTcpSocket(){
+<span class="nc bnc" id="L203" title="All 2 branches missed.">            return withNewTcpSocketLike(getTcpSocket() != null ? getTcpSocket(): new TCPSocketActionBuilder().build());</span>
+    }
+
+    public ProbeFluent.TcpSocketNested&lt;A&gt; editOrNewTcpSocketLike(TCPSocketAction item){
+<span class="nc bnc" id="L207" title="All 2 branches missed.">            return withNewTcpSocketLike(getTcpSocket() != null ? getTcpSocket(): item);</span>
+    }
+
+    public Integer getTimeoutSeconds(){
+<span class="fc" id="L211">            return this.timeoutSeconds;</span>
+    }
+
+    public A withTimeoutSeconds(Integer timeoutSeconds){
+<span class="fc" id="L215">            this.timeoutSeconds=timeoutSeconds; return (A) this;</span>
+    }
+
+    public Boolean hasTimeoutSeconds(){
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            return this.timeoutSeconds != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L223" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L224" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L226">            ProbeFluentImpl that = (ProbeFluentImpl) o;</span>
+<span class="nc bnc" id="L227" title="All 6 branches missed.">            if (exec != null ? !exec.equals(that.exec) :that.exec != null) return false;</span>
+<span class="nc bnc" id="L228" title="All 6 branches missed.">            if (failureThreshold != null ? !failureThreshold.equals(that.failureThreshold) :that.failureThreshold != null) return false;</span>
+<span class="nc bnc" id="L229" title="All 6 branches missed.">            if (httpGet != null ? !httpGet.equals(that.httpGet) :that.httpGet != null) return false;</span>
+<span class="nc bnc" id="L230" title="All 6 branches missed.">            if (initialDelaySeconds != null ? !initialDelaySeconds.equals(that.initialDelaySeconds) :that.initialDelaySeconds != null) return false;</span>
+<span class="nc bnc" id="L231" title="All 6 branches missed.">            if (periodSeconds != null ? !periodSeconds.equals(that.periodSeconds) :that.periodSeconds != null) return false;</span>
+<span class="nc bnc" id="L232" title="All 6 branches missed.">            if (successThreshold != null ? !successThreshold.equals(that.successThreshold) :that.successThreshold != null) return false;</span>
+<span class="nc bnc" id="L233" title="All 6 branches missed.">            if (tcpSocket != null ? !tcpSocket.equals(that.tcpSocket) :that.tcpSocket != null) return false;</span>
+<span class="nc bnc" id="L234" title="All 6 branches missed.">            if (timeoutSeconds != null ? !timeoutSeconds.equals(that.timeoutSeconds) :that.timeoutSeconds != null) return false;</span>
+<span class="nc" id="L235">            return true;</span>
+    }
+
+
+    public class ExecNestedImpl&lt;N&gt; extends ExecActionFluentImpl&lt;ProbeFluent.ExecNested&lt;N&gt;&gt; implements ProbeFluent.ExecNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ExecActionBuilder builder;
+    
+<span class="nc" id="L243">            ExecNestedImpl(ExecAction item){</span>
+<span class="nc" id="L244">                    this.builder = new ExecActionBuilder(this, item);</span>
+<span class="nc" id="L245">            }</span>
+<span class="fc" id="L246">            ExecNestedImpl(){</span>
+<span class="fc" id="L247">                    this.builder = new ExecActionBuilder(this);</span>
+<span class="fc" id="L248">            }</span>
+    
+    public N and(){
+<span class="fc" id="L251">            return (N) ProbeFluentImpl.this.withExec(builder.build());</span>
+    }
+    public N endExec(){
+<span class="fc" id="L254">            return and();</span>
+    }
+
+}
+    public class HttpGetNestedImpl&lt;N&gt; extends HTTPGetActionFluentImpl&lt;ProbeFluent.HttpGetNested&lt;N&gt;&gt; implements ProbeFluent.HttpGetNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final HTTPGetActionBuilder builder;
+    
+<span class="nc" id="L262">            HttpGetNestedImpl(HTTPGetAction item){</span>
+<span class="nc" id="L263">                    this.builder = new HTTPGetActionBuilder(this, item);</span>
+<span class="nc" id="L264">            }</span>
+<span class="fc" id="L265">            HttpGetNestedImpl(){</span>
+<span class="fc" id="L266">                    this.builder = new HTTPGetActionBuilder(this);</span>
+<span class="fc" id="L267">            }</span>
+    
+    public N and(){
+<span class="fc" id="L270">            return (N) ProbeFluentImpl.this.withHttpGet(builder.build());</span>
+    }
+    public N endHttpGet(){
+<span class="fc" id="L273">            return and();</span>
+    }
+
+}
+    public class TcpSocketNestedImpl&lt;N&gt; extends TCPSocketActionFluentImpl&lt;ProbeFluent.TcpSocketNested&lt;N&gt;&gt; implements ProbeFluent.TcpSocketNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TCPSocketActionBuilder builder;
+    
+<span class="nc" id="L281">            TcpSocketNestedImpl(TCPSocketAction item){</span>
+<span class="nc" id="L282">                    this.builder = new TCPSocketActionBuilder(this, item);</span>
+<span class="nc" id="L283">            }</span>
+<span class="nc" id="L284">            TcpSocketNestedImpl(){</span>
+<span class="nc" id="L285">                    this.builder = new TCPSocketActionBuilder(this);</span>
+<span class="nc" id="L286">            }</span>
+    
+    public N and(){
+<span class="nc" id="L289">            return (N) ProbeFluentImpl.this.withTcpSocket(builder.build());</span>
+    }
+    public N endTcpSocket(){
+<span class="nc" id="L292">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

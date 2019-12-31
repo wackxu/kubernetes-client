@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PodSecurityContextFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">PodSecurityContextFluentImpl.java</span></div><h1>PodSecurityContextFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.lang.Long;
+import java.util.Collection;
+import java.lang.Object;
+
+public class PodSecurityContextFluentImpl&lt;A extends PodSecurityContextFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements PodSecurityContextFluent&lt;A&gt;{
+
+    private Long fsGroup;
+    private Long runAsGroup;
+    private Boolean runAsNonRoot;
+    private Long runAsUser;
+    private SELinuxOptionsBuilder seLinuxOptions;
+    private List&lt;Long&gt; supplementalGroups;
+    private List&lt;SysctlBuilder&gt; sysctls;
+
+<span class="nc" id="L28">    public PodSecurityContextFluentImpl(){</span>
+<span class="nc" id="L29">    }</span>
+<span class="nc" id="L30">    public PodSecurityContextFluentImpl(PodSecurityContext instance){</span>
+<span class="nc" id="L31">            this.withFsGroup(instance.getFsGroup()); </span>
+<span class="nc" id="L32">            this.withRunAsGroup(instance.getRunAsGroup()); </span>
+<span class="nc" id="L33">            this.withRunAsNonRoot(instance.getRunAsNonRoot()); </span>
+<span class="nc" id="L34">            this.withRunAsUser(instance.getRunAsUser()); </span>
+<span class="nc" id="L35">            this.withSeLinuxOptions(instance.getSeLinuxOptions()); </span>
+<span class="nc" id="L36">            this.withSupplementalGroups(instance.getSupplementalGroups()); </span>
+<span class="nc" id="L37">            this.withSysctls(instance.getSysctls()); </span>
+<span class="nc" id="L38">    }</span>
+
+    public Long getFsGroup(){
+<span class="nc" id="L41">            return this.fsGroup;</span>
+    }
+
+    public A withFsGroup(Long fsGroup){
+<span class="nc" id="L45">            this.fsGroup=fsGroup; return (A) this;</span>
+    }
+
+    public Boolean hasFsGroup(){
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            return this.fsGroup != null;</span>
+    }
+
+    public A withNewFsGroup(String arg1){
+<span class="nc" id="L53">            return (A)withFsGroup(new Long(arg1));</span>
+    }
+
+    public A withNewFsGroup(long arg1){
+<span class="nc" id="L57">            return (A)withFsGroup(new Long(arg1));</span>
+    }
+
+    public Long getRunAsGroup(){
+<span class="nc" id="L61">            return this.runAsGroup;</span>
+    }
+
+    public A withRunAsGroup(Long runAsGroup){
+<span class="nc" id="L65">            this.runAsGroup=runAsGroup; return (A) this;</span>
+    }
+
+    public Boolean hasRunAsGroup(){
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            return this.runAsGroup != null;</span>
+    }
+
+    public A withNewRunAsGroup(String arg1){
+<span class="nc" id="L73">            return (A)withRunAsGroup(new Long(arg1));</span>
+    }
+
+    public A withNewRunAsGroup(long arg1){
+<span class="nc" id="L77">            return (A)withRunAsGroup(new Long(arg1));</span>
+    }
+
+    public Boolean isRunAsNonRoot(){
+<span class="nc" id="L81">            return this.runAsNonRoot;</span>
+    }
+
+    public A withRunAsNonRoot(Boolean runAsNonRoot){
+<span class="nc" id="L85">            this.runAsNonRoot=runAsNonRoot; return (A) this;</span>
+    }
+
+    public Boolean hasRunAsNonRoot(){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            return this.runAsNonRoot != null;</span>
+    }
+
+    public A withNewRunAsNonRoot(String arg1){
+<span class="nc" id="L93">            return (A)withRunAsNonRoot(new Boolean(arg1));</span>
+    }
+
+    public A withNewRunAsNonRoot(boolean arg1){
+<span class="nc" id="L97">            return (A)withRunAsNonRoot(new Boolean(arg1));</span>
+    }
+
+    public Long getRunAsUser(){
+<span class="nc" id="L101">            return this.runAsUser;</span>
+    }
+
+    public A withRunAsUser(Long runAsUser){
+<span class="nc" id="L105">            this.runAsUser=runAsUser; return (A) this;</span>
+    }
+
+    public Boolean hasRunAsUser(){
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            return this.runAsUser != null;</span>
+    }
+
+    public A withNewRunAsUser(String arg1){
+<span class="nc" id="L113">            return (A)withRunAsUser(new Long(arg1));</span>
+    }
+
+    public A withNewRunAsUser(long arg1){
+<span class="nc" id="L117">            return (A)withRunAsUser(new Long(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSeLinuxOptions instead.
+ * @return The buildable object.
+ */
+@Deprecated public SELinuxOptions getSeLinuxOptions(){
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            return this.seLinuxOptions!=null?this.seLinuxOptions.build():null;</span>
+    }
+
+    public SELinuxOptions buildSeLinuxOptions(){
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            return this.seLinuxOptions!=null?this.seLinuxOptions.build():null;</span>
+    }
+
+    public A withSeLinuxOptions(SELinuxOptions seLinuxOptions){
+<span class="nc" id="L134">            _visitables.remove(this.seLinuxOptions);</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            if (seLinuxOptions!=null){ this.seLinuxOptions= new SELinuxOptionsBuilder(seLinuxOptions); _visitables.add(this.seLinuxOptions);} return (A) this;</span>
+    }
+
+    public Boolean hasSeLinuxOptions(){
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            return this.seLinuxOptions != null;</span>
+    }
+
+    public A withNewSeLinuxOptions(String level,String role,String type,String user){
+<span class="nc" id="L143">            return (A)withSeLinuxOptions(new SELinuxOptions(level, role, type, user));</span>
+    }
+
+    public PodSecurityContextFluent.SeLinuxOptionsNested&lt;A&gt; withNewSeLinuxOptions(){
+<span class="nc" id="L147">            return new SeLinuxOptionsNestedImpl();</span>
+    }
+
+    public PodSecurityContextFluent.SeLinuxOptionsNested&lt;A&gt; withNewSeLinuxOptionsLike(SELinuxOptions item){
+<span class="nc" id="L151">            return new SeLinuxOptionsNestedImpl(item);</span>
+    }
+
+    public PodSecurityContextFluent.SeLinuxOptionsNested&lt;A&gt; editSeLinuxOptions(){
+<span class="nc" id="L155">            return withNewSeLinuxOptionsLike(getSeLinuxOptions());</span>
+    }
+
+    public PodSecurityContextFluent.SeLinuxOptionsNested&lt;A&gt; editOrNewSeLinuxOptions(){
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            return withNewSeLinuxOptionsLike(getSeLinuxOptions() != null ? getSeLinuxOptions(): new SELinuxOptionsBuilder().build());</span>
+    }
+
+    public PodSecurityContextFluent.SeLinuxOptionsNested&lt;A&gt; editOrNewSeLinuxOptionsLike(SELinuxOptions item){
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            return withNewSeLinuxOptionsLike(getSeLinuxOptions() != null ? getSeLinuxOptions(): item);</span>
+    }
+
+    public A addToSupplementalGroups(int index,Long item){
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (this.supplementalGroups == null) {this.supplementalGroups = new ArrayList&lt;Long&gt;();}</span>
+<span class="nc" id="L168">            this.supplementalGroups.add(index, item);</span>
+<span class="nc" id="L169">            return (A)this;</span>
+    }
+
+    public A setToSupplementalGroups(int index,Long item){
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            if (this.supplementalGroups == null) {this.supplementalGroups = new ArrayList&lt;Long&gt;();}</span>
+<span class="nc" id="L174">            this.supplementalGroups.set(index, item); return (A)this;</span>
+    }
+
+    public A addToSupplementalGroups(Long... items){
+<span class="nc bnc" id="L178" title="All 2 branches missed.">            if (this.supplementalGroups == null) {this.supplementalGroups = new ArrayList&lt;Long&gt;();}</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">            for (Long item : items) {this.supplementalGroups.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToSupplementalGroups(Collection&lt;Long&gt; items){
+<span class="nc bnc" id="L183" title="All 2 branches missed.">            if (this.supplementalGroups == null) {this.supplementalGroups = new ArrayList&lt;Long&gt;();}</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">            for (Long item : items) {this.supplementalGroups.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromSupplementalGroups(Long... items){
+<span class="nc bnc" id="L188" title="All 4 branches missed.">            for (Long item : items) {if (this.supplementalGroups!= null){ this.supplementalGroups.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromSupplementalGroups(Collection&lt;Long&gt; items){
+<span class="nc bnc" id="L192" title="All 4 branches missed.">            for (Long item : items) {if (this.supplementalGroups!= null){ this.supplementalGroups.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;Long&gt; getSupplementalGroups(){
+<span class="nc" id="L196">            return this.supplementalGroups;</span>
+    }
+
+    public Long getSupplementalGroup(int index){
+<span class="nc" id="L200">            return this.supplementalGroups.get(index);</span>
+    }
+
+    public Long getFirstSupplementalGroup(){
+<span class="nc" id="L204">            return this.supplementalGroups.get(0);</span>
+    }
+
+    public Long getLastSupplementalGroup(){
+<span class="nc" id="L208">            return this.supplementalGroups.get(supplementalGroups.size() - 1);</span>
+    }
+
+    public Long getMatchingSupplementalGroup(io.fabric8.kubernetes.api.builder.Predicate&lt;Long&gt; predicate){
+<span class="nc bnc" id="L212" title="All 4 branches missed.">            for (Long item: supplementalGroups) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withSupplementalGroups(List&lt;Long&gt; supplementalGroups){
+<span class="nc bnc" id="L216" title="All 2 branches missed.">            if (this.supplementalGroups != null) { _visitables.removeAll(this.supplementalGroups);}</span>
+<span class="nc bnc" id="L217" title="All 4 branches missed.">            if (supplementalGroups != null) {this.supplementalGroups = new ArrayList&lt;Long&gt;(); for (Long item : supplementalGroups){this.addToSupplementalGroups(item);}} else { this.supplementalGroups = new ArrayList&lt;Long&gt;();} return (A) this;</span>
+    }
+
+    public A withSupplementalGroups(Long... supplementalGroups){
+<span class="nc bnc" id="L221" title="All 2 branches missed.">            if (this.supplementalGroups != null) {this.supplementalGroups.clear();}</span>
+<span class="nc bnc" id="L222" title="All 4 branches missed.">            if (supplementalGroups != null) {for (Long item :supplementalGroups){ this.addToSupplementalGroups(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasSupplementalGroups(){
+<span class="nc bnc" id="L226" title="All 4 branches missed.">            return supplementalGroups != null &amp;&amp; !supplementalGroups.isEmpty();</span>
+    }
+
+    public A addNewSupplementalGroup(String arg1){
+<span class="nc" id="L230">            return (A)addToSupplementalGroups(new Long(arg1));</span>
+    }
+
+    public A addNewSupplementalGroup(long arg1){
+<span class="nc" id="L234">            return (A)addToSupplementalGroups(new Long(arg1));</span>
+    }
+
+    public A addToSysctls(int index,Sysctl item){
+<span class="nc bnc" id="L238" title="All 2 branches missed.">            if (this.sysctls == null) {this.sysctls = new ArrayList&lt;SysctlBuilder&gt;();}</span>
+<span class="nc bnc" id="L239" title="All 4 branches missed.">            SysctlBuilder builder = new SysctlBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.sysctls.add(index &gt;= 0 ? index : sysctls.size(), builder); return (A)this;</span>
+    }
+
+    public A setToSysctls(int index,Sysctl item){
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            if (this.sysctls == null) {this.sysctls = new ArrayList&lt;SysctlBuilder&gt;();}</span>
+<span class="nc" id="L244">            SysctlBuilder builder = new SysctlBuilder(item);</span>
+<span class="nc bnc" id="L245" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L246" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= sysctls.size()) { sysctls.add(builder); } else { sysctls.set(index, builder);}</span>
+<span class="nc" id="L247">             return (A)this;</span>
+    }
+
+    public A addToSysctls(Sysctl... items){
+<span class="nc bnc" id="L251" title="All 2 branches missed.">            if (this.sysctls == null) {this.sysctls = new ArrayList&lt;SysctlBuilder&gt;();}</span>
+<span class="nc bnc" id="L252" title="All 2 branches missed.">            for (Sysctl item : items) {SysctlBuilder builder = new SysctlBuilder(item);_visitables.add(builder);this.sysctls.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToSysctls(Collection&lt;Sysctl&gt; items){
+<span class="nc bnc" id="L256" title="All 2 branches missed.">            if (this.sysctls == null) {this.sysctls = new ArrayList&lt;SysctlBuilder&gt;();}</span>
+<span class="nc bnc" id="L257" title="All 2 branches missed.">            for (Sysctl item : items) {SysctlBuilder builder = new SysctlBuilder(item);_visitables.add(builder);this.sysctls.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromSysctls(Sysctl... items){
+<span class="nc bnc" id="L261" title="All 4 branches missed.">            for (Sysctl item : items) {SysctlBuilder builder = new SysctlBuilder(item);_visitables.remove(builder);if (this.sysctls != null) {this.sysctls.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromSysctls(Collection&lt;Sysctl&gt; items){
+<span class="nc bnc" id="L265" title="All 4 branches missed.">            for (Sysctl item : items) {SysctlBuilder builder = new SysctlBuilder(item);_visitables.remove(builder);if (this.sysctls != null) {this.sysctls.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSysctls instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;Sysctl&gt; getSysctls(){
+<span class="nc" id="L274">            return build(sysctls);</span>
+    }
+
+    public List&lt;Sysctl&gt; buildSysctls(){
+<span class="nc" id="L278">            return build(sysctls);</span>
+    }
+
+    public Sysctl buildSysctl(int index){
+<span class="nc" id="L282">            return this.sysctls.get(index).build();</span>
+    }
+
+    public Sysctl buildFirstSysctl(){
+<span class="nc" id="L286">            return this.sysctls.get(0).build();</span>
+    }
+
+    public Sysctl buildLastSysctl(){
+<span class="nc" id="L290">            return this.sysctls.get(sysctls.size() - 1).build();</span>
+    }
+
+    public Sysctl buildMatchingSysctl(io.fabric8.kubernetes.api.builder.Predicate&lt;SysctlBuilder&gt; predicate){
+<span class="nc bnc" id="L294" title="All 4 branches missed.">            for (SysctlBuilder item: sysctls) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withSysctls(List&lt;Sysctl&gt; sysctls){
+<span class="nc bnc" id="L298" title="All 2 branches missed.">            if (this.sysctls != null) { _visitables.removeAll(this.sysctls);}</span>
+<span class="nc bnc" id="L299" title="All 4 branches missed.">            if (sysctls != null) {this.sysctls = new ArrayList&lt;SysctlBuilder&gt;(); for (Sysctl item : sysctls){this.addToSysctls(item);}} else { this.sysctls = new ArrayList&lt;SysctlBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withSysctls(Sysctl... sysctls){
+<span class="nc bnc" id="L303" title="All 2 branches missed.">            if (this.sysctls != null) {this.sysctls.clear();}</span>
+<span class="nc bnc" id="L304" title="All 4 branches missed.">            if (sysctls != null) {for (Sysctl item :sysctls){ this.addToSysctls(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasSysctls(){
+<span class="nc bnc" id="L308" title="All 4 branches missed.">            return sysctls != null &amp;&amp; !sysctls.isEmpty();</span>
+    }
+
+    public A addNewSysctl(String name,String value){
+<span class="nc" id="L312">            return (A)addToSysctls(new Sysctl(name, value));</span>
+    }
+
+    public PodSecurityContextFluent.SysctlsNested&lt;A&gt; addNewSysctl(){
+<span class="nc" id="L316">            return new SysctlsNestedImpl();</span>
+    }
+
+    public PodSecurityContextFluent.SysctlsNested&lt;A&gt; addNewSysctlLike(Sysctl item){
+<span class="nc" id="L320">            return new SysctlsNestedImpl(-1, item);</span>
+    }
+
+    public PodSecurityContextFluent.SysctlsNested&lt;A&gt; setNewSysctlLike(int index,Sysctl item){
+<span class="nc" id="L324">            return new SysctlsNestedImpl(index, item);</span>
+    }
+
+    public PodSecurityContextFluent.SysctlsNested&lt;A&gt; editSysctl(int index){
+<span class="nc bnc" id="L328" title="All 2 branches missed.">            if (sysctls.size() &lt;= index) throw new RuntimeException(&quot;Can't edit sysctls. Index exceeds size.&quot;);</span>
+<span class="nc" id="L329">            return setNewSysctlLike(index, buildSysctl(index));</span>
+    }
+
+    public PodSecurityContextFluent.SysctlsNested&lt;A&gt; editFirstSysctl(){
+<span class="nc bnc" id="L333" title="All 2 branches missed.">            if (sysctls.size() == 0) throw new RuntimeException(&quot;Can't edit first sysctls. The list is empty.&quot;);</span>
+<span class="nc" id="L334">            return setNewSysctlLike(0, buildSysctl(0));</span>
+    }
+
+    public PodSecurityContextFluent.SysctlsNested&lt;A&gt; editLastSysctl(){
+<span class="nc" id="L338">            int index = sysctls.size() - 1;</span>
+<span class="nc bnc" id="L339" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last sysctls. The list is empty.&quot;);</span>
+<span class="nc" id="L340">            return setNewSysctlLike(index, buildSysctl(index));</span>
+    }
+
+    public PodSecurityContextFluent.SysctlsNested&lt;A&gt; editMatchingSysctl(io.fabric8.kubernetes.api.builder.Predicate&lt;SysctlBuilder&gt; predicate){
+<span class="nc" id="L344">            int index = -1;</span>
+<span class="nc bnc" id="L345" title="All 2 branches missed.">            for (int i=0;i&lt;sysctls.size();i++) { </span>
+<span class="nc bnc" id="L346" title="All 2 branches missed.">            if (predicate.apply(sysctls.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L348" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching sysctls. No match found.&quot;);</span>
+<span class="nc" id="L349">            return setNewSysctlLike(index, buildSysctl(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L353" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L354" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L355" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L356">            PodSecurityContextFluentImpl that = (PodSecurityContextFluentImpl) o;</span>
+<span class="nc bnc" id="L357" title="All 6 branches missed.">            if (fsGroup != null ? !fsGroup.equals(that.fsGroup) :that.fsGroup != null) return false;</span>
+<span class="nc bnc" id="L358" title="All 6 branches missed.">            if (runAsGroup != null ? !runAsGroup.equals(that.runAsGroup) :that.runAsGroup != null) return false;</span>
+<span class="nc bnc" id="L359" title="All 6 branches missed.">            if (runAsNonRoot != null ? !runAsNonRoot.equals(that.runAsNonRoot) :that.runAsNonRoot != null) return false;</span>
+<span class="nc bnc" id="L360" title="All 6 branches missed.">            if (runAsUser != null ? !runAsUser.equals(that.runAsUser) :that.runAsUser != null) return false;</span>
+<span class="nc bnc" id="L361" title="All 6 branches missed.">            if (seLinuxOptions != null ? !seLinuxOptions.equals(that.seLinuxOptions) :that.seLinuxOptions != null) return false;</span>
+<span class="nc bnc" id="L362" title="All 6 branches missed.">            if (supplementalGroups != null ? !supplementalGroups.equals(that.supplementalGroups) :that.supplementalGroups != null) return false;</span>
+<span class="nc bnc" id="L363" title="All 6 branches missed.">            if (sysctls != null ? !sysctls.equals(that.sysctls) :that.sysctls != null) return false;</span>
+<span class="nc" id="L364">            return true;</span>
+    }
+
+
+    public class SeLinuxOptionsNestedImpl&lt;N&gt; extends SELinuxOptionsFluentImpl&lt;PodSecurityContextFluent.SeLinuxOptionsNested&lt;N&gt;&gt; implements PodSecurityContextFluent.SeLinuxOptionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SELinuxOptionsBuilder builder;
+    
+<span class="nc" id="L372">            SeLinuxOptionsNestedImpl(SELinuxOptions item){</span>
+<span class="nc" id="L373">                    this.builder = new SELinuxOptionsBuilder(this, item);</span>
+<span class="nc" id="L374">            }</span>
+<span class="nc" id="L375">            SeLinuxOptionsNestedImpl(){</span>
+<span class="nc" id="L376">                    this.builder = new SELinuxOptionsBuilder(this);</span>
+<span class="nc" id="L377">            }</span>
+    
+    public N and(){
+<span class="nc" id="L380">            return (N) PodSecurityContextFluentImpl.this.withSeLinuxOptions(builder.build());</span>
+    }
+    public N endSeLinuxOptions(){
+<span class="nc" id="L383">            return and();</span>
+    }
+
+}
+    public class SysctlsNestedImpl&lt;N&gt; extends SysctlFluentImpl&lt;PodSecurityContextFluent.SysctlsNested&lt;N&gt;&gt; implements PodSecurityContextFluent.SysctlsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SysctlBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L392">            SysctlsNestedImpl(int index,Sysctl item){</span>
+<span class="nc" id="L393">                    this.index = index;</span>
+<span class="nc" id="L394">                    this.builder = new SysctlBuilder(this, item);</span>
+<span class="nc" id="L395">            }</span>
+<span class="nc" id="L396">            SysctlsNestedImpl(){</span>
+<span class="nc" id="L397">                    this.index = -1;</span>
+<span class="nc" id="L398">                    this.builder = new SysctlBuilder(this);</span>
+<span class="nc" id="L399">            }</span>
+    
+    public N and(){
+<span class="nc" id="L402">            return (N) PodSecurityContextFluentImpl.this.setToSysctls(index, builder.build());</span>
+    }
+    public N endSysctl(){
+<span class="nc" id="L405">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

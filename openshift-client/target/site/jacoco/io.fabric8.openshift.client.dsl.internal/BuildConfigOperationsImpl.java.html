@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuildConfigOperationsImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Openshift :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.client.dsl.internal</a> &gt; <span class="el_source">BuildConfigOperationsImpl.java</span></div><h1>BuildConfigOperationsImpl.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.openshift.client.dsl.internal;
+
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.Watch;
+import io.fabric8.kubernetes.client.Watcher;
+import io.fabric8.kubernetes.client.dsl.Gettable;
+import io.fabric8.kubernetes.client.dsl.Reaper;
+import io.fabric8.kubernetes.client.dsl.Triggerable;
+import io.fabric8.kubernetes.client.dsl.Typeable;
+import io.fabric8.kubernetes.client.dsl.Watchable;
+import io.fabric8.kubernetes.client.dsl.base.BaseOperation;
+import io.fabric8.kubernetes.client.utils.URLUtils;
+import io.fabric8.kubernetes.client.utils.Utils;
+import io.fabric8.openshift.api.model.Build;
+import io.fabric8.openshift.api.model.BuildConfig;
+import io.fabric8.openshift.api.model.BuildConfigList;
+import io.fabric8.openshift.api.model.BuildList;
+import io.fabric8.openshift.api.model.BuildRequest;
+import io.fabric8.openshift.api.model.DoneableBuildConfig;
+import io.fabric8.openshift.api.model.WebHookTrigger;
+import io.fabric8.openshift.client.OpenShiftConfig;
+import io.fabric8.openshift.client.dsl.BuildConfigOperation;
+import io.fabric8.openshift.client.dsl.BuildConfigResource;
+import io.fabric8.openshift.client.dsl.InputStreamable;
+import io.fabric8.openshift.client.dsl.TimeoutInputStreamable;
+import io.fabric8.openshift.client.dsl.buildconfig.AsFileTimeoutInputStreamable;
+import io.fabric8.openshift.client.dsl.buildconfig.AuthorEmailable;
+import io.fabric8.openshift.client.dsl.buildconfig.AuthorMessageAsFileTimeoutInputStreamable;
+import io.fabric8.openshift.client.dsl.buildconfig.CommitterAuthorMessageAsFileTimeoutInputStreamable;
+import io.fabric8.openshift.client.dsl.buildconfig.CommitterEmailable;
+import io.fabric8.openshift.client.dsl.buildconfig.MessageAsFileTimeoutInputStreamable;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okio.BufferedSink;
+import okio.Okio;
+import okio.Source;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
+
+import static io.fabric8.openshift.client.OpenShiftAPIGroups.BUILD;
+
+public class BuildConfigOperationsImpl extends OpenShiftOperation&lt;BuildConfig, BuildConfigList, DoneableBuildConfig,
+  BuildConfigResource&lt;BuildConfig, DoneableBuildConfig, Void, Build&gt;&gt;
+        implements BuildConfigOperation {
+
+  public static final String BUILD_CONFIG_LABEL = &quot;openshift.io/build-config.name&quot;;
+  public static final String BUILD_CONFIG_ANNOTATION = &quot;openshift.io/build-config.name&quot;;
+
+  private final String secret;
+  private final String triggerType;
+
+  private final String authorName;
+  private final String authorEmail;
+  private final String committerName;
+  private final String committerEmail;
+  private final String commit;
+  private final String message;
+  private final String asFile;
+
+  private final long timeout;
+  private final TimeUnit timeoutUnit;
+
+  public BuildConfigOperationsImpl(OkHttpClient client, OpenShiftConfig config, String namespace) {
+<span class="nc" id="L90">    this(client, config,  BUILD, null, namespace, null, true, null, null, false, -1, new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String&gt;(), null, null, null, null, null, null, null, null, null, config.getBuildTimeout(), TimeUnit.MILLISECONDS);</span>
+<span class="nc" id="L91">  }</span>
+
+  public BuildConfigOperationsImpl(OkHttpClient client, OpenShiftConfig config, String apiGroup, String apiVersion, String namespace, String name, Boolean cascading, BuildConfig item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields) {
+<span class="nc" id="L94">    this(client, config, apiGroup, apiVersion, namespace, name, cascading, item, resourceVersion, reloadingFromServer, gracePeriodSeconds, labels, labelsNot, labelsIn, labelsNotIn, fields, null, null, null, null, null, null, null, null, null, config.getBuildTimeout(), TimeUnit.MILLISECONDS);</span>
+<span class="nc" id="L95">  }</span>
+
+  public BuildConfigOperationsImpl(OkHttpClient client, OpenShiftConfig config, String apiGroup, String apiVersion, String namespace, String name, Boolean cascading, BuildConfig item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields, String secret, String triggerType, String authorName, String authorEmail, String committerName, String committerEmail, String commit, String message, String asFile, long timeout, TimeUnit timeoutUnit) {
+<span class="nc" id="L98">    super(client, OpenShiftOperation.withApiGroup(client, apiGroup, apiVersion, config), &quot;buildconfigs&quot;, namespace, name, cascading, item, resourceVersion, reloadingFromServer, gracePeriodSeconds, labels, labelsNot, labelsIn, labelsNotIn, fields);</span>
+<span class="nc" id="L99">    this.triggerType = triggerType;</span>
+<span class="nc" id="L100">    this.secret = secret;</span>
+<span class="nc" id="L101">    this.authorName = authorName;</span>
+<span class="nc" id="L102">    this.authorEmail = authorEmail;</span>
+<span class="nc" id="L103">    this.committerName = committerName;</span>
+<span class="nc" id="L104">    this.committerEmail = committerEmail;</span>
+<span class="nc" id="L105">    this.commit = commit;</span>
+<span class="nc" id="L106">    this.message = message;</span>
+<span class="nc" id="L107">    this.asFile = asFile;</span>
+<span class="nc" id="L108">    reaper = new BuildConfigReaper(this);</span>
+<span class="nc" id="L109">    this.timeout = timeout;</span>
+<span class="nc" id="L110">    this.timeoutUnit = timeoutUnit;</span>
+<span class="nc" id="L111">  }</span>
+
+  @Override
+  public BuildConfigResource&lt;BuildConfig, DoneableBuildConfig, Void, Build&gt; withName(String name) {
+<span class="nc bnc" id="L115" title="All 4 branches missed.">    if (name == null || name.length() == 0) {</span>
+<span class="nc" id="L116">      throw new IllegalArgumentException(&quot;Name must be provided.&quot;);</span>
+    }
+<span class="nc" id="L118">    return new BuildConfigOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), secret, triggerType, authorName, authorEmail, committerName, committerEmail, commit, message, asFile, timeout, timeoutUnit);</span>
+  }
+
+  @Override
+  public OpenShiftOperation&lt;BuildConfig, BuildConfigList, DoneableBuildConfig, BuildConfigResource&lt;BuildConfig, DoneableBuildConfig, Void, Build&gt;&gt; inNamespace(String namespace) {
+<span class="nc" id="L123">    return new BuildConfigOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), namespace, getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), secret, triggerType, authorName, authorEmail, committerName, committerEmail, commit, message, asFile, timeout, timeoutUnit);</span>
+  }
+
+  @Override
+  public Gettable&lt;BuildConfig&gt; fromServer() {
+<span class="nc" id="L128">    return new BuildConfigOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), namespace, getName(), isCascading(), getItem(), getResourceVersion(), true, getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), secret, triggerType, authorName, authorEmail, committerName, committerEmail, commit, message, asFile, timeout, timeoutUnit);</span>
+  }
+
+  @Override
+  public Typeable&lt;Triggerable&lt;WebHookTrigger, Void&gt;&gt; withSecret(String secret) {
+<span class="nc" id="L133">    return new BuildConfigOperationsImpl(client,getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), secret, triggerType, authorName, authorEmail, committerName, committerEmail, commit, message, asFile, timeout, timeoutUnit);</span>
+  }
+
+  @Override
+  public BuildConfigResource&lt;BuildConfig, DoneableBuildConfig, Void, Build&gt; load(InputStream is) {
+<span class="nc" id="L138">    return new BuildConfigOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), unmarshal(is, getType()), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), secret, triggerType, authorName, authorEmail, committerName, committerEmail, commit, message, asFile, timeout, timeoutUnit);</span>
+  }
+
+  @Override
+  public Build instantiate(BuildRequest request) {
+    try {
+<span class="nc" id="L144">      updateApiVersion(request);</span>
+<span class="nc" id="L145">      URL instantiationUrl = new URL(URLUtils.join(getResourceUrl().toString(), &quot;instantiate&quot;));</span>
+<span class="nc" id="L146">      RequestBody requestBody = RequestBody.create(JSON, BaseOperation.JSON_MAPPER.writer().writeValueAsString(request));</span>
+<span class="nc" id="L147">      Request.Builder requestBuilder = new Request.Builder().post(requestBody).url(instantiationUrl);</span>
+<span class="nc" id="L148">      return handleResponse(requestBuilder, Build.class);</span>
+<span class="nc" id="L149">    } catch (Exception e) {</span>
+<span class="nc" id="L150">      throw KubernetesClientException.launderThrowable(e);</span>
+    }
+  }
+
+  @Override
+  public CommitterAuthorMessageAsFileTimeoutInputStreamable&lt;Build&gt; instantiateBinary() {
+<span class="nc" id="L156">    return new BuildConfigOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), secret, triggerType, authorName, authorEmail, committerName, committerEmail, commit, message, asFile, timeout, timeoutUnit);</span>
+  }
+
+
+  @Override
+  public Void trigger(WebHookTrigger trigger) {
+    try {
+      //TODO: This needs some attention.
+<span class="nc" id="L164">      String triggerUrl = URLUtils.join(getResourceUrl().toString(), &quot;webhooks&quot;, secret, triggerType);</span>
+<span class="nc" id="L165">      RequestBody requestBody = RequestBody.create(JSON, BaseOperation.JSON_MAPPER.writer().writeValueAsBytes(trigger));</span>
+<span class="nc" id="L166">      Request.Builder requestBuilder = new Request.Builder()</span>
+<span class="nc" id="L167">        .post(requestBody)</span>
+<span class="nc" id="L168">        .url(triggerUrl)</span>
+<span class="nc" id="L169">        .addHeader(&quot;X-Github-Event&quot;, &quot;push&quot;);</span>
+<span class="nc" id="L170">      handleResponse(requestBuilder, null);</span>
+<span class="nc" id="L171">    } catch (Exception e) {</span>
+<span class="nc" id="L172">      throw KubernetesClientException.launderThrowable(e);</span>
+<span class="nc" id="L173">    }</span>
+<span class="nc" id="L174">    return null;</span>
+  }
+
+  @Override
+  public Triggerable&lt;WebHookTrigger, Void&gt; withType(String type) {
+<span class="nc" id="L179">    return new BuildConfigOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), secret, type, authorName, authorEmail, committerName, committerEmail, commit, message, asFile, timeout, timeoutUnit);</span>
+  }
+
+  @Override
+  public Watchable&lt;Watch, Watcher&lt;BuildConfig&gt;&gt; withResourceVersion(String resourceVersion) {
+<span class="nc" id="L184">    BuildConfigOperationsImpl buildConfigOperations = new BuildConfigOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), namespace, getName(), isCascading(), getItem(), resourceVersion, isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), secret, triggerType, authorName, authorEmail, committerName, committerEmail, commit, message, asFile, timeout, timeoutUnit);</span>
+
+<span class="nc" id="L186">    return buildConfigOperations;</span>
+  }
+
+  /*
+   * Labels are limited to 63 chars so need to first truncate the build config name (if required), retrieve builds with matching label,
+   * then check the build config name against the builds' build config annotation which have no such length restriction (but
+   * aren't usable for searching). Would be better if referenced build config was available via fields but it currently isn't...
+   */
+  private void deleteBuilds() {
+<span class="nc bnc" id="L195" title="All 2 branches missed.">    if (getName() == null) {</span>
+<span class="nc" id="L196">        return;</span>
+    }
+<span class="nc" id="L198">    String buildConfigLabelValue = getName().substring(0, Math.min(getName().length(), 63));</span>
+<span class="nc" id="L199">    BuildList matchingBuilds = new BuildOperationsImpl(client, (OpenShiftConfig) config, namespace).inNamespace(namespace).withLabel(BUILD_CONFIG_LABEL, buildConfigLabelValue).list();</span>
+
+<span class="nc bnc" id="L201" title="All 2 branches missed.">    if (matchingBuilds.getItems() != null) {</span>
+
+<span class="nc bnc" id="L203" title="All 2 branches missed.">      for (Build matchingBuild : matchingBuilds.getItems()) {</span>
+
+<span class="nc bnc" id="L205" title="All 2 branches missed.">        if (matchingBuild.getMetadata() != null &amp;&amp;</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">          matchingBuild.getMetadata().getAnnotations() != null &amp;&amp;</span>
+<span class="nc bnc" id="L207" title="All 2 branches missed.">          getName().equals(matchingBuild.getMetadata().getAnnotations().get(BUILD_CONFIG_ANNOTATION))) {</span>
+
+<span class="nc" id="L209">          new BuildOperationsImpl(client, (OpenShiftConfig) config, namespace).inNamespace(matchingBuild.getMetadata().getNamespace()).withName(matchingBuild.getMetadata().getName()).delete();</span>
+
+        }
+
+<span class="nc" id="L213">      }</span>
+
+    }
+<span class="nc" id="L216">  }</span>
+
+  @Override
+  public Build fromInputStream(final InputStream inputStream) {
+<span class="nc" id="L220">    return fromInputStream(inputStream, -1L);</span>
+  }
+
+  @Override
+  public Build fromFile(final File file) {
+<span class="nc bnc" id="L225" title="All 2 branches missed.">    if (!file.exists()) {</span>
+<span class="nc" id="L226">      throw new IllegalArgumentException(&quot;Can't instantiate binary build from the specified file. The file does not exists&quot;);</span>
+    }
+<span class="nc" id="L228">    try (InputStream is = new FileInputStream(file)) {</span>
+      // Use a length to prevent chunked encoding with OkHttp, which in turn
+      // doesn't work with 'Expect: 100-continue' negotiation with the OpenShift API server
+<span class="nc" id="L231">      return fromInputStream(is, file.length());</span>
+<span class="nc" id="L232">    } catch (Throwable t) {</span>
+<span class="nc" id="L233">      throw KubernetesClientException.launderThrowable(t);</span>
+    }
+  }
+
+  private Build fromInputStream(final InputStream inputStream, final long contentLength) {
+    try {
+
+<span class="nc" id="L240">      RequestBody requestBody = new RequestBody() {</span>
+        @Override
+        public MediaType contentType() {
+<span class="nc" id="L243">          return MediaType.parse(&quot;application/octet-stream&quot;);</span>
+        }
+
+        @Override
+        public long contentLength() throws IOException {
+<span class="nc" id="L248">          return contentLength;</span>
+        }
+
+        @Override
+        public void writeTo(BufferedSink sink) throws IOException {
+<span class="nc" id="L253">          Source source = null;</span>
+          try {
+<span class="nc" id="L255">            source = Okio.source(inputStream);</span>
+<span class="nc" id="L256">            OutputStream os = sink.outputStream();</span>
+
+<span class="nc" id="L258">            sink.writeAll(source);</span>
+<span class="nc" id="L259">          } catch (IOException e) {</span>
+<span class="nc" id="L260">            throw KubernetesClientException.launderThrowable(&quot;Can't instantiate binary build, due to error reading/writing stream. &quot;</span>
+                                                             + &quot;Can be caused if the output stream was closed by the server.&quot;, e);
+<span class="nc" id="L262">          }</span>
+<span class="nc" id="L263">        }</span>
+      };
+
+<span class="nc" id="L266">      OkHttpClient newClient = client.newBuilder()</span>
+<span class="nc" id="L267">                                     .readTimeout(timeout, timeoutUnit)</span>
+<span class="nc" id="L268">                                     .writeTimeout(timeout, timeoutUnit)</span>
+<span class="nc" id="L269">                                     .build();</span>
+<span class="nc" id="L270">      Request.Builder requestBuilder =</span>
+<span class="nc" id="L271">          new Request.Builder().post(requestBody)</span>
+<span class="nc" id="L272">                               .header(&quot;Expect&quot;, &quot;100-continue&quot;)</span>
+<span class="nc" id="L273">                               .url(getQueryParameters());</span>
+<span class="nc" id="L274">      return handleResponse(newClient, requestBuilder, Build.class);</span>
+<span class="nc" id="L275">    } catch (Exception e) {</span>
+<span class="nc" id="L276">      throw KubernetesClientException.launderThrowable(e);</span>
+    }
+  }
+
+  private String getQueryParameters() throws MalformedURLException {
+<span class="nc" id="L281">    StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L282">    sb.append(URLUtils.join(getResourceUrl().toString(), &quot;instantiatebinary&quot;));</span>
+<span class="nc bnc" id="L283" title="All 2 branches missed.">    if (Utils.isNullOrEmpty(message)) {</span>
+<span class="nc" id="L284">      sb.append(&quot;?commit=&quot;);</span>
+    } else {
+<span class="nc" id="L286">      sb.append(&quot;?commit=&quot;).append(message);</span>
+    }
+
+<span class="nc bnc" id="L289" title="All 2 branches missed.">    if (!Utils.isNullOrEmpty(authorName)) {</span>
+<span class="nc" id="L290">      sb.append(&quot;&amp;revision.authorName=&quot;).append(authorName);</span>
+    }
+
+<span class="nc bnc" id="L293" title="All 2 branches missed.">    if (!Utils.isNullOrEmpty(authorEmail)) {</span>
+<span class="nc" id="L294">      sb.append(&quot;&amp;revision.authorEmail=&quot;).append(authorEmail);</span>
+    }
+
+<span class="nc bnc" id="L297" title="All 2 branches missed.">    if (!Utils.isNullOrEmpty(committerName)) {</span>
+<span class="nc" id="L298">      sb.append(&quot;&amp;revision.committerName=&quot;).append(committerName);</span>
+    }
+
+<span class="nc bnc" id="L301" title="All 2 branches missed.">    if (!Utils.isNullOrEmpty(committerEmail)) {</span>
+<span class="nc" id="L302">      sb.append(&quot;&amp;revision.committerEmail=&quot;).append(committerEmail);</span>
+    }
+
+<span class="nc bnc" id="L305" title="All 2 branches missed.">    if (!Utils.isNullOrEmpty(commit)) {</span>
+<span class="nc" id="L306">      sb.append(&quot;&amp;revision.commit=&quot;).append(commit);</span>
+    }
+
+<span class="nc bnc" id="L309" title="All 2 branches missed.">    if (!Utils.isNullOrEmpty(asFile)) {</span>
+<span class="nc" id="L310">      sb.append(&quot;&amp;asFile=&quot;).append(asFile);</span>
+    }
+<span class="nc" id="L312">    return sb.toString();</span>
+  }
+
+  @Override
+  public TimeoutInputStreamable&lt;Build&gt; asFile(String fileName) {
+<span class="nc" id="L317">    return new BuildConfigOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), secret, triggerType, authorName, authorEmail, committerName, committerEmail, commit, message, fileName, timeout, timeoutUnit);</span>
+  }
+
+  @Override
+  public MessageAsFileTimeoutInputStreamable&lt;Build&gt; withAuthorEmail(String email) {
+<span class="nc" id="L322">    return new BuildConfigOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), secret, triggerType, authorName, email, committerName, committerEmail, commit, message, asFile, timeout, timeoutUnit);</span>
+  }
+
+  @Override
+  public AuthorMessageAsFileTimeoutInputStreamable&lt;Build&gt; withCommitterEmail(String committerEmail) {
+<span class="nc" id="L327">    return new BuildConfigOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), secret, triggerType, authorName, authorEmail, committerName, committerEmail, commit, message, asFile, timeout, timeoutUnit);</span>
+  }
+
+  @Override
+  public AsFileTimeoutInputStreamable&lt;Build&gt; withMessage(String message) {
+<span class="nc" id="L332">    return new BuildConfigOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), secret, triggerType, authorName, authorEmail, committerName, committerEmail, commit, message, asFile, timeout, timeoutUnit);</span>
+  }
+
+  @Override
+  public AuthorEmailable&lt;MessageAsFileTimeoutInputStreamable&lt;Build&gt;&gt; withAuthorName(String authorName) {
+<span class="nc" id="L337">    return new BuildConfigOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), secret, triggerType, authorName, authorEmail, committerName, committerEmail, commit, message, asFile, timeout, timeoutUnit);</span>
+  }
+
+  @Override
+  public CommitterEmailable&lt;AuthorMessageAsFileTimeoutInputStreamable&lt;Build&gt;&gt; withCommitterName(String committerName) {
+<span class="nc" id="L342">    return new BuildConfigOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), secret, triggerType, authorName, authorEmail, committerName, committerEmail, commit, message, asFile, timeout, timeoutUnit);</span>
+  }
+
+  @Override
+  public InputStreamable&lt;Build&gt; withTimeout(long timeout, TimeUnit unit) {
+<span class="nc" id="L347">    return new BuildConfigOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), secret, triggerType, authorName, authorEmail, committerName, committerEmail, commit, message, asFile, timeout, unit);</span>
+  }
+
+  @Override
+  public InputStreamable&lt;Build&gt; withTimeoutInMillis(long timeoutInMillis) {
+<span class="nc" id="L352">    return new BuildConfigOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), secret, triggerType, authorName, authorEmail, committerName, committerEmail, commit, message, asFile, timeoutInMillis, TimeUnit.MILLISECONDS);</span>
+  }
+
+  private static class BuildConfigReaper implements Reaper {
+    private BuildConfigOperationsImpl oper;
+
+<span class="nc" id="L358">    public BuildConfigReaper(BuildConfigOperationsImpl oper) {</span>
+<span class="nc" id="L359">      this.oper = oper;</span>
+<span class="nc" id="L360">    }</span>
+
+    @Override
+    public boolean reap() {
+<span class="nc" id="L364">      oper.deleteBuilds();</span>
+<span class="nc" id="L365">      return false;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

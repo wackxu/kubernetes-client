@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JobStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.batch</a> &gt; <span class="el_source">JobStatus.java</span></div><h1>JobStatus.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.batch;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;active&quot;,
+    &quot;completionTime&quot;,
+    &quot;conditions&quot;,
+    &quot;failed&quot;,
+    &quot;startTime&quot;,
+    &quot;succeeded&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L43">@ToString</span>
+<span class="nc bnc" id="L44" title="All 62 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class JobStatus implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;active&quot;)
+    private Integer active;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;completionTime&quot;)
+    @Valid
+    private String completionTime;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L66">    @JsonProperty(&quot;conditions&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;JobCondition&gt; conditions = new ArrayList&lt;JobCondition&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;failed&quot;)
+    private Integer failed;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;startTime&quot;)
+    @Valid
+    private String startTime;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;succeeded&quot;)
+    private Integer succeeded;
+<span class="nc" id="L89">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L96">    public JobStatus() {</span>
+<span class="nc" id="L97">    }</span>
+
+    /**
+     * 
+     * @param completionTime
+     * @param active
+     * @param startTime
+     * @param failed
+     * @param conditions
+     * @param succeeded
+     */
+<span class="nc" id="L108">    public JobStatus(Integer active, String completionTime, List&lt;JobCondition&gt; conditions, Integer failed, String startTime, Integer succeeded) {</span>
+<span class="nc" id="L109">        this.active = active;</span>
+<span class="nc" id="L110">        this.completionTime = completionTime;</span>
+<span class="nc" id="L111">        this.conditions = conditions;</span>
+<span class="nc" id="L112">        this.failed = failed;</span>
+<span class="nc" id="L113">        this.startTime = startTime;</span>
+<span class="nc" id="L114">        this.succeeded = succeeded;</span>
+<span class="nc" id="L115">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The active
+     */
+    @JsonProperty(&quot;active&quot;)
+    public Integer getActive() {
+<span class="nc" id="L125">        return active;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param active
+     *     The active
+     */
+    @JsonProperty(&quot;active&quot;)
+    public void setActive(Integer active) {
+<span class="nc" id="L136">        this.active = active;</span>
+<span class="nc" id="L137">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The completionTime
+     */
+    @JsonProperty(&quot;completionTime&quot;)
+    public String getCompletionTime() {
+<span class="nc" id="L147">        return completionTime;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param completionTime
+     *     The completionTime
+     */
+    @JsonProperty(&quot;completionTime&quot;)
+    public void setCompletionTime(String completionTime) {
+<span class="nc" id="L158">        this.completionTime = completionTime;</span>
+<span class="nc" id="L159">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The conditions
+     */
+    @JsonProperty(&quot;conditions&quot;)
+    public List&lt;JobCondition&gt; getConditions() {
+<span class="nc" id="L169">        return conditions;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param conditions
+     *     The conditions
+     */
+    @JsonProperty(&quot;conditions&quot;)
+    public void setConditions(List&lt;JobCondition&gt; conditions) {
+<span class="nc" id="L180">        this.conditions = conditions;</span>
+<span class="nc" id="L181">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The failed
+     */
+    @JsonProperty(&quot;failed&quot;)
+    public Integer getFailed() {
+<span class="nc" id="L191">        return failed;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param failed
+     *     The failed
+     */
+    @JsonProperty(&quot;failed&quot;)
+    public void setFailed(Integer failed) {
+<span class="nc" id="L202">        this.failed = failed;</span>
+<span class="nc" id="L203">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The startTime
+     */
+    @JsonProperty(&quot;startTime&quot;)
+    public String getStartTime() {
+<span class="nc" id="L213">        return startTime;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param startTime
+     *     The startTime
+     */
+    @JsonProperty(&quot;startTime&quot;)
+    public void setStartTime(String startTime) {
+<span class="nc" id="L224">        this.startTime = startTime;</span>
+<span class="nc" id="L225">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The succeeded
+     */
+    @JsonProperty(&quot;succeeded&quot;)
+    public Integer getSucceeded() {
+<span class="nc" id="L235">        return succeeded;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param succeeded
+     *     The succeeded
+     */
+    @JsonProperty(&quot;succeeded&quot;)
+    public void setSucceeded(Integer succeeded) {
+<span class="nc" id="L246">        this.succeeded = succeeded;</span>
+<span class="nc" id="L247">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L251">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L256">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L257">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

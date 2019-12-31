@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OAuthClientFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">OAuthClientFluentImpl.java</span></div><h1>OAuthClientFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.ObjectMetaFluentImpl;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import java.lang.Integer;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class OAuthClientFluentImpl&lt;A extends OAuthClientFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements OAuthClientFluent&lt;A&gt;{
+
+    private Integer accessTokenInactivityTimeoutSeconds;
+    private Integer accessTokenMaxAgeSeconds;
+    private List&lt;String&gt; additionalSecrets;
+    private String apiVersion;
+    private String grantMethod;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+    private List&lt;String&gt; redirectURIs;
+    private Boolean respondWithChallenges;
+    private List&lt;ScopeRestrictionBuilder&gt; scopeRestrictions;
+    private String secret;
+
+<span class="nc" id="L37">    public OAuthClientFluentImpl(){</span>
+<span class="nc" id="L38">    }</span>
+<span class="nc" id="L39">    public OAuthClientFluentImpl(OAuthClient instance){</span>
+<span class="nc" id="L40">            this.withAccessTokenInactivityTimeoutSeconds(instance.getAccessTokenInactivityTimeoutSeconds()); </span>
+<span class="nc" id="L41">            this.withAccessTokenMaxAgeSeconds(instance.getAccessTokenMaxAgeSeconds()); </span>
+<span class="nc" id="L42">            this.withAdditionalSecrets(instance.getAdditionalSecrets()); </span>
+<span class="nc" id="L43">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L44">            this.withGrantMethod(instance.getGrantMethod()); </span>
+<span class="nc" id="L45">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L46">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L47">            this.withRedirectURIs(instance.getRedirectURIs()); </span>
+<span class="nc" id="L48">            this.withRespondWithChallenges(instance.getRespondWithChallenges()); </span>
+<span class="nc" id="L49">            this.withScopeRestrictions(instance.getScopeRestrictions()); </span>
+<span class="nc" id="L50">            this.withSecret(instance.getSecret()); </span>
+<span class="nc" id="L51">    }</span>
+
+    public Integer getAccessTokenInactivityTimeoutSeconds(){
+<span class="nc" id="L54">            return this.accessTokenInactivityTimeoutSeconds;</span>
+    }
+
+    public A withAccessTokenInactivityTimeoutSeconds(Integer accessTokenInactivityTimeoutSeconds){
+<span class="nc" id="L58">            this.accessTokenInactivityTimeoutSeconds=accessTokenInactivityTimeoutSeconds; return (A) this;</span>
+    }
+
+    public Boolean hasAccessTokenInactivityTimeoutSeconds(){
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            return this.accessTokenInactivityTimeoutSeconds != null;</span>
+    }
+
+    public Integer getAccessTokenMaxAgeSeconds(){
+<span class="nc" id="L66">            return this.accessTokenMaxAgeSeconds;</span>
+    }
+
+    public A withAccessTokenMaxAgeSeconds(Integer accessTokenMaxAgeSeconds){
+<span class="nc" id="L70">            this.accessTokenMaxAgeSeconds=accessTokenMaxAgeSeconds; return (A) this;</span>
+    }
+
+    public Boolean hasAccessTokenMaxAgeSeconds(){
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            return this.accessTokenMaxAgeSeconds != null;</span>
+    }
+
+    public A addToAdditionalSecrets(int index,String item){
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (this.additionalSecrets == null) {this.additionalSecrets = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L79">            this.additionalSecrets.add(index, item);</span>
+<span class="nc" id="L80">            return (A)this;</span>
+    }
+
+    public A setToAdditionalSecrets(int index,String item){
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            if (this.additionalSecrets == null) {this.additionalSecrets = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L85">            this.additionalSecrets.set(index, item); return (A)this;</span>
+    }
+
+    public A addToAdditionalSecrets(String... items){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (this.additionalSecrets == null) {this.additionalSecrets = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            for (String item : items) {this.additionalSecrets.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToAdditionalSecrets(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            if (this.additionalSecrets == null) {this.additionalSecrets = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            for (String item : items) {this.additionalSecrets.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromAdditionalSecrets(String... items){
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            for (String item : items) {if (this.additionalSecrets!= null){ this.additionalSecrets.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAdditionalSecrets(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L103" title="All 4 branches missed.">            for (String item : items) {if (this.additionalSecrets!= null){ this.additionalSecrets.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getAdditionalSecrets(){
+<span class="nc" id="L107">            return this.additionalSecrets;</span>
+    }
+
+    public String getAdditionalSecret(int index){
+<span class="nc" id="L111">            return this.additionalSecrets.get(index);</span>
+    }
+
+    public String getFirstAdditionalSecret(){
+<span class="nc" id="L115">            return this.additionalSecrets.get(0);</span>
+    }
+
+    public String getLastAdditionalSecret(){
+<span class="nc" id="L119">            return this.additionalSecrets.get(additionalSecrets.size() - 1);</span>
+    }
+
+    public String getMatchingAdditionalSecret(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L123" title="All 4 branches missed.">            for (String item: additionalSecrets) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withAdditionalSecrets(List&lt;String&gt; additionalSecrets){
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            if (this.additionalSecrets != null) { _visitables.removeAll(this.additionalSecrets);}</span>
+<span class="nc bnc" id="L128" title="All 4 branches missed.">            if (additionalSecrets != null) {this.additionalSecrets = new ArrayList&lt;String&gt;(); for (String item : additionalSecrets){this.addToAdditionalSecrets(item);}} else { this.additionalSecrets = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withAdditionalSecrets(String... additionalSecrets){
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            if (this.additionalSecrets != null) {this.additionalSecrets.clear();}</span>
+<span class="nc bnc" id="L133" title="All 4 branches missed.">            if (additionalSecrets != null) {for (String item :additionalSecrets){ this.addToAdditionalSecrets(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAdditionalSecrets(){
+<span class="nc bnc" id="L137" title="All 4 branches missed.">            return additionalSecrets != null &amp;&amp; !additionalSecrets.isEmpty();</span>
+    }
+
+    public String getApiVersion(){
+<span class="nc" id="L141">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L145">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public String getGrantMethod(){
+<span class="nc" id="L153">            return this.grantMethod;</span>
+    }
+
+    public A withGrantMethod(String grantMethod){
+<span class="nc" id="L157">            this.grantMethod=grantMethod; return (A) this;</span>
+    }
+
+    public Boolean hasGrantMethod(){
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            return this.grantMethod != null;</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L165">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L169">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L182" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L186" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L190">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L191" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L195" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public OAuthClientFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L199">            return new MetadataNestedImpl();</span>
+    }
+
+    public OAuthClientFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L203">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public OAuthClientFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L207">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public OAuthClientFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L211" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public OAuthClientFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L215" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    public A addToRedirectURIs(int index,String item){
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            if (this.redirectURIs == null) {this.redirectURIs = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L220">            this.redirectURIs.add(index, item);</span>
+<span class="nc" id="L221">            return (A)this;</span>
+    }
+
+    public A setToRedirectURIs(int index,String item){
+<span class="nc bnc" id="L225" title="All 2 branches missed.">            if (this.redirectURIs == null) {this.redirectURIs = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L226">            this.redirectURIs.set(index, item); return (A)this;</span>
+    }
+
+    public A addToRedirectURIs(String... items){
+<span class="nc bnc" id="L230" title="All 2 branches missed.">            if (this.redirectURIs == null) {this.redirectURIs = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            for (String item : items) {this.redirectURIs.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToRedirectURIs(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L235" title="All 2 branches missed.">            if (this.redirectURIs == null) {this.redirectURIs = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L236" title="All 2 branches missed.">            for (String item : items) {this.redirectURIs.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromRedirectURIs(String... items){
+<span class="nc bnc" id="L240" title="All 4 branches missed.">            for (String item : items) {if (this.redirectURIs!= null){ this.redirectURIs.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromRedirectURIs(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L244" title="All 4 branches missed.">            for (String item : items) {if (this.redirectURIs!= null){ this.redirectURIs.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getRedirectURIs(){
+<span class="nc" id="L248">            return this.redirectURIs;</span>
+    }
+
+    public String getRedirectURI(int index){
+<span class="nc" id="L252">            return this.redirectURIs.get(index);</span>
+    }
+
+    public String getFirstRedirectURI(){
+<span class="nc" id="L256">            return this.redirectURIs.get(0);</span>
+    }
+
+    public String getLastRedirectURI(){
+<span class="nc" id="L260">            return this.redirectURIs.get(redirectURIs.size() - 1);</span>
+    }
+
+    public String getMatchingRedirectURI(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L264" title="All 4 branches missed.">            for (String item: redirectURIs) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withRedirectURIs(List&lt;String&gt; redirectURIs){
+<span class="nc bnc" id="L268" title="All 2 branches missed.">            if (this.redirectURIs != null) { _visitables.removeAll(this.redirectURIs);}</span>
+<span class="nc bnc" id="L269" title="All 4 branches missed.">            if (redirectURIs != null) {this.redirectURIs = new ArrayList&lt;String&gt;(); for (String item : redirectURIs){this.addToRedirectURIs(item);}} else { this.redirectURIs = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withRedirectURIs(String... redirectURIs){
+<span class="nc bnc" id="L273" title="All 2 branches missed.">            if (this.redirectURIs != null) {this.redirectURIs.clear();}</span>
+<span class="nc bnc" id="L274" title="All 4 branches missed.">            if (redirectURIs != null) {for (String item :redirectURIs){ this.addToRedirectURIs(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasRedirectURIs(){
+<span class="nc bnc" id="L278" title="All 4 branches missed.">            return redirectURIs != null &amp;&amp; !redirectURIs.isEmpty();</span>
+    }
+
+    public Boolean isRespondWithChallenges(){
+<span class="nc" id="L282">            return this.respondWithChallenges;</span>
+    }
+
+    public A withRespondWithChallenges(Boolean respondWithChallenges){
+<span class="nc" id="L286">            this.respondWithChallenges=respondWithChallenges; return (A) this;</span>
+    }
+
+    public Boolean hasRespondWithChallenges(){
+<span class="nc bnc" id="L290" title="All 2 branches missed.">            return this.respondWithChallenges != null;</span>
+    }
+
+    public A withNewRespondWithChallenges(String arg1){
+<span class="nc" id="L294">            return (A)withRespondWithChallenges(new Boolean(arg1));</span>
+    }
+
+    public A withNewRespondWithChallenges(boolean arg1){
+<span class="nc" id="L298">            return (A)withRespondWithChallenges(new Boolean(arg1));</span>
+    }
+
+    public A addToScopeRestrictions(int index,ScopeRestriction item){
+<span class="nc bnc" id="L302" title="All 2 branches missed.">            if (this.scopeRestrictions == null) {this.scopeRestrictions = new ArrayList&lt;ScopeRestrictionBuilder&gt;();}</span>
+<span class="nc bnc" id="L303" title="All 4 branches missed.">            ScopeRestrictionBuilder builder = new ScopeRestrictionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.scopeRestrictions.add(index &gt;= 0 ? index : scopeRestrictions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToScopeRestrictions(int index,ScopeRestriction item){
+<span class="nc bnc" id="L307" title="All 2 branches missed.">            if (this.scopeRestrictions == null) {this.scopeRestrictions = new ArrayList&lt;ScopeRestrictionBuilder&gt;();}</span>
+<span class="nc" id="L308">            ScopeRestrictionBuilder builder = new ScopeRestrictionBuilder(item);</span>
+<span class="nc bnc" id="L309" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L310" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= scopeRestrictions.size()) { scopeRestrictions.add(builder); } else { scopeRestrictions.set(index, builder);}</span>
+<span class="nc" id="L311">             return (A)this;</span>
+    }
+
+    public A addToScopeRestrictions(ScopeRestriction... items){
+<span class="nc bnc" id="L315" title="All 2 branches missed.">            if (this.scopeRestrictions == null) {this.scopeRestrictions = new ArrayList&lt;ScopeRestrictionBuilder&gt;();}</span>
+<span class="nc bnc" id="L316" title="All 2 branches missed.">            for (ScopeRestriction item : items) {ScopeRestrictionBuilder builder = new ScopeRestrictionBuilder(item);_visitables.add(builder);this.scopeRestrictions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToScopeRestrictions(Collection&lt;ScopeRestriction&gt; items){
+<span class="nc bnc" id="L320" title="All 2 branches missed.">            if (this.scopeRestrictions == null) {this.scopeRestrictions = new ArrayList&lt;ScopeRestrictionBuilder&gt;();}</span>
+<span class="nc bnc" id="L321" title="All 2 branches missed.">            for (ScopeRestriction item : items) {ScopeRestrictionBuilder builder = new ScopeRestrictionBuilder(item);_visitables.add(builder);this.scopeRestrictions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromScopeRestrictions(ScopeRestriction... items){
+<span class="nc bnc" id="L325" title="All 4 branches missed.">            for (ScopeRestriction item : items) {ScopeRestrictionBuilder builder = new ScopeRestrictionBuilder(item);_visitables.remove(builder);if (this.scopeRestrictions != null) {this.scopeRestrictions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromScopeRestrictions(Collection&lt;ScopeRestriction&gt; items){
+<span class="nc bnc" id="L329" title="All 4 branches missed.">            for (ScopeRestriction item : items) {ScopeRestrictionBuilder builder = new ScopeRestrictionBuilder(item);_visitables.remove(builder);if (this.scopeRestrictions != null) {this.scopeRestrictions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildScopeRestrictions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;ScopeRestriction&gt; getScopeRestrictions(){
+<span class="nc" id="L338">            return build(scopeRestrictions);</span>
+    }
+
+    public List&lt;ScopeRestriction&gt; buildScopeRestrictions(){
+<span class="nc" id="L342">            return build(scopeRestrictions);</span>
+    }
+
+    public ScopeRestriction buildScopeRestriction(int index){
+<span class="nc" id="L346">            return this.scopeRestrictions.get(index).build();</span>
+    }
+
+    public ScopeRestriction buildFirstScopeRestriction(){
+<span class="nc" id="L350">            return this.scopeRestrictions.get(0).build();</span>
+    }
+
+    public ScopeRestriction buildLastScopeRestriction(){
+<span class="nc" id="L354">            return this.scopeRestrictions.get(scopeRestrictions.size() - 1).build();</span>
+    }
+
+    public ScopeRestriction buildMatchingScopeRestriction(io.fabric8.kubernetes.api.builder.Predicate&lt;ScopeRestrictionBuilder&gt; predicate){
+<span class="nc bnc" id="L358" title="All 4 branches missed.">            for (ScopeRestrictionBuilder item: scopeRestrictions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withScopeRestrictions(List&lt;ScopeRestriction&gt; scopeRestrictions){
+<span class="nc bnc" id="L362" title="All 2 branches missed.">            if (this.scopeRestrictions != null) { _visitables.removeAll(this.scopeRestrictions);}</span>
+<span class="nc bnc" id="L363" title="All 4 branches missed.">            if (scopeRestrictions != null) {this.scopeRestrictions = new ArrayList&lt;ScopeRestrictionBuilder&gt;(); for (ScopeRestriction item : scopeRestrictions){this.addToScopeRestrictions(item);}} else { this.scopeRestrictions = new ArrayList&lt;ScopeRestrictionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withScopeRestrictions(ScopeRestriction... scopeRestrictions){
+<span class="nc bnc" id="L367" title="All 2 branches missed.">            if (this.scopeRestrictions != null) {this.scopeRestrictions.clear();}</span>
+<span class="nc bnc" id="L368" title="All 4 branches missed.">            if (scopeRestrictions != null) {for (ScopeRestriction item :scopeRestrictions){ this.addToScopeRestrictions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasScopeRestrictions(){
+<span class="nc bnc" id="L372" title="All 4 branches missed.">            return scopeRestrictions != null &amp;&amp; !scopeRestrictions.isEmpty();</span>
+    }
+
+    public OAuthClientFluent.ScopeRestrictionsNested&lt;A&gt; addNewScopeRestriction(){
+<span class="nc" id="L376">            return new ScopeRestrictionsNestedImpl();</span>
+    }
+
+    public OAuthClientFluent.ScopeRestrictionsNested&lt;A&gt; addNewScopeRestrictionLike(ScopeRestriction item){
+<span class="nc" id="L380">            return new ScopeRestrictionsNestedImpl(-1, item);</span>
+    }
+
+    public OAuthClientFluent.ScopeRestrictionsNested&lt;A&gt; setNewScopeRestrictionLike(int index,ScopeRestriction item){
+<span class="nc" id="L384">            return new ScopeRestrictionsNestedImpl(index, item);</span>
+    }
+
+    public OAuthClientFluent.ScopeRestrictionsNested&lt;A&gt; editScopeRestriction(int index){
+<span class="nc bnc" id="L388" title="All 2 branches missed.">            if (scopeRestrictions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit scopeRestrictions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L389">            return setNewScopeRestrictionLike(index, buildScopeRestriction(index));</span>
+    }
+
+    public OAuthClientFluent.ScopeRestrictionsNested&lt;A&gt; editFirstScopeRestriction(){
+<span class="nc bnc" id="L393" title="All 2 branches missed.">            if (scopeRestrictions.size() == 0) throw new RuntimeException(&quot;Can't edit first scopeRestrictions. The list is empty.&quot;);</span>
+<span class="nc" id="L394">            return setNewScopeRestrictionLike(0, buildScopeRestriction(0));</span>
+    }
+
+    public OAuthClientFluent.ScopeRestrictionsNested&lt;A&gt; editLastScopeRestriction(){
+<span class="nc" id="L398">            int index = scopeRestrictions.size() - 1;</span>
+<span class="nc bnc" id="L399" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last scopeRestrictions. The list is empty.&quot;);</span>
+<span class="nc" id="L400">            return setNewScopeRestrictionLike(index, buildScopeRestriction(index));</span>
+    }
+
+    public OAuthClientFluent.ScopeRestrictionsNested&lt;A&gt; editMatchingScopeRestriction(io.fabric8.kubernetes.api.builder.Predicate&lt;ScopeRestrictionBuilder&gt; predicate){
+<span class="nc" id="L404">            int index = -1;</span>
+<span class="nc bnc" id="L405" title="All 2 branches missed.">            for (int i=0;i&lt;scopeRestrictions.size();i++) { </span>
+<span class="nc bnc" id="L406" title="All 2 branches missed.">            if (predicate.apply(scopeRestrictions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L408" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching scopeRestrictions. No match found.&quot;);</span>
+<span class="nc" id="L409">            return setNewScopeRestrictionLike(index, buildScopeRestriction(index));</span>
+    }
+
+    public String getSecret(){
+<span class="nc" id="L413">            return this.secret;</span>
+    }
+
+    public A withSecret(String secret){
+<span class="nc" id="L417">            this.secret=secret; return (A) this;</span>
+    }
+
+    public Boolean hasSecret(){
+<span class="nc bnc" id="L421" title="All 2 branches missed.">            return this.secret != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L425" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L426" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L427" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L428">            OAuthClientFluentImpl that = (OAuthClientFluentImpl) o;</span>
+<span class="nc bnc" id="L429" title="All 6 branches missed.">            if (accessTokenInactivityTimeoutSeconds != null ? !accessTokenInactivityTimeoutSeconds.equals(that.accessTokenInactivityTimeoutSeconds) :that.accessTokenInactivityTimeoutSeconds != null) return false;</span>
+<span class="nc bnc" id="L430" title="All 6 branches missed.">            if (accessTokenMaxAgeSeconds != null ? !accessTokenMaxAgeSeconds.equals(that.accessTokenMaxAgeSeconds) :that.accessTokenMaxAgeSeconds != null) return false;</span>
+<span class="nc bnc" id="L431" title="All 6 branches missed.">            if (additionalSecrets != null ? !additionalSecrets.equals(that.additionalSecrets) :that.additionalSecrets != null) return false;</span>
+<span class="nc bnc" id="L432" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L433" title="All 6 branches missed.">            if (grantMethod != null ? !grantMethod.equals(that.grantMethod) :that.grantMethod != null) return false;</span>
+<span class="nc bnc" id="L434" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L435" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L436" title="All 6 branches missed.">            if (redirectURIs != null ? !redirectURIs.equals(that.redirectURIs) :that.redirectURIs != null) return false;</span>
+<span class="nc bnc" id="L437" title="All 6 branches missed.">            if (respondWithChallenges != null ? !respondWithChallenges.equals(that.respondWithChallenges) :that.respondWithChallenges != null) return false;</span>
+<span class="nc bnc" id="L438" title="All 6 branches missed.">            if (scopeRestrictions != null ? !scopeRestrictions.equals(that.scopeRestrictions) :that.scopeRestrictions != null) return false;</span>
+<span class="nc bnc" id="L439" title="All 6 branches missed.">            if (secret != null ? !secret.equals(that.secret) :that.secret != null) return false;</span>
+<span class="nc" id="L440">            return true;</span>
+    }
+
+
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;OAuthClientFluent.MetadataNested&lt;N&gt;&gt; implements OAuthClientFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L448">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L449">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L450">            }</span>
+<span class="nc" id="L451">            MetadataNestedImpl(){</span>
+<span class="nc" id="L452">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L453">            }</span>
+    
+    public N and(){
+<span class="nc" id="L456">            return (N) OAuthClientFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L459">            return and();</span>
+    }
+
+}
+    public class ScopeRestrictionsNestedImpl&lt;N&gt; extends ScopeRestrictionFluentImpl&lt;OAuthClientFluent.ScopeRestrictionsNested&lt;N&gt;&gt; implements OAuthClientFluent.ScopeRestrictionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ScopeRestrictionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L468">            ScopeRestrictionsNestedImpl(int index,ScopeRestriction item){</span>
+<span class="nc" id="L469">                    this.index = index;</span>
+<span class="nc" id="L470">                    this.builder = new ScopeRestrictionBuilder(this, item);</span>
+<span class="nc" id="L471">            }</span>
+<span class="nc" id="L472">            ScopeRestrictionsNestedImpl(){</span>
+<span class="nc" id="L473">                    this.index = -1;</span>
+<span class="nc" id="L474">                    this.builder = new ScopeRestrictionBuilder(this);</span>
+<span class="nc" id="L475">            }</span>
+    
+    public N and(){
+<span class="nc" id="L478">            return (N) OAuthClientFluentImpl.this.setToScopeRestrictions(index, builder.build());</span>
+    }
+    public N endScopeRestriction(){
+<span class="nc" id="L481">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

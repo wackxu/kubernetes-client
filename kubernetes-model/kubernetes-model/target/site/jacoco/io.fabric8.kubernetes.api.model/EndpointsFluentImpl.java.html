@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EndpointsFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">EndpointsFluentImpl.java</span></div><h1>EndpointsFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class EndpointsFluentImpl&lt;A extends EndpointsFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements EndpointsFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+    private List&lt;EndpointSubsetBuilder&gt; subsets;
+
+<span class="nc" id="L26">    public EndpointsFluentImpl(){</span>
+<span class="nc" id="L27">    }</span>
+<span class="nc" id="L28">    public EndpointsFluentImpl(Endpoints instance){</span>
+<span class="nc" id="L29">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L30">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L31">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L32">            this.withSubsets(instance.getSubsets()); </span>
+<span class="nc" id="L33">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L36">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L40">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L48">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L52">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L73">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public EndpointsFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L82">            return new MetadataNestedImpl();</span>
+    }
+
+    public EndpointsFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L86">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public EndpointsFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L90">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public EndpointsFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public EndpointsFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    public A addToSubsets(int index,EndpointSubset item){
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            if (this.subsets == null) {this.subsets = new ArrayList&lt;EndpointSubsetBuilder&gt;();}</span>
+<span class="nc bnc" id="L103" title="All 4 branches missed.">            EndpointSubsetBuilder builder = new EndpointSubsetBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.subsets.add(index &gt;= 0 ? index : subsets.size(), builder); return (A)this;</span>
+    }
+
+    public A setToSubsets(int index,EndpointSubset item){
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            if (this.subsets == null) {this.subsets = new ArrayList&lt;EndpointSubsetBuilder&gt;();}</span>
+<span class="nc" id="L108">            EndpointSubsetBuilder builder = new EndpointSubsetBuilder(item);</span>
+<span class="nc bnc" id="L109" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L110" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= subsets.size()) { subsets.add(builder); } else { subsets.set(index, builder);}</span>
+<span class="nc" id="L111">             return (A)this;</span>
+    }
+
+    public A addToSubsets(EndpointSubset... items){
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            if (this.subsets == null) {this.subsets = new ArrayList&lt;EndpointSubsetBuilder&gt;();}</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            for (EndpointSubset item : items) {EndpointSubsetBuilder builder = new EndpointSubsetBuilder(item);_visitables.add(builder);this.subsets.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToSubsets(Collection&lt;EndpointSubset&gt; items){
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            if (this.subsets == null) {this.subsets = new ArrayList&lt;EndpointSubsetBuilder&gt;();}</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            for (EndpointSubset item : items) {EndpointSubsetBuilder builder = new EndpointSubsetBuilder(item);_visitables.add(builder);this.subsets.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromSubsets(EndpointSubset... items){
+<span class="nc bnc" id="L125" title="All 4 branches missed.">            for (EndpointSubset item : items) {EndpointSubsetBuilder builder = new EndpointSubsetBuilder(item);_visitables.remove(builder);if (this.subsets != null) {this.subsets.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromSubsets(Collection&lt;EndpointSubset&gt; items){
+<span class="nc bnc" id="L129" title="All 4 branches missed.">            for (EndpointSubset item : items) {EndpointSubsetBuilder builder = new EndpointSubsetBuilder(item);_visitables.remove(builder);if (this.subsets != null) {this.subsets.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSubsets instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;EndpointSubset&gt; getSubsets(){
+<span class="nc" id="L138">            return build(subsets);</span>
+    }
+
+    public List&lt;EndpointSubset&gt; buildSubsets(){
+<span class="nc" id="L142">            return build(subsets);</span>
+    }
+
+    public EndpointSubset buildSubset(int index){
+<span class="nc" id="L146">            return this.subsets.get(index).build();</span>
+    }
+
+    public EndpointSubset buildFirstSubset(){
+<span class="nc" id="L150">            return this.subsets.get(0).build();</span>
+    }
+
+    public EndpointSubset buildLastSubset(){
+<span class="nc" id="L154">            return this.subsets.get(subsets.size() - 1).build();</span>
+    }
+
+    public EndpointSubset buildMatchingSubset(io.fabric8.kubernetes.api.builder.Predicate&lt;EndpointSubsetBuilder&gt; predicate){
+<span class="nc bnc" id="L158" title="All 4 branches missed.">            for (EndpointSubsetBuilder item: subsets) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withSubsets(List&lt;EndpointSubset&gt; subsets){
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (this.subsets != null) { _visitables.removeAll(this.subsets);}</span>
+<span class="nc bnc" id="L163" title="All 4 branches missed.">            if (subsets != null) {this.subsets = new ArrayList&lt;EndpointSubsetBuilder&gt;(); for (EndpointSubset item : subsets){this.addToSubsets(item);}} else { this.subsets = new ArrayList&lt;EndpointSubsetBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withSubsets(EndpointSubset... subsets){
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (this.subsets != null) {this.subsets.clear();}</span>
+<span class="nc bnc" id="L168" title="All 4 branches missed.">            if (subsets != null) {for (EndpointSubset item :subsets){ this.addToSubsets(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasSubsets(){
+<span class="nc bnc" id="L172" title="All 4 branches missed.">            return subsets != null &amp;&amp; !subsets.isEmpty();</span>
+    }
+
+    public EndpointsFluent.SubsetsNested&lt;A&gt; addNewSubset(){
+<span class="nc" id="L176">            return new SubsetsNestedImpl();</span>
+    }
+
+    public EndpointsFluent.SubsetsNested&lt;A&gt; addNewSubsetLike(EndpointSubset item){
+<span class="nc" id="L180">            return new SubsetsNestedImpl(-1, item);</span>
+    }
+
+    public EndpointsFluent.SubsetsNested&lt;A&gt; setNewSubsetLike(int index,EndpointSubset item){
+<span class="nc" id="L184">            return new SubsetsNestedImpl(index, item);</span>
+    }
+
+    public EndpointsFluent.SubsetsNested&lt;A&gt; editSubset(int index){
+<span class="nc bnc" id="L188" title="All 2 branches missed.">            if (subsets.size() &lt;= index) throw new RuntimeException(&quot;Can't edit subsets. Index exceeds size.&quot;);</span>
+<span class="nc" id="L189">            return setNewSubsetLike(index, buildSubset(index));</span>
+    }
+
+    public EndpointsFluent.SubsetsNested&lt;A&gt; editFirstSubset(){
+<span class="nc bnc" id="L193" title="All 2 branches missed.">            if (subsets.size() == 0) throw new RuntimeException(&quot;Can't edit first subsets. The list is empty.&quot;);</span>
+<span class="nc" id="L194">            return setNewSubsetLike(0, buildSubset(0));</span>
+    }
+
+    public EndpointsFluent.SubsetsNested&lt;A&gt; editLastSubset(){
+<span class="nc" id="L198">            int index = subsets.size() - 1;</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last subsets. The list is empty.&quot;);</span>
+<span class="nc" id="L200">            return setNewSubsetLike(index, buildSubset(index));</span>
+    }
+
+    public EndpointsFluent.SubsetsNested&lt;A&gt; editMatchingSubset(io.fabric8.kubernetes.api.builder.Predicate&lt;EndpointSubsetBuilder&gt; predicate){
+<span class="nc" id="L204">            int index = -1;</span>
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            for (int i=0;i&lt;subsets.size();i++) { </span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">            if (predicate.apply(subsets.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L208" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching subsets. No match found.&quot;);</span>
+<span class="nc" id="L209">            return setNewSubsetLike(index, buildSubset(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L213" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L214" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L215" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L216">            EndpointsFluentImpl that = (EndpointsFluentImpl) o;</span>
+<span class="nc bnc" id="L217" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L218" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L219" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L220" title="All 6 branches missed.">            if (subsets != null ? !subsets.equals(that.subsets) :that.subsets != null) return false;</span>
+<span class="nc" id="L221">            return true;</span>
+    }
+
+
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;EndpointsFluent.MetadataNested&lt;N&gt;&gt; implements EndpointsFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L229">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L230">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L231">            }</span>
+<span class="nc" id="L232">            MetadataNestedImpl(){</span>
+<span class="nc" id="L233">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L234">            }</span>
+    
+    public N and(){
+<span class="nc" id="L237">            return (N) EndpointsFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L240">            return and();</span>
+    }
+
+}
+    public class SubsetsNestedImpl&lt;N&gt; extends EndpointSubsetFluentImpl&lt;EndpointsFluent.SubsetsNested&lt;N&gt;&gt; implements EndpointsFluent.SubsetsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EndpointSubsetBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L249">            SubsetsNestedImpl(int index,EndpointSubset item){</span>
+<span class="nc" id="L250">                    this.index = index;</span>
+<span class="nc" id="L251">                    this.builder = new EndpointSubsetBuilder(this, item);</span>
+<span class="nc" id="L252">            }</span>
+<span class="nc" id="L253">            SubsetsNestedImpl(){</span>
+<span class="nc" id="L254">                    this.index = -1;</span>
+<span class="nc" id="L255">                    this.builder = new EndpointSubsetBuilder(this);</span>
+<span class="nc" id="L256">            }</span>
+    
+    public N and(){
+<span class="nc" id="L259">            return (N) EndpointsFluentImpl.this.setToSubsets(index, builder.build());</span>
+    }
+    public N endSubset(){
+<span class="nc" id="L262">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

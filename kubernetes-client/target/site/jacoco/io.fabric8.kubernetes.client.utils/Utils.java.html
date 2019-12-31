@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Utils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.utils</a> &gt; <span class="el_source">Utils.java</span></div><h1>Utils.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.fabric8.kubernetes.client.utils;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.Closeable;
+import java.io.Flushable;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
+
+import io.fabric8.kubernetes.client.KubernetesClientException;
+
+
+<span class="nc" id="L41">public class Utils {</span>
+
+<span class="fc" id="L43">  private static final Logger LOGGER = LoggerFactory.getLogger(Utils.class);</span>
+  private static final String ALL_CHARS = &quot;abcdefghijklmnopqrstuvwxyz0123456789&quot;;
+
+  public static &lt;T&gt; T checkNotNull(T ref, String message) {
+<span class="nc bnc" id="L47" title="All 2 branches missed.">    if (ref == null) {</span>
+<span class="nc" id="L48">      throw new NullPointerException(message);</span>
+    }
+<span class="nc" id="L50">    return ref;</span>
+  }
+
+  public static String getSystemPropertyOrEnvVar(String systemPropertyName, String envVarName, String defaultValue) {
+<span class="fc" id="L54">    String answer = System.getProperty(systemPropertyName);</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">    if (isNotNullOrEmpty(answer)) {</span>
+<span class="fc" id="L56">      return answer;</span>
+    }
+
+<span class="fc" id="L59">    answer = System.getenv(envVarName);</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">    if (isNotNullOrEmpty(answer)) {</span>
+<span class="fc" id="L61">      return answer;</span>
+    }
+
+<span class="fc" id="L64">    return defaultValue;</span>
+  }
+
+  public static String convertSystemPropertyNameToEnvVar(String systemPropertyName) {
+<span class="fc" id="L68">    return systemPropertyName.toUpperCase().replaceAll(&quot;[.-]&quot;, &quot;_&quot;);</span>
+  }
+
+  public static String getEnvVar(String envVarName, String defaultValue) {
+<span class="nc" id="L72">    String answer = System.getenv(envVarName);</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">    return isNotNullOrEmpty(answer) ? answer : defaultValue;</span>
+  }
+
+  public static String getSystemPropertyOrEnvVar(String systemPropertyName, String defaultValue) {
+<span class="fc" id="L77">    return getSystemPropertyOrEnvVar(systemPropertyName, convertSystemPropertyNameToEnvVar(systemPropertyName), defaultValue);</span>
+  }
+
+  public static String getSystemPropertyOrEnvVar(String systemPropertyName) {
+<span class="fc" id="L81">    return getSystemPropertyOrEnvVar(systemPropertyName, (String) null);</span>
+  }
+
+  public static Boolean getSystemPropertyOrEnvVar(String systemPropertyName, Boolean defaultValue) {
+<span class="fc" id="L85">    String result = getSystemPropertyOrEnvVar(systemPropertyName, defaultValue.toString());</span>
+<span class="fc" id="L86">    return Boolean.parseBoolean(result);</span>
+  }
+
+  public static int getSystemPropertyOrEnvVar(String systemPropertyName, int defaultValue) {
+<span class="fc" id="L90">    String result = getSystemPropertyOrEnvVar(systemPropertyName, new Integer(defaultValue).toString());</span>
+<span class="fc" id="L91">    return Integer.parseInt(result);</span>
+  }
+
+  public static String join(final Object[] array) {
+<span class="nc" id="L95">    return join(array, ',');</span>
+  }
+
+  public static String join(final Object[] array, final char separator) {
+<span class="nc bnc" id="L99" title="All 2 branches missed.">    if (array == null) {</span>
+<span class="nc" id="L100">      return null;</span>
+    }
+<span class="nc bnc" id="L102" title="All 2 branches missed.">    if (array.length == 0) {</span>
+<span class="nc" id="L103">      return &quot;&quot;;</span>
+    }
+<span class="nc" id="L105">    final StringBuilder buf = new StringBuilder();</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">    for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">      if (i &gt; 0) {</span>
+<span class="nc" id="L108">        buf.append(separator);</span>
+      }
+<span class="nc bnc" id="L110" title="All 2 branches missed.">      if (array[i] != null) {</span>
+<span class="nc" id="L111">        buf.append(array[i]);</span>
+      }
+    }
+<span class="nc" id="L114">    return buf.toString();</span>
+  }
+
+
+  /**
+   * Wait until an other thread signals the completion of a task.
+   * If an exception is passed, it will be propagated to the caller.
+   * @param queue     The communication channel.
+   * @param amount    The amount of time to wait.
+   * @param timeUnit  The time unit.
+   */
+  public static boolean waitUntilReady(BlockingQueue&lt;Object&gt; queue, long amount, TimeUnit timeUnit) {
+    try {
+<span class="nc" id="L127">      Object obj = queue.poll(amount, timeUnit);</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">      if (obj instanceof Boolean) {</span>
+<span class="nc" id="L129">        return (Boolean) obj;</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">      } else if (obj instanceof Throwable) {</span>
+<span class="nc" id="L131">        throw (Throwable) obj;</span>
+      }
+<span class="nc" id="L133">      return false;</span>
+<span class="nc" id="L134">    } catch (Throwable t) {</span>
+<span class="nc" id="L135">      throw KubernetesClientException.launderThrowable(t);</span>
+    }
+  }
+
+  /**
+   * Closes the specified {@link ExecutorService}.
+   * @param executorService   The executorService.
+   * @return True if shutdown is complete.
+   */
+  public static boolean shutdownExecutorService(ExecutorService executorService) {
+<span class="nc bnc" id="L145" title="All 2 branches missed.">    if (executorService == null) {</span>
+<span class="nc" id="L146">      return false;</span>
+    }
+    //If it hasn't already shutdown, do shutdown.
+<span class="nc bnc" id="L149" title="All 2 branches missed.">    if (!executorService.isShutdown()) {</span>
+<span class="nc" id="L150">      executorService.shutdown();</span>
+    }
+
+    try {
+      //Wait for clean termination
+<span class="nc bnc" id="L155" title="All 2 branches missed.">      if (executorService.awaitTermination(5, TimeUnit.SECONDS)) {</span>
+<span class="nc" id="L156">        return true;</span>
+      }
+
+      //If not already terminated (via shutdownNow) do shutdownNow.
+<span class="nc bnc" id="L160" title="All 2 branches missed.">      if (!executorService.isTerminated()) {</span>
+<span class="nc" id="L161">        executorService.shutdownNow();</span>
+      }
+
+<span class="nc bnc" id="L164" title="All 2 branches missed.">      if (executorService.awaitTermination(5, TimeUnit.SECONDS)) {</span>
+<span class="nc" id="L165">        return true;</span>
+      }
+
+<span class="nc bnc" id="L168" title="All 2 branches missed.">      if (LOGGER.isDebugEnabled()) {</span>
+<span class="nc" id="L169">        List&lt;Runnable&gt; tasks = executorService.shutdownNow();</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">        if (!tasks.isEmpty()) {</span>
+<span class="nc" id="L171">          LOGGER.debug(&quot;ExecutorService was not cleanly shutdown, after waiting for 10 seconds. Number of remaining tasks:&quot; + tasks.size());</span>
+        }
+      }
+<span class="nc" id="L174">    } catch (InterruptedException e) {</span>
+<span class="nc" id="L175">      executorService.shutdownNow();</span>
+      //Preserve interrupted status
+<span class="nc" id="L177">      Thread.currentThread().interrupt();</span>
+<span class="nc" id="L178">    }</span>
+<span class="nc" id="L179">    return false;</span>
+  }
+
+  /**
+   * Closes and flushes the specified {@link Closeable} items.
+   * @param closeables  An {@link Iterable} of {@link Closeable} items.
+   */
+  public static void closeQuietly(Iterable&lt;Closeable&gt; closeables) {
+<span class="nc bnc" id="L187" title="All 2 branches missed.">    for (Closeable c : closeables) {</span>
+      try {
+        //Check if we also need to flush
+<span class="nc bnc" id="L190" title="All 2 branches missed.">        if (c instanceof Flushable) {</span>
+<span class="nc" id="L191">          ((Flushable) c).flush();</span>
+        }
+
+<span class="nc bnc" id="L194" title="All 2 branches missed.">        if (c != null) {</span>
+<span class="nc" id="L195">          c.close();</span>
+        }
+<span class="nc" id="L197">      } catch (IOException e) {</span>
+<span class="nc" id="L198">        LOGGER.debug(&quot;Error closing:&quot; + c);</span>
+<span class="nc" id="L199">      }</span>
+<span class="nc" id="L200">    }</span>
+<span class="nc" id="L201">  }</span>
+
+  /**
+   * Closes and flushes the specified {@link Closeable} items.
+   * @param closeables  An array of {@link Closeable} items.
+   */
+  public static void closeQuietly(Closeable... closeables) {
+<span class="nc" id="L208">    closeQuietly(Arrays.asList(closeables));</span>
+<span class="nc" id="L209">  }</span>
+
+  public static String coalesce(String... items) {
+<span class="pc bpc" id="L212" title="1 of 2 branches missed.">    for (String str : items) {</span>
+<span class="pc bpc" id="L213" title="1 of 2 branches missed.">      if (str != null) {</span>
+<span class="fc" id="L214">        return str;</span>
+      }
+    }
+<span class="nc" id="L217">    return null;</span>
+  }
+
+  public static String randomString(int length) {
+<span class="nc" id="L221">    Random random = new Random();</span>
+<span class="nc" id="L222">    StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">    for (int i = 0; i &lt; length; i++) {</span>
+<span class="nc" id="L224">      int index = random.nextInt(ALL_CHARS.length());</span>
+<span class="nc" id="L225">      sb.append(ALL_CHARS.charAt(index));</span>
+    }
+<span class="nc" id="L227">    return sb.toString();</span>
+  }
+
+  public static String randomString(String prefix, int length) {
+<span class="nc" id="L231">    Random random = new Random();</span>
+<span class="nc" id="L232">    StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">    for (int i = 0; i &lt; length - prefix.length(); i++) {</span>
+<span class="nc" id="L234">      int index = random.nextInt(ALL_CHARS.length());</span>
+<span class="nc" id="L235">      sb.append(ALL_CHARS.charAt(index));</span>
+    }
+<span class="nc" id="L237">    return sb.toString();</span>
+  }
+
+  public static String filePath(URL path) {
+    try {
+<span class="fc" id="L242">      return Paths.get(path.toURI()).toString();</span>
+<span class="nc" id="L243">    } catch (URISyntaxException e) {</span>
+<span class="nc" id="L244">      throw new RuntimeException(e);</span>
+    }
+  }
+
+  /**
+   * Replaces all occurrences of the from text with to text without any regular expressions
+   */
+  public static String replaceAllWithoutRegex(String text, String from, String to) {
+<span class="nc bnc" id="L252" title="All 2 branches missed.">    if (text == null) {</span>
+<span class="nc" id="L253">      return null;</span>
+    }
+<span class="nc" id="L255">    int idx = 0;</span>
+    while (true) {
+<span class="nc" id="L257">      idx = text.indexOf(from, idx);</span>
+<span class="nc bnc" id="L258" title="All 2 branches missed.">      if (idx &gt;= 0) {</span>
+<span class="nc" id="L259">        text = text.substring(0, idx) + to + text.substring(idx + from.length());</span>
+
+        // lets start searching after the end of the `to` to avoid possible infinite recursion
+<span class="nc" id="L262">        idx += to.length();</span>
+      } else {
+        break;
+      }
+    }
+<span class="nc" id="L267">    return text;</span>
+  }
+
+  public static boolean isNullOrEmpty(String str) {
+<span class="fc bfc" id="L271" title="All 4 branches covered.">    return str == null || str.isEmpty();</span>
+  }
+
+  public static boolean isNotNullOrEmpty(Map map) {
+<span class="nc bnc" id="L275" title="All 4 branches missed.">    return !(map == null || map.isEmpty());</span>
+  }
+
+  public static boolean isNotNullOrEmpty(String str) {
+<span class="fc bfc" id="L279" title="All 2 branches covered.">    return !isNullOrEmpty(str);</span>
+  }
+
+  public static boolean isNotNullOrEmpty(String[] array) {
+<span class="nc bnc" id="L283" title="All 4 branches missed.">    return !(array == null || array.length == 0);</span>
+  }
+
+  public static String getProperty(Map&lt;String, Object&gt; properties, String propertyName, String defaultValue) {
+<span class="nc" id="L287">    String answer = (String) properties.get(propertyName);</span>
+<span class="nc bnc" id="L288" title="All 2 branches missed.">    if (!isNullOrEmpty(answer)) {</span>
+<span class="nc" id="L289">      return answer;</span>
+    }
+
+<span class="nc" id="L292">    return getSystemPropertyOrEnvVar(propertyName, defaultValue);</span>
+  }
+
+  public static String getProperty(Map&lt;String, Object&gt; properties, String propertyName) {
+<span class="nc" id="L296">    return getProperty(properties, propertyName, null);</span>
+  }
+
+  /**
+   * Converts string to URL encoded string.
+   *
+   * @param str
+   * @return
+   */
+  public static final String toUrlEncoded(String str) {
+    try {
+<span class="nc" id="L307">      return URLEncoder.encode(str, &quot;UTF-8&quot;);</span>
+<span class="nc" id="L308">    } catch (UnsupportedEncodingException exception) {</span>
+      // Ignore
+    }
+<span class="nc" id="L311">    return null;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

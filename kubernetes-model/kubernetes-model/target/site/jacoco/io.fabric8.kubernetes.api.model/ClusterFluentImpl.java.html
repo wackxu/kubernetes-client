@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClusterFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ClusterFluentImpl.java</span></div><h1>ClusterFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class ClusterFluentImpl&lt;A extends ClusterFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ClusterFluent&lt;A&gt;{
+
+    private String certificateAuthority;
+    private String certificateAuthorityData;
+    private List&lt;NamedExtensionBuilder&gt; extensions;
+    private Boolean insecureSkipTlsVerify;
+    private String server;
+
+<span class="nc" id="L25">    public ClusterFluentImpl(){</span>
+<span class="nc" id="L26">    }</span>
+<span class="nc" id="L27">    public ClusterFluentImpl(Cluster instance){</span>
+<span class="nc" id="L28">            this.withCertificateAuthority(instance.getCertificateAuthority()); </span>
+<span class="nc" id="L29">            this.withCertificateAuthorityData(instance.getCertificateAuthorityData()); </span>
+<span class="nc" id="L30">            this.withExtensions(instance.getExtensions()); </span>
+<span class="nc" id="L31">            this.withInsecureSkipTlsVerify(instance.getInsecureSkipTlsVerify()); </span>
+<span class="nc" id="L32">            this.withServer(instance.getServer()); </span>
+<span class="nc" id="L33">    }</span>
+
+    public String getCertificateAuthority(){
+<span class="nc" id="L36">            return this.certificateAuthority;</span>
+    }
+
+    public A withCertificateAuthority(String certificateAuthority){
+<span class="nc" id="L40">            this.certificateAuthority=certificateAuthority; return (A) this;</span>
+    }
+
+    public Boolean hasCertificateAuthority(){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            return this.certificateAuthority != null;</span>
+    }
+
+    public String getCertificateAuthorityData(){
+<span class="nc" id="L48">            return this.certificateAuthorityData;</span>
+    }
+
+    public A withCertificateAuthorityData(String certificateAuthorityData){
+<span class="nc" id="L52">            this.certificateAuthorityData=certificateAuthorityData; return (A) this;</span>
+    }
+
+    public Boolean hasCertificateAuthorityData(){
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            return this.certificateAuthorityData != null;</span>
+    }
+
+    public A addToExtensions(int index,NamedExtension item){
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            if (this.extensions == null) {this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;();}</span>
+<span class="nc bnc" id="L61" title="All 4 branches missed.">            NamedExtensionBuilder builder = new NamedExtensionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.extensions.add(index &gt;= 0 ? index : extensions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToExtensions(int index,NamedExtension item){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (this.extensions == null) {this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;();}</span>
+<span class="nc" id="L66">            NamedExtensionBuilder builder = new NamedExtensionBuilder(item);</span>
+<span class="nc bnc" id="L67" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L68" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= extensions.size()) { extensions.add(builder); } else { extensions.set(index, builder);}</span>
+<span class="nc" id="L69">             return (A)this;</span>
+    }
+
+    public A addToExtensions(NamedExtension... items){
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if (this.extensions == null) {this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;();}</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            for (NamedExtension item : items) {NamedExtensionBuilder builder = new NamedExtensionBuilder(item);_visitables.add(builder);this.extensions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToExtensions(Collection&lt;NamedExtension&gt; items){
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (this.extensions == null) {this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;();}</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            for (NamedExtension item : items) {NamedExtensionBuilder builder = new NamedExtensionBuilder(item);_visitables.add(builder);this.extensions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromExtensions(NamedExtension... items){
+<span class="nc bnc" id="L83" title="All 4 branches missed.">            for (NamedExtension item : items) {NamedExtensionBuilder builder = new NamedExtensionBuilder(item);_visitables.remove(builder);if (this.extensions != null) {this.extensions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromExtensions(Collection&lt;NamedExtension&gt; items){
+<span class="nc bnc" id="L87" title="All 4 branches missed.">            for (NamedExtension item : items) {NamedExtensionBuilder builder = new NamedExtensionBuilder(item);_visitables.remove(builder);if (this.extensions != null) {this.extensions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildExtensions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;NamedExtension&gt; getExtensions(){
+<span class="nc" id="L96">            return build(extensions);</span>
+    }
+
+    public List&lt;NamedExtension&gt; buildExtensions(){
+<span class="nc" id="L100">            return build(extensions);</span>
+    }
+
+    public NamedExtension buildExtension(int index){
+<span class="nc" id="L104">            return this.extensions.get(index).build();</span>
+    }
+
+    public NamedExtension buildFirstExtension(){
+<span class="nc" id="L108">            return this.extensions.get(0).build();</span>
+    }
+
+    public NamedExtension buildLastExtension(){
+<span class="nc" id="L112">            return this.extensions.get(extensions.size() - 1).build();</span>
+    }
+
+    public NamedExtension buildMatchingExtension(io.fabric8.kubernetes.api.builder.Predicate&lt;NamedExtensionBuilder&gt; predicate){
+<span class="nc bnc" id="L116" title="All 4 branches missed.">            for (NamedExtensionBuilder item: extensions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withExtensions(List&lt;NamedExtension&gt; extensions){
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            if (this.extensions != null) { _visitables.removeAll(this.extensions);}</span>
+<span class="nc bnc" id="L121" title="All 4 branches missed.">            if (extensions != null) {this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;(); for (NamedExtension item : extensions){this.addToExtensions(item);}} else { this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withExtensions(NamedExtension... extensions){
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            if (this.extensions != null) {this.extensions.clear();}</span>
+<span class="nc bnc" id="L126" title="All 4 branches missed.">            if (extensions != null) {for (NamedExtension item :extensions){ this.addToExtensions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasExtensions(){
+<span class="nc bnc" id="L130" title="All 4 branches missed.">            return extensions != null &amp;&amp; !extensions.isEmpty();</span>
+    }
+
+    public ClusterFluent.ExtensionsNested&lt;A&gt; addNewExtension(){
+<span class="nc" id="L134">            return new ExtensionsNestedImpl();</span>
+    }
+
+    public ClusterFluent.ExtensionsNested&lt;A&gt; addNewExtensionLike(NamedExtension item){
+<span class="nc" id="L138">            return new ExtensionsNestedImpl(-1, item);</span>
+    }
+
+    public ClusterFluent.ExtensionsNested&lt;A&gt; setNewExtensionLike(int index,NamedExtension item){
+<span class="nc" id="L142">            return new ExtensionsNestedImpl(index, item);</span>
+    }
+
+    public ClusterFluent.ExtensionsNested&lt;A&gt; editExtension(int index){
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            if (extensions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit extensions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L147">            return setNewExtensionLike(index, buildExtension(index));</span>
+    }
+
+    public ClusterFluent.ExtensionsNested&lt;A&gt; editFirstExtension(){
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (extensions.size() == 0) throw new RuntimeException(&quot;Can't edit first extensions. The list is empty.&quot;);</span>
+<span class="nc" id="L152">            return setNewExtensionLike(0, buildExtension(0));</span>
+    }
+
+    public ClusterFluent.ExtensionsNested&lt;A&gt; editLastExtension(){
+<span class="nc" id="L156">            int index = extensions.size() - 1;</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last extensions. The list is empty.&quot;);</span>
+<span class="nc" id="L158">            return setNewExtensionLike(index, buildExtension(index));</span>
+    }
+
+    public ClusterFluent.ExtensionsNested&lt;A&gt; editMatchingExtension(io.fabric8.kubernetes.api.builder.Predicate&lt;NamedExtensionBuilder&gt; predicate){
+<span class="nc" id="L162">            int index = -1;</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            for (int i=0;i&lt;extensions.size();i++) { </span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            if (predicate.apply(extensions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching extensions. No match found.&quot;);</span>
+<span class="nc" id="L167">            return setNewExtensionLike(index, buildExtension(index));</span>
+    }
+
+    public Boolean isInsecureSkipTlsVerify(){
+<span class="nc" id="L171">            return this.insecureSkipTlsVerify;</span>
+    }
+
+    public A withInsecureSkipTlsVerify(Boolean insecureSkipTlsVerify){
+<span class="nc" id="L175">            this.insecureSkipTlsVerify=insecureSkipTlsVerify; return (A) this;</span>
+    }
+
+    public Boolean hasInsecureSkipTlsVerify(){
+<span class="nc bnc" id="L179" title="All 2 branches missed.">            return this.insecureSkipTlsVerify != null;</span>
+    }
+
+    public A withNewInsecureSkipTlsVerify(String arg1){
+<span class="nc" id="L183">            return (A)withInsecureSkipTlsVerify(new Boolean(arg1));</span>
+    }
+
+    public A withNewInsecureSkipTlsVerify(boolean arg1){
+<span class="nc" id="L187">            return (A)withInsecureSkipTlsVerify(new Boolean(arg1));</span>
+    }
+
+    public String getServer(){
+<span class="nc" id="L191">            return this.server;</span>
+    }
+
+    public A withServer(String server){
+<span class="nc" id="L195">            this.server=server; return (A) this;</span>
+    }
+
+    public Boolean hasServer(){
+<span class="nc bnc" id="L199" title="All 2 branches missed.">            return this.server != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L203" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L204" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L206">            ClusterFluentImpl that = (ClusterFluentImpl) o;</span>
+<span class="nc bnc" id="L207" title="All 6 branches missed.">            if (certificateAuthority != null ? !certificateAuthority.equals(that.certificateAuthority) :that.certificateAuthority != null) return false;</span>
+<span class="nc bnc" id="L208" title="All 6 branches missed.">            if (certificateAuthorityData != null ? !certificateAuthorityData.equals(that.certificateAuthorityData) :that.certificateAuthorityData != null) return false;</span>
+<span class="nc bnc" id="L209" title="All 6 branches missed.">            if (extensions != null ? !extensions.equals(that.extensions) :that.extensions != null) return false;</span>
+<span class="nc bnc" id="L210" title="All 6 branches missed.">            if (insecureSkipTlsVerify != null ? !insecureSkipTlsVerify.equals(that.insecureSkipTlsVerify) :that.insecureSkipTlsVerify != null) return false;</span>
+<span class="nc bnc" id="L211" title="All 6 branches missed.">            if (server != null ? !server.equals(that.server) :that.server != null) return false;</span>
+<span class="nc" id="L212">            return true;</span>
+    }
+
+
+    public class ExtensionsNestedImpl&lt;N&gt; extends NamedExtensionFluentImpl&lt;ClusterFluent.ExtensionsNested&lt;N&gt;&gt; implements ClusterFluent.ExtensionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NamedExtensionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L221">            ExtensionsNestedImpl(int index,NamedExtension item){</span>
+<span class="nc" id="L222">                    this.index = index;</span>
+<span class="nc" id="L223">                    this.builder = new NamedExtensionBuilder(this, item);</span>
+<span class="nc" id="L224">            }</span>
+<span class="nc" id="L225">            ExtensionsNestedImpl(){</span>
+<span class="nc" id="L226">                    this.index = -1;</span>
+<span class="nc" id="L227">                    this.builder = new NamedExtensionBuilder(this);</span>
+<span class="nc" id="L228">            }</span>
+    
+    public N and(){
+<span class="nc" id="L231">            return (N) ClusterFluentImpl.this.setToExtensions(index, builder.build());</span>
+    }
+    public N endExtension(){
+<span class="nc" id="L234">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

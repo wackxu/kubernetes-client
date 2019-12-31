@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ResourceRequirementsFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ResourceRequirementsFluentImpl.java</span></div><h1>ResourceRequirementsFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.String;
+import java.lang.Boolean;
+import java.util.Map;
+import java.util.LinkedHashMap;
+
+public class ResourceRequirementsFluentImpl&lt;A extends ResourceRequirementsFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ResourceRequirementsFluent&lt;A&gt;{
+
+    private Map&lt;String,Quantity&gt; limits;
+    private Map&lt;String,Quantity&gt; requests;
+
+<span class="fc" id="L17">    public ResourceRequirementsFluentImpl(){</span>
+<span class="fc" id="L18">    }</span>
+<span class="nc" id="L19">    public ResourceRequirementsFluentImpl(ResourceRequirements instance){</span>
+<span class="nc" id="L20">            this.withLimits(instance.getLimits()); </span>
+<span class="nc" id="L21">            this.withRequests(instance.getRequests()); </span>
+<span class="nc" id="L22">    }</span>
+
+    public A addToLimits(String key,Quantity value){
+<span class="nc bnc" id="L25" title="All 6 branches missed.">            if(this.limits == null &amp;&amp; key != null &amp;&amp; value != null) { this.limits = new LinkedHashMap&lt;String,Quantity&gt;(); }</span>
+<span class="nc bnc" id="L26" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.limits.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToLimits(Map&lt;String,Quantity&gt; map){
+<span class="pc bpc" id="L30" title="3 of 4 branches missed.">            if(this.limits == null &amp;&amp; map != null) { this.limits = new LinkedHashMap&lt;String,Quantity&gt;(); }</span>
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">            if(map != null) { this.limits.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromLimits(String key){
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            if(this.limits == null) { return (A) this; }</span>
+<span class="nc bnc" id="L36" title="All 4 branches missed.">            if(key != null &amp;&amp; this.limits != null) {this.limits.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromLimits(Map&lt;String,Quantity&gt; map){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            if(this.limits == null) { return (A) this; }</span>
+<span class="nc bnc" id="L41" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.limits != null){this.limits.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,Quantity&gt; getLimits(){
+<span class="fc" id="L45">            return this.limits;</span>
+    }
+
+    public A withLimits(Map&lt;String,Quantity&gt; limits){
+<span class="fc bfc" id="L49" title="All 2 branches covered.">            if (limits == null) { this.limits =  new LinkedHashMap&lt;String,Quantity&gt;();} else {this.limits = new LinkedHashMap&lt;String,Quantity&gt;(limits);} return (A) this;</span>
+    }
+
+    public Boolean hasLimits(){
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            return this.limits != null;</span>
+    }
+
+    public A addToRequests(String key,Quantity value){
+<span class="nc bnc" id="L57" title="All 6 branches missed.">            if(this.requests == null &amp;&amp; key != null &amp;&amp; value != null) { this.requests = new LinkedHashMap&lt;String,Quantity&gt;(); }</span>
+<span class="nc bnc" id="L58" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.requests.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToRequests(Map&lt;String,Quantity&gt; map){
+<span class="pc bpc" id="L62" title="3 of 4 branches missed.">            if(this.requests == null &amp;&amp; map != null) { this.requests = new LinkedHashMap&lt;String,Quantity&gt;(); }</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">            if(map != null) { this.requests.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromRequests(String key){
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            if(this.requests == null) { return (A) this; }</span>
+<span class="nc bnc" id="L68" title="All 4 branches missed.">            if(key != null &amp;&amp; this.requests != null) {this.requests.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromRequests(Map&lt;String,Quantity&gt; map){
+<span class="nc bnc" id="L72" title="All 2 branches missed.">            if(this.requests == null) { return (A) this; }</span>
+<span class="nc bnc" id="L73" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.requests != null){this.requests.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,Quantity&gt; getRequests(){
+<span class="fc" id="L77">            return this.requests;</span>
+    }
+
+    public A withRequests(Map&lt;String,Quantity&gt; requests){
+<span class="fc bfc" id="L81" title="All 2 branches covered.">            if (requests == null) { this.requests =  new LinkedHashMap&lt;String,Quantity&gt;();} else {this.requests = new LinkedHashMap&lt;String,Quantity&gt;(requests);} return (A) this;</span>
+    }
+
+    public Boolean hasRequests(){
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            return this.requests != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L92">            ResourceRequirementsFluentImpl that = (ResourceRequirementsFluentImpl) o;</span>
+<span class="nc bnc" id="L93" title="All 6 branches missed.">            if (limits != null ? !limits.equals(that.limits) :that.limits != null) return false;</span>
+<span class="nc bnc" id="L94" title="All 6 branches missed.">            if (requests != null ? !requests.equals(that.requests) :that.requests != null) return false;</span>
+<span class="nc" id="L95">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

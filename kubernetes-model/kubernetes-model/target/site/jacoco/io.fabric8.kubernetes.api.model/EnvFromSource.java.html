@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EnvFromSource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">EnvFromSource.java</span></div><h1>EnvFromSource.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;configMapRef&quot;,
+    &quot;prefix&quot;,
+    &quot;secretRef&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L37">@ToString</span>
+<span class="pc bpc" id="L38" title="33 of 38 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class EnvFromSource implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;configMapRef&quot;)
+    @Valid
+    private ConfigMapEnvSource configMapRef;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;prefix&quot;)
+    private String prefix;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;secretRef&quot;)
+    @Valid
+    private SecretEnvSource secretRef;
+<span class="fc" id="L63">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L70">    public EnvFromSource() {</span>
+<span class="fc" id="L71">    }</span>
+
+    /**
+     * 
+     * @param configMapRef
+     * @param prefix
+     * @param secretRef
+     */
+<span class="fc" id="L79">    public EnvFromSource(ConfigMapEnvSource configMapRef, String prefix, SecretEnvSource secretRef) {</span>
+<span class="fc" id="L80">        this.configMapRef = configMapRef;</span>
+<span class="fc" id="L81">        this.prefix = prefix;</span>
+<span class="fc" id="L82">        this.secretRef = secretRef;</span>
+<span class="fc" id="L83">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The configMapRef
+     */
+    @JsonProperty(&quot;configMapRef&quot;)
+    public ConfigMapEnvSource getConfigMapRef() {
+<span class="fc" id="L93">        return configMapRef;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param configMapRef
+     *     The configMapRef
+     */
+    @JsonProperty(&quot;configMapRef&quot;)
+    public void setConfigMapRef(ConfigMapEnvSource configMapRef) {
+<span class="nc" id="L104">        this.configMapRef = configMapRef;</span>
+<span class="nc" id="L105">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The prefix
+     */
+    @JsonProperty(&quot;prefix&quot;)
+    public String getPrefix() {
+<span class="fc" id="L115">        return prefix;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param prefix
+     *     The prefix
+     */
+    @JsonProperty(&quot;prefix&quot;)
+    public void setPrefix(String prefix) {
+<span class="nc" id="L126">        this.prefix = prefix;</span>
+<span class="nc" id="L127">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The secretRef
+     */
+    @JsonProperty(&quot;secretRef&quot;)
+    public SecretEnvSource getSecretRef() {
+<span class="fc" id="L137">        return secretRef;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param secretRef
+     *     The secretRef
+     */
+    @JsonProperty(&quot;secretRef&quot;)
+    public void setSecretRef(SecretEnvSource secretRef) {
+<span class="fc" id="L148">        this.secretRef = secretRef;</span>
+<span class="fc" id="L149">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L153">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="fc" id="L158">        this.additionalProperties.put(name, value);</span>
+<span class="fc" id="L159">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

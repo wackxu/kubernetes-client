@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IdentityFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">IdentityFluentImpl.java</span></div><h1>IdentityFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import java.util.LinkedHashMap;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.ObjectMetaFluentImpl;
+import io.fabric8.kubernetes.api.model.ObjectReferenceFluentImpl;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.ObjectReferenceBuilder;
+import java.lang.Object;
+import java.util.Map;
+
+public class IdentityFluentImpl&lt;A extends IdentityFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements IdentityFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private Map&lt;String,String&gt; extra;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+    private String providerName;
+    private String providerUserName;
+    private ObjectReferenceBuilder user;
+
+<span class="nc" id="L32">    public IdentityFluentImpl(){</span>
+<span class="nc" id="L33">    }</span>
+<span class="nc" id="L34">    public IdentityFluentImpl(Identity instance){</span>
+<span class="nc" id="L35">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L36">            this.withExtra(instance.getExtra()); </span>
+<span class="nc" id="L37">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L38">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L39">            this.withProviderName(instance.getProviderName()); </span>
+<span class="nc" id="L40">            this.withProviderUserName(instance.getProviderUserName()); </span>
+<span class="nc" id="L41">            this.withUser(instance.getUser()); </span>
+<span class="nc" id="L42">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L45">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L49">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public A addToExtra(String key,String value){
+<span class="nc bnc" id="L57" title="All 6 branches missed.">            if(this.extra == null &amp;&amp; key != null &amp;&amp; value != null) { this.extra = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L58" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.extra.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToExtra(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L62" title="All 4 branches missed.">            if(this.extra == null &amp;&amp; map != null) { this.extra = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            if(map != null) { this.extra.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromExtra(String key){
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            if(this.extra == null) { return (A) this; }</span>
+<span class="nc bnc" id="L68" title="All 4 branches missed.">            if(key != null &amp;&amp; this.extra != null) {this.extra.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromExtra(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L72" title="All 2 branches missed.">            if(this.extra == null) { return (A) this; }</span>
+<span class="nc bnc" id="L73" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.extra != null){this.extra.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getExtra(){
+<span class="nc" id="L77">            return this.extra;</span>
+    }
+
+    public A withExtra(Map&lt;String,String&gt; extra){
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            if (extra == null) { this.extra =  new LinkedHashMap&lt;String,String&gt;();} else {this.extra = new LinkedHashMap&lt;String,String&gt;(extra);} return (A) this;</span>
+    }
+
+    public Boolean hasExtra(){
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            return this.extra != null;</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L89">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L93">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L114">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public IdentityFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L123">            return new MetadataNestedImpl();</span>
+    }
+
+    public IdentityFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L127">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public IdentityFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L131">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public IdentityFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public IdentityFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    public String getProviderName(){
+<span class="nc" id="L143">            return this.providerName;</span>
+    }
+
+    public A withProviderName(String providerName){
+<span class="nc" id="L147">            this.providerName=providerName; return (A) this;</span>
+    }
+
+    public Boolean hasProviderName(){
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            return this.providerName != null;</span>
+    }
+
+    public String getProviderUserName(){
+<span class="nc" id="L155">            return this.providerUserName;</span>
+    }
+
+    public A withProviderUserName(String providerUserName){
+<span class="nc" id="L159">            this.providerUserName=providerUserName; return (A) this;</span>
+    }
+
+    public Boolean hasProviderUserName(){
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            return this.providerUserName != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildUser instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getUser(){
+<span class="nc bnc" id="L172" title="All 2 branches missed.">            return this.user!=null?this.user.build():null;</span>
+    }
+
+    public ObjectReference buildUser(){
+<span class="nc bnc" id="L176" title="All 2 branches missed.">            return this.user!=null?this.user.build():null;</span>
+    }
+
+    public A withUser(ObjectReference user){
+<span class="nc" id="L180">            _visitables.remove(this.user);</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            if (user!=null){ this.user= new ObjectReferenceBuilder(user); _visitables.add(this.user);} return (A) this;</span>
+    }
+
+    public Boolean hasUser(){
+<span class="nc bnc" id="L185" title="All 2 branches missed.">            return this.user != null;</span>
+    }
+
+    public IdentityFluent.UserNested&lt;A&gt; withNewUser(){
+<span class="nc" id="L189">            return new UserNestedImpl();</span>
+    }
+
+    public IdentityFluent.UserNested&lt;A&gt; withNewUserLike(ObjectReference item){
+<span class="nc" id="L193">            return new UserNestedImpl(item);</span>
+    }
+
+    public IdentityFluent.UserNested&lt;A&gt; editUser(){
+<span class="nc" id="L197">            return withNewUserLike(getUser());</span>
+    }
+
+    public IdentityFluent.UserNested&lt;A&gt; editOrNewUser(){
+<span class="nc bnc" id="L201" title="All 2 branches missed.">            return withNewUserLike(getUser() != null ? getUser(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public IdentityFluent.UserNested&lt;A&gt; editOrNewUserLike(ObjectReference item){
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            return withNewUserLike(getUser() != null ? getUser(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L210" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L211" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L212">            IdentityFluentImpl that = (IdentityFluentImpl) o;</span>
+<span class="nc bnc" id="L213" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L214" title="All 6 branches missed.">            if (extra != null ? !extra.equals(that.extra) :that.extra != null) return false;</span>
+<span class="nc bnc" id="L215" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L216" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L217" title="All 6 branches missed.">            if (providerName != null ? !providerName.equals(that.providerName) :that.providerName != null) return false;</span>
+<span class="nc bnc" id="L218" title="All 6 branches missed.">            if (providerUserName != null ? !providerUserName.equals(that.providerUserName) :that.providerUserName != null) return false;</span>
+<span class="nc bnc" id="L219" title="All 6 branches missed.">            if (user != null ? !user.equals(that.user) :that.user != null) return false;</span>
+<span class="nc" id="L220">            return true;</span>
+    }
+
+
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;IdentityFluent.MetadataNested&lt;N&gt;&gt; implements IdentityFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L228">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L229">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L230">            }</span>
+<span class="nc" id="L231">            MetadataNestedImpl(){</span>
+<span class="nc" id="L232">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L233">            }</span>
+    
+    public N and(){
+<span class="nc" id="L236">            return (N) IdentityFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L239">            return and();</span>
+    }
+
+}
+    public class UserNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;IdentityFluent.UserNested&lt;N&gt;&gt; implements IdentityFluent.UserNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L247">            UserNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L248">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L249">            }</span>
+<span class="nc" id="L250">            UserNestedImpl(){</span>
+<span class="nc" id="L251">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L252">            }</span>
+    
+    public N and(){
+<span class="nc" id="L255">            return (N) IdentityFluentImpl.this.withUser(builder.build());</span>
+    }
+    public N endUser(){
+<span class="nc" id="L258">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomResourceDefinitionStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.apiextensions</a> &gt; <span class="el_source">CustomResourceDefinitionStatusFluentImpl.java</span></div><h1>CustomResourceDefinitionStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.apiextensions;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class CustomResourceDefinitionStatusFluentImpl&lt;A extends CustomResourceDefinitionStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements CustomResourceDefinitionStatusFluent&lt;A&gt;{
+
+    private CustomResourceDefinitionNamesBuilder acceptedNames;
+    private List&lt;CustomResourceDefinitionConditionBuilder&gt; conditions;
+    private List&lt;String&gt; storedVersions;
+
+<span class="nc" id="L22">    public CustomResourceDefinitionStatusFluentImpl(){</span>
+<span class="nc" id="L23">    }</span>
+<span class="nc" id="L24">    public CustomResourceDefinitionStatusFluentImpl(CustomResourceDefinitionStatus instance){</span>
+<span class="nc" id="L25">            this.withAcceptedNames(instance.getAcceptedNames()); </span>
+<span class="nc" id="L26">            this.withConditions(instance.getConditions()); </span>
+<span class="nc" id="L27">            this.withStoredVersions(instance.getStoredVersions()); </span>
+<span class="nc" id="L28">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildAcceptedNames instead.
+ * @return The buildable object.
+ */
+@Deprecated public CustomResourceDefinitionNames getAcceptedNames(){
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            return this.acceptedNames!=null?this.acceptedNames.build():null;</span>
+    }
+
+    public CustomResourceDefinitionNames buildAcceptedNames(){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            return this.acceptedNames!=null?this.acceptedNames.build():null;</span>
+    }
+
+    public A withAcceptedNames(CustomResourceDefinitionNames acceptedNames){
+<span class="nc" id="L44">            _visitables.remove(this.acceptedNames);</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            if (acceptedNames!=null){ this.acceptedNames= new CustomResourceDefinitionNamesBuilder(acceptedNames); _visitables.add(this.acceptedNames);} return (A) this;</span>
+    }
+
+    public Boolean hasAcceptedNames(){
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            return this.acceptedNames != null;</span>
+    }
+
+    public CustomResourceDefinitionStatusFluent.AcceptedNamesNested&lt;A&gt; withNewAcceptedNames(){
+<span class="nc" id="L53">            return new AcceptedNamesNestedImpl();</span>
+    }
+
+    public CustomResourceDefinitionStatusFluent.AcceptedNamesNested&lt;A&gt; withNewAcceptedNamesLike(CustomResourceDefinitionNames item){
+<span class="nc" id="L57">            return new AcceptedNamesNestedImpl(item);</span>
+    }
+
+    public CustomResourceDefinitionStatusFluent.AcceptedNamesNested&lt;A&gt; editAcceptedNames(){
+<span class="nc" id="L61">            return withNewAcceptedNamesLike(getAcceptedNames());</span>
+    }
+
+    public CustomResourceDefinitionStatusFluent.AcceptedNamesNested&lt;A&gt; editOrNewAcceptedNames(){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            return withNewAcceptedNamesLike(getAcceptedNames() != null ? getAcceptedNames(): new CustomResourceDefinitionNamesBuilder().build());</span>
+    }
+
+    public CustomResourceDefinitionStatusFluent.AcceptedNamesNested&lt;A&gt; editOrNewAcceptedNamesLike(CustomResourceDefinitionNames item){
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            return withNewAcceptedNamesLike(getAcceptedNames() != null ? getAcceptedNames(): item);</span>
+    }
+
+    public A addToConditions(int index,CustomResourceDefinitionCondition item){
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;CustomResourceDefinitionConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L74" title="All 4 branches missed.">            CustomResourceDefinitionConditionBuilder builder = new CustomResourceDefinitionConditionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.conditions.add(index &gt;= 0 ? index : conditions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToConditions(int index,CustomResourceDefinitionCondition item){
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;CustomResourceDefinitionConditionBuilder&gt;();}</span>
+<span class="nc" id="L79">            CustomResourceDefinitionConditionBuilder builder = new CustomResourceDefinitionConditionBuilder(item);</span>
+<span class="nc bnc" id="L80" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L81" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= conditions.size()) { conditions.add(builder); } else { conditions.set(index, builder);}</span>
+<span class="nc" id="L82">             return (A)this;</span>
+    }
+
+    public A addToConditions(CustomResourceDefinitionCondition... items){
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;CustomResourceDefinitionConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">            for (CustomResourceDefinitionCondition item : items) {CustomResourceDefinitionConditionBuilder builder = new CustomResourceDefinitionConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToConditions(Collection&lt;CustomResourceDefinitionCondition&gt; items){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;CustomResourceDefinitionConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">            for (CustomResourceDefinitionCondition item : items) {CustomResourceDefinitionConditionBuilder builder = new CustomResourceDefinitionConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromConditions(CustomResourceDefinitionCondition... items){
+<span class="nc bnc" id="L96" title="All 4 branches missed.">            for (CustomResourceDefinitionCondition item : items) {CustomResourceDefinitionConditionBuilder builder = new CustomResourceDefinitionConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromConditions(Collection&lt;CustomResourceDefinitionCondition&gt; items){
+<span class="nc bnc" id="L100" title="All 4 branches missed.">            for (CustomResourceDefinitionCondition item : items) {CustomResourceDefinitionConditionBuilder builder = new CustomResourceDefinitionConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildConditions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;CustomResourceDefinitionCondition&gt; getConditions(){
+<span class="nc" id="L109">            return build(conditions);</span>
+    }
+
+    public List&lt;CustomResourceDefinitionCondition&gt; buildConditions(){
+<span class="nc" id="L113">            return build(conditions);</span>
+    }
+
+    public CustomResourceDefinitionCondition buildCondition(int index){
+<span class="nc" id="L117">            return this.conditions.get(index).build();</span>
+    }
+
+    public CustomResourceDefinitionCondition buildFirstCondition(){
+<span class="nc" id="L121">            return this.conditions.get(0).build();</span>
+    }
+
+    public CustomResourceDefinitionCondition buildLastCondition(){
+<span class="nc" id="L125">            return this.conditions.get(conditions.size() - 1).build();</span>
+    }
+
+    public CustomResourceDefinitionCondition buildMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;CustomResourceDefinitionConditionBuilder&gt; predicate){
+<span class="nc bnc" id="L129" title="All 4 branches missed.">            for (CustomResourceDefinitionConditionBuilder item: conditions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withConditions(List&lt;CustomResourceDefinitionCondition&gt; conditions){
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (this.conditions != null) { _visitables.removeAll(this.conditions);}</span>
+<span class="nc bnc" id="L134" title="All 4 branches missed.">            if (conditions != null) {this.conditions = new ArrayList&lt;CustomResourceDefinitionConditionBuilder&gt;(); for (CustomResourceDefinitionCondition item : conditions){this.addToConditions(item);}} else { this.conditions = new ArrayList&lt;CustomResourceDefinitionConditionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withConditions(CustomResourceDefinitionCondition... conditions){
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            if (this.conditions != null) {this.conditions.clear();}</span>
+<span class="nc bnc" id="L139" title="All 4 branches missed.">            if (conditions != null) {for (CustomResourceDefinitionCondition item :conditions){ this.addToConditions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasConditions(){
+<span class="nc bnc" id="L143" title="All 4 branches missed.">            return conditions != null &amp;&amp; !conditions.isEmpty();</span>
+    }
+
+    public A addNewCondition(String lastTransitionTime,String message,String reason,String status,String type){
+<span class="nc" id="L147">            return (A)addToConditions(new CustomResourceDefinitionCondition(lastTransitionTime, message, reason, status, type));</span>
+    }
+
+    public CustomResourceDefinitionStatusFluent.ConditionsNested&lt;A&gt; addNewCondition(){
+<span class="nc" id="L151">            return new ConditionsNestedImpl();</span>
+    }
+
+    public CustomResourceDefinitionStatusFluent.ConditionsNested&lt;A&gt; addNewConditionLike(CustomResourceDefinitionCondition item){
+<span class="nc" id="L155">            return new ConditionsNestedImpl(-1, item);</span>
+    }
+
+    public CustomResourceDefinitionStatusFluent.ConditionsNested&lt;A&gt; setNewConditionLike(int index,CustomResourceDefinitionCondition item){
+<span class="nc" id="L159">            return new ConditionsNestedImpl(index, item);</span>
+    }
+
+    public CustomResourceDefinitionStatusFluent.ConditionsNested&lt;A&gt; editCondition(int index){
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            if (conditions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit conditions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L164">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public CustomResourceDefinitionStatusFluent.ConditionsNested&lt;A&gt; editFirstCondition(){
+<span class="nc bnc" id="L168" title="All 2 branches missed.">            if (conditions.size() == 0) throw new RuntimeException(&quot;Can't edit first conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L169">            return setNewConditionLike(0, buildCondition(0));</span>
+    }
+
+    public CustomResourceDefinitionStatusFluent.ConditionsNested&lt;A&gt; editLastCondition(){
+<span class="nc" id="L173">            int index = conditions.size() - 1;</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L175">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public CustomResourceDefinitionStatusFluent.ConditionsNested&lt;A&gt; editMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;CustomResourceDefinitionConditionBuilder&gt; predicate){
+<span class="nc" id="L179">            int index = -1;</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">            for (int i=0;i&lt;conditions.size();i++) { </span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            if (predicate.apply(conditions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L183" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching conditions. No match found.&quot;);</span>
+<span class="nc" id="L184">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public A addToStoredVersions(int index,String item){
+<span class="nc bnc" id="L188" title="All 2 branches missed.">            if (this.storedVersions == null) {this.storedVersions = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L189">            this.storedVersions.add(index, item);</span>
+<span class="nc" id="L190">            return (A)this;</span>
+    }
+
+    public A setToStoredVersions(int index,String item){
+<span class="nc bnc" id="L194" title="All 2 branches missed.">            if (this.storedVersions == null) {this.storedVersions = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L195">            this.storedVersions.set(index, item); return (A)this;</span>
+    }
+
+    public A addToStoredVersions(String... items){
+<span class="nc bnc" id="L199" title="All 2 branches missed.">            if (this.storedVersions == null) {this.storedVersions = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L200" title="All 2 branches missed.">            for (String item : items) {this.storedVersions.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToStoredVersions(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L204" title="All 2 branches missed.">            if (this.storedVersions == null) {this.storedVersions = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            for (String item : items) {this.storedVersions.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromStoredVersions(String... items){
+<span class="nc bnc" id="L209" title="All 4 branches missed.">            for (String item : items) {if (this.storedVersions!= null){ this.storedVersions.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromStoredVersions(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L213" title="All 4 branches missed.">            for (String item : items) {if (this.storedVersions!= null){ this.storedVersions.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getStoredVersions(){
+<span class="nc" id="L217">            return this.storedVersions;</span>
+    }
+
+    public String getStoredVersion(int index){
+<span class="nc" id="L221">            return this.storedVersions.get(index);</span>
+    }
+
+    public String getFirstStoredVersion(){
+<span class="nc" id="L225">            return this.storedVersions.get(0);</span>
+    }
+
+    public String getLastStoredVersion(){
+<span class="nc" id="L229">            return this.storedVersions.get(storedVersions.size() - 1);</span>
+    }
+
+    public String getMatchingStoredVersion(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L233" title="All 4 branches missed.">            for (String item: storedVersions) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withStoredVersions(List&lt;String&gt; storedVersions){
+<span class="nc bnc" id="L237" title="All 2 branches missed.">            if (this.storedVersions != null) { _visitables.removeAll(this.storedVersions);}</span>
+<span class="nc bnc" id="L238" title="All 4 branches missed.">            if (storedVersions != null) {this.storedVersions = new ArrayList&lt;String&gt;(); for (String item : storedVersions){this.addToStoredVersions(item);}} else { this.storedVersions = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withStoredVersions(String... storedVersions){
+<span class="nc bnc" id="L242" title="All 2 branches missed.">            if (this.storedVersions != null) {this.storedVersions.clear();}</span>
+<span class="nc bnc" id="L243" title="All 4 branches missed.">            if (storedVersions != null) {for (String item :storedVersions){ this.addToStoredVersions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasStoredVersions(){
+<span class="nc bnc" id="L247" title="All 4 branches missed.">            return storedVersions != null &amp;&amp; !storedVersions.isEmpty();</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L251" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L252" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L253" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L254">            CustomResourceDefinitionStatusFluentImpl that = (CustomResourceDefinitionStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L255" title="All 6 branches missed.">            if (acceptedNames != null ? !acceptedNames.equals(that.acceptedNames) :that.acceptedNames != null) return false;</span>
+<span class="nc bnc" id="L256" title="All 6 branches missed.">            if (conditions != null ? !conditions.equals(that.conditions) :that.conditions != null) return false;</span>
+<span class="nc bnc" id="L257" title="All 6 branches missed.">            if (storedVersions != null ? !storedVersions.equals(that.storedVersions) :that.storedVersions != null) return false;</span>
+<span class="nc" id="L258">            return true;</span>
+    }
+
+
+    public class AcceptedNamesNestedImpl&lt;N&gt; extends CustomResourceDefinitionNamesFluentImpl&lt;CustomResourceDefinitionStatusFluent.AcceptedNamesNested&lt;N&gt;&gt; implements CustomResourceDefinitionStatusFluent.AcceptedNamesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CustomResourceDefinitionNamesBuilder builder;
+    
+<span class="nc" id="L266">            AcceptedNamesNestedImpl(CustomResourceDefinitionNames item){</span>
+<span class="nc" id="L267">                    this.builder = new CustomResourceDefinitionNamesBuilder(this, item);</span>
+<span class="nc" id="L268">            }</span>
+<span class="nc" id="L269">            AcceptedNamesNestedImpl(){</span>
+<span class="nc" id="L270">                    this.builder = new CustomResourceDefinitionNamesBuilder(this);</span>
+<span class="nc" id="L271">            }</span>
+    
+    public N and(){
+<span class="nc" id="L274">            return (N) CustomResourceDefinitionStatusFluentImpl.this.withAcceptedNames(builder.build());</span>
+    }
+    public N endAcceptedNames(){
+<span class="nc" id="L277">            return and();</span>
+    }
+
+}
+    public class ConditionsNestedImpl&lt;N&gt; extends CustomResourceDefinitionConditionFluentImpl&lt;CustomResourceDefinitionStatusFluent.ConditionsNested&lt;N&gt;&gt; implements CustomResourceDefinitionStatusFluent.ConditionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CustomResourceDefinitionConditionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L286">            ConditionsNestedImpl(int index,CustomResourceDefinitionCondition item){</span>
+<span class="nc" id="L287">                    this.index = index;</span>
+<span class="nc" id="L288">                    this.builder = new CustomResourceDefinitionConditionBuilder(this, item);</span>
+<span class="nc" id="L289">            }</span>
+<span class="nc" id="L290">            ConditionsNestedImpl(){</span>
+<span class="nc" id="L291">                    this.index = -1;</span>
+<span class="nc" id="L292">                    this.builder = new CustomResourceDefinitionConditionBuilder(this);</span>
+<span class="nc" id="L293">            }</span>
+    
+    public N and(){
+<span class="nc" id="L296">            return (N) CustomResourceDefinitionStatusFluentImpl.this.setToConditions(index, builder.build());</span>
+    }
+    public N endCondition(){
+<span class="nc" id="L299">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LifecycleHookFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">LifecycleHookFluentImpl.java</span></div><h1>LifecycleHookFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class LifecycleHookFluentImpl&lt;A extends LifecycleHookFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements LifecycleHookFluent&lt;A&gt;{
+
+    private ExecNewPodHookBuilder execNewPod;
+    private String failurePolicy;
+    private List&lt;TagImageHookBuilder&gt; tagImages;
+
+<span class="fc" id="L23">    public LifecycleHookFluentImpl(){</span>
+<span class="fc" id="L24">    }</span>
+<span class="nc" id="L25">    public LifecycleHookFluentImpl(LifecycleHook instance){</span>
+<span class="nc" id="L26">            this.withExecNewPod(instance.getExecNewPod()); </span>
+<span class="nc" id="L27">            this.withFailurePolicy(instance.getFailurePolicy()); </span>
+<span class="nc" id="L28">            this.withTagImages(instance.getTagImages()); </span>
+<span class="nc" id="L29">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildExecNewPod instead.
+ * @return The buildable object.
+ */
+@Deprecated public ExecNewPodHook getExecNewPod(){
+<span class="fc bfc" id="L37" title="All 2 branches covered.">            return this.execNewPod!=null?this.execNewPod.build():null;</span>
+    }
+
+    public ExecNewPodHook buildExecNewPod(){
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            return this.execNewPod!=null?this.execNewPod.build():null;</span>
+    }
+
+    public A withExecNewPod(ExecNewPodHook execNewPod){
+<span class="fc" id="L45">            _visitables.remove(this.execNewPod);</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            if (execNewPod!=null){ this.execNewPod= new ExecNewPodHookBuilder(execNewPod); _visitables.add(this.execNewPod);} return (A) this;</span>
+    }
+
+    public Boolean hasExecNewPod(){
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            return this.execNewPod != null;</span>
+    }
+
+    public LifecycleHookFluent.ExecNewPodNested&lt;A&gt; withNewExecNewPod(){
+<span class="fc" id="L54">            return new ExecNewPodNestedImpl();</span>
+    }
+
+    public LifecycleHookFluent.ExecNewPodNested&lt;A&gt; withNewExecNewPodLike(ExecNewPodHook item){
+<span class="nc" id="L58">            return new ExecNewPodNestedImpl(item);</span>
+    }
+
+    public LifecycleHookFluent.ExecNewPodNested&lt;A&gt; editExecNewPod(){
+<span class="nc" id="L62">            return withNewExecNewPodLike(getExecNewPod());</span>
+    }
+
+    public LifecycleHookFluent.ExecNewPodNested&lt;A&gt; editOrNewExecNewPod(){
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            return withNewExecNewPodLike(getExecNewPod() != null ? getExecNewPod(): new ExecNewPodHookBuilder().build());</span>
+    }
+
+    public LifecycleHookFluent.ExecNewPodNested&lt;A&gt; editOrNewExecNewPodLike(ExecNewPodHook item){
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            return withNewExecNewPodLike(getExecNewPod() != null ? getExecNewPod(): item);</span>
+    }
+
+    public String getFailurePolicy(){
+<span class="fc" id="L74">            return this.failurePolicy;</span>
+    }
+
+    public A withFailurePolicy(String failurePolicy){
+<span class="fc" id="L78">            this.failurePolicy=failurePolicy; return (A) this;</span>
+    }
+
+    public Boolean hasFailurePolicy(){
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            return this.failurePolicy != null;</span>
+    }
+
+    public A addToTagImages(int index,TagImageHook item){
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            if (this.tagImages == null) {this.tagImages = new ArrayList&lt;TagImageHookBuilder&gt;();}</span>
+<span class="nc bnc" id="L87" title="All 4 branches missed.">            TagImageHookBuilder builder = new TagImageHookBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.tagImages.add(index &gt;= 0 ? index : tagImages.size(), builder); return (A)this;</span>
+    }
+
+    public A setToTagImages(int index,TagImageHook item){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (this.tagImages == null) {this.tagImages = new ArrayList&lt;TagImageHookBuilder&gt;();}</span>
+<span class="nc" id="L92">            TagImageHookBuilder builder = new TagImageHookBuilder(item);</span>
+<span class="nc bnc" id="L93" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L94" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= tagImages.size()) { tagImages.add(builder); } else { tagImages.set(index, builder);}</span>
+<span class="nc" id="L95">             return (A)this;</span>
+    }
+
+    public A addToTagImages(TagImageHook... items){
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            if (this.tagImages == null) {this.tagImages = new ArrayList&lt;TagImageHookBuilder&gt;();}</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            for (TagImageHook item : items) {TagImageHookBuilder builder = new TagImageHookBuilder(item);_visitables.add(builder);this.tagImages.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToTagImages(Collection&lt;TagImageHook&gt; items){
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            if (this.tagImages == null) {this.tagImages = new ArrayList&lt;TagImageHookBuilder&gt;();}</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            for (TagImageHook item : items) {TagImageHookBuilder builder = new TagImageHookBuilder(item);_visitables.add(builder);this.tagImages.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromTagImages(TagImageHook... items){
+<span class="nc bnc" id="L109" title="All 4 branches missed.">            for (TagImageHook item : items) {TagImageHookBuilder builder = new TagImageHookBuilder(item);_visitables.remove(builder);if (this.tagImages != null) {this.tagImages.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromTagImages(Collection&lt;TagImageHook&gt; items){
+<span class="nc bnc" id="L113" title="All 4 branches missed.">            for (TagImageHook item : items) {TagImageHookBuilder builder = new TagImageHookBuilder(item);_visitables.remove(builder);if (this.tagImages != null) {this.tagImages.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTagImages instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;TagImageHook&gt; getTagImages(){
+<span class="fc" id="L122">            return build(tagImages);</span>
+    }
+
+    public List&lt;TagImageHook&gt; buildTagImages(){
+<span class="nc" id="L126">            return build(tagImages);</span>
+    }
+
+    public TagImageHook buildTagImage(int index){
+<span class="nc" id="L130">            return this.tagImages.get(index).build();</span>
+    }
+
+    public TagImageHook buildFirstTagImage(){
+<span class="nc" id="L134">            return this.tagImages.get(0).build();</span>
+    }
+
+    public TagImageHook buildLastTagImage(){
+<span class="nc" id="L138">            return this.tagImages.get(tagImages.size() - 1).build();</span>
+    }
+
+    public TagImageHook buildMatchingTagImage(io.fabric8.kubernetes.api.builder.Predicate&lt;TagImageHookBuilder&gt; predicate){
+<span class="nc bnc" id="L142" title="All 4 branches missed.">            for (TagImageHookBuilder item: tagImages) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withTagImages(List&lt;TagImageHook&gt; tagImages){
+<span class="pc bpc" id="L146" title="1 of 2 branches missed.">            if (this.tagImages != null) { _visitables.removeAll(this.tagImages);}</span>
+<span class="pc bpc" id="L147" title="2 of 4 branches missed.">            if (tagImages != null) {this.tagImages = new ArrayList&lt;TagImageHookBuilder&gt;(); for (TagImageHook item : tagImages){this.addToTagImages(item);}} else { this.tagImages = new ArrayList&lt;TagImageHookBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withTagImages(TagImageHook... tagImages){
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (this.tagImages != null) {this.tagImages.clear();}</span>
+<span class="nc bnc" id="L152" title="All 4 branches missed.">            if (tagImages != null) {for (TagImageHook item :tagImages){ this.addToTagImages(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasTagImages(){
+<span class="nc bnc" id="L156" title="All 4 branches missed.">            return tagImages != null &amp;&amp; !tagImages.isEmpty();</span>
+    }
+
+    public LifecycleHookFluent.TagImagesNested&lt;A&gt; addNewTagImage(){
+<span class="nc" id="L160">            return new TagImagesNestedImpl();</span>
+    }
+
+    public LifecycleHookFluent.TagImagesNested&lt;A&gt; addNewTagImageLike(TagImageHook item){
+<span class="nc" id="L164">            return new TagImagesNestedImpl(-1, item);</span>
+    }
+
+    public LifecycleHookFluent.TagImagesNested&lt;A&gt; setNewTagImageLike(int index,TagImageHook item){
+<span class="nc" id="L168">            return new TagImagesNestedImpl(index, item);</span>
+    }
+
+    public LifecycleHookFluent.TagImagesNested&lt;A&gt; editTagImage(int index){
+<span class="nc bnc" id="L172" title="All 2 branches missed.">            if (tagImages.size() &lt;= index) throw new RuntimeException(&quot;Can't edit tagImages. Index exceeds size.&quot;);</span>
+<span class="nc" id="L173">            return setNewTagImageLike(index, buildTagImage(index));</span>
+    }
+
+    public LifecycleHookFluent.TagImagesNested&lt;A&gt; editFirstTagImage(){
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            if (tagImages.size() == 0) throw new RuntimeException(&quot;Can't edit first tagImages. The list is empty.&quot;);</span>
+<span class="nc" id="L178">            return setNewTagImageLike(0, buildTagImage(0));</span>
+    }
+
+    public LifecycleHookFluent.TagImagesNested&lt;A&gt; editLastTagImage(){
+<span class="nc" id="L182">            int index = tagImages.size() - 1;</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last tagImages. The list is empty.&quot;);</span>
+<span class="nc" id="L184">            return setNewTagImageLike(index, buildTagImage(index));</span>
+    }
+
+    public LifecycleHookFluent.TagImagesNested&lt;A&gt; editMatchingTagImage(io.fabric8.kubernetes.api.builder.Predicate&lt;TagImageHookBuilder&gt; predicate){
+<span class="nc" id="L188">            int index = -1;</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">            for (int i=0;i&lt;tagImages.size();i++) { </span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">            if (predicate.apply(tagImages.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L192" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching tagImages. No match found.&quot;);</span>
+<span class="nc" id="L193">            return setNewTagImageLike(index, buildTagImage(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L197" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L198" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L200">            LifecycleHookFluentImpl that = (LifecycleHookFluentImpl) o;</span>
+<span class="nc bnc" id="L201" title="All 6 branches missed.">            if (execNewPod != null ? !execNewPod.equals(that.execNewPod) :that.execNewPod != null) return false;</span>
+<span class="nc bnc" id="L202" title="All 6 branches missed.">            if (failurePolicy != null ? !failurePolicy.equals(that.failurePolicy) :that.failurePolicy != null) return false;</span>
+<span class="nc bnc" id="L203" title="All 6 branches missed.">            if (tagImages != null ? !tagImages.equals(that.tagImages) :that.tagImages != null) return false;</span>
+<span class="nc" id="L204">            return true;</span>
+    }
+
+
+    public class ExecNewPodNestedImpl&lt;N&gt; extends ExecNewPodHookFluentImpl&lt;LifecycleHookFluent.ExecNewPodNested&lt;N&gt;&gt; implements LifecycleHookFluent.ExecNewPodNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ExecNewPodHookBuilder builder;
+    
+<span class="nc" id="L212">            ExecNewPodNestedImpl(ExecNewPodHook item){</span>
+<span class="nc" id="L213">                    this.builder = new ExecNewPodHookBuilder(this, item);</span>
+<span class="nc" id="L214">            }</span>
+<span class="fc" id="L215">            ExecNewPodNestedImpl(){</span>
+<span class="fc" id="L216">                    this.builder = new ExecNewPodHookBuilder(this);</span>
+<span class="fc" id="L217">            }</span>
+    
+    public N and(){
+<span class="fc" id="L220">            return (N) LifecycleHookFluentImpl.this.withExecNewPod(builder.build());</span>
+    }
+    public N endExecNewPod(){
+<span class="fc" id="L223">            return and();</span>
+    }
+
+}
+    public class TagImagesNestedImpl&lt;N&gt; extends TagImageHookFluentImpl&lt;LifecycleHookFluent.TagImagesNested&lt;N&gt;&gt; implements LifecycleHookFluent.TagImagesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TagImageHookBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L232">            TagImagesNestedImpl(int index,TagImageHook item){</span>
+<span class="nc" id="L233">                    this.index = index;</span>
+<span class="nc" id="L234">                    this.builder = new TagImageHookBuilder(this, item);</span>
+<span class="nc" id="L235">            }</span>
+<span class="nc" id="L236">            TagImagesNestedImpl(){</span>
+<span class="nc" id="L237">                    this.index = -1;</span>
+<span class="nc" id="L238">                    this.builder = new TagImageHookBuilder(this);</span>
+<span class="nc" id="L239">            }</span>
+    
+    public N and(){
+<span class="nc" id="L242">            return (N) LifecycleHookFluentImpl.this.setToTagImages(index, builder.build());</span>
+    }
+    public N endTagImage(){
+<span class="nc" id="L245">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

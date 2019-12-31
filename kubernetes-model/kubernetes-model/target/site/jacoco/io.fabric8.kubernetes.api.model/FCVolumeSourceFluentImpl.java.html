@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FCVolumeSourceFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">FCVolumeSourceFluentImpl.java</span></div><h1>FCVolumeSourceFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Integer;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class FCVolumeSourceFluentImpl&lt;A extends FCVolumeSourceFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements FCVolumeSourceFluent&lt;A&gt;{
+
+    private String fsType;
+    private Integer lun;
+    private Boolean readOnly;
+    private List&lt;String&gt; targetWWNs;
+    private List&lt;String&gt; wwids;
+
+<span class="nc" id="L24">    public FCVolumeSourceFluentImpl(){</span>
+<span class="nc" id="L25">    }</span>
+<span class="nc" id="L26">    public FCVolumeSourceFluentImpl(FCVolumeSource instance){</span>
+<span class="nc" id="L27">            this.withFsType(instance.getFsType()); </span>
+<span class="nc" id="L28">            this.withLun(instance.getLun()); </span>
+<span class="nc" id="L29">            this.withReadOnly(instance.getReadOnly()); </span>
+<span class="nc" id="L30">            this.withTargetWWNs(instance.getTargetWWNs()); </span>
+<span class="nc" id="L31">            this.withWwids(instance.getWwids()); </span>
+<span class="nc" id="L32">    }</span>
+
+    public String getFsType(){
+<span class="nc" id="L35">            return this.fsType;</span>
+    }
+
+    public A withFsType(String fsType){
+<span class="nc" id="L39">            this.fsType=fsType; return (A) this;</span>
+    }
+
+    public Boolean hasFsType(){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            return this.fsType != null;</span>
+    }
+
+    public Integer getLun(){
+<span class="nc" id="L47">            return this.lun;</span>
+    }
+
+    public A withLun(Integer lun){
+<span class="nc" id="L51">            this.lun=lun; return (A) this;</span>
+    }
+
+    public Boolean hasLun(){
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            return this.lun != null;</span>
+    }
+
+    public Boolean isReadOnly(){
+<span class="nc" id="L59">            return this.readOnly;</span>
+    }
+
+    public A withReadOnly(Boolean readOnly){
+<span class="nc" id="L63">            this.readOnly=readOnly; return (A) this;</span>
+    }
+
+    public Boolean hasReadOnly(){
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            return this.readOnly != null;</span>
+    }
+
+    public A withNewReadOnly(String arg1){
+<span class="nc" id="L71">            return (A)withReadOnly(new Boolean(arg1));</span>
+    }
+
+    public A withNewReadOnly(boolean arg1){
+<span class="nc" id="L75">            return (A)withReadOnly(new Boolean(arg1));</span>
+    }
+
+    public A addToTargetWWNs(int index,String item){
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            if (this.targetWWNs == null) {this.targetWWNs = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L80">            this.targetWWNs.add(index, item);</span>
+<span class="nc" id="L81">            return (A)this;</span>
+    }
+
+    public A setToTargetWWNs(int index,String item){
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            if (this.targetWWNs == null) {this.targetWWNs = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L86">            this.targetWWNs.set(index, item); return (A)this;</span>
+    }
+
+    public A addToTargetWWNs(String... items){
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            if (this.targetWWNs == null) {this.targetWWNs = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            for (String item : items) {this.targetWWNs.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToTargetWWNs(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (this.targetWWNs == null) {this.targetWWNs = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">            for (String item : items) {this.targetWWNs.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromTargetWWNs(String... items){
+<span class="nc bnc" id="L100" title="All 4 branches missed.">            for (String item : items) {if (this.targetWWNs!= null){ this.targetWWNs.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromTargetWWNs(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L104" title="All 4 branches missed.">            for (String item : items) {if (this.targetWWNs!= null){ this.targetWWNs.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getTargetWWNs(){
+<span class="nc" id="L108">            return this.targetWWNs;</span>
+    }
+
+    public String getTargetWWN(int index){
+<span class="nc" id="L112">            return this.targetWWNs.get(index);</span>
+    }
+
+    public String getFirstTargetWWN(){
+<span class="nc" id="L116">            return this.targetWWNs.get(0);</span>
+    }
+
+    public String getLastTargetWWN(){
+<span class="nc" id="L120">            return this.targetWWNs.get(targetWWNs.size() - 1);</span>
+    }
+
+    public String getMatchingTargetWWN(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L124" title="All 4 branches missed.">            for (String item: targetWWNs) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withTargetWWNs(List&lt;String&gt; targetWWNs){
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            if (this.targetWWNs != null) { _visitables.removeAll(this.targetWWNs);}</span>
+<span class="nc bnc" id="L129" title="All 4 branches missed.">            if (targetWWNs != null) {this.targetWWNs = new ArrayList&lt;String&gt;(); for (String item : targetWWNs){this.addToTargetWWNs(item);}} else { this.targetWWNs = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withTargetWWNs(String... targetWWNs){
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (this.targetWWNs != null) {this.targetWWNs.clear();}</span>
+<span class="nc bnc" id="L134" title="All 4 branches missed.">            if (targetWWNs != null) {for (String item :targetWWNs){ this.addToTargetWWNs(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasTargetWWNs(){
+<span class="nc bnc" id="L138" title="All 4 branches missed.">            return targetWWNs != null &amp;&amp; !targetWWNs.isEmpty();</span>
+    }
+
+    public A addToWwids(int index,String item){
+<span class="nc bnc" id="L142" title="All 2 branches missed.">            if (this.wwids == null) {this.wwids = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L143">            this.wwids.add(index, item);</span>
+<span class="nc" id="L144">            return (A)this;</span>
+    }
+
+    public A setToWwids(int index,String item){
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            if (this.wwids == null) {this.wwids = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L149">            this.wwids.set(index, item); return (A)this;</span>
+    }
+
+    public A addToWwids(String... items){
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            if (this.wwids == null) {this.wwids = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            for (String item : items) {this.wwids.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToWwids(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            if (this.wwids == null) {this.wwids = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            for (String item : items) {this.wwids.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromWwids(String... items){
+<span class="nc bnc" id="L163" title="All 4 branches missed.">            for (String item : items) {if (this.wwids!= null){ this.wwids.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromWwids(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L167" title="All 4 branches missed.">            for (String item : items) {if (this.wwids!= null){ this.wwids.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getWwids(){
+<span class="nc" id="L171">            return this.wwids;</span>
+    }
+
+    public String getWwid(int index){
+<span class="nc" id="L175">            return this.wwids.get(index);</span>
+    }
+
+    public String getFirstWwid(){
+<span class="nc" id="L179">            return this.wwids.get(0);</span>
+    }
+
+    public String getLastWwid(){
+<span class="nc" id="L183">            return this.wwids.get(wwids.size() - 1);</span>
+    }
+
+    public String getMatchingWwid(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L187" title="All 4 branches missed.">            for (String item: wwids) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withWwids(List&lt;String&gt; wwids){
+<span class="nc bnc" id="L191" title="All 2 branches missed.">            if (this.wwids != null) { _visitables.removeAll(this.wwids);}</span>
+<span class="nc bnc" id="L192" title="All 4 branches missed.">            if (wwids != null) {this.wwids = new ArrayList&lt;String&gt;(); for (String item : wwids){this.addToWwids(item);}} else { this.wwids = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withWwids(String... wwids){
+<span class="nc bnc" id="L196" title="All 2 branches missed.">            if (this.wwids != null) {this.wwids.clear();}</span>
+<span class="nc bnc" id="L197" title="All 4 branches missed.">            if (wwids != null) {for (String item :wwids){ this.addToWwids(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasWwids(){
+<span class="nc bnc" id="L201" title="All 4 branches missed.">            return wwids != null &amp;&amp; !wwids.isEmpty();</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L206" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L207" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L208">            FCVolumeSourceFluentImpl that = (FCVolumeSourceFluentImpl) o;</span>
+<span class="nc bnc" id="L209" title="All 6 branches missed.">            if (fsType != null ? !fsType.equals(that.fsType) :that.fsType != null) return false;</span>
+<span class="nc bnc" id="L210" title="All 6 branches missed.">            if (lun != null ? !lun.equals(that.lun) :that.lun != null) return false;</span>
+<span class="nc bnc" id="L211" title="All 6 branches missed.">            if (readOnly != null ? !readOnly.equals(that.readOnly) :that.readOnly != null) return false;</span>
+<span class="nc bnc" id="L212" title="All 6 branches missed.">            if (targetWWNs != null ? !targetWWNs.equals(that.targetWWNs) :that.targetWWNs != null) return false;</span>
+<span class="nc bnc" id="L213" title="All 6 branches missed.">            if (wwids != null ? !wwids.equals(that.wwids) :that.wwids != null) return false;</span>
+<span class="nc" id="L214">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

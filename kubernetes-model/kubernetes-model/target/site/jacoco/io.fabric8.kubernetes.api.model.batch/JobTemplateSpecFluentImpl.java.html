@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JobTemplateSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.batch</a> &gt; <span class="el_source">JobTemplateSpecFluentImpl.java</span></div><h1>JobTemplateSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.batch;
+
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.ObjectMetaFluentImpl;
+import io.fabric8.kubernetes.api.builder.Nested;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class JobTemplateSpecFluentImpl&lt;A extends JobTemplateSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements JobTemplateSpecFluent&lt;A&gt;{
+
+    private ObjectMetaBuilder metadata;
+    private JobSpecBuilder spec;
+
+<span class="nc" id="L20">    public JobTemplateSpecFluentImpl(){</span>
+<span class="nc" id="L21">    }</span>
+<span class="nc" id="L22">    public JobTemplateSpecFluentImpl(JobTemplateSpec instance){</span>
+<span class="nc" id="L23">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L24">            this.withSpec(instance.getSpec()); </span>
+<span class="nc" id="L25">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L41">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public JobTemplateSpecFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L50">            return new MetadataNestedImpl();</span>
+    }
+
+    public JobTemplateSpecFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L54">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public JobTemplateSpecFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L58">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public JobTemplateSpecFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public JobTemplateSpecFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSpec instead.
+ * @return The buildable object.
+ */
+@Deprecated public JobSpec getSpec(){
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            return this.spec!=null?this.spec.build():null;</span>
+    }
+
+    public JobSpec buildSpec(){
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            return this.spec!=null?this.spec.build():null;</span>
+    }
+
+    public A withSpec(JobSpec spec){
+<span class="nc" id="L83">            _visitables.remove(this.spec);</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            if (spec!=null){ this.spec= new JobSpecBuilder(spec); _visitables.add(this.spec);} return (A) this;</span>
+    }
+
+    public Boolean hasSpec(){
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            return this.spec != null;</span>
+    }
+
+    public JobTemplateSpecFluent.SpecNested&lt;A&gt; withNewSpec(){
+<span class="nc" id="L92">            return new SpecNestedImpl();</span>
+    }
+
+    public JobTemplateSpecFluent.SpecNested&lt;A&gt; withNewSpecLike(JobSpec item){
+<span class="nc" id="L96">            return new SpecNestedImpl(item);</span>
+    }
+
+    public JobTemplateSpecFluent.SpecNested&lt;A&gt; editSpec(){
+<span class="nc" id="L100">            return withNewSpecLike(getSpec());</span>
+    }
+
+    public JobTemplateSpecFluent.SpecNested&lt;A&gt; editOrNewSpec(){
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            return withNewSpecLike(getSpec() != null ? getSpec(): new JobSpecBuilder().build());</span>
+    }
+
+    public JobTemplateSpecFluent.SpecNested&lt;A&gt; editOrNewSpecLike(JobSpec item){
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            return withNewSpecLike(getSpec() != null ? getSpec(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L113" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L115">            JobTemplateSpecFluentImpl that = (JobTemplateSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L116" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L117" title="All 6 branches missed.">            if (spec != null ? !spec.equals(that.spec) :that.spec != null) return false;</span>
+<span class="nc" id="L118">            return true;</span>
+    }
+
+
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;JobTemplateSpecFluent.MetadataNested&lt;N&gt;&gt; implements JobTemplateSpecFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L126">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L127">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L128">            }</span>
+<span class="nc" id="L129">            MetadataNestedImpl(){</span>
+<span class="nc" id="L130">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L131">            }</span>
+    
+    public N and(){
+<span class="nc" id="L134">            return (N) JobTemplateSpecFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L137">            return and();</span>
+    }
+
+}
+    public class SpecNestedImpl&lt;N&gt; extends JobSpecFluentImpl&lt;JobTemplateSpecFluent.SpecNested&lt;N&gt;&gt; implements JobTemplateSpecFluent.SpecNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JobSpecBuilder builder;
+    
+<span class="nc" id="L145">            SpecNestedImpl(JobSpec item){</span>
+<span class="nc" id="L146">                    this.builder = new JobSpecBuilder(this, item);</span>
+<span class="nc" id="L147">            }</span>
+<span class="nc" id="L148">            SpecNestedImpl(){</span>
+<span class="nc" id="L149">                    this.builder = new JobSpecBuilder(this);</span>
+<span class="nc" id="L150">            }</span>
+    
+    public N and(){
+<span class="nc" id="L153">            return (N) JobTemplateSpecFluentImpl.this.withSpec(builder.build());</span>
+    }
+    public N endSpec(){
+<span class="nc" id="L156">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

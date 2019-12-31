@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdmissionReviewFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.admission</a> &gt; <span class="el_source">AdmissionReviewFluentImpl.java</span></div><h1>AdmissionReviewFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.admission;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class AdmissionReviewFluentImpl&lt;A extends AdmissionReviewFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements AdmissionReviewFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private String kind;
+    private AdmissionRequestBuilder request;
+    private AdmissionResponseBuilder response;
+
+<span class="nc" id="L20">    public AdmissionReviewFluentImpl(){</span>
+<span class="nc" id="L21">    }</span>
+<span class="nc" id="L22">    public AdmissionReviewFluentImpl(AdmissionReview instance){</span>
+<span class="nc" id="L23">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L24">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L25">            this.withRequest(instance.getRequest()); </span>
+<span class="nc" id="L26">            this.withResponse(instance.getResponse()); </span>
+<span class="nc" id="L27">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L30">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L34">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L38" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L42">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L46">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildRequest instead.
+ * @return The buildable object.
+ */
+@Deprecated public AdmissionRequest getRequest(){
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            return this.request!=null?this.request.build():null;</span>
+    }
+
+    public AdmissionRequest buildRequest(){
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            return this.request!=null?this.request.build():null;</span>
+    }
+
+    public A withRequest(AdmissionRequest request){
+<span class="nc" id="L67">            _visitables.remove(this.request);</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            if (request!=null){ this.request= new AdmissionRequestBuilder(request); _visitables.add(this.request);} return (A) this;</span>
+    }
+
+    public Boolean hasRequest(){
+<span class="nc bnc" id="L72" title="All 2 branches missed.">            return this.request != null;</span>
+    }
+
+    public AdmissionReviewFluent.RequestNested&lt;A&gt; withNewRequest(){
+<span class="nc" id="L76">            return new RequestNestedImpl();</span>
+    }
+
+    public AdmissionReviewFluent.RequestNested&lt;A&gt; withNewRequestLike(AdmissionRequest item){
+<span class="nc" id="L80">            return new RequestNestedImpl(item);</span>
+    }
+
+    public AdmissionReviewFluent.RequestNested&lt;A&gt; editRequest(){
+<span class="nc" id="L84">            return withNewRequestLike(getRequest());</span>
+    }
+
+    public AdmissionReviewFluent.RequestNested&lt;A&gt; editOrNewRequest(){
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            return withNewRequestLike(getRequest() != null ? getRequest(): new AdmissionRequestBuilder().build());</span>
+    }
+
+    public AdmissionReviewFluent.RequestNested&lt;A&gt; editOrNewRequestLike(AdmissionRequest item){
+<span class="nc bnc" id="L92" title="All 2 branches missed.">            return withNewRequestLike(getRequest() != null ? getRequest(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildResponse instead.
+ * @return The buildable object.
+ */
+@Deprecated public AdmissionResponse getResponse(){
+<span class="nc bnc" id="L101" title="All 2 branches missed.">            return this.response!=null?this.response.build():null;</span>
+    }
+
+    public AdmissionResponse buildResponse(){
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            return this.response!=null?this.response.build():null;</span>
+    }
+
+    public A withResponse(AdmissionResponse response){
+<span class="nc" id="L109">            _visitables.remove(this.response);</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            if (response!=null){ this.response= new AdmissionResponseBuilder(response); _visitables.add(this.response);} return (A) this;</span>
+    }
+
+    public Boolean hasResponse(){
+<span class="nc bnc" id="L114" title="All 2 branches missed.">            return this.response != null;</span>
+    }
+
+    public AdmissionReviewFluent.ResponseNested&lt;A&gt; withNewResponse(){
+<span class="nc" id="L118">            return new ResponseNestedImpl();</span>
+    }
+
+    public AdmissionReviewFluent.ResponseNested&lt;A&gt; withNewResponseLike(AdmissionResponse item){
+<span class="nc" id="L122">            return new ResponseNestedImpl(item);</span>
+    }
+
+    public AdmissionReviewFluent.ResponseNested&lt;A&gt; editResponse(){
+<span class="nc" id="L126">            return withNewResponseLike(getResponse());</span>
+    }
+
+    public AdmissionReviewFluent.ResponseNested&lt;A&gt; editOrNewResponse(){
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            return withNewResponseLike(getResponse() != null ? getResponse(): new AdmissionResponseBuilder().build());</span>
+    }
+
+    public AdmissionReviewFluent.ResponseNested&lt;A&gt; editOrNewResponseLike(AdmissionResponse item){
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            return withNewResponseLike(getResponse() != null ? getResponse(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L139" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L141">            AdmissionReviewFluentImpl that = (AdmissionReviewFluentImpl) o;</span>
+<span class="nc bnc" id="L142" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L143" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L144" title="All 6 branches missed.">            if (request != null ? !request.equals(that.request) :that.request != null) return false;</span>
+<span class="nc bnc" id="L145" title="All 6 branches missed.">            if (response != null ? !response.equals(that.response) :that.response != null) return false;</span>
+<span class="nc" id="L146">            return true;</span>
+    }
+
+
+    public class RequestNestedImpl&lt;N&gt; extends AdmissionRequestFluentImpl&lt;AdmissionReviewFluent.RequestNested&lt;N&gt;&gt; implements AdmissionReviewFluent.RequestNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final AdmissionRequestBuilder builder;
+    
+<span class="nc" id="L154">            RequestNestedImpl(AdmissionRequest item){</span>
+<span class="nc" id="L155">                    this.builder = new AdmissionRequestBuilder(this, item);</span>
+<span class="nc" id="L156">            }</span>
+<span class="nc" id="L157">            RequestNestedImpl(){</span>
+<span class="nc" id="L158">                    this.builder = new AdmissionRequestBuilder(this);</span>
+<span class="nc" id="L159">            }</span>
+    
+    public N and(){
+<span class="nc" id="L162">            return (N) AdmissionReviewFluentImpl.this.withRequest(builder.build());</span>
+    }
+    public N endRequest(){
+<span class="nc" id="L165">            return and();</span>
+    }
+
+}
+    public class ResponseNestedImpl&lt;N&gt; extends AdmissionResponseFluentImpl&lt;AdmissionReviewFluent.ResponseNested&lt;N&gt;&gt; implements AdmissionReviewFluent.ResponseNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final AdmissionResponseBuilder builder;
+    
+<span class="nc" id="L173">            ResponseNestedImpl(AdmissionResponse item){</span>
+<span class="nc" id="L174">                    this.builder = new AdmissionResponseBuilder(this, item);</span>
+<span class="nc" id="L175">            }</span>
+<span class="nc" id="L176">            ResponseNestedImpl(){</span>
+<span class="nc" id="L177">                    this.builder = new AdmissionResponseBuilder(this);</span>
+<span class="nc" id="L178">            }</span>
+    
+    public N and(){
+<span class="nc" id="L181">            return (N) AdmissionReviewFluentImpl.this.withResponse(builder.build());</span>
+    }
+    public N endResponse(){
+<span class="nc" id="L184">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

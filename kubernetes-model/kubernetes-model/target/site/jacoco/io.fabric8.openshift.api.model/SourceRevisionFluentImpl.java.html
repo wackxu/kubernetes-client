@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SourceRevisionFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">SourceRevisionFluentImpl.java</span></div><h1>SourceRevisionFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class SourceRevisionFluentImpl&lt;A extends SourceRevisionFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements SourceRevisionFluent&lt;A&gt;{
+
+    private GitSourceRevisionBuilder git;
+    private String type;
+
+<span class="fc" id="L17">    public SourceRevisionFluentImpl(){</span>
+<span class="fc" id="L18">    }</span>
+<span class="nc" id="L19">    public SourceRevisionFluentImpl(SourceRevision instance){</span>
+<span class="nc" id="L20">            this.withGit(instance.getGit()); </span>
+<span class="nc" id="L21">            this.withType(instance.getType()); </span>
+<span class="nc" id="L22">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildGit instead.
+ * @return The buildable object.
+ */
+@Deprecated public GitSourceRevision getGit(){
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">            return this.git!=null?this.git.build():null;</span>
+    }
+
+    public GitSourceRevision buildGit(){
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            return this.git!=null?this.git.build():null;</span>
+    }
+
+    public A withGit(GitSourceRevision git){
+<span class="fc" id="L38">            _visitables.remove(this.git);</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            if (git!=null){ this.git= new GitSourceRevisionBuilder(git); _visitables.add(this.git);} return (A) this;</span>
+    }
+
+    public Boolean hasGit(){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            return this.git != null;</span>
+    }
+
+    public SourceRevisionFluent.GitNested&lt;A&gt; withNewGit(){
+<span class="nc" id="L47">            return new GitNestedImpl();</span>
+    }
+
+    public SourceRevisionFluent.GitNested&lt;A&gt; withNewGitLike(GitSourceRevision item){
+<span class="nc" id="L51">            return new GitNestedImpl(item);</span>
+    }
+
+    public SourceRevisionFluent.GitNested&lt;A&gt; editGit(){
+<span class="nc" id="L55">            return withNewGitLike(getGit());</span>
+    }
+
+    public SourceRevisionFluent.GitNested&lt;A&gt; editOrNewGit(){
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            return withNewGitLike(getGit() != null ? getGit(): new GitSourceRevisionBuilder().build());</span>
+    }
+
+    public SourceRevisionFluent.GitNested&lt;A&gt; editOrNewGitLike(GitSourceRevision item){
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            return withNewGitLike(getGit() != null ? getGit(): item);</span>
+    }
+
+    public String getType(){
+<span class="fc" id="L67">            return this.type;</span>
+    }
+
+    public A withType(String type){
+<span class="fc" id="L71">            this.type=type; return (A) this;</span>
+    }
+
+    public Boolean hasType(){
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            return this.type != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L80" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L82">            SourceRevisionFluentImpl that = (SourceRevisionFluentImpl) o;</span>
+<span class="nc bnc" id="L83" title="All 6 branches missed.">            if (git != null ? !git.equals(that.git) :that.git != null) return false;</span>
+<span class="nc bnc" id="L84" title="All 6 branches missed.">            if (type != null ? !type.equals(that.type) :that.type != null) return false;</span>
+<span class="nc" id="L85">            return true;</span>
+    }
+
+
+    public class GitNestedImpl&lt;N&gt; extends GitSourceRevisionFluentImpl&lt;SourceRevisionFluent.GitNested&lt;N&gt;&gt; implements SourceRevisionFluent.GitNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final GitSourceRevisionBuilder builder;
+    
+<span class="nc" id="L93">            GitNestedImpl(GitSourceRevision item){</span>
+<span class="nc" id="L94">                    this.builder = new GitSourceRevisionBuilder(this, item);</span>
+<span class="nc" id="L95">            }</span>
+<span class="nc" id="L96">            GitNestedImpl(){</span>
+<span class="nc" id="L97">                    this.builder = new GitSourceRevisionBuilder(this);</span>
+<span class="nc" id="L98">            }</span>
+    
+    public N and(){
+<span class="nc" id="L101">            return (N) SourceRevisionFluentImpl.this.withGit(builder.build());</span>
+    }
+    public N endGit(){
+<span class="nc" id="L104">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

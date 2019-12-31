@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PodTemplateFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">PodTemplateFluentImpl.java</span></div><h1>PodTemplateFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class PodTemplateFluentImpl&lt;A extends PodTemplateFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements PodTemplateFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+    private PodTemplateSpecBuilder template;
+
+<span class="nc" id="L21">    public PodTemplateFluentImpl(){</span>
+<span class="nc" id="L22">    }</span>
+<span class="nc" id="L23">    public PodTemplateFluentImpl(PodTemplate instance){</span>
+<span class="nc" id="L24">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L25">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L26">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L27">            this.withTemplate(instance.getTemplate()); </span>
+<span class="nc" id="L28">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L31">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L35">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L43">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L47">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L68">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public PodTemplateFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L77">            return new MetadataNestedImpl();</span>
+    }
+
+    public PodTemplateFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L81">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public PodTemplateFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L85">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public PodTemplateFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public PodTemplateFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTemplate instead.
+ * @return The buildable object.
+ */
+@Deprecated public PodTemplateSpec getTemplate(){
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            return this.template!=null?this.template.build():null;</span>
+    }
+
+    public PodTemplateSpec buildTemplate(){
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            return this.template!=null?this.template.build():null;</span>
+    }
+
+    public A withTemplate(PodTemplateSpec template){
+<span class="nc" id="L110">            _visitables.remove(this.template);</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            if (template!=null){ this.template= new PodTemplateSpecBuilder(template); _visitables.add(this.template);} return (A) this;</span>
+    }
+
+    public Boolean hasTemplate(){
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            return this.template != null;</span>
+    }
+
+    public PodTemplateFluent.TemplateNested&lt;A&gt; withNewTemplate(){
+<span class="nc" id="L119">            return new TemplateNestedImpl();</span>
+    }
+
+    public PodTemplateFluent.TemplateNested&lt;A&gt; withNewTemplateLike(PodTemplateSpec item){
+<span class="nc" id="L123">            return new TemplateNestedImpl(item);</span>
+    }
+
+    public PodTemplateFluent.TemplateNested&lt;A&gt; editTemplate(){
+<span class="nc" id="L127">            return withNewTemplateLike(getTemplate());</span>
+    }
+
+    public PodTemplateFluent.TemplateNested&lt;A&gt; editOrNewTemplate(){
+<span class="nc bnc" id="L131" title="All 2 branches missed.">            return withNewTemplateLike(getTemplate() != null ? getTemplate(): new PodTemplateSpecBuilder().build());</span>
+    }
+
+    public PodTemplateFluent.TemplateNested&lt;A&gt; editOrNewTemplateLike(PodTemplateSpec item){
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            return withNewTemplateLike(getTemplate() != null ? getTemplate(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L140" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L142">            PodTemplateFluentImpl that = (PodTemplateFluentImpl) o;</span>
+<span class="nc bnc" id="L143" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L144" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L145" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L146" title="All 6 branches missed.">            if (template != null ? !template.equals(that.template) :that.template != null) return false;</span>
+<span class="nc" id="L147">            return true;</span>
+    }
+
+
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;PodTemplateFluent.MetadataNested&lt;N&gt;&gt; implements PodTemplateFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L155">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L156">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L157">            }</span>
+<span class="nc" id="L158">            MetadataNestedImpl(){</span>
+<span class="nc" id="L159">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L160">            }</span>
+    
+    public N and(){
+<span class="nc" id="L163">            return (N) PodTemplateFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L166">            return and();</span>
+    }
+
+}
+    public class TemplateNestedImpl&lt;N&gt; extends PodTemplateSpecFluentImpl&lt;PodTemplateFluent.TemplateNested&lt;N&gt;&gt; implements PodTemplateFluent.TemplateNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodTemplateSpecBuilder builder;
+    
+<span class="nc" id="L174">            TemplateNestedImpl(PodTemplateSpec item){</span>
+<span class="nc" id="L175">                    this.builder = new PodTemplateSpecBuilder(this, item);</span>
+<span class="nc" id="L176">            }</span>
+<span class="nc" id="L177">            TemplateNestedImpl(){</span>
+<span class="nc" id="L178">                    this.builder = new PodTemplateSpecBuilder(this);</span>
+<span class="nc" id="L179">            }</span>
+    
+    public N and(){
+<span class="nc" id="L182">            return (N) PodTemplateFluentImpl.this.withTemplate(builder.build());</span>
+    }
+    public N endTemplate(){
+<span class="nc" id="L185">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

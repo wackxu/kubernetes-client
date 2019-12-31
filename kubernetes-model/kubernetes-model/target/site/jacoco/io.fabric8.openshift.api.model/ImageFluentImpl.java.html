@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImageFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">ImageFluentImpl.java</span></div><h1>ImageFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import io.fabric8.kubernetes.api.model.runtime.RawExtensionBuilder;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.ObjectMetaFluentImpl;
+import io.fabric8.kubernetes.api.model.runtime.RawExtensionFluentImpl;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.runtime.RawExtension;
+import java.lang.Long;
+import java.util.Collection;
+import java.lang.Object;
+
+public class ImageFluentImpl&lt;A extends ImageFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ImageFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private String dockerImageConfig;
+    private List&lt;ImageLayerBuilder&gt; dockerImageLayers;
+    private String dockerImageManifest;
+    private String dockerImageManifestMediaType;
+    private RawExtensionBuilder dockerImageMetadata;
+    private String dockerImageMetadataVersion;
+    private String dockerImageReference;
+    private List&lt;String&gt; dockerImageSignatures;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+    private List&lt;ImageSignatureBuilder&gt; signatures;
+
+<span class="fc" id="L41">    public ImageFluentImpl(){</span>
+<span class="fc" id="L42">    }</span>
+<span class="nc" id="L43">    public ImageFluentImpl(Image instance){</span>
+<span class="nc" id="L44">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L45">            this.withDockerImageConfig(instance.getDockerImageConfig()); </span>
+<span class="nc" id="L46">            this.withDockerImageLayers(instance.getDockerImageLayers()); </span>
+<span class="nc" id="L47">            this.withDockerImageManifest(instance.getDockerImageManifest()); </span>
+<span class="nc" id="L48">            this.withDockerImageManifestMediaType(instance.getDockerImageManifestMediaType()); </span>
+<span class="nc" id="L49">            this.withDockerImageMetadata(instance.getDockerImageMetadata()); </span>
+<span class="nc" id="L50">            this.withDockerImageMetadataVersion(instance.getDockerImageMetadataVersion()); </span>
+<span class="nc" id="L51">            this.withDockerImageReference(instance.getDockerImageReference()); </span>
+<span class="nc" id="L52">            this.withDockerImageSignatures(instance.getDockerImageSignatures()); </span>
+<span class="nc" id="L53">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L54">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L55">            this.withSignatures(instance.getSignatures()); </span>
+<span class="nc" id="L56">    }</span>
+
+    public String getApiVersion(){
+<span class="fc" id="L59">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="fc" id="L63">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public String getDockerImageConfig(){
+<span class="fc" id="L71">            return this.dockerImageConfig;</span>
+    }
+
+    public A withDockerImageConfig(String dockerImageConfig){
+<span class="fc" id="L75">            this.dockerImageConfig=dockerImageConfig; return (A) this;</span>
+    }
+
+    public Boolean hasDockerImageConfig(){
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            return this.dockerImageConfig != null;</span>
+    }
+
+    public A addToDockerImageLayers(int index,ImageLayer item){
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">            if (this.dockerImageLayers == null) {this.dockerImageLayers = new ArrayList&lt;ImageLayerBuilder&gt;();}</span>
+<span class="pc bpc" id="L84" title="2 of 4 branches missed.">            ImageLayerBuilder builder = new ImageLayerBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.dockerImageLayers.add(index &gt;= 0 ? index : dockerImageLayers.size(), builder); return (A)this;</span>
+    }
+
+    public A setToDockerImageLayers(int index,ImageLayer item){
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            if (this.dockerImageLayers == null) {this.dockerImageLayers = new ArrayList&lt;ImageLayerBuilder&gt;();}</span>
+<span class="nc" id="L89">            ImageLayerBuilder builder = new ImageLayerBuilder(item);</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L91" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= dockerImageLayers.size()) { dockerImageLayers.add(builder); } else { dockerImageLayers.set(index, builder);}</span>
+<span class="nc" id="L92">             return (A)this;</span>
+    }
+
+    public A addToDockerImageLayers(ImageLayer... items){
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">            if (this.dockerImageLayers == null) {this.dockerImageLayers = new ArrayList&lt;ImageLayerBuilder&gt;();}</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">            for (ImageLayer item : items) {ImageLayerBuilder builder = new ImageLayerBuilder(item);_visitables.add(builder);this.dockerImageLayers.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToDockerImageLayers(Collection&lt;ImageLayer&gt; items){
+<span class="nc bnc" id="L101" title="All 2 branches missed.">            if (this.dockerImageLayers == null) {this.dockerImageLayers = new ArrayList&lt;ImageLayerBuilder&gt;();}</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            for (ImageLayer item : items) {ImageLayerBuilder builder = new ImageLayerBuilder(item);_visitables.add(builder);this.dockerImageLayers.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromDockerImageLayers(ImageLayer... items){
+<span class="nc bnc" id="L106" title="All 4 branches missed.">            for (ImageLayer item : items) {ImageLayerBuilder builder = new ImageLayerBuilder(item);_visitables.remove(builder);if (this.dockerImageLayers != null) {this.dockerImageLayers.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromDockerImageLayers(Collection&lt;ImageLayer&gt; items){
+<span class="nc bnc" id="L110" title="All 4 branches missed.">            for (ImageLayer item : items) {ImageLayerBuilder builder = new ImageLayerBuilder(item);_visitables.remove(builder);if (this.dockerImageLayers != null) {this.dockerImageLayers.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildDockerImageLayers instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;ImageLayer&gt; getDockerImageLayers(){
+<span class="fc" id="L119">            return build(dockerImageLayers);</span>
+    }
+
+    public List&lt;ImageLayer&gt; buildDockerImageLayers(){
+<span class="nc" id="L123">            return build(dockerImageLayers);</span>
+    }
+
+    public ImageLayer buildDockerImageLayer(int index){
+<span class="nc" id="L127">            return this.dockerImageLayers.get(index).build();</span>
+    }
+
+    public ImageLayer buildFirstDockerImageLayer(){
+<span class="nc" id="L131">            return this.dockerImageLayers.get(0).build();</span>
+    }
+
+    public ImageLayer buildLastDockerImageLayer(){
+<span class="nc" id="L135">            return this.dockerImageLayers.get(dockerImageLayers.size() - 1).build();</span>
+    }
+
+    public ImageLayer buildMatchingDockerImageLayer(io.fabric8.kubernetes.api.builder.Predicate&lt;ImageLayerBuilder&gt; predicate){
+<span class="nc bnc" id="L139" title="All 4 branches missed.">            for (ImageLayerBuilder item: dockerImageLayers) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withDockerImageLayers(List&lt;ImageLayer&gt; dockerImageLayers){
+<span class="pc bpc" id="L143" title="1 of 2 branches missed.">            if (this.dockerImageLayers != null) { _visitables.removeAll(this.dockerImageLayers);}</span>
+<span class="pc bpc" id="L144" title="1 of 4 branches missed.">            if (dockerImageLayers != null) {this.dockerImageLayers = new ArrayList&lt;ImageLayerBuilder&gt;(); for (ImageLayer item : dockerImageLayers){this.addToDockerImageLayers(item);}} else { this.dockerImageLayers = new ArrayList&lt;ImageLayerBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withDockerImageLayers(ImageLayer... dockerImageLayers){
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            if (this.dockerImageLayers != null) {this.dockerImageLayers.clear();}</span>
+<span class="nc bnc" id="L149" title="All 4 branches missed.">            if (dockerImageLayers != null) {for (ImageLayer item :dockerImageLayers){ this.addToDockerImageLayers(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasDockerImageLayers(){
+<span class="nc bnc" id="L153" title="All 4 branches missed.">            return dockerImageLayers != null &amp;&amp; !dockerImageLayers.isEmpty();</span>
+    }
+
+    public A addNewDockerImageLayer(String mediaType,String name,Long size){
+<span class="nc" id="L157">            return (A)addToDockerImageLayers(new ImageLayer(mediaType, name, size));</span>
+    }
+
+    public ImageFluent.DockerImageLayersNested&lt;A&gt; addNewDockerImageLayer(){
+<span class="nc" id="L161">            return new DockerImageLayersNestedImpl();</span>
+    }
+
+    public ImageFluent.DockerImageLayersNested&lt;A&gt; addNewDockerImageLayerLike(ImageLayer item){
+<span class="nc" id="L165">            return new DockerImageLayersNestedImpl(-1, item);</span>
+    }
+
+    public ImageFluent.DockerImageLayersNested&lt;A&gt; setNewDockerImageLayerLike(int index,ImageLayer item){
+<span class="nc" id="L169">            return new DockerImageLayersNestedImpl(index, item);</span>
+    }
+
+    public ImageFluent.DockerImageLayersNested&lt;A&gt; editDockerImageLayer(int index){
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            if (dockerImageLayers.size() &lt;= index) throw new RuntimeException(&quot;Can't edit dockerImageLayers. Index exceeds size.&quot;);</span>
+<span class="nc" id="L174">            return setNewDockerImageLayerLike(index, buildDockerImageLayer(index));</span>
+    }
+
+    public ImageFluent.DockerImageLayersNested&lt;A&gt; editFirstDockerImageLayer(){
+<span class="nc bnc" id="L178" title="All 2 branches missed.">            if (dockerImageLayers.size() == 0) throw new RuntimeException(&quot;Can't edit first dockerImageLayers. The list is empty.&quot;);</span>
+<span class="nc" id="L179">            return setNewDockerImageLayerLike(0, buildDockerImageLayer(0));</span>
+    }
+
+    public ImageFluent.DockerImageLayersNested&lt;A&gt; editLastDockerImageLayer(){
+<span class="nc" id="L183">            int index = dockerImageLayers.size() - 1;</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last dockerImageLayers. The list is empty.&quot;);</span>
+<span class="nc" id="L185">            return setNewDockerImageLayerLike(index, buildDockerImageLayer(index));</span>
+    }
+
+    public ImageFluent.DockerImageLayersNested&lt;A&gt; editMatchingDockerImageLayer(io.fabric8.kubernetes.api.builder.Predicate&lt;ImageLayerBuilder&gt; predicate){
+<span class="nc" id="L189">            int index = -1;</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">            for (int i=0;i&lt;dockerImageLayers.size();i++) { </span>
+<span class="nc bnc" id="L191" title="All 2 branches missed.">            if (predicate.apply(dockerImageLayers.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L193" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching dockerImageLayers. No match found.&quot;);</span>
+<span class="nc" id="L194">            return setNewDockerImageLayerLike(index, buildDockerImageLayer(index));</span>
+    }
+
+    public String getDockerImageManifest(){
+<span class="fc" id="L198">            return this.dockerImageManifest;</span>
+    }
+
+    public A withDockerImageManifest(String dockerImageManifest){
+<span class="fc" id="L202">            this.dockerImageManifest=dockerImageManifest; return (A) this;</span>
+    }
+
+    public Boolean hasDockerImageManifest(){
+<span class="nc bnc" id="L206" title="All 2 branches missed.">            return this.dockerImageManifest != null;</span>
+    }
+
+    public String getDockerImageManifestMediaType(){
+<span class="fc" id="L210">            return this.dockerImageManifestMediaType;</span>
+    }
+
+    public A withDockerImageManifestMediaType(String dockerImageManifestMediaType){
+<span class="fc" id="L214">            this.dockerImageManifestMediaType=dockerImageManifestMediaType; return (A) this;</span>
+    }
+
+    public Boolean hasDockerImageManifestMediaType(){
+<span class="nc bnc" id="L218" title="All 2 branches missed.">            return this.dockerImageManifestMediaType != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildDockerImageMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public RawExtension getDockerImageMetadata(){
+<span class="pc bpc" id="L227" title="1 of 2 branches missed.">            return this.dockerImageMetadata!=null?this.dockerImageMetadata.build():null;</span>
+    }
+
+    public RawExtension buildDockerImageMetadata(){
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            return this.dockerImageMetadata!=null?this.dockerImageMetadata.build():null;</span>
+    }
+
+    public A withDockerImageMetadata(RawExtension dockerImageMetadata){
+<span class="fc" id="L235">            _visitables.remove(this.dockerImageMetadata);</span>
+<span class="pc bpc" id="L236" title="1 of 2 branches missed.">            if (dockerImageMetadata!=null){ this.dockerImageMetadata= new RawExtensionBuilder(dockerImageMetadata); _visitables.add(this.dockerImageMetadata);} return (A) this;</span>
+    }
+
+    public Boolean hasDockerImageMetadata(){
+<span class="nc bnc" id="L240" title="All 2 branches missed.">            return this.dockerImageMetadata != null;</span>
+    }
+
+    public A withNewDockerImageMetadata(String raw){
+<span class="nc" id="L244">            return (A)withDockerImageMetadata(new RawExtension(raw));</span>
+    }
+
+    public ImageFluent.DockerImageMetadataNested&lt;A&gt; withNewDockerImageMetadata(){
+<span class="nc" id="L248">            return new DockerImageMetadataNestedImpl();</span>
+    }
+
+    public ImageFluent.DockerImageMetadataNested&lt;A&gt; withNewDockerImageMetadataLike(RawExtension item){
+<span class="nc" id="L252">            return new DockerImageMetadataNestedImpl(item);</span>
+    }
+
+    public ImageFluent.DockerImageMetadataNested&lt;A&gt; editDockerImageMetadata(){
+<span class="nc" id="L256">            return withNewDockerImageMetadataLike(getDockerImageMetadata());</span>
+    }
+
+    public ImageFluent.DockerImageMetadataNested&lt;A&gt; editOrNewDockerImageMetadata(){
+<span class="nc bnc" id="L260" title="All 2 branches missed.">            return withNewDockerImageMetadataLike(getDockerImageMetadata() != null ? getDockerImageMetadata(): new RawExtensionBuilder().build());</span>
+    }
+
+    public ImageFluent.DockerImageMetadataNested&lt;A&gt; editOrNewDockerImageMetadataLike(RawExtension item){
+<span class="nc bnc" id="L264" title="All 2 branches missed.">            return withNewDockerImageMetadataLike(getDockerImageMetadata() != null ? getDockerImageMetadata(): item);</span>
+    }
+
+    public String getDockerImageMetadataVersion(){
+<span class="fc" id="L268">            return this.dockerImageMetadataVersion;</span>
+    }
+
+    public A withDockerImageMetadataVersion(String dockerImageMetadataVersion){
+<span class="fc" id="L272">            this.dockerImageMetadataVersion=dockerImageMetadataVersion; return (A) this;</span>
+    }
+
+    public Boolean hasDockerImageMetadataVersion(){
+<span class="nc bnc" id="L276" title="All 2 branches missed.">            return this.dockerImageMetadataVersion != null;</span>
+    }
+
+    public String getDockerImageReference(){
+<span class="fc" id="L280">            return this.dockerImageReference;</span>
+    }
+
+    public A withDockerImageReference(String dockerImageReference){
+<span class="fc" id="L284">            this.dockerImageReference=dockerImageReference; return (A) this;</span>
+    }
+
+    public Boolean hasDockerImageReference(){
+<span class="nc bnc" id="L288" title="All 2 branches missed.">            return this.dockerImageReference != null;</span>
+    }
+
+    public A addToDockerImageSignatures(int index,String item){
+<span class="nc bnc" id="L292" title="All 2 branches missed.">            if (this.dockerImageSignatures == null) {this.dockerImageSignatures = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L293">            this.dockerImageSignatures.add(index, item);</span>
+<span class="nc" id="L294">            return (A)this;</span>
+    }
+
+    public A setToDockerImageSignatures(int index,String item){
+<span class="nc bnc" id="L298" title="All 2 branches missed.">            if (this.dockerImageSignatures == null) {this.dockerImageSignatures = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L299">            this.dockerImageSignatures.set(index, item); return (A)this;</span>
+    }
+
+    public A addToDockerImageSignatures(String... items){
+<span class="nc bnc" id="L303" title="All 2 branches missed.">            if (this.dockerImageSignatures == null) {this.dockerImageSignatures = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L304" title="All 2 branches missed.">            for (String item : items) {this.dockerImageSignatures.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToDockerImageSignatures(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L308" title="All 2 branches missed.">            if (this.dockerImageSignatures == null) {this.dockerImageSignatures = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L309" title="All 2 branches missed.">            for (String item : items) {this.dockerImageSignatures.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromDockerImageSignatures(String... items){
+<span class="nc bnc" id="L313" title="All 4 branches missed.">            for (String item : items) {if (this.dockerImageSignatures!= null){ this.dockerImageSignatures.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromDockerImageSignatures(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L317" title="All 4 branches missed.">            for (String item : items) {if (this.dockerImageSignatures!= null){ this.dockerImageSignatures.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getDockerImageSignatures(){
+<span class="fc" id="L321">            return this.dockerImageSignatures;</span>
+    }
+
+    public String getDockerImageSignature(int index){
+<span class="nc" id="L325">            return this.dockerImageSignatures.get(index);</span>
+    }
+
+    public String getFirstDockerImageSignature(){
+<span class="nc" id="L329">            return this.dockerImageSignatures.get(0);</span>
+    }
+
+    public String getLastDockerImageSignature(){
+<span class="nc" id="L333">            return this.dockerImageSignatures.get(dockerImageSignatures.size() - 1);</span>
+    }
+
+    public String getMatchingDockerImageSignature(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L337" title="All 4 branches missed.">            for (String item: dockerImageSignatures) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withDockerImageSignatures(List&lt;String&gt; dockerImageSignatures){
+<span class="pc bpc" id="L341" title="1 of 2 branches missed.">            if (this.dockerImageSignatures != null) { _visitables.removeAll(this.dockerImageSignatures);}</span>
+<span class="pc bpc" id="L342" title="2 of 4 branches missed.">            if (dockerImageSignatures != null) {this.dockerImageSignatures = new ArrayList&lt;String&gt;(); for (String item : dockerImageSignatures){this.addToDockerImageSignatures(item);}} else { this.dockerImageSignatures = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withDockerImageSignatures(String... dockerImageSignatures){
+<span class="nc bnc" id="L346" title="All 2 branches missed.">            if (this.dockerImageSignatures != null) {this.dockerImageSignatures.clear();}</span>
+<span class="nc bnc" id="L347" title="All 4 branches missed.">            if (dockerImageSignatures != null) {for (String item :dockerImageSignatures){ this.addToDockerImageSignatures(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasDockerImageSignatures(){
+<span class="nc bnc" id="L351" title="All 4 branches missed.">            return dockerImageSignatures != null &amp;&amp; !dockerImageSignatures.isEmpty();</span>
+    }
+
+    public String getKind(){
+<span class="fc" id="L355">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="fc" id="L359">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L363" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="pc bpc" id="L372" title="1 of 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L376" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="fc" id="L380">            _visitables.remove(this.metadata);</span>
+<span class="fc bfc" id="L381" title="All 2 branches covered.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L385" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public ImageFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="fc" id="L389">            return new MetadataNestedImpl();</span>
+    }
+
+    public ImageFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L393">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public ImageFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L397">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public ImageFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L401" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public ImageFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L405" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    public A addToSignatures(int index,ImageSignature item){
+<span class="nc bnc" id="L409" title="All 2 branches missed.">            if (this.signatures == null) {this.signatures = new ArrayList&lt;ImageSignatureBuilder&gt;();}</span>
+<span class="nc bnc" id="L410" title="All 4 branches missed.">            ImageSignatureBuilder builder = new ImageSignatureBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.signatures.add(index &gt;= 0 ? index : signatures.size(), builder); return (A)this;</span>
+    }
+
+    public A setToSignatures(int index,ImageSignature item){
+<span class="nc bnc" id="L414" title="All 2 branches missed.">            if (this.signatures == null) {this.signatures = new ArrayList&lt;ImageSignatureBuilder&gt;();}</span>
+<span class="nc" id="L415">            ImageSignatureBuilder builder = new ImageSignatureBuilder(item);</span>
+<span class="nc bnc" id="L416" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L417" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= signatures.size()) { signatures.add(builder); } else { signatures.set(index, builder);}</span>
+<span class="nc" id="L418">             return (A)this;</span>
+    }
+
+    public A addToSignatures(ImageSignature... items){
+<span class="nc bnc" id="L422" title="All 2 branches missed.">            if (this.signatures == null) {this.signatures = new ArrayList&lt;ImageSignatureBuilder&gt;();}</span>
+<span class="nc bnc" id="L423" title="All 2 branches missed.">            for (ImageSignature item : items) {ImageSignatureBuilder builder = new ImageSignatureBuilder(item);_visitables.add(builder);this.signatures.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToSignatures(Collection&lt;ImageSignature&gt; items){
+<span class="nc bnc" id="L427" title="All 2 branches missed.">            if (this.signatures == null) {this.signatures = new ArrayList&lt;ImageSignatureBuilder&gt;();}</span>
+<span class="nc bnc" id="L428" title="All 2 branches missed.">            for (ImageSignature item : items) {ImageSignatureBuilder builder = new ImageSignatureBuilder(item);_visitables.add(builder);this.signatures.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromSignatures(ImageSignature... items){
+<span class="nc bnc" id="L432" title="All 4 branches missed.">            for (ImageSignature item : items) {ImageSignatureBuilder builder = new ImageSignatureBuilder(item);_visitables.remove(builder);if (this.signatures != null) {this.signatures.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromSignatures(Collection&lt;ImageSignature&gt; items){
+<span class="nc bnc" id="L436" title="All 4 branches missed.">            for (ImageSignature item : items) {ImageSignatureBuilder builder = new ImageSignatureBuilder(item);_visitables.remove(builder);if (this.signatures != null) {this.signatures.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSignatures instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;ImageSignature&gt; getSignatures(){
+<span class="fc" id="L445">            return build(signatures);</span>
+    }
+
+    public List&lt;ImageSignature&gt; buildSignatures(){
+<span class="nc" id="L449">            return build(signatures);</span>
+    }
+
+    public ImageSignature buildSignature(int index){
+<span class="nc" id="L453">            return this.signatures.get(index).build();</span>
+    }
+
+    public ImageSignature buildFirstSignature(){
+<span class="nc" id="L457">            return this.signatures.get(0).build();</span>
+    }
+
+    public ImageSignature buildLastSignature(){
+<span class="nc" id="L461">            return this.signatures.get(signatures.size() - 1).build();</span>
+    }
+
+    public ImageSignature buildMatchingSignature(io.fabric8.kubernetes.api.builder.Predicate&lt;ImageSignatureBuilder&gt; predicate){
+<span class="nc bnc" id="L465" title="All 4 branches missed.">            for (ImageSignatureBuilder item: signatures) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withSignatures(List&lt;ImageSignature&gt; signatures){
+<span class="pc bpc" id="L469" title="1 of 2 branches missed.">            if (this.signatures != null) { _visitables.removeAll(this.signatures);}</span>
+<span class="pc bpc" id="L470" title="2 of 4 branches missed.">            if (signatures != null) {this.signatures = new ArrayList&lt;ImageSignatureBuilder&gt;(); for (ImageSignature item : signatures){this.addToSignatures(item);}} else { this.signatures = new ArrayList&lt;ImageSignatureBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withSignatures(ImageSignature... signatures){
+<span class="nc bnc" id="L474" title="All 2 branches missed.">            if (this.signatures != null) {this.signatures.clear();}</span>
+<span class="nc bnc" id="L475" title="All 4 branches missed.">            if (signatures != null) {for (ImageSignature item :signatures){ this.addToSignatures(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasSignatures(){
+<span class="nc bnc" id="L479" title="All 4 branches missed.">            return signatures != null &amp;&amp; !signatures.isEmpty();</span>
+    }
+
+    public ImageFluent.SignaturesNested&lt;A&gt; addNewSignature(){
+<span class="nc" id="L483">            return new SignaturesNestedImpl();</span>
+    }
+
+    public ImageFluent.SignaturesNested&lt;A&gt; addNewSignatureLike(ImageSignature item){
+<span class="nc" id="L487">            return new SignaturesNestedImpl(-1, item);</span>
+    }
+
+    public ImageFluent.SignaturesNested&lt;A&gt; setNewSignatureLike(int index,ImageSignature item){
+<span class="nc" id="L491">            return new SignaturesNestedImpl(index, item);</span>
+    }
+
+    public ImageFluent.SignaturesNested&lt;A&gt; editSignature(int index){
+<span class="nc bnc" id="L495" title="All 2 branches missed.">            if (signatures.size() &lt;= index) throw new RuntimeException(&quot;Can't edit signatures. Index exceeds size.&quot;);</span>
+<span class="nc" id="L496">            return setNewSignatureLike(index, buildSignature(index));</span>
+    }
+
+    public ImageFluent.SignaturesNested&lt;A&gt; editFirstSignature(){
+<span class="nc bnc" id="L500" title="All 2 branches missed.">            if (signatures.size() == 0) throw new RuntimeException(&quot;Can't edit first signatures. The list is empty.&quot;);</span>
+<span class="nc" id="L501">            return setNewSignatureLike(0, buildSignature(0));</span>
+    }
+
+    public ImageFluent.SignaturesNested&lt;A&gt; editLastSignature(){
+<span class="nc" id="L505">            int index = signatures.size() - 1;</span>
+<span class="nc bnc" id="L506" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last signatures. The list is empty.&quot;);</span>
+<span class="nc" id="L507">            return setNewSignatureLike(index, buildSignature(index));</span>
+    }
+
+    public ImageFluent.SignaturesNested&lt;A&gt; editMatchingSignature(io.fabric8.kubernetes.api.builder.Predicate&lt;ImageSignatureBuilder&gt; predicate){
+<span class="nc" id="L511">            int index = -1;</span>
+<span class="nc bnc" id="L512" title="All 2 branches missed.">            for (int i=0;i&lt;signatures.size();i++) { </span>
+<span class="nc bnc" id="L513" title="All 2 branches missed.">            if (predicate.apply(signatures.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L515" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching signatures. No match found.&quot;);</span>
+<span class="nc" id="L516">            return setNewSignatureLike(index, buildSignature(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L520" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L521" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L522" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L523">            ImageFluentImpl that = (ImageFluentImpl) o;</span>
+<span class="nc bnc" id="L524" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L525" title="All 6 branches missed.">            if (dockerImageConfig != null ? !dockerImageConfig.equals(that.dockerImageConfig) :that.dockerImageConfig != null) return false;</span>
+<span class="nc bnc" id="L526" title="All 6 branches missed.">            if (dockerImageLayers != null ? !dockerImageLayers.equals(that.dockerImageLayers) :that.dockerImageLayers != null) return false;</span>
+<span class="nc bnc" id="L527" title="All 6 branches missed.">            if (dockerImageManifest != null ? !dockerImageManifest.equals(that.dockerImageManifest) :that.dockerImageManifest != null) return false;</span>
+<span class="nc bnc" id="L528" title="All 6 branches missed.">            if (dockerImageManifestMediaType != null ? !dockerImageManifestMediaType.equals(that.dockerImageManifestMediaType) :that.dockerImageManifestMediaType != null) return false;</span>
+<span class="nc bnc" id="L529" title="All 6 branches missed.">            if (dockerImageMetadata != null ? !dockerImageMetadata.equals(that.dockerImageMetadata) :that.dockerImageMetadata != null) return false;</span>
+<span class="nc bnc" id="L530" title="All 6 branches missed.">            if (dockerImageMetadataVersion != null ? !dockerImageMetadataVersion.equals(that.dockerImageMetadataVersion) :that.dockerImageMetadataVersion != null) return false;</span>
+<span class="nc bnc" id="L531" title="All 6 branches missed.">            if (dockerImageReference != null ? !dockerImageReference.equals(that.dockerImageReference) :that.dockerImageReference != null) return false;</span>
+<span class="nc bnc" id="L532" title="All 6 branches missed.">            if (dockerImageSignatures != null ? !dockerImageSignatures.equals(that.dockerImageSignatures) :that.dockerImageSignatures != null) return false;</span>
+<span class="nc bnc" id="L533" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L534" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L535" title="All 6 branches missed.">            if (signatures != null ? !signatures.equals(that.signatures) :that.signatures != null) return false;</span>
+<span class="nc" id="L536">            return true;</span>
+    }
+
+
+    public class DockerImageLayersNestedImpl&lt;N&gt; extends ImageLayerFluentImpl&lt;ImageFluent.DockerImageLayersNested&lt;N&gt;&gt; implements ImageFluent.DockerImageLayersNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageLayerBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L545">            DockerImageLayersNestedImpl(int index,ImageLayer item){</span>
+<span class="nc" id="L546">                    this.index = index;</span>
+<span class="nc" id="L547">                    this.builder = new ImageLayerBuilder(this, item);</span>
+<span class="nc" id="L548">            }</span>
+<span class="nc" id="L549">            DockerImageLayersNestedImpl(){</span>
+<span class="nc" id="L550">                    this.index = -1;</span>
+<span class="nc" id="L551">                    this.builder = new ImageLayerBuilder(this);</span>
+<span class="nc" id="L552">            }</span>
+    
+    public N and(){
+<span class="nc" id="L555">            return (N) ImageFluentImpl.this.setToDockerImageLayers(index, builder.build());</span>
+    }
+    public N endDockerImageLayer(){
+<span class="nc" id="L558">            return and();</span>
+    }
+
+}
+    public class DockerImageMetadataNestedImpl&lt;N&gt; extends RawExtensionFluentImpl&lt;ImageFluent.DockerImageMetadataNested&lt;N&gt;&gt; implements ImageFluent.DockerImageMetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RawExtensionBuilder builder;
+    
+<span class="nc" id="L566">            DockerImageMetadataNestedImpl(RawExtension item){</span>
+<span class="nc" id="L567">                    this.builder = new RawExtensionBuilder(this, item);</span>
+<span class="nc" id="L568">            }</span>
+<span class="nc" id="L569">            DockerImageMetadataNestedImpl(){</span>
+<span class="nc" id="L570">                    this.builder = new RawExtensionBuilder(this);</span>
+<span class="nc" id="L571">            }</span>
+    
+    public N and(){
+<span class="nc" id="L574">            return (N) ImageFluentImpl.this.withDockerImageMetadata(builder.build());</span>
+    }
+    public N endDockerImageMetadata(){
+<span class="nc" id="L577">            return and();</span>
+    }
+
+}
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;ImageFluent.MetadataNested&lt;N&gt;&gt; implements ImageFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L585">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L586">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L587">            }</span>
+<span class="fc" id="L588">            MetadataNestedImpl(){</span>
+<span class="fc" id="L589">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="fc" id="L590">            }</span>
+    
+    public N and(){
+<span class="fc" id="L593">            return (N) ImageFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="fc" id="L596">            return and();</span>
+    }
+
+}
+    public class SignaturesNestedImpl&lt;N&gt; extends ImageSignatureFluentImpl&lt;ImageFluent.SignaturesNested&lt;N&gt;&gt; implements ImageFluent.SignaturesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageSignatureBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L605">            SignaturesNestedImpl(int index,ImageSignature item){</span>
+<span class="nc" id="L606">                    this.index = index;</span>
+<span class="nc" id="L607">                    this.builder = new ImageSignatureBuilder(this, item);</span>
+<span class="nc" id="L608">            }</span>
+<span class="nc" id="L609">            SignaturesNestedImpl(){</span>
+<span class="nc" id="L610">                    this.index = -1;</span>
+<span class="nc" id="L611">                    this.builder = new ImageSignatureBuilder(this);</span>
+<span class="nc" id="L612">            }</span>
+    
+    public N and(){
+<span class="nc" id="L615">            return (N) ImageFluentImpl.this.setToSignatures(index, builder.build());</span>
+    }
+    public N endSignature(){
+<span class="nc" id="L618">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

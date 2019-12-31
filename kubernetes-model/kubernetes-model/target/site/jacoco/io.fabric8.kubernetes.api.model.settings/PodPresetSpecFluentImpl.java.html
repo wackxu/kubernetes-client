@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PodPresetSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.settings</a> &gt; <span class="el_source">PodPresetSpecFluentImpl.java</span></div><h1>PodPresetSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.settings;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.EnvFromSourceFluentImpl;
+import io.fabric8.kubernetes.api.model.LabelSelectorFluentImpl;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.model.VolumeBuilder;
+import io.fabric8.kubernetes.api.model.EnvVarBuilder;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import io.fabric8.kubernetes.api.model.VolumeMountFluentImpl;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.model.VolumeFluentImpl;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import io.fabric8.kubernetes.api.model.EnvVar;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.LabelSelectorBuilder;
+import io.fabric8.kubernetes.api.model.LabelSelector;
+import io.fabric8.kubernetes.api.model.VolumeMountBuilder;
+import io.fabric8.kubernetes.api.model.EnvFromSource;
+import io.fabric8.kubernetes.api.model.Volume;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.VolumeMount;
+import java.util.Collection;
+import io.fabric8.kubernetes.api.model.EnvVarFluentImpl;
+import java.lang.Object;
+import io.fabric8.kubernetes.api.model.EnvFromSourceBuilder;
+
+public class PodPresetSpecFluentImpl&lt;A extends PodPresetSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements PodPresetSpecFluent&lt;A&gt;{
+
+    private List&lt;EnvVarBuilder&gt; env;
+    private List&lt;EnvFromSourceBuilder&gt; envFrom;
+    private LabelSelectorBuilder selector;
+    private List&lt;VolumeMountBuilder&gt; volumeMounts;
+    private List&lt;VolumeBuilder&gt; volumes;
+
+<span class="nc" id="L40">    public PodPresetSpecFluentImpl(){</span>
+<span class="nc" id="L41">    }</span>
+<span class="nc" id="L42">    public PodPresetSpecFluentImpl(PodPresetSpec instance){</span>
+<span class="nc" id="L43">            this.withEnv(instance.getEnv()); </span>
+<span class="nc" id="L44">            this.withEnvFrom(instance.getEnvFrom()); </span>
+<span class="nc" id="L45">            this.withSelector(instance.getSelector()); </span>
+<span class="nc" id="L46">            this.withVolumeMounts(instance.getVolumeMounts()); </span>
+<span class="nc" id="L47">            this.withVolumes(instance.getVolumes()); </span>
+<span class="nc" id="L48">    }</span>
+
+    public A addToEnv(int index,EnvVar item){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L52" title="All 4 branches missed.">            EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.env.add(index &gt;= 0 ? index : env.size(), builder); return (A)this;</span>
+    }
+
+    public A setToEnv(int index,EnvVar item){
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc" id="L57">            EnvVarBuilder builder = new EnvVarBuilder(item);</span>
+<span class="nc bnc" id="L58" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L59" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= env.size()) { env.add(builder); } else { env.set(index, builder);}</span>
+<span class="nc" id="L60">             return (A)this;</span>
+    }
+
+    public A addToEnv(EnvVar... items){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(builder);this.env.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToEnv(Collection&lt;EnvVar&gt; items){
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(builder);this.env.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromEnv(EnvVar... items){
+<span class="nc bnc" id="L74" title="All 4 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.remove(builder);if (this.env != null) {this.env.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromEnv(Collection&lt;EnvVar&gt; items){
+<span class="nc bnc" id="L78" title="All 4 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.remove(builder);if (this.env != null) {this.env.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildEnv instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;EnvVar&gt; getEnv(){
+<span class="nc" id="L87">            return build(env);</span>
+    }
+
+    public List&lt;EnvVar&gt; buildEnv(){
+<span class="nc" id="L91">            return build(env);</span>
+    }
+
+    public EnvVar buildEnv(int index){
+<span class="nc" id="L95">            return this.env.get(index).build();</span>
+    }
+
+    public EnvVar buildFirstEnv(){
+<span class="nc" id="L99">            return this.env.get(0).build();</span>
+    }
+
+    public EnvVar buildLastEnv(){
+<span class="nc" id="L103">            return this.env.get(env.size() - 1).build();</span>
+    }
+
+    public EnvVar buildMatchingEnv(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvVarBuilder&gt; predicate){
+<span class="nc bnc" id="L107" title="All 4 branches missed.">            for (EnvVarBuilder item: env) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withEnv(List&lt;EnvVar&gt; env){
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            if (this.env != null) { _visitables.removeAll(this.env);}</span>
+<span class="nc bnc" id="L112" title="All 4 branches missed.">            if (env != null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;(); for (EnvVar item : env){this.addToEnv(item);}} else { this.env = new ArrayList&lt;EnvVarBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withEnv(EnvVar... env){
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            if (this.env != null) {this.env.clear();}</span>
+<span class="nc bnc" id="L117" title="All 4 branches missed.">            if (env != null) {for (EnvVar item :env){ this.addToEnv(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasEnv(){
+<span class="nc bnc" id="L121" title="All 4 branches missed.">            return env != null &amp;&amp; !env.isEmpty();</span>
+    }
+
+    public PodPresetSpecFluent.EnvNested&lt;A&gt; addNewEnv(){
+<span class="nc" id="L125">            return new EnvNestedImpl();</span>
+    }
+
+    public PodPresetSpecFluent.EnvNested&lt;A&gt; addNewEnvLike(EnvVar item){
+<span class="nc" id="L129">            return new EnvNestedImpl(-1, item);</span>
+    }
+
+    public PodPresetSpecFluent.EnvNested&lt;A&gt; setNewEnvLike(int index,EnvVar item){
+<span class="nc" id="L133">            return new EnvNestedImpl(index, item);</span>
+    }
+
+    public PodPresetSpecFluent.EnvNested&lt;A&gt; editEnv(int index){
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            if (env.size() &lt;= index) throw new RuntimeException(&quot;Can't edit env. Index exceeds size.&quot;);</span>
+<span class="nc" id="L138">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    public PodPresetSpecFluent.EnvNested&lt;A&gt; editFirstEnv(){
+<span class="nc bnc" id="L142" title="All 2 branches missed.">            if (env.size() == 0) throw new RuntimeException(&quot;Can't edit first env. The list is empty.&quot;);</span>
+<span class="nc" id="L143">            return setNewEnvLike(0, buildEnv(0));</span>
+    }
+
+    public PodPresetSpecFluent.EnvNested&lt;A&gt; editLastEnv(){
+<span class="nc" id="L147">            int index = env.size() - 1;</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last env. The list is empty.&quot;);</span>
+<span class="nc" id="L149">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    public PodPresetSpecFluent.EnvNested&lt;A&gt; editMatchingEnv(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvVarBuilder&gt; predicate){
+<span class="nc" id="L153">            int index = -1;</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            for (int i=0;i&lt;env.size();i++) { </span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            if (predicate.apply(env.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching env. No match found.&quot;);</span>
+<span class="nc" id="L158">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    public A addToEnvFrom(int index,EnvFromSource item){
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (this.envFrom == null) {this.envFrom = new ArrayList&lt;EnvFromSourceBuilder&gt;();}</span>
+<span class="nc bnc" id="L163" title="All 4 branches missed.">            EnvFromSourceBuilder builder = new EnvFromSourceBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.envFrom.add(index &gt;= 0 ? index : envFrom.size(), builder); return (A)this;</span>
+    }
+
+    public A setToEnvFrom(int index,EnvFromSource item){
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (this.envFrom == null) {this.envFrom = new ArrayList&lt;EnvFromSourceBuilder&gt;();}</span>
+<span class="nc" id="L168">            EnvFromSourceBuilder builder = new EnvFromSourceBuilder(item);</span>
+<span class="nc bnc" id="L169" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L170" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= envFrom.size()) { envFrom.add(builder); } else { envFrom.set(index, builder);}</span>
+<span class="nc" id="L171">             return (A)this;</span>
+    }
+
+    public A addToEnvFrom(EnvFromSource... items){
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            if (this.envFrom == null) {this.envFrom = new ArrayList&lt;EnvFromSourceBuilder&gt;();}</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">            for (EnvFromSource item : items) {EnvFromSourceBuilder builder = new EnvFromSourceBuilder(item);_visitables.add(builder);this.envFrom.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToEnvFrom(Collection&lt;EnvFromSource&gt; items){
+<span class="nc bnc" id="L180" title="All 2 branches missed.">            if (this.envFrom == null) {this.envFrom = new ArrayList&lt;EnvFromSourceBuilder&gt;();}</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            for (EnvFromSource item : items) {EnvFromSourceBuilder builder = new EnvFromSourceBuilder(item);_visitables.add(builder);this.envFrom.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromEnvFrom(EnvFromSource... items){
+<span class="nc bnc" id="L185" title="All 4 branches missed.">            for (EnvFromSource item : items) {EnvFromSourceBuilder builder = new EnvFromSourceBuilder(item);_visitables.remove(builder);if (this.envFrom != null) {this.envFrom.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromEnvFrom(Collection&lt;EnvFromSource&gt; items){
+<span class="nc bnc" id="L189" title="All 4 branches missed.">            for (EnvFromSource item : items) {EnvFromSourceBuilder builder = new EnvFromSourceBuilder(item);_visitables.remove(builder);if (this.envFrom != null) {this.envFrom.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildEnvFrom instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;EnvFromSource&gt; getEnvFrom(){
+<span class="nc" id="L198">            return build(envFrom);</span>
+    }
+
+    public List&lt;EnvFromSource&gt; buildEnvFrom(){
+<span class="nc" id="L202">            return build(envFrom);</span>
+    }
+
+    public EnvFromSource buildEnvFrom(int index){
+<span class="nc" id="L206">            return this.envFrom.get(index).build();</span>
+    }
+
+    public EnvFromSource buildFirstEnvFrom(){
+<span class="nc" id="L210">            return this.envFrom.get(0).build();</span>
+    }
+
+    public EnvFromSource buildLastEnvFrom(){
+<span class="nc" id="L214">            return this.envFrom.get(envFrom.size() - 1).build();</span>
+    }
+
+    public EnvFromSource buildMatchingEnvFrom(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvFromSourceBuilder&gt; predicate){
+<span class="nc bnc" id="L218" title="All 4 branches missed.">            for (EnvFromSourceBuilder item: envFrom) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withEnvFrom(List&lt;EnvFromSource&gt; envFrom){
+<span class="nc bnc" id="L222" title="All 2 branches missed.">            if (this.envFrom != null) { _visitables.removeAll(this.envFrom);}</span>
+<span class="nc bnc" id="L223" title="All 4 branches missed.">            if (envFrom != null) {this.envFrom = new ArrayList&lt;EnvFromSourceBuilder&gt;(); for (EnvFromSource item : envFrom){this.addToEnvFrom(item);}} else { this.envFrom = new ArrayList&lt;EnvFromSourceBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withEnvFrom(EnvFromSource... envFrom){
+<span class="nc bnc" id="L227" title="All 2 branches missed.">            if (this.envFrom != null) {this.envFrom.clear();}</span>
+<span class="nc bnc" id="L228" title="All 4 branches missed.">            if (envFrom != null) {for (EnvFromSource item :envFrom){ this.addToEnvFrom(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasEnvFrom(){
+<span class="nc bnc" id="L232" title="All 4 branches missed.">            return envFrom != null &amp;&amp; !envFrom.isEmpty();</span>
+    }
+
+    public PodPresetSpecFluent.EnvFromNested&lt;A&gt; addNewEnvFrom(){
+<span class="nc" id="L236">            return new EnvFromNestedImpl();</span>
+    }
+
+    public PodPresetSpecFluent.EnvFromNested&lt;A&gt; addNewEnvFromLike(EnvFromSource item){
+<span class="nc" id="L240">            return new EnvFromNestedImpl(-1, item);</span>
+    }
+
+    public PodPresetSpecFluent.EnvFromNested&lt;A&gt; setNewEnvFromLike(int index,EnvFromSource item){
+<span class="nc" id="L244">            return new EnvFromNestedImpl(index, item);</span>
+    }
+
+    public PodPresetSpecFluent.EnvFromNested&lt;A&gt; editEnvFrom(int index){
+<span class="nc bnc" id="L248" title="All 2 branches missed.">            if (envFrom.size() &lt;= index) throw new RuntimeException(&quot;Can't edit envFrom. Index exceeds size.&quot;);</span>
+<span class="nc" id="L249">            return setNewEnvFromLike(index, buildEnvFrom(index));</span>
+    }
+
+    public PodPresetSpecFluent.EnvFromNested&lt;A&gt; editFirstEnvFrom(){
+<span class="nc bnc" id="L253" title="All 2 branches missed.">            if (envFrom.size() == 0) throw new RuntimeException(&quot;Can't edit first envFrom. The list is empty.&quot;);</span>
+<span class="nc" id="L254">            return setNewEnvFromLike(0, buildEnvFrom(0));</span>
+    }
+
+    public PodPresetSpecFluent.EnvFromNested&lt;A&gt; editLastEnvFrom(){
+<span class="nc" id="L258">            int index = envFrom.size() - 1;</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last envFrom. The list is empty.&quot;);</span>
+<span class="nc" id="L260">            return setNewEnvFromLike(index, buildEnvFrom(index));</span>
+    }
+
+    public PodPresetSpecFluent.EnvFromNested&lt;A&gt; editMatchingEnvFrom(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvFromSourceBuilder&gt; predicate){
+<span class="nc" id="L264">            int index = -1;</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">            for (int i=0;i&lt;envFrom.size();i++) { </span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">            if (predicate.apply(envFrom.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L268" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching envFrom. No match found.&quot;);</span>
+<span class="nc" id="L269">            return setNewEnvFromLike(index, buildEnvFrom(index));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSelector instead.
+ * @return The buildable object.
+ */
+@Deprecated public LabelSelector getSelector(){
+<span class="nc bnc" id="L278" title="All 2 branches missed.">            return this.selector!=null?this.selector.build():null;</span>
+    }
+
+    public LabelSelector buildSelector(){
+<span class="nc bnc" id="L282" title="All 2 branches missed.">            return this.selector!=null?this.selector.build():null;</span>
+    }
+
+    public A withSelector(LabelSelector selector){
+<span class="nc" id="L286">            _visitables.remove(this.selector);</span>
+<span class="nc bnc" id="L287" title="All 2 branches missed.">            if (selector!=null){ this.selector= new LabelSelectorBuilder(selector); _visitables.add(this.selector);} return (A) this;</span>
+    }
+
+    public Boolean hasSelector(){
+<span class="nc bnc" id="L291" title="All 2 branches missed.">            return this.selector != null;</span>
+    }
+
+    public PodPresetSpecFluent.SelectorNested&lt;A&gt; withNewSelector(){
+<span class="nc" id="L295">            return new SelectorNestedImpl();</span>
+    }
+
+    public PodPresetSpecFluent.SelectorNested&lt;A&gt; withNewSelectorLike(LabelSelector item){
+<span class="nc" id="L299">            return new SelectorNestedImpl(item);</span>
+    }
+
+    public PodPresetSpecFluent.SelectorNested&lt;A&gt; editSelector(){
+<span class="nc" id="L303">            return withNewSelectorLike(getSelector());</span>
+    }
+
+    public PodPresetSpecFluent.SelectorNested&lt;A&gt; editOrNewSelector(){
+<span class="nc bnc" id="L307" title="All 2 branches missed.">            return withNewSelectorLike(getSelector() != null ? getSelector(): new LabelSelectorBuilder().build());</span>
+    }
+
+    public PodPresetSpecFluent.SelectorNested&lt;A&gt; editOrNewSelectorLike(LabelSelector item){
+<span class="nc bnc" id="L311" title="All 2 branches missed.">            return withNewSelectorLike(getSelector() != null ? getSelector(): item);</span>
+    }
+
+    public A addToVolumeMounts(int index,VolumeMount item){
+<span class="nc bnc" id="L315" title="All 2 branches missed.">            if (this.volumeMounts == null) {this.volumeMounts = new ArrayList&lt;VolumeMountBuilder&gt;();}</span>
+<span class="nc bnc" id="L316" title="All 4 branches missed.">            VolumeMountBuilder builder = new VolumeMountBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.volumeMounts.add(index &gt;= 0 ? index : volumeMounts.size(), builder); return (A)this;</span>
+    }
+
+    public A setToVolumeMounts(int index,VolumeMount item){
+<span class="nc bnc" id="L320" title="All 2 branches missed.">            if (this.volumeMounts == null) {this.volumeMounts = new ArrayList&lt;VolumeMountBuilder&gt;();}</span>
+<span class="nc" id="L321">            VolumeMountBuilder builder = new VolumeMountBuilder(item);</span>
+<span class="nc bnc" id="L322" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L323" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= volumeMounts.size()) { volumeMounts.add(builder); } else { volumeMounts.set(index, builder);}</span>
+<span class="nc" id="L324">             return (A)this;</span>
+    }
+
+    public A addToVolumeMounts(VolumeMount... items){
+<span class="nc bnc" id="L328" title="All 2 branches missed.">            if (this.volumeMounts == null) {this.volumeMounts = new ArrayList&lt;VolumeMountBuilder&gt;();}</span>
+<span class="nc bnc" id="L329" title="All 2 branches missed.">            for (VolumeMount item : items) {VolumeMountBuilder builder = new VolumeMountBuilder(item);_visitables.add(builder);this.volumeMounts.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToVolumeMounts(Collection&lt;VolumeMount&gt; items){
+<span class="nc bnc" id="L333" title="All 2 branches missed.">            if (this.volumeMounts == null) {this.volumeMounts = new ArrayList&lt;VolumeMountBuilder&gt;();}</span>
+<span class="nc bnc" id="L334" title="All 2 branches missed.">            for (VolumeMount item : items) {VolumeMountBuilder builder = new VolumeMountBuilder(item);_visitables.add(builder);this.volumeMounts.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromVolumeMounts(VolumeMount... items){
+<span class="nc bnc" id="L338" title="All 4 branches missed.">            for (VolumeMount item : items) {VolumeMountBuilder builder = new VolumeMountBuilder(item);_visitables.remove(builder);if (this.volumeMounts != null) {this.volumeMounts.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromVolumeMounts(Collection&lt;VolumeMount&gt; items){
+<span class="nc bnc" id="L342" title="All 4 branches missed.">            for (VolumeMount item : items) {VolumeMountBuilder builder = new VolumeMountBuilder(item);_visitables.remove(builder);if (this.volumeMounts != null) {this.volumeMounts.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildVolumeMounts instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;VolumeMount&gt; getVolumeMounts(){
+<span class="nc" id="L351">            return build(volumeMounts);</span>
+    }
+
+    public List&lt;VolumeMount&gt; buildVolumeMounts(){
+<span class="nc" id="L355">            return build(volumeMounts);</span>
+    }
+
+    public VolumeMount buildVolumeMount(int index){
+<span class="nc" id="L359">            return this.volumeMounts.get(index).build();</span>
+    }
+
+    public VolumeMount buildFirstVolumeMount(){
+<span class="nc" id="L363">            return this.volumeMounts.get(0).build();</span>
+    }
+
+    public VolumeMount buildLastVolumeMount(){
+<span class="nc" id="L367">            return this.volumeMounts.get(volumeMounts.size() - 1).build();</span>
+    }
+
+    public VolumeMount buildMatchingVolumeMount(io.fabric8.kubernetes.api.builder.Predicate&lt;VolumeMountBuilder&gt; predicate){
+<span class="nc bnc" id="L371" title="All 4 branches missed.">            for (VolumeMountBuilder item: volumeMounts) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withVolumeMounts(List&lt;VolumeMount&gt; volumeMounts){
+<span class="nc bnc" id="L375" title="All 2 branches missed.">            if (this.volumeMounts != null) { _visitables.removeAll(this.volumeMounts);}</span>
+<span class="nc bnc" id="L376" title="All 4 branches missed.">            if (volumeMounts != null) {this.volumeMounts = new ArrayList&lt;VolumeMountBuilder&gt;(); for (VolumeMount item : volumeMounts){this.addToVolumeMounts(item);}} else { this.volumeMounts = new ArrayList&lt;VolumeMountBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withVolumeMounts(VolumeMount... volumeMounts){
+<span class="nc bnc" id="L380" title="All 2 branches missed.">            if (this.volumeMounts != null) {this.volumeMounts.clear();}</span>
+<span class="nc bnc" id="L381" title="All 4 branches missed.">            if (volumeMounts != null) {for (VolumeMount item :volumeMounts){ this.addToVolumeMounts(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasVolumeMounts(){
+<span class="nc bnc" id="L385" title="All 4 branches missed.">            return volumeMounts != null &amp;&amp; !volumeMounts.isEmpty();</span>
+    }
+
+    public A addNewVolumeMount(String mountPath,String mountPropagation,String name,Boolean readOnly,String subPath){
+<span class="nc" id="L389">            return (A)addToVolumeMounts(new VolumeMount(mountPath, mountPropagation, name, readOnly, subPath));</span>
+    }
+
+    public PodPresetSpecFluent.VolumeMountsNested&lt;A&gt; addNewVolumeMount(){
+<span class="nc" id="L393">            return new VolumeMountsNestedImpl();</span>
+    }
+
+    public PodPresetSpecFluent.VolumeMountsNested&lt;A&gt; addNewVolumeMountLike(VolumeMount item){
+<span class="nc" id="L397">            return new VolumeMountsNestedImpl(-1, item);</span>
+    }
+
+    public PodPresetSpecFluent.VolumeMountsNested&lt;A&gt; setNewVolumeMountLike(int index,VolumeMount item){
+<span class="nc" id="L401">            return new VolumeMountsNestedImpl(index, item);</span>
+    }
+
+    public PodPresetSpecFluent.VolumeMountsNested&lt;A&gt; editVolumeMount(int index){
+<span class="nc bnc" id="L405" title="All 2 branches missed.">            if (volumeMounts.size() &lt;= index) throw new RuntimeException(&quot;Can't edit volumeMounts. Index exceeds size.&quot;);</span>
+<span class="nc" id="L406">            return setNewVolumeMountLike(index, buildVolumeMount(index));</span>
+    }
+
+    public PodPresetSpecFluent.VolumeMountsNested&lt;A&gt; editFirstVolumeMount(){
+<span class="nc bnc" id="L410" title="All 2 branches missed.">            if (volumeMounts.size() == 0) throw new RuntimeException(&quot;Can't edit first volumeMounts. The list is empty.&quot;);</span>
+<span class="nc" id="L411">            return setNewVolumeMountLike(0, buildVolumeMount(0));</span>
+    }
+
+    public PodPresetSpecFluent.VolumeMountsNested&lt;A&gt; editLastVolumeMount(){
+<span class="nc" id="L415">            int index = volumeMounts.size() - 1;</span>
+<span class="nc bnc" id="L416" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last volumeMounts. The list is empty.&quot;);</span>
+<span class="nc" id="L417">            return setNewVolumeMountLike(index, buildVolumeMount(index));</span>
+    }
+
+    public PodPresetSpecFluent.VolumeMountsNested&lt;A&gt; editMatchingVolumeMount(io.fabric8.kubernetes.api.builder.Predicate&lt;VolumeMountBuilder&gt; predicate){
+<span class="nc" id="L421">            int index = -1;</span>
+<span class="nc bnc" id="L422" title="All 2 branches missed.">            for (int i=0;i&lt;volumeMounts.size();i++) { </span>
+<span class="nc bnc" id="L423" title="All 2 branches missed.">            if (predicate.apply(volumeMounts.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L425" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching volumeMounts. No match found.&quot;);</span>
+<span class="nc" id="L426">            return setNewVolumeMountLike(index, buildVolumeMount(index));</span>
+    }
+
+    public A addToVolumes(int index,Volume item){
+<span class="nc bnc" id="L430" title="All 2 branches missed.">            if (this.volumes == null) {this.volumes = new ArrayList&lt;VolumeBuilder&gt;();}</span>
+<span class="nc bnc" id="L431" title="All 4 branches missed.">            VolumeBuilder builder = new VolumeBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.volumes.add(index &gt;= 0 ? index : volumes.size(), builder); return (A)this;</span>
+    }
+
+    public A setToVolumes(int index,Volume item){
+<span class="nc bnc" id="L435" title="All 2 branches missed.">            if (this.volumes == null) {this.volumes = new ArrayList&lt;VolumeBuilder&gt;();}</span>
+<span class="nc" id="L436">            VolumeBuilder builder = new VolumeBuilder(item);</span>
+<span class="nc bnc" id="L437" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L438" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= volumes.size()) { volumes.add(builder); } else { volumes.set(index, builder);}</span>
+<span class="nc" id="L439">             return (A)this;</span>
+    }
+
+    public A addToVolumes(Volume... items){
+<span class="nc bnc" id="L443" title="All 2 branches missed.">            if (this.volumes == null) {this.volumes = new ArrayList&lt;VolumeBuilder&gt;();}</span>
+<span class="nc bnc" id="L444" title="All 2 branches missed.">            for (Volume item : items) {VolumeBuilder builder = new VolumeBuilder(item);_visitables.add(builder);this.volumes.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToVolumes(Collection&lt;Volume&gt; items){
+<span class="nc bnc" id="L448" title="All 2 branches missed.">            if (this.volumes == null) {this.volumes = new ArrayList&lt;VolumeBuilder&gt;();}</span>
+<span class="nc bnc" id="L449" title="All 2 branches missed.">            for (Volume item : items) {VolumeBuilder builder = new VolumeBuilder(item);_visitables.add(builder);this.volumes.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromVolumes(Volume... items){
+<span class="nc bnc" id="L453" title="All 4 branches missed.">            for (Volume item : items) {VolumeBuilder builder = new VolumeBuilder(item);_visitables.remove(builder);if (this.volumes != null) {this.volumes.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromVolumes(Collection&lt;Volume&gt; items){
+<span class="nc bnc" id="L457" title="All 4 branches missed.">            for (Volume item : items) {VolumeBuilder builder = new VolumeBuilder(item);_visitables.remove(builder);if (this.volumes != null) {this.volumes.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildVolumes instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;Volume&gt; getVolumes(){
+<span class="nc" id="L466">            return build(volumes);</span>
+    }
+
+    public List&lt;Volume&gt; buildVolumes(){
+<span class="nc" id="L470">            return build(volumes);</span>
+    }
+
+    public Volume buildVolume(int index){
+<span class="nc" id="L474">            return this.volumes.get(index).build();</span>
+    }
+
+    public Volume buildFirstVolume(){
+<span class="nc" id="L478">            return this.volumes.get(0).build();</span>
+    }
+
+    public Volume buildLastVolume(){
+<span class="nc" id="L482">            return this.volumes.get(volumes.size() - 1).build();</span>
+    }
+
+    public Volume buildMatchingVolume(io.fabric8.kubernetes.api.builder.Predicate&lt;VolumeBuilder&gt; predicate){
+<span class="nc bnc" id="L486" title="All 4 branches missed.">            for (VolumeBuilder item: volumes) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withVolumes(List&lt;Volume&gt; volumes){
+<span class="nc bnc" id="L490" title="All 2 branches missed.">            if (this.volumes != null) { _visitables.removeAll(this.volumes);}</span>
+<span class="nc bnc" id="L491" title="All 4 branches missed.">            if (volumes != null) {this.volumes = new ArrayList&lt;VolumeBuilder&gt;(); for (Volume item : volumes){this.addToVolumes(item);}} else { this.volumes = new ArrayList&lt;VolumeBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withVolumes(Volume... volumes){
+<span class="nc bnc" id="L495" title="All 2 branches missed.">            if (this.volumes != null) {this.volumes.clear();}</span>
+<span class="nc bnc" id="L496" title="All 4 branches missed.">            if (volumes != null) {for (Volume item :volumes){ this.addToVolumes(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasVolumes(){
+<span class="nc bnc" id="L500" title="All 4 branches missed.">            return volumes != null &amp;&amp; !volumes.isEmpty();</span>
+    }
+
+    public PodPresetSpecFluent.VolumesNested&lt;A&gt; addNewVolume(){
+<span class="nc" id="L504">            return new VolumesNestedImpl();</span>
+    }
+
+    public PodPresetSpecFluent.VolumesNested&lt;A&gt; addNewVolumeLike(Volume item){
+<span class="nc" id="L508">            return new VolumesNestedImpl(-1, item);</span>
+    }
+
+    public PodPresetSpecFluent.VolumesNested&lt;A&gt; setNewVolumeLike(int index,Volume item){
+<span class="nc" id="L512">            return new VolumesNestedImpl(index, item);</span>
+    }
+
+    public PodPresetSpecFluent.VolumesNested&lt;A&gt; editVolume(int index){
+<span class="nc bnc" id="L516" title="All 2 branches missed.">            if (volumes.size() &lt;= index) throw new RuntimeException(&quot;Can't edit volumes. Index exceeds size.&quot;);</span>
+<span class="nc" id="L517">            return setNewVolumeLike(index, buildVolume(index));</span>
+    }
+
+    public PodPresetSpecFluent.VolumesNested&lt;A&gt; editFirstVolume(){
+<span class="nc bnc" id="L521" title="All 2 branches missed.">            if (volumes.size() == 0) throw new RuntimeException(&quot;Can't edit first volumes. The list is empty.&quot;);</span>
+<span class="nc" id="L522">            return setNewVolumeLike(0, buildVolume(0));</span>
+    }
+
+    public PodPresetSpecFluent.VolumesNested&lt;A&gt; editLastVolume(){
+<span class="nc" id="L526">            int index = volumes.size() - 1;</span>
+<span class="nc bnc" id="L527" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last volumes. The list is empty.&quot;);</span>
+<span class="nc" id="L528">            return setNewVolumeLike(index, buildVolume(index));</span>
+    }
+
+    public PodPresetSpecFluent.VolumesNested&lt;A&gt; editMatchingVolume(io.fabric8.kubernetes.api.builder.Predicate&lt;VolumeBuilder&gt; predicate){
+<span class="nc" id="L532">            int index = -1;</span>
+<span class="nc bnc" id="L533" title="All 2 branches missed.">            for (int i=0;i&lt;volumes.size();i++) { </span>
+<span class="nc bnc" id="L534" title="All 2 branches missed.">            if (predicate.apply(volumes.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L536" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching volumes. No match found.&quot;);</span>
+<span class="nc" id="L537">            return setNewVolumeLike(index, buildVolume(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L541" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L542" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L543" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L544">            PodPresetSpecFluentImpl that = (PodPresetSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L545" title="All 6 branches missed.">            if (env != null ? !env.equals(that.env) :that.env != null) return false;</span>
+<span class="nc bnc" id="L546" title="All 6 branches missed.">            if (envFrom != null ? !envFrom.equals(that.envFrom) :that.envFrom != null) return false;</span>
+<span class="nc bnc" id="L547" title="All 6 branches missed.">            if (selector != null ? !selector.equals(that.selector) :that.selector != null) return false;</span>
+<span class="nc bnc" id="L548" title="All 6 branches missed.">            if (volumeMounts != null ? !volumeMounts.equals(that.volumeMounts) :that.volumeMounts != null) return false;</span>
+<span class="nc bnc" id="L549" title="All 6 branches missed.">            if (volumes != null ? !volumes.equals(that.volumes) :that.volumes != null) return false;</span>
+<span class="nc" id="L550">            return true;</span>
+    }
+
+
+    public class EnvNestedImpl&lt;N&gt; extends EnvVarFluentImpl&lt;PodPresetSpecFluent.EnvNested&lt;N&gt;&gt; implements PodPresetSpecFluent.EnvNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EnvVarBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L559">            EnvNestedImpl(int index,EnvVar item){</span>
+<span class="nc" id="L560">                    this.index = index;</span>
+<span class="nc" id="L561">                    this.builder = new EnvVarBuilder(this, item);</span>
+<span class="nc" id="L562">            }</span>
+<span class="nc" id="L563">            EnvNestedImpl(){</span>
+<span class="nc" id="L564">                    this.index = -1;</span>
+<span class="nc" id="L565">                    this.builder = new EnvVarBuilder(this);</span>
+<span class="nc" id="L566">            }</span>
+    
+    public N and(){
+<span class="nc" id="L569">            return (N) PodPresetSpecFluentImpl.this.setToEnv(index, builder.build());</span>
+    }
+    public N endEnv(){
+<span class="nc" id="L572">            return and();</span>
+    }
+
+}
+    public class EnvFromNestedImpl&lt;N&gt; extends EnvFromSourceFluentImpl&lt;PodPresetSpecFluent.EnvFromNested&lt;N&gt;&gt; implements PodPresetSpecFluent.EnvFromNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EnvFromSourceBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L581">            EnvFromNestedImpl(int index,EnvFromSource item){</span>
+<span class="nc" id="L582">                    this.index = index;</span>
+<span class="nc" id="L583">                    this.builder = new EnvFromSourceBuilder(this, item);</span>
+<span class="nc" id="L584">            }</span>
+<span class="nc" id="L585">            EnvFromNestedImpl(){</span>
+<span class="nc" id="L586">                    this.index = -1;</span>
+<span class="nc" id="L587">                    this.builder = new EnvFromSourceBuilder(this);</span>
+<span class="nc" id="L588">            }</span>
+    
+    public N and(){
+<span class="nc" id="L591">            return (N) PodPresetSpecFluentImpl.this.setToEnvFrom(index, builder.build());</span>
+    }
+    public N endEnvFrom(){
+<span class="nc" id="L594">            return and();</span>
+    }
+
+}
+    public class SelectorNestedImpl&lt;N&gt; extends LabelSelectorFluentImpl&lt;PodPresetSpecFluent.SelectorNested&lt;N&gt;&gt; implements PodPresetSpecFluent.SelectorNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LabelSelectorBuilder builder;
+    
+<span class="nc" id="L602">            SelectorNestedImpl(LabelSelector item){</span>
+<span class="nc" id="L603">                    this.builder = new LabelSelectorBuilder(this, item);</span>
+<span class="nc" id="L604">            }</span>
+<span class="nc" id="L605">            SelectorNestedImpl(){</span>
+<span class="nc" id="L606">                    this.builder = new LabelSelectorBuilder(this);</span>
+<span class="nc" id="L607">            }</span>
+    
+    public N and(){
+<span class="nc" id="L610">            return (N) PodPresetSpecFluentImpl.this.withSelector(builder.build());</span>
+    }
+    public N endSelector(){
+<span class="nc" id="L613">            return and();</span>
+    }
+
+}
+    public class VolumeMountsNestedImpl&lt;N&gt; extends VolumeMountFluentImpl&lt;PodPresetSpecFluent.VolumeMountsNested&lt;N&gt;&gt; implements PodPresetSpecFluent.VolumeMountsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final VolumeMountBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L622">            VolumeMountsNestedImpl(int index,VolumeMount item){</span>
+<span class="nc" id="L623">                    this.index = index;</span>
+<span class="nc" id="L624">                    this.builder = new VolumeMountBuilder(this, item);</span>
+<span class="nc" id="L625">            }</span>
+<span class="nc" id="L626">            VolumeMountsNestedImpl(){</span>
+<span class="nc" id="L627">                    this.index = -1;</span>
+<span class="nc" id="L628">                    this.builder = new VolumeMountBuilder(this);</span>
+<span class="nc" id="L629">            }</span>
+    
+    public N and(){
+<span class="nc" id="L632">            return (N) PodPresetSpecFluentImpl.this.setToVolumeMounts(index, builder.build());</span>
+    }
+    public N endVolumeMount(){
+<span class="nc" id="L635">            return and();</span>
+    }
+
+}
+    public class VolumesNestedImpl&lt;N&gt; extends VolumeFluentImpl&lt;PodPresetSpecFluent.VolumesNested&lt;N&gt;&gt; implements PodPresetSpecFluent.VolumesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final VolumeBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L644">            VolumesNestedImpl(int index,Volume item){</span>
+<span class="nc" id="L645">                    this.index = index;</span>
+<span class="nc" id="L646">                    this.builder = new VolumeBuilder(this, item);</span>
+<span class="nc" id="L647">            }</span>
+<span class="nc" id="L648">            VolumesNestedImpl(){</span>
+<span class="nc" id="L649">                    this.index = -1;</span>
+<span class="nc" id="L650">                    this.builder = new VolumeBuilder(this);</span>
+<span class="nc" id="L651">            }</span>
+    
+    public N and(){
+<span class="nc" id="L654">            return (N) PodPresetSpecFluentImpl.this.setToVolumes(index, builder.build());</span>
+    }
+    public N endVolume(){
+<span class="nc" id="L657">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

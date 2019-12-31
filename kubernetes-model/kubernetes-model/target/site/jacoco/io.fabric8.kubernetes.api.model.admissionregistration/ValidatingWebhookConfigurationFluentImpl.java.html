@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ValidatingWebhookConfigurationFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.admissionregistration</a> &gt; <span class="el_source">ValidatingWebhookConfigurationFluentImpl.java</span></div><h1>ValidatingWebhookConfigurationFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.admissionregistration;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.ObjectMetaFluentImpl;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class ValidatingWebhookConfigurationFluentImpl&lt;A extends ValidatingWebhookConfigurationFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ValidatingWebhookConfigurationFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+    private List&lt;WebhookBuilder&gt; webhooks;
+
+<span class="nc" id="L29">    public ValidatingWebhookConfigurationFluentImpl(){</span>
+<span class="nc" id="L30">    }</span>
+<span class="nc" id="L31">    public ValidatingWebhookConfigurationFluentImpl(ValidatingWebhookConfiguration instance){</span>
+<span class="nc" id="L32">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L33">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L34">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L35">            this.withWebhooks(instance.getWebhooks()); </span>
+<span class="nc" id="L36">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L39">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L43">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L51">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L55">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L72" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L76">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public ValidatingWebhookConfigurationFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L85">            return new MetadataNestedImpl();</span>
+    }
+
+    public ValidatingWebhookConfigurationFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L89">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public ValidatingWebhookConfigurationFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L93">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public ValidatingWebhookConfigurationFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public ValidatingWebhookConfigurationFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L101" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    public A addToWebhooks(int index,Webhook item){
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            if (this.webhooks == null) {this.webhooks = new ArrayList&lt;WebhookBuilder&gt;();}</span>
+<span class="nc bnc" id="L106" title="All 4 branches missed.">            WebhookBuilder builder = new WebhookBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.webhooks.add(index &gt;= 0 ? index : webhooks.size(), builder); return (A)this;</span>
+    }
+
+    public A setToWebhooks(int index,Webhook item){
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            if (this.webhooks == null) {this.webhooks = new ArrayList&lt;WebhookBuilder&gt;();}</span>
+<span class="nc" id="L111">            WebhookBuilder builder = new WebhookBuilder(item);</span>
+<span class="nc bnc" id="L112" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L113" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= webhooks.size()) { webhooks.add(builder); } else { webhooks.set(index, builder);}</span>
+<span class="nc" id="L114">             return (A)this;</span>
+    }
+
+    public A addToWebhooks(Webhook... items){
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            if (this.webhooks == null) {this.webhooks = new ArrayList&lt;WebhookBuilder&gt;();}</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            for (Webhook item : items) {WebhookBuilder builder = new WebhookBuilder(item);_visitables.add(builder);this.webhooks.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToWebhooks(Collection&lt;Webhook&gt; items){
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            if (this.webhooks == null) {this.webhooks = new ArrayList&lt;WebhookBuilder&gt;();}</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            for (Webhook item : items) {WebhookBuilder builder = new WebhookBuilder(item);_visitables.add(builder);this.webhooks.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromWebhooks(Webhook... items){
+<span class="nc bnc" id="L128" title="All 4 branches missed.">            for (Webhook item : items) {WebhookBuilder builder = new WebhookBuilder(item);_visitables.remove(builder);if (this.webhooks != null) {this.webhooks.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromWebhooks(Collection&lt;Webhook&gt; items){
+<span class="nc bnc" id="L132" title="All 4 branches missed.">            for (Webhook item : items) {WebhookBuilder builder = new WebhookBuilder(item);_visitables.remove(builder);if (this.webhooks != null) {this.webhooks.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildWebhooks instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;Webhook&gt; getWebhooks(){
+<span class="nc" id="L141">            return build(webhooks);</span>
+    }
+
+    public List&lt;Webhook&gt; buildWebhooks(){
+<span class="nc" id="L145">            return build(webhooks);</span>
+    }
+
+    public Webhook buildWebhook(int index){
+<span class="nc" id="L149">            return this.webhooks.get(index).build();</span>
+    }
+
+    public Webhook buildFirstWebhook(){
+<span class="nc" id="L153">            return this.webhooks.get(0).build();</span>
+    }
+
+    public Webhook buildLastWebhook(){
+<span class="nc" id="L157">            return this.webhooks.get(webhooks.size() - 1).build();</span>
+    }
+
+    public Webhook buildMatchingWebhook(io.fabric8.kubernetes.api.builder.Predicate&lt;WebhookBuilder&gt; predicate){
+<span class="nc bnc" id="L161" title="All 4 branches missed.">            for (WebhookBuilder item: webhooks) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withWebhooks(List&lt;Webhook&gt; webhooks){
+<span class="nc bnc" id="L165" title="All 2 branches missed.">            if (this.webhooks != null) { _visitables.removeAll(this.webhooks);}</span>
+<span class="nc bnc" id="L166" title="All 4 branches missed.">            if (webhooks != null) {this.webhooks = new ArrayList&lt;WebhookBuilder&gt;(); for (Webhook item : webhooks){this.addToWebhooks(item);}} else { this.webhooks = new ArrayList&lt;WebhookBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withWebhooks(Webhook... webhooks){
+<span class="nc bnc" id="L170" title="All 2 branches missed.">            if (this.webhooks != null) {this.webhooks.clear();}</span>
+<span class="nc bnc" id="L171" title="All 4 branches missed.">            if (webhooks != null) {for (Webhook item :webhooks){ this.addToWebhooks(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasWebhooks(){
+<span class="nc bnc" id="L175" title="All 4 branches missed.">            return webhooks != null &amp;&amp; !webhooks.isEmpty();</span>
+    }
+
+    public ValidatingWebhookConfigurationFluent.WebhooksNested&lt;A&gt; addNewWebhook(){
+<span class="nc" id="L179">            return new WebhooksNestedImpl();</span>
+    }
+
+    public ValidatingWebhookConfigurationFluent.WebhooksNested&lt;A&gt; addNewWebhookLike(Webhook item){
+<span class="nc" id="L183">            return new WebhooksNestedImpl(-1, item);</span>
+    }
+
+    public ValidatingWebhookConfigurationFluent.WebhooksNested&lt;A&gt; setNewWebhookLike(int index,Webhook item){
+<span class="nc" id="L187">            return new WebhooksNestedImpl(index, item);</span>
+    }
+
+    public ValidatingWebhookConfigurationFluent.WebhooksNested&lt;A&gt; editWebhook(int index){
+<span class="nc bnc" id="L191" title="All 2 branches missed.">            if (webhooks.size() &lt;= index) throw new RuntimeException(&quot;Can't edit webhooks. Index exceeds size.&quot;);</span>
+<span class="nc" id="L192">            return setNewWebhookLike(index, buildWebhook(index));</span>
+    }
+
+    public ValidatingWebhookConfigurationFluent.WebhooksNested&lt;A&gt; editFirstWebhook(){
+<span class="nc bnc" id="L196" title="All 2 branches missed.">            if (webhooks.size() == 0) throw new RuntimeException(&quot;Can't edit first webhooks. The list is empty.&quot;);</span>
+<span class="nc" id="L197">            return setNewWebhookLike(0, buildWebhook(0));</span>
+    }
+
+    public ValidatingWebhookConfigurationFluent.WebhooksNested&lt;A&gt; editLastWebhook(){
+<span class="nc" id="L201">            int index = webhooks.size() - 1;</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last webhooks. The list is empty.&quot;);</span>
+<span class="nc" id="L203">            return setNewWebhookLike(index, buildWebhook(index));</span>
+    }
+
+    public ValidatingWebhookConfigurationFluent.WebhooksNested&lt;A&gt; editMatchingWebhook(io.fabric8.kubernetes.api.builder.Predicate&lt;WebhookBuilder&gt; predicate){
+<span class="nc" id="L207">            int index = -1;</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">            for (int i=0;i&lt;webhooks.size();i++) { </span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            if (predicate.apply(webhooks.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L211" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching webhooks. No match found.&quot;);</span>
+<span class="nc" id="L212">            return setNewWebhookLike(index, buildWebhook(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L216" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L217" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L218" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L219">            ValidatingWebhookConfigurationFluentImpl that = (ValidatingWebhookConfigurationFluentImpl) o;</span>
+<span class="nc bnc" id="L220" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L221" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L222" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L223" title="All 6 branches missed.">            if (webhooks != null ? !webhooks.equals(that.webhooks) :that.webhooks != null) return false;</span>
+<span class="nc" id="L224">            return true;</span>
+    }
+
+
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;ValidatingWebhookConfigurationFluent.MetadataNested&lt;N&gt;&gt; implements ValidatingWebhookConfigurationFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L232">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L233">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L234">            }</span>
+<span class="nc" id="L235">            MetadataNestedImpl(){</span>
+<span class="nc" id="L236">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L237">            }</span>
+    
+    public N and(){
+<span class="nc" id="L240">            return (N) ValidatingWebhookConfigurationFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L243">            return and();</span>
+    }
+
+}
+    public class WebhooksNestedImpl&lt;N&gt; extends WebhookFluentImpl&lt;ValidatingWebhookConfigurationFluent.WebhooksNested&lt;N&gt;&gt; implements ValidatingWebhookConfigurationFluent.WebhooksNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final WebhookBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L252">            WebhooksNestedImpl(int index,Webhook item){</span>
+<span class="nc" id="L253">                    this.index = index;</span>
+<span class="nc" id="L254">                    this.builder = new WebhookBuilder(this, item);</span>
+<span class="nc" id="L255">            }</span>
+<span class="nc" id="L256">            WebhooksNestedImpl(){</span>
+<span class="nc" id="L257">                    this.index = -1;</span>
+<span class="nc" id="L258">                    this.builder = new WebhookBuilder(this);</span>
+<span class="nc" id="L259">            }</span>
+    
+    public N and(){
+<span class="nc" id="L262">            return (N) ValidatingWebhookConfigurationFluentImpl.this.setToWebhooks(index, builder.build());</span>
+    }
+    public N endWebhook(){
+<span class="nc" id="L265">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

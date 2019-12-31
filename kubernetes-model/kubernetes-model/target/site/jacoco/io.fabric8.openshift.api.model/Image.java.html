@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Image.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">Image.java</span></div><h1>Image.java</h1><pre class="source lang-java linenums">
+package io.fabric8.openshift.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.runtime.RawExtension;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import io.fabric8.kubernetes.model.annotation.ApiGroup;
+import io.fabric8.kubernetes.model.annotation.ApiVersion;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import io.sundr.transform.annotations.VelocityTransformation;
+import io.sundr.transform.annotations.VelocityTransformations;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;dockerImageConfig&quot;,
+    &quot;dockerImageLayers&quot;,
+    &quot;dockerImageManifest&quot;,
+    &quot;dockerImageManifestMediaType&quot;,
+    &quot;dockerImageMetadata&quot;,
+    &quot;dockerImageMetadataVersion&quot;,
+    &quot;dockerImageReference&quot;,
+    &quot;dockerImageSignatures&quot;,
+    &quot;signatures&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L54">@ToString</span>
+<span class="pc bpc" id="L55" title="96 of 110 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+@ApiVersion(&quot;v1&quot;)
+@ApiGroup(&quot;image.openshift.io&quot;)
+@VelocityTransformations({
+    @VelocityTransformation(value = &quot;/manifest.vm&quot;, outputPath = &quot;openshift.properties&quot;, gather = true)
+})
+public class Image implements HasMetadata
+{
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="fc" id="L70">    @NotNull</span>
+    @JsonProperty(&quot;apiVersion&quot;)
+    private String apiVersion = &quot;image.openshift.io/v1&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;dockerImageConfig&quot;)
+    private String dockerImageConfig;
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L83">    @JsonProperty(&quot;dockerImageLayers&quot;)</span>
+    @Valid
+    private List&lt;ImageLayer&gt; dockerImageLayers = new ArrayList&lt;ImageLayer&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;dockerImageManifest&quot;)
+    private String dockerImageManifest;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;dockerImageManifestMediaType&quot;)
+    private String dockerImageManifestMediaType;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;dockerImageMetadata&quot;)
+    @Valid
+    private RawExtension dockerImageMetadata;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;dockerImageMetadataVersion&quot;)
+    private String dockerImageMetadataVersion;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;dockerImageReference&quot;)
+    private String dockerImageReference;
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L121">    @JsonProperty(&quot;dockerImageSignatures&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;String&gt; dockerImageSignatures = new ArrayList&lt;String&gt;();
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="fc" id="L130">    @NotNull</span>
+    @JsonProperty(&quot;kind&quot;)
+    private String kind = &quot;Image&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    @Valid
+    @CheckObjectMeta(minimal = true)
+    private ObjectMeta metadata;
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L145">    @JsonProperty(&quot;signatures&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;ImageSignature&gt; signatures = new ArrayList&lt;ImageSignature&gt;();
+<span class="fc" id="L149">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L156">    public Image() {</span>
+<span class="fc" id="L157">    }</span>
+
+    /**
+     * 
+     * @param dockerImageLayers
+     * @param dockerImageMetadata
+     * @param metadata
+     * @param apiVersion
+     * @param dockerImageSignatures
+     * @param kind
+     * @param dockerImageReference
+     * @param dockerImageManifestMediaType
+     * @param dockerImageConfig
+     * @param dockerImageMetadataVersion
+     * @param dockerImageManifest
+     * @param signatures
+     */
+<span class="fc" id="L174">    public Image(String apiVersion, String dockerImageConfig, List&lt;ImageLayer&gt; dockerImageLayers, String dockerImageManifest, String dockerImageManifestMediaType, RawExtension dockerImageMetadata, String dockerImageMetadataVersion, String dockerImageReference, List&lt;String&gt; dockerImageSignatures, String kind, ObjectMeta metadata, List&lt;ImageSignature&gt; signatures) {</span>
+<span class="fc" id="L175">        this.apiVersion = apiVersion;</span>
+<span class="fc" id="L176">        this.dockerImageConfig = dockerImageConfig;</span>
+<span class="fc" id="L177">        this.dockerImageLayers = dockerImageLayers;</span>
+<span class="fc" id="L178">        this.dockerImageManifest = dockerImageManifest;</span>
+<span class="fc" id="L179">        this.dockerImageManifestMediaType = dockerImageManifestMediaType;</span>
+<span class="fc" id="L180">        this.dockerImageMetadata = dockerImageMetadata;</span>
+<span class="fc" id="L181">        this.dockerImageMetadataVersion = dockerImageMetadataVersion;</span>
+<span class="fc" id="L182">        this.dockerImageReference = dockerImageReference;</span>
+<span class="fc" id="L183">        this.dockerImageSignatures = dockerImageSignatures;</span>
+<span class="fc" id="L184">        this.kind = kind;</span>
+<span class="fc" id="L185">        this.metadata = metadata;</span>
+<span class="fc" id="L186">        this.signatures = signatures;</span>
+<span class="fc" id="L187">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public String getApiVersion() {
+<span class="fc" id="L198">        return apiVersion;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param apiVersion
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public void setApiVersion(String apiVersion) {
+<span class="nc" id="L210">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L211">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The dockerImageConfig
+     */
+    @JsonProperty(&quot;dockerImageConfig&quot;)
+    public String getDockerImageConfig() {
+<span class="fc" id="L221">        return dockerImageConfig;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param dockerImageConfig
+     *     The dockerImageConfig
+     */
+    @JsonProperty(&quot;dockerImageConfig&quot;)
+    public void setDockerImageConfig(String dockerImageConfig) {
+<span class="nc" id="L232">        this.dockerImageConfig = dockerImageConfig;</span>
+<span class="nc" id="L233">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The dockerImageLayers
+     */
+    @JsonProperty(&quot;dockerImageLayers&quot;)
+    public List&lt;ImageLayer&gt; getDockerImageLayers() {
+<span class="fc" id="L243">        return dockerImageLayers;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param dockerImageLayers
+     *     The dockerImageLayers
+     */
+    @JsonProperty(&quot;dockerImageLayers&quot;)
+    public void setDockerImageLayers(List&lt;ImageLayer&gt; dockerImageLayers) {
+<span class="fc" id="L254">        this.dockerImageLayers = dockerImageLayers;</span>
+<span class="fc" id="L255">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The dockerImageManifest
+     */
+    @JsonProperty(&quot;dockerImageManifest&quot;)
+    public String getDockerImageManifest() {
+<span class="fc" id="L265">        return dockerImageManifest;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param dockerImageManifest
+     *     The dockerImageManifest
+     */
+    @JsonProperty(&quot;dockerImageManifest&quot;)
+    public void setDockerImageManifest(String dockerImageManifest) {
+<span class="nc" id="L276">        this.dockerImageManifest = dockerImageManifest;</span>
+<span class="nc" id="L277">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The dockerImageManifestMediaType
+     */
+    @JsonProperty(&quot;dockerImageManifestMediaType&quot;)
+    public String getDockerImageManifestMediaType() {
+<span class="fc" id="L287">        return dockerImageManifestMediaType;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param dockerImageManifestMediaType
+     *     The dockerImageManifestMediaType
+     */
+    @JsonProperty(&quot;dockerImageManifestMediaType&quot;)
+    public void setDockerImageManifestMediaType(String dockerImageManifestMediaType) {
+<span class="nc" id="L298">        this.dockerImageManifestMediaType = dockerImageManifestMediaType;</span>
+<span class="nc" id="L299">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The dockerImageMetadata
+     */
+    @JsonProperty(&quot;dockerImageMetadata&quot;)
+    public RawExtension getDockerImageMetadata() {
+<span class="fc" id="L309">        return dockerImageMetadata;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param dockerImageMetadata
+     *     The dockerImageMetadata
+     */
+    @JsonProperty(&quot;dockerImageMetadata&quot;)
+    public void setDockerImageMetadata(RawExtension dockerImageMetadata) {
+<span class="fc" id="L320">        this.dockerImageMetadata = dockerImageMetadata;</span>
+<span class="fc" id="L321">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The dockerImageMetadataVersion
+     */
+    @JsonProperty(&quot;dockerImageMetadataVersion&quot;)
+    public String getDockerImageMetadataVersion() {
+<span class="fc" id="L331">        return dockerImageMetadataVersion;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param dockerImageMetadataVersion
+     *     The dockerImageMetadataVersion
+     */
+    @JsonProperty(&quot;dockerImageMetadataVersion&quot;)
+    public void setDockerImageMetadataVersion(String dockerImageMetadataVersion) {
+<span class="fc" id="L342">        this.dockerImageMetadataVersion = dockerImageMetadataVersion;</span>
+<span class="fc" id="L343">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The dockerImageReference
+     */
+    @JsonProperty(&quot;dockerImageReference&quot;)
+    public String getDockerImageReference() {
+<span class="fc" id="L353">        return dockerImageReference;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param dockerImageReference
+     *     The dockerImageReference
+     */
+    @JsonProperty(&quot;dockerImageReference&quot;)
+    public void setDockerImageReference(String dockerImageReference) {
+<span class="fc" id="L364">        this.dockerImageReference = dockerImageReference;</span>
+<span class="fc" id="L365">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The dockerImageSignatures
+     */
+    @JsonProperty(&quot;dockerImageSignatures&quot;)
+    public List&lt;String&gt; getDockerImageSignatures() {
+<span class="fc" id="L375">        return dockerImageSignatures;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param dockerImageSignatures
+     *     The dockerImageSignatures
+     */
+    @JsonProperty(&quot;dockerImageSignatures&quot;)
+    public void setDockerImageSignatures(List&lt;String&gt; dockerImageSignatures) {
+<span class="nc" id="L386">        this.dockerImageSignatures = dockerImageSignatures;</span>
+<span class="nc" id="L387">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public String getKind() {
+<span class="fc" id="L398">        return kind;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param kind
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public void setKind(String kind) {
+<span class="nc" id="L410">        this.kind = kind;</span>
+<span class="nc" id="L411">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public ObjectMeta getMetadata() {
+<span class="fc" id="L421">        return metadata;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param metadata
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public void setMetadata(ObjectMeta metadata) {
+<span class="fc" id="L432">        this.metadata = metadata;</span>
+<span class="fc" id="L433">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The signatures
+     */
+    @JsonProperty(&quot;signatures&quot;)
+    public List&lt;ImageSignature&gt; getSignatures() {
+<span class="fc" id="L443">        return signatures;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param signatures
+     *     The signatures
+     */
+    @JsonProperty(&quot;signatures&quot;)
+    public void setSignatures(List&lt;ImageSignature&gt; signatures) {
+<span class="nc" id="L454">        this.signatures = signatures;</span>
+<span class="nc" id="L455">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L459">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L464">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L465">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

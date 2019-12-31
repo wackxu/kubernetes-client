@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReplicationControllerStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ReplicationControllerStatusFluentImpl.java</span></div><h1>ReplicationControllerStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Integer;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Long;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class ReplicationControllerStatusFluentImpl&lt;A extends ReplicationControllerStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ReplicationControllerStatusFluent&lt;A&gt;{
+
+    private Integer availableReplicas;
+    private List&lt;ReplicationControllerConditionBuilder&gt; conditions;
+    private Integer fullyLabeledReplicas;
+    private Long observedGeneration;
+    private Integer readyReplicas;
+    private Integer replicas;
+
+<span class="nc" id="L28">    public ReplicationControllerStatusFluentImpl(){</span>
+<span class="nc" id="L29">    }</span>
+<span class="nc" id="L30">    public ReplicationControllerStatusFluentImpl(ReplicationControllerStatus instance){</span>
+<span class="nc" id="L31">            this.withAvailableReplicas(instance.getAvailableReplicas()); </span>
+<span class="nc" id="L32">            this.withConditions(instance.getConditions()); </span>
+<span class="nc" id="L33">            this.withFullyLabeledReplicas(instance.getFullyLabeledReplicas()); </span>
+<span class="nc" id="L34">            this.withObservedGeneration(instance.getObservedGeneration()); </span>
+<span class="nc" id="L35">            this.withReadyReplicas(instance.getReadyReplicas()); </span>
+<span class="nc" id="L36">            this.withReplicas(instance.getReplicas()); </span>
+<span class="nc" id="L37">    }</span>
+
+    public Integer getAvailableReplicas(){
+<span class="nc" id="L40">            return this.availableReplicas;</span>
+    }
+
+    public A withAvailableReplicas(Integer availableReplicas){
+<span class="nc" id="L44">            this.availableReplicas=availableReplicas; return (A) this;</span>
+    }
+
+    public Boolean hasAvailableReplicas(){
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            return this.availableReplicas != null;</span>
+    }
+
+    public A addToConditions(int index,ReplicationControllerCondition item){
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;ReplicationControllerConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L53" title="All 4 branches missed.">            ReplicationControllerConditionBuilder builder = new ReplicationControllerConditionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.conditions.add(index &gt;= 0 ? index : conditions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToConditions(int index,ReplicationControllerCondition item){
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;ReplicationControllerConditionBuilder&gt;();}</span>
+<span class="nc" id="L58">            ReplicationControllerConditionBuilder builder = new ReplicationControllerConditionBuilder(item);</span>
+<span class="nc bnc" id="L59" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L60" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= conditions.size()) { conditions.add(builder); } else { conditions.set(index, builder);}</span>
+<span class="nc" id="L61">             return (A)this;</span>
+    }
+
+    public A addToConditions(ReplicationControllerCondition... items){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;ReplicationControllerConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            for (ReplicationControllerCondition item : items) {ReplicationControllerConditionBuilder builder = new ReplicationControllerConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToConditions(Collection&lt;ReplicationControllerCondition&gt; items){
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;ReplicationControllerConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            for (ReplicationControllerCondition item : items) {ReplicationControllerConditionBuilder builder = new ReplicationControllerConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromConditions(ReplicationControllerCondition... items){
+<span class="nc bnc" id="L75" title="All 4 branches missed.">            for (ReplicationControllerCondition item : items) {ReplicationControllerConditionBuilder builder = new ReplicationControllerConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromConditions(Collection&lt;ReplicationControllerCondition&gt; items){
+<span class="nc bnc" id="L79" title="All 4 branches missed.">            for (ReplicationControllerCondition item : items) {ReplicationControllerConditionBuilder builder = new ReplicationControllerConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildConditions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;ReplicationControllerCondition&gt; getConditions(){
+<span class="nc" id="L88">            return build(conditions);</span>
+    }
+
+    public List&lt;ReplicationControllerCondition&gt; buildConditions(){
+<span class="nc" id="L92">            return build(conditions);</span>
+    }
+
+    public ReplicationControllerCondition buildCondition(int index){
+<span class="nc" id="L96">            return this.conditions.get(index).build();</span>
+    }
+
+    public ReplicationControllerCondition buildFirstCondition(){
+<span class="nc" id="L100">            return this.conditions.get(0).build();</span>
+    }
+
+    public ReplicationControllerCondition buildLastCondition(){
+<span class="nc" id="L104">            return this.conditions.get(conditions.size() - 1).build();</span>
+    }
+
+    public ReplicationControllerCondition buildMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;ReplicationControllerConditionBuilder&gt; predicate){
+<span class="nc bnc" id="L108" title="All 4 branches missed.">            for (ReplicationControllerConditionBuilder item: conditions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withConditions(List&lt;ReplicationControllerCondition&gt; conditions){
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            if (this.conditions != null) { _visitables.removeAll(this.conditions);}</span>
+<span class="nc bnc" id="L113" title="All 4 branches missed.">            if (conditions != null) {this.conditions = new ArrayList&lt;ReplicationControllerConditionBuilder&gt;(); for (ReplicationControllerCondition item : conditions){this.addToConditions(item);}} else { this.conditions = new ArrayList&lt;ReplicationControllerConditionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withConditions(ReplicationControllerCondition... conditions){
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            if (this.conditions != null) {this.conditions.clear();}</span>
+<span class="nc bnc" id="L118" title="All 4 branches missed.">            if (conditions != null) {for (ReplicationControllerCondition item :conditions){ this.addToConditions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasConditions(){
+<span class="nc bnc" id="L122" title="All 4 branches missed.">            return conditions != null &amp;&amp; !conditions.isEmpty();</span>
+    }
+
+    public A addNewCondition(String lastTransitionTime,String message,String reason,String status,String type){
+<span class="nc" id="L126">            return (A)addToConditions(new ReplicationControllerCondition(lastTransitionTime, message, reason, status, type));</span>
+    }
+
+    public ReplicationControllerStatusFluent.ConditionsNested&lt;A&gt; addNewCondition(){
+<span class="nc" id="L130">            return new ConditionsNestedImpl();</span>
+    }
+
+    public ReplicationControllerStatusFluent.ConditionsNested&lt;A&gt; addNewConditionLike(ReplicationControllerCondition item){
+<span class="nc" id="L134">            return new ConditionsNestedImpl(-1, item);</span>
+    }
+
+    public ReplicationControllerStatusFluent.ConditionsNested&lt;A&gt; setNewConditionLike(int index,ReplicationControllerCondition item){
+<span class="nc" id="L138">            return new ConditionsNestedImpl(index, item);</span>
+    }
+
+    public ReplicationControllerStatusFluent.ConditionsNested&lt;A&gt; editCondition(int index){
+<span class="nc bnc" id="L142" title="All 2 branches missed.">            if (conditions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit conditions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L143">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public ReplicationControllerStatusFluent.ConditionsNested&lt;A&gt; editFirstCondition(){
+<span class="nc bnc" id="L147" title="All 2 branches missed.">            if (conditions.size() == 0) throw new RuntimeException(&quot;Can't edit first conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L148">            return setNewConditionLike(0, buildCondition(0));</span>
+    }
+
+    public ReplicationControllerStatusFluent.ConditionsNested&lt;A&gt; editLastCondition(){
+<span class="nc" id="L152">            int index = conditions.size() - 1;</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L154">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public ReplicationControllerStatusFluent.ConditionsNested&lt;A&gt; editMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;ReplicationControllerConditionBuilder&gt; predicate){
+<span class="nc" id="L158">            int index = -1;</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            for (int i=0;i&lt;conditions.size();i++) { </span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">            if (predicate.apply(conditions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching conditions. No match found.&quot;);</span>
+<span class="nc" id="L163">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public Integer getFullyLabeledReplicas(){
+<span class="nc" id="L167">            return this.fullyLabeledReplicas;</span>
+    }
+
+    public A withFullyLabeledReplicas(Integer fullyLabeledReplicas){
+<span class="nc" id="L171">            this.fullyLabeledReplicas=fullyLabeledReplicas; return (A) this;</span>
+    }
+
+    public Boolean hasFullyLabeledReplicas(){
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            return this.fullyLabeledReplicas != null;</span>
+    }
+
+    public Long getObservedGeneration(){
+<span class="nc" id="L179">            return this.observedGeneration;</span>
+    }
+
+    public A withObservedGeneration(Long observedGeneration){
+<span class="nc" id="L183">            this.observedGeneration=observedGeneration; return (A) this;</span>
+    }
+
+    public Boolean hasObservedGeneration(){
+<span class="nc bnc" id="L187" title="All 2 branches missed.">            return this.observedGeneration != null;</span>
+    }
+
+    public A withNewObservedGeneration(String arg1){
+<span class="nc" id="L191">            return (A)withObservedGeneration(new Long(arg1));</span>
+    }
+
+    public A withNewObservedGeneration(long arg1){
+<span class="nc" id="L195">            return (A)withObservedGeneration(new Long(arg1));</span>
+    }
+
+    public Integer getReadyReplicas(){
+<span class="nc" id="L199">            return this.readyReplicas;</span>
+    }
+
+    public A withReadyReplicas(Integer readyReplicas){
+<span class="nc" id="L203">            this.readyReplicas=readyReplicas; return (A) this;</span>
+    }
+
+    public Boolean hasReadyReplicas(){
+<span class="nc bnc" id="L207" title="All 2 branches missed.">            return this.readyReplicas != null;</span>
+    }
+
+    public Integer getReplicas(){
+<span class="nc" id="L211">            return this.replicas;</span>
+    }
+
+    public A withReplicas(Integer replicas){
+<span class="nc" id="L215">            this.replicas=replicas; return (A) this;</span>
+    }
+
+    public Boolean hasReplicas(){
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            return this.replicas != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L223" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L224" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L226">            ReplicationControllerStatusFluentImpl that = (ReplicationControllerStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L227" title="All 6 branches missed.">            if (availableReplicas != null ? !availableReplicas.equals(that.availableReplicas) :that.availableReplicas != null) return false;</span>
+<span class="nc bnc" id="L228" title="All 6 branches missed.">            if (conditions != null ? !conditions.equals(that.conditions) :that.conditions != null) return false;</span>
+<span class="nc bnc" id="L229" title="All 6 branches missed.">            if (fullyLabeledReplicas != null ? !fullyLabeledReplicas.equals(that.fullyLabeledReplicas) :that.fullyLabeledReplicas != null) return false;</span>
+<span class="nc bnc" id="L230" title="All 6 branches missed.">            if (observedGeneration != null ? !observedGeneration.equals(that.observedGeneration) :that.observedGeneration != null) return false;</span>
+<span class="nc bnc" id="L231" title="All 6 branches missed.">            if (readyReplicas != null ? !readyReplicas.equals(that.readyReplicas) :that.readyReplicas != null) return false;</span>
+<span class="nc bnc" id="L232" title="All 6 branches missed.">            if (replicas != null ? !replicas.equals(that.replicas) :that.replicas != null) return false;</span>
+<span class="nc" id="L233">            return true;</span>
+    }
+
+
+    public class ConditionsNestedImpl&lt;N&gt; extends ReplicationControllerConditionFluentImpl&lt;ReplicationControllerStatusFluent.ConditionsNested&lt;N&gt;&gt; implements ReplicationControllerStatusFluent.ConditionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ReplicationControllerConditionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L242">            ConditionsNestedImpl(int index,ReplicationControllerCondition item){</span>
+<span class="nc" id="L243">                    this.index = index;</span>
+<span class="nc" id="L244">                    this.builder = new ReplicationControllerConditionBuilder(this, item);</span>
+<span class="nc" id="L245">            }</span>
+<span class="nc" id="L246">            ConditionsNestedImpl(){</span>
+<span class="nc" id="L247">                    this.index = -1;</span>
+<span class="nc" id="L248">                    this.builder = new ReplicationControllerConditionBuilder(this);</span>
+<span class="nc" id="L249">            }</span>
+    
+    public N and(){
+<span class="nc" id="L252">            return (N) ReplicationControllerStatusFluentImpl.this.setToConditions(index, builder.build());</span>
+    }
+    public N endCondition(){
+<span class="nc" id="L255">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

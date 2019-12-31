@@ -1,0 +1,1836 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PersistentVolumeSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">PersistentVolumeSpecFluentImpl.java</span></div><h1>PersistentVolumeSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.lang.Object;
+import java.util.Map;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Collection;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.Integer;
+
+public class PersistentVolumeSpecFluentImpl&lt;A extends PersistentVolumeSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements PersistentVolumeSpecFluent&lt;A&gt;{
+
+    private List&lt;String&gt; accessModes;
+    private AWSElasticBlockStoreVolumeSourceBuilder awsElasticBlockStore;
+    private AzureDiskVolumeSourceBuilder azureDisk;
+    private AzureFilePersistentVolumeSourceBuilder azureFile;
+    private Map&lt;String,Quantity&gt; capacity;
+    private CephFSPersistentVolumeSourceBuilder cephfs;
+    private CinderPersistentVolumeSourceBuilder cinder;
+    private ObjectReferenceBuilder claimRef;
+    private CSIPersistentVolumeSourceBuilder csi;
+    private FCVolumeSourceBuilder fc;
+    private FlexPersistentVolumeSourceBuilder flexVolume;
+    private FlockerVolumeSourceBuilder flocker;
+    private GCEPersistentDiskVolumeSourceBuilder gcePersistentDisk;
+    private GlusterfsPersistentVolumeSourceBuilder glusterfs;
+    private HostPathVolumeSourceBuilder hostPath;
+    private ISCSIPersistentVolumeSourceBuilder iscsi;
+    private LocalVolumeSourceBuilder local;
+    private List&lt;String&gt; mountOptions;
+    private NFSVolumeSourceBuilder nfs;
+    private VolumeNodeAffinityBuilder nodeAffinity;
+    private String persistentVolumeReclaimPolicy;
+    private PhotonPersistentDiskVolumeSourceBuilder photonPersistentDisk;
+    private PortworxVolumeSourceBuilder portworxVolume;
+    private QuobyteVolumeSourceBuilder quobyte;
+    private RBDPersistentVolumeSourceBuilder rbd;
+    private ScaleIOPersistentVolumeSourceBuilder scaleIO;
+    private String storageClassName;
+    private StorageOSPersistentVolumeSourceBuilder storageos;
+    private String volumeMode;
+    private VsphereVirtualDiskVolumeSourceBuilder vsphereVolume;
+
+<span class="nc" id="L53">    public PersistentVolumeSpecFluentImpl(){</span>
+<span class="nc" id="L54">    }</span>
+<span class="nc" id="L55">    public PersistentVolumeSpecFluentImpl(PersistentVolumeSpec instance){</span>
+<span class="nc" id="L56">            this.withAccessModes(instance.getAccessModes()); </span>
+<span class="nc" id="L57">            this.withAwsElasticBlockStore(instance.getAwsElasticBlockStore()); </span>
+<span class="nc" id="L58">            this.withAzureDisk(instance.getAzureDisk()); </span>
+<span class="nc" id="L59">            this.withAzureFile(instance.getAzureFile()); </span>
+<span class="nc" id="L60">            this.withCapacity(instance.getCapacity()); </span>
+<span class="nc" id="L61">            this.withCephfs(instance.getCephfs()); </span>
+<span class="nc" id="L62">            this.withCinder(instance.getCinder()); </span>
+<span class="nc" id="L63">            this.withClaimRef(instance.getClaimRef()); </span>
+<span class="nc" id="L64">            this.withCsi(instance.getCsi()); </span>
+<span class="nc" id="L65">            this.withFc(instance.getFc()); </span>
+<span class="nc" id="L66">            this.withFlexVolume(instance.getFlexVolume()); </span>
+<span class="nc" id="L67">            this.withFlocker(instance.getFlocker()); </span>
+<span class="nc" id="L68">            this.withGcePersistentDisk(instance.getGcePersistentDisk()); </span>
+<span class="nc" id="L69">            this.withGlusterfs(instance.getGlusterfs()); </span>
+<span class="nc" id="L70">            this.withHostPath(instance.getHostPath()); </span>
+<span class="nc" id="L71">            this.withIscsi(instance.getIscsi()); </span>
+<span class="nc" id="L72">            this.withLocal(instance.getLocal()); </span>
+<span class="nc" id="L73">            this.withMountOptions(instance.getMountOptions()); </span>
+<span class="nc" id="L74">            this.withNfs(instance.getNfs()); </span>
+<span class="nc" id="L75">            this.withNodeAffinity(instance.getNodeAffinity()); </span>
+<span class="nc" id="L76">            this.withPersistentVolumeReclaimPolicy(instance.getPersistentVolumeReclaimPolicy()); </span>
+<span class="nc" id="L77">            this.withPhotonPersistentDisk(instance.getPhotonPersistentDisk()); </span>
+<span class="nc" id="L78">            this.withPortworxVolume(instance.getPortworxVolume()); </span>
+<span class="nc" id="L79">            this.withQuobyte(instance.getQuobyte()); </span>
+<span class="nc" id="L80">            this.withRbd(instance.getRbd()); </span>
+<span class="nc" id="L81">            this.withScaleIO(instance.getScaleIO()); </span>
+<span class="nc" id="L82">            this.withStorageClassName(instance.getStorageClassName()); </span>
+<span class="nc" id="L83">            this.withStorageos(instance.getStorageos()); </span>
+<span class="nc" id="L84">            this.withVolumeMode(instance.getVolumeMode()); </span>
+<span class="nc" id="L85">            this.withVsphereVolume(instance.getVsphereVolume()); </span>
+<span class="nc" id="L86">    }</span>
+
+    public A addToAccessModes(int index,String item){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (this.accessModes == null) {this.accessModes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L90">            this.accessModes.add(index, item);</span>
+<span class="nc" id="L91">            return (A)this;</span>
+    }
+
+    public A setToAccessModes(int index,String item){
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (this.accessModes == null) {this.accessModes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L96">            this.accessModes.set(index, item); return (A)this;</span>
+    }
+
+    public A addToAccessModes(String... items){
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            if (this.accessModes == null) {this.accessModes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">            for (String item : items) {this.accessModes.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToAccessModes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            if (this.accessModes == null) {this.accessModes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            for (String item : items) {this.accessModes.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromAccessModes(String... items){
+<span class="nc bnc" id="L110" title="All 4 branches missed.">            for (String item : items) {if (this.accessModes!= null){ this.accessModes.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAccessModes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L114" title="All 4 branches missed.">            for (String item : items) {if (this.accessModes!= null){ this.accessModes.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getAccessModes(){
+<span class="nc" id="L118">            return this.accessModes;</span>
+    }
+
+    public String getAccessMode(int index){
+<span class="nc" id="L122">            return this.accessModes.get(index);</span>
+    }
+
+    public String getFirstAccessMode(){
+<span class="nc" id="L126">            return this.accessModes.get(0);</span>
+    }
+
+    public String getLastAccessMode(){
+<span class="nc" id="L130">            return this.accessModes.get(accessModes.size() - 1);</span>
+    }
+
+    public String getMatchingAccessMode(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L134" title="All 4 branches missed.">            for (String item: accessModes) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withAccessModes(List&lt;String&gt; accessModes){
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            if (this.accessModes != null) { _visitables.removeAll(this.accessModes);}</span>
+<span class="nc bnc" id="L139" title="All 4 branches missed.">            if (accessModes != null) {this.accessModes = new ArrayList&lt;String&gt;(); for (String item : accessModes){this.addToAccessModes(item);}} else { this.accessModes = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withAccessModes(String... accessModes){
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            if (this.accessModes != null) {this.accessModes.clear();}</span>
+<span class="nc bnc" id="L144" title="All 4 branches missed.">            if (accessModes != null) {for (String item :accessModes){ this.addToAccessModes(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAccessModes(){
+<span class="nc bnc" id="L148" title="All 4 branches missed.">            return accessModes != null &amp;&amp; !accessModes.isEmpty();</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildAwsElasticBlockStore instead.
+ * @return The buildable object.
+ */
+@Deprecated public AWSElasticBlockStoreVolumeSource getAwsElasticBlockStore(){
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            return this.awsElasticBlockStore!=null?this.awsElasticBlockStore.build():null;</span>
+    }
+
+    public AWSElasticBlockStoreVolumeSource buildAwsElasticBlockStore(){
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            return this.awsElasticBlockStore!=null?this.awsElasticBlockStore.build():null;</span>
+    }
+
+    public A withAwsElasticBlockStore(AWSElasticBlockStoreVolumeSource awsElasticBlockStore){
+<span class="nc" id="L165">            _visitables.remove(this.awsElasticBlockStore);</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            if (awsElasticBlockStore!=null){ this.awsElasticBlockStore= new AWSElasticBlockStoreVolumeSourceBuilder(awsElasticBlockStore); _visitables.add(this.awsElasticBlockStore);} return (A) this;</span>
+    }
+
+    public Boolean hasAwsElasticBlockStore(){
+<span class="nc bnc" id="L170" title="All 2 branches missed.">            return this.awsElasticBlockStore != null;</span>
+    }
+
+    public A withNewAwsElasticBlockStore(String fsType,Integer partition,Boolean readOnly,String volumeID){
+<span class="nc" id="L174">            return (A)withAwsElasticBlockStore(new AWSElasticBlockStoreVolumeSource(fsType, partition, readOnly, volumeID));</span>
+    }
+
+    public PersistentVolumeSpecFluent.AwsElasticBlockStoreNested&lt;A&gt; withNewAwsElasticBlockStore(){
+<span class="nc" id="L178">            return new AwsElasticBlockStoreNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.AwsElasticBlockStoreNested&lt;A&gt; withNewAwsElasticBlockStoreLike(AWSElasticBlockStoreVolumeSource item){
+<span class="nc" id="L182">            return new AwsElasticBlockStoreNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.AwsElasticBlockStoreNested&lt;A&gt; editAwsElasticBlockStore(){
+<span class="nc" id="L186">            return withNewAwsElasticBlockStoreLike(getAwsElasticBlockStore());</span>
+    }
+
+    public PersistentVolumeSpecFluent.AwsElasticBlockStoreNested&lt;A&gt; editOrNewAwsElasticBlockStore(){
+<span class="nc bnc" id="L190" title="All 2 branches missed.">            return withNewAwsElasticBlockStoreLike(getAwsElasticBlockStore() != null ? getAwsElasticBlockStore(): new AWSElasticBlockStoreVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.AwsElasticBlockStoreNested&lt;A&gt; editOrNewAwsElasticBlockStoreLike(AWSElasticBlockStoreVolumeSource item){
+<span class="nc bnc" id="L194" title="All 2 branches missed.">            return withNewAwsElasticBlockStoreLike(getAwsElasticBlockStore() != null ? getAwsElasticBlockStore(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildAzureDisk instead.
+ * @return The buildable object.
+ */
+@Deprecated public AzureDiskVolumeSource getAzureDisk(){
+<span class="nc bnc" id="L203" title="All 2 branches missed.">            return this.azureDisk!=null?this.azureDisk.build():null;</span>
+    }
+
+    public AzureDiskVolumeSource buildAzureDisk(){
+<span class="nc bnc" id="L207" title="All 2 branches missed.">            return this.azureDisk!=null?this.azureDisk.build():null;</span>
+    }
+
+    public A withAzureDisk(AzureDiskVolumeSource azureDisk){
+<span class="nc" id="L211">            _visitables.remove(this.azureDisk);</span>
+<span class="nc bnc" id="L212" title="All 2 branches missed.">            if (azureDisk!=null){ this.azureDisk= new AzureDiskVolumeSourceBuilder(azureDisk); _visitables.add(this.azureDisk);} return (A) this;</span>
+    }
+
+    public Boolean hasAzureDisk(){
+<span class="nc bnc" id="L216" title="All 2 branches missed.">            return this.azureDisk != null;</span>
+    }
+
+    public PersistentVolumeSpecFluent.AzureDiskNested&lt;A&gt; withNewAzureDisk(){
+<span class="nc" id="L220">            return new AzureDiskNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.AzureDiskNested&lt;A&gt; withNewAzureDiskLike(AzureDiskVolumeSource item){
+<span class="nc" id="L224">            return new AzureDiskNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.AzureDiskNested&lt;A&gt; editAzureDisk(){
+<span class="nc" id="L228">            return withNewAzureDiskLike(getAzureDisk());</span>
+    }
+
+    public PersistentVolumeSpecFluent.AzureDiskNested&lt;A&gt; editOrNewAzureDisk(){
+<span class="nc bnc" id="L232" title="All 2 branches missed.">            return withNewAzureDiskLike(getAzureDisk() != null ? getAzureDisk(): new AzureDiskVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.AzureDiskNested&lt;A&gt; editOrNewAzureDiskLike(AzureDiskVolumeSource item){
+<span class="nc bnc" id="L236" title="All 2 branches missed.">            return withNewAzureDiskLike(getAzureDisk() != null ? getAzureDisk(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildAzureFile instead.
+ * @return The buildable object.
+ */
+@Deprecated public AzureFilePersistentVolumeSource getAzureFile(){
+<span class="nc bnc" id="L245" title="All 2 branches missed.">            return this.azureFile!=null?this.azureFile.build():null;</span>
+    }
+
+    public AzureFilePersistentVolumeSource buildAzureFile(){
+<span class="nc bnc" id="L249" title="All 2 branches missed.">            return this.azureFile!=null?this.azureFile.build():null;</span>
+    }
+
+    public A withAzureFile(AzureFilePersistentVolumeSource azureFile){
+<span class="nc" id="L253">            _visitables.remove(this.azureFile);</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">            if (azureFile!=null){ this.azureFile= new AzureFilePersistentVolumeSourceBuilder(azureFile); _visitables.add(this.azureFile);} return (A) this;</span>
+    }
+
+    public Boolean hasAzureFile(){
+<span class="nc bnc" id="L258" title="All 2 branches missed.">            return this.azureFile != null;</span>
+    }
+
+    public A withNewAzureFile(Boolean readOnly,String secretName,String secretNamespace,String shareName){
+<span class="nc" id="L262">            return (A)withAzureFile(new AzureFilePersistentVolumeSource(readOnly, secretName, secretNamespace, shareName));</span>
+    }
+
+    public PersistentVolumeSpecFluent.AzureFileNested&lt;A&gt; withNewAzureFile(){
+<span class="nc" id="L266">            return new AzureFileNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.AzureFileNested&lt;A&gt; withNewAzureFileLike(AzureFilePersistentVolumeSource item){
+<span class="nc" id="L270">            return new AzureFileNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.AzureFileNested&lt;A&gt; editAzureFile(){
+<span class="nc" id="L274">            return withNewAzureFileLike(getAzureFile());</span>
+    }
+
+    public PersistentVolumeSpecFluent.AzureFileNested&lt;A&gt; editOrNewAzureFile(){
+<span class="nc bnc" id="L278" title="All 2 branches missed.">            return withNewAzureFileLike(getAzureFile() != null ? getAzureFile(): new AzureFilePersistentVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.AzureFileNested&lt;A&gt; editOrNewAzureFileLike(AzureFilePersistentVolumeSource item){
+<span class="nc bnc" id="L282" title="All 2 branches missed.">            return withNewAzureFileLike(getAzureFile() != null ? getAzureFile(): item);</span>
+    }
+
+    public A addToCapacity(String key,Quantity value){
+<span class="nc bnc" id="L286" title="All 6 branches missed.">            if(this.capacity == null &amp;&amp; key != null &amp;&amp; value != null) { this.capacity = new LinkedHashMap&lt;String,Quantity&gt;(); }</span>
+<span class="nc bnc" id="L287" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.capacity.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToCapacity(Map&lt;String,Quantity&gt; map){
+<span class="nc bnc" id="L291" title="All 4 branches missed.">            if(this.capacity == null &amp;&amp; map != null) { this.capacity = new LinkedHashMap&lt;String,Quantity&gt;(); }</span>
+<span class="nc bnc" id="L292" title="All 2 branches missed.">            if(map != null) { this.capacity.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromCapacity(String key){
+<span class="nc bnc" id="L296" title="All 2 branches missed.">            if(this.capacity == null) { return (A) this; }</span>
+<span class="nc bnc" id="L297" title="All 4 branches missed.">            if(key != null &amp;&amp; this.capacity != null) {this.capacity.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromCapacity(Map&lt;String,Quantity&gt; map){
+<span class="nc bnc" id="L301" title="All 2 branches missed.">            if(this.capacity == null) { return (A) this; }</span>
+<span class="nc bnc" id="L302" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.capacity != null){this.capacity.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,Quantity&gt; getCapacity(){
+<span class="nc" id="L306">            return this.capacity;</span>
+    }
+
+    public A withCapacity(Map&lt;String,Quantity&gt; capacity){
+<span class="nc bnc" id="L310" title="All 2 branches missed.">            if (capacity == null) { this.capacity =  new LinkedHashMap&lt;String,Quantity&gt;();} else {this.capacity = new LinkedHashMap&lt;String,Quantity&gt;(capacity);} return (A) this;</span>
+    }
+
+    public Boolean hasCapacity(){
+<span class="nc bnc" id="L314" title="All 2 branches missed.">            return this.capacity != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildCephfs instead.
+ * @return The buildable object.
+ */
+@Deprecated public CephFSPersistentVolumeSource getCephfs(){
+<span class="nc bnc" id="L323" title="All 2 branches missed.">            return this.cephfs!=null?this.cephfs.build():null;</span>
+    }
+
+    public CephFSPersistentVolumeSource buildCephfs(){
+<span class="nc bnc" id="L327" title="All 2 branches missed.">            return this.cephfs!=null?this.cephfs.build():null;</span>
+    }
+
+    public A withCephfs(CephFSPersistentVolumeSource cephfs){
+<span class="nc" id="L331">            _visitables.remove(this.cephfs);</span>
+<span class="nc bnc" id="L332" title="All 2 branches missed.">            if (cephfs!=null){ this.cephfs= new CephFSPersistentVolumeSourceBuilder(cephfs); _visitables.add(this.cephfs);} return (A) this;</span>
+    }
+
+    public Boolean hasCephfs(){
+<span class="nc bnc" id="L336" title="All 2 branches missed.">            return this.cephfs != null;</span>
+    }
+
+    public PersistentVolumeSpecFluent.CephfsNested&lt;A&gt; withNewCephfs(){
+<span class="nc" id="L340">            return new CephfsNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.CephfsNested&lt;A&gt; withNewCephfsLike(CephFSPersistentVolumeSource item){
+<span class="nc" id="L344">            return new CephfsNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.CephfsNested&lt;A&gt; editCephfs(){
+<span class="nc" id="L348">            return withNewCephfsLike(getCephfs());</span>
+    }
+
+    public PersistentVolumeSpecFluent.CephfsNested&lt;A&gt; editOrNewCephfs(){
+<span class="nc bnc" id="L352" title="All 2 branches missed.">            return withNewCephfsLike(getCephfs() != null ? getCephfs(): new CephFSPersistentVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.CephfsNested&lt;A&gt; editOrNewCephfsLike(CephFSPersistentVolumeSource item){
+<span class="nc bnc" id="L356" title="All 2 branches missed.">            return withNewCephfsLike(getCephfs() != null ? getCephfs(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildCinder instead.
+ * @return The buildable object.
+ */
+@Deprecated public CinderPersistentVolumeSource getCinder(){
+<span class="nc bnc" id="L365" title="All 2 branches missed.">            return this.cinder!=null?this.cinder.build():null;</span>
+    }
+
+    public CinderPersistentVolumeSource buildCinder(){
+<span class="nc bnc" id="L369" title="All 2 branches missed.">            return this.cinder!=null?this.cinder.build():null;</span>
+    }
+
+    public A withCinder(CinderPersistentVolumeSource cinder){
+<span class="nc" id="L373">            _visitables.remove(this.cinder);</span>
+<span class="nc bnc" id="L374" title="All 2 branches missed.">            if (cinder!=null){ this.cinder= new CinderPersistentVolumeSourceBuilder(cinder); _visitables.add(this.cinder);} return (A) this;</span>
+    }
+
+    public Boolean hasCinder(){
+<span class="nc bnc" id="L378" title="All 2 branches missed.">            return this.cinder != null;</span>
+    }
+
+    public PersistentVolumeSpecFluent.CinderNested&lt;A&gt; withNewCinder(){
+<span class="nc" id="L382">            return new CinderNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.CinderNested&lt;A&gt; withNewCinderLike(CinderPersistentVolumeSource item){
+<span class="nc" id="L386">            return new CinderNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.CinderNested&lt;A&gt; editCinder(){
+<span class="nc" id="L390">            return withNewCinderLike(getCinder());</span>
+    }
+
+    public PersistentVolumeSpecFluent.CinderNested&lt;A&gt; editOrNewCinder(){
+<span class="nc bnc" id="L394" title="All 2 branches missed.">            return withNewCinderLike(getCinder() != null ? getCinder(): new CinderPersistentVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.CinderNested&lt;A&gt; editOrNewCinderLike(CinderPersistentVolumeSource item){
+<span class="nc bnc" id="L398" title="All 2 branches missed.">            return withNewCinderLike(getCinder() != null ? getCinder(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildClaimRef instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getClaimRef(){
+<span class="nc bnc" id="L407" title="All 2 branches missed.">            return this.claimRef!=null?this.claimRef.build():null;</span>
+    }
+
+    public ObjectReference buildClaimRef(){
+<span class="nc bnc" id="L411" title="All 2 branches missed.">            return this.claimRef!=null?this.claimRef.build():null;</span>
+    }
+
+    public A withClaimRef(ObjectReference claimRef){
+<span class="nc" id="L415">            _visitables.remove(this.claimRef);</span>
+<span class="nc bnc" id="L416" title="All 2 branches missed.">            if (claimRef!=null){ this.claimRef= new ObjectReferenceBuilder(claimRef); _visitables.add(this.claimRef);} return (A) this;</span>
+    }
+
+    public Boolean hasClaimRef(){
+<span class="nc bnc" id="L420" title="All 2 branches missed.">            return this.claimRef != null;</span>
+    }
+
+    public PersistentVolumeSpecFluent.ClaimRefNested&lt;A&gt; withNewClaimRef(){
+<span class="nc" id="L424">            return new ClaimRefNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.ClaimRefNested&lt;A&gt; withNewClaimRefLike(ObjectReference item){
+<span class="nc" id="L428">            return new ClaimRefNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.ClaimRefNested&lt;A&gt; editClaimRef(){
+<span class="nc" id="L432">            return withNewClaimRefLike(getClaimRef());</span>
+    }
+
+    public PersistentVolumeSpecFluent.ClaimRefNested&lt;A&gt; editOrNewClaimRef(){
+<span class="nc bnc" id="L436" title="All 2 branches missed.">            return withNewClaimRefLike(getClaimRef() != null ? getClaimRef(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.ClaimRefNested&lt;A&gt; editOrNewClaimRefLike(ObjectReference item){
+<span class="nc bnc" id="L440" title="All 2 branches missed.">            return withNewClaimRefLike(getClaimRef() != null ? getClaimRef(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildCsi instead.
+ * @return The buildable object.
+ */
+@Deprecated public CSIPersistentVolumeSource getCsi(){
+<span class="nc bnc" id="L449" title="All 2 branches missed.">            return this.csi!=null?this.csi.build():null;</span>
+    }
+
+    public CSIPersistentVolumeSource buildCsi(){
+<span class="nc bnc" id="L453" title="All 2 branches missed.">            return this.csi!=null?this.csi.build():null;</span>
+    }
+
+    public A withCsi(CSIPersistentVolumeSource csi){
+<span class="nc" id="L457">            _visitables.remove(this.csi);</span>
+<span class="nc bnc" id="L458" title="All 2 branches missed.">            if (csi!=null){ this.csi= new CSIPersistentVolumeSourceBuilder(csi); _visitables.add(this.csi);} return (A) this;</span>
+    }
+
+    public Boolean hasCsi(){
+<span class="nc bnc" id="L462" title="All 2 branches missed.">            return this.csi != null;</span>
+    }
+
+    public PersistentVolumeSpecFluent.CsiNested&lt;A&gt; withNewCsi(){
+<span class="nc" id="L466">            return new CsiNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.CsiNested&lt;A&gt; withNewCsiLike(CSIPersistentVolumeSource item){
+<span class="nc" id="L470">            return new CsiNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.CsiNested&lt;A&gt; editCsi(){
+<span class="nc" id="L474">            return withNewCsiLike(getCsi());</span>
+    }
+
+    public PersistentVolumeSpecFluent.CsiNested&lt;A&gt; editOrNewCsi(){
+<span class="nc bnc" id="L478" title="All 2 branches missed.">            return withNewCsiLike(getCsi() != null ? getCsi(): new CSIPersistentVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.CsiNested&lt;A&gt; editOrNewCsiLike(CSIPersistentVolumeSource item){
+<span class="nc bnc" id="L482" title="All 2 branches missed.">            return withNewCsiLike(getCsi() != null ? getCsi(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildFc instead.
+ * @return The buildable object.
+ */
+@Deprecated public FCVolumeSource getFc(){
+<span class="nc bnc" id="L491" title="All 2 branches missed.">            return this.fc!=null?this.fc.build():null;</span>
+    }
+
+    public FCVolumeSource buildFc(){
+<span class="nc bnc" id="L495" title="All 2 branches missed.">            return this.fc!=null?this.fc.build():null;</span>
+    }
+
+    public A withFc(FCVolumeSource fc){
+<span class="nc" id="L499">            _visitables.remove(this.fc);</span>
+<span class="nc bnc" id="L500" title="All 2 branches missed.">            if (fc!=null){ this.fc= new FCVolumeSourceBuilder(fc); _visitables.add(this.fc);} return (A) this;</span>
+    }
+
+    public Boolean hasFc(){
+<span class="nc bnc" id="L504" title="All 2 branches missed.">            return this.fc != null;</span>
+    }
+
+    public PersistentVolumeSpecFluent.FcNested&lt;A&gt; withNewFc(){
+<span class="nc" id="L508">            return new FcNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.FcNested&lt;A&gt; withNewFcLike(FCVolumeSource item){
+<span class="nc" id="L512">            return new FcNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.FcNested&lt;A&gt; editFc(){
+<span class="nc" id="L516">            return withNewFcLike(getFc());</span>
+    }
+
+    public PersistentVolumeSpecFluent.FcNested&lt;A&gt; editOrNewFc(){
+<span class="nc bnc" id="L520" title="All 2 branches missed.">            return withNewFcLike(getFc() != null ? getFc(): new FCVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.FcNested&lt;A&gt; editOrNewFcLike(FCVolumeSource item){
+<span class="nc bnc" id="L524" title="All 2 branches missed.">            return withNewFcLike(getFc() != null ? getFc(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildFlexVolume instead.
+ * @return The buildable object.
+ */
+@Deprecated public FlexPersistentVolumeSource getFlexVolume(){
+<span class="nc bnc" id="L533" title="All 2 branches missed.">            return this.flexVolume!=null?this.flexVolume.build():null;</span>
+    }
+
+    public FlexPersistentVolumeSource buildFlexVolume(){
+<span class="nc bnc" id="L537" title="All 2 branches missed.">            return this.flexVolume!=null?this.flexVolume.build():null;</span>
+    }
+
+    public A withFlexVolume(FlexPersistentVolumeSource flexVolume){
+<span class="nc" id="L541">            _visitables.remove(this.flexVolume);</span>
+<span class="nc bnc" id="L542" title="All 2 branches missed.">            if (flexVolume!=null){ this.flexVolume= new FlexPersistentVolumeSourceBuilder(flexVolume); _visitables.add(this.flexVolume);} return (A) this;</span>
+    }
+
+    public Boolean hasFlexVolume(){
+<span class="nc bnc" id="L546" title="All 2 branches missed.">            return this.flexVolume != null;</span>
+    }
+
+    public PersistentVolumeSpecFluent.FlexVolumeNested&lt;A&gt; withNewFlexVolume(){
+<span class="nc" id="L550">            return new FlexVolumeNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.FlexVolumeNested&lt;A&gt; withNewFlexVolumeLike(FlexPersistentVolumeSource item){
+<span class="nc" id="L554">            return new FlexVolumeNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.FlexVolumeNested&lt;A&gt; editFlexVolume(){
+<span class="nc" id="L558">            return withNewFlexVolumeLike(getFlexVolume());</span>
+    }
+
+    public PersistentVolumeSpecFluent.FlexVolumeNested&lt;A&gt; editOrNewFlexVolume(){
+<span class="nc bnc" id="L562" title="All 2 branches missed.">            return withNewFlexVolumeLike(getFlexVolume() != null ? getFlexVolume(): new FlexPersistentVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.FlexVolumeNested&lt;A&gt; editOrNewFlexVolumeLike(FlexPersistentVolumeSource item){
+<span class="nc bnc" id="L566" title="All 2 branches missed.">            return withNewFlexVolumeLike(getFlexVolume() != null ? getFlexVolume(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildFlocker instead.
+ * @return The buildable object.
+ */
+@Deprecated public FlockerVolumeSource getFlocker(){
+<span class="nc bnc" id="L575" title="All 2 branches missed.">            return this.flocker!=null?this.flocker.build():null;</span>
+    }
+
+    public FlockerVolumeSource buildFlocker(){
+<span class="nc bnc" id="L579" title="All 2 branches missed.">            return this.flocker!=null?this.flocker.build():null;</span>
+    }
+
+    public A withFlocker(FlockerVolumeSource flocker){
+<span class="nc" id="L583">            _visitables.remove(this.flocker);</span>
+<span class="nc bnc" id="L584" title="All 2 branches missed.">            if (flocker!=null){ this.flocker= new FlockerVolumeSourceBuilder(flocker); _visitables.add(this.flocker);} return (A) this;</span>
+    }
+
+    public Boolean hasFlocker(){
+<span class="nc bnc" id="L588" title="All 2 branches missed.">            return this.flocker != null;</span>
+    }
+
+    public A withNewFlocker(String datasetName,String datasetUUID){
+<span class="nc" id="L592">            return (A)withFlocker(new FlockerVolumeSource(datasetName, datasetUUID));</span>
+    }
+
+    public PersistentVolumeSpecFluent.FlockerNested&lt;A&gt; withNewFlocker(){
+<span class="nc" id="L596">            return new FlockerNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.FlockerNested&lt;A&gt; withNewFlockerLike(FlockerVolumeSource item){
+<span class="nc" id="L600">            return new FlockerNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.FlockerNested&lt;A&gt; editFlocker(){
+<span class="nc" id="L604">            return withNewFlockerLike(getFlocker());</span>
+    }
+
+    public PersistentVolumeSpecFluent.FlockerNested&lt;A&gt; editOrNewFlocker(){
+<span class="nc bnc" id="L608" title="All 2 branches missed.">            return withNewFlockerLike(getFlocker() != null ? getFlocker(): new FlockerVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.FlockerNested&lt;A&gt; editOrNewFlockerLike(FlockerVolumeSource item){
+<span class="nc bnc" id="L612" title="All 2 branches missed.">            return withNewFlockerLike(getFlocker() != null ? getFlocker(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildGcePersistentDisk instead.
+ * @return The buildable object.
+ */
+@Deprecated public GCEPersistentDiskVolumeSource getGcePersistentDisk(){
+<span class="nc bnc" id="L621" title="All 2 branches missed.">            return this.gcePersistentDisk!=null?this.gcePersistentDisk.build():null;</span>
+    }
+
+    public GCEPersistentDiskVolumeSource buildGcePersistentDisk(){
+<span class="nc bnc" id="L625" title="All 2 branches missed.">            return this.gcePersistentDisk!=null?this.gcePersistentDisk.build():null;</span>
+    }
+
+    public A withGcePersistentDisk(GCEPersistentDiskVolumeSource gcePersistentDisk){
+<span class="nc" id="L629">            _visitables.remove(this.gcePersistentDisk);</span>
+<span class="nc bnc" id="L630" title="All 2 branches missed.">            if (gcePersistentDisk!=null){ this.gcePersistentDisk= new GCEPersistentDiskVolumeSourceBuilder(gcePersistentDisk); _visitables.add(this.gcePersistentDisk);} return (A) this;</span>
+    }
+
+    public Boolean hasGcePersistentDisk(){
+<span class="nc bnc" id="L634" title="All 2 branches missed.">            return this.gcePersistentDisk != null;</span>
+    }
+
+    public A withNewGcePersistentDisk(String fsType,Integer partition,String pdName,Boolean readOnly){
+<span class="nc" id="L638">            return (A)withGcePersistentDisk(new GCEPersistentDiskVolumeSource(fsType, partition, pdName, readOnly));</span>
+    }
+
+    public PersistentVolumeSpecFluent.GcePersistentDiskNested&lt;A&gt; withNewGcePersistentDisk(){
+<span class="nc" id="L642">            return new GcePersistentDiskNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.GcePersistentDiskNested&lt;A&gt; withNewGcePersistentDiskLike(GCEPersistentDiskVolumeSource item){
+<span class="nc" id="L646">            return new GcePersistentDiskNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.GcePersistentDiskNested&lt;A&gt; editGcePersistentDisk(){
+<span class="nc" id="L650">            return withNewGcePersistentDiskLike(getGcePersistentDisk());</span>
+    }
+
+    public PersistentVolumeSpecFluent.GcePersistentDiskNested&lt;A&gt; editOrNewGcePersistentDisk(){
+<span class="nc bnc" id="L654" title="All 2 branches missed.">            return withNewGcePersistentDiskLike(getGcePersistentDisk() != null ? getGcePersistentDisk(): new GCEPersistentDiskVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.GcePersistentDiskNested&lt;A&gt; editOrNewGcePersistentDiskLike(GCEPersistentDiskVolumeSource item){
+<span class="nc bnc" id="L658" title="All 2 branches missed.">            return withNewGcePersistentDiskLike(getGcePersistentDisk() != null ? getGcePersistentDisk(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildGlusterfs instead.
+ * @return The buildable object.
+ */
+@Deprecated public GlusterfsPersistentVolumeSource getGlusterfs(){
+<span class="nc bnc" id="L667" title="All 2 branches missed.">            return this.glusterfs!=null?this.glusterfs.build():null;</span>
+    }
+
+    public GlusterfsPersistentVolumeSource buildGlusterfs(){
+<span class="nc bnc" id="L671" title="All 2 branches missed.">            return this.glusterfs!=null?this.glusterfs.build():null;</span>
+    }
+
+    public A withGlusterfs(GlusterfsPersistentVolumeSource glusterfs){
+<span class="nc" id="L675">            _visitables.remove(this.glusterfs);</span>
+<span class="nc bnc" id="L676" title="All 2 branches missed.">            if (glusterfs!=null){ this.glusterfs= new GlusterfsPersistentVolumeSourceBuilder(glusterfs); _visitables.add(this.glusterfs);} return (A) this;</span>
+    }
+
+    public Boolean hasGlusterfs(){
+<span class="nc bnc" id="L680" title="All 2 branches missed.">            return this.glusterfs != null;</span>
+    }
+
+    public A withNewGlusterfs(String endpoints,String endpointsNamespace,String path,Boolean readOnly){
+<span class="nc" id="L684">            return (A)withGlusterfs(new GlusterfsPersistentVolumeSource(endpoints, endpointsNamespace, path, readOnly));</span>
+    }
+
+    public PersistentVolumeSpecFluent.GlusterfsNested&lt;A&gt; withNewGlusterfs(){
+<span class="nc" id="L688">            return new GlusterfsNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.GlusterfsNested&lt;A&gt; withNewGlusterfsLike(GlusterfsPersistentVolumeSource item){
+<span class="nc" id="L692">            return new GlusterfsNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.GlusterfsNested&lt;A&gt; editGlusterfs(){
+<span class="nc" id="L696">            return withNewGlusterfsLike(getGlusterfs());</span>
+    }
+
+    public PersistentVolumeSpecFluent.GlusterfsNested&lt;A&gt; editOrNewGlusterfs(){
+<span class="nc bnc" id="L700" title="All 2 branches missed.">            return withNewGlusterfsLike(getGlusterfs() != null ? getGlusterfs(): new GlusterfsPersistentVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.GlusterfsNested&lt;A&gt; editOrNewGlusterfsLike(GlusterfsPersistentVolumeSource item){
+<span class="nc bnc" id="L704" title="All 2 branches missed.">            return withNewGlusterfsLike(getGlusterfs() != null ? getGlusterfs(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildHostPath instead.
+ * @return The buildable object.
+ */
+@Deprecated public HostPathVolumeSource getHostPath(){
+<span class="nc bnc" id="L713" title="All 2 branches missed.">            return this.hostPath!=null?this.hostPath.build():null;</span>
+    }
+
+    public HostPathVolumeSource buildHostPath(){
+<span class="nc bnc" id="L717" title="All 2 branches missed.">            return this.hostPath!=null?this.hostPath.build():null;</span>
+    }
+
+    public A withHostPath(HostPathVolumeSource hostPath){
+<span class="nc" id="L721">            _visitables.remove(this.hostPath);</span>
+<span class="nc bnc" id="L722" title="All 2 branches missed.">            if (hostPath!=null){ this.hostPath= new HostPathVolumeSourceBuilder(hostPath); _visitables.add(this.hostPath);} return (A) this;</span>
+    }
+
+    public Boolean hasHostPath(){
+<span class="nc bnc" id="L726" title="All 2 branches missed.">            return this.hostPath != null;</span>
+    }
+
+    public A withNewHostPath(String path,String type){
+<span class="nc" id="L730">            return (A)withHostPath(new HostPathVolumeSource(path, type));</span>
+    }
+
+    public PersistentVolumeSpecFluent.HostPathNested&lt;A&gt; withNewHostPath(){
+<span class="nc" id="L734">            return new HostPathNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.HostPathNested&lt;A&gt; withNewHostPathLike(HostPathVolumeSource item){
+<span class="nc" id="L738">            return new HostPathNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.HostPathNested&lt;A&gt; editHostPath(){
+<span class="nc" id="L742">            return withNewHostPathLike(getHostPath());</span>
+    }
+
+    public PersistentVolumeSpecFluent.HostPathNested&lt;A&gt; editOrNewHostPath(){
+<span class="nc bnc" id="L746" title="All 2 branches missed.">            return withNewHostPathLike(getHostPath() != null ? getHostPath(): new HostPathVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.HostPathNested&lt;A&gt; editOrNewHostPathLike(HostPathVolumeSource item){
+<span class="nc bnc" id="L750" title="All 2 branches missed.">            return withNewHostPathLike(getHostPath() != null ? getHostPath(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildIscsi instead.
+ * @return The buildable object.
+ */
+@Deprecated public ISCSIPersistentVolumeSource getIscsi(){
+<span class="nc bnc" id="L759" title="All 2 branches missed.">            return this.iscsi!=null?this.iscsi.build():null;</span>
+    }
+
+    public ISCSIPersistentVolumeSource buildIscsi(){
+<span class="nc bnc" id="L763" title="All 2 branches missed.">            return this.iscsi!=null?this.iscsi.build():null;</span>
+    }
+
+    public A withIscsi(ISCSIPersistentVolumeSource iscsi){
+<span class="nc" id="L767">            _visitables.remove(this.iscsi);</span>
+<span class="nc bnc" id="L768" title="All 2 branches missed.">            if (iscsi!=null){ this.iscsi= new ISCSIPersistentVolumeSourceBuilder(iscsi); _visitables.add(this.iscsi);} return (A) this;</span>
+    }
+
+    public Boolean hasIscsi(){
+<span class="nc bnc" id="L772" title="All 2 branches missed.">            return this.iscsi != null;</span>
+    }
+
+    public PersistentVolumeSpecFluent.IscsiNested&lt;A&gt; withNewIscsi(){
+<span class="nc" id="L776">            return new IscsiNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.IscsiNested&lt;A&gt; withNewIscsiLike(ISCSIPersistentVolumeSource item){
+<span class="nc" id="L780">            return new IscsiNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.IscsiNested&lt;A&gt; editIscsi(){
+<span class="nc" id="L784">            return withNewIscsiLike(getIscsi());</span>
+    }
+
+    public PersistentVolumeSpecFluent.IscsiNested&lt;A&gt; editOrNewIscsi(){
+<span class="nc bnc" id="L788" title="All 2 branches missed.">            return withNewIscsiLike(getIscsi() != null ? getIscsi(): new ISCSIPersistentVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.IscsiNested&lt;A&gt; editOrNewIscsiLike(ISCSIPersistentVolumeSource item){
+<span class="nc bnc" id="L792" title="All 2 branches missed.">            return withNewIscsiLike(getIscsi() != null ? getIscsi(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildLocal instead.
+ * @return The buildable object.
+ */
+@Deprecated public LocalVolumeSource getLocal(){
+<span class="nc bnc" id="L801" title="All 2 branches missed.">            return this.local!=null?this.local.build():null;</span>
+    }
+
+    public LocalVolumeSource buildLocal(){
+<span class="nc bnc" id="L805" title="All 2 branches missed.">            return this.local!=null?this.local.build():null;</span>
+    }
+
+    public A withLocal(LocalVolumeSource local){
+<span class="nc" id="L809">            _visitables.remove(this.local);</span>
+<span class="nc bnc" id="L810" title="All 2 branches missed.">            if (local!=null){ this.local= new LocalVolumeSourceBuilder(local); _visitables.add(this.local);} return (A) this;</span>
+    }
+
+    public Boolean hasLocal(){
+<span class="nc bnc" id="L814" title="All 2 branches missed.">            return this.local != null;</span>
+    }
+
+    public A withNewLocal(String fsType,String path){
+<span class="nc" id="L818">            return (A)withLocal(new LocalVolumeSource(fsType, path));</span>
+    }
+
+    public PersistentVolumeSpecFluent.LocalNested&lt;A&gt; withNewLocal(){
+<span class="nc" id="L822">            return new LocalNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.LocalNested&lt;A&gt; withNewLocalLike(LocalVolumeSource item){
+<span class="nc" id="L826">            return new LocalNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.LocalNested&lt;A&gt; editLocal(){
+<span class="nc" id="L830">            return withNewLocalLike(getLocal());</span>
+    }
+
+    public PersistentVolumeSpecFluent.LocalNested&lt;A&gt; editOrNewLocal(){
+<span class="nc bnc" id="L834" title="All 2 branches missed.">            return withNewLocalLike(getLocal() != null ? getLocal(): new LocalVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.LocalNested&lt;A&gt; editOrNewLocalLike(LocalVolumeSource item){
+<span class="nc bnc" id="L838" title="All 2 branches missed.">            return withNewLocalLike(getLocal() != null ? getLocal(): item);</span>
+    }
+
+    public A addToMountOptions(int index,String item){
+<span class="nc bnc" id="L842" title="All 2 branches missed.">            if (this.mountOptions == null) {this.mountOptions = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L843">            this.mountOptions.add(index, item);</span>
+<span class="nc" id="L844">            return (A)this;</span>
+    }
+
+    public A setToMountOptions(int index,String item){
+<span class="nc bnc" id="L848" title="All 2 branches missed.">            if (this.mountOptions == null) {this.mountOptions = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L849">            this.mountOptions.set(index, item); return (A)this;</span>
+    }
+
+    public A addToMountOptions(String... items){
+<span class="nc bnc" id="L853" title="All 2 branches missed.">            if (this.mountOptions == null) {this.mountOptions = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L854" title="All 2 branches missed.">            for (String item : items) {this.mountOptions.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToMountOptions(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L858" title="All 2 branches missed.">            if (this.mountOptions == null) {this.mountOptions = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L859" title="All 2 branches missed.">            for (String item : items) {this.mountOptions.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromMountOptions(String... items){
+<span class="nc bnc" id="L863" title="All 4 branches missed.">            for (String item : items) {if (this.mountOptions!= null){ this.mountOptions.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromMountOptions(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L867" title="All 4 branches missed.">            for (String item : items) {if (this.mountOptions!= null){ this.mountOptions.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getMountOptions(){
+<span class="nc" id="L871">            return this.mountOptions;</span>
+    }
+
+    public String getMountOption(int index){
+<span class="nc" id="L875">            return this.mountOptions.get(index);</span>
+    }
+
+    public String getFirstMountOption(){
+<span class="nc" id="L879">            return this.mountOptions.get(0);</span>
+    }
+
+    public String getLastMountOption(){
+<span class="nc" id="L883">            return this.mountOptions.get(mountOptions.size() - 1);</span>
+    }
+
+    public String getMatchingMountOption(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L887" title="All 4 branches missed.">            for (String item: mountOptions) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withMountOptions(List&lt;String&gt; mountOptions){
+<span class="nc bnc" id="L891" title="All 2 branches missed.">            if (this.mountOptions != null) { _visitables.removeAll(this.mountOptions);}</span>
+<span class="nc bnc" id="L892" title="All 4 branches missed.">            if (mountOptions != null) {this.mountOptions = new ArrayList&lt;String&gt;(); for (String item : mountOptions){this.addToMountOptions(item);}} else { this.mountOptions = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withMountOptions(String... mountOptions){
+<span class="nc bnc" id="L896" title="All 2 branches missed.">            if (this.mountOptions != null) {this.mountOptions.clear();}</span>
+<span class="nc bnc" id="L897" title="All 4 branches missed.">            if (mountOptions != null) {for (String item :mountOptions){ this.addToMountOptions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasMountOptions(){
+<span class="nc bnc" id="L901" title="All 4 branches missed.">            return mountOptions != null &amp;&amp; !mountOptions.isEmpty();</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildNfs instead.
+ * @return The buildable object.
+ */
+@Deprecated public NFSVolumeSource getNfs(){
+<span class="nc bnc" id="L910" title="All 2 branches missed.">            return this.nfs!=null?this.nfs.build():null;</span>
+    }
+
+    public NFSVolumeSource buildNfs(){
+<span class="nc bnc" id="L914" title="All 2 branches missed.">            return this.nfs!=null?this.nfs.build():null;</span>
+    }
+
+    public A withNfs(NFSVolumeSource nfs){
+<span class="nc" id="L918">            _visitables.remove(this.nfs);</span>
+<span class="nc bnc" id="L919" title="All 2 branches missed.">            if (nfs!=null){ this.nfs= new NFSVolumeSourceBuilder(nfs); _visitables.add(this.nfs);} return (A) this;</span>
+    }
+
+    public Boolean hasNfs(){
+<span class="nc bnc" id="L923" title="All 2 branches missed.">            return this.nfs != null;</span>
+    }
+
+    public A withNewNfs(String path,Boolean readOnly,String server){
+<span class="nc" id="L927">            return (A)withNfs(new NFSVolumeSource(path, readOnly, server));</span>
+    }
+
+    public PersistentVolumeSpecFluent.NfsNested&lt;A&gt; withNewNfs(){
+<span class="nc" id="L931">            return new NfsNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.NfsNested&lt;A&gt; withNewNfsLike(NFSVolumeSource item){
+<span class="nc" id="L935">            return new NfsNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.NfsNested&lt;A&gt; editNfs(){
+<span class="nc" id="L939">            return withNewNfsLike(getNfs());</span>
+    }
+
+    public PersistentVolumeSpecFluent.NfsNested&lt;A&gt; editOrNewNfs(){
+<span class="nc bnc" id="L943" title="All 2 branches missed.">            return withNewNfsLike(getNfs() != null ? getNfs(): new NFSVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.NfsNested&lt;A&gt; editOrNewNfsLike(NFSVolumeSource item){
+<span class="nc bnc" id="L947" title="All 2 branches missed.">            return withNewNfsLike(getNfs() != null ? getNfs(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildNodeAffinity instead.
+ * @return The buildable object.
+ */
+@Deprecated public VolumeNodeAffinity getNodeAffinity(){
+<span class="nc bnc" id="L956" title="All 2 branches missed.">            return this.nodeAffinity!=null?this.nodeAffinity.build():null;</span>
+    }
+
+    public VolumeNodeAffinity buildNodeAffinity(){
+<span class="nc bnc" id="L960" title="All 2 branches missed.">            return this.nodeAffinity!=null?this.nodeAffinity.build():null;</span>
+    }
+
+    public A withNodeAffinity(VolumeNodeAffinity nodeAffinity){
+<span class="nc" id="L964">            _visitables.remove(this.nodeAffinity);</span>
+<span class="nc bnc" id="L965" title="All 2 branches missed.">            if (nodeAffinity!=null){ this.nodeAffinity= new VolumeNodeAffinityBuilder(nodeAffinity); _visitables.add(this.nodeAffinity);} return (A) this;</span>
+    }
+
+    public Boolean hasNodeAffinity(){
+<span class="nc bnc" id="L969" title="All 2 branches missed.">            return this.nodeAffinity != null;</span>
+    }
+
+    public PersistentVolumeSpecFluent.NodeAffinityNested&lt;A&gt; withNewNodeAffinity(){
+<span class="nc" id="L973">            return new NodeAffinityNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.NodeAffinityNested&lt;A&gt; withNewNodeAffinityLike(VolumeNodeAffinity item){
+<span class="nc" id="L977">            return new NodeAffinityNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.NodeAffinityNested&lt;A&gt; editNodeAffinity(){
+<span class="nc" id="L981">            return withNewNodeAffinityLike(getNodeAffinity());</span>
+    }
+
+    public PersistentVolumeSpecFluent.NodeAffinityNested&lt;A&gt; editOrNewNodeAffinity(){
+<span class="nc bnc" id="L985" title="All 2 branches missed.">            return withNewNodeAffinityLike(getNodeAffinity() != null ? getNodeAffinity(): new VolumeNodeAffinityBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.NodeAffinityNested&lt;A&gt; editOrNewNodeAffinityLike(VolumeNodeAffinity item){
+<span class="nc bnc" id="L989" title="All 2 branches missed.">            return withNewNodeAffinityLike(getNodeAffinity() != null ? getNodeAffinity(): item);</span>
+    }
+
+    public String getPersistentVolumeReclaimPolicy(){
+<span class="nc" id="L993">            return this.persistentVolumeReclaimPolicy;</span>
+    }
+
+    public A withPersistentVolumeReclaimPolicy(String persistentVolumeReclaimPolicy){
+<span class="nc" id="L997">            this.persistentVolumeReclaimPolicy=persistentVolumeReclaimPolicy; return (A) this;</span>
+    }
+
+    public Boolean hasPersistentVolumeReclaimPolicy(){
+<span class="nc bnc" id="L1001" title="All 2 branches missed.">            return this.persistentVolumeReclaimPolicy != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPhotonPersistentDisk instead.
+ * @return The buildable object.
+ */
+@Deprecated public PhotonPersistentDiskVolumeSource getPhotonPersistentDisk(){
+<span class="nc bnc" id="L1010" title="All 2 branches missed.">            return this.photonPersistentDisk!=null?this.photonPersistentDisk.build():null;</span>
+    }
+
+    public PhotonPersistentDiskVolumeSource buildPhotonPersistentDisk(){
+<span class="nc bnc" id="L1014" title="All 2 branches missed.">            return this.photonPersistentDisk!=null?this.photonPersistentDisk.build():null;</span>
+    }
+
+    public A withPhotonPersistentDisk(PhotonPersistentDiskVolumeSource photonPersistentDisk){
+<span class="nc" id="L1018">            _visitables.remove(this.photonPersistentDisk);</span>
+<span class="nc bnc" id="L1019" title="All 2 branches missed.">            if (photonPersistentDisk!=null){ this.photonPersistentDisk= new PhotonPersistentDiskVolumeSourceBuilder(photonPersistentDisk); _visitables.add(this.photonPersistentDisk);} return (A) this;</span>
+    }
+
+    public Boolean hasPhotonPersistentDisk(){
+<span class="nc bnc" id="L1023" title="All 2 branches missed.">            return this.photonPersistentDisk != null;</span>
+    }
+
+    public A withNewPhotonPersistentDisk(String fsType,String pdID){
+<span class="nc" id="L1027">            return (A)withPhotonPersistentDisk(new PhotonPersistentDiskVolumeSource(fsType, pdID));</span>
+    }
+
+    public PersistentVolumeSpecFluent.PhotonPersistentDiskNested&lt;A&gt; withNewPhotonPersistentDisk(){
+<span class="nc" id="L1031">            return new PhotonPersistentDiskNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.PhotonPersistentDiskNested&lt;A&gt; withNewPhotonPersistentDiskLike(PhotonPersistentDiskVolumeSource item){
+<span class="nc" id="L1035">            return new PhotonPersistentDiskNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.PhotonPersistentDiskNested&lt;A&gt; editPhotonPersistentDisk(){
+<span class="nc" id="L1039">            return withNewPhotonPersistentDiskLike(getPhotonPersistentDisk());</span>
+    }
+
+    public PersistentVolumeSpecFluent.PhotonPersistentDiskNested&lt;A&gt; editOrNewPhotonPersistentDisk(){
+<span class="nc bnc" id="L1043" title="All 2 branches missed.">            return withNewPhotonPersistentDiskLike(getPhotonPersistentDisk() != null ? getPhotonPersistentDisk(): new PhotonPersistentDiskVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.PhotonPersistentDiskNested&lt;A&gt; editOrNewPhotonPersistentDiskLike(PhotonPersistentDiskVolumeSource item){
+<span class="nc bnc" id="L1047" title="All 2 branches missed.">            return withNewPhotonPersistentDiskLike(getPhotonPersistentDisk() != null ? getPhotonPersistentDisk(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPortworxVolume instead.
+ * @return The buildable object.
+ */
+@Deprecated public PortworxVolumeSource getPortworxVolume(){
+<span class="nc bnc" id="L1056" title="All 2 branches missed.">            return this.portworxVolume!=null?this.portworxVolume.build():null;</span>
+    }
+
+    public PortworxVolumeSource buildPortworxVolume(){
+<span class="nc bnc" id="L1060" title="All 2 branches missed.">            return this.portworxVolume!=null?this.portworxVolume.build():null;</span>
+    }
+
+    public A withPortworxVolume(PortworxVolumeSource portworxVolume){
+<span class="nc" id="L1064">            _visitables.remove(this.portworxVolume);</span>
+<span class="nc bnc" id="L1065" title="All 2 branches missed.">            if (portworxVolume!=null){ this.portworxVolume= new PortworxVolumeSourceBuilder(portworxVolume); _visitables.add(this.portworxVolume);} return (A) this;</span>
+    }
+
+    public Boolean hasPortworxVolume(){
+<span class="nc bnc" id="L1069" title="All 2 branches missed.">            return this.portworxVolume != null;</span>
+    }
+
+    public A withNewPortworxVolume(String fsType,Boolean readOnly,String volumeID){
+<span class="nc" id="L1073">            return (A)withPortworxVolume(new PortworxVolumeSource(fsType, readOnly, volumeID));</span>
+    }
+
+    public PersistentVolumeSpecFluent.PortworxVolumeNested&lt;A&gt; withNewPortworxVolume(){
+<span class="nc" id="L1077">            return new PortworxVolumeNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.PortworxVolumeNested&lt;A&gt; withNewPortworxVolumeLike(PortworxVolumeSource item){
+<span class="nc" id="L1081">            return new PortworxVolumeNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.PortworxVolumeNested&lt;A&gt; editPortworxVolume(){
+<span class="nc" id="L1085">            return withNewPortworxVolumeLike(getPortworxVolume());</span>
+    }
+
+    public PersistentVolumeSpecFluent.PortworxVolumeNested&lt;A&gt; editOrNewPortworxVolume(){
+<span class="nc bnc" id="L1089" title="All 2 branches missed.">            return withNewPortworxVolumeLike(getPortworxVolume() != null ? getPortworxVolume(): new PortworxVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.PortworxVolumeNested&lt;A&gt; editOrNewPortworxVolumeLike(PortworxVolumeSource item){
+<span class="nc bnc" id="L1093" title="All 2 branches missed.">            return withNewPortworxVolumeLike(getPortworxVolume() != null ? getPortworxVolume(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildQuobyte instead.
+ * @return The buildable object.
+ */
+@Deprecated public QuobyteVolumeSource getQuobyte(){
+<span class="nc bnc" id="L1102" title="All 2 branches missed.">            return this.quobyte!=null?this.quobyte.build():null;</span>
+    }
+
+    public QuobyteVolumeSource buildQuobyte(){
+<span class="nc bnc" id="L1106" title="All 2 branches missed.">            return this.quobyte!=null?this.quobyte.build():null;</span>
+    }
+
+    public A withQuobyte(QuobyteVolumeSource quobyte){
+<span class="nc" id="L1110">            _visitables.remove(this.quobyte);</span>
+<span class="nc bnc" id="L1111" title="All 2 branches missed.">            if (quobyte!=null){ this.quobyte= new QuobyteVolumeSourceBuilder(quobyte); _visitables.add(this.quobyte);} return (A) this;</span>
+    }
+
+    public Boolean hasQuobyte(){
+<span class="nc bnc" id="L1115" title="All 2 branches missed.">            return this.quobyte != null;</span>
+    }
+
+    public A withNewQuobyte(String group,Boolean readOnly,String registry,String user,String volume){
+<span class="nc" id="L1119">            return (A)withQuobyte(new QuobyteVolumeSource(group, readOnly, registry, user, volume));</span>
+    }
+
+    public PersistentVolumeSpecFluent.QuobyteNested&lt;A&gt; withNewQuobyte(){
+<span class="nc" id="L1123">            return new QuobyteNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.QuobyteNested&lt;A&gt; withNewQuobyteLike(QuobyteVolumeSource item){
+<span class="nc" id="L1127">            return new QuobyteNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.QuobyteNested&lt;A&gt; editQuobyte(){
+<span class="nc" id="L1131">            return withNewQuobyteLike(getQuobyte());</span>
+    }
+
+    public PersistentVolumeSpecFluent.QuobyteNested&lt;A&gt; editOrNewQuobyte(){
+<span class="nc bnc" id="L1135" title="All 2 branches missed.">            return withNewQuobyteLike(getQuobyte() != null ? getQuobyte(): new QuobyteVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.QuobyteNested&lt;A&gt; editOrNewQuobyteLike(QuobyteVolumeSource item){
+<span class="nc bnc" id="L1139" title="All 2 branches missed.">            return withNewQuobyteLike(getQuobyte() != null ? getQuobyte(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildRbd instead.
+ * @return The buildable object.
+ */
+@Deprecated public RBDPersistentVolumeSource getRbd(){
+<span class="nc bnc" id="L1148" title="All 2 branches missed.">            return this.rbd!=null?this.rbd.build():null;</span>
+    }
+
+    public RBDPersistentVolumeSource buildRbd(){
+<span class="nc bnc" id="L1152" title="All 2 branches missed.">            return this.rbd!=null?this.rbd.build():null;</span>
+    }
+
+    public A withRbd(RBDPersistentVolumeSource rbd){
+<span class="nc" id="L1156">            _visitables.remove(this.rbd);</span>
+<span class="nc bnc" id="L1157" title="All 2 branches missed.">            if (rbd!=null){ this.rbd= new RBDPersistentVolumeSourceBuilder(rbd); _visitables.add(this.rbd);} return (A) this;</span>
+    }
+
+    public Boolean hasRbd(){
+<span class="nc bnc" id="L1161" title="All 2 branches missed.">            return this.rbd != null;</span>
+    }
+
+    public PersistentVolumeSpecFluent.RbdNested&lt;A&gt; withNewRbd(){
+<span class="nc" id="L1165">            return new RbdNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.RbdNested&lt;A&gt; withNewRbdLike(RBDPersistentVolumeSource item){
+<span class="nc" id="L1169">            return new RbdNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.RbdNested&lt;A&gt; editRbd(){
+<span class="nc" id="L1173">            return withNewRbdLike(getRbd());</span>
+    }
+
+    public PersistentVolumeSpecFluent.RbdNested&lt;A&gt; editOrNewRbd(){
+<span class="nc bnc" id="L1177" title="All 2 branches missed.">            return withNewRbdLike(getRbd() != null ? getRbd(): new RBDPersistentVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.RbdNested&lt;A&gt; editOrNewRbdLike(RBDPersistentVolumeSource item){
+<span class="nc bnc" id="L1181" title="All 2 branches missed.">            return withNewRbdLike(getRbd() != null ? getRbd(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildScaleIO instead.
+ * @return The buildable object.
+ */
+@Deprecated public ScaleIOPersistentVolumeSource getScaleIO(){
+<span class="nc bnc" id="L1190" title="All 2 branches missed.">            return this.scaleIO!=null?this.scaleIO.build():null;</span>
+    }
+
+    public ScaleIOPersistentVolumeSource buildScaleIO(){
+<span class="nc bnc" id="L1194" title="All 2 branches missed.">            return this.scaleIO!=null?this.scaleIO.build():null;</span>
+    }
+
+    public A withScaleIO(ScaleIOPersistentVolumeSource scaleIO){
+<span class="nc" id="L1198">            _visitables.remove(this.scaleIO);</span>
+<span class="nc bnc" id="L1199" title="All 2 branches missed.">            if (scaleIO!=null){ this.scaleIO= new ScaleIOPersistentVolumeSourceBuilder(scaleIO); _visitables.add(this.scaleIO);} return (A) this;</span>
+    }
+
+    public Boolean hasScaleIO(){
+<span class="nc bnc" id="L1203" title="All 2 branches missed.">            return this.scaleIO != null;</span>
+    }
+
+    public PersistentVolumeSpecFluent.ScaleIONested&lt;A&gt; withNewScaleIO(){
+<span class="nc" id="L1207">            return new ScaleIONestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.ScaleIONested&lt;A&gt; withNewScaleIOLike(ScaleIOPersistentVolumeSource item){
+<span class="nc" id="L1211">            return new ScaleIONestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.ScaleIONested&lt;A&gt; editScaleIO(){
+<span class="nc" id="L1215">            return withNewScaleIOLike(getScaleIO());</span>
+    }
+
+    public PersistentVolumeSpecFluent.ScaleIONested&lt;A&gt; editOrNewScaleIO(){
+<span class="nc bnc" id="L1219" title="All 2 branches missed.">            return withNewScaleIOLike(getScaleIO() != null ? getScaleIO(): new ScaleIOPersistentVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.ScaleIONested&lt;A&gt; editOrNewScaleIOLike(ScaleIOPersistentVolumeSource item){
+<span class="nc bnc" id="L1223" title="All 2 branches missed.">            return withNewScaleIOLike(getScaleIO() != null ? getScaleIO(): item);</span>
+    }
+
+    public String getStorageClassName(){
+<span class="nc" id="L1227">            return this.storageClassName;</span>
+    }
+
+    public A withStorageClassName(String storageClassName){
+<span class="nc" id="L1231">            this.storageClassName=storageClassName; return (A) this;</span>
+    }
+
+    public Boolean hasStorageClassName(){
+<span class="nc bnc" id="L1235" title="All 2 branches missed.">            return this.storageClassName != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildStorageos instead.
+ * @return The buildable object.
+ */
+@Deprecated public StorageOSPersistentVolumeSource getStorageos(){
+<span class="nc bnc" id="L1244" title="All 2 branches missed.">            return this.storageos!=null?this.storageos.build():null;</span>
+    }
+
+    public StorageOSPersistentVolumeSource buildStorageos(){
+<span class="nc bnc" id="L1248" title="All 2 branches missed.">            return this.storageos!=null?this.storageos.build():null;</span>
+    }
+
+    public A withStorageos(StorageOSPersistentVolumeSource storageos){
+<span class="nc" id="L1252">            _visitables.remove(this.storageos);</span>
+<span class="nc bnc" id="L1253" title="All 2 branches missed.">            if (storageos!=null){ this.storageos= new StorageOSPersistentVolumeSourceBuilder(storageos); _visitables.add(this.storageos);} return (A) this;</span>
+    }
+
+    public Boolean hasStorageos(){
+<span class="nc bnc" id="L1257" title="All 2 branches missed.">            return this.storageos != null;</span>
+    }
+
+    public PersistentVolumeSpecFluent.StorageosNested&lt;A&gt; withNewStorageos(){
+<span class="nc" id="L1261">            return new StorageosNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.StorageosNested&lt;A&gt; withNewStorageosLike(StorageOSPersistentVolumeSource item){
+<span class="nc" id="L1265">            return new StorageosNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.StorageosNested&lt;A&gt; editStorageos(){
+<span class="nc" id="L1269">            return withNewStorageosLike(getStorageos());</span>
+    }
+
+    public PersistentVolumeSpecFluent.StorageosNested&lt;A&gt; editOrNewStorageos(){
+<span class="nc bnc" id="L1273" title="All 2 branches missed.">            return withNewStorageosLike(getStorageos() != null ? getStorageos(): new StorageOSPersistentVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.StorageosNested&lt;A&gt; editOrNewStorageosLike(StorageOSPersistentVolumeSource item){
+<span class="nc bnc" id="L1277" title="All 2 branches missed.">            return withNewStorageosLike(getStorageos() != null ? getStorageos(): item);</span>
+    }
+
+    public String getVolumeMode(){
+<span class="nc" id="L1281">            return this.volumeMode;</span>
+    }
+
+    public A withVolumeMode(String volumeMode){
+<span class="nc" id="L1285">            this.volumeMode=volumeMode; return (A) this;</span>
+    }
+
+    public Boolean hasVolumeMode(){
+<span class="nc bnc" id="L1289" title="All 2 branches missed.">            return this.volumeMode != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildVsphereVolume instead.
+ * @return The buildable object.
+ */
+@Deprecated public VsphereVirtualDiskVolumeSource getVsphereVolume(){
+<span class="nc bnc" id="L1298" title="All 2 branches missed.">            return this.vsphereVolume!=null?this.vsphereVolume.build():null;</span>
+    }
+
+    public VsphereVirtualDiskVolumeSource buildVsphereVolume(){
+<span class="nc bnc" id="L1302" title="All 2 branches missed.">            return this.vsphereVolume!=null?this.vsphereVolume.build():null;</span>
+    }
+
+    public A withVsphereVolume(VsphereVirtualDiskVolumeSource vsphereVolume){
+<span class="nc" id="L1306">            _visitables.remove(this.vsphereVolume);</span>
+<span class="nc bnc" id="L1307" title="All 2 branches missed.">            if (vsphereVolume!=null){ this.vsphereVolume= new VsphereVirtualDiskVolumeSourceBuilder(vsphereVolume); _visitables.add(this.vsphereVolume);} return (A) this;</span>
+    }
+
+    public Boolean hasVsphereVolume(){
+<span class="nc bnc" id="L1311" title="All 2 branches missed.">            return this.vsphereVolume != null;</span>
+    }
+
+    public A withNewVsphereVolume(String fsType,String storagePolicyID,String storagePolicyName,String volumePath){
+<span class="nc" id="L1315">            return (A)withVsphereVolume(new VsphereVirtualDiskVolumeSource(fsType, storagePolicyID, storagePolicyName, volumePath));</span>
+    }
+
+    public PersistentVolumeSpecFluent.VsphereVolumeNested&lt;A&gt; withNewVsphereVolume(){
+<span class="nc" id="L1319">            return new VsphereVolumeNestedImpl();</span>
+    }
+
+    public PersistentVolumeSpecFluent.VsphereVolumeNested&lt;A&gt; withNewVsphereVolumeLike(VsphereVirtualDiskVolumeSource item){
+<span class="nc" id="L1323">            return new VsphereVolumeNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeSpecFluent.VsphereVolumeNested&lt;A&gt; editVsphereVolume(){
+<span class="nc" id="L1327">            return withNewVsphereVolumeLike(getVsphereVolume());</span>
+    }
+
+    public PersistentVolumeSpecFluent.VsphereVolumeNested&lt;A&gt; editOrNewVsphereVolume(){
+<span class="nc bnc" id="L1331" title="All 2 branches missed.">            return withNewVsphereVolumeLike(getVsphereVolume() != null ? getVsphereVolume(): new VsphereVirtualDiskVolumeSourceBuilder().build());</span>
+    }
+
+    public PersistentVolumeSpecFluent.VsphereVolumeNested&lt;A&gt; editOrNewVsphereVolumeLike(VsphereVirtualDiskVolumeSource item){
+<span class="nc bnc" id="L1335" title="All 2 branches missed.">            return withNewVsphereVolumeLike(getVsphereVolume() != null ? getVsphereVolume(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L1339" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L1340" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L1341" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L1342">            PersistentVolumeSpecFluentImpl that = (PersistentVolumeSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L1343" title="All 6 branches missed.">            if (accessModes != null ? !accessModes.equals(that.accessModes) :that.accessModes != null) return false;</span>
+<span class="nc bnc" id="L1344" title="All 6 branches missed.">            if (awsElasticBlockStore != null ? !awsElasticBlockStore.equals(that.awsElasticBlockStore) :that.awsElasticBlockStore != null) return false;</span>
+<span class="nc bnc" id="L1345" title="All 6 branches missed.">            if (azureDisk != null ? !azureDisk.equals(that.azureDisk) :that.azureDisk != null) return false;</span>
+<span class="nc bnc" id="L1346" title="All 6 branches missed.">            if (azureFile != null ? !azureFile.equals(that.azureFile) :that.azureFile != null) return false;</span>
+<span class="nc bnc" id="L1347" title="All 6 branches missed.">            if (capacity != null ? !capacity.equals(that.capacity) :that.capacity != null) return false;</span>
+<span class="nc bnc" id="L1348" title="All 6 branches missed.">            if (cephfs != null ? !cephfs.equals(that.cephfs) :that.cephfs != null) return false;</span>
+<span class="nc bnc" id="L1349" title="All 6 branches missed.">            if (cinder != null ? !cinder.equals(that.cinder) :that.cinder != null) return false;</span>
+<span class="nc bnc" id="L1350" title="All 6 branches missed.">            if (claimRef != null ? !claimRef.equals(that.claimRef) :that.claimRef != null) return false;</span>
+<span class="nc bnc" id="L1351" title="All 6 branches missed.">            if (csi != null ? !csi.equals(that.csi) :that.csi != null) return false;</span>
+<span class="nc bnc" id="L1352" title="All 6 branches missed.">            if (fc != null ? !fc.equals(that.fc) :that.fc != null) return false;</span>
+<span class="nc bnc" id="L1353" title="All 6 branches missed.">            if (flexVolume != null ? !flexVolume.equals(that.flexVolume) :that.flexVolume != null) return false;</span>
+<span class="nc bnc" id="L1354" title="All 6 branches missed.">            if (flocker != null ? !flocker.equals(that.flocker) :that.flocker != null) return false;</span>
+<span class="nc bnc" id="L1355" title="All 6 branches missed.">            if (gcePersistentDisk != null ? !gcePersistentDisk.equals(that.gcePersistentDisk) :that.gcePersistentDisk != null) return false;</span>
+<span class="nc bnc" id="L1356" title="All 6 branches missed.">            if (glusterfs != null ? !glusterfs.equals(that.glusterfs) :that.glusterfs != null) return false;</span>
+<span class="nc bnc" id="L1357" title="All 6 branches missed.">            if (hostPath != null ? !hostPath.equals(that.hostPath) :that.hostPath != null) return false;</span>
+<span class="nc bnc" id="L1358" title="All 6 branches missed.">            if (iscsi != null ? !iscsi.equals(that.iscsi) :that.iscsi != null) return false;</span>
+<span class="nc bnc" id="L1359" title="All 6 branches missed.">            if (local != null ? !local.equals(that.local) :that.local != null) return false;</span>
+<span class="nc bnc" id="L1360" title="All 6 branches missed.">            if (mountOptions != null ? !mountOptions.equals(that.mountOptions) :that.mountOptions != null) return false;</span>
+<span class="nc bnc" id="L1361" title="All 6 branches missed.">            if (nfs != null ? !nfs.equals(that.nfs) :that.nfs != null) return false;</span>
+<span class="nc bnc" id="L1362" title="All 6 branches missed.">            if (nodeAffinity != null ? !nodeAffinity.equals(that.nodeAffinity) :that.nodeAffinity != null) return false;</span>
+<span class="nc bnc" id="L1363" title="All 6 branches missed.">            if (persistentVolumeReclaimPolicy != null ? !persistentVolumeReclaimPolicy.equals(that.persistentVolumeReclaimPolicy) :that.persistentVolumeReclaimPolicy != null) return false;</span>
+<span class="nc bnc" id="L1364" title="All 6 branches missed.">            if (photonPersistentDisk != null ? !photonPersistentDisk.equals(that.photonPersistentDisk) :that.photonPersistentDisk != null) return false;</span>
+<span class="nc bnc" id="L1365" title="All 6 branches missed.">            if (portworxVolume != null ? !portworxVolume.equals(that.portworxVolume) :that.portworxVolume != null) return false;</span>
+<span class="nc bnc" id="L1366" title="All 6 branches missed.">            if (quobyte != null ? !quobyte.equals(that.quobyte) :that.quobyte != null) return false;</span>
+<span class="nc bnc" id="L1367" title="All 6 branches missed.">            if (rbd != null ? !rbd.equals(that.rbd) :that.rbd != null) return false;</span>
+<span class="nc bnc" id="L1368" title="All 6 branches missed.">            if (scaleIO != null ? !scaleIO.equals(that.scaleIO) :that.scaleIO != null) return false;</span>
+<span class="nc bnc" id="L1369" title="All 6 branches missed.">            if (storageClassName != null ? !storageClassName.equals(that.storageClassName) :that.storageClassName != null) return false;</span>
+<span class="nc bnc" id="L1370" title="All 6 branches missed.">            if (storageos != null ? !storageos.equals(that.storageos) :that.storageos != null) return false;</span>
+<span class="nc bnc" id="L1371" title="All 6 branches missed.">            if (volumeMode != null ? !volumeMode.equals(that.volumeMode) :that.volumeMode != null) return false;</span>
+<span class="nc bnc" id="L1372" title="All 6 branches missed.">            if (vsphereVolume != null ? !vsphereVolume.equals(that.vsphereVolume) :that.vsphereVolume != null) return false;</span>
+<span class="nc" id="L1373">            return true;</span>
+    }
+
+
+    public class AwsElasticBlockStoreNestedImpl&lt;N&gt; extends AWSElasticBlockStoreVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.AwsElasticBlockStoreNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.AwsElasticBlockStoreNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final AWSElasticBlockStoreVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1381">            AwsElasticBlockStoreNestedImpl(AWSElasticBlockStoreVolumeSource item){</span>
+<span class="nc" id="L1382">                    this.builder = new AWSElasticBlockStoreVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1383">            }</span>
+<span class="nc" id="L1384">            AwsElasticBlockStoreNestedImpl(){</span>
+<span class="nc" id="L1385">                    this.builder = new AWSElasticBlockStoreVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1386">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1389">            return (N) PersistentVolumeSpecFluentImpl.this.withAwsElasticBlockStore(builder.build());</span>
+    }
+    public N endAwsElasticBlockStore(){
+<span class="nc" id="L1392">            return and();</span>
+    }
+
+}
+    public class AzureDiskNestedImpl&lt;N&gt; extends AzureDiskVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.AzureDiskNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.AzureDiskNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final AzureDiskVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1400">            AzureDiskNestedImpl(AzureDiskVolumeSource item){</span>
+<span class="nc" id="L1401">                    this.builder = new AzureDiskVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1402">            }</span>
+<span class="nc" id="L1403">            AzureDiskNestedImpl(){</span>
+<span class="nc" id="L1404">                    this.builder = new AzureDiskVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1405">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1408">            return (N) PersistentVolumeSpecFluentImpl.this.withAzureDisk(builder.build());</span>
+    }
+    public N endAzureDisk(){
+<span class="nc" id="L1411">            return and();</span>
+    }
+
+}
+    public class AzureFileNestedImpl&lt;N&gt; extends AzureFilePersistentVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.AzureFileNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.AzureFileNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final AzureFilePersistentVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1419">            AzureFileNestedImpl(AzureFilePersistentVolumeSource item){</span>
+<span class="nc" id="L1420">                    this.builder = new AzureFilePersistentVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1421">            }</span>
+<span class="nc" id="L1422">            AzureFileNestedImpl(){</span>
+<span class="nc" id="L1423">                    this.builder = new AzureFilePersistentVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1424">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1427">            return (N) PersistentVolumeSpecFluentImpl.this.withAzureFile(builder.build());</span>
+    }
+    public N endAzureFile(){
+<span class="nc" id="L1430">            return and();</span>
+    }
+
+}
+    public class CephfsNestedImpl&lt;N&gt; extends CephFSPersistentVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.CephfsNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.CephfsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CephFSPersistentVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1438">            CephfsNestedImpl(CephFSPersistentVolumeSource item){</span>
+<span class="nc" id="L1439">                    this.builder = new CephFSPersistentVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1440">            }</span>
+<span class="nc" id="L1441">            CephfsNestedImpl(){</span>
+<span class="nc" id="L1442">                    this.builder = new CephFSPersistentVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1443">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1446">            return (N) PersistentVolumeSpecFluentImpl.this.withCephfs(builder.build());</span>
+    }
+    public N endCephfs(){
+<span class="nc" id="L1449">            return and();</span>
+    }
+
+}
+    public class CinderNestedImpl&lt;N&gt; extends CinderPersistentVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.CinderNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.CinderNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CinderPersistentVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1457">            CinderNestedImpl(CinderPersistentVolumeSource item){</span>
+<span class="nc" id="L1458">                    this.builder = new CinderPersistentVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1459">            }</span>
+<span class="nc" id="L1460">            CinderNestedImpl(){</span>
+<span class="nc" id="L1461">                    this.builder = new CinderPersistentVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1462">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1465">            return (N) PersistentVolumeSpecFluentImpl.this.withCinder(builder.build());</span>
+    }
+    public N endCinder(){
+<span class="nc" id="L1468">            return and();</span>
+    }
+
+}
+    public class ClaimRefNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;PersistentVolumeSpecFluent.ClaimRefNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.ClaimRefNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L1476">            ClaimRefNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L1477">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L1478">            }</span>
+<span class="nc" id="L1479">            ClaimRefNestedImpl(){</span>
+<span class="nc" id="L1480">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L1481">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1484">            return (N) PersistentVolumeSpecFluentImpl.this.withClaimRef(builder.build());</span>
+    }
+    public N endClaimRef(){
+<span class="nc" id="L1487">            return and();</span>
+    }
+
+}
+    public class CsiNestedImpl&lt;N&gt; extends CSIPersistentVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.CsiNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.CsiNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CSIPersistentVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1495">            CsiNestedImpl(CSIPersistentVolumeSource item){</span>
+<span class="nc" id="L1496">                    this.builder = new CSIPersistentVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1497">            }</span>
+<span class="nc" id="L1498">            CsiNestedImpl(){</span>
+<span class="nc" id="L1499">                    this.builder = new CSIPersistentVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1500">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1503">            return (N) PersistentVolumeSpecFluentImpl.this.withCsi(builder.build());</span>
+    }
+    public N endCsi(){
+<span class="nc" id="L1506">            return and();</span>
+    }
+
+}
+    public class FcNestedImpl&lt;N&gt; extends FCVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.FcNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.FcNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final FCVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1514">            FcNestedImpl(FCVolumeSource item){</span>
+<span class="nc" id="L1515">                    this.builder = new FCVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1516">            }</span>
+<span class="nc" id="L1517">            FcNestedImpl(){</span>
+<span class="nc" id="L1518">                    this.builder = new FCVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1519">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1522">            return (N) PersistentVolumeSpecFluentImpl.this.withFc(builder.build());</span>
+    }
+    public N endFc(){
+<span class="nc" id="L1525">            return and();</span>
+    }
+
+}
+    public class FlexVolumeNestedImpl&lt;N&gt; extends FlexPersistentVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.FlexVolumeNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.FlexVolumeNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final FlexPersistentVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1533">            FlexVolumeNestedImpl(FlexPersistentVolumeSource item){</span>
+<span class="nc" id="L1534">                    this.builder = new FlexPersistentVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1535">            }</span>
+<span class="nc" id="L1536">            FlexVolumeNestedImpl(){</span>
+<span class="nc" id="L1537">                    this.builder = new FlexPersistentVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1538">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1541">            return (N) PersistentVolumeSpecFluentImpl.this.withFlexVolume(builder.build());</span>
+    }
+    public N endFlexVolume(){
+<span class="nc" id="L1544">            return and();</span>
+    }
+
+}
+    public class FlockerNestedImpl&lt;N&gt; extends FlockerVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.FlockerNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.FlockerNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final FlockerVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1552">            FlockerNestedImpl(FlockerVolumeSource item){</span>
+<span class="nc" id="L1553">                    this.builder = new FlockerVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1554">            }</span>
+<span class="nc" id="L1555">            FlockerNestedImpl(){</span>
+<span class="nc" id="L1556">                    this.builder = new FlockerVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1557">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1560">            return (N) PersistentVolumeSpecFluentImpl.this.withFlocker(builder.build());</span>
+    }
+    public N endFlocker(){
+<span class="nc" id="L1563">            return and();</span>
+    }
+
+}
+    public class GcePersistentDiskNestedImpl&lt;N&gt; extends GCEPersistentDiskVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.GcePersistentDiskNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.GcePersistentDiskNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final GCEPersistentDiskVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1571">            GcePersistentDiskNestedImpl(GCEPersistentDiskVolumeSource item){</span>
+<span class="nc" id="L1572">                    this.builder = new GCEPersistentDiskVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1573">            }</span>
+<span class="nc" id="L1574">            GcePersistentDiskNestedImpl(){</span>
+<span class="nc" id="L1575">                    this.builder = new GCEPersistentDiskVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1576">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1579">            return (N) PersistentVolumeSpecFluentImpl.this.withGcePersistentDisk(builder.build());</span>
+    }
+    public N endGcePersistentDisk(){
+<span class="nc" id="L1582">            return and();</span>
+    }
+
+}
+    public class GlusterfsNestedImpl&lt;N&gt; extends GlusterfsPersistentVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.GlusterfsNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.GlusterfsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final GlusterfsPersistentVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1590">            GlusterfsNestedImpl(GlusterfsPersistentVolumeSource item){</span>
+<span class="nc" id="L1591">                    this.builder = new GlusterfsPersistentVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1592">            }</span>
+<span class="nc" id="L1593">            GlusterfsNestedImpl(){</span>
+<span class="nc" id="L1594">                    this.builder = new GlusterfsPersistentVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1595">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1598">            return (N) PersistentVolumeSpecFluentImpl.this.withGlusterfs(builder.build());</span>
+    }
+    public N endGlusterfs(){
+<span class="nc" id="L1601">            return and();</span>
+    }
+
+}
+    public class HostPathNestedImpl&lt;N&gt; extends HostPathVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.HostPathNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.HostPathNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final HostPathVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1609">            HostPathNestedImpl(HostPathVolumeSource item){</span>
+<span class="nc" id="L1610">                    this.builder = new HostPathVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1611">            }</span>
+<span class="nc" id="L1612">            HostPathNestedImpl(){</span>
+<span class="nc" id="L1613">                    this.builder = new HostPathVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1614">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1617">            return (N) PersistentVolumeSpecFluentImpl.this.withHostPath(builder.build());</span>
+    }
+    public N endHostPath(){
+<span class="nc" id="L1620">            return and();</span>
+    }
+
+}
+    public class IscsiNestedImpl&lt;N&gt; extends ISCSIPersistentVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.IscsiNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.IscsiNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ISCSIPersistentVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1628">            IscsiNestedImpl(ISCSIPersistentVolumeSource item){</span>
+<span class="nc" id="L1629">                    this.builder = new ISCSIPersistentVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1630">            }</span>
+<span class="nc" id="L1631">            IscsiNestedImpl(){</span>
+<span class="nc" id="L1632">                    this.builder = new ISCSIPersistentVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1633">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1636">            return (N) PersistentVolumeSpecFluentImpl.this.withIscsi(builder.build());</span>
+    }
+    public N endIscsi(){
+<span class="nc" id="L1639">            return and();</span>
+    }
+
+}
+    public class LocalNestedImpl&lt;N&gt; extends LocalVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.LocalNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.LocalNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LocalVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1647">            LocalNestedImpl(LocalVolumeSource item){</span>
+<span class="nc" id="L1648">                    this.builder = new LocalVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1649">            }</span>
+<span class="nc" id="L1650">            LocalNestedImpl(){</span>
+<span class="nc" id="L1651">                    this.builder = new LocalVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1652">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1655">            return (N) PersistentVolumeSpecFluentImpl.this.withLocal(builder.build());</span>
+    }
+    public N endLocal(){
+<span class="nc" id="L1658">            return and();</span>
+    }
+
+}
+    public class NfsNestedImpl&lt;N&gt; extends NFSVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.NfsNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.NfsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NFSVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1666">            NfsNestedImpl(NFSVolumeSource item){</span>
+<span class="nc" id="L1667">                    this.builder = new NFSVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1668">            }</span>
+<span class="nc" id="L1669">            NfsNestedImpl(){</span>
+<span class="nc" id="L1670">                    this.builder = new NFSVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1671">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1674">            return (N) PersistentVolumeSpecFluentImpl.this.withNfs(builder.build());</span>
+    }
+    public N endNfs(){
+<span class="nc" id="L1677">            return and();</span>
+    }
+
+}
+    public class NodeAffinityNestedImpl&lt;N&gt; extends VolumeNodeAffinityFluentImpl&lt;PersistentVolumeSpecFluent.NodeAffinityNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.NodeAffinityNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final VolumeNodeAffinityBuilder builder;
+    
+<span class="nc" id="L1685">            NodeAffinityNestedImpl(VolumeNodeAffinity item){</span>
+<span class="nc" id="L1686">                    this.builder = new VolumeNodeAffinityBuilder(this, item);</span>
+<span class="nc" id="L1687">            }</span>
+<span class="nc" id="L1688">            NodeAffinityNestedImpl(){</span>
+<span class="nc" id="L1689">                    this.builder = new VolumeNodeAffinityBuilder(this);</span>
+<span class="nc" id="L1690">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1693">            return (N) PersistentVolumeSpecFluentImpl.this.withNodeAffinity(builder.build());</span>
+    }
+    public N endNodeAffinity(){
+<span class="nc" id="L1696">            return and();</span>
+    }
+
+}
+    public class PhotonPersistentDiskNestedImpl&lt;N&gt; extends PhotonPersistentDiskVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.PhotonPersistentDiskNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.PhotonPersistentDiskNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PhotonPersistentDiskVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1704">            PhotonPersistentDiskNestedImpl(PhotonPersistentDiskVolumeSource item){</span>
+<span class="nc" id="L1705">                    this.builder = new PhotonPersistentDiskVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1706">            }</span>
+<span class="nc" id="L1707">            PhotonPersistentDiskNestedImpl(){</span>
+<span class="nc" id="L1708">                    this.builder = new PhotonPersistentDiskVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1709">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1712">            return (N) PersistentVolumeSpecFluentImpl.this.withPhotonPersistentDisk(builder.build());</span>
+    }
+    public N endPhotonPersistentDisk(){
+<span class="nc" id="L1715">            return and();</span>
+    }
+
+}
+    public class PortworxVolumeNestedImpl&lt;N&gt; extends PortworxVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.PortworxVolumeNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.PortworxVolumeNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PortworxVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1723">            PortworxVolumeNestedImpl(PortworxVolumeSource item){</span>
+<span class="nc" id="L1724">                    this.builder = new PortworxVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1725">            }</span>
+<span class="nc" id="L1726">            PortworxVolumeNestedImpl(){</span>
+<span class="nc" id="L1727">                    this.builder = new PortworxVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1728">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1731">            return (N) PersistentVolumeSpecFluentImpl.this.withPortworxVolume(builder.build());</span>
+    }
+    public N endPortworxVolume(){
+<span class="nc" id="L1734">            return and();</span>
+    }
+
+}
+    public class QuobyteNestedImpl&lt;N&gt; extends QuobyteVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.QuobyteNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.QuobyteNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final QuobyteVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1742">            QuobyteNestedImpl(QuobyteVolumeSource item){</span>
+<span class="nc" id="L1743">                    this.builder = new QuobyteVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1744">            }</span>
+<span class="nc" id="L1745">            QuobyteNestedImpl(){</span>
+<span class="nc" id="L1746">                    this.builder = new QuobyteVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1747">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1750">            return (N) PersistentVolumeSpecFluentImpl.this.withQuobyte(builder.build());</span>
+    }
+    public N endQuobyte(){
+<span class="nc" id="L1753">            return and();</span>
+    }
+
+}
+    public class RbdNestedImpl&lt;N&gt; extends RBDPersistentVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.RbdNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.RbdNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RBDPersistentVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1761">            RbdNestedImpl(RBDPersistentVolumeSource item){</span>
+<span class="nc" id="L1762">                    this.builder = new RBDPersistentVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1763">            }</span>
+<span class="nc" id="L1764">            RbdNestedImpl(){</span>
+<span class="nc" id="L1765">                    this.builder = new RBDPersistentVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1766">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1769">            return (N) PersistentVolumeSpecFluentImpl.this.withRbd(builder.build());</span>
+    }
+    public N endRbd(){
+<span class="nc" id="L1772">            return and();</span>
+    }
+
+}
+    public class ScaleIONestedImpl&lt;N&gt; extends ScaleIOPersistentVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.ScaleIONested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.ScaleIONested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ScaleIOPersistentVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1780">            ScaleIONestedImpl(ScaleIOPersistentVolumeSource item){</span>
+<span class="nc" id="L1781">                    this.builder = new ScaleIOPersistentVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1782">            }</span>
+<span class="nc" id="L1783">            ScaleIONestedImpl(){</span>
+<span class="nc" id="L1784">                    this.builder = new ScaleIOPersistentVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1785">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1788">            return (N) PersistentVolumeSpecFluentImpl.this.withScaleIO(builder.build());</span>
+    }
+    public N endScaleIO(){
+<span class="nc" id="L1791">            return and();</span>
+    }
+
+}
+    public class StorageosNestedImpl&lt;N&gt; extends StorageOSPersistentVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.StorageosNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.StorageosNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final StorageOSPersistentVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1799">            StorageosNestedImpl(StorageOSPersistentVolumeSource item){</span>
+<span class="nc" id="L1800">                    this.builder = new StorageOSPersistentVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1801">            }</span>
+<span class="nc" id="L1802">            StorageosNestedImpl(){</span>
+<span class="nc" id="L1803">                    this.builder = new StorageOSPersistentVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1804">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1807">            return (N) PersistentVolumeSpecFluentImpl.this.withStorageos(builder.build());</span>
+    }
+    public N endStorageos(){
+<span class="nc" id="L1810">            return and();</span>
+    }
+
+}
+    public class VsphereVolumeNestedImpl&lt;N&gt; extends VsphereVirtualDiskVolumeSourceFluentImpl&lt;PersistentVolumeSpecFluent.VsphereVolumeNested&lt;N&gt;&gt; implements PersistentVolumeSpecFluent.VsphereVolumeNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final VsphereVirtualDiskVolumeSourceBuilder builder;
+    
+<span class="nc" id="L1818">            VsphereVolumeNestedImpl(VsphereVirtualDiskVolumeSource item){</span>
+<span class="nc" id="L1819">                    this.builder = new VsphereVirtualDiskVolumeSourceBuilder(this, item);</span>
+<span class="nc" id="L1820">            }</span>
+<span class="nc" id="L1821">            VsphereVolumeNestedImpl(){</span>
+<span class="nc" id="L1822">                    this.builder = new VsphereVirtualDiskVolumeSourceBuilder(this);</span>
+<span class="nc" id="L1823">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1826">            return (N) PersistentVolumeSpecFluentImpl.this.withVsphereVolume(builder.build());</span>
+    }
+    public N endVsphereVolume(){
+<span class="nc" id="L1829">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

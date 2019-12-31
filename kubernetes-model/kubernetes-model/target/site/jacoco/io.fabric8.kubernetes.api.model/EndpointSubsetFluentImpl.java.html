@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EndpointSubsetFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">EndpointSubsetFluentImpl.java</span></div><h1>EndpointSubsetFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import java.lang.Integer;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class EndpointSubsetFluentImpl&lt;A extends EndpointSubsetFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements EndpointSubsetFluent&lt;A&gt;{
+
+    private List&lt;EndpointAddressBuilder&gt; addresses;
+    private List&lt;EndpointAddressBuilder&gt; notReadyAddresses;
+    private List&lt;EndpointPortBuilder&gt; ports;
+
+<span class="nc" id="L24">    public EndpointSubsetFluentImpl(){</span>
+<span class="nc" id="L25">    }</span>
+<span class="nc" id="L26">    public EndpointSubsetFluentImpl(EndpointSubset instance){</span>
+<span class="nc" id="L27">            this.withAddresses(instance.getAddresses()); </span>
+<span class="nc" id="L28">            this.withNotReadyAddresses(instance.getNotReadyAddresses()); </span>
+<span class="nc" id="L29">            this.withPorts(instance.getPorts()); </span>
+<span class="nc" id="L30">    }</span>
+
+    public A addToAddresses(int index,EndpointAddress item){
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            if (this.addresses == null) {this.addresses = new ArrayList&lt;EndpointAddressBuilder&gt;();}</span>
+<span class="nc bnc" id="L34" title="All 4 branches missed.">            EndpointAddressBuilder builder = new EndpointAddressBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.addresses.add(index &gt;= 0 ? index : addresses.size(), builder); return (A)this;</span>
+    }
+
+    public A setToAddresses(int index,EndpointAddress item){
+<span class="nc bnc" id="L38" title="All 2 branches missed.">            if (this.addresses == null) {this.addresses = new ArrayList&lt;EndpointAddressBuilder&gt;();}</span>
+<span class="nc" id="L39">            EndpointAddressBuilder builder = new EndpointAddressBuilder(item);</span>
+<span class="nc bnc" id="L40" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L41" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= addresses.size()) { addresses.add(builder); } else { addresses.set(index, builder);}</span>
+<span class="nc" id="L42">             return (A)this;</span>
+    }
+
+    public A addToAddresses(EndpointAddress... items){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (this.addresses == null) {this.addresses = new ArrayList&lt;EndpointAddressBuilder&gt;();}</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            for (EndpointAddress item : items) {EndpointAddressBuilder builder = new EndpointAddressBuilder(item);_visitables.add(builder);this.addresses.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToAddresses(Collection&lt;EndpointAddress&gt; items){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            if (this.addresses == null) {this.addresses = new ArrayList&lt;EndpointAddressBuilder&gt;();}</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            for (EndpointAddress item : items) {EndpointAddressBuilder builder = new EndpointAddressBuilder(item);_visitables.add(builder);this.addresses.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromAddresses(EndpointAddress... items){
+<span class="nc bnc" id="L56" title="All 4 branches missed.">            for (EndpointAddress item : items) {EndpointAddressBuilder builder = new EndpointAddressBuilder(item);_visitables.remove(builder);if (this.addresses != null) {this.addresses.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAddresses(Collection&lt;EndpointAddress&gt; items){
+<span class="nc bnc" id="L60" title="All 4 branches missed.">            for (EndpointAddress item : items) {EndpointAddressBuilder builder = new EndpointAddressBuilder(item);_visitables.remove(builder);if (this.addresses != null) {this.addresses.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildAddresses instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;EndpointAddress&gt; getAddresses(){
+<span class="nc" id="L69">            return build(addresses);</span>
+    }
+
+    public List&lt;EndpointAddress&gt; buildAddresses(){
+<span class="nc" id="L73">            return build(addresses);</span>
+    }
+
+    public EndpointAddress buildAddress(int index){
+<span class="nc" id="L77">            return this.addresses.get(index).build();</span>
+    }
+
+    public EndpointAddress buildFirstAddress(){
+<span class="nc" id="L81">            return this.addresses.get(0).build();</span>
+    }
+
+    public EndpointAddress buildLastAddress(){
+<span class="nc" id="L85">            return this.addresses.get(addresses.size() - 1).build();</span>
+    }
+
+    public EndpointAddress buildMatchingAddress(io.fabric8.kubernetes.api.builder.Predicate&lt;EndpointAddressBuilder&gt; predicate){
+<span class="nc bnc" id="L89" title="All 4 branches missed.">            for (EndpointAddressBuilder item: addresses) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withAddresses(List&lt;EndpointAddress&gt; addresses){
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            if (this.addresses != null) { _visitables.removeAll(this.addresses);}</span>
+<span class="nc bnc" id="L94" title="All 4 branches missed.">            if (addresses != null) {this.addresses = new ArrayList&lt;EndpointAddressBuilder&gt;(); for (EndpointAddress item : addresses){this.addToAddresses(item);}} else { this.addresses = new ArrayList&lt;EndpointAddressBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withAddresses(EndpointAddress... addresses){
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            if (this.addresses != null) {this.addresses.clear();}</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            if (addresses != null) {for (EndpointAddress item :addresses){ this.addToAddresses(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAddresses(){
+<span class="nc bnc" id="L103" title="All 4 branches missed.">            return addresses != null &amp;&amp; !addresses.isEmpty();</span>
+    }
+
+    public EndpointSubsetFluent.AddressesNested&lt;A&gt; addNewAddress(){
+<span class="nc" id="L107">            return new AddressesNestedImpl();</span>
+    }
+
+    public EndpointSubsetFluent.AddressesNested&lt;A&gt; addNewAddressLike(EndpointAddress item){
+<span class="nc" id="L111">            return new AddressesNestedImpl(-1, item);</span>
+    }
+
+    public EndpointSubsetFluent.AddressesNested&lt;A&gt; setNewAddressLike(int index,EndpointAddress item){
+<span class="nc" id="L115">            return new AddressesNestedImpl(index, item);</span>
+    }
+
+    public EndpointSubsetFluent.AddressesNested&lt;A&gt; editAddress(int index){
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            if (addresses.size() &lt;= index) throw new RuntimeException(&quot;Can't edit addresses. Index exceeds size.&quot;);</span>
+<span class="nc" id="L120">            return setNewAddressLike(index, buildAddress(index));</span>
+    }
+
+    public EndpointSubsetFluent.AddressesNested&lt;A&gt; editFirstAddress(){
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            if (addresses.size() == 0) throw new RuntimeException(&quot;Can't edit first addresses. The list is empty.&quot;);</span>
+<span class="nc" id="L125">            return setNewAddressLike(0, buildAddress(0));</span>
+    }
+
+    public EndpointSubsetFluent.AddressesNested&lt;A&gt; editLastAddress(){
+<span class="nc" id="L129">            int index = addresses.size() - 1;</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last addresses. The list is empty.&quot;);</span>
+<span class="nc" id="L131">            return setNewAddressLike(index, buildAddress(index));</span>
+    }
+
+    public EndpointSubsetFluent.AddressesNested&lt;A&gt; editMatchingAddress(io.fabric8.kubernetes.api.builder.Predicate&lt;EndpointAddressBuilder&gt; predicate){
+<span class="nc" id="L135">            int index = -1;</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            for (int i=0;i&lt;addresses.size();i++) { </span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            if (predicate.apply(addresses.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching addresses. No match found.&quot;);</span>
+<span class="nc" id="L140">            return setNewAddressLike(index, buildAddress(index));</span>
+    }
+
+    public A addToNotReadyAddresses(int index,EndpointAddress item){
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            if (this.notReadyAddresses == null) {this.notReadyAddresses = new ArrayList&lt;EndpointAddressBuilder&gt;();}</span>
+<span class="nc bnc" id="L145" title="All 4 branches missed.">            EndpointAddressBuilder builder = new EndpointAddressBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.notReadyAddresses.add(index &gt;= 0 ? index : notReadyAddresses.size(), builder); return (A)this;</span>
+    }
+
+    public A setToNotReadyAddresses(int index,EndpointAddress item){
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (this.notReadyAddresses == null) {this.notReadyAddresses = new ArrayList&lt;EndpointAddressBuilder&gt;();}</span>
+<span class="nc" id="L150">            EndpointAddressBuilder builder = new EndpointAddressBuilder(item);</span>
+<span class="nc bnc" id="L151" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L152" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= notReadyAddresses.size()) { notReadyAddresses.add(builder); } else { notReadyAddresses.set(index, builder);}</span>
+<span class="nc" id="L153">             return (A)this;</span>
+    }
+
+    public A addToNotReadyAddresses(EndpointAddress... items){
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            if (this.notReadyAddresses == null) {this.notReadyAddresses = new ArrayList&lt;EndpointAddressBuilder&gt;();}</span>
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            for (EndpointAddress item : items) {EndpointAddressBuilder builder = new EndpointAddressBuilder(item);_visitables.add(builder);this.notReadyAddresses.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToNotReadyAddresses(Collection&lt;EndpointAddress&gt; items){
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (this.notReadyAddresses == null) {this.notReadyAddresses = new ArrayList&lt;EndpointAddressBuilder&gt;();}</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            for (EndpointAddress item : items) {EndpointAddressBuilder builder = new EndpointAddressBuilder(item);_visitables.add(builder);this.notReadyAddresses.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromNotReadyAddresses(EndpointAddress... items){
+<span class="nc bnc" id="L167" title="All 4 branches missed.">            for (EndpointAddress item : items) {EndpointAddressBuilder builder = new EndpointAddressBuilder(item);_visitables.remove(builder);if (this.notReadyAddresses != null) {this.notReadyAddresses.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromNotReadyAddresses(Collection&lt;EndpointAddress&gt; items){
+<span class="nc bnc" id="L171" title="All 4 branches missed.">            for (EndpointAddress item : items) {EndpointAddressBuilder builder = new EndpointAddressBuilder(item);_visitables.remove(builder);if (this.notReadyAddresses != null) {this.notReadyAddresses.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildNotReadyAddresses instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;EndpointAddress&gt; getNotReadyAddresses(){
+<span class="nc" id="L180">            return build(notReadyAddresses);</span>
+    }
+
+    public List&lt;EndpointAddress&gt; buildNotReadyAddresses(){
+<span class="nc" id="L184">            return build(notReadyAddresses);</span>
+    }
+
+    public EndpointAddress buildNotReadyAddress(int index){
+<span class="nc" id="L188">            return this.notReadyAddresses.get(index).build();</span>
+    }
+
+    public EndpointAddress buildFirstNotReadyAddress(){
+<span class="nc" id="L192">            return this.notReadyAddresses.get(0).build();</span>
+    }
+
+    public EndpointAddress buildLastNotReadyAddress(){
+<span class="nc" id="L196">            return this.notReadyAddresses.get(notReadyAddresses.size() - 1).build();</span>
+    }
+
+    public EndpointAddress buildMatchingNotReadyAddress(io.fabric8.kubernetes.api.builder.Predicate&lt;EndpointAddressBuilder&gt; predicate){
+<span class="nc bnc" id="L200" title="All 4 branches missed.">            for (EndpointAddressBuilder item: notReadyAddresses) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withNotReadyAddresses(List&lt;EndpointAddress&gt; notReadyAddresses){
+<span class="nc bnc" id="L204" title="All 2 branches missed.">            if (this.notReadyAddresses != null) { _visitables.removeAll(this.notReadyAddresses);}</span>
+<span class="nc bnc" id="L205" title="All 4 branches missed.">            if (notReadyAddresses != null) {this.notReadyAddresses = new ArrayList&lt;EndpointAddressBuilder&gt;(); for (EndpointAddress item : notReadyAddresses){this.addToNotReadyAddresses(item);}} else { this.notReadyAddresses = new ArrayList&lt;EndpointAddressBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withNotReadyAddresses(EndpointAddress... notReadyAddresses){
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            if (this.notReadyAddresses != null) {this.notReadyAddresses.clear();}</span>
+<span class="nc bnc" id="L210" title="All 4 branches missed.">            if (notReadyAddresses != null) {for (EndpointAddress item :notReadyAddresses){ this.addToNotReadyAddresses(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasNotReadyAddresses(){
+<span class="nc bnc" id="L214" title="All 4 branches missed.">            return notReadyAddresses != null &amp;&amp; !notReadyAddresses.isEmpty();</span>
+    }
+
+    public EndpointSubsetFluent.NotReadyAddressesNested&lt;A&gt; addNewNotReadyAddress(){
+<span class="nc" id="L218">            return new NotReadyAddressesNestedImpl();</span>
+    }
+
+    public EndpointSubsetFluent.NotReadyAddressesNested&lt;A&gt; addNewNotReadyAddressLike(EndpointAddress item){
+<span class="nc" id="L222">            return new NotReadyAddressesNestedImpl(-1, item);</span>
+    }
+
+    public EndpointSubsetFluent.NotReadyAddressesNested&lt;A&gt; setNewNotReadyAddressLike(int index,EndpointAddress item){
+<span class="nc" id="L226">            return new NotReadyAddressesNestedImpl(index, item);</span>
+    }
+
+    public EndpointSubsetFluent.NotReadyAddressesNested&lt;A&gt; editNotReadyAddress(int index){
+<span class="nc bnc" id="L230" title="All 2 branches missed.">            if (notReadyAddresses.size() &lt;= index) throw new RuntimeException(&quot;Can't edit notReadyAddresses. Index exceeds size.&quot;);</span>
+<span class="nc" id="L231">            return setNewNotReadyAddressLike(index, buildNotReadyAddress(index));</span>
+    }
+
+    public EndpointSubsetFluent.NotReadyAddressesNested&lt;A&gt; editFirstNotReadyAddress(){
+<span class="nc bnc" id="L235" title="All 2 branches missed.">            if (notReadyAddresses.size() == 0) throw new RuntimeException(&quot;Can't edit first notReadyAddresses. The list is empty.&quot;);</span>
+<span class="nc" id="L236">            return setNewNotReadyAddressLike(0, buildNotReadyAddress(0));</span>
+    }
+
+    public EndpointSubsetFluent.NotReadyAddressesNested&lt;A&gt; editLastNotReadyAddress(){
+<span class="nc" id="L240">            int index = notReadyAddresses.size() - 1;</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last notReadyAddresses. The list is empty.&quot;);</span>
+<span class="nc" id="L242">            return setNewNotReadyAddressLike(index, buildNotReadyAddress(index));</span>
+    }
+
+    public EndpointSubsetFluent.NotReadyAddressesNested&lt;A&gt; editMatchingNotReadyAddress(io.fabric8.kubernetes.api.builder.Predicate&lt;EndpointAddressBuilder&gt; predicate){
+<span class="nc" id="L246">            int index = -1;</span>
+<span class="nc bnc" id="L247" title="All 2 branches missed.">            for (int i=0;i&lt;notReadyAddresses.size();i++) { </span>
+<span class="nc bnc" id="L248" title="All 2 branches missed.">            if (predicate.apply(notReadyAddresses.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L250" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching notReadyAddresses. No match found.&quot;);</span>
+<span class="nc" id="L251">            return setNewNotReadyAddressLike(index, buildNotReadyAddress(index));</span>
+    }
+
+    public A addToPorts(int index,EndpointPort item){
+<span class="nc bnc" id="L255" title="All 2 branches missed.">            if (this.ports == null) {this.ports = new ArrayList&lt;EndpointPortBuilder&gt;();}</span>
+<span class="nc bnc" id="L256" title="All 4 branches missed.">            EndpointPortBuilder builder = new EndpointPortBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.ports.add(index &gt;= 0 ? index : ports.size(), builder); return (A)this;</span>
+    }
+
+    public A setToPorts(int index,EndpointPort item){
+<span class="nc bnc" id="L260" title="All 2 branches missed.">            if (this.ports == null) {this.ports = new ArrayList&lt;EndpointPortBuilder&gt;();}</span>
+<span class="nc" id="L261">            EndpointPortBuilder builder = new EndpointPortBuilder(item);</span>
+<span class="nc bnc" id="L262" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L263" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= ports.size()) { ports.add(builder); } else { ports.set(index, builder);}</span>
+<span class="nc" id="L264">             return (A)this;</span>
+    }
+
+    public A addToPorts(EndpointPort... items){
+<span class="nc bnc" id="L268" title="All 2 branches missed.">            if (this.ports == null) {this.ports = new ArrayList&lt;EndpointPortBuilder&gt;();}</span>
+<span class="nc bnc" id="L269" title="All 2 branches missed.">            for (EndpointPort item : items) {EndpointPortBuilder builder = new EndpointPortBuilder(item);_visitables.add(builder);this.ports.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToPorts(Collection&lt;EndpointPort&gt; items){
+<span class="nc bnc" id="L273" title="All 2 branches missed.">            if (this.ports == null) {this.ports = new ArrayList&lt;EndpointPortBuilder&gt;();}</span>
+<span class="nc bnc" id="L274" title="All 2 branches missed.">            for (EndpointPort item : items) {EndpointPortBuilder builder = new EndpointPortBuilder(item);_visitables.add(builder);this.ports.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromPorts(EndpointPort... items){
+<span class="nc bnc" id="L278" title="All 4 branches missed.">            for (EndpointPort item : items) {EndpointPortBuilder builder = new EndpointPortBuilder(item);_visitables.remove(builder);if (this.ports != null) {this.ports.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromPorts(Collection&lt;EndpointPort&gt; items){
+<span class="nc bnc" id="L282" title="All 4 branches missed.">            for (EndpointPort item : items) {EndpointPortBuilder builder = new EndpointPortBuilder(item);_visitables.remove(builder);if (this.ports != null) {this.ports.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPorts instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;EndpointPort&gt; getPorts(){
+<span class="nc" id="L291">            return build(ports);</span>
+    }
+
+    public List&lt;EndpointPort&gt; buildPorts(){
+<span class="nc" id="L295">            return build(ports);</span>
+    }
+
+    public EndpointPort buildPort(int index){
+<span class="nc" id="L299">            return this.ports.get(index).build();</span>
+    }
+
+    public EndpointPort buildFirstPort(){
+<span class="nc" id="L303">            return this.ports.get(0).build();</span>
+    }
+
+    public EndpointPort buildLastPort(){
+<span class="nc" id="L307">            return this.ports.get(ports.size() - 1).build();</span>
+    }
+
+    public EndpointPort buildMatchingPort(io.fabric8.kubernetes.api.builder.Predicate&lt;EndpointPortBuilder&gt; predicate){
+<span class="nc bnc" id="L311" title="All 4 branches missed.">            for (EndpointPortBuilder item: ports) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withPorts(List&lt;EndpointPort&gt; ports){
+<span class="nc bnc" id="L315" title="All 2 branches missed.">            if (this.ports != null) { _visitables.removeAll(this.ports);}</span>
+<span class="nc bnc" id="L316" title="All 4 branches missed.">            if (ports != null) {this.ports = new ArrayList&lt;EndpointPortBuilder&gt;(); for (EndpointPort item : ports){this.addToPorts(item);}} else { this.ports = new ArrayList&lt;EndpointPortBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withPorts(EndpointPort... ports){
+<span class="nc bnc" id="L320" title="All 2 branches missed.">            if (this.ports != null) {this.ports.clear();}</span>
+<span class="nc bnc" id="L321" title="All 4 branches missed.">            if (ports != null) {for (EndpointPort item :ports){ this.addToPorts(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasPorts(){
+<span class="nc bnc" id="L325" title="All 4 branches missed.">            return ports != null &amp;&amp; !ports.isEmpty();</span>
+    }
+
+    public A addNewPort(String name,Integer port,String protocol){
+<span class="nc" id="L329">            return (A)addToPorts(new EndpointPort(name, port, protocol));</span>
+    }
+
+    public EndpointSubsetFluent.PortsNested&lt;A&gt; addNewPort(){
+<span class="nc" id="L333">            return new PortsNestedImpl();</span>
+    }
+
+    public EndpointSubsetFluent.PortsNested&lt;A&gt; addNewPortLike(EndpointPort item){
+<span class="nc" id="L337">            return new PortsNestedImpl(-1, item);</span>
+    }
+
+    public EndpointSubsetFluent.PortsNested&lt;A&gt; setNewPortLike(int index,EndpointPort item){
+<span class="nc" id="L341">            return new PortsNestedImpl(index, item);</span>
+    }
+
+    public EndpointSubsetFluent.PortsNested&lt;A&gt; editPort(int index){
+<span class="nc bnc" id="L345" title="All 2 branches missed.">            if (ports.size() &lt;= index) throw new RuntimeException(&quot;Can't edit ports. Index exceeds size.&quot;);</span>
+<span class="nc" id="L346">            return setNewPortLike(index, buildPort(index));</span>
+    }
+
+    public EndpointSubsetFluent.PortsNested&lt;A&gt; editFirstPort(){
+<span class="nc bnc" id="L350" title="All 2 branches missed.">            if (ports.size() == 0) throw new RuntimeException(&quot;Can't edit first ports. The list is empty.&quot;);</span>
+<span class="nc" id="L351">            return setNewPortLike(0, buildPort(0));</span>
+    }
+
+    public EndpointSubsetFluent.PortsNested&lt;A&gt; editLastPort(){
+<span class="nc" id="L355">            int index = ports.size() - 1;</span>
+<span class="nc bnc" id="L356" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last ports. The list is empty.&quot;);</span>
+<span class="nc" id="L357">            return setNewPortLike(index, buildPort(index));</span>
+    }
+
+    public EndpointSubsetFluent.PortsNested&lt;A&gt; editMatchingPort(io.fabric8.kubernetes.api.builder.Predicate&lt;EndpointPortBuilder&gt; predicate){
+<span class="nc" id="L361">            int index = -1;</span>
+<span class="nc bnc" id="L362" title="All 2 branches missed.">            for (int i=0;i&lt;ports.size();i++) { </span>
+<span class="nc bnc" id="L363" title="All 2 branches missed.">            if (predicate.apply(ports.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L365" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching ports. No match found.&quot;);</span>
+<span class="nc" id="L366">            return setNewPortLike(index, buildPort(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L370" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L371" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L372" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L373">            EndpointSubsetFluentImpl that = (EndpointSubsetFluentImpl) o;</span>
+<span class="nc bnc" id="L374" title="All 6 branches missed.">            if (addresses != null ? !addresses.equals(that.addresses) :that.addresses != null) return false;</span>
+<span class="nc bnc" id="L375" title="All 6 branches missed.">            if (notReadyAddresses != null ? !notReadyAddresses.equals(that.notReadyAddresses) :that.notReadyAddresses != null) return false;</span>
+<span class="nc bnc" id="L376" title="All 6 branches missed.">            if (ports != null ? !ports.equals(that.ports) :that.ports != null) return false;</span>
+<span class="nc" id="L377">            return true;</span>
+    }
+
+
+    public class AddressesNestedImpl&lt;N&gt; extends EndpointAddressFluentImpl&lt;EndpointSubsetFluent.AddressesNested&lt;N&gt;&gt; implements EndpointSubsetFluent.AddressesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EndpointAddressBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L386">            AddressesNestedImpl(int index,EndpointAddress item){</span>
+<span class="nc" id="L387">                    this.index = index;</span>
+<span class="nc" id="L388">                    this.builder = new EndpointAddressBuilder(this, item);</span>
+<span class="nc" id="L389">            }</span>
+<span class="nc" id="L390">            AddressesNestedImpl(){</span>
+<span class="nc" id="L391">                    this.index = -1;</span>
+<span class="nc" id="L392">                    this.builder = new EndpointAddressBuilder(this);</span>
+<span class="nc" id="L393">            }</span>
+    
+    public N and(){
+<span class="nc" id="L396">            return (N) EndpointSubsetFluentImpl.this.setToAddresses(index, builder.build());</span>
+    }
+    public N endAddress(){
+<span class="nc" id="L399">            return and();</span>
+    }
+
+}
+    public class NotReadyAddressesNestedImpl&lt;N&gt; extends EndpointAddressFluentImpl&lt;EndpointSubsetFluent.NotReadyAddressesNested&lt;N&gt;&gt; implements EndpointSubsetFluent.NotReadyAddressesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EndpointAddressBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L408">            NotReadyAddressesNestedImpl(int index,EndpointAddress item){</span>
+<span class="nc" id="L409">                    this.index = index;</span>
+<span class="nc" id="L410">                    this.builder = new EndpointAddressBuilder(this, item);</span>
+<span class="nc" id="L411">            }</span>
+<span class="nc" id="L412">            NotReadyAddressesNestedImpl(){</span>
+<span class="nc" id="L413">                    this.index = -1;</span>
+<span class="nc" id="L414">                    this.builder = new EndpointAddressBuilder(this);</span>
+<span class="nc" id="L415">            }</span>
+    
+    public N and(){
+<span class="nc" id="L418">            return (N) EndpointSubsetFluentImpl.this.setToNotReadyAddresses(index, builder.build());</span>
+    }
+    public N endNotReadyAddress(){
+<span class="nc" id="L421">            return and();</span>
+    }
+
+}
+    public class PortsNestedImpl&lt;N&gt; extends EndpointPortFluentImpl&lt;EndpointSubsetFluent.PortsNested&lt;N&gt;&gt; implements EndpointSubsetFluent.PortsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EndpointPortBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L430">            PortsNestedImpl(int index,EndpointPort item){</span>
+<span class="nc" id="L431">                    this.index = index;</span>
+<span class="nc" id="L432">                    this.builder = new EndpointPortBuilder(this, item);</span>
+<span class="nc" id="L433">            }</span>
+<span class="nc" id="L434">            PortsNestedImpl(){</span>
+<span class="nc" id="L435">                    this.index = -1;</span>
+<span class="nc" id="L436">                    this.builder = new EndpointPortBuilder(this);</span>
+<span class="nc" id="L437">            }</span>
+    
+    public N and(){
+<span class="nc" id="L440">            return (N) EndpointSubsetFluentImpl.this.setToPorts(index, builder.build());</span>
+    }
+    public N endPort(){
+<span class="nc" id="L443">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

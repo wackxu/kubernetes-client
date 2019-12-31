@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HorizontalPodAutoscalerStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">HorizontalPodAutoscalerStatusFluentImpl.java</span></div><h1>HorizontalPodAutoscalerStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import java.lang.Integer;
+import javax.validation.Valid;
+import java.lang.Long;
+import java.util.Collection;
+import java.lang.Object;
+
+public class HorizontalPodAutoscalerStatusFluentImpl&lt;A extends HorizontalPodAutoscalerStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements HorizontalPodAutoscalerStatusFluent&lt;A&gt;{
+
+    private List&lt;HorizontalPodAutoscalerConditionBuilder&gt; conditions;
+    private List&lt;MetricStatusBuilder&gt; currentMetrics;
+    private Integer currentReplicas;
+    private Integer desiredReplicas;
+    private String lastScaleTime;
+    private Long observedGeneration;
+
+<span class="nc" id="L27">    public HorizontalPodAutoscalerStatusFluentImpl(){</span>
+<span class="nc" id="L28">    }</span>
+<span class="nc" id="L29">    public HorizontalPodAutoscalerStatusFluentImpl(HorizontalPodAutoscalerStatus instance){</span>
+<span class="nc" id="L30">            this.withConditions(instance.getConditions()); </span>
+<span class="nc" id="L31">            this.withCurrentMetrics(instance.getCurrentMetrics()); </span>
+<span class="nc" id="L32">            this.withCurrentReplicas(instance.getCurrentReplicas()); </span>
+<span class="nc" id="L33">            this.withDesiredReplicas(instance.getDesiredReplicas()); </span>
+<span class="nc" id="L34">            this.withLastScaleTime(instance.getLastScaleTime()); </span>
+<span class="nc" id="L35">            this.withObservedGeneration(instance.getObservedGeneration()); </span>
+<span class="nc" id="L36">    }</span>
+
+    public A addToConditions(int index,HorizontalPodAutoscalerCondition item){
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;HorizontalPodAutoscalerConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L40" title="All 4 branches missed.">            HorizontalPodAutoscalerConditionBuilder builder = new HorizontalPodAutoscalerConditionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.conditions.add(index &gt;= 0 ? index : conditions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToConditions(int index,HorizontalPodAutoscalerCondition item){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;HorizontalPodAutoscalerConditionBuilder&gt;();}</span>
+<span class="nc" id="L45">            HorizontalPodAutoscalerConditionBuilder builder = new HorizontalPodAutoscalerConditionBuilder(item);</span>
+<span class="nc bnc" id="L46" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L47" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= conditions.size()) { conditions.add(builder); } else { conditions.set(index, builder);}</span>
+<span class="nc" id="L48">             return (A)this;</span>
+    }
+
+    public A addToConditions(HorizontalPodAutoscalerCondition... items){
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;HorizontalPodAutoscalerConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            for (HorizontalPodAutoscalerCondition item : items) {HorizontalPodAutoscalerConditionBuilder builder = new HorizontalPodAutoscalerConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToConditions(Collection&lt;HorizontalPodAutoscalerCondition&gt; items){
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;HorizontalPodAutoscalerConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            for (HorizontalPodAutoscalerCondition item : items) {HorizontalPodAutoscalerConditionBuilder builder = new HorizontalPodAutoscalerConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromConditions(HorizontalPodAutoscalerCondition... items){
+<span class="nc bnc" id="L62" title="All 4 branches missed.">            for (HorizontalPodAutoscalerCondition item : items) {HorizontalPodAutoscalerConditionBuilder builder = new HorizontalPodAutoscalerConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromConditions(Collection&lt;HorizontalPodAutoscalerCondition&gt; items){
+<span class="nc bnc" id="L66" title="All 4 branches missed.">            for (HorizontalPodAutoscalerCondition item : items) {HorizontalPodAutoscalerConditionBuilder builder = new HorizontalPodAutoscalerConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildConditions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;HorizontalPodAutoscalerCondition&gt; getConditions(){
+<span class="nc" id="L75">            return build(conditions);</span>
+    }
+
+    public List&lt;HorizontalPodAutoscalerCondition&gt; buildConditions(){
+<span class="nc" id="L79">            return build(conditions);</span>
+    }
+
+    public HorizontalPodAutoscalerCondition buildCondition(int index){
+<span class="nc" id="L83">            return this.conditions.get(index).build();</span>
+    }
+
+    public HorizontalPodAutoscalerCondition buildFirstCondition(){
+<span class="nc" id="L87">            return this.conditions.get(0).build();</span>
+    }
+
+    public HorizontalPodAutoscalerCondition buildLastCondition(){
+<span class="nc" id="L91">            return this.conditions.get(conditions.size() - 1).build();</span>
+    }
+
+    public HorizontalPodAutoscalerCondition buildMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;HorizontalPodAutoscalerConditionBuilder&gt; predicate){
+<span class="nc bnc" id="L95" title="All 4 branches missed.">            for (HorizontalPodAutoscalerConditionBuilder item: conditions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withConditions(List&lt;HorizontalPodAutoscalerCondition&gt; conditions){
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            if (this.conditions != null) { _visitables.removeAll(this.conditions);}</span>
+<span class="nc bnc" id="L100" title="All 4 branches missed.">            if (conditions != null) {this.conditions = new ArrayList&lt;HorizontalPodAutoscalerConditionBuilder&gt;(); for (HorizontalPodAutoscalerCondition item : conditions){this.addToConditions(item);}} else { this.conditions = new ArrayList&lt;HorizontalPodAutoscalerConditionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withConditions(HorizontalPodAutoscalerCondition... conditions){
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            if (this.conditions != null) {this.conditions.clear();}</span>
+<span class="nc bnc" id="L105" title="All 4 branches missed.">            if (conditions != null) {for (HorizontalPodAutoscalerCondition item :conditions){ this.addToConditions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasConditions(){
+<span class="nc bnc" id="L109" title="All 4 branches missed.">            return conditions != null &amp;&amp; !conditions.isEmpty();</span>
+    }
+
+    public A addNewCondition(String lastTransitionTime,String message,String reason,String status,String type){
+<span class="nc" id="L113">            return (A)addToConditions(new HorizontalPodAutoscalerCondition(lastTransitionTime, message, reason, status, type));</span>
+    }
+
+    public HorizontalPodAutoscalerStatusFluent.ConditionsNested&lt;A&gt; addNewCondition(){
+<span class="nc" id="L117">            return new ConditionsNestedImpl();</span>
+    }
+
+    public HorizontalPodAutoscalerStatusFluent.ConditionsNested&lt;A&gt; addNewConditionLike(HorizontalPodAutoscalerCondition item){
+<span class="nc" id="L121">            return new ConditionsNestedImpl(-1, item);</span>
+    }
+
+    public HorizontalPodAutoscalerStatusFluent.ConditionsNested&lt;A&gt; setNewConditionLike(int index,HorizontalPodAutoscalerCondition item){
+<span class="nc" id="L125">            return new ConditionsNestedImpl(index, item);</span>
+    }
+
+    public HorizontalPodAutoscalerStatusFluent.ConditionsNested&lt;A&gt; editCondition(int index){
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            if (conditions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit conditions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L130">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public HorizontalPodAutoscalerStatusFluent.ConditionsNested&lt;A&gt; editFirstCondition(){
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            if (conditions.size() == 0) throw new RuntimeException(&quot;Can't edit first conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L135">            return setNewConditionLike(0, buildCondition(0));</span>
+    }
+
+    public HorizontalPodAutoscalerStatusFluent.ConditionsNested&lt;A&gt; editLastCondition(){
+<span class="nc" id="L139">            int index = conditions.size() - 1;</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L141">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public HorizontalPodAutoscalerStatusFluent.ConditionsNested&lt;A&gt; editMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;HorizontalPodAutoscalerConditionBuilder&gt; predicate){
+<span class="nc" id="L145">            int index = -1;</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            for (int i=0;i&lt;conditions.size();i++) { </span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">            if (predicate.apply(conditions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching conditions. No match found.&quot;);</span>
+<span class="nc" id="L150">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public A addToCurrentMetrics(int index,MetricStatus item){
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            if (this.currentMetrics == null) {this.currentMetrics = new ArrayList&lt;MetricStatusBuilder&gt;();}</span>
+<span class="nc bnc" id="L155" title="All 4 branches missed.">            MetricStatusBuilder builder = new MetricStatusBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.currentMetrics.add(index &gt;= 0 ? index : currentMetrics.size(), builder); return (A)this;</span>
+    }
+
+    public A setToCurrentMetrics(int index,MetricStatus item){
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            if (this.currentMetrics == null) {this.currentMetrics = new ArrayList&lt;MetricStatusBuilder&gt;();}</span>
+<span class="nc" id="L160">            MetricStatusBuilder builder = new MetricStatusBuilder(item);</span>
+<span class="nc bnc" id="L161" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L162" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= currentMetrics.size()) { currentMetrics.add(builder); } else { currentMetrics.set(index, builder);}</span>
+<span class="nc" id="L163">             return (A)this;</span>
+    }
+
+    public A addToCurrentMetrics(MetricStatus... items){
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (this.currentMetrics == null) {this.currentMetrics = new ArrayList&lt;MetricStatusBuilder&gt;();}</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">            for (MetricStatus item : items) {MetricStatusBuilder builder = new MetricStatusBuilder(item);_visitables.add(builder);this.currentMetrics.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToCurrentMetrics(Collection&lt;MetricStatus&gt; items){
+<span class="nc bnc" id="L172" title="All 2 branches missed.">            if (this.currentMetrics == null) {this.currentMetrics = new ArrayList&lt;MetricStatusBuilder&gt;();}</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            for (MetricStatus item : items) {MetricStatusBuilder builder = new MetricStatusBuilder(item);_visitables.add(builder);this.currentMetrics.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromCurrentMetrics(MetricStatus... items){
+<span class="nc bnc" id="L177" title="All 4 branches missed.">            for (MetricStatus item : items) {MetricStatusBuilder builder = new MetricStatusBuilder(item);_visitables.remove(builder);if (this.currentMetrics != null) {this.currentMetrics.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromCurrentMetrics(Collection&lt;MetricStatus&gt; items){
+<span class="nc bnc" id="L181" title="All 4 branches missed.">            for (MetricStatus item : items) {MetricStatusBuilder builder = new MetricStatusBuilder(item);_visitables.remove(builder);if (this.currentMetrics != null) {this.currentMetrics.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildCurrentMetrics instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;MetricStatus&gt; getCurrentMetrics(){
+<span class="nc" id="L190">            return build(currentMetrics);</span>
+    }
+
+    public List&lt;MetricStatus&gt; buildCurrentMetrics(){
+<span class="nc" id="L194">            return build(currentMetrics);</span>
+    }
+
+    public MetricStatus buildCurrentMetric(int index){
+<span class="nc" id="L198">            return this.currentMetrics.get(index).build();</span>
+    }
+
+    public MetricStatus buildFirstCurrentMetric(){
+<span class="nc" id="L202">            return this.currentMetrics.get(0).build();</span>
+    }
+
+    public MetricStatus buildLastCurrentMetric(){
+<span class="nc" id="L206">            return this.currentMetrics.get(currentMetrics.size() - 1).build();</span>
+    }
+
+    public MetricStatus buildMatchingCurrentMetric(io.fabric8.kubernetes.api.builder.Predicate&lt;MetricStatusBuilder&gt; predicate){
+<span class="nc bnc" id="L210" title="All 4 branches missed.">            for (MetricStatusBuilder item: currentMetrics) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withCurrentMetrics(List&lt;MetricStatus&gt; currentMetrics){
+<span class="nc bnc" id="L214" title="All 2 branches missed.">            if (this.currentMetrics != null) { _visitables.removeAll(this.currentMetrics);}</span>
+<span class="nc bnc" id="L215" title="All 4 branches missed.">            if (currentMetrics != null) {this.currentMetrics = new ArrayList&lt;MetricStatusBuilder&gt;(); for (MetricStatus item : currentMetrics){this.addToCurrentMetrics(item);}} else { this.currentMetrics = new ArrayList&lt;MetricStatusBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withCurrentMetrics(MetricStatus... currentMetrics){
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            if (this.currentMetrics != null) {this.currentMetrics.clear();}</span>
+<span class="nc bnc" id="L220" title="All 4 branches missed.">            if (currentMetrics != null) {for (MetricStatus item :currentMetrics){ this.addToCurrentMetrics(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasCurrentMetrics(){
+<span class="nc bnc" id="L224" title="All 4 branches missed.">            return currentMetrics != null &amp;&amp; !currentMetrics.isEmpty();</span>
+    }
+
+    public HorizontalPodAutoscalerStatusFluent.CurrentMetricsNested&lt;A&gt; addNewCurrentMetric(){
+<span class="nc" id="L228">            return new CurrentMetricsNestedImpl();</span>
+    }
+
+    public HorizontalPodAutoscalerStatusFluent.CurrentMetricsNested&lt;A&gt; addNewCurrentMetricLike(MetricStatus item){
+<span class="nc" id="L232">            return new CurrentMetricsNestedImpl(-1, item);</span>
+    }
+
+    public HorizontalPodAutoscalerStatusFluent.CurrentMetricsNested&lt;A&gt; setNewCurrentMetricLike(int index,MetricStatus item){
+<span class="nc" id="L236">            return new CurrentMetricsNestedImpl(index, item);</span>
+    }
+
+    public HorizontalPodAutoscalerStatusFluent.CurrentMetricsNested&lt;A&gt; editCurrentMetric(int index){
+<span class="nc bnc" id="L240" title="All 2 branches missed.">            if (currentMetrics.size() &lt;= index) throw new RuntimeException(&quot;Can't edit currentMetrics. Index exceeds size.&quot;);</span>
+<span class="nc" id="L241">            return setNewCurrentMetricLike(index, buildCurrentMetric(index));</span>
+    }
+
+    public HorizontalPodAutoscalerStatusFluent.CurrentMetricsNested&lt;A&gt; editFirstCurrentMetric(){
+<span class="nc bnc" id="L245" title="All 2 branches missed.">            if (currentMetrics.size() == 0) throw new RuntimeException(&quot;Can't edit first currentMetrics. The list is empty.&quot;);</span>
+<span class="nc" id="L246">            return setNewCurrentMetricLike(0, buildCurrentMetric(0));</span>
+    }
+
+    public HorizontalPodAutoscalerStatusFluent.CurrentMetricsNested&lt;A&gt; editLastCurrentMetric(){
+<span class="nc" id="L250">            int index = currentMetrics.size() - 1;</span>
+<span class="nc bnc" id="L251" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last currentMetrics. The list is empty.&quot;);</span>
+<span class="nc" id="L252">            return setNewCurrentMetricLike(index, buildCurrentMetric(index));</span>
+    }
+
+    public HorizontalPodAutoscalerStatusFluent.CurrentMetricsNested&lt;A&gt; editMatchingCurrentMetric(io.fabric8.kubernetes.api.builder.Predicate&lt;MetricStatusBuilder&gt; predicate){
+<span class="nc" id="L256">            int index = -1;</span>
+<span class="nc bnc" id="L257" title="All 2 branches missed.">            for (int i=0;i&lt;currentMetrics.size();i++) { </span>
+<span class="nc bnc" id="L258" title="All 2 branches missed.">            if (predicate.apply(currentMetrics.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L260" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching currentMetrics. No match found.&quot;);</span>
+<span class="nc" id="L261">            return setNewCurrentMetricLike(index, buildCurrentMetric(index));</span>
+    }
+
+    public Integer getCurrentReplicas(){
+<span class="nc" id="L265">            return this.currentReplicas;</span>
+    }
+
+    public A withCurrentReplicas(Integer currentReplicas){
+<span class="nc" id="L269">            this.currentReplicas=currentReplicas; return (A) this;</span>
+    }
+
+    public Boolean hasCurrentReplicas(){
+<span class="nc bnc" id="L273" title="All 2 branches missed.">            return this.currentReplicas != null;</span>
+    }
+
+    public Integer getDesiredReplicas(){
+<span class="nc" id="L277">            return this.desiredReplicas;</span>
+    }
+
+    public A withDesiredReplicas(Integer desiredReplicas){
+<span class="nc" id="L281">            this.desiredReplicas=desiredReplicas; return (A) this;</span>
+    }
+
+    public Boolean hasDesiredReplicas(){
+<span class="nc bnc" id="L285" title="All 2 branches missed.">            return this.desiredReplicas != null;</span>
+    }
+
+    public String getLastScaleTime(){
+<span class="nc" id="L289">            return this.lastScaleTime;</span>
+    }
+
+    public A withLastScaleTime(String lastScaleTime){
+<span class="nc" id="L293">            this.lastScaleTime=lastScaleTime; return (A) this;</span>
+    }
+
+    public Boolean hasLastScaleTime(){
+<span class="nc bnc" id="L297" title="All 2 branches missed.">            return this.lastScaleTime != null;</span>
+    }
+
+    public Long getObservedGeneration(){
+<span class="nc" id="L301">            return this.observedGeneration;</span>
+    }
+
+    public A withObservedGeneration(Long observedGeneration){
+<span class="nc" id="L305">            this.observedGeneration=observedGeneration; return (A) this;</span>
+    }
+
+    public Boolean hasObservedGeneration(){
+<span class="nc bnc" id="L309" title="All 2 branches missed.">            return this.observedGeneration != null;</span>
+    }
+
+    public A withNewObservedGeneration(String arg1){
+<span class="nc" id="L313">            return (A)withObservedGeneration(new Long(arg1));</span>
+    }
+
+    public A withNewObservedGeneration(long arg1){
+<span class="nc" id="L317">            return (A)withObservedGeneration(new Long(arg1));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L321" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L322" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L323" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L324">            HorizontalPodAutoscalerStatusFluentImpl that = (HorizontalPodAutoscalerStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L325" title="All 6 branches missed.">            if (conditions != null ? !conditions.equals(that.conditions) :that.conditions != null) return false;</span>
+<span class="nc bnc" id="L326" title="All 6 branches missed.">            if (currentMetrics != null ? !currentMetrics.equals(that.currentMetrics) :that.currentMetrics != null) return false;</span>
+<span class="nc bnc" id="L327" title="All 6 branches missed.">            if (currentReplicas != null ? !currentReplicas.equals(that.currentReplicas) :that.currentReplicas != null) return false;</span>
+<span class="nc bnc" id="L328" title="All 6 branches missed.">            if (desiredReplicas != null ? !desiredReplicas.equals(that.desiredReplicas) :that.desiredReplicas != null) return false;</span>
+<span class="nc bnc" id="L329" title="All 6 branches missed.">            if (lastScaleTime != null ? !lastScaleTime.equals(that.lastScaleTime) :that.lastScaleTime != null) return false;</span>
+<span class="nc bnc" id="L330" title="All 6 branches missed.">            if (observedGeneration != null ? !observedGeneration.equals(that.observedGeneration) :that.observedGeneration != null) return false;</span>
+<span class="nc" id="L331">            return true;</span>
+    }
+
+
+    public class ConditionsNestedImpl&lt;N&gt; extends HorizontalPodAutoscalerConditionFluentImpl&lt;HorizontalPodAutoscalerStatusFluent.ConditionsNested&lt;N&gt;&gt; implements HorizontalPodAutoscalerStatusFluent.ConditionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final HorizontalPodAutoscalerConditionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L340">            ConditionsNestedImpl(int index,HorizontalPodAutoscalerCondition item){</span>
+<span class="nc" id="L341">                    this.index = index;</span>
+<span class="nc" id="L342">                    this.builder = new HorizontalPodAutoscalerConditionBuilder(this, item);</span>
+<span class="nc" id="L343">            }</span>
+<span class="nc" id="L344">            ConditionsNestedImpl(){</span>
+<span class="nc" id="L345">                    this.index = -1;</span>
+<span class="nc" id="L346">                    this.builder = new HorizontalPodAutoscalerConditionBuilder(this);</span>
+<span class="nc" id="L347">            }</span>
+    
+    public N and(){
+<span class="nc" id="L350">            return (N) HorizontalPodAutoscalerStatusFluentImpl.this.setToConditions(index, builder.build());</span>
+    }
+    public N endCondition(){
+<span class="nc" id="L353">            return and();</span>
+    }
+
+}
+    public class CurrentMetricsNestedImpl&lt;N&gt; extends MetricStatusFluentImpl&lt;HorizontalPodAutoscalerStatusFluent.CurrentMetricsNested&lt;N&gt;&gt; implements HorizontalPodAutoscalerStatusFluent.CurrentMetricsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final MetricStatusBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L362">            CurrentMetricsNestedImpl(int index,MetricStatus item){</span>
+<span class="nc" id="L363">                    this.index = index;</span>
+<span class="nc" id="L364">                    this.builder = new MetricStatusBuilder(this, item);</span>
+<span class="nc" id="L365">            }</span>
+<span class="nc" id="L366">            CurrentMetricsNestedImpl(){</span>
+<span class="nc" id="L367">                    this.index = -1;</span>
+<span class="nc" id="L368">                    this.builder = new MetricStatusBuilder(this);</span>
+<span class="nc" id="L369">            }</span>
+    
+    public N and(){
+<span class="nc" id="L372">            return (N) HorizontalPodAutoscalerStatusFluentImpl.this.setToCurrentMetrics(index, builder.build());</span>
+    }
+    public N endCurrentMetric(){
+<span class="nc" id="L375">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

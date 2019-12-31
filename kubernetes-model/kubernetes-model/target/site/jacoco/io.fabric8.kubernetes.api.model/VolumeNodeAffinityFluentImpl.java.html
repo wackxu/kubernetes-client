@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VolumeNodeAffinityFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">VolumeNodeAffinityFluentImpl.java</span></div><h1>VolumeNodeAffinityFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class VolumeNodeAffinityFluentImpl&lt;A extends VolumeNodeAffinityFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements VolumeNodeAffinityFluent&lt;A&gt;{
+
+    private NodeSelectorBuilder required;
+
+<span class="nc" id="L15">    public VolumeNodeAffinityFluentImpl(){</span>
+<span class="nc" id="L16">    }</span>
+<span class="nc" id="L17">    public VolumeNodeAffinityFluentImpl(VolumeNodeAffinity instance){</span>
+<span class="nc" id="L18">            this.withRequired(instance.getRequired()); </span>
+<span class="nc" id="L19">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildRequired instead.
+ * @return The buildable object.
+ */
+@Deprecated public NodeSelector getRequired(){
+<span class="nc bnc" id="L27" title="All 2 branches missed.">            return this.required!=null?this.required.build():null;</span>
+    }
+
+    public NodeSelector buildRequired(){
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            return this.required!=null?this.required.build():null;</span>
+    }
+
+    public A withRequired(NodeSelector required){
+<span class="nc" id="L35">            _visitables.remove(this.required);</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            if (required!=null){ this.required= new NodeSelectorBuilder(required); _visitables.add(this.required);} return (A) this;</span>
+    }
+
+    public Boolean hasRequired(){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            return this.required != null;</span>
+    }
+
+    public VolumeNodeAffinityFluent.RequiredNested&lt;A&gt; withNewRequired(){
+<span class="nc" id="L44">            return new RequiredNestedImpl();</span>
+    }
+
+    public VolumeNodeAffinityFluent.RequiredNested&lt;A&gt; withNewRequiredLike(NodeSelector item){
+<span class="nc" id="L48">            return new RequiredNestedImpl(item);</span>
+    }
+
+    public VolumeNodeAffinityFluent.RequiredNested&lt;A&gt; editRequired(){
+<span class="nc" id="L52">            return withNewRequiredLike(getRequired());</span>
+    }
+
+    public VolumeNodeAffinityFluent.RequiredNested&lt;A&gt; editOrNewRequired(){
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            return withNewRequiredLike(getRequired() != null ? getRequired(): new NodeSelectorBuilder().build());</span>
+    }
+
+    public VolumeNodeAffinityFluent.RequiredNested&lt;A&gt; editOrNewRequiredLike(NodeSelector item){
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            return withNewRequiredLike(getRequired() != null ? getRequired(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L65" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L67">            VolumeNodeAffinityFluentImpl that = (VolumeNodeAffinityFluentImpl) o;</span>
+<span class="nc bnc" id="L68" title="All 6 branches missed.">            if (required != null ? !required.equals(that.required) :that.required != null) return false;</span>
+<span class="nc" id="L69">            return true;</span>
+    }
+
+
+    public class RequiredNestedImpl&lt;N&gt; extends NodeSelectorFluentImpl&lt;VolumeNodeAffinityFluent.RequiredNested&lt;N&gt;&gt; implements VolumeNodeAffinityFluent.RequiredNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NodeSelectorBuilder builder;
+    
+<span class="nc" id="L77">            RequiredNestedImpl(NodeSelector item){</span>
+<span class="nc" id="L78">                    this.builder = new NodeSelectorBuilder(this, item);</span>
+<span class="nc" id="L79">            }</span>
+<span class="nc" id="L80">            RequiredNestedImpl(){</span>
+<span class="nc" id="L81">                    this.builder = new NodeSelectorBuilder(this);</span>
+<span class="nc" id="L82">            }</span>
+    
+    public N and(){
+<span class="nc" id="L85">            return (N) VolumeNodeAffinityFluentImpl.this.withRequired(builder.build());</span>
+    }
+    public N endRequired(){
+<span class="nc" id="L88">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

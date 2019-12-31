@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ScaleIOVolumeSource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ScaleIOVolumeSource.java</span></div><h1>ScaleIOVolumeSource.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;fsType&quot;,
+    &quot;gateway&quot;,
+    &quot;protectionDomain&quot;,
+    &quot;readOnly&quot;,
+    &quot;secretRef&quot;,
+    &quot;sslEnabled&quot;,
+    &quot;storageMode&quot;,
+    &quot;storagePool&quot;,
+    &quot;system&quot;,
+    &quot;volumeName&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L44">@ToString</span>
+<span class="nc bnc" id="L45" title="All 94 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class ScaleIOVolumeSource implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    private String fsType;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;gateway&quot;)
+    private String gateway;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;protectionDomain&quot;)
+    private String protectionDomain;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    private Boolean readOnly;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;secretRef&quot;)
+    @Valid
+    private LocalObjectReference secretRef;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;sslEnabled&quot;)
+    private Boolean sslEnabled;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;storageMode&quot;)
+    private String storageMode;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;storagePool&quot;)
+    private String storagePool;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;system&quot;)
+    private String system;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;volumeName&quot;)
+    private String volumeName;
+<span class="nc" id="L111">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L118">    public ScaleIOVolumeSource() {</span>
+<span class="nc" id="L119">    }</span>
+
+    /**
+     * 
+     * @param system
+     * @param protectionDomain
+     * @param sslEnabled
+     * @param storageMode
+     * @param volumeName
+     * @param secretRef
+     * @param readOnly
+     * @param fsType
+     * @param storagePool
+     * @param gateway
+     */
+<span class="nc" id="L134">    public ScaleIOVolumeSource(String fsType, String gateway, String protectionDomain, Boolean readOnly, LocalObjectReference secretRef, Boolean sslEnabled, String storageMode, String storagePool, String system, String volumeName) {</span>
+<span class="nc" id="L135">        this.fsType = fsType;</span>
+<span class="nc" id="L136">        this.gateway = gateway;</span>
+<span class="nc" id="L137">        this.protectionDomain = protectionDomain;</span>
+<span class="nc" id="L138">        this.readOnly = readOnly;</span>
+<span class="nc" id="L139">        this.secretRef = secretRef;</span>
+<span class="nc" id="L140">        this.sslEnabled = sslEnabled;</span>
+<span class="nc" id="L141">        this.storageMode = storageMode;</span>
+<span class="nc" id="L142">        this.storagePool = storagePool;</span>
+<span class="nc" id="L143">        this.system = system;</span>
+<span class="nc" id="L144">        this.volumeName = volumeName;</span>
+<span class="nc" id="L145">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The fsType
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    public String getFsType() {
+<span class="nc" id="L155">        return fsType;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param fsType
+     *     The fsType
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    public void setFsType(String fsType) {
+<span class="nc" id="L166">        this.fsType = fsType;</span>
+<span class="nc" id="L167">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The gateway
+     */
+    @JsonProperty(&quot;gateway&quot;)
+    public String getGateway() {
+<span class="nc" id="L177">        return gateway;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param gateway
+     *     The gateway
+     */
+    @JsonProperty(&quot;gateway&quot;)
+    public void setGateway(String gateway) {
+<span class="nc" id="L188">        this.gateway = gateway;</span>
+<span class="nc" id="L189">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The protectionDomain
+     */
+    @JsonProperty(&quot;protectionDomain&quot;)
+    public String getProtectionDomain() {
+<span class="nc" id="L199">        return protectionDomain;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param protectionDomain
+     *     The protectionDomain
+     */
+    @JsonProperty(&quot;protectionDomain&quot;)
+    public void setProtectionDomain(String protectionDomain) {
+<span class="nc" id="L210">        this.protectionDomain = protectionDomain;</span>
+<span class="nc" id="L211">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The readOnly
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    public Boolean getReadOnly() {
+<span class="nc" id="L221">        return readOnly;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param readOnly
+     *     The readOnly
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    public void setReadOnly(Boolean readOnly) {
+<span class="nc" id="L232">        this.readOnly = readOnly;</span>
+<span class="nc" id="L233">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The secretRef
+     */
+    @JsonProperty(&quot;secretRef&quot;)
+    public LocalObjectReference getSecretRef() {
+<span class="nc" id="L243">        return secretRef;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param secretRef
+     *     The secretRef
+     */
+    @JsonProperty(&quot;secretRef&quot;)
+    public void setSecretRef(LocalObjectReference secretRef) {
+<span class="nc" id="L254">        this.secretRef = secretRef;</span>
+<span class="nc" id="L255">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The sslEnabled
+     */
+    @JsonProperty(&quot;sslEnabled&quot;)
+    public Boolean getSslEnabled() {
+<span class="nc" id="L265">        return sslEnabled;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param sslEnabled
+     *     The sslEnabled
+     */
+    @JsonProperty(&quot;sslEnabled&quot;)
+    public void setSslEnabled(Boolean sslEnabled) {
+<span class="nc" id="L276">        this.sslEnabled = sslEnabled;</span>
+<span class="nc" id="L277">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The storageMode
+     */
+    @JsonProperty(&quot;storageMode&quot;)
+    public String getStorageMode() {
+<span class="nc" id="L287">        return storageMode;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param storageMode
+     *     The storageMode
+     */
+    @JsonProperty(&quot;storageMode&quot;)
+    public void setStorageMode(String storageMode) {
+<span class="nc" id="L298">        this.storageMode = storageMode;</span>
+<span class="nc" id="L299">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The storagePool
+     */
+    @JsonProperty(&quot;storagePool&quot;)
+    public String getStoragePool() {
+<span class="nc" id="L309">        return storagePool;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param storagePool
+     *     The storagePool
+     */
+    @JsonProperty(&quot;storagePool&quot;)
+    public void setStoragePool(String storagePool) {
+<span class="nc" id="L320">        this.storagePool = storagePool;</span>
+<span class="nc" id="L321">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The system
+     */
+    @JsonProperty(&quot;system&quot;)
+    public String getSystem() {
+<span class="nc" id="L331">        return system;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param system
+     *     The system
+     */
+    @JsonProperty(&quot;system&quot;)
+    public void setSystem(String system) {
+<span class="nc" id="L342">        this.system = system;</span>
+<span class="nc" id="L343">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The volumeName
+     */
+    @JsonProperty(&quot;volumeName&quot;)
+    public String getVolumeName() {
+<span class="nc" id="L353">        return volumeName;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param volumeName
+     *     The volumeName
+     */
+    @JsonProperty(&quot;volumeName&quot;)
+    public void setVolumeName(String volumeName) {
+<span class="nc" id="L364">        this.volumeName = volumeName;</span>
+<span class="nc" id="L365">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L369">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L374">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L375">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

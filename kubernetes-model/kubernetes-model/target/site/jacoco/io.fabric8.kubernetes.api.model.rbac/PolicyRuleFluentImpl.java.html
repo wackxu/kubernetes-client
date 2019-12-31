@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PolicyRuleFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.rbac</a> &gt; <span class="el_source">PolicyRuleFluentImpl.java</span></div><h1>PolicyRuleFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.rbac;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class PolicyRuleFluentImpl&lt;A extends PolicyRuleFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements PolicyRuleFluent&lt;A&gt;{
+
+    private List&lt;String&gt; apiGroups;
+    private List&lt;String&gt; nonResourceURLs;
+    private List&lt;String&gt; resourceNames;
+    private List&lt;String&gt; resources;
+    private List&lt;String&gt; verbs;
+
+<span class="fc" id="L23">    public PolicyRuleFluentImpl(){</span>
+<span class="fc" id="L24">    }</span>
+<span class="nc" id="L25">    public PolicyRuleFluentImpl(PolicyRule instance){</span>
+<span class="nc" id="L26">            this.withApiGroups(instance.getApiGroups()); </span>
+<span class="nc" id="L27">            this.withNonResourceURLs(instance.getNonResourceURLs()); </span>
+<span class="nc" id="L28">            this.withResourceNames(instance.getResourceNames()); </span>
+<span class="nc" id="L29">            this.withResources(instance.getResources()); </span>
+<span class="nc" id="L30">            this.withVerbs(instance.getVerbs()); </span>
+<span class="nc" id="L31">    }</span>
+
+    public A addToApiGroups(int index,String item){
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">            if (this.apiGroups == null) {this.apiGroups = new ArrayList&lt;String&gt;();}</span>
+<span class="fc" id="L35">            this.apiGroups.add(index, item);</span>
+<span class="fc" id="L36">            return (A)this;</span>
+    }
+
+    public A setToApiGroups(int index,String item){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            if (this.apiGroups == null) {this.apiGroups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L41">            this.apiGroups.set(index, item); return (A)this;</span>
+    }
+
+    public A addToApiGroups(String... items){
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">            if (this.apiGroups == null) {this.apiGroups = new ArrayList&lt;String&gt;();}</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            for (String item : items) {this.apiGroups.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToApiGroups(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            if (this.apiGroups == null) {this.apiGroups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            for (String item : items) {this.apiGroups.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromApiGroups(String... items){
+<span class="nc bnc" id="L55" title="All 4 branches missed.">            for (String item : items) {if (this.apiGroups!= null){ this.apiGroups.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromApiGroups(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L59" title="All 4 branches missed.">            for (String item : items) {if (this.apiGroups!= null){ this.apiGroups.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getApiGroups(){
+<span class="fc" id="L63">            return this.apiGroups;</span>
+    }
+
+    public String getApiGroup(int index){
+<span class="nc" id="L67">            return this.apiGroups.get(index);</span>
+    }
+
+    public String getFirstApiGroup(){
+<span class="nc" id="L71">            return this.apiGroups.get(0);</span>
+    }
+
+    public String getLastApiGroup(){
+<span class="nc" id="L75">            return this.apiGroups.get(apiGroups.size() - 1);</span>
+    }
+
+    public String getMatchingApiGroup(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L79" title="All 4 branches missed.">            for (String item: apiGroups) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withApiGroups(List&lt;String&gt; apiGroups){
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">            if (this.apiGroups != null) { _visitables.removeAll(this.apiGroups);}</span>
+<span class="pc bpc" id="L84" title="1 of 4 branches missed.">            if (apiGroups != null) {this.apiGroups = new ArrayList&lt;String&gt;(); for (String item : apiGroups){this.addToApiGroups(item);}} else { this.apiGroups = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withApiGroups(String... apiGroups){
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            if (this.apiGroups != null) {this.apiGroups.clear();}</span>
+<span class="nc bnc" id="L89" title="All 4 branches missed.">            if (apiGroups != null) {for (String item :apiGroups){ this.addToApiGroups(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasApiGroups(){
+<span class="nc bnc" id="L93" title="All 4 branches missed.">            return apiGroups != null &amp;&amp; !apiGroups.isEmpty();</span>
+    }
+
+    public A addToNonResourceURLs(int index,String item){
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">            if (this.nonResourceURLs == null) {this.nonResourceURLs = new ArrayList&lt;String&gt;();}</span>
+<span class="fc" id="L98">            this.nonResourceURLs.add(index, item);</span>
+<span class="fc" id="L99">            return (A)this;</span>
+    }
+
+    public A setToNonResourceURLs(int index,String item){
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            if (this.nonResourceURLs == null) {this.nonResourceURLs = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L104">            this.nonResourceURLs.set(index, item); return (A)this;</span>
+    }
+
+    public A addToNonResourceURLs(String... items){
+<span class="pc bpc" id="L108" title="1 of 2 branches missed.">            if (this.nonResourceURLs == null) {this.nonResourceURLs = new ArrayList&lt;String&gt;();}</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">            for (String item : items) {this.nonResourceURLs.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToNonResourceURLs(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            if (this.nonResourceURLs == null) {this.nonResourceURLs = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">            for (String item : items) {this.nonResourceURLs.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromNonResourceURLs(String... items){
+<span class="nc bnc" id="L118" title="All 4 branches missed.">            for (String item : items) {if (this.nonResourceURLs!= null){ this.nonResourceURLs.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromNonResourceURLs(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L122" title="All 4 branches missed.">            for (String item : items) {if (this.nonResourceURLs!= null){ this.nonResourceURLs.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getNonResourceURLs(){
+<span class="fc" id="L126">            return this.nonResourceURLs;</span>
+    }
+
+    public String getNonResourceURL(int index){
+<span class="nc" id="L130">            return this.nonResourceURLs.get(index);</span>
+    }
+
+    public String getFirstNonResourceURL(){
+<span class="nc" id="L134">            return this.nonResourceURLs.get(0);</span>
+    }
+
+    public String getLastNonResourceURL(){
+<span class="nc" id="L138">            return this.nonResourceURLs.get(nonResourceURLs.size() - 1);</span>
+    }
+
+    public String getMatchingNonResourceURL(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L142" title="All 4 branches missed.">            for (String item: nonResourceURLs) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withNonResourceURLs(List&lt;String&gt; nonResourceURLs){
+<span class="pc bpc" id="L146" title="1 of 2 branches missed.">            if (this.nonResourceURLs != null) { _visitables.removeAll(this.nonResourceURLs);}</span>
+<span class="pc bpc" id="L147" title="1 of 4 branches missed.">            if (nonResourceURLs != null) {this.nonResourceURLs = new ArrayList&lt;String&gt;(); for (String item : nonResourceURLs){this.addToNonResourceURLs(item);}} else { this.nonResourceURLs = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withNonResourceURLs(String... nonResourceURLs){
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (this.nonResourceURLs != null) {this.nonResourceURLs.clear();}</span>
+<span class="nc bnc" id="L152" title="All 4 branches missed.">            if (nonResourceURLs != null) {for (String item :nonResourceURLs){ this.addToNonResourceURLs(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasNonResourceURLs(){
+<span class="nc bnc" id="L156" title="All 4 branches missed.">            return nonResourceURLs != null &amp;&amp; !nonResourceURLs.isEmpty();</span>
+    }
+
+    public A addToResourceNames(int index,String item){
+<span class="pc bpc" id="L160" title="1 of 2 branches missed.">            if (this.resourceNames == null) {this.resourceNames = new ArrayList&lt;String&gt;();}</span>
+<span class="fc" id="L161">            this.resourceNames.add(index, item);</span>
+<span class="fc" id="L162">            return (A)this;</span>
+    }
+
+    public A setToResourceNames(int index,String item){
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            if (this.resourceNames == null) {this.resourceNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L167">            this.resourceNames.set(index, item); return (A)this;</span>
+    }
+
+    public A addToResourceNames(String... items){
+<span class="pc bpc" id="L171" title="1 of 2 branches missed.">            if (this.resourceNames == null) {this.resourceNames = new ArrayList&lt;String&gt;();}</span>
+<span class="fc bfc" id="L172" title="All 2 branches covered.">            for (String item : items) {this.resourceNames.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToResourceNames(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L176" title="All 2 branches missed.">            if (this.resourceNames == null) {this.resourceNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            for (String item : items) {this.resourceNames.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromResourceNames(String... items){
+<span class="nc bnc" id="L181" title="All 4 branches missed.">            for (String item : items) {if (this.resourceNames!= null){ this.resourceNames.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromResourceNames(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L185" title="All 4 branches missed.">            for (String item : items) {if (this.resourceNames!= null){ this.resourceNames.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getResourceNames(){
+<span class="fc" id="L189">            return this.resourceNames;</span>
+    }
+
+    public String getResourceName(int index){
+<span class="nc" id="L193">            return this.resourceNames.get(index);</span>
+    }
+
+    public String getFirstResourceName(){
+<span class="nc" id="L197">            return this.resourceNames.get(0);</span>
+    }
+
+    public String getLastResourceName(){
+<span class="nc" id="L201">            return this.resourceNames.get(resourceNames.size() - 1);</span>
+    }
+
+    public String getMatchingResourceName(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L205" title="All 4 branches missed.">            for (String item: resourceNames) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withResourceNames(List&lt;String&gt; resourceNames){
+<span class="pc bpc" id="L209" title="1 of 2 branches missed.">            if (this.resourceNames != null) { _visitables.removeAll(this.resourceNames);}</span>
+<span class="pc bpc" id="L210" title="1 of 4 branches missed.">            if (resourceNames != null) {this.resourceNames = new ArrayList&lt;String&gt;(); for (String item : resourceNames){this.addToResourceNames(item);}} else { this.resourceNames = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withResourceNames(String... resourceNames){
+<span class="nc bnc" id="L214" title="All 2 branches missed.">            if (this.resourceNames != null) {this.resourceNames.clear();}</span>
+<span class="nc bnc" id="L215" title="All 4 branches missed.">            if (resourceNames != null) {for (String item :resourceNames){ this.addToResourceNames(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasResourceNames(){
+<span class="nc bnc" id="L219" title="All 4 branches missed.">            return resourceNames != null &amp;&amp; !resourceNames.isEmpty();</span>
+    }
+
+    public A addToResources(int index,String item){
+<span class="pc bpc" id="L223" title="1 of 2 branches missed.">            if (this.resources == null) {this.resources = new ArrayList&lt;String&gt;();}</span>
+<span class="fc" id="L224">            this.resources.add(index, item);</span>
+<span class="fc" id="L225">            return (A)this;</span>
+    }
+
+    public A setToResources(int index,String item){
+<span class="nc bnc" id="L229" title="All 2 branches missed.">            if (this.resources == null) {this.resources = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L230">            this.resources.set(index, item); return (A)this;</span>
+    }
+
+    public A addToResources(String... items){
+<span class="pc bpc" id="L234" title="1 of 2 branches missed.">            if (this.resources == null) {this.resources = new ArrayList&lt;String&gt;();}</span>
+<span class="fc bfc" id="L235" title="All 2 branches covered.">            for (String item : items) {this.resources.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToResources(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L239" title="All 2 branches missed.">            if (this.resources == null) {this.resources = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L240" title="All 2 branches missed.">            for (String item : items) {this.resources.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromResources(String... items){
+<span class="nc bnc" id="L244" title="All 4 branches missed.">            for (String item : items) {if (this.resources!= null){ this.resources.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromResources(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L248" title="All 4 branches missed.">            for (String item : items) {if (this.resources!= null){ this.resources.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getResources(){
+<span class="fc" id="L252">            return this.resources;</span>
+    }
+
+    public String getResource(int index){
+<span class="nc" id="L256">            return this.resources.get(index);</span>
+    }
+
+    public String getFirstResource(){
+<span class="nc" id="L260">            return this.resources.get(0);</span>
+    }
+
+    public String getLastResource(){
+<span class="nc" id="L264">            return this.resources.get(resources.size() - 1);</span>
+    }
+
+    public String getMatchingResource(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L268" title="All 4 branches missed.">            for (String item: resources) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withResources(List&lt;String&gt; resources){
+<span class="pc bpc" id="L272" title="1 of 2 branches missed.">            if (this.resources != null) { _visitables.removeAll(this.resources);}</span>
+<span class="pc bpc" id="L273" title="1 of 4 branches missed.">            if (resources != null) {this.resources = new ArrayList&lt;String&gt;(); for (String item : resources){this.addToResources(item);}} else { this.resources = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withResources(String... resources){
+<span class="nc bnc" id="L277" title="All 2 branches missed.">            if (this.resources != null) {this.resources.clear();}</span>
+<span class="nc bnc" id="L278" title="All 4 branches missed.">            if (resources != null) {for (String item :resources){ this.addToResources(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasResources(){
+<span class="nc bnc" id="L282" title="All 4 branches missed.">            return resources != null &amp;&amp; !resources.isEmpty();</span>
+    }
+
+    public A addToVerbs(int index,String item){
+<span class="pc bpc" id="L286" title="1 of 2 branches missed.">            if (this.verbs == null) {this.verbs = new ArrayList&lt;String&gt;();}</span>
+<span class="fc" id="L287">            this.verbs.add(index, item);</span>
+<span class="fc" id="L288">            return (A)this;</span>
+    }
+
+    public A setToVerbs(int index,String item){
+<span class="nc bnc" id="L292" title="All 2 branches missed.">            if (this.verbs == null) {this.verbs = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L293">            this.verbs.set(index, item); return (A)this;</span>
+    }
+
+    public A addToVerbs(String... items){
+<span class="pc bpc" id="L297" title="1 of 2 branches missed.">            if (this.verbs == null) {this.verbs = new ArrayList&lt;String&gt;();}</span>
+<span class="fc bfc" id="L298" title="All 2 branches covered.">            for (String item : items) {this.verbs.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToVerbs(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L302" title="All 2 branches missed.">            if (this.verbs == null) {this.verbs = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L303" title="All 2 branches missed.">            for (String item : items) {this.verbs.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromVerbs(String... items){
+<span class="nc bnc" id="L307" title="All 4 branches missed.">            for (String item : items) {if (this.verbs!= null){ this.verbs.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromVerbs(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L311" title="All 4 branches missed.">            for (String item : items) {if (this.verbs!= null){ this.verbs.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getVerbs(){
+<span class="fc" id="L315">            return this.verbs;</span>
+    }
+
+    public String getVerb(int index){
+<span class="nc" id="L319">            return this.verbs.get(index);</span>
+    }
+
+    public String getFirstVerb(){
+<span class="nc" id="L323">            return this.verbs.get(0);</span>
+    }
+
+    public String getLastVerb(){
+<span class="nc" id="L327">            return this.verbs.get(verbs.size() - 1);</span>
+    }
+
+    public String getMatchingVerb(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L331" title="All 4 branches missed.">            for (String item: verbs) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withVerbs(List&lt;String&gt; verbs){
+<span class="pc bpc" id="L335" title="1 of 2 branches missed.">            if (this.verbs != null) { _visitables.removeAll(this.verbs);}</span>
+<span class="pc bpc" id="L336" title="1 of 4 branches missed.">            if (verbs != null) {this.verbs = new ArrayList&lt;String&gt;(); for (String item : verbs){this.addToVerbs(item);}} else { this.verbs = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withVerbs(String... verbs){
+<span class="nc bnc" id="L340" title="All 2 branches missed.">            if (this.verbs != null) {this.verbs.clear();}</span>
+<span class="nc bnc" id="L341" title="All 4 branches missed.">            if (verbs != null) {for (String item :verbs){ this.addToVerbs(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasVerbs(){
+<span class="nc bnc" id="L345" title="All 4 branches missed.">            return verbs != null &amp;&amp; !verbs.isEmpty();</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L349" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L350" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L351" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L352">            PolicyRuleFluentImpl that = (PolicyRuleFluentImpl) o;</span>
+<span class="nc bnc" id="L353" title="All 6 branches missed.">            if (apiGroups != null ? !apiGroups.equals(that.apiGroups) :that.apiGroups != null) return false;</span>
+<span class="nc bnc" id="L354" title="All 6 branches missed.">            if (nonResourceURLs != null ? !nonResourceURLs.equals(that.nonResourceURLs) :that.nonResourceURLs != null) return false;</span>
+<span class="nc bnc" id="L355" title="All 6 branches missed.">            if (resourceNames != null ? !resourceNames.equals(that.resourceNames) :that.resourceNames != null) return false;</span>
+<span class="nc bnc" id="L356" title="All 6 branches missed.">            if (resources != null ? !resources.equals(that.resources) :that.resources != null) return false;</span>
+<span class="nc bnc" id="L357" title="All 6 branches missed.">            if (verbs != null ? !verbs.equals(that.verbs) :that.verbs != null) return false;</span>
+<span class="nc" id="L358">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

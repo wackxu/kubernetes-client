@@ -1,0 +1,2804 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SubjectAccessReviewFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">SubjectAccessReviewFluentImpl.java</span></div><h1>SubjectAccessReviewFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import io.fabric8.kubernetes.api.model.rbac.ClusterRoleBinding;
+import io.fabric8.kubernetes.api.model.Node;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.model.NodeBuilder;
+import io.fabric8.kubernetes.api.model.admissionregistration.MutatingWebhookConfigurationBuilder;
+import io.fabric8.kubernetes.api.model.SecretBuilder;
+import io.fabric8.kubernetes.api.model.ReplicationController;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinitionFluentImpl;
+import io.fabric8.kubernetes.api.model.PodTemplateFluentImpl;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.admissionregistration.ValidatingWebhookConfiguration;
+import io.fabric8.kubernetes.api.model.scheduling.PriorityClass;
+import io.fabric8.kubernetes.api.model.Pod;
+import io.fabric8.kubernetes.api.model.PodBuilder;
+import io.fabric8.kubernetes.api.model.networking.NetworkPolicyBuilder;
+import io.fabric8.kubernetes.api.model.rbac.ClusterRole;
+import io.fabric8.kubernetes.api.model.settings.PodPresetBuilder;
+import io.fabric8.kubernetes.api.model.ReplicationControllerFluentImpl;
+import io.fabric8.kubernetes.api.model.storage.StorageClassBuilder;
+import io.fabric8.kubernetes.api.model.EndpointsBuilder;
+import io.fabric8.kubernetes.api.model.NamespaceBuilder;
+import io.fabric8.kubernetes.api.model.apps.StatefulSetBuilder;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.model.extensions.PodSecurityPolicy;
+import io.fabric8.kubernetes.api.model.PodFluentImpl;
+import io.fabric8.kubernetes.api.model.apps.ReplicaSet;
+import io.fabric8.kubernetes.api.model.storage.StorageClass;
+import io.fabric8.kubernetes.api.model.EventBuilder;
+import io.fabric8.kubernetes.api.model.authorization.LocalSubjectAccessReviewBuilder;
+import io.fabric8.kubernetes.api.model.ConfigMapFluentImpl;
+import io.fabric8.kubernetes.api.model.Event;
+import io.fabric8.kubernetes.api.model.authentication.TokenReviewFluentImpl;
+import io.fabric8.kubernetes.api.model.extensions.IngressFluentImpl;
+import io.fabric8.kubernetes.api.model.extensions.ScaleFluentImpl;
+import io.fabric8.kubernetes.api.model.policy.PodDisruptionBudgetFluentImpl;
+import io.fabric8.kubernetes.api.model.PodTemplateBuilder;
+import io.fabric8.kubernetes.api.model.apps.Deployment;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.util.List;
+import io.fabric8.kubernetes.api.model.PodTemplate;
+import io.fabric8.kubernetes.api.model.Binding;
+import io.fabric8.kubernetes.api.model.LimitRangeBuilder;
+import io.fabric8.kubernetes.api.model.rbac.ClusterRoleBindingBuilder;
+import io.fabric8.kubernetes.api.model.certificates.CertificateSigningRequest;
+import io.fabric8.kubernetes.api.model.PersistentVolumeClaimBuilder;
+import io.fabric8.kubernetes.api.model.PersistentVolumeClaimFluentImpl;
+import io.fabric8.kubernetes.api.model.rbac.Role;
+import io.fabric8.kubernetes.api.model.admissionregistration.MutatingWebhookConfiguration;
+import io.fabric8.kubernetes.api.model.batch.JobFluentImpl;
+import io.fabric8.kubernetes.api.model.PersistentVolumeClaim;
+import io.fabric8.kubernetes.api.model.apps.DaemonSet;
+import io.fabric8.kubernetes.api.model.apps.ReplicaSetFluentImpl;
+import io.fabric8.kubernetes.api.model.settings.PodPresetFluentImpl;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.model.admissionregistration.ValidatingWebhookConfigurationFluentImpl;
+import io.fabric8.kubernetes.api.model.SecretFluentImpl;
+import io.fabric8.kubernetes.api.model.rbac.ClusterRoleBindingFluentImpl;
+import io.fabric8.kubernetes.api.model.storage.StorageClassFluentImpl;
+import io.fabric8.kubernetes.api.model.extensions.PodSecurityPolicyFluentImpl;
+import io.fabric8.kubernetes.api.model.authorization.LocalSubjectAccessReview;
+import io.fabric8.kubernetes.api.model.rbac.RoleBuilder;
+import io.fabric8.kubernetes.api.model.extensions.IngressBuilder;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.rbac.ClusterRoleFluentImpl;
+import io.fabric8.kubernetes.api.model.EndpointsFluentImpl;
+import io.fabric8.kubernetes.api.model.ServiceAccountFluentImpl;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import io.fabric8.kubernetes.api.model.scheduling.PriorityClassBuilder;
+import io.fabric8.kubernetes.api.model.HorizontalPodAutoscalerFluentImpl;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.rbac.ClusterRoleBuilder;
+import io.fabric8.kubernetes.api.model.networking.NetworkPolicy;
+import io.fabric8.kubernetes.api.model.batch.JobBuilder;
+import io.fabric8.kubernetes.api.model.BindingFluentImpl;
+import io.fabric8.kubernetes.api.model.apps.DaemonSetFluentImpl;
+import io.fabric8.kubernetes.api.model.Namespace;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.batch.CronJob;
+import io.fabric8.kubernetes.api.model.ComponentStatus;
+import java.lang.Object;
+import io.fabric8.kubernetes.api.model.apps.DeploymentBuilder;
+import io.fabric8.kubernetes.api.model.scheduling.PriorityClassFluentImpl;
+import io.fabric8.kubernetes.api.model.certificates.CertificateSigningRequestBuilder;
+import io.fabric8.kubernetes.api.model.ServiceAccount;
+import io.fabric8.kubernetes.api.model.ComponentStatusFluentImpl;
+import io.fabric8.kubernetes.api.model.LimitRangeFluentImpl;
+import io.fabric8.kubernetes.api.model.authentication.TokenReviewBuilder;
+import io.fabric8.kubernetes.api.model.rbac.RoleFluentImpl;
+import io.fabric8.kubernetes.api.model.authentication.TokenReview;
+import io.fabric8.kubernetes.api.model.certificates.CertificateSigningRequestFluentImpl;
+import io.fabric8.kubernetes.api.model.PersistentVolume;
+import io.fabric8.kubernetes.api.model.admissionregistration.MutatingWebhookConfigurationFluentImpl;
+import io.fabric8.kubernetes.api.model.PersistentVolumeBuilder;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinitionBuilder;
+import io.fabric8.kubernetes.api.builder.VisitableBuilder;
+import io.fabric8.kubernetes.api.model.authorization.LocalSubjectAccessReviewFluentImpl;
+import io.fabric8.kubernetes.api.model.EventFluentImpl;
+import io.fabric8.kubernetes.api.model.settings.PodPreset;
+import io.fabric8.kubernetes.api.model.apps.DeploymentFluentImpl;
+import io.fabric8.kubernetes.api.model.policy.PodDisruptionBudgetBuilder;
+import io.fabric8.kubernetes.api.model.ConfigMapBuilder;
+import io.fabric8.kubernetes.api.model.rbac.RoleBinding;
+import io.fabric8.kubernetes.api.model.batch.Job;
+import io.fabric8.kubernetes.api.model.extensions.ScaleBuilder;
+import io.fabric8.kubernetes.api.model.networking.NetworkPolicyFluentImpl;
+import io.fabric8.kubernetes.api.model.rbac.RoleBindingBuilder;
+import io.fabric8.kubernetes.api.model.ReplicationControllerBuilder;
+import io.fabric8.kubernetes.api.model.ResourceQuotaBuilder;
+import io.fabric8.kubernetes.api.model.ServiceAccountBuilder;
+import io.fabric8.kubernetes.api.model.extensions.Ingress;
+import io.fabric8.kubernetes.api.model.batch.CronJobBuilder;
+import io.fabric8.kubernetes.api.model.ResourceQuotaFluentImpl;
+import io.fabric8.kubernetes.api.model.Secret;
+import io.fabric8.kubernetes.api.model.LimitRange;
+import io.fabric8.kubernetes.api.model.HorizontalPodAutoscaler;
+import io.fabric8.kubernetes.api.model.admissionregistration.ValidatingWebhookConfigurationBuilder;
+import java.util.Collection;
+import io.fabric8.kubernetes.api.model.apps.StatefulSet;
+import io.fabric8.kubernetes.api.model.policy.PodDisruptionBudget;
+import io.fabric8.kubernetes.api.model.BindingBuilder;
+import io.fabric8.kubernetes.api.model.ComponentStatusBuilder;
+import io.fabric8.kubernetes.api.builder.Nested;
+import io.fabric8.kubernetes.api.model.HorizontalPodAutoscalerBuilder;
+import io.fabric8.kubernetes.api.model.ServiceBuilder;
+import io.fabric8.kubernetes.api.model.Endpoints;
+import io.fabric8.kubernetes.api.model.apps.DaemonSetBuilder;
+import io.fabric8.kubernetes.api.model.batch.CronJobFluentImpl;
+import io.fabric8.kubernetes.api.model.ResourceQuota;
+import io.fabric8.kubernetes.api.model.NamespaceFluentImpl;
+import io.fabric8.kubernetes.api.model.apps.ReplicaSetBuilder;
+import io.fabric8.kubernetes.api.model.apps.StatefulSetFluentImpl;
+import io.fabric8.kubernetes.api.model.ConfigMap;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinition;
+import io.fabric8.kubernetes.api.model.Service;
+import io.fabric8.kubernetes.api.model.extensions.Scale;
+import io.fabric8.kubernetes.api.model.rbac.RoleBindingFluentImpl;
+import io.fabric8.kubernetes.api.model.extensions.PodSecurityPolicyBuilder;
+import io.fabric8.kubernetes.api.model.NodeFluentImpl;
+import io.fabric8.kubernetes.api.model.PersistentVolumeFluentImpl;
+import io.fabric8.kubernetes.api.model.ServiceFluentImpl;
+
+public class SubjectAccessReviewFluentImpl&lt;A extends io.fabric8.openshift.api.model.SubjectAccessReviewFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements io.fabric8.openshift.api.model.SubjectAccessReviewFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private VisitableBuilder&lt;? extends HasMetadata,?&gt; content;
+    private List&lt;String&gt; groups;
+    private Boolean isNonResourceURL;
+    private String kind;
+    private String namespace;
+    private String path;
+    private String resource;
+    private String resourceAPIGroup;
+    private String resourceAPIVersion;
+    private String resourceName;
+    private List&lt;String&gt; scopes;
+    private String user;
+    private String verb;
+
+<span class="nc" id="L162">    public SubjectAccessReviewFluentImpl(){</span>
+<span class="nc" id="L163">    }</span>
+<span class="nc" id="L164">    public SubjectAccessReviewFluentImpl(io.fabric8.openshift.api.model.SubjectAccessReview instance){</span>
+<span class="nc" id="L165">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L166">            this.withContent(instance.getContent()); </span>
+<span class="nc" id="L167">            this.withGroups(instance.getGroups()); </span>
+<span class="nc" id="L168">            this.withIsNonResourceURL(instance.getIsNonResourceURL()); </span>
+<span class="nc" id="L169">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L170">            this.withNamespace(instance.getNamespace()); </span>
+<span class="nc" id="L171">            this.withPath(instance.getPath()); </span>
+<span class="nc" id="L172">            this.withResource(instance.getResource()); </span>
+<span class="nc" id="L173">            this.withResourceAPIGroup(instance.getResourceAPIGroup()); </span>
+<span class="nc" id="L174">            this.withResourceAPIVersion(instance.getResourceAPIVersion()); </span>
+<span class="nc" id="L175">            this.withResourceName(instance.getResourceName()); </span>
+<span class="nc" id="L176">            this.withScopes(instance.getScopes()); </span>
+<span class="nc" id="L177">            this.withUser(instance.getUser()); </span>
+<span class="nc" id="L178">            this.withVerb(instance.getVerb()); </span>
+<span class="nc" id="L179">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L182">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L186">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L190" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildContent instead.
+ * @return The buildable object.
+ */
+@Deprecated public HasMetadata getContent(){
+<span class="nc bnc" id="L199" title="All 2 branches missed.">            return this.content!=null?this.content.build():null;</span>
+    }
+
+    public HasMetadata buildContent(){
+<span class="nc bnc" id="L203" title="All 2 branches missed.">            return this.content!=null?this.content.build():null;</span>
+    }
+
+    public A withContent(HasMetadata content){
+<span class="nc bnc" id="L207" title="All 2 branches missed.">            if (content instanceof ValidatingWebhookConfiguration){ this.content= new ValidatingWebhookConfigurationBuilder((ValidatingWebhookConfiguration)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">            if (content instanceof StorageClass){ this.content= new StorageClassBuilder((StorageClass)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            if (content instanceof ClusterRoleBinding){ this.content= new ClusterRoleBindingBuilder((ClusterRoleBinding)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            if (content instanceof OpenshiftRoleBinding){ this.content= new OpenshiftRoleBindingBuilder((OpenshiftRoleBinding)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L211" title="All 2 branches missed.">            if (content instanceof PodDisruptionBudget){ this.content= new PodDisruptionBudgetBuilder((PodDisruptionBudget)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L212" title="All 2 branches missed.">            if (content instanceof NetworkPolicy){ this.content= new NetworkPolicyBuilder((NetworkPolicy)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L213" title="All 2 branches missed.">            if (content instanceof OpenshiftClusterRoleBinding){ this.content= new OpenshiftClusterRoleBindingBuilder((OpenshiftClusterRoleBinding)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L214" title="All 2 branches missed.">            if (content instanceof Route){ this.content= new RouteBuilder((Route)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L215" title="All 2 branches missed.">            if (content instanceof Namespace){ this.content= new NamespaceBuilder((Namespace)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L216" title="All 2 branches missed.">            if (content instanceof LocalSubjectAccessReview){ this.content= new LocalSubjectAccessReviewBuilder((LocalSubjectAccessReview)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">            if (content instanceof Service){ this.content= new ServiceBuilder((Service)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L218" title="All 2 branches missed.">            if (content instanceof ReplicationController){ this.content= new ReplicationControllerBuilder((ReplicationController)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            if (content instanceof MutatingWebhookConfiguration){ this.content= new MutatingWebhookConfigurationBuilder((MutatingWebhookConfiguration)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">            if (content instanceof HorizontalPodAutoscaler){ this.content= new HorizontalPodAutoscalerBuilder((HorizontalPodAutoscaler)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">            if (content instanceof Scale){ this.content= new ScaleBuilder((Scale)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L222" title="All 2 branches missed.">            if (content instanceof Image){ this.content= new ImageBuilder((Image)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">            if (content instanceof ReplicaSet){ this.content= new ReplicaSetBuilder((ReplicaSet)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L224" title="All 2 branches missed.">            if (content instanceof PodSecurityPolicy){ this.content= new PodSecurityPolicyBuilder((PodSecurityPolicy)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">            if (content instanceof CronJob){ this.content= new CronJobBuilder((CronJob)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">            if (content instanceof Endpoints){ this.content= new EndpointsBuilder((Endpoints)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L227" title="All 2 branches missed.">            if (content instanceof Pod){ this.content= new PodBuilder((Pod)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L228" title="All 2 branches missed.">            if (content instanceof ConfigMap){ this.content= new ConfigMapBuilder((ConfigMap)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">            if (content instanceof CustomResourceDefinition){ this.content= new CustomResourceDefinitionBuilder((CustomResourceDefinition)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L230" title="All 2 branches missed.">            if (content instanceof Build){ this.content= new BuildBuilder((Build)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            if (content instanceof ImageStreamTag){ this.content= new ImageStreamTagBuilder((ImageStreamTag)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">            if (content instanceof Group){ this.content= new GroupBuilder((Group)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">            if (content instanceof ImageSignature){ this.content= new ImageSignatureBuilder((ImageSignature)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L234" title="All 2 branches missed.">            if (content instanceof ResourceQuota){ this.content= new ResourceQuotaBuilder((ResourceQuota)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L235" title="All 2 branches missed.">            if (content instanceof BuildRequest){ this.content= new BuildRequestBuilder((BuildRequest)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L236" title="All 2 branches missed.">            if (content instanceof DaemonSet){ this.content= new DaemonSetBuilder((DaemonSet)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">            if (content instanceof ImageStream){ this.content= new ImageStreamBuilder((ImageStream)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L238" title="All 2 branches missed.">            if (content instanceof OpenshiftRole){ this.content= new OpenshiftRoleBuilder((OpenshiftRole)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">            if (content instanceof OAuthClient){ this.content= new OAuthClientBuilder((OAuthClient)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L240" title="All 2 branches missed.">            if (content instanceof Identity){ this.content= new IdentityBuilder((Identity)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">            if (content instanceof LimitRange){ this.content= new LimitRangeBuilder((LimitRange)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L242" title="All 2 branches missed.">            if (content instanceof ImageStreamImport){ this.content= new ImageStreamImportBuilder((ImageStreamImport)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            if (content instanceof OpenshiftRoleBindingRestriction){ this.content= new OpenshiftRoleBindingRestrictionBuilder((OpenshiftRoleBindingRestriction)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">            if (content instanceof RoleBinding){ this.content= new RoleBindingBuilder((RoleBinding)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L245" title="All 2 branches missed.">            if (content instanceof PodPreset){ this.content= new PodPresetBuilder((PodPreset)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">            if (content instanceof Project){ this.content= new ProjectBuilder((Project)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L247" title="All 2 branches missed.">            if (content instanceof BuildConfig){ this.content= new BuildConfigBuilder((BuildConfig)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L248" title="All 2 branches missed.">            if (content instanceof ClusterRole){ this.content= new ClusterRoleBuilder((ClusterRole)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L249" title="All 2 branches missed.">            if (content instanceof OAuthAuthorizeToken){ this.content= new OAuthAuthorizeTokenBuilder((OAuthAuthorizeToken)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L250" title="All 2 branches missed.">            if (content instanceof ProjectRequest){ this.content= new ProjectRequestBuilder((ProjectRequest)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L251" title="All 2 branches missed.">            if (content instanceof PriorityClass){ this.content= new PriorityClassBuilder((PriorityClass)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L252" title="All 2 branches missed.">            if (content instanceof Template){ this.content= new TemplateBuilder((Template)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L253" title="All 2 branches missed.">            if (content instanceof OAuthClientAuthorization){ this.content= new OAuthClientAuthorizationBuilder((OAuthClientAuthorization)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">            if (content instanceof Deployment){ this.content= new DeploymentBuilder((Deployment)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">            if (content instanceof PodTemplate){ this.content= new PodTemplateBuilder((PodTemplate)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L256" title="All 2 branches missed.">            if (content instanceof Event){ this.content= new EventBuilder((Event)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L257" title="All 2 branches missed.">            if (content instanceof Ingress){ this.content= new IngressBuilder((Ingress)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L258" title="All 2 branches missed.">            if (content instanceof DeploymentConfig){ this.content= new DeploymentConfigBuilder((DeploymentConfig)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">            if (content instanceof OAuthAccessToken){ this.content= new OAuthAccessTokenBuilder((OAuthAccessToken)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L260" title="All 2 branches missed.">            if (content instanceof PersistentVolume){ this.content= new PersistentVolumeBuilder((PersistentVolume)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L261" title="All 2 branches missed.">            if (content instanceof PersistentVolumeClaim){ this.content= new PersistentVolumeClaimBuilder((PersistentVolumeClaim)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L262" title="All 2 branches missed.">            if (content instanceof io.fabric8.kubernetes.api.model.events.Event){ this.content= new io.fabric8.kubernetes.api.model.events.EventBuilder((io.fabric8.kubernetes.api.model.events.Event)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L263" title="All 2 branches missed.">            if (content instanceof StatefulSet){ this.content= new StatefulSetBuilder((StatefulSet)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">            if (content instanceof OpenshiftClusterRole){ this.content= new OpenshiftClusterRoleBuilder((OpenshiftClusterRole)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">            if (content instanceof Role){ this.content= new RoleBuilder((Role)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">            if (content instanceof User){ this.content= new UserBuilder((User)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L267" title="All 2 branches missed.">            if (content instanceof ComponentStatus){ this.content= new ComponentStatusBuilder((ComponentStatus)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L268" title="All 2 branches missed.">            if (content instanceof TokenReview){ this.content= new TokenReviewBuilder((TokenReview)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L269" title="All 2 branches missed.">            if (content instanceof Binding){ this.content= new BindingBuilder((Binding)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L270" title="All 2 branches missed.">            if (content instanceof Secret){ this.content= new SecretBuilder((Secret)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L271" title="All 2 branches missed.">            if (content instanceof SecurityContextConstraints){ this.content= new SecurityContextConstraintsBuilder((SecurityContextConstraints)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L272" title="All 2 branches missed.">            if (content instanceof NetNamespace){ this.content= new NetNamespaceBuilder((NetNamespace)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L273" title="All 2 branches missed.">            if (content instanceof Node){ this.content= new NodeBuilder((Node)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L274" title="All 2 branches missed.">            if (content instanceof Job){ this.content= new JobBuilder((Job)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L275" title="All 2 branches missed.">            if (content instanceof CertificateSigningRequest){ this.content= new CertificateSigningRequestBuilder((CertificateSigningRequest)content); _visitables.add(this.content);}</span>
+<span class="nc bnc" id="L276" title="All 2 branches missed.">            if (content instanceof ServiceAccount){ this.content= new ServiceAccountBuilder((ServiceAccount)content); _visitables.add(this.content);}</span>
+<span class="nc" id="L277">            return (A) this;</span>
+    }
+
+    public Boolean hasContent(){
+<span class="nc bnc" id="L281" title="All 2 branches missed.">            return this.content != null;</span>
+    }
+
+    public A withValidatingWebhookConfigurationContent(ValidatingWebhookConfiguration validatingWebhookConfigurationContent){
+<span class="nc" id="L285">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L286" title="All 2 branches missed.">            if (validatingWebhookConfigurationContent!=null){ this.content= new ValidatingWebhookConfigurationBuilder(validatingWebhookConfigurationContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ValidatingWebhookConfigurationContentNested&lt;A&gt; withNewValidatingWebhookConfigurationContent(){
+<span class="nc" id="L290">            return new ValidatingWebhookConfigurationContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ValidatingWebhookConfigurationContentNested&lt;A&gt; withNewValidatingWebhookConfigurationContentLike(ValidatingWebhookConfiguration item){
+<span class="nc" id="L294">            return new ValidatingWebhookConfigurationContentNestedImpl(item);</span>
+    }
+
+    public A withStorageClassContent(StorageClass storageClassContent){
+<span class="nc" id="L298">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L299" title="All 2 branches missed.">            if (storageClassContent!=null){ this.content= new StorageClassBuilder(storageClassContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.StorageClassContentNested&lt;A&gt; withNewStorageClassContent(){
+<span class="nc" id="L303">            return new StorageClassContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.StorageClassContentNested&lt;A&gt; withNewStorageClassContentLike(StorageClass item){
+<span class="nc" id="L307">            return new StorageClassContentNestedImpl(item);</span>
+    }
+
+    public A withClusterRoleBindingContent(ClusterRoleBinding clusterRoleBindingContent){
+<span class="nc" id="L311">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L312" title="All 2 branches missed.">            if (clusterRoleBindingContent!=null){ this.content= new ClusterRoleBindingBuilder(clusterRoleBindingContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ClusterRoleBindingContentNested&lt;A&gt; withNewClusterRoleBindingContent(){
+<span class="nc" id="L316">            return new ClusterRoleBindingContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ClusterRoleBindingContentNested&lt;A&gt; withNewClusterRoleBindingContentLike(ClusterRoleBinding item){
+<span class="nc" id="L320">            return new ClusterRoleBindingContentNestedImpl(item);</span>
+    }
+
+    public A withOpenshiftRoleBindingContent(OpenshiftRoleBinding openshiftRoleBindingContent){
+<span class="nc" id="L324">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L325" title="All 2 branches missed.">            if (openshiftRoleBindingContent!=null){ this.content= new OpenshiftRoleBindingBuilder(openshiftRoleBindingContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.OpenshiftRoleBindingContentNested&lt;A&gt; withNewOpenshiftRoleBindingContent(){
+<span class="nc" id="L329">            return new OpenshiftRoleBindingContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.OpenshiftRoleBindingContentNested&lt;A&gt; withNewOpenshiftRoleBindingContentLike(OpenshiftRoleBinding item){
+<span class="nc" id="L333">            return new OpenshiftRoleBindingContentNestedImpl(item);</span>
+    }
+
+    public A withPodDisruptionBudgetContent(PodDisruptionBudget podDisruptionBudgetContent){
+<span class="nc" id="L337">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L338" title="All 2 branches missed.">            if (podDisruptionBudgetContent!=null){ this.content= new PodDisruptionBudgetBuilder(podDisruptionBudgetContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.PodDisruptionBudgetContentNested&lt;A&gt; withNewPodDisruptionBudgetContent(){
+<span class="nc" id="L342">            return new PodDisruptionBudgetContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.PodDisruptionBudgetContentNested&lt;A&gt; withNewPodDisruptionBudgetContentLike(PodDisruptionBudget item){
+<span class="nc" id="L346">            return new PodDisruptionBudgetContentNestedImpl(item);</span>
+    }
+
+    public A withNetworkPolicyContent(NetworkPolicy networkPolicyContent){
+<span class="nc" id="L350">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L351" title="All 2 branches missed.">            if (networkPolicyContent!=null){ this.content= new NetworkPolicyBuilder(networkPolicyContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.NetworkPolicyContentNested&lt;A&gt; withNewNetworkPolicyContent(){
+<span class="nc" id="L355">            return new NetworkPolicyContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.NetworkPolicyContentNested&lt;A&gt; withNewNetworkPolicyContentLike(NetworkPolicy item){
+<span class="nc" id="L359">            return new NetworkPolicyContentNestedImpl(item);</span>
+    }
+
+    public A withOpenshiftClusterRoleBindingContent(OpenshiftClusterRoleBinding openshiftClusterRoleBindingContent){
+<span class="nc" id="L363">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L364" title="All 2 branches missed.">            if (openshiftClusterRoleBindingContent!=null){ this.content= new OpenshiftClusterRoleBindingBuilder(openshiftClusterRoleBindingContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.OpenshiftClusterRoleBindingContentNested&lt;A&gt; withNewOpenshiftClusterRoleBindingContent(){
+<span class="nc" id="L368">            return new OpenshiftClusterRoleBindingContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.OpenshiftClusterRoleBindingContentNested&lt;A&gt; withNewOpenshiftClusterRoleBindingContentLike(OpenshiftClusterRoleBinding item){
+<span class="nc" id="L372">            return new OpenshiftClusterRoleBindingContentNestedImpl(item);</span>
+    }
+
+    public A withRouteContent(Route routeContent){
+<span class="nc" id="L376">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L377" title="All 2 branches missed.">            if (routeContent!=null){ this.content= new RouteBuilder(routeContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.RouteContentNested&lt;A&gt; withNewRouteContent(){
+<span class="nc" id="L381">            return new RouteContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.RouteContentNested&lt;A&gt; withNewRouteContentLike(Route item){
+<span class="nc" id="L385">            return new RouteContentNestedImpl(item);</span>
+    }
+
+    public A withNamespaceContent(Namespace namespaceContent){
+<span class="nc" id="L389">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L390" title="All 2 branches missed.">            if (namespaceContent!=null){ this.content= new NamespaceBuilder(namespaceContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.NamespaceContentNested&lt;A&gt; withNewNamespaceContent(){
+<span class="nc" id="L394">            return new NamespaceContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.NamespaceContentNested&lt;A&gt; withNewNamespaceContentLike(Namespace item){
+<span class="nc" id="L398">            return new NamespaceContentNestedImpl(item);</span>
+    }
+
+    public A withLocalSubjectAccessReviewContent(io.fabric8.kubernetes.api.model.authorization.LocalSubjectAccessReview localSubjectAccessReviewContent){
+<span class="nc" id="L402">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L403" title="All 2 branches missed.">            if (localSubjectAccessReviewContent!=null){ this.content= new LocalSubjectAccessReviewBuilder(localSubjectAccessReviewContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.LocalSubjectAccessReviewContentNested&lt;A&gt; withNewLocalSubjectAccessReviewContent(){
+<span class="nc" id="L407">            return new LocalSubjectAccessReviewContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.LocalSubjectAccessReviewContentNested&lt;A&gt; withNewLocalSubjectAccessReviewContentLike(io.fabric8.kubernetes.api.model.authorization.LocalSubjectAccessReview item){
+<span class="nc" id="L411">            return new LocalSubjectAccessReviewContentNestedImpl(item);</span>
+    }
+
+    public A withServiceContent(Service serviceContent){
+<span class="nc" id="L415">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L416" title="All 2 branches missed.">            if (serviceContent!=null){ this.content= new ServiceBuilder(serviceContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ServiceContentNested&lt;A&gt; withNewServiceContent(){
+<span class="nc" id="L420">            return new ServiceContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ServiceContentNested&lt;A&gt; withNewServiceContentLike(Service item){
+<span class="nc" id="L424">            return new ServiceContentNestedImpl(item);</span>
+    }
+
+    public A withReplicationControllerContent(ReplicationController replicationControllerContent){
+<span class="nc" id="L428">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L429" title="All 2 branches missed.">            if (replicationControllerContent!=null){ this.content= new ReplicationControllerBuilder(replicationControllerContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ReplicationControllerContentNested&lt;A&gt; withNewReplicationControllerContent(){
+<span class="nc" id="L433">            return new ReplicationControllerContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ReplicationControllerContentNested&lt;A&gt; withNewReplicationControllerContentLike(ReplicationController item){
+<span class="nc" id="L437">            return new ReplicationControllerContentNestedImpl(item);</span>
+    }
+
+    public A withMutatingWebhookConfigurationContent(MutatingWebhookConfiguration mutatingWebhookConfigurationContent){
+<span class="nc" id="L441">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L442" title="All 2 branches missed.">            if (mutatingWebhookConfigurationContent!=null){ this.content= new MutatingWebhookConfigurationBuilder(mutatingWebhookConfigurationContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.MutatingWebhookConfigurationContentNested&lt;A&gt; withNewMutatingWebhookConfigurationContent(){
+<span class="nc" id="L446">            return new MutatingWebhookConfigurationContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.MutatingWebhookConfigurationContentNested&lt;A&gt; withNewMutatingWebhookConfigurationContentLike(MutatingWebhookConfiguration item){
+<span class="nc" id="L450">            return new MutatingWebhookConfigurationContentNestedImpl(item);</span>
+    }
+
+    public A withHorizontalPodAutoscalerContent(HorizontalPodAutoscaler horizontalPodAutoscalerContent){
+<span class="nc" id="L454">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L455" title="All 2 branches missed.">            if (horizontalPodAutoscalerContent!=null){ this.content= new HorizontalPodAutoscalerBuilder(horizontalPodAutoscalerContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.HorizontalPodAutoscalerContentNested&lt;A&gt; withNewHorizontalPodAutoscalerContent(){
+<span class="nc" id="L459">            return new HorizontalPodAutoscalerContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.HorizontalPodAutoscalerContentNested&lt;A&gt; withNewHorizontalPodAutoscalerContentLike(HorizontalPodAutoscaler item){
+<span class="nc" id="L463">            return new HorizontalPodAutoscalerContentNestedImpl(item);</span>
+    }
+
+    public A withScaleContent(Scale scaleContent){
+<span class="nc" id="L467">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L468" title="All 2 branches missed.">            if (scaleContent!=null){ this.content= new ScaleBuilder(scaleContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ScaleContentNested&lt;A&gt; withNewScaleContent(){
+<span class="nc" id="L472">            return new ScaleContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ScaleContentNested&lt;A&gt; withNewScaleContentLike(Scale item){
+<span class="nc" id="L476">            return new ScaleContentNestedImpl(item);</span>
+    }
+
+    public A withImageContent(Image imageContent){
+<span class="nc" id="L480">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L481" title="All 2 branches missed.">            if (imageContent!=null){ this.content= new ImageBuilder(imageContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ImageContentNested&lt;A&gt; withNewImageContent(){
+<span class="nc" id="L485">            return new ImageContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ImageContentNested&lt;A&gt; withNewImageContentLike(Image item){
+<span class="nc" id="L489">            return new ImageContentNestedImpl(item);</span>
+    }
+
+    public A withReplicaSetContent(ReplicaSet replicaSetContent){
+<span class="nc" id="L493">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L494" title="All 2 branches missed.">            if (replicaSetContent!=null){ this.content= new ReplicaSetBuilder(replicaSetContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ReplicaSetContentNested&lt;A&gt; withNewReplicaSetContent(){
+<span class="nc" id="L498">            return new ReplicaSetContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ReplicaSetContentNested&lt;A&gt; withNewReplicaSetContentLike(ReplicaSet item){
+<span class="nc" id="L502">            return new ReplicaSetContentNestedImpl(item);</span>
+    }
+
+    public A withPodSecurityPolicyContent(PodSecurityPolicy podSecurityPolicyContent){
+<span class="nc" id="L506">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L507" title="All 2 branches missed.">            if (podSecurityPolicyContent!=null){ this.content= new PodSecurityPolicyBuilder(podSecurityPolicyContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.PodSecurityPolicyContentNested&lt;A&gt; withNewPodSecurityPolicyContent(){
+<span class="nc" id="L511">            return new PodSecurityPolicyContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.PodSecurityPolicyContentNested&lt;A&gt; withNewPodSecurityPolicyContentLike(PodSecurityPolicy item){
+<span class="nc" id="L515">            return new PodSecurityPolicyContentNestedImpl(item);</span>
+    }
+
+    public A withCronJobContent(CronJob cronJobContent){
+<span class="nc" id="L519">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L520" title="All 2 branches missed.">            if (cronJobContent!=null){ this.content= new CronJobBuilder(cronJobContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.CronJobContentNested&lt;A&gt; withNewCronJobContent(){
+<span class="nc" id="L524">            return new CronJobContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.CronJobContentNested&lt;A&gt; withNewCronJobContentLike(CronJob item){
+<span class="nc" id="L528">            return new CronJobContentNestedImpl(item);</span>
+    }
+
+    public A withEndpointsContent(Endpoints endpointsContent){
+<span class="nc" id="L532">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L533" title="All 2 branches missed.">            if (endpointsContent!=null){ this.content= new EndpointsBuilder(endpointsContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.EndpointsContentNested&lt;A&gt; withNewEndpointsContent(){
+<span class="nc" id="L537">            return new EndpointsContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.EndpointsContentNested&lt;A&gt; withNewEndpointsContentLike(Endpoints item){
+<span class="nc" id="L541">            return new EndpointsContentNestedImpl(item);</span>
+    }
+
+    public A withPodContent(Pod podContent){
+<span class="nc" id="L545">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L546" title="All 2 branches missed.">            if (podContent!=null){ this.content= new PodBuilder(podContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.PodContentNested&lt;A&gt; withNewPodContent(){
+<span class="nc" id="L550">            return new PodContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.PodContentNested&lt;A&gt; withNewPodContentLike(Pod item){
+<span class="nc" id="L554">            return new PodContentNestedImpl(item);</span>
+    }
+
+    public A withConfigMapContent(ConfigMap configMapContent){
+<span class="nc" id="L558">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L559" title="All 2 branches missed.">            if (configMapContent!=null){ this.content= new ConfigMapBuilder(configMapContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ConfigMapContentNested&lt;A&gt; withNewConfigMapContent(){
+<span class="nc" id="L563">            return new ConfigMapContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ConfigMapContentNested&lt;A&gt; withNewConfigMapContentLike(ConfigMap item){
+<span class="nc" id="L567">            return new ConfigMapContentNestedImpl(item);</span>
+    }
+
+    public A withCustomResourceDefinitionContent(CustomResourceDefinition customResourceDefinitionContent){
+<span class="nc" id="L571">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L572" title="All 2 branches missed.">            if (customResourceDefinitionContent!=null){ this.content= new CustomResourceDefinitionBuilder(customResourceDefinitionContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.CustomResourceDefinitionContentNested&lt;A&gt; withNewCustomResourceDefinitionContent(){
+<span class="nc" id="L576">            return new CustomResourceDefinitionContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.CustomResourceDefinitionContentNested&lt;A&gt; withNewCustomResourceDefinitionContentLike(CustomResourceDefinition item){
+<span class="nc" id="L580">            return new CustomResourceDefinitionContentNestedImpl(item);</span>
+    }
+
+    public A withBuildContent(Build buildContent){
+<span class="nc" id="L584">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L585" title="All 2 branches missed.">            if (buildContent!=null){ this.content= new BuildBuilder(buildContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.BuildContentNested&lt;A&gt; withNewBuildContent(){
+<span class="nc" id="L589">            return new BuildContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.BuildContentNested&lt;A&gt; withNewBuildContentLike(Build item){
+<span class="nc" id="L593">            return new BuildContentNestedImpl(item);</span>
+    }
+
+    public A withImageStreamTagContent(ImageStreamTag imageStreamTagContent){
+<span class="nc" id="L597">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L598" title="All 2 branches missed.">            if (imageStreamTagContent!=null){ this.content= new ImageStreamTagBuilder(imageStreamTagContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ImageStreamTagContentNested&lt;A&gt; withNewImageStreamTagContent(){
+<span class="nc" id="L602">            return new ImageStreamTagContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ImageStreamTagContentNested&lt;A&gt; withNewImageStreamTagContentLike(ImageStreamTag item){
+<span class="nc" id="L606">            return new ImageStreamTagContentNestedImpl(item);</span>
+    }
+
+    public A withGroupContent(Group groupContent){
+<span class="nc" id="L610">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L611" title="All 2 branches missed.">            if (groupContent!=null){ this.content= new GroupBuilder(groupContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.GroupContentNested&lt;A&gt; withNewGroupContent(){
+<span class="nc" id="L615">            return new GroupContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.GroupContentNested&lt;A&gt; withNewGroupContentLike(Group item){
+<span class="nc" id="L619">            return new GroupContentNestedImpl(item);</span>
+    }
+
+    public A withImageSignatureContent(ImageSignature imageSignatureContent){
+<span class="nc" id="L623">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L624" title="All 2 branches missed.">            if (imageSignatureContent!=null){ this.content= new ImageSignatureBuilder(imageSignatureContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ImageSignatureContentNested&lt;A&gt; withNewImageSignatureContent(){
+<span class="nc" id="L628">            return new ImageSignatureContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ImageSignatureContentNested&lt;A&gt; withNewImageSignatureContentLike(ImageSignature item){
+<span class="nc" id="L632">            return new ImageSignatureContentNestedImpl(item);</span>
+    }
+
+    public A withResourceQuotaContent(ResourceQuota resourceQuotaContent){
+<span class="nc" id="L636">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L637" title="All 2 branches missed.">            if (resourceQuotaContent!=null){ this.content= new ResourceQuotaBuilder(resourceQuotaContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ResourceQuotaContentNested&lt;A&gt; withNewResourceQuotaContent(){
+<span class="nc" id="L641">            return new ResourceQuotaContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ResourceQuotaContentNested&lt;A&gt; withNewResourceQuotaContentLike(ResourceQuota item){
+<span class="nc" id="L645">            return new ResourceQuotaContentNestedImpl(item);</span>
+    }
+
+    public A withBuildRequestContent(BuildRequest buildRequestContent){
+<span class="nc" id="L649">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L650" title="All 2 branches missed.">            if (buildRequestContent!=null){ this.content= new BuildRequestBuilder(buildRequestContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.BuildRequestContentNested&lt;A&gt; withNewBuildRequestContent(){
+<span class="nc" id="L654">            return new BuildRequestContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.BuildRequestContentNested&lt;A&gt; withNewBuildRequestContentLike(BuildRequest item){
+<span class="nc" id="L658">            return new BuildRequestContentNestedImpl(item);</span>
+    }
+
+    public A withDaemonSetContent(DaemonSet daemonSetContent){
+<span class="nc" id="L662">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L663" title="All 2 branches missed.">            if (daemonSetContent!=null){ this.content= new DaemonSetBuilder(daemonSetContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.DaemonSetContentNested&lt;A&gt; withNewDaemonSetContent(){
+<span class="nc" id="L667">            return new DaemonSetContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.DaemonSetContentNested&lt;A&gt; withNewDaemonSetContentLike(DaemonSet item){
+<span class="nc" id="L671">            return new DaemonSetContentNestedImpl(item);</span>
+    }
+
+    public A withImageStreamContent(ImageStream imageStreamContent){
+<span class="nc" id="L675">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L676" title="All 2 branches missed.">            if (imageStreamContent!=null){ this.content= new ImageStreamBuilder(imageStreamContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ImageStreamContentNested&lt;A&gt; withNewImageStreamContent(){
+<span class="nc" id="L680">            return new ImageStreamContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ImageStreamContentNested&lt;A&gt; withNewImageStreamContentLike(ImageStream item){
+<span class="nc" id="L684">            return new ImageStreamContentNestedImpl(item);</span>
+    }
+
+    public A withOpenshiftRoleContent(OpenshiftRole openshiftRoleContent){
+<span class="nc" id="L688">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L689" title="All 2 branches missed.">            if (openshiftRoleContent!=null){ this.content= new OpenshiftRoleBuilder(openshiftRoleContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.OpenshiftRoleContentNested&lt;A&gt; withNewOpenshiftRoleContent(){
+<span class="nc" id="L693">            return new OpenshiftRoleContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.OpenshiftRoleContentNested&lt;A&gt; withNewOpenshiftRoleContentLike(OpenshiftRole item){
+<span class="nc" id="L697">            return new OpenshiftRoleContentNestedImpl(item);</span>
+    }
+
+    public A withOAuthClientContent(OAuthClient oAuthClientContent){
+<span class="nc" id="L701">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L702" title="All 2 branches missed.">            if (oAuthClientContent!=null){ this.content= new OAuthClientBuilder(oAuthClientContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.OAuthClientContentNested&lt;A&gt; withNewOAuthClientContent(){
+<span class="nc" id="L706">            return new OAuthClientContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.OAuthClientContentNested&lt;A&gt; withNewOAuthClientContentLike(OAuthClient item){
+<span class="nc" id="L710">            return new OAuthClientContentNestedImpl(item);</span>
+    }
+
+    public A withIdentityContent(Identity identityContent){
+<span class="nc" id="L714">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L715" title="All 2 branches missed.">            if (identityContent!=null){ this.content= new IdentityBuilder(identityContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.IdentityContentNested&lt;A&gt; withNewIdentityContent(){
+<span class="nc" id="L719">            return new IdentityContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.IdentityContentNested&lt;A&gt; withNewIdentityContentLike(Identity item){
+<span class="nc" id="L723">            return new IdentityContentNestedImpl(item);</span>
+    }
+
+    public A withLimitRangeContent(LimitRange limitRangeContent){
+<span class="nc" id="L727">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L728" title="All 2 branches missed.">            if (limitRangeContent!=null){ this.content= new LimitRangeBuilder(limitRangeContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.LimitRangeContentNested&lt;A&gt; withNewLimitRangeContent(){
+<span class="nc" id="L732">            return new LimitRangeContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.LimitRangeContentNested&lt;A&gt; withNewLimitRangeContentLike(LimitRange item){
+<span class="nc" id="L736">            return new LimitRangeContentNestedImpl(item);</span>
+    }
+
+    public A withImageStreamImportContent(ImageStreamImport imageStreamImportContent){
+<span class="nc" id="L740">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L741" title="All 2 branches missed.">            if (imageStreamImportContent!=null){ this.content= new ImageStreamImportBuilder(imageStreamImportContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ImageStreamImportContentNested&lt;A&gt; withNewImageStreamImportContent(){
+<span class="nc" id="L745">            return new ImageStreamImportContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ImageStreamImportContentNested&lt;A&gt; withNewImageStreamImportContentLike(ImageStreamImport item){
+<span class="nc" id="L749">            return new ImageStreamImportContentNestedImpl(item);</span>
+    }
+
+    public A withOpenshiftRoleBindingRestrictionContent(OpenshiftRoleBindingRestriction openshiftRoleBindingRestrictionContent){
+<span class="nc" id="L753">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L754" title="All 2 branches missed.">            if (openshiftRoleBindingRestrictionContent!=null){ this.content= new OpenshiftRoleBindingRestrictionBuilder(openshiftRoleBindingRestrictionContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.OpenshiftRoleBindingRestrictionContentNested&lt;A&gt; withNewOpenshiftRoleBindingRestrictionContent(){
+<span class="nc" id="L758">            return new OpenshiftRoleBindingRestrictionContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.OpenshiftRoleBindingRestrictionContentNested&lt;A&gt; withNewOpenshiftRoleBindingRestrictionContentLike(OpenshiftRoleBindingRestriction item){
+<span class="nc" id="L762">            return new OpenshiftRoleBindingRestrictionContentNestedImpl(item);</span>
+    }
+
+    public A withRoleBindingContent(RoleBinding roleBindingContent){
+<span class="nc" id="L766">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L767" title="All 2 branches missed.">            if (roleBindingContent!=null){ this.content= new RoleBindingBuilder(roleBindingContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.RoleBindingContentNested&lt;A&gt; withNewRoleBindingContent(){
+<span class="nc" id="L771">            return new RoleBindingContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.RoleBindingContentNested&lt;A&gt; withNewRoleBindingContentLike(RoleBinding item){
+<span class="nc" id="L775">            return new RoleBindingContentNestedImpl(item);</span>
+    }
+
+    public A withPodPresetContent(PodPreset podPresetContent){
+<span class="nc" id="L779">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L780" title="All 2 branches missed.">            if (podPresetContent!=null){ this.content= new PodPresetBuilder(podPresetContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.PodPresetContentNested&lt;A&gt; withNewPodPresetContent(){
+<span class="nc" id="L784">            return new PodPresetContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.PodPresetContentNested&lt;A&gt; withNewPodPresetContentLike(PodPreset item){
+<span class="nc" id="L788">            return new PodPresetContentNestedImpl(item);</span>
+    }
+
+    public A withProjectContent(Project projectContent){
+<span class="nc" id="L792">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L793" title="All 2 branches missed.">            if (projectContent!=null){ this.content= new ProjectBuilder(projectContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ProjectContentNested&lt;A&gt; withNewProjectContent(){
+<span class="nc" id="L797">            return new ProjectContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ProjectContentNested&lt;A&gt; withNewProjectContentLike(Project item){
+<span class="nc" id="L801">            return new ProjectContentNestedImpl(item);</span>
+    }
+
+    public A withBuildConfigContent(BuildConfig buildConfigContent){
+<span class="nc" id="L805">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L806" title="All 2 branches missed.">            if (buildConfigContent!=null){ this.content= new BuildConfigBuilder(buildConfigContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.BuildConfigContentNested&lt;A&gt; withNewBuildConfigContent(){
+<span class="nc" id="L810">            return new BuildConfigContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.BuildConfigContentNested&lt;A&gt; withNewBuildConfigContentLike(BuildConfig item){
+<span class="nc" id="L814">            return new BuildConfigContentNestedImpl(item);</span>
+    }
+
+    public A withClusterRoleContent(ClusterRole clusterRoleContent){
+<span class="nc" id="L818">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L819" title="All 2 branches missed.">            if (clusterRoleContent!=null){ this.content= new ClusterRoleBuilder(clusterRoleContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ClusterRoleContentNested&lt;A&gt; withNewClusterRoleContent(){
+<span class="nc" id="L823">            return new ClusterRoleContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ClusterRoleContentNested&lt;A&gt; withNewClusterRoleContentLike(ClusterRole item){
+<span class="nc" id="L827">            return new ClusterRoleContentNestedImpl(item);</span>
+    }
+
+    public A withOAuthAuthorizeTokenContent(OAuthAuthorizeToken oAuthAuthorizeTokenContent){
+<span class="nc" id="L831">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L832" title="All 2 branches missed.">            if (oAuthAuthorizeTokenContent!=null){ this.content= new OAuthAuthorizeTokenBuilder(oAuthAuthorizeTokenContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.OAuthAuthorizeTokenContentNested&lt;A&gt; withNewOAuthAuthorizeTokenContent(){
+<span class="nc" id="L836">            return new OAuthAuthorizeTokenContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.OAuthAuthorizeTokenContentNested&lt;A&gt; withNewOAuthAuthorizeTokenContentLike(OAuthAuthorizeToken item){
+<span class="nc" id="L840">            return new OAuthAuthorizeTokenContentNestedImpl(item);</span>
+    }
+
+    public A withProjectRequestContent(ProjectRequest projectRequestContent){
+<span class="nc" id="L844">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L845" title="All 2 branches missed.">            if (projectRequestContent!=null){ this.content= new ProjectRequestBuilder(projectRequestContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ProjectRequestContentNested&lt;A&gt; withNewProjectRequestContent(){
+<span class="nc" id="L849">            return new ProjectRequestContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ProjectRequestContentNested&lt;A&gt; withNewProjectRequestContentLike(ProjectRequest item){
+<span class="nc" id="L853">            return new ProjectRequestContentNestedImpl(item);</span>
+    }
+
+    public A withPriorityClassContent(PriorityClass priorityClassContent){
+<span class="nc" id="L857">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L858" title="All 2 branches missed.">            if (priorityClassContent!=null){ this.content= new PriorityClassBuilder(priorityClassContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.PriorityClassContentNested&lt;A&gt; withNewPriorityClassContent(){
+<span class="nc" id="L862">            return new PriorityClassContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.PriorityClassContentNested&lt;A&gt; withNewPriorityClassContentLike(PriorityClass item){
+<span class="nc" id="L866">            return new PriorityClassContentNestedImpl(item);</span>
+    }
+
+    public A withTemplateContent(Template templateContent){
+<span class="nc" id="L870">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L871" title="All 2 branches missed.">            if (templateContent!=null){ this.content= new TemplateBuilder(templateContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.TemplateContentNested&lt;A&gt; withNewTemplateContent(){
+<span class="nc" id="L875">            return new TemplateContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.TemplateContentNested&lt;A&gt; withNewTemplateContentLike(Template item){
+<span class="nc" id="L879">            return new TemplateContentNestedImpl(item);</span>
+    }
+
+    public A withOAuthClientAuthorizationContent(OAuthClientAuthorization oAuthClientAuthorizationContent){
+<span class="nc" id="L883">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L884" title="All 2 branches missed.">            if (oAuthClientAuthorizationContent!=null){ this.content= new OAuthClientAuthorizationBuilder(oAuthClientAuthorizationContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.OAuthClientAuthorizationContentNested&lt;A&gt; withNewOAuthClientAuthorizationContent(){
+<span class="nc" id="L888">            return new OAuthClientAuthorizationContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.OAuthClientAuthorizationContentNested&lt;A&gt; withNewOAuthClientAuthorizationContentLike(OAuthClientAuthorization item){
+<span class="nc" id="L892">            return new OAuthClientAuthorizationContentNestedImpl(item);</span>
+    }
+
+    public A withDeploymentContent(Deployment deploymentContent){
+<span class="nc" id="L896">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L897" title="All 2 branches missed.">            if (deploymentContent!=null){ this.content= new DeploymentBuilder(deploymentContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.DeploymentContentNested&lt;A&gt; withNewDeploymentContent(){
+<span class="nc" id="L901">            return new DeploymentContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.DeploymentContentNested&lt;A&gt; withNewDeploymentContentLike(Deployment item){
+<span class="nc" id="L905">            return new DeploymentContentNestedImpl(item);</span>
+    }
+
+    public A withPodTemplateContent(PodTemplate podTemplateContent){
+<span class="nc" id="L909">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L910" title="All 2 branches missed.">            if (podTemplateContent!=null){ this.content= new PodTemplateBuilder(podTemplateContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.PodTemplateContentNested&lt;A&gt; withNewPodTemplateContent(){
+<span class="nc" id="L914">            return new PodTemplateContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.PodTemplateContentNested&lt;A&gt; withNewPodTemplateContentLike(PodTemplate item){
+<span class="nc" id="L918">            return new PodTemplateContentNestedImpl(item);</span>
+    }
+
+    public A withEventContent(Event eventContent){
+<span class="nc" id="L922">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L923" title="All 2 branches missed.">            if (eventContent!=null){ this.content= new EventBuilder(eventContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.EventContentNested&lt;A&gt; withNewEventContent(){
+<span class="nc" id="L927">            return new EventContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.EventContentNested&lt;A&gt; withNewEventContentLike(Event item){
+<span class="nc" id="L931">            return new EventContentNestedImpl(item);</span>
+    }
+
+    public A withIngressContent(Ingress ingressContent){
+<span class="nc" id="L935">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L936" title="All 2 branches missed.">            if (ingressContent!=null){ this.content= new IngressBuilder(ingressContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.IngressContentNested&lt;A&gt; withNewIngressContent(){
+<span class="nc" id="L940">            return new IngressContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.IngressContentNested&lt;A&gt; withNewIngressContentLike(Ingress item){
+<span class="nc" id="L944">            return new IngressContentNestedImpl(item);</span>
+    }
+
+    public A withDeploymentConfigContent(DeploymentConfig deploymentConfigContent){
+<span class="nc" id="L948">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L949" title="All 2 branches missed.">            if (deploymentConfigContent!=null){ this.content= new DeploymentConfigBuilder(deploymentConfigContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.DeploymentConfigContentNested&lt;A&gt; withNewDeploymentConfigContent(){
+<span class="nc" id="L953">            return new DeploymentConfigContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.DeploymentConfigContentNested&lt;A&gt; withNewDeploymentConfigContentLike(DeploymentConfig item){
+<span class="nc" id="L957">            return new DeploymentConfigContentNestedImpl(item);</span>
+    }
+
+    public A withOAuthAccessTokenContent(OAuthAccessToken oAuthAccessTokenContent){
+<span class="nc" id="L961">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L962" title="All 2 branches missed.">            if (oAuthAccessTokenContent!=null){ this.content= new OAuthAccessTokenBuilder(oAuthAccessTokenContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.OAuthAccessTokenContentNested&lt;A&gt; withNewOAuthAccessTokenContent(){
+<span class="nc" id="L966">            return new OAuthAccessTokenContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.OAuthAccessTokenContentNested&lt;A&gt; withNewOAuthAccessTokenContentLike(OAuthAccessToken item){
+<span class="nc" id="L970">            return new OAuthAccessTokenContentNestedImpl(item);</span>
+    }
+
+    public A withPersistentVolumeContent(PersistentVolume persistentVolumeContent){
+<span class="nc" id="L974">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L975" title="All 2 branches missed.">            if (persistentVolumeContent!=null){ this.content= new PersistentVolumeBuilder(persistentVolumeContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.PersistentVolumeContentNested&lt;A&gt; withNewPersistentVolumeContent(){
+<span class="nc" id="L979">            return new PersistentVolumeContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.PersistentVolumeContentNested&lt;A&gt; withNewPersistentVolumeContentLike(PersistentVolume item){
+<span class="nc" id="L983">            return new PersistentVolumeContentNestedImpl(item);</span>
+    }
+
+    public A withPersistentVolumeClaimContent(PersistentVolumeClaim persistentVolumeClaimContent){
+<span class="nc" id="L987">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L988" title="All 2 branches missed.">            if (persistentVolumeClaimContent!=null){ this.content= new PersistentVolumeClaimBuilder(persistentVolumeClaimContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.PersistentVolumeClaimContentNested&lt;A&gt; withNewPersistentVolumeClaimContent(){
+<span class="nc" id="L992">            return new PersistentVolumeClaimContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.PersistentVolumeClaimContentNested&lt;A&gt; withNewPersistentVolumeClaimContentLike(PersistentVolumeClaim item){
+<span class="nc" id="L996">            return new PersistentVolumeClaimContentNestedImpl(item);</span>
+    }
+
+    public A withEventContent(io.fabric8.kubernetes.api.model.events.Event eventContent){
+<span class="nc" id="L1000">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L1001" title="All 2 branches missed.">            if (eventContent!=null){ this.content= new io.fabric8.kubernetes.api.model.events.EventBuilder(eventContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.EventsEventContentNested&lt;A&gt; withNewEventsEventContent(){
+<span class="nc" id="L1005">            return new EventsEventContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.EventsEventContentNested&lt;A&gt; withNewEventContentLike(io.fabric8.kubernetes.api.model.events.Event item){
+<span class="nc" id="L1009">            return new EventsEventContentNestedImpl(item);</span>
+    }
+
+    public A withStatefulSetContent(StatefulSet statefulSetContent){
+<span class="nc" id="L1013">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L1014" title="All 2 branches missed.">            if (statefulSetContent!=null){ this.content= new StatefulSetBuilder(statefulSetContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.StatefulSetContentNested&lt;A&gt; withNewStatefulSetContent(){
+<span class="nc" id="L1018">            return new StatefulSetContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.StatefulSetContentNested&lt;A&gt; withNewStatefulSetContentLike(StatefulSet item){
+<span class="nc" id="L1022">            return new StatefulSetContentNestedImpl(item);</span>
+    }
+
+    public A withOpenshiftClusterRoleContent(OpenshiftClusterRole openshiftClusterRoleContent){
+<span class="nc" id="L1026">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L1027" title="All 2 branches missed.">            if (openshiftClusterRoleContent!=null){ this.content= new OpenshiftClusterRoleBuilder(openshiftClusterRoleContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.OpenshiftClusterRoleContentNested&lt;A&gt; withNewOpenshiftClusterRoleContent(){
+<span class="nc" id="L1031">            return new OpenshiftClusterRoleContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.OpenshiftClusterRoleContentNested&lt;A&gt; withNewOpenshiftClusterRoleContentLike(OpenshiftClusterRole item){
+<span class="nc" id="L1035">            return new OpenshiftClusterRoleContentNestedImpl(item);</span>
+    }
+
+    public A withRoleContent(Role roleContent){
+<span class="nc" id="L1039">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L1040" title="All 2 branches missed.">            if (roleContent!=null){ this.content= new RoleBuilder(roleContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.RoleContentNested&lt;A&gt; withNewRoleContent(){
+<span class="nc" id="L1044">            return new RoleContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.RoleContentNested&lt;A&gt; withNewRoleContentLike(Role item){
+<span class="nc" id="L1048">            return new RoleContentNestedImpl(item);</span>
+    }
+
+    public A withUserContent(User userContent){
+<span class="nc" id="L1052">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L1053" title="All 2 branches missed.">            if (userContent!=null){ this.content= new UserBuilder(userContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.UserContentNested&lt;A&gt; withNewUserContent(){
+<span class="nc" id="L1057">            return new UserContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.UserContentNested&lt;A&gt; withNewUserContentLike(User item){
+<span class="nc" id="L1061">            return new UserContentNestedImpl(item);</span>
+    }
+
+    public A withComponentStatusContent(ComponentStatus componentStatusContent){
+<span class="nc" id="L1065">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L1066" title="All 2 branches missed.">            if (componentStatusContent!=null){ this.content= new ComponentStatusBuilder(componentStatusContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ComponentStatusContentNested&lt;A&gt; withNewComponentStatusContent(){
+<span class="nc" id="L1070">            return new ComponentStatusContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ComponentStatusContentNested&lt;A&gt; withNewComponentStatusContentLike(ComponentStatus item){
+<span class="nc" id="L1074">            return new ComponentStatusContentNestedImpl(item);</span>
+    }
+
+    public A withTokenReviewContent(TokenReview tokenReviewContent){
+<span class="nc" id="L1078">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L1079" title="All 2 branches missed.">            if (tokenReviewContent!=null){ this.content= new TokenReviewBuilder(tokenReviewContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.TokenReviewContentNested&lt;A&gt; withNewTokenReviewContent(){
+<span class="nc" id="L1083">            return new TokenReviewContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.TokenReviewContentNested&lt;A&gt; withNewTokenReviewContentLike(TokenReview item){
+<span class="nc" id="L1087">            return new TokenReviewContentNestedImpl(item);</span>
+    }
+
+    public A withBindingContent(Binding bindingContent){
+<span class="nc" id="L1091">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L1092" title="All 2 branches missed.">            if (bindingContent!=null){ this.content= new BindingBuilder(bindingContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.BindingContentNested&lt;A&gt; withNewBindingContent(){
+<span class="nc" id="L1096">            return new BindingContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.BindingContentNested&lt;A&gt; withNewBindingContentLike(Binding item){
+<span class="nc" id="L1100">            return new BindingContentNestedImpl(item);</span>
+    }
+
+    public A withSecretContent(Secret secretContent){
+<span class="nc" id="L1104">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L1105" title="All 2 branches missed.">            if (secretContent!=null){ this.content= new SecretBuilder(secretContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.SecretContentNested&lt;A&gt; withNewSecretContent(){
+<span class="nc" id="L1109">            return new SecretContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.SecretContentNested&lt;A&gt; withNewSecretContentLike(Secret item){
+<span class="nc" id="L1113">            return new SecretContentNestedImpl(item);</span>
+    }
+
+    public A withSecurityContextConstraintsContent(SecurityContextConstraints securityContextConstraintsContent){
+<span class="nc" id="L1117">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L1118" title="All 2 branches missed.">            if (securityContextConstraintsContent!=null){ this.content= new SecurityContextConstraintsBuilder(securityContextConstraintsContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.SecurityContextConstraintsContentNested&lt;A&gt; withNewSecurityContextConstraintsContent(){
+<span class="nc" id="L1122">            return new SecurityContextConstraintsContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.SecurityContextConstraintsContentNested&lt;A&gt; withNewSecurityContextConstraintsContentLike(SecurityContextConstraints item){
+<span class="nc" id="L1126">            return new SecurityContextConstraintsContentNestedImpl(item);</span>
+    }
+
+    public A withNetNamespaceContent(NetNamespace netNamespaceContent){
+<span class="nc" id="L1130">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L1131" title="All 2 branches missed.">            if (netNamespaceContent!=null){ this.content= new NetNamespaceBuilder(netNamespaceContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.NetNamespaceContentNested&lt;A&gt; withNewNetNamespaceContent(){
+<span class="nc" id="L1135">            return new NetNamespaceContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.NetNamespaceContentNested&lt;A&gt; withNewNetNamespaceContentLike(NetNamespace item){
+<span class="nc" id="L1139">            return new NetNamespaceContentNestedImpl(item);</span>
+    }
+
+    public A withNodeContent(Node nodeContent){
+<span class="nc" id="L1143">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L1144" title="All 2 branches missed.">            if (nodeContent!=null){ this.content= new NodeBuilder(nodeContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.NodeContentNested&lt;A&gt; withNewNodeContent(){
+<span class="nc" id="L1148">            return new NodeContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.NodeContentNested&lt;A&gt; withNewNodeContentLike(Node item){
+<span class="nc" id="L1152">            return new NodeContentNestedImpl(item);</span>
+    }
+
+    public A withJobContent(Job jobContent){
+<span class="nc" id="L1156">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L1157" title="All 2 branches missed.">            if (jobContent!=null){ this.content= new JobBuilder(jobContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.JobContentNested&lt;A&gt; withNewJobContent(){
+<span class="nc" id="L1161">            return new JobContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.JobContentNested&lt;A&gt; withNewJobContentLike(Job item){
+<span class="nc" id="L1165">            return new JobContentNestedImpl(item);</span>
+    }
+
+    public A withCertificateSigningRequestContent(CertificateSigningRequest certificateSigningRequestContent){
+<span class="nc" id="L1169">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L1170" title="All 2 branches missed.">            if (certificateSigningRequestContent!=null){ this.content= new CertificateSigningRequestBuilder(certificateSigningRequestContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.CertificateSigningRequestContentNested&lt;A&gt; withNewCertificateSigningRequestContent(){
+<span class="nc" id="L1174">            return new CertificateSigningRequestContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.CertificateSigningRequestContentNested&lt;A&gt; withNewCertificateSigningRequestContentLike(CertificateSigningRequest item){
+<span class="nc" id="L1178">            return new CertificateSigningRequestContentNestedImpl(item);</span>
+    }
+
+    public A withServiceAccountContent(ServiceAccount serviceAccountContent){
+<span class="nc" id="L1182">            _visitables.remove(this.content);</span>
+<span class="nc bnc" id="L1183" title="All 2 branches missed.">            if (serviceAccountContent!=null){ this.content= new ServiceAccountBuilder(serviceAccountContent); _visitables.add(this.content);} return (A) this;</span>
+    }
+
+    public SubjectAccessReviewFluent.ServiceAccountContentNested&lt;A&gt; withNewServiceAccountContent(){
+<span class="nc" id="L1187">            return new ServiceAccountContentNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewFluent.ServiceAccountContentNested&lt;A&gt; withNewServiceAccountContentLike(ServiceAccount item){
+<span class="nc" id="L1191">            return new ServiceAccountContentNestedImpl(item);</span>
+    }
+
+    public A addToGroups(int index,String item){
+<span class="nc bnc" id="L1195" title="All 2 branches missed.">            if (this.groups == null) {this.groups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L1196">            this.groups.add(index, item);</span>
+<span class="nc" id="L1197">            return (A)this;</span>
+    }
+
+    public A setToGroups(int index,String item){
+<span class="nc bnc" id="L1201" title="All 2 branches missed.">            if (this.groups == null) {this.groups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L1202">            this.groups.set(index, item); return (A)this;</span>
+    }
+
+    public A addToGroups(String... items){
+<span class="nc bnc" id="L1206" title="All 2 branches missed.">            if (this.groups == null) {this.groups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L1207" title="All 2 branches missed.">            for (String item : items) {this.groups.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToGroups(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L1211" title="All 2 branches missed.">            if (this.groups == null) {this.groups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L1212" title="All 2 branches missed.">            for (String item : items) {this.groups.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromGroups(String... items){
+<span class="nc bnc" id="L1216" title="All 4 branches missed.">            for (String item : items) {if (this.groups!= null){ this.groups.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromGroups(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L1220" title="All 4 branches missed.">            for (String item : items) {if (this.groups!= null){ this.groups.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getGroups(){
+<span class="nc" id="L1224">            return this.groups;</span>
+    }
+
+    public String getGroup(int index){
+<span class="nc" id="L1228">            return this.groups.get(index);</span>
+    }
+
+    public String getFirstGroup(){
+<span class="nc" id="L1232">            return this.groups.get(0);</span>
+    }
+
+    public String getLastGroup(){
+<span class="nc" id="L1236">            return this.groups.get(groups.size() - 1);</span>
+    }
+
+    public String getMatchingGroup(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L1240" title="All 4 branches missed.">            for (String item: groups) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withGroups(List&lt;String&gt; groups){
+<span class="nc bnc" id="L1244" title="All 2 branches missed.">            if (this.groups != null) { _visitables.removeAll(this.groups);}</span>
+<span class="nc bnc" id="L1245" title="All 4 branches missed.">            if (groups != null) {this.groups = new ArrayList&lt;String&gt;(); for (String item : groups){this.addToGroups(item);}} else { this.groups = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withGroups(String... groups){
+<span class="nc bnc" id="L1249" title="All 2 branches missed.">            if (this.groups != null) {this.groups.clear();}</span>
+<span class="nc bnc" id="L1250" title="All 4 branches missed.">            if (groups != null) {for (String item :groups){ this.addToGroups(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasGroups(){
+<span class="nc bnc" id="L1254" title="All 4 branches missed.">            return groups != null &amp;&amp; !groups.isEmpty();</span>
+    }
+
+    public Boolean isIsNonResourceURL(){
+<span class="nc" id="L1258">            return this.isNonResourceURL;</span>
+    }
+
+    public A withIsNonResourceURL(Boolean isNonResourceURL){
+<span class="nc" id="L1262">            this.isNonResourceURL=isNonResourceURL; return (A) this;</span>
+    }
+
+    public Boolean hasIsNonResourceURL(){
+<span class="nc bnc" id="L1266" title="All 2 branches missed.">            return this.isNonResourceURL != null;</span>
+    }
+
+    public A withNewIsNonResourceURL(String arg1){
+<span class="nc" id="L1270">            return (A)withIsNonResourceURL(new Boolean(arg1));</span>
+    }
+
+    public A withNewIsNonResourceURL(boolean arg1){
+<span class="nc" id="L1274">            return (A)withIsNonResourceURL(new Boolean(arg1));</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L1278">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L1282">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L1286" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    public String getNamespace(){
+<span class="nc" id="L1290">            return this.namespace;</span>
+    }
+
+    public A withNamespace(String namespace){
+<span class="nc" id="L1294">            this.namespace=namespace; return (A) this;</span>
+    }
+
+    public Boolean hasNamespace(){
+<span class="nc bnc" id="L1298" title="All 2 branches missed.">            return this.namespace != null;</span>
+    }
+
+    public String getPath(){
+<span class="nc" id="L1302">            return this.path;</span>
+    }
+
+    public A withPath(String path){
+<span class="nc" id="L1306">            this.path=path; return (A) this;</span>
+    }
+
+    public Boolean hasPath(){
+<span class="nc bnc" id="L1310" title="All 2 branches missed.">            return this.path != null;</span>
+    }
+
+    public String getResource(){
+<span class="nc" id="L1314">            return this.resource;</span>
+    }
+
+    public A withResource(String resource){
+<span class="nc" id="L1318">            this.resource=resource; return (A) this;</span>
+    }
+
+    public Boolean hasResource(){
+<span class="nc bnc" id="L1322" title="All 2 branches missed.">            return this.resource != null;</span>
+    }
+
+    public String getResourceAPIGroup(){
+<span class="nc" id="L1326">            return this.resourceAPIGroup;</span>
+    }
+
+    public A withResourceAPIGroup(String resourceAPIGroup){
+<span class="nc" id="L1330">            this.resourceAPIGroup=resourceAPIGroup; return (A) this;</span>
+    }
+
+    public Boolean hasResourceAPIGroup(){
+<span class="nc bnc" id="L1334" title="All 2 branches missed.">            return this.resourceAPIGroup != null;</span>
+    }
+
+    public String getResourceAPIVersion(){
+<span class="nc" id="L1338">            return this.resourceAPIVersion;</span>
+    }
+
+    public A withResourceAPIVersion(String resourceAPIVersion){
+<span class="nc" id="L1342">            this.resourceAPIVersion=resourceAPIVersion; return (A) this;</span>
+    }
+
+    public Boolean hasResourceAPIVersion(){
+<span class="nc bnc" id="L1346" title="All 2 branches missed.">            return this.resourceAPIVersion != null;</span>
+    }
+
+    public String getResourceName(){
+<span class="nc" id="L1350">            return this.resourceName;</span>
+    }
+
+    public A withResourceName(String resourceName){
+<span class="nc" id="L1354">            this.resourceName=resourceName; return (A) this;</span>
+    }
+
+    public Boolean hasResourceName(){
+<span class="nc bnc" id="L1358" title="All 2 branches missed.">            return this.resourceName != null;</span>
+    }
+
+    public A addToScopes(int index,String item){
+<span class="nc bnc" id="L1362" title="All 2 branches missed.">            if (this.scopes == null) {this.scopes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L1363">            this.scopes.add(index, item);</span>
+<span class="nc" id="L1364">            return (A)this;</span>
+    }
+
+    public A setToScopes(int index,String item){
+<span class="nc bnc" id="L1368" title="All 2 branches missed.">            if (this.scopes == null) {this.scopes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L1369">            this.scopes.set(index, item); return (A)this;</span>
+    }
+
+    public A addToScopes(String... items){
+<span class="nc bnc" id="L1373" title="All 2 branches missed.">            if (this.scopes == null) {this.scopes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L1374" title="All 2 branches missed.">            for (String item : items) {this.scopes.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToScopes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L1378" title="All 2 branches missed.">            if (this.scopes == null) {this.scopes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L1379" title="All 2 branches missed.">            for (String item : items) {this.scopes.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromScopes(String... items){
+<span class="nc bnc" id="L1383" title="All 4 branches missed.">            for (String item : items) {if (this.scopes!= null){ this.scopes.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromScopes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L1387" title="All 4 branches missed.">            for (String item : items) {if (this.scopes!= null){ this.scopes.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getScopes(){
+<span class="nc" id="L1391">            return this.scopes;</span>
+    }
+
+    public String getScope(int index){
+<span class="nc" id="L1395">            return this.scopes.get(index);</span>
+    }
+
+    public String getFirstScope(){
+<span class="nc" id="L1399">            return this.scopes.get(0);</span>
+    }
+
+    public String getLastScope(){
+<span class="nc" id="L1403">            return this.scopes.get(scopes.size() - 1);</span>
+    }
+
+    public String getMatchingScope(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L1407" title="All 4 branches missed.">            for (String item: scopes) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withScopes(List&lt;String&gt; scopes){
+<span class="nc bnc" id="L1411" title="All 2 branches missed.">            if (this.scopes != null) { _visitables.removeAll(this.scopes);}</span>
+<span class="nc bnc" id="L1412" title="All 4 branches missed.">            if (scopes != null) {this.scopes = new ArrayList&lt;String&gt;(); for (String item : scopes){this.addToScopes(item);}} else { this.scopes = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withScopes(String... scopes){
+<span class="nc bnc" id="L1416" title="All 2 branches missed.">            if (this.scopes != null) {this.scopes.clear();}</span>
+<span class="nc bnc" id="L1417" title="All 4 branches missed.">            if (scopes != null) {for (String item :scopes){ this.addToScopes(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasScopes(){
+<span class="nc bnc" id="L1421" title="All 4 branches missed.">            return scopes != null &amp;&amp; !scopes.isEmpty();</span>
+    }
+
+    public String getUser(){
+<span class="nc" id="L1425">            return this.user;</span>
+    }
+
+    public A withUser(String user){
+<span class="nc" id="L1429">            this.user=user; return (A) this;</span>
+    }
+
+    public Boolean hasUser(){
+<span class="nc bnc" id="L1433" title="All 2 branches missed.">            return this.user != null;</span>
+    }
+
+    public String getVerb(){
+<span class="nc" id="L1437">            return this.verb;</span>
+    }
+
+    public A withVerb(String verb){
+<span class="nc" id="L1441">            this.verb=verb; return (A) this;</span>
+    }
+
+    public Boolean hasVerb(){
+<span class="nc bnc" id="L1445" title="All 2 branches missed.">            return this.verb != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L1449" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L1450" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L1451" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L1452">            SubjectAccessReviewFluentImpl that = (SubjectAccessReviewFluentImpl) o;</span>
+<span class="nc bnc" id="L1453" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L1454" title="All 6 branches missed.">            if (content != null ? !content.equals(that.content) :that.content != null) return false;</span>
+<span class="nc bnc" id="L1455" title="All 6 branches missed.">            if (groups != null ? !groups.equals(that.groups) :that.groups != null) return false;</span>
+<span class="nc bnc" id="L1456" title="All 6 branches missed.">            if (isNonResourceURL != null ? !isNonResourceURL.equals(that.isNonResourceURL) :that.isNonResourceURL != null) return false;</span>
+<span class="nc bnc" id="L1457" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L1458" title="All 6 branches missed.">            if (namespace != null ? !namespace.equals(that.namespace) :that.namespace != null) return false;</span>
+<span class="nc bnc" id="L1459" title="All 6 branches missed.">            if (path != null ? !path.equals(that.path) :that.path != null) return false;</span>
+<span class="nc bnc" id="L1460" title="All 6 branches missed.">            if (resource != null ? !resource.equals(that.resource) :that.resource != null) return false;</span>
+<span class="nc bnc" id="L1461" title="All 6 branches missed.">            if (resourceAPIGroup != null ? !resourceAPIGroup.equals(that.resourceAPIGroup) :that.resourceAPIGroup != null) return false;</span>
+<span class="nc bnc" id="L1462" title="All 6 branches missed.">            if (resourceAPIVersion != null ? !resourceAPIVersion.equals(that.resourceAPIVersion) :that.resourceAPIVersion != null) return false;</span>
+<span class="nc bnc" id="L1463" title="All 6 branches missed.">            if (resourceName != null ? !resourceName.equals(that.resourceName) :that.resourceName != null) return false;</span>
+<span class="nc bnc" id="L1464" title="All 6 branches missed.">            if (scopes != null ? !scopes.equals(that.scopes) :that.scopes != null) return false;</span>
+<span class="nc bnc" id="L1465" title="All 6 branches missed.">            if (user != null ? !user.equals(that.user) :that.user != null) return false;</span>
+<span class="nc bnc" id="L1466" title="All 6 branches missed.">            if (verb != null ? !verb.equals(that.verb) :that.verb != null) return false;</span>
+<span class="nc" id="L1467">            return true;</span>
+    }
+
+
+    public class ValidatingWebhookConfigurationContentNestedImpl&lt;N&gt; extends ValidatingWebhookConfigurationFluentImpl&lt;SubjectAccessReviewFluent.ValidatingWebhookConfigurationContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ValidatingWebhookConfigurationContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ValidatingWebhookConfigurationBuilder builder;
+    
+<span class="nc" id="L1475">            ValidatingWebhookConfigurationContentNestedImpl(ValidatingWebhookConfiguration item){</span>
+<span class="nc" id="L1476">                    this.builder = new ValidatingWebhookConfigurationBuilder(this, item);</span>
+<span class="nc" id="L1477">            }</span>
+<span class="nc" id="L1478">            ValidatingWebhookConfigurationContentNestedImpl(){</span>
+<span class="nc" id="L1479">                    this.builder = new ValidatingWebhookConfigurationBuilder(this);</span>
+<span class="nc" id="L1480">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1483">            return (N) SubjectAccessReviewFluentImpl.this.withValidatingWebhookConfigurationContent(builder.build());</span>
+    }
+    public N endValidatingWebhookConfigurationContent(){
+<span class="nc" id="L1486">            return and();</span>
+    }
+
+}
+    public class StorageClassContentNestedImpl&lt;N&gt; extends StorageClassFluentImpl&lt;SubjectAccessReviewFluent.StorageClassContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.StorageClassContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final StorageClassBuilder builder;
+    
+<span class="nc" id="L1494">            StorageClassContentNestedImpl(StorageClass item){</span>
+<span class="nc" id="L1495">                    this.builder = new StorageClassBuilder(this, item);</span>
+<span class="nc" id="L1496">            }</span>
+<span class="nc" id="L1497">            StorageClassContentNestedImpl(){</span>
+<span class="nc" id="L1498">                    this.builder = new StorageClassBuilder(this);</span>
+<span class="nc" id="L1499">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1502">            return (N) SubjectAccessReviewFluentImpl.this.withStorageClassContent(builder.build());</span>
+    }
+    public N endStorageClassContent(){
+<span class="nc" id="L1505">            return and();</span>
+    }
+
+}
+    public class ClusterRoleBindingContentNestedImpl&lt;N&gt; extends ClusterRoleBindingFluentImpl&lt;SubjectAccessReviewFluent.ClusterRoleBindingContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ClusterRoleBindingContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ClusterRoleBindingBuilder builder;
+    
+<span class="nc" id="L1513">            ClusterRoleBindingContentNestedImpl(ClusterRoleBinding item){</span>
+<span class="nc" id="L1514">                    this.builder = new ClusterRoleBindingBuilder(this, item);</span>
+<span class="nc" id="L1515">            }</span>
+<span class="nc" id="L1516">            ClusterRoleBindingContentNestedImpl(){</span>
+<span class="nc" id="L1517">                    this.builder = new ClusterRoleBindingBuilder(this);</span>
+<span class="nc" id="L1518">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1521">            return (N) SubjectAccessReviewFluentImpl.this.withClusterRoleBindingContent(builder.build());</span>
+    }
+    public N endClusterRoleBindingContent(){
+<span class="nc" id="L1524">            return and();</span>
+    }
+
+}
+    public class OpenshiftRoleBindingContentNestedImpl&lt;N&gt; extends OpenshiftRoleBindingFluentImpl&lt;SubjectAccessReviewFluent.OpenshiftRoleBindingContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.OpenshiftRoleBindingContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OpenshiftRoleBindingBuilder builder;
+    
+<span class="nc" id="L1532">            OpenshiftRoleBindingContentNestedImpl(OpenshiftRoleBinding item){</span>
+<span class="nc" id="L1533">                    this.builder = new OpenshiftRoleBindingBuilder(this, item);</span>
+<span class="nc" id="L1534">            }</span>
+<span class="nc" id="L1535">            OpenshiftRoleBindingContentNestedImpl(){</span>
+<span class="nc" id="L1536">                    this.builder = new OpenshiftRoleBindingBuilder(this);</span>
+<span class="nc" id="L1537">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1540">            return (N) SubjectAccessReviewFluentImpl.this.withOpenshiftRoleBindingContent(builder.build());</span>
+    }
+    public N endOpenshiftRoleBindingContent(){
+<span class="nc" id="L1543">            return and();</span>
+    }
+
+}
+    public class PodDisruptionBudgetContentNestedImpl&lt;N&gt; extends PodDisruptionBudgetFluentImpl&lt;SubjectAccessReviewFluent.PodDisruptionBudgetContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.PodDisruptionBudgetContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodDisruptionBudgetBuilder builder;
+    
+<span class="nc" id="L1551">            PodDisruptionBudgetContentNestedImpl(PodDisruptionBudget item){</span>
+<span class="nc" id="L1552">                    this.builder = new PodDisruptionBudgetBuilder(this, item);</span>
+<span class="nc" id="L1553">            }</span>
+<span class="nc" id="L1554">            PodDisruptionBudgetContentNestedImpl(){</span>
+<span class="nc" id="L1555">                    this.builder = new PodDisruptionBudgetBuilder(this);</span>
+<span class="nc" id="L1556">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1559">            return (N) SubjectAccessReviewFluentImpl.this.withPodDisruptionBudgetContent(builder.build());</span>
+    }
+    public N endPodDisruptionBudgetContent(){
+<span class="nc" id="L1562">            return and();</span>
+    }
+
+}
+    public class NetworkPolicyContentNestedImpl&lt;N&gt; extends NetworkPolicyFluentImpl&lt;SubjectAccessReviewFluent.NetworkPolicyContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.NetworkPolicyContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NetworkPolicyBuilder builder;
+    
+<span class="nc" id="L1570">            NetworkPolicyContentNestedImpl(NetworkPolicy item){</span>
+<span class="nc" id="L1571">                    this.builder = new NetworkPolicyBuilder(this, item);</span>
+<span class="nc" id="L1572">            }</span>
+<span class="nc" id="L1573">            NetworkPolicyContentNestedImpl(){</span>
+<span class="nc" id="L1574">                    this.builder = new NetworkPolicyBuilder(this);</span>
+<span class="nc" id="L1575">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1578">            return (N) SubjectAccessReviewFluentImpl.this.withNetworkPolicyContent(builder.build());</span>
+    }
+    public N endNetworkPolicyContent(){
+<span class="nc" id="L1581">            return and();</span>
+    }
+
+}
+    public class OpenshiftClusterRoleBindingContentNestedImpl&lt;N&gt; extends OpenshiftClusterRoleBindingFluentImpl&lt;SubjectAccessReviewFluent.OpenshiftClusterRoleBindingContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.OpenshiftClusterRoleBindingContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OpenshiftClusterRoleBindingBuilder builder;
+    
+<span class="nc" id="L1589">            OpenshiftClusterRoleBindingContentNestedImpl(OpenshiftClusterRoleBinding item){</span>
+<span class="nc" id="L1590">                    this.builder = new OpenshiftClusterRoleBindingBuilder(this, item);</span>
+<span class="nc" id="L1591">            }</span>
+<span class="nc" id="L1592">            OpenshiftClusterRoleBindingContentNestedImpl(){</span>
+<span class="nc" id="L1593">                    this.builder = new OpenshiftClusterRoleBindingBuilder(this);</span>
+<span class="nc" id="L1594">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1597">            return (N) SubjectAccessReviewFluentImpl.this.withOpenshiftClusterRoleBindingContent(builder.build());</span>
+    }
+    public N endOpenshiftClusterRoleBindingContent(){
+<span class="nc" id="L1600">            return and();</span>
+    }
+
+}
+    public class RouteContentNestedImpl&lt;N&gt; extends RouteFluentImpl&lt;SubjectAccessReviewFluent.RouteContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.RouteContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RouteBuilder builder;
+    
+<span class="nc" id="L1608">            RouteContentNestedImpl(Route item){</span>
+<span class="nc" id="L1609">                    this.builder = new RouteBuilder(this, item);</span>
+<span class="nc" id="L1610">            }</span>
+<span class="nc" id="L1611">            RouteContentNestedImpl(){</span>
+<span class="nc" id="L1612">                    this.builder = new RouteBuilder(this);</span>
+<span class="nc" id="L1613">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1616">            return (N) SubjectAccessReviewFluentImpl.this.withRouteContent(builder.build());</span>
+    }
+    public N endRouteContent(){
+<span class="nc" id="L1619">            return and();</span>
+    }
+
+}
+    public class NamespaceContentNestedImpl&lt;N&gt; extends NamespaceFluentImpl&lt;SubjectAccessReviewFluent.NamespaceContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.NamespaceContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NamespaceBuilder builder;
+    
+<span class="nc" id="L1627">            NamespaceContentNestedImpl(Namespace item){</span>
+<span class="nc" id="L1628">                    this.builder = new NamespaceBuilder(this, item);</span>
+<span class="nc" id="L1629">            }</span>
+<span class="nc" id="L1630">            NamespaceContentNestedImpl(){</span>
+<span class="nc" id="L1631">                    this.builder = new NamespaceBuilder(this);</span>
+<span class="nc" id="L1632">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1635">            return (N) SubjectAccessReviewFluentImpl.this.withNamespaceContent(builder.build());</span>
+    }
+    public N endNamespaceContent(){
+<span class="nc" id="L1638">            return and();</span>
+    }
+
+}
+    public class LocalSubjectAccessReviewContentNestedImpl&lt;N&gt; extends LocalSubjectAccessReviewFluentImpl&lt;SubjectAccessReviewFluent.LocalSubjectAccessReviewContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.LocalSubjectAccessReviewContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LocalSubjectAccessReviewBuilder builder;
+    
+<span class="nc" id="L1646">            LocalSubjectAccessReviewContentNestedImpl(io.fabric8.kubernetes.api.model.authorization.LocalSubjectAccessReview item){</span>
+<span class="nc" id="L1647">                    this.builder = new LocalSubjectAccessReviewBuilder(this, item);</span>
+<span class="nc" id="L1648">            }</span>
+<span class="nc" id="L1649">            LocalSubjectAccessReviewContentNestedImpl(){</span>
+<span class="nc" id="L1650">                    this.builder = new LocalSubjectAccessReviewBuilder(this);</span>
+<span class="nc" id="L1651">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1654">            return (N) SubjectAccessReviewFluentImpl.this.withLocalSubjectAccessReviewContent(builder.build());</span>
+    }
+    public N endLocalSubjectAccessReviewContent(){
+<span class="nc" id="L1657">            return and();</span>
+    }
+
+}
+    public class ServiceContentNestedImpl&lt;N&gt; extends ServiceFluentImpl&lt;SubjectAccessReviewFluent.ServiceContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ServiceContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ServiceBuilder builder;
+    
+<span class="nc" id="L1665">            ServiceContentNestedImpl(Service item){</span>
+<span class="nc" id="L1666">                    this.builder = new ServiceBuilder(this, item);</span>
+<span class="nc" id="L1667">            }</span>
+<span class="nc" id="L1668">            ServiceContentNestedImpl(){</span>
+<span class="nc" id="L1669">                    this.builder = new ServiceBuilder(this);</span>
+<span class="nc" id="L1670">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1673">            return (N) SubjectAccessReviewFluentImpl.this.withServiceContent(builder.build());</span>
+    }
+    public N endServiceContent(){
+<span class="nc" id="L1676">            return and();</span>
+    }
+
+}
+    public class ReplicationControllerContentNestedImpl&lt;N&gt; extends ReplicationControllerFluentImpl&lt;SubjectAccessReviewFluent.ReplicationControllerContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ReplicationControllerContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ReplicationControllerBuilder builder;
+    
+<span class="nc" id="L1684">            ReplicationControllerContentNestedImpl(ReplicationController item){</span>
+<span class="nc" id="L1685">                    this.builder = new ReplicationControllerBuilder(this, item);</span>
+<span class="nc" id="L1686">            }</span>
+<span class="nc" id="L1687">            ReplicationControllerContentNestedImpl(){</span>
+<span class="nc" id="L1688">                    this.builder = new ReplicationControllerBuilder(this);</span>
+<span class="nc" id="L1689">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1692">            return (N) SubjectAccessReviewFluentImpl.this.withReplicationControllerContent(builder.build());</span>
+    }
+    public N endReplicationControllerContent(){
+<span class="nc" id="L1695">            return and();</span>
+    }
+
+}
+    public class MutatingWebhookConfigurationContentNestedImpl&lt;N&gt; extends MutatingWebhookConfigurationFluentImpl&lt;SubjectAccessReviewFluent.MutatingWebhookConfigurationContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.MutatingWebhookConfigurationContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final MutatingWebhookConfigurationBuilder builder;
+    
+<span class="nc" id="L1703">            MutatingWebhookConfigurationContentNestedImpl(MutatingWebhookConfiguration item){</span>
+<span class="nc" id="L1704">                    this.builder = new MutatingWebhookConfigurationBuilder(this, item);</span>
+<span class="nc" id="L1705">            }</span>
+<span class="nc" id="L1706">            MutatingWebhookConfigurationContentNestedImpl(){</span>
+<span class="nc" id="L1707">                    this.builder = new MutatingWebhookConfigurationBuilder(this);</span>
+<span class="nc" id="L1708">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1711">            return (N) SubjectAccessReviewFluentImpl.this.withMutatingWebhookConfigurationContent(builder.build());</span>
+    }
+    public N endMutatingWebhookConfigurationContent(){
+<span class="nc" id="L1714">            return and();</span>
+    }
+
+}
+    public class HorizontalPodAutoscalerContentNestedImpl&lt;N&gt; extends HorizontalPodAutoscalerFluentImpl&lt;SubjectAccessReviewFluent.HorizontalPodAutoscalerContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.HorizontalPodAutoscalerContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final HorizontalPodAutoscalerBuilder builder;
+    
+<span class="nc" id="L1722">            HorizontalPodAutoscalerContentNestedImpl(HorizontalPodAutoscaler item){</span>
+<span class="nc" id="L1723">                    this.builder = new HorizontalPodAutoscalerBuilder(this, item);</span>
+<span class="nc" id="L1724">            }</span>
+<span class="nc" id="L1725">            HorizontalPodAutoscalerContentNestedImpl(){</span>
+<span class="nc" id="L1726">                    this.builder = new HorizontalPodAutoscalerBuilder(this);</span>
+<span class="nc" id="L1727">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1730">            return (N) SubjectAccessReviewFluentImpl.this.withHorizontalPodAutoscalerContent(builder.build());</span>
+    }
+    public N endHorizontalPodAutoscalerContent(){
+<span class="nc" id="L1733">            return and();</span>
+    }
+
+}
+    public class ScaleContentNestedImpl&lt;N&gt; extends ScaleFluentImpl&lt;SubjectAccessReviewFluent.ScaleContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ScaleContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ScaleBuilder builder;
+    
+<span class="nc" id="L1741">            ScaleContentNestedImpl(Scale item){</span>
+<span class="nc" id="L1742">                    this.builder = new ScaleBuilder(this, item);</span>
+<span class="nc" id="L1743">            }</span>
+<span class="nc" id="L1744">            ScaleContentNestedImpl(){</span>
+<span class="nc" id="L1745">                    this.builder = new ScaleBuilder(this);</span>
+<span class="nc" id="L1746">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1749">            return (N) SubjectAccessReviewFluentImpl.this.withScaleContent(builder.build());</span>
+    }
+    public N endScaleContent(){
+<span class="nc" id="L1752">            return and();</span>
+    }
+
+}
+    public class ImageContentNestedImpl&lt;N&gt; extends ImageFluentImpl&lt;SubjectAccessReviewFluent.ImageContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ImageContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageBuilder builder;
+    
+<span class="nc" id="L1760">            ImageContentNestedImpl(Image item){</span>
+<span class="nc" id="L1761">                    this.builder = new ImageBuilder(this, item);</span>
+<span class="nc" id="L1762">            }</span>
+<span class="nc" id="L1763">            ImageContentNestedImpl(){</span>
+<span class="nc" id="L1764">                    this.builder = new ImageBuilder(this);</span>
+<span class="nc" id="L1765">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1768">            return (N) SubjectAccessReviewFluentImpl.this.withImageContent(builder.build());</span>
+    }
+    public N endImageContent(){
+<span class="nc" id="L1771">            return and();</span>
+    }
+
+}
+    public class ReplicaSetContentNestedImpl&lt;N&gt; extends ReplicaSetFluentImpl&lt;SubjectAccessReviewFluent.ReplicaSetContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ReplicaSetContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ReplicaSetBuilder builder;
+    
+<span class="nc" id="L1779">            ReplicaSetContentNestedImpl(ReplicaSet item){</span>
+<span class="nc" id="L1780">                    this.builder = new ReplicaSetBuilder(this, item);</span>
+<span class="nc" id="L1781">            }</span>
+<span class="nc" id="L1782">            ReplicaSetContentNestedImpl(){</span>
+<span class="nc" id="L1783">                    this.builder = new ReplicaSetBuilder(this);</span>
+<span class="nc" id="L1784">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1787">            return (N) SubjectAccessReviewFluentImpl.this.withReplicaSetContent(builder.build());</span>
+    }
+    public N endReplicaSetContent(){
+<span class="nc" id="L1790">            return and();</span>
+    }
+
+}
+    public class PodSecurityPolicyContentNestedImpl&lt;N&gt; extends PodSecurityPolicyFluentImpl&lt;SubjectAccessReviewFluent.PodSecurityPolicyContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.PodSecurityPolicyContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodSecurityPolicyBuilder builder;
+    
+<span class="nc" id="L1798">            PodSecurityPolicyContentNestedImpl(PodSecurityPolicy item){</span>
+<span class="nc" id="L1799">                    this.builder = new PodSecurityPolicyBuilder(this, item);</span>
+<span class="nc" id="L1800">            }</span>
+<span class="nc" id="L1801">            PodSecurityPolicyContentNestedImpl(){</span>
+<span class="nc" id="L1802">                    this.builder = new PodSecurityPolicyBuilder(this);</span>
+<span class="nc" id="L1803">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1806">            return (N) SubjectAccessReviewFluentImpl.this.withPodSecurityPolicyContent(builder.build());</span>
+    }
+    public N endPodSecurityPolicyContent(){
+<span class="nc" id="L1809">            return and();</span>
+    }
+
+}
+    public class CronJobContentNestedImpl&lt;N&gt; extends CronJobFluentImpl&lt;SubjectAccessReviewFluent.CronJobContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.CronJobContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CronJobBuilder builder;
+    
+<span class="nc" id="L1817">            CronJobContentNestedImpl(CronJob item){</span>
+<span class="nc" id="L1818">                    this.builder = new CronJobBuilder(this, item);</span>
+<span class="nc" id="L1819">            }</span>
+<span class="nc" id="L1820">            CronJobContentNestedImpl(){</span>
+<span class="nc" id="L1821">                    this.builder = new CronJobBuilder(this);</span>
+<span class="nc" id="L1822">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1825">            return (N) SubjectAccessReviewFluentImpl.this.withCronJobContent(builder.build());</span>
+    }
+    public N endCronJobContent(){
+<span class="nc" id="L1828">            return and();</span>
+    }
+
+}
+    public class EndpointsContentNestedImpl&lt;N&gt; extends EndpointsFluentImpl&lt;SubjectAccessReviewFluent.EndpointsContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.EndpointsContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EndpointsBuilder builder;
+    
+<span class="nc" id="L1836">            EndpointsContentNestedImpl(Endpoints item){</span>
+<span class="nc" id="L1837">                    this.builder = new EndpointsBuilder(this, item);</span>
+<span class="nc" id="L1838">            }</span>
+<span class="nc" id="L1839">            EndpointsContentNestedImpl(){</span>
+<span class="nc" id="L1840">                    this.builder = new EndpointsBuilder(this);</span>
+<span class="nc" id="L1841">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1844">            return (N) SubjectAccessReviewFluentImpl.this.withEndpointsContent(builder.build());</span>
+    }
+    public N endEndpointsContent(){
+<span class="nc" id="L1847">            return and();</span>
+    }
+
+}
+    public class PodContentNestedImpl&lt;N&gt; extends PodFluentImpl&lt;SubjectAccessReviewFluent.PodContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.PodContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodBuilder builder;
+    
+<span class="nc" id="L1855">            PodContentNestedImpl(Pod item){</span>
+<span class="nc" id="L1856">                    this.builder = new PodBuilder(this, item);</span>
+<span class="nc" id="L1857">            }</span>
+<span class="nc" id="L1858">            PodContentNestedImpl(){</span>
+<span class="nc" id="L1859">                    this.builder = new PodBuilder(this);</span>
+<span class="nc" id="L1860">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1863">            return (N) SubjectAccessReviewFluentImpl.this.withPodContent(builder.build());</span>
+    }
+    public N endPodContent(){
+<span class="nc" id="L1866">            return and();</span>
+    }
+
+}
+    public class ConfigMapContentNestedImpl&lt;N&gt; extends ConfigMapFluentImpl&lt;SubjectAccessReviewFluent.ConfigMapContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ConfigMapContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ConfigMapBuilder builder;
+    
+<span class="nc" id="L1874">            ConfigMapContentNestedImpl(ConfigMap item){</span>
+<span class="nc" id="L1875">                    this.builder = new ConfigMapBuilder(this, item);</span>
+<span class="nc" id="L1876">            }</span>
+<span class="nc" id="L1877">            ConfigMapContentNestedImpl(){</span>
+<span class="nc" id="L1878">                    this.builder = new ConfigMapBuilder(this);</span>
+<span class="nc" id="L1879">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1882">            return (N) SubjectAccessReviewFluentImpl.this.withConfigMapContent(builder.build());</span>
+    }
+    public N endConfigMapContent(){
+<span class="nc" id="L1885">            return and();</span>
+    }
+
+}
+    public class CustomResourceDefinitionContentNestedImpl&lt;N&gt; extends CustomResourceDefinitionFluentImpl&lt;SubjectAccessReviewFluent.CustomResourceDefinitionContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.CustomResourceDefinitionContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CustomResourceDefinitionBuilder builder;
+    
+<span class="nc" id="L1893">            CustomResourceDefinitionContentNestedImpl(CustomResourceDefinition item){</span>
+<span class="nc" id="L1894">                    this.builder = new CustomResourceDefinitionBuilder(this, item);</span>
+<span class="nc" id="L1895">            }</span>
+<span class="nc" id="L1896">            CustomResourceDefinitionContentNestedImpl(){</span>
+<span class="nc" id="L1897">                    this.builder = new CustomResourceDefinitionBuilder(this);</span>
+<span class="nc" id="L1898">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1901">            return (N) SubjectAccessReviewFluentImpl.this.withCustomResourceDefinitionContent(builder.build());</span>
+    }
+    public N endCustomResourceDefinitionContent(){
+<span class="nc" id="L1904">            return and();</span>
+    }
+
+}
+    public class BuildContentNestedImpl&lt;N&gt; extends BuildFluentImpl&lt;SubjectAccessReviewFluent.BuildContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.BuildContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BuildBuilder builder;
+    
+<span class="nc" id="L1912">            BuildContentNestedImpl(Build item){</span>
+<span class="nc" id="L1913">                    this.builder = new BuildBuilder(this, item);</span>
+<span class="nc" id="L1914">            }</span>
+<span class="nc" id="L1915">            BuildContentNestedImpl(){</span>
+<span class="nc" id="L1916">                    this.builder = new BuildBuilder(this);</span>
+<span class="nc" id="L1917">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1920">            return (N) SubjectAccessReviewFluentImpl.this.withBuildContent(builder.build());</span>
+    }
+    public N endBuildContent(){
+<span class="nc" id="L1923">            return and();</span>
+    }
+
+}
+    public class ImageStreamTagContentNestedImpl&lt;N&gt; extends ImageStreamTagFluentImpl&lt;SubjectAccessReviewFluent.ImageStreamTagContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ImageStreamTagContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageStreamTagBuilder builder;
+    
+<span class="nc" id="L1931">            ImageStreamTagContentNestedImpl(ImageStreamTag item){</span>
+<span class="nc" id="L1932">                    this.builder = new ImageStreamTagBuilder(this, item);</span>
+<span class="nc" id="L1933">            }</span>
+<span class="nc" id="L1934">            ImageStreamTagContentNestedImpl(){</span>
+<span class="nc" id="L1935">                    this.builder = new ImageStreamTagBuilder(this);</span>
+<span class="nc" id="L1936">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1939">            return (N) SubjectAccessReviewFluentImpl.this.withImageStreamTagContent(builder.build());</span>
+    }
+    public N endImageStreamTagContent(){
+<span class="nc" id="L1942">            return and();</span>
+    }
+
+}
+    public class GroupContentNestedImpl&lt;N&gt; extends GroupFluentImpl&lt;SubjectAccessReviewFluent.GroupContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.GroupContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final GroupBuilder builder;
+    
+<span class="nc" id="L1950">            GroupContentNestedImpl(Group item){</span>
+<span class="nc" id="L1951">                    this.builder = new GroupBuilder(this, item);</span>
+<span class="nc" id="L1952">            }</span>
+<span class="nc" id="L1953">            GroupContentNestedImpl(){</span>
+<span class="nc" id="L1954">                    this.builder = new GroupBuilder(this);</span>
+<span class="nc" id="L1955">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1958">            return (N) SubjectAccessReviewFluentImpl.this.withGroupContent(builder.build());</span>
+    }
+    public N endGroupContent(){
+<span class="nc" id="L1961">            return and();</span>
+    }
+
+}
+    public class ImageSignatureContentNestedImpl&lt;N&gt; extends ImageSignatureFluentImpl&lt;SubjectAccessReviewFluent.ImageSignatureContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ImageSignatureContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageSignatureBuilder builder;
+    
+<span class="nc" id="L1969">            ImageSignatureContentNestedImpl(ImageSignature item){</span>
+<span class="nc" id="L1970">                    this.builder = new ImageSignatureBuilder(this, item);</span>
+<span class="nc" id="L1971">            }</span>
+<span class="nc" id="L1972">            ImageSignatureContentNestedImpl(){</span>
+<span class="nc" id="L1973">                    this.builder = new ImageSignatureBuilder(this);</span>
+<span class="nc" id="L1974">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1977">            return (N) SubjectAccessReviewFluentImpl.this.withImageSignatureContent(builder.build());</span>
+    }
+    public N endImageSignatureContent(){
+<span class="nc" id="L1980">            return and();</span>
+    }
+
+}
+    public class ResourceQuotaContentNestedImpl&lt;N&gt; extends ResourceQuotaFluentImpl&lt;SubjectAccessReviewFluent.ResourceQuotaContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ResourceQuotaContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ResourceQuotaBuilder builder;
+    
+<span class="nc" id="L1988">            ResourceQuotaContentNestedImpl(ResourceQuota item){</span>
+<span class="nc" id="L1989">                    this.builder = new ResourceQuotaBuilder(this, item);</span>
+<span class="nc" id="L1990">            }</span>
+<span class="nc" id="L1991">            ResourceQuotaContentNestedImpl(){</span>
+<span class="nc" id="L1992">                    this.builder = new ResourceQuotaBuilder(this);</span>
+<span class="nc" id="L1993">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1996">            return (N) SubjectAccessReviewFluentImpl.this.withResourceQuotaContent(builder.build());</span>
+    }
+    public N endResourceQuotaContent(){
+<span class="nc" id="L1999">            return and();</span>
+    }
+
+}
+    public class BuildRequestContentNestedImpl&lt;N&gt; extends BuildRequestFluentImpl&lt;SubjectAccessReviewFluent.BuildRequestContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.BuildRequestContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BuildRequestBuilder builder;
+    
+<span class="nc" id="L2007">            BuildRequestContentNestedImpl(BuildRequest item){</span>
+<span class="nc" id="L2008">                    this.builder = new BuildRequestBuilder(this, item);</span>
+<span class="nc" id="L2009">            }</span>
+<span class="nc" id="L2010">            BuildRequestContentNestedImpl(){</span>
+<span class="nc" id="L2011">                    this.builder = new BuildRequestBuilder(this);</span>
+<span class="nc" id="L2012">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2015">            return (N) SubjectAccessReviewFluentImpl.this.withBuildRequestContent(builder.build());</span>
+    }
+    public N endBuildRequestContent(){
+<span class="nc" id="L2018">            return and();</span>
+    }
+
+}
+    public class DaemonSetContentNestedImpl&lt;N&gt; extends DaemonSetFluentImpl&lt;SubjectAccessReviewFluent.DaemonSetContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.DaemonSetContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final DaemonSetBuilder builder;
+    
+<span class="nc" id="L2026">            DaemonSetContentNestedImpl(DaemonSet item){</span>
+<span class="nc" id="L2027">                    this.builder = new DaemonSetBuilder(this, item);</span>
+<span class="nc" id="L2028">            }</span>
+<span class="nc" id="L2029">            DaemonSetContentNestedImpl(){</span>
+<span class="nc" id="L2030">                    this.builder = new DaemonSetBuilder(this);</span>
+<span class="nc" id="L2031">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2034">            return (N) SubjectAccessReviewFluentImpl.this.withDaemonSetContent(builder.build());</span>
+    }
+    public N endDaemonSetContent(){
+<span class="nc" id="L2037">            return and();</span>
+    }
+
+}
+    public class ImageStreamContentNestedImpl&lt;N&gt; extends ImageStreamFluentImpl&lt;SubjectAccessReviewFluent.ImageStreamContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ImageStreamContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageStreamBuilder builder;
+    
+<span class="nc" id="L2045">            ImageStreamContentNestedImpl(ImageStream item){</span>
+<span class="nc" id="L2046">                    this.builder = new ImageStreamBuilder(this, item);</span>
+<span class="nc" id="L2047">            }</span>
+<span class="nc" id="L2048">            ImageStreamContentNestedImpl(){</span>
+<span class="nc" id="L2049">                    this.builder = new ImageStreamBuilder(this);</span>
+<span class="nc" id="L2050">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2053">            return (N) SubjectAccessReviewFluentImpl.this.withImageStreamContent(builder.build());</span>
+    }
+    public N endImageStreamContent(){
+<span class="nc" id="L2056">            return and();</span>
+    }
+
+}
+    public class OpenshiftRoleContentNestedImpl&lt;N&gt; extends OpenshiftRoleFluentImpl&lt;SubjectAccessReviewFluent.OpenshiftRoleContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.OpenshiftRoleContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OpenshiftRoleBuilder builder;
+    
+<span class="nc" id="L2064">            OpenshiftRoleContentNestedImpl(OpenshiftRole item){</span>
+<span class="nc" id="L2065">                    this.builder = new OpenshiftRoleBuilder(this, item);</span>
+<span class="nc" id="L2066">            }</span>
+<span class="nc" id="L2067">            OpenshiftRoleContentNestedImpl(){</span>
+<span class="nc" id="L2068">                    this.builder = new OpenshiftRoleBuilder(this);</span>
+<span class="nc" id="L2069">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2072">            return (N) SubjectAccessReviewFluentImpl.this.withOpenshiftRoleContent(builder.build());</span>
+    }
+    public N endOpenshiftRoleContent(){
+<span class="nc" id="L2075">            return and();</span>
+    }
+
+}
+    public class OAuthClientContentNestedImpl&lt;N&gt; extends OAuthClientFluentImpl&lt;SubjectAccessReviewFluent.OAuthClientContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.OAuthClientContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OAuthClientBuilder builder;
+    
+<span class="nc" id="L2083">            OAuthClientContentNestedImpl(OAuthClient item){</span>
+<span class="nc" id="L2084">                    this.builder = new OAuthClientBuilder(this, item);</span>
+<span class="nc" id="L2085">            }</span>
+<span class="nc" id="L2086">            OAuthClientContentNestedImpl(){</span>
+<span class="nc" id="L2087">                    this.builder = new OAuthClientBuilder(this);</span>
+<span class="nc" id="L2088">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2091">            return (N) SubjectAccessReviewFluentImpl.this.withOAuthClientContent(builder.build());</span>
+    }
+    public N endOAuthClientContent(){
+<span class="nc" id="L2094">            return and();</span>
+    }
+
+}
+    public class IdentityContentNestedImpl&lt;N&gt; extends IdentityFluentImpl&lt;SubjectAccessReviewFluent.IdentityContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.IdentityContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final IdentityBuilder builder;
+    
+<span class="nc" id="L2102">            IdentityContentNestedImpl(Identity item){</span>
+<span class="nc" id="L2103">                    this.builder = new IdentityBuilder(this, item);</span>
+<span class="nc" id="L2104">            }</span>
+<span class="nc" id="L2105">            IdentityContentNestedImpl(){</span>
+<span class="nc" id="L2106">                    this.builder = new IdentityBuilder(this);</span>
+<span class="nc" id="L2107">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2110">            return (N) SubjectAccessReviewFluentImpl.this.withIdentityContent(builder.build());</span>
+    }
+    public N endIdentityContent(){
+<span class="nc" id="L2113">            return and();</span>
+    }
+
+}
+    public class LimitRangeContentNestedImpl&lt;N&gt; extends LimitRangeFluentImpl&lt;SubjectAccessReviewFluent.LimitRangeContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.LimitRangeContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LimitRangeBuilder builder;
+    
+<span class="nc" id="L2121">            LimitRangeContentNestedImpl(LimitRange item){</span>
+<span class="nc" id="L2122">                    this.builder = new LimitRangeBuilder(this, item);</span>
+<span class="nc" id="L2123">            }</span>
+<span class="nc" id="L2124">            LimitRangeContentNestedImpl(){</span>
+<span class="nc" id="L2125">                    this.builder = new LimitRangeBuilder(this);</span>
+<span class="nc" id="L2126">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2129">            return (N) SubjectAccessReviewFluentImpl.this.withLimitRangeContent(builder.build());</span>
+    }
+    public N endLimitRangeContent(){
+<span class="nc" id="L2132">            return and();</span>
+    }
+
+}
+    public class ImageStreamImportContentNestedImpl&lt;N&gt; extends ImageStreamImportFluentImpl&lt;SubjectAccessReviewFluent.ImageStreamImportContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ImageStreamImportContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageStreamImportBuilder builder;
+    
+<span class="nc" id="L2140">            ImageStreamImportContentNestedImpl(ImageStreamImport item){</span>
+<span class="nc" id="L2141">                    this.builder = new ImageStreamImportBuilder(this, item);</span>
+<span class="nc" id="L2142">            }</span>
+<span class="nc" id="L2143">            ImageStreamImportContentNestedImpl(){</span>
+<span class="nc" id="L2144">                    this.builder = new ImageStreamImportBuilder(this);</span>
+<span class="nc" id="L2145">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2148">            return (N) SubjectAccessReviewFluentImpl.this.withImageStreamImportContent(builder.build());</span>
+    }
+    public N endImageStreamImportContent(){
+<span class="nc" id="L2151">            return and();</span>
+    }
+
+}
+    public class OpenshiftRoleBindingRestrictionContentNestedImpl&lt;N&gt; extends OpenshiftRoleBindingRestrictionFluentImpl&lt;SubjectAccessReviewFluent.OpenshiftRoleBindingRestrictionContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.OpenshiftRoleBindingRestrictionContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OpenshiftRoleBindingRestrictionBuilder builder;
+    
+<span class="nc" id="L2159">            OpenshiftRoleBindingRestrictionContentNestedImpl(OpenshiftRoleBindingRestriction item){</span>
+<span class="nc" id="L2160">                    this.builder = new OpenshiftRoleBindingRestrictionBuilder(this, item);</span>
+<span class="nc" id="L2161">            }</span>
+<span class="nc" id="L2162">            OpenshiftRoleBindingRestrictionContentNestedImpl(){</span>
+<span class="nc" id="L2163">                    this.builder = new OpenshiftRoleBindingRestrictionBuilder(this);</span>
+<span class="nc" id="L2164">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2167">            return (N) SubjectAccessReviewFluentImpl.this.withOpenshiftRoleBindingRestrictionContent(builder.build());</span>
+    }
+    public N endOpenshiftRoleBindingRestrictionContent(){
+<span class="nc" id="L2170">            return and();</span>
+    }
+
+}
+    public class RoleBindingContentNestedImpl&lt;N&gt; extends RoleBindingFluentImpl&lt;SubjectAccessReviewFluent.RoleBindingContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.RoleBindingContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RoleBindingBuilder builder;
+    
+<span class="nc" id="L2178">            RoleBindingContentNestedImpl(RoleBinding item){</span>
+<span class="nc" id="L2179">                    this.builder = new RoleBindingBuilder(this, item);</span>
+<span class="nc" id="L2180">            }</span>
+<span class="nc" id="L2181">            RoleBindingContentNestedImpl(){</span>
+<span class="nc" id="L2182">                    this.builder = new RoleBindingBuilder(this);</span>
+<span class="nc" id="L2183">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2186">            return (N) SubjectAccessReviewFluentImpl.this.withRoleBindingContent(builder.build());</span>
+    }
+    public N endRoleBindingContent(){
+<span class="nc" id="L2189">            return and();</span>
+    }
+
+}
+    public class PodPresetContentNestedImpl&lt;N&gt; extends PodPresetFluentImpl&lt;SubjectAccessReviewFluent.PodPresetContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.PodPresetContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodPresetBuilder builder;
+    
+<span class="nc" id="L2197">            PodPresetContentNestedImpl(PodPreset item){</span>
+<span class="nc" id="L2198">                    this.builder = new PodPresetBuilder(this, item);</span>
+<span class="nc" id="L2199">            }</span>
+<span class="nc" id="L2200">            PodPresetContentNestedImpl(){</span>
+<span class="nc" id="L2201">                    this.builder = new PodPresetBuilder(this);</span>
+<span class="nc" id="L2202">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2205">            return (N) SubjectAccessReviewFluentImpl.this.withPodPresetContent(builder.build());</span>
+    }
+    public N endPodPresetContent(){
+<span class="nc" id="L2208">            return and();</span>
+    }
+
+}
+    public class ProjectContentNestedImpl&lt;N&gt; extends ProjectFluentImpl&lt;SubjectAccessReviewFluent.ProjectContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ProjectContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ProjectBuilder builder;
+    
+<span class="nc" id="L2216">            ProjectContentNestedImpl(Project item){</span>
+<span class="nc" id="L2217">                    this.builder = new ProjectBuilder(this, item);</span>
+<span class="nc" id="L2218">            }</span>
+<span class="nc" id="L2219">            ProjectContentNestedImpl(){</span>
+<span class="nc" id="L2220">                    this.builder = new ProjectBuilder(this);</span>
+<span class="nc" id="L2221">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2224">            return (N) SubjectAccessReviewFluentImpl.this.withProjectContent(builder.build());</span>
+    }
+    public N endProjectContent(){
+<span class="nc" id="L2227">            return and();</span>
+    }
+
+}
+    public class BuildConfigContentNestedImpl&lt;N&gt; extends BuildConfigFluentImpl&lt;SubjectAccessReviewFluent.BuildConfigContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.BuildConfigContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BuildConfigBuilder builder;
+    
+<span class="nc" id="L2235">            BuildConfigContentNestedImpl(BuildConfig item){</span>
+<span class="nc" id="L2236">                    this.builder = new BuildConfigBuilder(this, item);</span>
+<span class="nc" id="L2237">            }</span>
+<span class="nc" id="L2238">            BuildConfigContentNestedImpl(){</span>
+<span class="nc" id="L2239">                    this.builder = new BuildConfigBuilder(this);</span>
+<span class="nc" id="L2240">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2243">            return (N) SubjectAccessReviewFluentImpl.this.withBuildConfigContent(builder.build());</span>
+    }
+    public N endBuildConfigContent(){
+<span class="nc" id="L2246">            return and();</span>
+    }
+
+}
+    public class ClusterRoleContentNestedImpl&lt;N&gt; extends ClusterRoleFluentImpl&lt;SubjectAccessReviewFluent.ClusterRoleContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ClusterRoleContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ClusterRoleBuilder builder;
+    
+<span class="nc" id="L2254">            ClusterRoleContentNestedImpl(ClusterRole item){</span>
+<span class="nc" id="L2255">                    this.builder = new ClusterRoleBuilder(this, item);</span>
+<span class="nc" id="L2256">            }</span>
+<span class="nc" id="L2257">            ClusterRoleContentNestedImpl(){</span>
+<span class="nc" id="L2258">                    this.builder = new ClusterRoleBuilder(this);</span>
+<span class="nc" id="L2259">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2262">            return (N) SubjectAccessReviewFluentImpl.this.withClusterRoleContent(builder.build());</span>
+    }
+    public N endClusterRoleContent(){
+<span class="nc" id="L2265">            return and();</span>
+    }
+
+}
+    public class OAuthAuthorizeTokenContentNestedImpl&lt;N&gt; extends OAuthAuthorizeTokenFluentImpl&lt;SubjectAccessReviewFluent.OAuthAuthorizeTokenContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.OAuthAuthorizeTokenContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OAuthAuthorizeTokenBuilder builder;
+    
+<span class="nc" id="L2273">            OAuthAuthorizeTokenContentNestedImpl(OAuthAuthorizeToken item){</span>
+<span class="nc" id="L2274">                    this.builder = new OAuthAuthorizeTokenBuilder(this, item);</span>
+<span class="nc" id="L2275">            }</span>
+<span class="nc" id="L2276">            OAuthAuthorizeTokenContentNestedImpl(){</span>
+<span class="nc" id="L2277">                    this.builder = new OAuthAuthorizeTokenBuilder(this);</span>
+<span class="nc" id="L2278">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2281">            return (N) SubjectAccessReviewFluentImpl.this.withOAuthAuthorizeTokenContent(builder.build());</span>
+    }
+    public N endOAuthAuthorizeTokenContent(){
+<span class="nc" id="L2284">            return and();</span>
+    }
+
+}
+    public class ProjectRequestContentNestedImpl&lt;N&gt; extends ProjectRequestFluentImpl&lt;SubjectAccessReviewFluent.ProjectRequestContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ProjectRequestContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ProjectRequestBuilder builder;
+    
+<span class="nc" id="L2292">            ProjectRequestContentNestedImpl(ProjectRequest item){</span>
+<span class="nc" id="L2293">                    this.builder = new ProjectRequestBuilder(this, item);</span>
+<span class="nc" id="L2294">            }</span>
+<span class="nc" id="L2295">            ProjectRequestContentNestedImpl(){</span>
+<span class="nc" id="L2296">                    this.builder = new ProjectRequestBuilder(this);</span>
+<span class="nc" id="L2297">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2300">            return (N) SubjectAccessReviewFluentImpl.this.withProjectRequestContent(builder.build());</span>
+    }
+    public N endProjectRequestContent(){
+<span class="nc" id="L2303">            return and();</span>
+    }
+
+}
+    public class PriorityClassContentNestedImpl&lt;N&gt; extends PriorityClassFluentImpl&lt;SubjectAccessReviewFluent.PriorityClassContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.PriorityClassContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PriorityClassBuilder builder;
+    
+<span class="nc" id="L2311">            PriorityClassContentNestedImpl(PriorityClass item){</span>
+<span class="nc" id="L2312">                    this.builder = new PriorityClassBuilder(this, item);</span>
+<span class="nc" id="L2313">            }</span>
+<span class="nc" id="L2314">            PriorityClassContentNestedImpl(){</span>
+<span class="nc" id="L2315">                    this.builder = new PriorityClassBuilder(this);</span>
+<span class="nc" id="L2316">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2319">            return (N) SubjectAccessReviewFluentImpl.this.withPriorityClassContent(builder.build());</span>
+    }
+    public N endPriorityClassContent(){
+<span class="nc" id="L2322">            return and();</span>
+    }
+
+}
+    public class TemplateContentNestedImpl&lt;N&gt; extends TemplateFluentImpl&lt;SubjectAccessReviewFluent.TemplateContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.TemplateContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TemplateBuilder builder;
+    
+<span class="nc" id="L2330">            TemplateContentNestedImpl(Template item){</span>
+<span class="nc" id="L2331">                    this.builder = new TemplateBuilder(this, item);</span>
+<span class="nc" id="L2332">            }</span>
+<span class="nc" id="L2333">            TemplateContentNestedImpl(){</span>
+<span class="nc" id="L2334">                    this.builder = new TemplateBuilder(this);</span>
+<span class="nc" id="L2335">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2338">            return (N) SubjectAccessReviewFluentImpl.this.withTemplateContent(builder.build());</span>
+    }
+    public N endTemplateContent(){
+<span class="nc" id="L2341">            return and();</span>
+    }
+
+}
+    public class OAuthClientAuthorizationContentNestedImpl&lt;N&gt; extends OAuthClientAuthorizationFluentImpl&lt;SubjectAccessReviewFluent.OAuthClientAuthorizationContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.OAuthClientAuthorizationContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OAuthClientAuthorizationBuilder builder;
+    
+<span class="nc" id="L2349">            OAuthClientAuthorizationContentNestedImpl(OAuthClientAuthorization item){</span>
+<span class="nc" id="L2350">                    this.builder = new OAuthClientAuthorizationBuilder(this, item);</span>
+<span class="nc" id="L2351">            }</span>
+<span class="nc" id="L2352">            OAuthClientAuthorizationContentNestedImpl(){</span>
+<span class="nc" id="L2353">                    this.builder = new OAuthClientAuthorizationBuilder(this);</span>
+<span class="nc" id="L2354">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2357">            return (N) SubjectAccessReviewFluentImpl.this.withOAuthClientAuthorizationContent(builder.build());</span>
+    }
+    public N endOAuthClientAuthorizationContent(){
+<span class="nc" id="L2360">            return and();</span>
+    }
+
+}
+    public class DeploymentContentNestedImpl&lt;N&gt; extends DeploymentFluentImpl&lt;SubjectAccessReviewFluent.DeploymentContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.DeploymentContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final DeploymentBuilder builder;
+    
+<span class="nc" id="L2368">            DeploymentContentNestedImpl(Deployment item){</span>
+<span class="nc" id="L2369">                    this.builder = new DeploymentBuilder(this, item);</span>
+<span class="nc" id="L2370">            }</span>
+<span class="nc" id="L2371">            DeploymentContentNestedImpl(){</span>
+<span class="nc" id="L2372">                    this.builder = new DeploymentBuilder(this);</span>
+<span class="nc" id="L2373">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2376">            return (N) SubjectAccessReviewFluentImpl.this.withDeploymentContent(builder.build());</span>
+    }
+    public N endDeploymentContent(){
+<span class="nc" id="L2379">            return and();</span>
+    }
+
+}
+    public class PodTemplateContentNestedImpl&lt;N&gt; extends PodTemplateFluentImpl&lt;SubjectAccessReviewFluent.PodTemplateContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.PodTemplateContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodTemplateBuilder builder;
+    
+<span class="nc" id="L2387">            PodTemplateContentNestedImpl(PodTemplate item){</span>
+<span class="nc" id="L2388">                    this.builder = new PodTemplateBuilder(this, item);</span>
+<span class="nc" id="L2389">            }</span>
+<span class="nc" id="L2390">            PodTemplateContentNestedImpl(){</span>
+<span class="nc" id="L2391">                    this.builder = new PodTemplateBuilder(this);</span>
+<span class="nc" id="L2392">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2395">            return (N) SubjectAccessReviewFluentImpl.this.withPodTemplateContent(builder.build());</span>
+    }
+    public N endPodTemplateContent(){
+<span class="nc" id="L2398">            return and();</span>
+    }
+
+}
+    public class EventContentNestedImpl&lt;N&gt; extends EventFluentImpl&lt;SubjectAccessReviewFluent.EventContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.EventContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EventBuilder builder;
+    
+<span class="nc" id="L2406">            EventContentNestedImpl(Event item){</span>
+<span class="nc" id="L2407">                    this.builder = new EventBuilder(this, item);</span>
+<span class="nc" id="L2408">            }</span>
+<span class="nc" id="L2409">            EventContentNestedImpl(){</span>
+<span class="nc" id="L2410">                    this.builder = new EventBuilder(this);</span>
+<span class="nc" id="L2411">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2414">            return (N) SubjectAccessReviewFluentImpl.this.withEventContent(builder.build());</span>
+    }
+    public N endEventContent(){
+<span class="nc" id="L2417">            return and();</span>
+    }
+
+}
+    public class IngressContentNestedImpl&lt;N&gt; extends IngressFluentImpl&lt;SubjectAccessReviewFluent.IngressContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.IngressContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final IngressBuilder builder;
+    
+<span class="nc" id="L2425">            IngressContentNestedImpl(Ingress item){</span>
+<span class="nc" id="L2426">                    this.builder = new IngressBuilder(this, item);</span>
+<span class="nc" id="L2427">            }</span>
+<span class="nc" id="L2428">            IngressContentNestedImpl(){</span>
+<span class="nc" id="L2429">                    this.builder = new IngressBuilder(this);</span>
+<span class="nc" id="L2430">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2433">            return (N) SubjectAccessReviewFluentImpl.this.withIngressContent(builder.build());</span>
+    }
+    public N endIngressContent(){
+<span class="nc" id="L2436">            return and();</span>
+    }
+
+}
+    public class DeploymentConfigContentNestedImpl&lt;N&gt; extends DeploymentConfigFluentImpl&lt;SubjectAccessReviewFluent.DeploymentConfigContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.DeploymentConfigContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final DeploymentConfigBuilder builder;
+    
+<span class="nc" id="L2444">            DeploymentConfigContentNestedImpl(DeploymentConfig item){</span>
+<span class="nc" id="L2445">                    this.builder = new DeploymentConfigBuilder(this, item);</span>
+<span class="nc" id="L2446">            }</span>
+<span class="nc" id="L2447">            DeploymentConfigContentNestedImpl(){</span>
+<span class="nc" id="L2448">                    this.builder = new DeploymentConfigBuilder(this);</span>
+<span class="nc" id="L2449">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2452">            return (N) SubjectAccessReviewFluentImpl.this.withDeploymentConfigContent(builder.build());</span>
+    }
+    public N endDeploymentConfigContent(){
+<span class="nc" id="L2455">            return and();</span>
+    }
+
+}
+    public class OAuthAccessTokenContentNestedImpl&lt;N&gt; extends OAuthAccessTokenFluentImpl&lt;SubjectAccessReviewFluent.OAuthAccessTokenContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.OAuthAccessTokenContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OAuthAccessTokenBuilder builder;
+    
+<span class="nc" id="L2463">            OAuthAccessTokenContentNestedImpl(OAuthAccessToken item){</span>
+<span class="nc" id="L2464">                    this.builder = new OAuthAccessTokenBuilder(this, item);</span>
+<span class="nc" id="L2465">            }</span>
+<span class="nc" id="L2466">            OAuthAccessTokenContentNestedImpl(){</span>
+<span class="nc" id="L2467">                    this.builder = new OAuthAccessTokenBuilder(this);</span>
+<span class="nc" id="L2468">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2471">            return (N) SubjectAccessReviewFluentImpl.this.withOAuthAccessTokenContent(builder.build());</span>
+    }
+    public N endOAuthAccessTokenContent(){
+<span class="nc" id="L2474">            return and();</span>
+    }
+
+}
+    public class PersistentVolumeContentNestedImpl&lt;N&gt; extends PersistentVolumeFluentImpl&lt;SubjectAccessReviewFluent.PersistentVolumeContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.PersistentVolumeContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PersistentVolumeBuilder builder;
+    
+<span class="nc" id="L2482">            PersistentVolumeContentNestedImpl(PersistentVolume item){</span>
+<span class="nc" id="L2483">                    this.builder = new PersistentVolumeBuilder(this, item);</span>
+<span class="nc" id="L2484">            }</span>
+<span class="nc" id="L2485">            PersistentVolumeContentNestedImpl(){</span>
+<span class="nc" id="L2486">                    this.builder = new PersistentVolumeBuilder(this);</span>
+<span class="nc" id="L2487">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2490">            return (N) SubjectAccessReviewFluentImpl.this.withPersistentVolumeContent(builder.build());</span>
+    }
+    public N endPersistentVolumeContent(){
+<span class="nc" id="L2493">            return and();</span>
+    }
+
+}
+    public class PersistentVolumeClaimContentNestedImpl&lt;N&gt; extends PersistentVolumeClaimFluentImpl&lt;SubjectAccessReviewFluent.PersistentVolumeClaimContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.PersistentVolumeClaimContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PersistentVolumeClaimBuilder builder;
+    
+<span class="nc" id="L2501">            PersistentVolumeClaimContentNestedImpl(PersistentVolumeClaim item){</span>
+<span class="nc" id="L2502">                    this.builder = new PersistentVolumeClaimBuilder(this, item);</span>
+<span class="nc" id="L2503">            }</span>
+<span class="nc" id="L2504">            PersistentVolumeClaimContentNestedImpl(){</span>
+<span class="nc" id="L2505">                    this.builder = new PersistentVolumeClaimBuilder(this);</span>
+<span class="nc" id="L2506">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2509">            return (N) SubjectAccessReviewFluentImpl.this.withPersistentVolumeClaimContent(builder.build());</span>
+    }
+    public N endPersistentVolumeClaimContent(){
+<span class="nc" id="L2512">            return and();</span>
+    }
+
+}
+    public class EventsEventContentNestedImpl&lt;N&gt; extends io.fabric8.kubernetes.api.model.events.EventFluentImpl&lt;SubjectAccessReviewFluent.EventsEventContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.EventsEventContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final io.fabric8.kubernetes.api.model.events.EventBuilder builder;
+    
+<span class="nc" id="L2520">            EventsEventContentNestedImpl(io.fabric8.kubernetes.api.model.events.Event item){</span>
+<span class="nc" id="L2521">                    this.builder = new io.fabric8.kubernetes.api.model.events.EventBuilder(this, item);</span>
+<span class="nc" id="L2522">            }</span>
+<span class="nc" id="L2523">            EventsEventContentNestedImpl(){</span>
+<span class="nc" id="L2524">                    this.builder = new io.fabric8.kubernetes.api.model.events.EventBuilder(this);</span>
+<span class="nc" id="L2525">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2528">            return (N) SubjectAccessReviewFluentImpl.this.withEventContent(builder.build());</span>
+    }
+    public N endEventsEventContent(){
+<span class="nc" id="L2531">            return and();</span>
+    }
+
+}
+    public class StatefulSetContentNestedImpl&lt;N&gt; extends StatefulSetFluentImpl&lt;SubjectAccessReviewFluent.StatefulSetContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.StatefulSetContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final StatefulSetBuilder builder;
+    
+<span class="nc" id="L2539">            StatefulSetContentNestedImpl(StatefulSet item){</span>
+<span class="nc" id="L2540">                    this.builder = new StatefulSetBuilder(this, item);</span>
+<span class="nc" id="L2541">            }</span>
+<span class="nc" id="L2542">            StatefulSetContentNestedImpl(){</span>
+<span class="nc" id="L2543">                    this.builder = new StatefulSetBuilder(this);</span>
+<span class="nc" id="L2544">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2547">            return (N) SubjectAccessReviewFluentImpl.this.withStatefulSetContent(builder.build());</span>
+    }
+    public N endStatefulSetContent(){
+<span class="nc" id="L2550">            return and();</span>
+    }
+
+}
+    public class OpenshiftClusterRoleContentNestedImpl&lt;N&gt; extends OpenshiftClusterRoleFluentImpl&lt;SubjectAccessReviewFluent.OpenshiftClusterRoleContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.OpenshiftClusterRoleContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OpenshiftClusterRoleBuilder builder;
+    
+<span class="nc" id="L2558">            OpenshiftClusterRoleContentNestedImpl(OpenshiftClusterRole item){</span>
+<span class="nc" id="L2559">                    this.builder = new OpenshiftClusterRoleBuilder(this, item);</span>
+<span class="nc" id="L2560">            }</span>
+<span class="nc" id="L2561">            OpenshiftClusterRoleContentNestedImpl(){</span>
+<span class="nc" id="L2562">                    this.builder = new OpenshiftClusterRoleBuilder(this);</span>
+<span class="nc" id="L2563">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2566">            return (N) SubjectAccessReviewFluentImpl.this.withOpenshiftClusterRoleContent(builder.build());</span>
+    }
+    public N endOpenshiftClusterRoleContent(){
+<span class="nc" id="L2569">            return and();</span>
+    }
+
+}
+    public class RoleContentNestedImpl&lt;N&gt; extends RoleFluentImpl&lt;SubjectAccessReviewFluent.RoleContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.RoleContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RoleBuilder builder;
+    
+<span class="nc" id="L2577">            RoleContentNestedImpl(Role item){</span>
+<span class="nc" id="L2578">                    this.builder = new RoleBuilder(this, item);</span>
+<span class="nc" id="L2579">            }</span>
+<span class="nc" id="L2580">            RoleContentNestedImpl(){</span>
+<span class="nc" id="L2581">                    this.builder = new RoleBuilder(this);</span>
+<span class="nc" id="L2582">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2585">            return (N) SubjectAccessReviewFluentImpl.this.withRoleContent(builder.build());</span>
+    }
+    public N endRoleContent(){
+<span class="nc" id="L2588">            return and();</span>
+    }
+
+}
+    public class UserContentNestedImpl&lt;N&gt; extends UserFluentImpl&lt;SubjectAccessReviewFluent.UserContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.UserContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final UserBuilder builder;
+    
+<span class="nc" id="L2596">            UserContentNestedImpl(User item){</span>
+<span class="nc" id="L2597">                    this.builder = new UserBuilder(this, item);</span>
+<span class="nc" id="L2598">            }</span>
+<span class="nc" id="L2599">            UserContentNestedImpl(){</span>
+<span class="nc" id="L2600">                    this.builder = new UserBuilder(this);</span>
+<span class="nc" id="L2601">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2604">            return (N) SubjectAccessReviewFluentImpl.this.withUserContent(builder.build());</span>
+    }
+    public N endUserContent(){
+<span class="nc" id="L2607">            return and();</span>
+    }
+
+}
+    public class ComponentStatusContentNestedImpl&lt;N&gt; extends ComponentStatusFluentImpl&lt;SubjectAccessReviewFluent.ComponentStatusContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ComponentStatusContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ComponentStatusBuilder builder;
+    
+<span class="nc" id="L2615">            ComponentStatusContentNestedImpl(ComponentStatus item){</span>
+<span class="nc" id="L2616">                    this.builder = new ComponentStatusBuilder(this, item);</span>
+<span class="nc" id="L2617">            }</span>
+<span class="nc" id="L2618">            ComponentStatusContentNestedImpl(){</span>
+<span class="nc" id="L2619">                    this.builder = new ComponentStatusBuilder(this);</span>
+<span class="nc" id="L2620">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2623">            return (N) SubjectAccessReviewFluentImpl.this.withComponentStatusContent(builder.build());</span>
+    }
+    public N endComponentStatusContent(){
+<span class="nc" id="L2626">            return and();</span>
+    }
+
+}
+    public class TokenReviewContentNestedImpl&lt;N&gt; extends TokenReviewFluentImpl&lt;SubjectAccessReviewFluent.TokenReviewContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.TokenReviewContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TokenReviewBuilder builder;
+    
+<span class="nc" id="L2634">            TokenReviewContentNestedImpl(TokenReview item){</span>
+<span class="nc" id="L2635">                    this.builder = new TokenReviewBuilder(this, item);</span>
+<span class="nc" id="L2636">            }</span>
+<span class="nc" id="L2637">            TokenReviewContentNestedImpl(){</span>
+<span class="nc" id="L2638">                    this.builder = new TokenReviewBuilder(this);</span>
+<span class="nc" id="L2639">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2642">            return (N) SubjectAccessReviewFluentImpl.this.withTokenReviewContent(builder.build());</span>
+    }
+    public N endTokenReviewContent(){
+<span class="nc" id="L2645">            return and();</span>
+    }
+
+}
+    public class BindingContentNestedImpl&lt;N&gt; extends BindingFluentImpl&lt;SubjectAccessReviewFluent.BindingContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.BindingContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BindingBuilder builder;
+    
+<span class="nc" id="L2653">            BindingContentNestedImpl(Binding item){</span>
+<span class="nc" id="L2654">                    this.builder = new BindingBuilder(this, item);</span>
+<span class="nc" id="L2655">            }</span>
+<span class="nc" id="L2656">            BindingContentNestedImpl(){</span>
+<span class="nc" id="L2657">                    this.builder = new BindingBuilder(this);</span>
+<span class="nc" id="L2658">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2661">            return (N) SubjectAccessReviewFluentImpl.this.withBindingContent(builder.build());</span>
+    }
+    public N endBindingContent(){
+<span class="nc" id="L2664">            return and();</span>
+    }
+
+}
+    public class SecretContentNestedImpl&lt;N&gt; extends SecretFluentImpl&lt;SubjectAccessReviewFluent.SecretContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.SecretContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SecretBuilder builder;
+    
+<span class="nc" id="L2672">            SecretContentNestedImpl(Secret item){</span>
+<span class="nc" id="L2673">                    this.builder = new SecretBuilder(this, item);</span>
+<span class="nc" id="L2674">            }</span>
+<span class="nc" id="L2675">            SecretContentNestedImpl(){</span>
+<span class="nc" id="L2676">                    this.builder = new SecretBuilder(this);</span>
+<span class="nc" id="L2677">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2680">            return (N) SubjectAccessReviewFluentImpl.this.withSecretContent(builder.build());</span>
+    }
+    public N endSecretContent(){
+<span class="nc" id="L2683">            return and();</span>
+    }
+
+}
+    public class SecurityContextConstraintsContentNestedImpl&lt;N&gt; extends SecurityContextConstraintsFluentImpl&lt;SubjectAccessReviewFluent.SecurityContextConstraintsContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.SecurityContextConstraintsContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SecurityContextConstraintsBuilder builder;
+    
+<span class="nc" id="L2691">            SecurityContextConstraintsContentNestedImpl(SecurityContextConstraints item){</span>
+<span class="nc" id="L2692">                    this.builder = new SecurityContextConstraintsBuilder(this, item);</span>
+<span class="nc" id="L2693">            }</span>
+<span class="nc" id="L2694">            SecurityContextConstraintsContentNestedImpl(){</span>
+<span class="nc" id="L2695">                    this.builder = new SecurityContextConstraintsBuilder(this);</span>
+<span class="nc" id="L2696">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2699">            return (N) SubjectAccessReviewFluentImpl.this.withSecurityContextConstraintsContent(builder.build());</span>
+    }
+    public N endSecurityContextConstraintsContent(){
+<span class="nc" id="L2702">            return and();</span>
+    }
+
+}
+    public class NetNamespaceContentNestedImpl&lt;N&gt; extends NetNamespaceFluentImpl&lt;SubjectAccessReviewFluent.NetNamespaceContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.NetNamespaceContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NetNamespaceBuilder builder;
+    
+<span class="nc" id="L2710">            NetNamespaceContentNestedImpl(NetNamespace item){</span>
+<span class="nc" id="L2711">                    this.builder = new NetNamespaceBuilder(this, item);</span>
+<span class="nc" id="L2712">            }</span>
+<span class="nc" id="L2713">            NetNamespaceContentNestedImpl(){</span>
+<span class="nc" id="L2714">                    this.builder = new NetNamespaceBuilder(this);</span>
+<span class="nc" id="L2715">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2718">            return (N) SubjectAccessReviewFluentImpl.this.withNetNamespaceContent(builder.build());</span>
+    }
+    public N endNetNamespaceContent(){
+<span class="nc" id="L2721">            return and();</span>
+    }
+
+}
+    public class NodeContentNestedImpl&lt;N&gt; extends NodeFluentImpl&lt;SubjectAccessReviewFluent.NodeContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.NodeContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NodeBuilder builder;
+    
+<span class="nc" id="L2729">            NodeContentNestedImpl(Node item){</span>
+<span class="nc" id="L2730">                    this.builder = new NodeBuilder(this, item);</span>
+<span class="nc" id="L2731">            }</span>
+<span class="nc" id="L2732">            NodeContentNestedImpl(){</span>
+<span class="nc" id="L2733">                    this.builder = new NodeBuilder(this);</span>
+<span class="nc" id="L2734">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2737">            return (N) SubjectAccessReviewFluentImpl.this.withNodeContent(builder.build());</span>
+    }
+    public N endNodeContent(){
+<span class="nc" id="L2740">            return and();</span>
+    }
+
+}
+    public class JobContentNestedImpl&lt;N&gt; extends JobFluentImpl&lt;SubjectAccessReviewFluent.JobContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.JobContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JobBuilder builder;
+    
+<span class="nc" id="L2748">            JobContentNestedImpl(Job item){</span>
+<span class="nc" id="L2749">                    this.builder = new JobBuilder(this, item);</span>
+<span class="nc" id="L2750">            }</span>
+<span class="nc" id="L2751">            JobContentNestedImpl(){</span>
+<span class="nc" id="L2752">                    this.builder = new JobBuilder(this);</span>
+<span class="nc" id="L2753">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2756">            return (N) SubjectAccessReviewFluentImpl.this.withJobContent(builder.build());</span>
+    }
+    public N endJobContent(){
+<span class="nc" id="L2759">            return and();</span>
+    }
+
+}
+    public class CertificateSigningRequestContentNestedImpl&lt;N&gt; extends CertificateSigningRequestFluentImpl&lt;SubjectAccessReviewFluent.CertificateSigningRequestContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.CertificateSigningRequestContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CertificateSigningRequestBuilder builder;
+    
+<span class="nc" id="L2767">            CertificateSigningRequestContentNestedImpl(CertificateSigningRequest item){</span>
+<span class="nc" id="L2768">                    this.builder = new CertificateSigningRequestBuilder(this, item);</span>
+<span class="nc" id="L2769">            }</span>
+<span class="nc" id="L2770">            CertificateSigningRequestContentNestedImpl(){</span>
+<span class="nc" id="L2771">                    this.builder = new CertificateSigningRequestBuilder(this);</span>
+<span class="nc" id="L2772">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2775">            return (N) SubjectAccessReviewFluentImpl.this.withCertificateSigningRequestContent(builder.build());</span>
+    }
+    public N endCertificateSigningRequestContent(){
+<span class="nc" id="L2778">            return and();</span>
+    }
+
+}
+    public class ServiceAccountContentNestedImpl&lt;N&gt; extends ServiceAccountFluentImpl&lt;SubjectAccessReviewFluent.ServiceAccountContentNested&lt;N&gt;&gt; implements SubjectAccessReviewFluent.ServiceAccountContentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ServiceAccountBuilder builder;
+    
+<span class="nc" id="L2786">            ServiceAccountContentNestedImpl(ServiceAccount item){</span>
+<span class="nc" id="L2787">                    this.builder = new ServiceAccountBuilder(this, item);</span>
+<span class="nc" id="L2788">            }</span>
+<span class="nc" id="L2789">            ServiceAccountContentNestedImpl(){</span>
+<span class="nc" id="L2790">                    this.builder = new ServiceAccountBuilder(this);</span>
+<span class="nc" id="L2791">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2794">            return (N) SubjectAccessReviewFluentImpl.this.withServiceAccountContent(builder.build());</span>
+    }
+    public N endServiceAccountContent(){
+<span class="nc" id="L2797">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

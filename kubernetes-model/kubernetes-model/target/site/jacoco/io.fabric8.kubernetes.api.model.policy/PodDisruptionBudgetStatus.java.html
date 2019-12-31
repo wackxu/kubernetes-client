@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PodDisruptionBudgetStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.policy</a> &gt; <span class="el_source">PodDisruptionBudgetStatus.java</span></div><h1>PodDisruptionBudgetStatus.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.policy;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;currentHealthy&quot;,
+    &quot;desiredHealthy&quot;,
+    &quot;disruptedPods&quot;,
+    &quot;disruptionsAllowed&quot;,
+    &quot;expectedPods&quot;,
+    &quot;observedGeneration&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L41">@ToString</span>
+<span class="nc bnc" id="L42" title="All 62 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class PodDisruptionBudgetStatus implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;currentHealthy&quot;)
+    private Integer currentHealthy;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;desiredHealthy&quot;)
+    private Integer desiredHealthy;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;disruptedPods&quot;)
+    @Valid
+    private Map&lt;String, String&gt; disruptedPods;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;disruptionsAllowed&quot;)
+    private Integer disruptionsAllowed;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;expectedPods&quot;)
+    private Integer expectedPods;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;observedGeneration&quot;)
+    private Long observedGeneration;
+<span class="nc" id="L84">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L91">    public PodDisruptionBudgetStatus() {</span>
+<span class="nc" id="L92">    }</span>
+
+    /**
+     * 
+     * @param currentHealthy
+     * @param expectedPods
+     * @param disruptionsAllowed
+     * @param disruptedPods
+     * @param observedGeneration
+     * @param desiredHealthy
+     */
+<span class="nc" id="L103">    public PodDisruptionBudgetStatus(Integer currentHealthy, Integer desiredHealthy, Map&lt;String, String&gt; disruptedPods, Integer disruptionsAllowed, Integer expectedPods, Long observedGeneration) {</span>
+<span class="nc" id="L104">        this.currentHealthy = currentHealthy;</span>
+<span class="nc" id="L105">        this.desiredHealthy = desiredHealthy;</span>
+<span class="nc" id="L106">        this.disruptedPods = disruptedPods;</span>
+<span class="nc" id="L107">        this.disruptionsAllowed = disruptionsAllowed;</span>
+<span class="nc" id="L108">        this.expectedPods = expectedPods;</span>
+<span class="nc" id="L109">        this.observedGeneration = observedGeneration;</span>
+<span class="nc" id="L110">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The currentHealthy
+     */
+    @JsonProperty(&quot;currentHealthy&quot;)
+    public Integer getCurrentHealthy() {
+<span class="nc" id="L120">        return currentHealthy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param currentHealthy
+     *     The currentHealthy
+     */
+    @JsonProperty(&quot;currentHealthy&quot;)
+    public void setCurrentHealthy(Integer currentHealthy) {
+<span class="nc" id="L131">        this.currentHealthy = currentHealthy;</span>
+<span class="nc" id="L132">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The desiredHealthy
+     */
+    @JsonProperty(&quot;desiredHealthy&quot;)
+    public Integer getDesiredHealthy() {
+<span class="nc" id="L142">        return desiredHealthy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param desiredHealthy
+     *     The desiredHealthy
+     */
+    @JsonProperty(&quot;desiredHealthy&quot;)
+    public void setDesiredHealthy(Integer desiredHealthy) {
+<span class="nc" id="L153">        this.desiredHealthy = desiredHealthy;</span>
+<span class="nc" id="L154">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The disruptedPods
+     */
+    @JsonProperty(&quot;disruptedPods&quot;)
+    public Map&lt;String, String&gt; getDisruptedPods() {
+<span class="nc" id="L164">        return disruptedPods;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param disruptedPods
+     *     The disruptedPods
+     */
+    @JsonProperty(&quot;disruptedPods&quot;)
+    public void setDisruptedPods(Map&lt;String, String&gt; disruptedPods) {
+<span class="nc" id="L175">        this.disruptedPods = disruptedPods;</span>
+<span class="nc" id="L176">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The disruptionsAllowed
+     */
+    @JsonProperty(&quot;disruptionsAllowed&quot;)
+    public Integer getDisruptionsAllowed() {
+<span class="nc" id="L186">        return disruptionsAllowed;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param disruptionsAllowed
+     *     The disruptionsAllowed
+     */
+    @JsonProperty(&quot;disruptionsAllowed&quot;)
+    public void setDisruptionsAllowed(Integer disruptionsAllowed) {
+<span class="nc" id="L197">        this.disruptionsAllowed = disruptionsAllowed;</span>
+<span class="nc" id="L198">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The expectedPods
+     */
+    @JsonProperty(&quot;expectedPods&quot;)
+    public Integer getExpectedPods() {
+<span class="nc" id="L208">        return expectedPods;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param expectedPods
+     *     The expectedPods
+     */
+    @JsonProperty(&quot;expectedPods&quot;)
+    public void setExpectedPods(Integer expectedPods) {
+<span class="nc" id="L219">        this.expectedPods = expectedPods;</span>
+<span class="nc" id="L220">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The observedGeneration
+     */
+    @JsonProperty(&quot;observedGeneration&quot;)
+    public Long getObservedGeneration() {
+<span class="nc" id="L230">        return observedGeneration;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param observedGeneration
+     *     The observedGeneration
+     */
+    @JsonProperty(&quot;observedGeneration&quot;)
+    public void setObservedGeneration(Long observedGeneration) {
+<span class="nc" id="L241">        this.observedGeneration = observedGeneration;</span>
+<span class="nc" id="L242">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L246">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L251">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L252">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

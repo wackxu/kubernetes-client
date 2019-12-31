@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeploymentSpec.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.apps</a> &gt; <span class="el_source">DeploymentSpec.java</span></div><h1>DeploymentSpec.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.apps;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.fabric8.kubernetes.api.model.LabelSelector;
+import io.fabric8.kubernetes.api.model.PodTemplateSpec;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;minReadySeconds&quot;,
+    &quot;paused&quot;,
+    &quot;progressDeadlineSeconds&quot;,
+    &quot;replicas&quot;,
+    &quot;revisionHistoryLimit&quot;,
+    &quot;selector&quot;,
+    &quot;strategy&quot;,
+    &quot;template&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L45">@ToString</span>
+<span class="pc bpc" id="L46" title="68 of 78 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class DeploymentSpec implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;minReadySeconds&quot;)
+    private Integer minReadySeconds;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;paused&quot;)
+    private Boolean paused;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;progressDeadlineSeconds&quot;)
+    private Integer progressDeadlineSeconds;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;replicas&quot;)
+    private Integer replicas;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;revisionHistoryLimit&quot;)
+    private Integer revisionHistoryLimit;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;selector&quot;)
+    @Valid
+    private LabelSelector selector;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;strategy&quot;)
+    @Valid
+    private DeploymentStrategy strategy;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;template&quot;)
+    @Valid
+    private PodTemplateSpec template;
+<span class="fc" id="L102">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L109">    public DeploymentSpec() {</span>
+<span class="fc" id="L110">    }</span>
+
+    /**
+     * 
+     * @param template
+     * @param paused
+     * @param replicas
+     * @param revisionHistoryLimit
+     * @param selector
+     * @param minReadySeconds
+     * @param strategy
+     * @param progressDeadlineSeconds
+     */
+<span class="fc" id="L123">    public DeploymentSpec(Integer minReadySeconds, Boolean paused, Integer progressDeadlineSeconds, Integer replicas, Integer revisionHistoryLimit, LabelSelector selector, DeploymentStrategy strategy, PodTemplateSpec template) {</span>
+<span class="fc" id="L124">        this.minReadySeconds = minReadySeconds;</span>
+<span class="fc" id="L125">        this.paused = paused;</span>
+<span class="fc" id="L126">        this.progressDeadlineSeconds = progressDeadlineSeconds;</span>
+<span class="fc" id="L127">        this.replicas = replicas;</span>
+<span class="fc" id="L128">        this.revisionHistoryLimit = revisionHistoryLimit;</span>
+<span class="fc" id="L129">        this.selector = selector;</span>
+<span class="fc" id="L130">        this.strategy = strategy;</span>
+<span class="fc" id="L131">        this.template = template;</span>
+<span class="fc" id="L132">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The minReadySeconds
+     */
+    @JsonProperty(&quot;minReadySeconds&quot;)
+    public Integer getMinReadySeconds() {
+<span class="fc" id="L142">        return minReadySeconds;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param minReadySeconds
+     *     The minReadySeconds
+     */
+    @JsonProperty(&quot;minReadySeconds&quot;)
+    public void setMinReadySeconds(Integer minReadySeconds) {
+<span class="fc" id="L153">        this.minReadySeconds = minReadySeconds;</span>
+<span class="fc" id="L154">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The paused
+     */
+    @JsonProperty(&quot;paused&quot;)
+    public Boolean getPaused() {
+<span class="fc" id="L164">        return paused;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param paused
+     *     The paused
+     */
+    @JsonProperty(&quot;paused&quot;)
+    public void setPaused(Boolean paused) {
+<span class="fc" id="L175">        this.paused = paused;</span>
+<span class="fc" id="L176">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The progressDeadlineSeconds
+     */
+    @JsonProperty(&quot;progressDeadlineSeconds&quot;)
+    public Integer getProgressDeadlineSeconds() {
+<span class="fc" id="L186">        return progressDeadlineSeconds;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param progressDeadlineSeconds
+     *     The progressDeadlineSeconds
+     */
+    @JsonProperty(&quot;progressDeadlineSeconds&quot;)
+    public void setProgressDeadlineSeconds(Integer progressDeadlineSeconds) {
+<span class="fc" id="L197">        this.progressDeadlineSeconds = progressDeadlineSeconds;</span>
+<span class="fc" id="L198">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The replicas
+     */
+    @JsonProperty(&quot;replicas&quot;)
+    public Integer getReplicas() {
+<span class="fc" id="L208">        return replicas;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param replicas
+     *     The replicas
+     */
+    @JsonProperty(&quot;replicas&quot;)
+    public void setReplicas(Integer replicas) {
+<span class="fc" id="L219">        this.replicas = replicas;</span>
+<span class="fc" id="L220">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The revisionHistoryLimit
+     */
+    @JsonProperty(&quot;revisionHistoryLimit&quot;)
+    public Integer getRevisionHistoryLimit() {
+<span class="fc" id="L230">        return revisionHistoryLimit;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param revisionHistoryLimit
+     *     The revisionHistoryLimit
+     */
+    @JsonProperty(&quot;revisionHistoryLimit&quot;)
+    public void setRevisionHistoryLimit(Integer revisionHistoryLimit) {
+<span class="fc" id="L241">        this.revisionHistoryLimit = revisionHistoryLimit;</span>
+<span class="fc" id="L242">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The selector
+     */
+    @JsonProperty(&quot;selector&quot;)
+    public LabelSelector getSelector() {
+<span class="fc" id="L252">        return selector;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param selector
+     *     The selector
+     */
+    @JsonProperty(&quot;selector&quot;)
+    public void setSelector(LabelSelector selector) {
+<span class="fc" id="L263">        this.selector = selector;</span>
+<span class="fc" id="L264">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The strategy
+     */
+    @JsonProperty(&quot;strategy&quot;)
+    public DeploymentStrategy getStrategy() {
+<span class="fc" id="L274">        return strategy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param strategy
+     *     The strategy
+     */
+    @JsonProperty(&quot;strategy&quot;)
+    public void setStrategy(DeploymentStrategy strategy) {
+<span class="fc" id="L285">        this.strategy = strategy;</span>
+<span class="fc" id="L286">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The template
+     */
+    @JsonProperty(&quot;template&quot;)
+    public PodTemplateSpec getTemplate() {
+<span class="fc" id="L296">        return template;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param template
+     *     The template
+     */
+    @JsonProperty(&quot;template&quot;)
+    public void setTemplate(PodTemplateSpec template) {
+<span class="fc" id="L307">        this.template = template;</span>
+<span class="fc" id="L308">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L312">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="fc" id="L317">        this.additionalProperties.put(name, value);</span>
+<span class="fc" id="L318">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

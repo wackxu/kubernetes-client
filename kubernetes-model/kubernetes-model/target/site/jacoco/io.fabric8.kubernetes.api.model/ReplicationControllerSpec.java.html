@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReplicationControllerSpec.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ReplicationControllerSpec.java</span></div><h1>ReplicationControllerSpec.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;minReadySeconds&quot;,
+    &quot;replicas&quot;,
+    &quot;selector&quot;,
+    &quot;template&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L38">@ToString</span>
+<span class="nc bnc" id="L39" title="All 46 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class ReplicationControllerSpec implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;minReadySeconds&quot;)
+    private Integer minReadySeconds;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;replicas&quot;)
+    private Integer replicas;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;selector&quot;)
+    @Valid
+    private Map&lt;String, String&gt; selector;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;template&quot;)
+    @Valid
+    private PodTemplateSpec template;
+<span class="nc" id="L70">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L77">    public ReplicationControllerSpec() {</span>
+<span class="nc" id="L78">    }</span>
+
+    /**
+     * 
+     * @param template
+     * @param replicas
+     * @param selector
+     * @param minReadySeconds
+     */
+<span class="nc" id="L87">    public ReplicationControllerSpec(Integer minReadySeconds, Integer replicas, Map&lt;String, String&gt; selector, PodTemplateSpec template) {</span>
+<span class="nc" id="L88">        this.minReadySeconds = minReadySeconds;</span>
+<span class="nc" id="L89">        this.replicas = replicas;</span>
+<span class="nc" id="L90">        this.selector = selector;</span>
+<span class="nc" id="L91">        this.template = template;</span>
+<span class="nc" id="L92">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The minReadySeconds
+     */
+    @JsonProperty(&quot;minReadySeconds&quot;)
+    public Integer getMinReadySeconds() {
+<span class="nc" id="L102">        return minReadySeconds;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param minReadySeconds
+     *     The minReadySeconds
+     */
+    @JsonProperty(&quot;minReadySeconds&quot;)
+    public void setMinReadySeconds(Integer minReadySeconds) {
+<span class="nc" id="L113">        this.minReadySeconds = minReadySeconds;</span>
+<span class="nc" id="L114">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The replicas
+     */
+    @JsonProperty(&quot;replicas&quot;)
+    public Integer getReplicas() {
+<span class="nc" id="L124">        return replicas;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param replicas
+     *     The replicas
+     */
+    @JsonProperty(&quot;replicas&quot;)
+    public void setReplicas(Integer replicas) {
+<span class="nc" id="L135">        this.replicas = replicas;</span>
+<span class="nc" id="L136">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The selector
+     */
+    @JsonProperty(&quot;selector&quot;)
+    public Map&lt;String, String&gt; getSelector() {
+<span class="nc" id="L146">        return selector;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param selector
+     *     The selector
+     */
+    @JsonProperty(&quot;selector&quot;)
+    public void setSelector(Map&lt;String, String&gt; selector) {
+<span class="nc" id="L157">        this.selector = selector;</span>
+<span class="nc" id="L158">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The template
+     */
+    @JsonProperty(&quot;template&quot;)
+    public PodTemplateSpec getTemplate() {
+<span class="nc" id="L168">        return template;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param template
+     *     The template
+     */
+    @JsonProperty(&quot;template&quot;)
+    public void setTemplate(PodTemplateSpec template) {
+<span class="nc" id="L179">        this.template = template;</span>
+<span class="nc" id="L180">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L184">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L189">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L190">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

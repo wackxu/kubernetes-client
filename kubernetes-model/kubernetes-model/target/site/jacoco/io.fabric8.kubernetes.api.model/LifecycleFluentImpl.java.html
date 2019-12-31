@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LifecycleFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">LifecycleFluentImpl.java</span></div><h1>LifecycleFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class LifecycleFluentImpl&lt;A extends LifecycleFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements LifecycleFluent&lt;A&gt;{
+
+    private HandlerBuilder postStart;
+    private HandlerBuilder preStop;
+
+<span class="fc" id="L16">    public LifecycleFluentImpl(){</span>
+<span class="fc" id="L17">    }</span>
+<span class="nc" id="L18">    public LifecycleFluentImpl(Lifecycle instance){</span>
+<span class="nc" id="L19">            this.withPostStart(instance.getPostStart()); </span>
+<span class="nc" id="L20">            this.withPreStop(instance.getPreStop()); </span>
+<span class="nc" id="L21">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildPostStart instead.
+ * @return The buildable object.
+ */
+@Deprecated public Handler getPostStart(){
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">            return this.postStart!=null?this.postStart.build():null;</span>
+    }
+
+    public Handler buildPostStart(){
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            return this.postStart!=null?this.postStart.build():null;</span>
+    }
+
+    public A withPostStart(Handler postStart){
+<span class="fc" id="L37">            _visitables.remove(this.postStart);</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">            if (postStart!=null){ this.postStart= new HandlerBuilder(postStart); _visitables.add(this.postStart);} return (A) this;</span>
+    }
+
+    public Boolean hasPostStart(){
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            return this.postStart != null;</span>
+    }
+
+    public LifecycleFluent.PostStartNested&lt;A&gt; withNewPostStart(){
+<span class="fc" id="L46">            return new PostStartNestedImpl();</span>
+    }
+
+    public LifecycleFluent.PostStartNested&lt;A&gt; withNewPostStartLike(Handler item){
+<span class="nc" id="L50">            return new PostStartNestedImpl(item);</span>
+    }
+
+    public LifecycleFluent.PostStartNested&lt;A&gt; editPostStart(){
+<span class="nc" id="L54">            return withNewPostStartLike(getPostStart());</span>
+    }
+
+    public LifecycleFluent.PostStartNested&lt;A&gt; editOrNewPostStart(){
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            return withNewPostStartLike(getPostStart() != null ? getPostStart(): new HandlerBuilder().build());</span>
+    }
+
+    public LifecycleFluent.PostStartNested&lt;A&gt; editOrNewPostStartLike(Handler item){
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            return withNewPostStartLike(getPostStart() != null ? getPostStart(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPreStop instead.
+ * @return The buildable object.
+ */
+@Deprecated public Handler getPreStop(){
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">            return this.preStop!=null?this.preStop.build():null;</span>
+    }
+
+    public Handler buildPreStop(){
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            return this.preStop!=null?this.preStop.build():null;</span>
+    }
+
+    public A withPreStop(Handler preStop){
+<span class="fc" id="L79">            _visitables.remove(this.preStop);</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">            if (preStop!=null){ this.preStop= new HandlerBuilder(preStop); _visitables.add(this.preStop);} return (A) this;</span>
+    }
+
+    public Boolean hasPreStop(){
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            return this.preStop != null;</span>
+    }
+
+    public LifecycleFluent.PreStopNested&lt;A&gt; withNewPreStop(){
+<span class="fc" id="L88">            return new PreStopNestedImpl();</span>
+    }
+
+    public LifecycleFluent.PreStopNested&lt;A&gt; withNewPreStopLike(Handler item){
+<span class="nc" id="L92">            return new PreStopNestedImpl(item);</span>
+    }
+
+    public LifecycleFluent.PreStopNested&lt;A&gt; editPreStop(){
+<span class="nc" id="L96">            return withNewPreStopLike(getPreStop());</span>
+    }
+
+    public LifecycleFluent.PreStopNested&lt;A&gt; editOrNewPreStop(){
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            return withNewPreStopLike(getPreStop() != null ? getPreStop(): new HandlerBuilder().build());</span>
+    }
+
+    public LifecycleFluent.PreStopNested&lt;A&gt; editOrNewPreStopLike(Handler item){
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            return withNewPreStopLike(getPreStop() != null ? getPreStop(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L109" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L111">            LifecycleFluentImpl that = (LifecycleFluentImpl) o;</span>
+<span class="nc bnc" id="L112" title="All 6 branches missed.">            if (postStart != null ? !postStart.equals(that.postStart) :that.postStart != null) return false;</span>
+<span class="nc bnc" id="L113" title="All 6 branches missed.">            if (preStop != null ? !preStop.equals(that.preStop) :that.preStop != null) return false;</span>
+<span class="nc" id="L114">            return true;</span>
+    }
+
+
+    public class PostStartNestedImpl&lt;N&gt; extends HandlerFluentImpl&lt;LifecycleFluent.PostStartNested&lt;N&gt;&gt; implements LifecycleFluent.PostStartNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final HandlerBuilder builder;
+    
+<span class="nc" id="L122">            PostStartNestedImpl(Handler item){</span>
+<span class="nc" id="L123">                    this.builder = new HandlerBuilder(this, item);</span>
+<span class="nc" id="L124">            }</span>
+<span class="fc" id="L125">            PostStartNestedImpl(){</span>
+<span class="fc" id="L126">                    this.builder = new HandlerBuilder(this);</span>
+<span class="fc" id="L127">            }</span>
+    
+    public N and(){
+<span class="fc" id="L130">            return (N) LifecycleFluentImpl.this.withPostStart(builder.build());</span>
+    }
+    public N endPostStart(){
+<span class="fc" id="L133">            return and();</span>
+    }
+
+}
+    public class PreStopNestedImpl&lt;N&gt; extends HandlerFluentImpl&lt;LifecycleFluent.PreStopNested&lt;N&gt;&gt; implements LifecycleFluent.PreStopNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final HandlerBuilder builder;
+    
+<span class="nc" id="L141">            PreStopNestedImpl(Handler item){</span>
+<span class="nc" id="L142">                    this.builder = new HandlerBuilder(this, item);</span>
+<span class="nc" id="L143">            }</span>
+<span class="fc" id="L144">            PreStopNestedImpl(){</span>
+<span class="fc" id="L145">                    this.builder = new HandlerBuilder(this);</span>
+<span class="fc" id="L146">            }</span>
+    
+    public N and(){
+<span class="fc" id="L149">            return (N) LifecycleFluentImpl.this.withPreStop(builder.build());</span>
+    }
+    public N endPreStop(){
+<span class="fc" id="L152">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

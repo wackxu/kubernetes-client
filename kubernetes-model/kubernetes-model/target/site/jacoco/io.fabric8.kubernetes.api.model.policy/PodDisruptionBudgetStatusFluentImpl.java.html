@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PodDisruptionBudgetStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.policy</a> &gt; <span class="el_source">PodDisruptionBudgetStatusFluentImpl.java</span></div><h1>PodDisruptionBudgetStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.policy;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.String;
+import java.util.LinkedHashMap;
+import java.lang.Integer;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Long;
+import java.lang.Object;
+import java.lang.Boolean;
+import java.util.Map;
+
+public class PodDisruptionBudgetStatusFluentImpl&lt;A extends PodDisruptionBudgetStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements PodDisruptionBudgetStatusFluent&lt;A&gt;{
+
+    private Integer currentHealthy;
+    private Integer desiredHealthy;
+    private Map&lt;String,String&gt; disruptedPods;
+    private Integer disruptionsAllowed;
+    private Integer expectedPods;
+    private Long observedGeneration;
+
+<span class="nc" id="L23">    public PodDisruptionBudgetStatusFluentImpl(){</span>
+<span class="nc" id="L24">    }</span>
+<span class="nc" id="L25">    public PodDisruptionBudgetStatusFluentImpl(PodDisruptionBudgetStatus instance){</span>
+<span class="nc" id="L26">            this.withCurrentHealthy(instance.getCurrentHealthy()); </span>
+<span class="nc" id="L27">            this.withDesiredHealthy(instance.getDesiredHealthy()); </span>
+<span class="nc" id="L28">            this.withDisruptedPods(instance.getDisruptedPods()); </span>
+<span class="nc" id="L29">            this.withDisruptionsAllowed(instance.getDisruptionsAllowed()); </span>
+<span class="nc" id="L30">            this.withExpectedPods(instance.getExpectedPods()); </span>
+<span class="nc" id="L31">            this.withObservedGeneration(instance.getObservedGeneration()); </span>
+<span class="nc" id="L32">    }</span>
+
+    public Integer getCurrentHealthy(){
+<span class="nc" id="L35">            return this.currentHealthy;</span>
+    }
+
+    public A withCurrentHealthy(Integer currentHealthy){
+<span class="nc" id="L39">            this.currentHealthy=currentHealthy; return (A) this;</span>
+    }
+
+    public Boolean hasCurrentHealthy(){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            return this.currentHealthy != null;</span>
+    }
+
+    public Integer getDesiredHealthy(){
+<span class="nc" id="L47">            return this.desiredHealthy;</span>
+    }
+
+    public A withDesiredHealthy(Integer desiredHealthy){
+<span class="nc" id="L51">            this.desiredHealthy=desiredHealthy; return (A) this;</span>
+    }
+
+    public Boolean hasDesiredHealthy(){
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            return this.desiredHealthy != null;</span>
+    }
+
+    public A addToDisruptedPods(String key,String value){
+<span class="nc bnc" id="L59" title="All 6 branches missed.">            if(this.disruptedPods == null &amp;&amp; key != null &amp;&amp; value != null) { this.disruptedPods = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L60" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.disruptedPods.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToDisruptedPods(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L64" title="All 4 branches missed.">            if(this.disruptedPods == null &amp;&amp; map != null) { this.disruptedPods = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if(map != null) { this.disruptedPods.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromDisruptedPods(String key){
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if(this.disruptedPods == null) { return (A) this; }</span>
+<span class="nc bnc" id="L70" title="All 4 branches missed.">            if(key != null &amp;&amp; this.disruptedPods != null) {this.disruptedPods.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromDisruptedPods(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            if(this.disruptedPods == null) { return (A) this; }</span>
+<span class="nc bnc" id="L75" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.disruptedPods != null){this.disruptedPods.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getDisruptedPods(){
+<span class="nc" id="L79">            return this.disruptedPods;</span>
+    }
+
+    public A withDisruptedPods(Map&lt;String,String&gt; disruptedPods){
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            if (disruptedPods == null) { this.disruptedPods =  new LinkedHashMap&lt;String,String&gt;();} else {this.disruptedPods = new LinkedHashMap&lt;String,String&gt;(disruptedPods);} return (A) this;</span>
+    }
+
+    public Boolean hasDisruptedPods(){
+<span class="nc bnc" id="L87" title="All 2 branches missed.">            return this.disruptedPods != null;</span>
+    }
+
+    public Integer getDisruptionsAllowed(){
+<span class="nc" id="L91">            return this.disruptionsAllowed;</span>
+    }
+
+    public A withDisruptionsAllowed(Integer disruptionsAllowed){
+<span class="nc" id="L95">            this.disruptionsAllowed=disruptionsAllowed; return (A) this;</span>
+    }
+
+    public Boolean hasDisruptionsAllowed(){
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            return this.disruptionsAllowed != null;</span>
+    }
+
+    public Integer getExpectedPods(){
+<span class="nc" id="L103">            return this.expectedPods;</span>
+    }
+
+    public A withExpectedPods(Integer expectedPods){
+<span class="nc" id="L107">            this.expectedPods=expectedPods; return (A) this;</span>
+    }
+
+    public Boolean hasExpectedPods(){
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            return this.expectedPods != null;</span>
+    }
+
+    public Long getObservedGeneration(){
+<span class="nc" id="L115">            return this.observedGeneration;</span>
+    }
+
+    public A withObservedGeneration(Long observedGeneration){
+<span class="nc" id="L119">            this.observedGeneration=observedGeneration; return (A) this;</span>
+    }
+
+    public Boolean hasObservedGeneration(){
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            return this.observedGeneration != null;</span>
+    }
+
+    public A withNewObservedGeneration(String arg1){
+<span class="nc" id="L127">            return (A)withObservedGeneration(new Long(arg1));</span>
+    }
+
+    public A withNewObservedGeneration(long arg1){
+<span class="nc" id="L131">            return (A)withObservedGeneration(new Long(arg1));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L136" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L138">            PodDisruptionBudgetStatusFluentImpl that = (PodDisruptionBudgetStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L139" title="All 6 branches missed.">            if (currentHealthy != null ? !currentHealthy.equals(that.currentHealthy) :that.currentHealthy != null) return false;</span>
+<span class="nc bnc" id="L140" title="All 6 branches missed.">            if (desiredHealthy != null ? !desiredHealthy.equals(that.desiredHealthy) :that.desiredHealthy != null) return false;</span>
+<span class="nc bnc" id="L141" title="All 6 branches missed.">            if (disruptedPods != null ? !disruptedPods.equals(that.disruptedPods) :that.disruptedPods != null) return false;</span>
+<span class="nc bnc" id="L142" title="All 6 branches missed.">            if (disruptionsAllowed != null ? !disruptionsAllowed.equals(that.disruptionsAllowed) :that.disruptionsAllowed != null) return false;</span>
+<span class="nc bnc" id="L143" title="All 6 branches missed.">            if (expectedPods != null ? !expectedPods.equals(that.expectedPods) :that.expectedPods != null) return false;</span>
+<span class="nc bnc" id="L144" title="All 6 branches missed.">            if (observedGeneration != null ? !observedGeneration.equals(that.observedGeneration) :that.observedGeneration != null) return false;</span>
+<span class="nc" id="L145">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

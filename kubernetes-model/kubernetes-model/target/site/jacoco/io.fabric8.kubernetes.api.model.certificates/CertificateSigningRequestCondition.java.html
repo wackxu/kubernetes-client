@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CertificateSigningRequestCondition.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.certificates</a> &gt; <span class="el_source">CertificateSigningRequestCondition.java</span></div><h1>CertificateSigningRequestCondition.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.certificates;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;lastUpdateTime&quot;,
+    &quot;message&quot;,
+    &quot;reason&quot;,
+    &quot;type&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L39">@ToString</span>
+<span class="nc bnc" id="L40" title="All 46 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class CertificateSigningRequestCondition implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;lastUpdateTime&quot;)
+    @Valid
+    private String lastUpdateTime;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;message&quot;)
+    private java.lang.String message;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;reason&quot;)
+    private java.lang.String reason;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;type&quot;)
+    private java.lang.String type;
+<span class="nc" id="L70">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L77">    public CertificateSigningRequestCondition() {</span>
+<span class="nc" id="L78">    }</span>
+
+    /**
+     * 
+     * @param reason
+     * @param message
+     * @param type
+     * @param lastUpdateTime
+     */
+<span class="nc" id="L87">    public CertificateSigningRequestCondition(String lastUpdateTime, java.lang.String message, java.lang.String reason, java.lang.String type) {</span>
+<span class="nc" id="L88">        this.lastUpdateTime = lastUpdateTime;</span>
+<span class="nc" id="L89">        this.message = message;</span>
+<span class="nc" id="L90">        this.reason = reason;</span>
+<span class="nc" id="L91">        this.type = type;</span>
+<span class="nc" id="L92">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The lastUpdateTime
+     */
+    @JsonProperty(&quot;lastUpdateTime&quot;)
+    public String getLastUpdateTime() {
+<span class="nc" id="L102">        return lastUpdateTime;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param lastUpdateTime
+     *     The lastUpdateTime
+     */
+    @JsonProperty(&quot;lastUpdateTime&quot;)
+    public void setLastUpdateTime(String lastUpdateTime) {
+<span class="nc" id="L113">        this.lastUpdateTime = lastUpdateTime;</span>
+<span class="nc" id="L114">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The message
+     */
+    @JsonProperty(&quot;message&quot;)
+    public java.lang.String getMessage() {
+<span class="nc" id="L124">        return message;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param message
+     *     The message
+     */
+    @JsonProperty(&quot;message&quot;)
+    public void setMessage(java.lang.String message) {
+<span class="nc" id="L135">        this.message = message;</span>
+<span class="nc" id="L136">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The reason
+     */
+    @JsonProperty(&quot;reason&quot;)
+    public java.lang.String getReason() {
+<span class="nc" id="L146">        return reason;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param reason
+     *     The reason
+     */
+    @JsonProperty(&quot;reason&quot;)
+    public void setReason(java.lang.String reason) {
+<span class="nc" id="L157">        this.reason = reason;</span>
+<span class="nc" id="L158">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The type
+     */
+    @JsonProperty(&quot;type&quot;)
+    public java.lang.String getType() {
+<span class="nc" id="L168">        return type;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param type
+     *     The type
+     */
+    @JsonProperty(&quot;type&quot;)
+    public void setType(java.lang.String type) {
+<span class="nc" id="L179">        this.type = type;</span>
+<span class="nc" id="L180">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L184">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L189">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L190">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

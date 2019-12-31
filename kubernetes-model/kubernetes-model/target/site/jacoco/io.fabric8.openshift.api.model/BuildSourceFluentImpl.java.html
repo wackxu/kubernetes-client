@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuildSourceFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">BuildSourceFluentImpl.java</span></div><h1>BuildSourceFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import io.fabric8.kubernetes.api.model.LocalObjectReferenceFluentImpl;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.LocalObjectReferenceBuilder;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.LocalObjectReference;
+import java.util.Collection;
+import java.lang.Object;
+
+public class BuildSourceFluentImpl&lt;A extends BuildSourceFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements BuildSourceFluent&lt;A&gt;{
+
+    private BinaryBuildSourceBuilder binary;
+    private List&lt;ConfigMapBuildSourceBuilder&gt; configMaps;
+    private String contextDir;
+    private String dockerfile;
+    private GitBuildSourceBuilder git;
+    private List&lt;ImageSourceBuilder&gt; images;
+    private List&lt;SecretBuildSourceBuilder&gt; secrets;
+    private LocalObjectReferenceBuilder sourceSecret;
+    private String type;
+
+<span class="fc" id="L32">    public BuildSourceFluentImpl(){</span>
+<span class="fc" id="L33">    }</span>
+<span class="nc" id="L34">    public BuildSourceFluentImpl(BuildSource instance){</span>
+<span class="nc" id="L35">            this.withBinary(instance.getBinary()); </span>
+<span class="nc" id="L36">            this.withConfigMaps(instance.getConfigMaps()); </span>
+<span class="nc" id="L37">            this.withContextDir(instance.getContextDir()); </span>
+<span class="nc" id="L38">            this.withDockerfile(instance.getDockerfile()); </span>
+<span class="nc" id="L39">            this.withGit(instance.getGit()); </span>
+<span class="nc" id="L40">            this.withImages(instance.getImages()); </span>
+<span class="nc" id="L41">            this.withSecrets(instance.getSecrets()); </span>
+<span class="nc" id="L42">            this.withSourceSecret(instance.getSourceSecret()); </span>
+<span class="nc" id="L43">            this.withType(instance.getType()); </span>
+<span class="nc" id="L44">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildBinary instead.
+ * @return The buildable object.
+ */
+@Deprecated public BinaryBuildSource getBinary(){
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">            return this.binary!=null?this.binary.build():null;</span>
+    }
+
+    public BinaryBuildSource buildBinary(){
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            return this.binary!=null?this.binary.build():null;</span>
+    }
+
+    public A withBinary(BinaryBuildSource binary){
+<span class="fc" id="L60">            _visitables.remove(this.binary);</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">            if (binary!=null){ this.binary= new BinaryBuildSourceBuilder(binary); _visitables.add(this.binary);} return (A) this;</span>
+    }
+
+    public Boolean hasBinary(){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            return this.binary != null;</span>
+    }
+
+    public A withNewBinary(String asFile){
+<span class="nc" id="L69">            return (A)withBinary(new BinaryBuildSource(asFile));</span>
+    }
+
+    public BuildSourceFluent.BinaryNested&lt;A&gt; withNewBinary(){
+<span class="nc" id="L73">            return new BinaryNestedImpl();</span>
+    }
+
+    public BuildSourceFluent.BinaryNested&lt;A&gt; withNewBinaryLike(BinaryBuildSource item){
+<span class="nc" id="L77">            return new BinaryNestedImpl(item);</span>
+    }
+
+    public BuildSourceFluent.BinaryNested&lt;A&gt; editBinary(){
+<span class="nc" id="L81">            return withNewBinaryLike(getBinary());</span>
+    }
+
+    public BuildSourceFluent.BinaryNested&lt;A&gt; editOrNewBinary(){
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            return withNewBinaryLike(getBinary() != null ? getBinary(): new BinaryBuildSourceBuilder().build());</span>
+    }
+
+    public BuildSourceFluent.BinaryNested&lt;A&gt; editOrNewBinaryLike(BinaryBuildSource item){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            return withNewBinaryLike(getBinary() != null ? getBinary(): item);</span>
+    }
+
+    public A addToConfigMaps(int index,ConfigMapBuildSource item){
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            if (this.configMaps == null) {this.configMaps = new ArrayList&lt;ConfigMapBuildSourceBuilder&gt;();}</span>
+<span class="nc bnc" id="L94" title="All 4 branches missed.">            ConfigMapBuildSourceBuilder builder = new ConfigMapBuildSourceBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.configMaps.add(index &gt;= 0 ? index : configMaps.size(), builder); return (A)this;</span>
+    }
+
+    public A setToConfigMaps(int index,ConfigMapBuildSource item){
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            if (this.configMaps == null) {this.configMaps = new ArrayList&lt;ConfigMapBuildSourceBuilder&gt;();}</span>
+<span class="nc" id="L99">            ConfigMapBuildSourceBuilder builder = new ConfigMapBuildSourceBuilder(item);</span>
+<span class="nc bnc" id="L100" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L101" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= configMaps.size()) { configMaps.add(builder); } else { configMaps.set(index, builder);}</span>
+<span class="nc" id="L102">             return (A)this;</span>
+    }
+
+    public A addToConfigMaps(ConfigMapBuildSource... items){
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            if (this.configMaps == null) {this.configMaps = new ArrayList&lt;ConfigMapBuildSourceBuilder&gt;();}</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            for (ConfigMapBuildSource item : items) {ConfigMapBuildSourceBuilder builder = new ConfigMapBuildSourceBuilder(item);_visitables.add(builder);this.configMaps.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToConfigMaps(Collection&lt;ConfigMapBuildSource&gt; items){
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            if (this.configMaps == null) {this.configMaps = new ArrayList&lt;ConfigMapBuildSourceBuilder&gt;();}</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            for (ConfigMapBuildSource item : items) {ConfigMapBuildSourceBuilder builder = new ConfigMapBuildSourceBuilder(item);_visitables.add(builder);this.configMaps.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromConfigMaps(ConfigMapBuildSource... items){
+<span class="nc bnc" id="L116" title="All 4 branches missed.">            for (ConfigMapBuildSource item : items) {ConfigMapBuildSourceBuilder builder = new ConfigMapBuildSourceBuilder(item);_visitables.remove(builder);if (this.configMaps != null) {this.configMaps.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromConfigMaps(Collection&lt;ConfigMapBuildSource&gt; items){
+<span class="nc bnc" id="L120" title="All 4 branches missed.">            for (ConfigMapBuildSource item : items) {ConfigMapBuildSourceBuilder builder = new ConfigMapBuildSourceBuilder(item);_visitables.remove(builder);if (this.configMaps != null) {this.configMaps.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildConfigMaps instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;ConfigMapBuildSource&gt; getConfigMaps(){
+<span class="fc" id="L129">            return build(configMaps);</span>
+    }
+
+    public List&lt;ConfigMapBuildSource&gt; buildConfigMaps(){
+<span class="nc" id="L133">            return build(configMaps);</span>
+    }
+
+    public ConfigMapBuildSource buildConfigMap(int index){
+<span class="nc" id="L137">            return this.configMaps.get(index).build();</span>
+    }
+
+    public ConfigMapBuildSource buildFirstConfigMap(){
+<span class="nc" id="L141">            return this.configMaps.get(0).build();</span>
+    }
+
+    public ConfigMapBuildSource buildLastConfigMap(){
+<span class="nc" id="L145">            return this.configMaps.get(configMaps.size() - 1).build();</span>
+    }
+
+    public ConfigMapBuildSource buildMatchingConfigMap(io.fabric8.kubernetes.api.builder.Predicate&lt;ConfigMapBuildSourceBuilder&gt; predicate){
+<span class="nc bnc" id="L149" title="All 4 branches missed.">            for (ConfigMapBuildSourceBuilder item: configMaps) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withConfigMaps(List&lt;ConfigMapBuildSource&gt; configMaps){
+<span class="pc bpc" id="L153" title="1 of 2 branches missed.">            if (this.configMaps != null) { _visitables.removeAll(this.configMaps);}</span>
+<span class="pc bpc" id="L154" title="2 of 4 branches missed.">            if (configMaps != null) {this.configMaps = new ArrayList&lt;ConfigMapBuildSourceBuilder&gt;(); for (ConfigMapBuildSource item : configMaps){this.addToConfigMaps(item);}} else { this.configMaps = new ArrayList&lt;ConfigMapBuildSourceBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withConfigMaps(ConfigMapBuildSource... configMaps){
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            if (this.configMaps != null) {this.configMaps.clear();}</span>
+<span class="nc bnc" id="L159" title="All 4 branches missed.">            if (configMaps != null) {for (ConfigMapBuildSource item :configMaps){ this.addToConfigMaps(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasConfigMaps(){
+<span class="nc bnc" id="L163" title="All 4 branches missed.">            return configMaps != null &amp;&amp; !configMaps.isEmpty();</span>
+    }
+
+    public BuildSourceFluent.ConfigMapsNested&lt;A&gt; addNewConfigMap(){
+<span class="nc" id="L167">            return new ConfigMapsNestedImpl();</span>
+    }
+
+    public BuildSourceFluent.ConfigMapsNested&lt;A&gt; addNewConfigMapLike(ConfigMapBuildSource item){
+<span class="nc" id="L171">            return new ConfigMapsNestedImpl(-1, item);</span>
+    }
+
+    public BuildSourceFluent.ConfigMapsNested&lt;A&gt; setNewConfigMapLike(int index,ConfigMapBuildSource item){
+<span class="nc" id="L175">            return new ConfigMapsNestedImpl(index, item);</span>
+    }
+
+    public BuildSourceFluent.ConfigMapsNested&lt;A&gt; editConfigMap(int index){
+<span class="nc bnc" id="L179" title="All 2 branches missed.">            if (configMaps.size() &lt;= index) throw new RuntimeException(&quot;Can't edit configMaps. Index exceeds size.&quot;);</span>
+<span class="nc" id="L180">            return setNewConfigMapLike(index, buildConfigMap(index));</span>
+    }
+
+    public BuildSourceFluent.ConfigMapsNested&lt;A&gt; editFirstConfigMap(){
+<span class="nc bnc" id="L184" title="All 2 branches missed.">            if (configMaps.size() == 0) throw new RuntimeException(&quot;Can't edit first configMaps. The list is empty.&quot;);</span>
+<span class="nc" id="L185">            return setNewConfigMapLike(0, buildConfigMap(0));</span>
+    }
+
+    public BuildSourceFluent.ConfigMapsNested&lt;A&gt; editLastConfigMap(){
+<span class="nc" id="L189">            int index = configMaps.size() - 1;</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last configMaps. The list is empty.&quot;);</span>
+<span class="nc" id="L191">            return setNewConfigMapLike(index, buildConfigMap(index));</span>
+    }
+
+    public BuildSourceFluent.ConfigMapsNested&lt;A&gt; editMatchingConfigMap(io.fabric8.kubernetes.api.builder.Predicate&lt;ConfigMapBuildSourceBuilder&gt; predicate){
+<span class="nc" id="L195">            int index = -1;</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">            for (int i=0;i&lt;configMaps.size();i++) { </span>
+<span class="nc bnc" id="L197" title="All 2 branches missed.">            if (predicate.apply(configMaps.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L199" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching configMaps. No match found.&quot;);</span>
+<span class="nc" id="L200">            return setNewConfigMapLike(index, buildConfigMap(index));</span>
+    }
+
+    public String getContextDir(){
+<span class="fc" id="L204">            return this.contextDir;</span>
+    }
+
+    public A withContextDir(String contextDir){
+<span class="fc" id="L208">            this.contextDir=contextDir; return (A) this;</span>
+    }
+
+    public Boolean hasContextDir(){
+<span class="nc bnc" id="L212" title="All 2 branches missed.">            return this.contextDir != null;</span>
+    }
+
+    public String getDockerfile(){
+<span class="fc" id="L216">            return this.dockerfile;</span>
+    }
+
+    public A withDockerfile(String dockerfile){
+<span class="fc" id="L220">            this.dockerfile=dockerfile; return (A) this;</span>
+    }
+
+    public Boolean hasDockerfile(){
+<span class="nc bnc" id="L224" title="All 2 branches missed.">            return this.dockerfile != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildGit instead.
+ * @return The buildable object.
+ */
+@Deprecated public GitBuildSource getGit(){
+<span class="pc bpc" id="L233" title="1 of 2 branches missed.">            return this.git!=null?this.git.build():null;</span>
+    }
+
+    public GitBuildSource buildGit(){
+<span class="nc bnc" id="L237" title="All 2 branches missed.">            return this.git!=null?this.git.build():null;</span>
+    }
+
+    public A withGit(GitBuildSource git){
+<span class="fc" id="L241">            _visitables.remove(this.git);</span>
+<span class="fc bfc" id="L242" title="All 2 branches covered.">            if (git!=null){ this.git= new GitBuildSourceBuilder(git); _visitables.add(this.git);} return (A) this;</span>
+    }
+
+    public Boolean hasGit(){
+<span class="nc bnc" id="L246" title="All 2 branches missed.">            return this.git != null;</span>
+    }
+
+    public A withNewGit(String httpProxy,String httpsProxy,String noProxy,String ref,String uri){
+<span class="nc" id="L250">            return (A)withGit(new GitBuildSource(httpProxy, httpsProxy, noProxy, ref, uri));</span>
+    }
+
+    public BuildSourceFluent.GitNested&lt;A&gt; withNewGit(){
+<span class="nc" id="L254">            return new GitNestedImpl();</span>
+    }
+
+    public BuildSourceFluent.GitNested&lt;A&gt; withNewGitLike(GitBuildSource item){
+<span class="nc" id="L258">            return new GitNestedImpl(item);</span>
+    }
+
+    public BuildSourceFluent.GitNested&lt;A&gt; editGit(){
+<span class="nc" id="L262">            return withNewGitLike(getGit());</span>
+    }
+
+    public BuildSourceFluent.GitNested&lt;A&gt; editOrNewGit(){
+<span class="nc bnc" id="L266" title="All 2 branches missed.">            return withNewGitLike(getGit() != null ? getGit(): new GitBuildSourceBuilder().build());</span>
+    }
+
+    public BuildSourceFluent.GitNested&lt;A&gt; editOrNewGitLike(GitBuildSource item){
+<span class="nc bnc" id="L270" title="All 2 branches missed.">            return withNewGitLike(getGit() != null ? getGit(): item);</span>
+    }
+
+    public A addToImages(int index,ImageSource item){
+<span class="nc bnc" id="L274" title="All 2 branches missed.">            if (this.images == null) {this.images = new ArrayList&lt;ImageSourceBuilder&gt;();}</span>
+<span class="nc bnc" id="L275" title="All 4 branches missed.">            ImageSourceBuilder builder = new ImageSourceBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.images.add(index &gt;= 0 ? index : images.size(), builder); return (A)this;</span>
+    }
+
+    public A setToImages(int index,ImageSource item){
+<span class="nc bnc" id="L279" title="All 2 branches missed.">            if (this.images == null) {this.images = new ArrayList&lt;ImageSourceBuilder&gt;();}</span>
+<span class="nc" id="L280">            ImageSourceBuilder builder = new ImageSourceBuilder(item);</span>
+<span class="nc bnc" id="L281" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L282" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= images.size()) { images.add(builder); } else { images.set(index, builder);}</span>
+<span class="nc" id="L283">             return (A)this;</span>
+    }
+
+    public A addToImages(ImageSource... items){
+<span class="pc bpc" id="L287" title="1 of 2 branches missed.">            if (this.images == null) {this.images = new ArrayList&lt;ImageSourceBuilder&gt;();}</span>
+<span class="fc bfc" id="L288" title="All 2 branches covered.">            for (ImageSource item : items) {ImageSourceBuilder builder = new ImageSourceBuilder(item);_visitables.add(builder);this.images.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToImages(Collection&lt;ImageSource&gt; items){
+<span class="nc bnc" id="L292" title="All 2 branches missed.">            if (this.images == null) {this.images = new ArrayList&lt;ImageSourceBuilder&gt;();}</span>
+<span class="nc bnc" id="L293" title="All 2 branches missed.">            for (ImageSource item : items) {ImageSourceBuilder builder = new ImageSourceBuilder(item);_visitables.add(builder);this.images.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromImages(ImageSource... items){
+<span class="nc bnc" id="L297" title="All 4 branches missed.">            for (ImageSource item : items) {ImageSourceBuilder builder = new ImageSourceBuilder(item);_visitables.remove(builder);if (this.images != null) {this.images.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromImages(Collection&lt;ImageSource&gt; items){
+<span class="nc bnc" id="L301" title="All 4 branches missed.">            for (ImageSource item : items) {ImageSourceBuilder builder = new ImageSourceBuilder(item);_visitables.remove(builder);if (this.images != null) {this.images.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildImages instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;ImageSource&gt; getImages(){
+<span class="fc" id="L310">            return build(images);</span>
+    }
+
+    public List&lt;ImageSource&gt; buildImages(){
+<span class="nc" id="L314">            return build(images);</span>
+    }
+
+    public ImageSource buildImage(int index){
+<span class="nc" id="L318">            return this.images.get(index).build();</span>
+    }
+
+    public ImageSource buildFirstImage(){
+<span class="nc" id="L322">            return this.images.get(0).build();</span>
+    }
+
+    public ImageSource buildLastImage(){
+<span class="nc" id="L326">            return this.images.get(images.size() - 1).build();</span>
+    }
+
+    public ImageSource buildMatchingImage(io.fabric8.kubernetes.api.builder.Predicate&lt;ImageSourceBuilder&gt; predicate){
+<span class="nc bnc" id="L330" title="All 4 branches missed.">            for (ImageSourceBuilder item: images) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withImages(List&lt;ImageSource&gt; images){
+<span class="pc bpc" id="L334" title="1 of 2 branches missed.">            if (this.images != null) { _visitables.removeAll(this.images);}</span>
+<span class="pc bpc" id="L335" title="1 of 4 branches missed.">            if (images != null) {this.images = new ArrayList&lt;ImageSourceBuilder&gt;(); for (ImageSource item : images){this.addToImages(item);}} else { this.images = new ArrayList&lt;ImageSourceBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withImages(ImageSource... images){
+<span class="pc bpc" id="L339" title="1 of 2 branches missed.">            if (this.images != null) {this.images.clear();}</span>
+<span class="pc bpc" id="L340" title="1 of 4 branches missed.">            if (images != null) {for (ImageSource item :images){ this.addToImages(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasImages(){
+<span class="nc bnc" id="L344" title="All 4 branches missed.">            return images != null &amp;&amp; !images.isEmpty();</span>
+    }
+
+    public BuildSourceFluent.ImagesNested&lt;A&gt; addNewImage(){
+<span class="nc" id="L348">            return new ImagesNestedImpl();</span>
+    }
+
+    public BuildSourceFluent.ImagesNested&lt;A&gt; addNewImageLike(ImageSource item){
+<span class="nc" id="L352">            return new ImagesNestedImpl(-1, item);</span>
+    }
+
+    public BuildSourceFluent.ImagesNested&lt;A&gt; setNewImageLike(int index,ImageSource item){
+<span class="nc" id="L356">            return new ImagesNestedImpl(index, item);</span>
+    }
+
+    public BuildSourceFluent.ImagesNested&lt;A&gt; editImage(int index){
+<span class="nc bnc" id="L360" title="All 2 branches missed.">            if (images.size() &lt;= index) throw new RuntimeException(&quot;Can't edit images. Index exceeds size.&quot;);</span>
+<span class="nc" id="L361">            return setNewImageLike(index, buildImage(index));</span>
+    }
+
+    public BuildSourceFluent.ImagesNested&lt;A&gt; editFirstImage(){
+<span class="nc bnc" id="L365" title="All 2 branches missed.">            if (images.size() == 0) throw new RuntimeException(&quot;Can't edit first images. The list is empty.&quot;);</span>
+<span class="nc" id="L366">            return setNewImageLike(0, buildImage(0));</span>
+    }
+
+    public BuildSourceFluent.ImagesNested&lt;A&gt; editLastImage(){
+<span class="nc" id="L370">            int index = images.size() - 1;</span>
+<span class="nc bnc" id="L371" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last images. The list is empty.&quot;);</span>
+<span class="nc" id="L372">            return setNewImageLike(index, buildImage(index));</span>
+    }
+
+    public BuildSourceFluent.ImagesNested&lt;A&gt; editMatchingImage(io.fabric8.kubernetes.api.builder.Predicate&lt;ImageSourceBuilder&gt; predicate){
+<span class="nc" id="L376">            int index = -1;</span>
+<span class="nc bnc" id="L377" title="All 2 branches missed.">            for (int i=0;i&lt;images.size();i++) { </span>
+<span class="nc bnc" id="L378" title="All 2 branches missed.">            if (predicate.apply(images.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L380" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching images. No match found.&quot;);</span>
+<span class="nc" id="L381">            return setNewImageLike(index, buildImage(index));</span>
+    }
+
+    public A addToSecrets(int index,SecretBuildSource item){
+<span class="pc bpc" id="L385" title="1 of 2 branches missed.">            if (this.secrets == null) {this.secrets = new ArrayList&lt;SecretBuildSourceBuilder&gt;();}</span>
+<span class="pc bpc" id="L386" title="2 of 4 branches missed.">            SecretBuildSourceBuilder builder = new SecretBuildSourceBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.secrets.add(index &gt;= 0 ? index : secrets.size(), builder); return (A)this;</span>
+    }
+
+    public A setToSecrets(int index,SecretBuildSource item){
+<span class="nc bnc" id="L390" title="All 2 branches missed.">            if (this.secrets == null) {this.secrets = new ArrayList&lt;SecretBuildSourceBuilder&gt;();}</span>
+<span class="nc" id="L391">            SecretBuildSourceBuilder builder = new SecretBuildSourceBuilder(item);</span>
+<span class="nc bnc" id="L392" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L393" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= secrets.size()) { secrets.add(builder); } else { secrets.set(index, builder);}</span>
+<span class="nc" id="L394">             return (A)this;</span>
+    }
+
+    public A addToSecrets(SecretBuildSource... items){
+<span class="pc bpc" id="L398" title="1 of 2 branches missed.">            if (this.secrets == null) {this.secrets = new ArrayList&lt;SecretBuildSourceBuilder&gt;();}</span>
+<span class="fc bfc" id="L399" title="All 2 branches covered.">            for (SecretBuildSource item : items) {SecretBuildSourceBuilder builder = new SecretBuildSourceBuilder(item);_visitables.add(builder);this.secrets.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToSecrets(Collection&lt;SecretBuildSource&gt; items){
+<span class="nc bnc" id="L403" title="All 2 branches missed.">            if (this.secrets == null) {this.secrets = new ArrayList&lt;SecretBuildSourceBuilder&gt;();}</span>
+<span class="nc bnc" id="L404" title="All 2 branches missed.">            for (SecretBuildSource item : items) {SecretBuildSourceBuilder builder = new SecretBuildSourceBuilder(item);_visitables.add(builder);this.secrets.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromSecrets(SecretBuildSource... items){
+<span class="nc bnc" id="L408" title="All 4 branches missed.">            for (SecretBuildSource item : items) {SecretBuildSourceBuilder builder = new SecretBuildSourceBuilder(item);_visitables.remove(builder);if (this.secrets != null) {this.secrets.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromSecrets(Collection&lt;SecretBuildSource&gt; items){
+<span class="nc bnc" id="L412" title="All 4 branches missed.">            for (SecretBuildSource item : items) {SecretBuildSourceBuilder builder = new SecretBuildSourceBuilder(item);_visitables.remove(builder);if (this.secrets != null) {this.secrets.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSecrets instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;SecretBuildSource&gt; getSecrets(){
+<span class="fc" id="L421">            return build(secrets);</span>
+    }
+
+    public List&lt;SecretBuildSource&gt; buildSecrets(){
+<span class="nc" id="L425">            return build(secrets);</span>
+    }
+
+    public SecretBuildSource buildSecret(int index){
+<span class="nc" id="L429">            return this.secrets.get(index).build();</span>
+    }
+
+    public SecretBuildSource buildFirstSecret(){
+<span class="nc" id="L433">            return this.secrets.get(0).build();</span>
+    }
+
+    public SecretBuildSource buildLastSecret(){
+<span class="nc" id="L437">            return this.secrets.get(secrets.size() - 1).build();</span>
+    }
+
+    public SecretBuildSource buildMatchingSecret(io.fabric8.kubernetes.api.builder.Predicate&lt;SecretBuildSourceBuilder&gt; predicate){
+<span class="nc bnc" id="L441" title="All 4 branches missed.">            for (SecretBuildSourceBuilder item: secrets) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withSecrets(List&lt;SecretBuildSource&gt; secrets){
+<span class="pc bpc" id="L445" title="1 of 2 branches missed.">            if (this.secrets != null) { _visitables.removeAll(this.secrets);}</span>
+<span class="pc bpc" id="L446" title="1 of 4 branches missed.">            if (secrets != null) {this.secrets = new ArrayList&lt;SecretBuildSourceBuilder&gt;(); for (SecretBuildSource item : secrets){this.addToSecrets(item);}} else { this.secrets = new ArrayList&lt;SecretBuildSourceBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withSecrets(SecretBuildSource... secrets){
+<span class="nc bnc" id="L450" title="All 2 branches missed.">            if (this.secrets != null) {this.secrets.clear();}</span>
+<span class="nc bnc" id="L451" title="All 4 branches missed.">            if (secrets != null) {for (SecretBuildSource item :secrets){ this.addToSecrets(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasSecrets(){
+<span class="nc bnc" id="L455" title="All 4 branches missed.">            return secrets != null &amp;&amp; !secrets.isEmpty();</span>
+    }
+
+    public BuildSourceFluent.SecretsNested&lt;A&gt; addNewSecret(){
+<span class="nc" id="L459">            return new SecretsNestedImpl();</span>
+    }
+
+    public BuildSourceFluent.SecretsNested&lt;A&gt; addNewSecretLike(SecretBuildSource item){
+<span class="nc" id="L463">            return new SecretsNestedImpl(-1, item);</span>
+    }
+
+    public BuildSourceFluent.SecretsNested&lt;A&gt; setNewSecretLike(int index,SecretBuildSource item){
+<span class="nc" id="L467">            return new SecretsNestedImpl(index, item);</span>
+    }
+
+    public BuildSourceFluent.SecretsNested&lt;A&gt; editSecret(int index){
+<span class="nc bnc" id="L471" title="All 2 branches missed.">            if (secrets.size() &lt;= index) throw new RuntimeException(&quot;Can't edit secrets. Index exceeds size.&quot;);</span>
+<span class="nc" id="L472">            return setNewSecretLike(index, buildSecret(index));</span>
+    }
+
+    public BuildSourceFluent.SecretsNested&lt;A&gt; editFirstSecret(){
+<span class="nc bnc" id="L476" title="All 2 branches missed.">            if (secrets.size() == 0) throw new RuntimeException(&quot;Can't edit first secrets. The list is empty.&quot;);</span>
+<span class="nc" id="L477">            return setNewSecretLike(0, buildSecret(0));</span>
+    }
+
+    public BuildSourceFluent.SecretsNested&lt;A&gt; editLastSecret(){
+<span class="nc" id="L481">            int index = secrets.size() - 1;</span>
+<span class="nc bnc" id="L482" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last secrets. The list is empty.&quot;);</span>
+<span class="nc" id="L483">            return setNewSecretLike(index, buildSecret(index));</span>
+    }
+
+    public BuildSourceFluent.SecretsNested&lt;A&gt; editMatchingSecret(io.fabric8.kubernetes.api.builder.Predicate&lt;SecretBuildSourceBuilder&gt; predicate){
+<span class="nc" id="L487">            int index = -1;</span>
+<span class="nc bnc" id="L488" title="All 2 branches missed.">            for (int i=0;i&lt;secrets.size();i++) { </span>
+<span class="nc bnc" id="L489" title="All 2 branches missed.">            if (predicate.apply(secrets.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L491" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching secrets. No match found.&quot;);</span>
+<span class="nc" id="L492">            return setNewSecretLike(index, buildSecret(index));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSourceSecret instead.
+ * @return The buildable object.
+ */
+@Deprecated public LocalObjectReference getSourceSecret(){
+<span class="pc bpc" id="L501" title="1 of 2 branches missed.">            return this.sourceSecret!=null?this.sourceSecret.build():null;</span>
+    }
+
+    public LocalObjectReference buildSourceSecret(){
+<span class="nc bnc" id="L505" title="All 2 branches missed.">            return this.sourceSecret!=null?this.sourceSecret.build():null;</span>
+    }
+
+    public A withSourceSecret(LocalObjectReference sourceSecret){
+<span class="fc" id="L509">            _visitables.remove(this.sourceSecret);</span>
+<span class="fc bfc" id="L510" title="All 2 branches covered.">            if (sourceSecret!=null){ this.sourceSecret= new LocalObjectReferenceBuilder(sourceSecret); _visitables.add(this.sourceSecret);} return (A) this;</span>
+    }
+
+    public Boolean hasSourceSecret(){
+<span class="nc bnc" id="L514" title="All 2 branches missed.">            return this.sourceSecret != null;</span>
+    }
+
+    public A withNewSourceSecret(String name){
+<span class="nc" id="L518">            return (A)withSourceSecret(new LocalObjectReference(name));</span>
+    }
+
+    public BuildSourceFluent.SourceSecretNested&lt;A&gt; withNewSourceSecret(){
+<span class="nc" id="L522">            return new SourceSecretNestedImpl();</span>
+    }
+
+    public BuildSourceFluent.SourceSecretNested&lt;A&gt; withNewSourceSecretLike(LocalObjectReference item){
+<span class="nc" id="L526">            return new SourceSecretNestedImpl(item);</span>
+    }
+
+    public BuildSourceFluent.SourceSecretNested&lt;A&gt; editSourceSecret(){
+<span class="nc" id="L530">            return withNewSourceSecretLike(getSourceSecret());</span>
+    }
+
+    public BuildSourceFluent.SourceSecretNested&lt;A&gt; editOrNewSourceSecret(){
+<span class="nc bnc" id="L534" title="All 2 branches missed.">            return withNewSourceSecretLike(getSourceSecret() != null ? getSourceSecret(): new LocalObjectReferenceBuilder().build());</span>
+    }
+
+    public BuildSourceFluent.SourceSecretNested&lt;A&gt; editOrNewSourceSecretLike(LocalObjectReference item){
+<span class="nc bnc" id="L538" title="All 2 branches missed.">            return withNewSourceSecretLike(getSourceSecret() != null ? getSourceSecret(): item);</span>
+    }
+
+    public String getType(){
+<span class="fc" id="L542">            return this.type;</span>
+    }
+
+    public A withType(String type){
+<span class="fc" id="L546">            this.type=type; return (A) this;</span>
+    }
+
+    public Boolean hasType(){
+<span class="nc bnc" id="L550" title="All 2 branches missed.">            return this.type != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L554" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L555" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L556" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L557">            BuildSourceFluentImpl that = (BuildSourceFluentImpl) o;</span>
+<span class="nc bnc" id="L558" title="All 6 branches missed.">            if (binary != null ? !binary.equals(that.binary) :that.binary != null) return false;</span>
+<span class="nc bnc" id="L559" title="All 6 branches missed.">            if (configMaps != null ? !configMaps.equals(that.configMaps) :that.configMaps != null) return false;</span>
+<span class="nc bnc" id="L560" title="All 6 branches missed.">            if (contextDir != null ? !contextDir.equals(that.contextDir) :that.contextDir != null) return false;</span>
+<span class="nc bnc" id="L561" title="All 6 branches missed.">            if (dockerfile != null ? !dockerfile.equals(that.dockerfile) :that.dockerfile != null) return false;</span>
+<span class="nc bnc" id="L562" title="All 6 branches missed.">            if (git != null ? !git.equals(that.git) :that.git != null) return false;</span>
+<span class="nc bnc" id="L563" title="All 6 branches missed.">            if (images != null ? !images.equals(that.images) :that.images != null) return false;</span>
+<span class="nc bnc" id="L564" title="All 6 branches missed.">            if (secrets != null ? !secrets.equals(that.secrets) :that.secrets != null) return false;</span>
+<span class="nc bnc" id="L565" title="All 6 branches missed.">            if (sourceSecret != null ? !sourceSecret.equals(that.sourceSecret) :that.sourceSecret != null) return false;</span>
+<span class="nc bnc" id="L566" title="All 6 branches missed.">            if (type != null ? !type.equals(that.type) :that.type != null) return false;</span>
+<span class="nc" id="L567">            return true;</span>
+    }
+
+
+    public class BinaryNestedImpl&lt;N&gt; extends BinaryBuildSourceFluentImpl&lt;BuildSourceFluent.BinaryNested&lt;N&gt;&gt; implements BuildSourceFluent.BinaryNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BinaryBuildSourceBuilder builder;
+    
+<span class="nc" id="L575">            BinaryNestedImpl(BinaryBuildSource item){</span>
+<span class="nc" id="L576">                    this.builder = new BinaryBuildSourceBuilder(this, item);</span>
+<span class="nc" id="L577">            }</span>
+<span class="nc" id="L578">            BinaryNestedImpl(){</span>
+<span class="nc" id="L579">                    this.builder = new BinaryBuildSourceBuilder(this);</span>
+<span class="nc" id="L580">            }</span>
+    
+    public N and(){
+<span class="nc" id="L583">            return (N) BuildSourceFluentImpl.this.withBinary(builder.build());</span>
+    }
+    public N endBinary(){
+<span class="nc" id="L586">            return and();</span>
+    }
+
+}
+    public class ConfigMapsNestedImpl&lt;N&gt; extends ConfigMapBuildSourceFluentImpl&lt;BuildSourceFluent.ConfigMapsNested&lt;N&gt;&gt; implements BuildSourceFluent.ConfigMapsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ConfigMapBuildSourceBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L595">            ConfigMapsNestedImpl(int index,ConfigMapBuildSource item){</span>
+<span class="nc" id="L596">                    this.index = index;</span>
+<span class="nc" id="L597">                    this.builder = new ConfigMapBuildSourceBuilder(this, item);</span>
+<span class="nc" id="L598">            }</span>
+<span class="nc" id="L599">            ConfigMapsNestedImpl(){</span>
+<span class="nc" id="L600">                    this.index = -1;</span>
+<span class="nc" id="L601">                    this.builder = new ConfigMapBuildSourceBuilder(this);</span>
+<span class="nc" id="L602">            }</span>
+    
+    public N and(){
+<span class="nc" id="L605">            return (N) BuildSourceFluentImpl.this.setToConfigMaps(index, builder.build());</span>
+    }
+    public N endConfigMap(){
+<span class="nc" id="L608">            return and();</span>
+    }
+
+}
+    public class GitNestedImpl&lt;N&gt; extends GitBuildSourceFluentImpl&lt;BuildSourceFluent.GitNested&lt;N&gt;&gt; implements BuildSourceFluent.GitNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final GitBuildSourceBuilder builder;
+    
+<span class="nc" id="L616">            GitNestedImpl(GitBuildSource item){</span>
+<span class="nc" id="L617">                    this.builder = new GitBuildSourceBuilder(this, item);</span>
+<span class="nc" id="L618">            }</span>
+<span class="nc" id="L619">            GitNestedImpl(){</span>
+<span class="nc" id="L620">                    this.builder = new GitBuildSourceBuilder(this);</span>
+<span class="nc" id="L621">            }</span>
+    
+    public N and(){
+<span class="nc" id="L624">            return (N) BuildSourceFluentImpl.this.withGit(builder.build());</span>
+    }
+    public N endGit(){
+<span class="nc" id="L627">            return and();</span>
+    }
+
+}
+    public class ImagesNestedImpl&lt;N&gt; extends ImageSourceFluentImpl&lt;BuildSourceFluent.ImagesNested&lt;N&gt;&gt; implements BuildSourceFluent.ImagesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageSourceBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L636">            ImagesNestedImpl(int index,ImageSource item){</span>
+<span class="nc" id="L637">                    this.index = index;</span>
+<span class="nc" id="L638">                    this.builder = new ImageSourceBuilder(this, item);</span>
+<span class="nc" id="L639">            }</span>
+<span class="nc" id="L640">            ImagesNestedImpl(){</span>
+<span class="nc" id="L641">                    this.index = -1;</span>
+<span class="nc" id="L642">                    this.builder = new ImageSourceBuilder(this);</span>
+<span class="nc" id="L643">            }</span>
+    
+    public N and(){
+<span class="nc" id="L646">            return (N) BuildSourceFluentImpl.this.setToImages(index, builder.build());</span>
+    }
+    public N endImage(){
+<span class="nc" id="L649">            return and();</span>
+    }
+
+}
+    public class SecretsNestedImpl&lt;N&gt; extends SecretBuildSourceFluentImpl&lt;BuildSourceFluent.SecretsNested&lt;N&gt;&gt; implements BuildSourceFluent.SecretsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SecretBuildSourceBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L658">            SecretsNestedImpl(int index,SecretBuildSource item){</span>
+<span class="nc" id="L659">                    this.index = index;</span>
+<span class="nc" id="L660">                    this.builder = new SecretBuildSourceBuilder(this, item);</span>
+<span class="nc" id="L661">            }</span>
+<span class="nc" id="L662">            SecretsNestedImpl(){</span>
+<span class="nc" id="L663">                    this.index = -1;</span>
+<span class="nc" id="L664">                    this.builder = new SecretBuildSourceBuilder(this);</span>
+<span class="nc" id="L665">            }</span>
+    
+    public N and(){
+<span class="nc" id="L668">            return (N) BuildSourceFluentImpl.this.setToSecrets(index, builder.build());</span>
+    }
+    public N endSecret(){
+<span class="nc" id="L671">            return and();</span>
+    }
+
+}
+    public class SourceSecretNestedImpl&lt;N&gt; extends LocalObjectReferenceFluentImpl&lt;BuildSourceFluent.SourceSecretNested&lt;N&gt;&gt; implements BuildSourceFluent.SourceSecretNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LocalObjectReferenceBuilder builder;
+    
+<span class="nc" id="L679">            SourceSecretNestedImpl(LocalObjectReference item){</span>
+<span class="nc" id="L680">                    this.builder = new LocalObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L681">            }</span>
+<span class="nc" id="L682">            SourceSecretNestedImpl(){</span>
+<span class="nc" id="L683">                    this.builder = new LocalObjectReferenceBuilder(this);</span>
+<span class="nc" id="L684">            }</span>
+    
+    public N and(){
+<span class="nc" id="L687">            return (N) BuildSourceFluentImpl.this.withSourceSecret(builder.build());</span>
+    }
+    public N endSourceSecret(){
+<span class="nc" id="L690">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

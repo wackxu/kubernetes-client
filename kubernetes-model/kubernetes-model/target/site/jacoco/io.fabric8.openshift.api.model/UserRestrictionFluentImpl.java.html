@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserRestrictionFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">UserRestrictionFluentImpl.java</span></div><h1>UserRestrictionFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import io.fabric8.kubernetes.api.model.LabelSelectorBuilder;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.LabelSelectorFluentImpl;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.model.LabelSelector;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class UserRestrictionFluentImpl&lt;A extends UserRestrictionFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements UserRestrictionFluent&lt;A&gt;{
+
+    private List&lt;String&gt; groups;
+    private List&lt;LabelSelectorBuilder&gt; labels;
+    private List&lt;String&gt; users;
+
+<span class="nc" id="L25">    public UserRestrictionFluentImpl(){</span>
+<span class="nc" id="L26">    }</span>
+<span class="nc" id="L27">    public UserRestrictionFluentImpl(UserRestriction instance){</span>
+<span class="nc" id="L28">            this.withGroups(instance.getGroups()); </span>
+<span class="nc" id="L29">            this.withLabels(instance.getLabels()); </span>
+<span class="nc" id="L30">            this.withUsers(instance.getUsers()); </span>
+<span class="nc" id="L31">    }</span>
+
+    public A addToGroups(int index,String item){
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            if (this.groups == null) {this.groups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L35">            this.groups.add(index, item);</span>
+<span class="nc" id="L36">            return (A)this;</span>
+    }
+
+    public A setToGroups(int index,String item){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            if (this.groups == null) {this.groups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L41">            this.groups.set(index, item); return (A)this;</span>
+    }
+
+    public A addToGroups(String... items){
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            if (this.groups == null) {this.groups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            for (String item : items) {this.groups.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToGroups(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            if (this.groups == null) {this.groups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            for (String item : items) {this.groups.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromGroups(String... items){
+<span class="nc bnc" id="L55" title="All 4 branches missed.">            for (String item : items) {if (this.groups!= null){ this.groups.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromGroups(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L59" title="All 4 branches missed.">            for (String item : items) {if (this.groups!= null){ this.groups.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getGroups(){
+<span class="nc" id="L63">            return this.groups;</span>
+    }
+
+    public String getGroup(int index){
+<span class="nc" id="L67">            return this.groups.get(index);</span>
+    }
+
+    public String getFirstGroup(){
+<span class="nc" id="L71">            return this.groups.get(0);</span>
+    }
+
+    public String getLastGroup(){
+<span class="nc" id="L75">            return this.groups.get(groups.size() - 1);</span>
+    }
+
+    public String getMatchingGroup(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L79" title="All 4 branches missed.">            for (String item: groups) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withGroups(List&lt;String&gt; groups){
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            if (this.groups != null) { _visitables.removeAll(this.groups);}</span>
+<span class="nc bnc" id="L84" title="All 4 branches missed.">            if (groups != null) {this.groups = new ArrayList&lt;String&gt;(); for (String item : groups){this.addToGroups(item);}} else { this.groups = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withGroups(String... groups){
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            if (this.groups != null) {this.groups.clear();}</span>
+<span class="nc bnc" id="L89" title="All 4 branches missed.">            if (groups != null) {for (String item :groups){ this.addToGroups(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasGroups(){
+<span class="nc bnc" id="L93" title="All 4 branches missed.">            return groups != null &amp;&amp; !groups.isEmpty();</span>
+    }
+
+    public A addToLabels(int index,LabelSelector item){
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            if (this.labels == null) {this.labels = new ArrayList&lt;LabelSelectorBuilder&gt;();}</span>
+<span class="nc bnc" id="L98" title="All 4 branches missed.">            LabelSelectorBuilder builder = new LabelSelectorBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.labels.add(index &gt;= 0 ? index : labels.size(), builder); return (A)this;</span>
+    }
+
+    public A setToLabels(int index,LabelSelector item){
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            if (this.labels == null) {this.labels = new ArrayList&lt;LabelSelectorBuilder&gt;();}</span>
+<span class="nc" id="L103">            LabelSelectorBuilder builder = new LabelSelectorBuilder(item);</span>
+<span class="nc bnc" id="L104" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L105" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= labels.size()) { labels.add(builder); } else { labels.set(index, builder);}</span>
+<span class="nc" id="L106">             return (A)this;</span>
+    }
+
+    public A addToLabels(LabelSelector... items){
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            if (this.labels == null) {this.labels = new ArrayList&lt;LabelSelectorBuilder&gt;();}</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            for (LabelSelector item : items) {LabelSelectorBuilder builder = new LabelSelectorBuilder(item);_visitables.add(builder);this.labels.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToLabels(Collection&lt;LabelSelector&gt; items){
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            if (this.labels == null) {this.labels = new ArrayList&lt;LabelSelectorBuilder&gt;();}</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            for (LabelSelector item : items) {LabelSelectorBuilder builder = new LabelSelectorBuilder(item);_visitables.add(builder);this.labels.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromLabels(LabelSelector... items){
+<span class="nc bnc" id="L120" title="All 4 branches missed.">            for (LabelSelector item : items) {LabelSelectorBuilder builder = new LabelSelectorBuilder(item);_visitables.remove(builder);if (this.labels != null) {this.labels.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromLabels(Collection&lt;LabelSelector&gt; items){
+<span class="nc bnc" id="L124" title="All 4 branches missed.">            for (LabelSelector item : items) {LabelSelectorBuilder builder = new LabelSelectorBuilder(item);_visitables.remove(builder);if (this.labels != null) {this.labels.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildLabels instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;LabelSelector&gt; getLabels(){
+<span class="nc" id="L133">            return build(labels);</span>
+    }
+
+    public List&lt;LabelSelector&gt; buildLabels(){
+<span class="nc" id="L137">            return build(labels);</span>
+    }
+
+    public LabelSelector buildLabel(int index){
+<span class="nc" id="L141">            return this.labels.get(index).build();</span>
+    }
+
+    public LabelSelector buildFirstLabel(){
+<span class="nc" id="L145">            return this.labels.get(0).build();</span>
+    }
+
+    public LabelSelector buildLastLabel(){
+<span class="nc" id="L149">            return this.labels.get(labels.size() - 1).build();</span>
+    }
+
+    public LabelSelector buildMatchingLabel(io.fabric8.kubernetes.api.builder.Predicate&lt;LabelSelectorBuilder&gt; predicate){
+<span class="nc bnc" id="L153" title="All 4 branches missed.">            for (LabelSelectorBuilder item: labels) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withLabels(List&lt;LabelSelector&gt; labels){
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            if (this.labels != null) { _visitables.removeAll(this.labels);}</span>
+<span class="nc bnc" id="L158" title="All 4 branches missed.">            if (labels != null) {this.labels = new ArrayList&lt;LabelSelectorBuilder&gt;(); for (LabelSelector item : labels){this.addToLabels(item);}} else { this.labels = new ArrayList&lt;LabelSelectorBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withLabels(LabelSelector... labels){
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (this.labels != null) {this.labels.clear();}</span>
+<span class="nc bnc" id="L163" title="All 4 branches missed.">            if (labels != null) {for (LabelSelector item :labels){ this.addToLabels(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasLabels(){
+<span class="nc bnc" id="L167" title="All 4 branches missed.">            return labels != null &amp;&amp; !labels.isEmpty();</span>
+    }
+
+    public UserRestrictionFluent.LabelsNested&lt;A&gt; addNewLabel(){
+<span class="nc" id="L171">            return new LabelsNestedImpl();</span>
+    }
+
+    public UserRestrictionFluent.LabelsNested&lt;A&gt; addNewLabelLike(LabelSelector item){
+<span class="nc" id="L175">            return new LabelsNestedImpl(-1, item);</span>
+    }
+
+    public UserRestrictionFluent.LabelsNested&lt;A&gt; setNewLabelLike(int index,LabelSelector item){
+<span class="nc" id="L179">            return new LabelsNestedImpl(index, item);</span>
+    }
+
+    public UserRestrictionFluent.LabelsNested&lt;A&gt; editLabel(int index){
+<span class="nc bnc" id="L183" title="All 2 branches missed.">            if (labels.size() &lt;= index) throw new RuntimeException(&quot;Can't edit labels. Index exceeds size.&quot;);</span>
+<span class="nc" id="L184">            return setNewLabelLike(index, buildLabel(index));</span>
+    }
+
+    public UserRestrictionFluent.LabelsNested&lt;A&gt; editFirstLabel(){
+<span class="nc bnc" id="L188" title="All 2 branches missed.">            if (labels.size() == 0) throw new RuntimeException(&quot;Can't edit first labels. The list is empty.&quot;);</span>
+<span class="nc" id="L189">            return setNewLabelLike(0, buildLabel(0));</span>
+    }
+
+    public UserRestrictionFluent.LabelsNested&lt;A&gt; editLastLabel(){
+<span class="nc" id="L193">            int index = labels.size() - 1;</span>
+<span class="nc bnc" id="L194" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last labels. The list is empty.&quot;);</span>
+<span class="nc" id="L195">            return setNewLabelLike(index, buildLabel(index));</span>
+    }
+
+    public UserRestrictionFluent.LabelsNested&lt;A&gt; editMatchingLabel(io.fabric8.kubernetes.api.builder.Predicate&lt;LabelSelectorBuilder&gt; predicate){
+<span class="nc" id="L199">            int index = -1;</span>
+<span class="nc bnc" id="L200" title="All 2 branches missed.">            for (int i=0;i&lt;labels.size();i++) { </span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">            if (predicate.apply(labels.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L203" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching labels. No match found.&quot;);</span>
+<span class="nc" id="L204">            return setNewLabelLike(index, buildLabel(index));</span>
+    }
+
+    public A addToUsers(int index,String item){
+<span class="nc bnc" id="L208" title="All 2 branches missed.">            if (this.users == null) {this.users = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L209">            this.users.add(index, item);</span>
+<span class="nc" id="L210">            return (A)this;</span>
+    }
+
+    public A setToUsers(int index,String item){
+<span class="nc bnc" id="L214" title="All 2 branches missed.">            if (this.users == null) {this.users = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L215">            this.users.set(index, item); return (A)this;</span>
+    }
+
+    public A addToUsers(String... items){
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            if (this.users == null) {this.users = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">            for (String item : items) {this.users.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToUsers(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L224" title="All 2 branches missed.">            if (this.users == null) {this.users = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">            for (String item : items) {this.users.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromUsers(String... items){
+<span class="nc bnc" id="L229" title="All 4 branches missed.">            for (String item : items) {if (this.users!= null){ this.users.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromUsers(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L233" title="All 4 branches missed.">            for (String item : items) {if (this.users!= null){ this.users.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getUsers(){
+<span class="nc" id="L237">            return this.users;</span>
+    }
+
+    public String getUser(int index){
+<span class="nc" id="L241">            return this.users.get(index);</span>
+    }
+
+    public String getFirstUser(){
+<span class="nc" id="L245">            return this.users.get(0);</span>
+    }
+
+    public String getLastUser(){
+<span class="nc" id="L249">            return this.users.get(users.size() - 1);</span>
+    }
+
+    public String getMatchingUser(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L253" title="All 4 branches missed.">            for (String item: users) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withUsers(List&lt;String&gt; users){
+<span class="nc bnc" id="L257" title="All 2 branches missed.">            if (this.users != null) { _visitables.removeAll(this.users);}</span>
+<span class="nc bnc" id="L258" title="All 4 branches missed.">            if (users != null) {this.users = new ArrayList&lt;String&gt;(); for (String item : users){this.addToUsers(item);}} else { this.users = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withUsers(String... users){
+<span class="nc bnc" id="L262" title="All 2 branches missed.">            if (this.users != null) {this.users.clear();}</span>
+<span class="nc bnc" id="L263" title="All 4 branches missed.">            if (users != null) {for (String item :users){ this.addToUsers(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasUsers(){
+<span class="nc bnc" id="L267" title="All 4 branches missed.">            return users != null &amp;&amp; !users.isEmpty();</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L271" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L272" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L273" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L274">            UserRestrictionFluentImpl that = (UserRestrictionFluentImpl) o;</span>
+<span class="nc bnc" id="L275" title="All 6 branches missed.">            if (groups != null ? !groups.equals(that.groups) :that.groups != null) return false;</span>
+<span class="nc bnc" id="L276" title="All 6 branches missed.">            if (labels != null ? !labels.equals(that.labels) :that.labels != null) return false;</span>
+<span class="nc bnc" id="L277" title="All 6 branches missed.">            if (users != null ? !users.equals(that.users) :that.users != null) return false;</span>
+<span class="nc" id="L278">            return true;</span>
+    }
+
+
+    public class LabelsNestedImpl&lt;N&gt; extends LabelSelectorFluentImpl&lt;UserRestrictionFluent.LabelsNested&lt;N&gt;&gt; implements UserRestrictionFluent.LabelsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LabelSelectorBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L287">            LabelsNestedImpl(int index,LabelSelector item){</span>
+<span class="nc" id="L288">                    this.index = index;</span>
+<span class="nc" id="L289">                    this.builder = new LabelSelectorBuilder(this, item);</span>
+<span class="nc" id="L290">            }</span>
+<span class="nc" id="L291">            LabelsNestedImpl(){</span>
+<span class="nc" id="L292">                    this.index = -1;</span>
+<span class="nc" id="L293">                    this.builder = new LabelSelectorBuilder(this);</span>
+<span class="nc" id="L294">            }</span>
+    
+    public N and(){
+<span class="nc" id="L297">            return (N) UserRestrictionFluentImpl.this.setToLabels(index, builder.build());</span>
+    }
+    public N endLabel(){
+<span class="nc" id="L300">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

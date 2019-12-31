@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Identity.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">Identity.java</span></div><h1>Identity.java</h1><pre class="source lang-java linenums">
+package io.fabric8.openshift.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import io.fabric8.kubernetes.model.annotation.ApiGroup;
+import io.fabric8.kubernetes.model.annotation.ApiVersion;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import io.sundr.transform.annotations.VelocityTransformation;
+import io.sundr.transform.annotations.VelocityTransformations;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;extra&quot;,
+    &quot;providerName&quot;,
+    &quot;providerUserName&quot;,
+    &quot;user&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L47">@ToString</span>
+<span class="nc bnc" id="L48" title="All 70 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+@ApiVersion(&quot;v1&quot;)
+@ApiGroup(&quot;user.openshift.io&quot;)
+@VelocityTransformations({
+    @VelocityTransformation(value = &quot;/manifest.vm&quot;, outputPath = &quot;openshift.properties&quot;, gather = true)
+})
+public class Identity implements HasMetadata
+{
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L63">    @NotNull</span>
+    @JsonProperty(&quot;apiVersion&quot;)
+    private java.lang.String apiVersion = &quot;user.openshift.io/v1&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;extra&quot;)
+    @Valid
+    private Map&lt;String, String&gt; extra;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L78">    @NotNull</span>
+    @JsonProperty(&quot;kind&quot;)
+    private java.lang.String kind = &quot;Identity&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    @Valid
+    @CheckObjectMeta(minimal = true)
+    private ObjectMeta metadata;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;providerName&quot;)
+    private java.lang.String providerName;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;providerUserName&quot;)
+    private java.lang.String providerUserName;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;user&quot;)
+    @Valid
+    private ObjectReference user;
+<span class="nc" id="L108">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L115">    public Identity() {</span>
+<span class="nc" id="L116">    }</span>
+
+    /**
+     * 
+     * @param metadata
+     * @param apiVersion
+     * @param kind
+     * @param extra
+     * @param providerUserName
+     * @param user
+     * @param providerName
+     */
+<span class="nc" id="L128">    public Identity(java.lang.String apiVersion, Map&lt;String, String&gt; extra, java.lang.String kind, ObjectMeta metadata, java.lang.String providerName, java.lang.String providerUserName, ObjectReference user) {</span>
+<span class="nc" id="L129">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L130">        this.extra = extra;</span>
+<span class="nc" id="L131">        this.kind = kind;</span>
+<span class="nc" id="L132">        this.metadata = metadata;</span>
+<span class="nc" id="L133">        this.providerName = providerName;</span>
+<span class="nc" id="L134">        this.providerUserName = providerUserName;</span>
+<span class="nc" id="L135">        this.user = user;</span>
+<span class="nc" id="L136">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public java.lang.String getApiVersion() {
+<span class="nc" id="L147">        return apiVersion;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param apiVersion
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public void setApiVersion(java.lang.String apiVersion) {
+<span class="nc" id="L159">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L160">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The extra
+     */
+    @JsonProperty(&quot;extra&quot;)
+    public Map&lt;String, String&gt; getExtra() {
+<span class="nc" id="L170">        return extra;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param extra
+     *     The extra
+     */
+    @JsonProperty(&quot;extra&quot;)
+    public void setExtra(Map&lt;String, String&gt; extra) {
+<span class="nc" id="L181">        this.extra = extra;</span>
+<span class="nc" id="L182">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public java.lang.String getKind() {
+<span class="nc" id="L193">        return kind;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param kind
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public void setKind(java.lang.String kind) {
+<span class="nc" id="L205">        this.kind = kind;</span>
+<span class="nc" id="L206">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public ObjectMeta getMetadata() {
+<span class="nc" id="L216">        return metadata;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param metadata
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public void setMetadata(ObjectMeta metadata) {
+<span class="nc" id="L227">        this.metadata = metadata;</span>
+<span class="nc" id="L228">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The providerName
+     */
+    @JsonProperty(&quot;providerName&quot;)
+    public java.lang.String getProviderName() {
+<span class="nc" id="L238">        return providerName;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param providerName
+     *     The providerName
+     */
+    @JsonProperty(&quot;providerName&quot;)
+    public void setProviderName(java.lang.String providerName) {
+<span class="nc" id="L249">        this.providerName = providerName;</span>
+<span class="nc" id="L250">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The providerUserName
+     */
+    @JsonProperty(&quot;providerUserName&quot;)
+    public java.lang.String getProviderUserName() {
+<span class="nc" id="L260">        return providerUserName;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param providerUserName
+     *     The providerUserName
+     */
+    @JsonProperty(&quot;providerUserName&quot;)
+    public void setProviderUserName(java.lang.String providerUserName) {
+<span class="nc" id="L271">        this.providerUserName = providerUserName;</span>
+<span class="nc" id="L272">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The user
+     */
+    @JsonProperty(&quot;user&quot;)
+    public ObjectReference getUser() {
+<span class="nc" id="L282">        return user;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param user
+     *     The user
+     */
+    @JsonProperty(&quot;user&quot;)
+    public void setUser(ObjectReference user) {
+<span class="nc" id="L293">        this.user = user;</span>
+<span class="nc" id="L294">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L298">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L303">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L304">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BackwardsCompatibilityInterceptor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.utils</a> &gt; <span class="el_source">BackwardsCompatibilityInterceptor.java</span></div><h1>BackwardsCompatibilityInterceptor.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.utils;
+
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.client.dsl.base.OperationSupport;
+import okhttp3.Interceptor;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okio.Buffer;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+<span class="fc" id="L33">public class BackwardsCompatibilityInterceptor implements Interceptor {</span>
+
+  private static final int API_GROUP = 1;
+  private static final int API_VERSION = 2;
+  private static final int PATH = 3;
+
+  private static final String PATCH = &quot;patch&quot;;
+  private static final String NAME_REGEX = &quot;[a-z0-9\\-\\.]+&quot;;
+<span class="fc" id="L41">  private static final Pattern URL_PATTERN = Pattern.compile(&quot;[^ ]+/apis/(&quot; + NAME_REGEX + &quot;)/(&quot; + NAME_REGEX + &quot;)/(&quot; + NAME_REGEX + &quot;)[^ ]*&quot;);</span>
+<span class="fc" id="L42">  private static final Pattern NAMESPACED_URL_PATTERN = Pattern.compile(&quot;[^ ]+/apis/(&quot; + NAME_REGEX + &quot;)/(&quot; + NAME_REGEX + &quot;)/namespaces/&quot; + NAME_REGEX + &quot;/(&quot; + NAME_REGEX + &quot;)[^ ]*&quot;);</span>
+<span class="fc" id="L43">  private static final Map&lt;ResourceKey, ResourceKey&gt; notFoundTransformations = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L44">  private static final Map&lt;ResourceKey, ResourceKey&gt; badRequestTransformations = new HashMap&lt;&gt;();</span>
+
+<span class="fc" id="L46">  private static final Map&lt;Integer, Map&lt;ResourceKey, ResourceKey&gt;&gt; responseCodeToTransformations = new HashMap&lt;&gt;();</span>
+
+  private static class ResourceKey {
+    private final String kind;
+    private final String path;
+    private final String group;
+    private final String version;
+
+<span class="fc" id="L54">    public ResourceKey(String kind, String path, String group, String version) {</span>
+<span class="fc" id="L55">      this.kind = kind;</span>
+<span class="fc" id="L56">      this.path = path;</span>
+<span class="fc" id="L57">      this.group = group;</span>
+<span class="fc" id="L58">      this.version = version;</span>
+<span class="fc" id="L59">    }</span>
+
+    public String getKind() {
+<span class="nc" id="L62">      return kind;</span>
+    }
+
+    public String getPath() {
+<span class="nc" id="L66">      return path;</span>
+    }
+
+    public String getGroup() {
+<span class="nc" id="L70">      return group;</span>
+    }
+
+    public String getVersion() {
+<span class="nc" id="L74">      return version;</span>
+    }
+
+    @Override
+    public boolean equals(Object o) {
+<span class="nc bnc" id="L79" title="All 2 branches missed.">      if (this == o) return true;</span>
+<span class="nc bnc" id="L80" title="All 4 branches missed.">      if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc" id="L81">      ResourceKey key = (ResourceKey) o;</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">      return Objects.equals(path, key.path) &amp;&amp;</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        Objects.equals(group, key.group) &amp;&amp;</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        Objects.equals(version, key.version);</span>
+    }
+
+    @Override
+    public int hashCode() {
+
+<span class="fc" id="L90">      return Objects.hash(path, group, version);</span>
+    }
+  }
+
+  static {
+<span class="fc" id="L95">    notFoundTransformations.put(new ResourceKey(&quot;Deployment&quot;, &quot;deployments&quot;, &quot;apps&quot;, &quot;v1&quot;), new ResourceKey(&quot;Deployment&quot;, &quot;deployments&quot;, &quot;extensions&quot;, &quot;v1beta1&quot;));</span>
+<span class="fc" id="L96">    notFoundTransformations.put(new ResourceKey(&quot;StatefulSet&quot;, &quot;statefulsets&quot;, &quot;apps&quot;, &quot;v1&quot;), new ResourceKey(&quot;StatefulSet&quot;, &quot;statefulsets&quot;, &quot;apps&quot;, &quot;v1beta1&quot;));</span>
+<span class="fc" id="L97">    notFoundTransformations.put(new ResourceKey(&quot;DaemonSets&quot;, &quot;daemonsets&quot;, &quot;apps&quot;, &quot;v1&quot;), new ResourceKey(&quot;DaemonSet&quot;, &quot;daemonsets&quot;, &quot;extensions&quot;, &quot;v1beta1&quot;));</span>
+<span class="fc" id="L98">    notFoundTransformations.put(new ResourceKey(&quot;ReplicaSets&quot;, &quot;replicasets&quot;, &quot;apps&quot;, &quot;v1&quot;), new ResourceKey(&quot;ReplicaSet&quot;, &quot;replicasets&quot;, &quot;extensions&quot;, &quot;v1beta1&quot;));</span>
+<span class="fc" id="L99">    notFoundTransformations</span>
+<span class="fc" id="L100">      .put(new ResourceKey(&quot;NetworkPolicy&quot;, &quot;networkpolicies&quot;, &quot;networking.k8s.io&quot;, &quot;v1&quot;), new ResourceKey(&quot;NetworkPolicy&quot;, &quot;networkpolicies&quot;, &quot;extensions&quot;, &quot;v1beta1&quot;));</span>
+<span class="fc" id="L101">    notFoundTransformations</span>
+<span class="fc" id="L102">      .put(new ResourceKey(&quot;StorageClass&quot;, &quot;storageclasses&quot;, &quot;storage.k8s.io&quot;, &quot;v1&quot;), new ResourceKey(&quot;StorageClass&quot;, &quot;storageclasses&quot;, &quot;extensions&quot;, &quot;v1beta1&quot;));</span>
+<span class="fc" id="L103">    notFoundTransformations</span>
+<span class="fc" id="L104">      .put(new ResourceKey(&quot;Job&quot;, &quot;jobs&quot;, &quot;batch&quot;, &quot;v1&quot;), new ResourceKey(&quot;Job&quot;, &quot;jobs&quot;, &quot;extensions&quot;, &quot;v1beta1&quot;));</span>
+<span class="fc" id="L105">    notFoundTransformations.put(new ResourceKey(&quot;RoleBinding&quot;, &quot;rolebindings&quot;, &quot;rbac.authorization.k8s.io&quot;, &quot;v1&quot;), new ResourceKey(&quot;RoleBinding&quot;, &quot;rolebindings&quot;, &quot;rbac.authorization.k8s.io&quot;, &quot;v1beta1&quot;));</span>
+<span class="fc" id="L106">    notFoundTransformations.put(new ResourceKey(&quot;Role&quot;, &quot;roles&quot;, &quot;rbac.authorization.k8s.io&quot;, &quot;v1&quot;), new ResourceKey(&quot;Role&quot;, &quot;roles&quot;, &quot;rbac.authorization.k8s.io&quot;, &quot;v1beta1&quot;));</span>
+<span class="fc" id="L107">    notFoundTransformations.put(new ResourceKey(&quot;ClusterRoleBinding&quot;, &quot;clusterrolebindings&quot;, &quot;rbac.authorization.k8s.io&quot;, &quot;v1&quot;), new ResourceKey(&quot;ClusterRoleBinding&quot;, &quot;clusterrolebindings&quot;, &quot;rbac.authorization.k8s.io&quot;, &quot;v1beta1&quot;));</span>
+<span class="fc" id="L108">    notFoundTransformations.put(new ResourceKey(&quot;ClusterRole&quot;, &quot;clusterroles&quot;, &quot;rbac.authorization.k8s.io&quot;, &quot;v1&quot;), new ResourceKey(&quot;ClusterRole&quot;, &quot;clusterroles&quot;, &quot;rbac.authorization.k8s.io&quot;, &quot;v1beta1&quot;));</span>
+<span class="fc" id="L109">    notFoundTransformations.put(new ResourceKey(&quot;CronJob&quot;, &quot;cronjobs&quot;, &quot;batch&quot;, &quot;v1beta1&quot;), new ResourceKey(&quot;CronJob&quot;, &quot;cronjob&quot;, &quot;batch&quot;, &quot;v2alpha1&quot;));</span>
+
+<span class="fc" id="L111">    badRequestTransformations.put(new ResourceKey(&quot;Deployment&quot;, &quot;deployments&quot;, &quot;apps&quot;, &quot;v1beta1&quot;), new ResourceKey(&quot;Deployment&quot;, &quot;deployments&quot;, &quot;extensions&quot;, &quot;v1beta1&quot;));</span>
+
+<span class="fc" id="L113">    responseCodeToTransformations.put(400, badRequestTransformations);</span>
+<span class="fc" id="L114">    responseCodeToTransformations.put(404, notFoundTransformations);</span>
+<span class="fc" id="L115">}</span>
+
+  public Response intercept(Chain chain) throws IOException {
+<span class="nc" id="L118">    Request request = chain.request();</span>
+<span class="nc" id="L119">    Response response = chain.proceed(request);</span>
+<span class="nc bnc" id="L120" title="All 4 branches missed.">    if (!response.isSuccessful() &amp;&amp; responseCodeToTransformations.keySet().contains(response.code())) {</span>
+<span class="nc" id="L121">      String url = request.url().toString();</span>
+<span class="nc" id="L122">      Matcher matcher = getMatcher(url);</span>
+<span class="nc" id="L123">      ResourceKey key = getKey(matcher);</span>
+<span class="nc" id="L124">      ResourceKey target = responseCodeToTransformations.get(response.code()).get(key);</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">      if (target != null) {</span>
+<span class="nc" id="L126">        response.close(); // At this point, we know we won't reuse or return the response; so close it to avoid a connection leak.</span>
+<span class="nc" id="L127">        String newUrl = new StringBuilder(url)</span>
+<span class="nc" id="L128">            .replace(matcher.start(API_VERSION), matcher.end(API_VERSION), target.version) // Order matters: We need to substitute right to left, so that former substitution don't affect the indexes of later.</span>
+<span class="nc" id="L129">            .replace(matcher.start(API_GROUP), matcher.end(API_GROUP), target.group)</span>
+<span class="nc" id="L130">            .toString();</span>
+
+<span class="nc" id="L132">        Request.Builder newRequest = request.newBuilder()</span>
+<span class="nc" id="L133">          .url(newUrl);</span>
+
+<span class="nc" id="L135">        Buffer buffer = new Buffer();</span>
+<span class="nc bnc" id="L136" title="All 4 branches missed.">        if (request.body() != null &amp;&amp; !request.method().equalsIgnoreCase(PATCH)) {</span>
+<span class="nc" id="L137">          request.body().writeTo(buffer);</span>
+<span class="nc" id="L138">            Object object = Serialization.unmarshal(buffer.inputStream());</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">          if (object instanceof HasMetadata) {</span>
+<span class="nc" id="L140">            HasMetadata h = (HasMetadata) object;</span>
+<span class="nc" id="L141">            h.setApiVersion(target.group + &quot;/&quot; + target.version);</span>
+<span class="nc" id="L142">            newRequest = newRequest.method(request.method(), RequestBody.create(OperationSupport.JSON, Serialization.asJson(h)));</span>
+          }
+        }
+
+<span class="nc" id="L146">        return chain.proceed(newRequest.build());</span>
+      }
+    }
+<span class="nc" id="L149">    return response;</span>
+  }
+
+  private static Matcher getMatcher(String url) {
+<span class="nc" id="L153">    Matcher m = NAMESPACED_URL_PATTERN.matcher(url);</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">    if (m.matches()) {</span>
+<span class="nc" id="L155">      return m;</span>
+    }
+
+<span class="nc" id="L158">    m = URL_PATTERN.matcher(url);</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">    if (m.matches()) {</span>
+<span class="nc" id="L160">      return m;</span>
+    }
+<span class="nc" id="L162">    return null;</span>
+  }
+
+  private static ResourceKey getKey(Matcher m) {
+<span class="nc bnc" id="L166" title="All 2 branches missed.">    return m != null ? new ResourceKey(null, m.group(PATH), m.group(API_GROUP), m.group(API_VERSION)) : null;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

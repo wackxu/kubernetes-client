@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JSONSchemaPropsOrBoolFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.apiextensions</a> &gt; <span class="el_source">JSONSchemaPropsOrBoolFluentImpl.java</span></div><h1>JSONSchemaPropsOrBoolFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.apiextensions;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class JSONSchemaPropsOrBoolFluentImpl&lt;A extends JSONSchemaPropsOrBoolFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements JSONSchemaPropsOrBoolFluent&lt;A&gt;{
+
+    private Boolean allows;
+    private JSONSchemaPropsBuilder schema;
+
+<span class="nc" id="L17">    public JSONSchemaPropsOrBoolFluentImpl(){</span>
+<span class="nc" id="L18">    }</span>
+<span class="nc" id="L19">    public JSONSchemaPropsOrBoolFluentImpl(JSONSchemaPropsOrBool instance){</span>
+<span class="nc" id="L20">            this.withAllows(instance.getAllows()); </span>
+<span class="nc" id="L21">            this.withSchema(instance.getSchema()); </span>
+<span class="nc" id="L22">    }</span>
+
+    public Boolean isAllows(){
+<span class="nc" id="L25">            return this.allows;</span>
+    }
+
+    public A withAllows(Boolean allows){
+<span class="nc" id="L29">            this.allows=allows; return (A) this;</span>
+    }
+
+    public Boolean hasAllows(){
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            return this.allows != null;</span>
+    }
+
+    public A withNewAllows(String arg1){
+<span class="nc" id="L37">            return (A)withAllows(new Boolean(arg1));</span>
+    }
+
+    public A withNewAllows(boolean arg1){
+<span class="nc" id="L41">            return (A)withAllows(new Boolean(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSchema instead.
+ * @return The buildable object.
+ */
+@Deprecated public JSONSchemaProps getSchema(){
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            return this.schema!=null?this.schema.build():null;</span>
+    }
+
+    public JSONSchemaProps buildSchema(){
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            return this.schema!=null?this.schema.build():null;</span>
+    }
+
+    public A withSchema(JSONSchemaProps schema){
+<span class="nc" id="L58">            _visitables.remove(this.schema);</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            if (schema!=null){ this.schema= new JSONSchemaPropsBuilder(schema); _visitables.add(this.schema);} return (A) this;</span>
+    }
+
+    public Boolean hasSchema(){
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            return this.schema != null;</span>
+    }
+
+    public JSONSchemaPropsOrBoolFluent.SchemaNested&lt;A&gt; withNewSchema(){
+<span class="nc" id="L67">            return new SchemaNestedImpl();</span>
+    }
+
+    public JSONSchemaPropsOrBoolFluent.SchemaNested&lt;A&gt; withNewSchemaLike(JSONSchemaProps item){
+<span class="nc" id="L71">            return new SchemaNestedImpl(item);</span>
+    }
+
+    public JSONSchemaPropsOrBoolFluent.SchemaNested&lt;A&gt; editSchema(){
+<span class="nc" id="L75">            return withNewSchemaLike(getSchema());</span>
+    }
+
+    public JSONSchemaPropsOrBoolFluent.SchemaNested&lt;A&gt; editOrNewSchema(){
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            return withNewSchemaLike(getSchema() != null ? getSchema(): new JSONSchemaPropsBuilder().build());</span>
+    }
+
+    public JSONSchemaPropsOrBoolFluent.SchemaNested&lt;A&gt; editOrNewSchemaLike(JSONSchemaProps item){
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            return withNewSchemaLike(getSchema() != null ? getSchema(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L87" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L88" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L90">            JSONSchemaPropsOrBoolFluentImpl that = (JSONSchemaPropsOrBoolFluentImpl) o;</span>
+<span class="nc bnc" id="L91" title="All 6 branches missed.">            if (allows != null ? !allows.equals(that.allows) :that.allows != null) return false;</span>
+<span class="nc bnc" id="L92" title="All 6 branches missed.">            if (schema != null ? !schema.equals(that.schema) :that.schema != null) return false;</span>
+<span class="nc" id="L93">            return true;</span>
+    }
+
+
+    public class SchemaNestedImpl&lt;N&gt; extends JSONSchemaPropsFluentImpl&lt;JSONSchemaPropsOrBoolFluent.SchemaNested&lt;N&gt;&gt; implements JSONSchemaPropsOrBoolFluent.SchemaNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JSONSchemaPropsBuilder builder;
+    
+<span class="nc" id="L101">            SchemaNestedImpl(JSONSchemaProps item){</span>
+<span class="nc" id="L102">                    this.builder = new JSONSchemaPropsBuilder(this, item);</span>
+<span class="nc" id="L103">            }</span>
+<span class="nc" id="L104">            SchemaNestedImpl(){</span>
+<span class="nc" id="L105">                    this.builder = new JSONSchemaPropsBuilder(this);</span>
+<span class="nc" id="L106">            }</span>
+    
+    public N and(){
+<span class="nc" id="L109">            return (N) JSONSchemaPropsOrBoolFluentImpl.this.withSchema(builder.build());</span>
+    }
+    public N endSchema(){
+<span class="nc" id="L112">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

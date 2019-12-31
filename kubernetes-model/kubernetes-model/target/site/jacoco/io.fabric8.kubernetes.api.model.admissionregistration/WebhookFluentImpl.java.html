@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WebhookFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.admissionregistration</a> &gt; <span class="el_source">WebhookFluentImpl.java</span></div><h1>WebhookFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.admissionregistration;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.LabelSelectorFluentImpl;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.LabelSelectorBuilder;
+import io.fabric8.kubernetes.api.model.LabelSelector;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class WebhookFluentImpl&lt;A extends WebhookFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements WebhookFluent&lt;A&gt;{
+
+    private WebhookClientConfigBuilder clientConfig;
+    private String failurePolicy;
+    private String name;
+    private LabelSelectorBuilder namespaceSelector;
+    private List&lt;RuleWithOperationsBuilder&gt; rules;
+    private String sideEffects;
+
+<span class="nc" id="L29">    public WebhookFluentImpl(){</span>
+<span class="nc" id="L30">    }</span>
+<span class="nc" id="L31">    public WebhookFluentImpl(Webhook instance){</span>
+<span class="nc" id="L32">            this.withClientConfig(instance.getClientConfig()); </span>
+<span class="nc" id="L33">            this.withFailurePolicy(instance.getFailurePolicy()); </span>
+<span class="nc" id="L34">            this.withName(instance.getName()); </span>
+<span class="nc" id="L35">            this.withNamespaceSelector(instance.getNamespaceSelector()); </span>
+<span class="nc" id="L36">            this.withRules(instance.getRules()); </span>
+<span class="nc" id="L37">            this.withSideEffects(instance.getSideEffects()); </span>
+<span class="nc" id="L38">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildClientConfig instead.
+ * @return The buildable object.
+ */
+@Deprecated public WebhookClientConfig getClientConfig(){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            return this.clientConfig!=null?this.clientConfig.build():null;</span>
+    }
+
+    public WebhookClientConfig buildClientConfig(){
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            return this.clientConfig!=null?this.clientConfig.build():null;</span>
+    }
+
+    public A withClientConfig(WebhookClientConfig clientConfig){
+<span class="nc" id="L54">            _visitables.remove(this.clientConfig);</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            if (clientConfig!=null){ this.clientConfig= new WebhookClientConfigBuilder(clientConfig); _visitables.add(this.clientConfig);} return (A) this;</span>
+    }
+
+    public Boolean hasClientConfig(){
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            return this.clientConfig != null;</span>
+    }
+
+    public WebhookFluent.ClientConfigNested&lt;A&gt; withNewClientConfig(){
+<span class="nc" id="L63">            return new ClientConfigNestedImpl();</span>
+    }
+
+    public WebhookFluent.ClientConfigNested&lt;A&gt; withNewClientConfigLike(WebhookClientConfig item){
+<span class="nc" id="L67">            return new ClientConfigNestedImpl(item);</span>
+    }
+
+    public WebhookFluent.ClientConfigNested&lt;A&gt; editClientConfig(){
+<span class="nc" id="L71">            return withNewClientConfigLike(getClientConfig());</span>
+    }
+
+    public WebhookFluent.ClientConfigNested&lt;A&gt; editOrNewClientConfig(){
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            return withNewClientConfigLike(getClientConfig() != null ? getClientConfig(): new WebhookClientConfigBuilder().build());</span>
+    }
+
+    public WebhookFluent.ClientConfigNested&lt;A&gt; editOrNewClientConfigLike(WebhookClientConfig item){
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            return withNewClientConfigLike(getClientConfig() != null ? getClientConfig(): item);</span>
+    }
+
+    public String getFailurePolicy(){
+<span class="nc" id="L83">            return this.failurePolicy;</span>
+    }
+
+    public A withFailurePolicy(String failurePolicy){
+<span class="nc" id="L87">            this.failurePolicy=failurePolicy; return (A) this;</span>
+    }
+
+    public Boolean hasFailurePolicy(){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            return this.failurePolicy != null;</span>
+    }
+
+    public String getName(){
+<span class="nc" id="L95">            return this.name;</span>
+    }
+
+    public A withName(String name){
+<span class="nc" id="L99">            this.name=name; return (A) this;</span>
+    }
+
+    public Boolean hasName(){
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            return this.name != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildNamespaceSelector instead.
+ * @return The buildable object.
+ */
+@Deprecated public LabelSelector getNamespaceSelector(){
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            return this.namespaceSelector!=null?this.namespaceSelector.build():null;</span>
+    }
+
+    public LabelSelector buildNamespaceSelector(){
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            return this.namespaceSelector!=null?this.namespaceSelector.build():null;</span>
+    }
+
+    public A withNamespaceSelector(LabelSelector namespaceSelector){
+<span class="nc" id="L120">            _visitables.remove(this.namespaceSelector);</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            if (namespaceSelector!=null){ this.namespaceSelector= new LabelSelectorBuilder(namespaceSelector); _visitables.add(this.namespaceSelector);} return (A) this;</span>
+    }
+
+    public Boolean hasNamespaceSelector(){
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            return this.namespaceSelector != null;</span>
+    }
+
+    public WebhookFluent.NamespaceSelectorNested&lt;A&gt; withNewNamespaceSelector(){
+<span class="nc" id="L129">            return new NamespaceSelectorNestedImpl();</span>
+    }
+
+    public WebhookFluent.NamespaceSelectorNested&lt;A&gt; withNewNamespaceSelectorLike(LabelSelector item){
+<span class="nc" id="L133">            return new NamespaceSelectorNestedImpl(item);</span>
+    }
+
+    public WebhookFluent.NamespaceSelectorNested&lt;A&gt; editNamespaceSelector(){
+<span class="nc" id="L137">            return withNewNamespaceSelectorLike(getNamespaceSelector());</span>
+    }
+
+    public WebhookFluent.NamespaceSelectorNested&lt;A&gt; editOrNewNamespaceSelector(){
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            return withNewNamespaceSelectorLike(getNamespaceSelector() != null ? getNamespaceSelector(): new LabelSelectorBuilder().build());</span>
+    }
+
+    public WebhookFluent.NamespaceSelectorNested&lt;A&gt; editOrNewNamespaceSelectorLike(LabelSelector item){
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            return withNewNamespaceSelectorLike(getNamespaceSelector() != null ? getNamespaceSelector(): item);</span>
+    }
+
+    public A addToRules(int index,RuleWithOperations item){
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (this.rules == null) {this.rules = new ArrayList&lt;RuleWithOperationsBuilder&gt;();}</span>
+<span class="nc bnc" id="L150" title="All 4 branches missed.">            RuleWithOperationsBuilder builder = new RuleWithOperationsBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.rules.add(index &gt;= 0 ? index : rules.size(), builder); return (A)this;</span>
+    }
+
+    public A setToRules(int index,RuleWithOperations item){
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            if (this.rules == null) {this.rules = new ArrayList&lt;RuleWithOperationsBuilder&gt;();}</span>
+<span class="nc" id="L155">            RuleWithOperationsBuilder builder = new RuleWithOperationsBuilder(item);</span>
+<span class="nc bnc" id="L156" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L157" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= rules.size()) { rules.add(builder); } else { rules.set(index, builder);}</span>
+<span class="nc" id="L158">             return (A)this;</span>
+    }
+
+    public A addToRules(RuleWithOperations... items){
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (this.rules == null) {this.rules = new ArrayList&lt;RuleWithOperationsBuilder&gt;();}</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            for (RuleWithOperations item : items) {RuleWithOperationsBuilder builder = new RuleWithOperationsBuilder(item);_visitables.add(builder);this.rules.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToRules(Collection&lt;RuleWithOperations&gt; items){
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (this.rules == null) {this.rules = new ArrayList&lt;RuleWithOperationsBuilder&gt;();}</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">            for (RuleWithOperations item : items) {RuleWithOperationsBuilder builder = new RuleWithOperationsBuilder(item);_visitables.add(builder);this.rules.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromRules(RuleWithOperations... items){
+<span class="nc bnc" id="L172" title="All 4 branches missed.">            for (RuleWithOperations item : items) {RuleWithOperationsBuilder builder = new RuleWithOperationsBuilder(item);_visitables.remove(builder);if (this.rules != null) {this.rules.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromRules(Collection&lt;RuleWithOperations&gt; items){
+<span class="nc bnc" id="L176" title="All 4 branches missed.">            for (RuleWithOperations item : items) {RuleWithOperationsBuilder builder = new RuleWithOperationsBuilder(item);_visitables.remove(builder);if (this.rules != null) {this.rules.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildRules instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;RuleWithOperations&gt; getRules(){
+<span class="nc" id="L185">            return build(rules);</span>
+    }
+
+    public List&lt;RuleWithOperations&gt; buildRules(){
+<span class="nc" id="L189">            return build(rules);</span>
+    }
+
+    public RuleWithOperations buildRule(int index){
+<span class="nc" id="L193">            return this.rules.get(index).build();</span>
+    }
+
+    public RuleWithOperations buildFirstRule(){
+<span class="nc" id="L197">            return this.rules.get(0).build();</span>
+    }
+
+    public RuleWithOperations buildLastRule(){
+<span class="nc" id="L201">            return this.rules.get(rules.size() - 1).build();</span>
+    }
+
+    public RuleWithOperations buildMatchingRule(io.fabric8.kubernetes.api.builder.Predicate&lt;RuleWithOperationsBuilder&gt; predicate){
+<span class="nc bnc" id="L205" title="All 4 branches missed.">            for (RuleWithOperationsBuilder item: rules) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withRules(List&lt;RuleWithOperations&gt; rules){
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            if (this.rules != null) { _visitables.removeAll(this.rules);}</span>
+<span class="nc bnc" id="L210" title="All 4 branches missed.">            if (rules != null) {this.rules = new ArrayList&lt;RuleWithOperationsBuilder&gt;(); for (RuleWithOperations item : rules){this.addToRules(item);}} else { this.rules = new ArrayList&lt;RuleWithOperationsBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withRules(RuleWithOperations... rules){
+<span class="nc bnc" id="L214" title="All 2 branches missed.">            if (this.rules != null) {this.rules.clear();}</span>
+<span class="nc bnc" id="L215" title="All 4 branches missed.">            if (rules != null) {for (RuleWithOperations item :rules){ this.addToRules(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasRules(){
+<span class="nc bnc" id="L219" title="All 4 branches missed.">            return rules != null &amp;&amp; !rules.isEmpty();</span>
+    }
+
+    public WebhookFluent.RulesNested&lt;A&gt; addNewRule(){
+<span class="nc" id="L223">            return new RulesNestedImpl();</span>
+    }
+
+    public WebhookFluent.RulesNested&lt;A&gt; addNewRuleLike(RuleWithOperations item){
+<span class="nc" id="L227">            return new RulesNestedImpl(-1, item);</span>
+    }
+
+    public WebhookFluent.RulesNested&lt;A&gt; setNewRuleLike(int index,RuleWithOperations item){
+<span class="nc" id="L231">            return new RulesNestedImpl(index, item);</span>
+    }
+
+    public WebhookFluent.RulesNested&lt;A&gt; editRule(int index){
+<span class="nc bnc" id="L235" title="All 2 branches missed.">            if (rules.size() &lt;= index) throw new RuntimeException(&quot;Can't edit rules. Index exceeds size.&quot;);</span>
+<span class="nc" id="L236">            return setNewRuleLike(index, buildRule(index));</span>
+    }
+
+    public WebhookFluent.RulesNested&lt;A&gt; editFirstRule(){
+<span class="nc bnc" id="L240" title="All 2 branches missed.">            if (rules.size() == 0) throw new RuntimeException(&quot;Can't edit first rules. The list is empty.&quot;);</span>
+<span class="nc" id="L241">            return setNewRuleLike(0, buildRule(0));</span>
+    }
+
+    public WebhookFluent.RulesNested&lt;A&gt; editLastRule(){
+<span class="nc" id="L245">            int index = rules.size() - 1;</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last rules. The list is empty.&quot;);</span>
+<span class="nc" id="L247">            return setNewRuleLike(index, buildRule(index));</span>
+    }
+
+    public WebhookFluent.RulesNested&lt;A&gt; editMatchingRule(io.fabric8.kubernetes.api.builder.Predicate&lt;RuleWithOperationsBuilder&gt; predicate){
+<span class="nc" id="L251">            int index = -1;</span>
+<span class="nc bnc" id="L252" title="All 2 branches missed.">            for (int i=0;i&lt;rules.size();i++) { </span>
+<span class="nc bnc" id="L253" title="All 2 branches missed.">            if (predicate.apply(rules.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L255" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching rules. No match found.&quot;);</span>
+<span class="nc" id="L256">            return setNewRuleLike(index, buildRule(index));</span>
+    }
+
+    public String getSideEffects(){
+<span class="nc" id="L260">            return this.sideEffects;</span>
+    }
+
+    public A withSideEffects(String sideEffects){
+<span class="nc" id="L264">            this.sideEffects=sideEffects; return (A) this;</span>
+    }
+
+    public Boolean hasSideEffects(){
+<span class="nc bnc" id="L268" title="All 2 branches missed.">            return this.sideEffects != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L272" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L273" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L274" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L275">            WebhookFluentImpl that = (WebhookFluentImpl) o;</span>
+<span class="nc bnc" id="L276" title="All 6 branches missed.">            if (clientConfig != null ? !clientConfig.equals(that.clientConfig) :that.clientConfig != null) return false;</span>
+<span class="nc bnc" id="L277" title="All 6 branches missed.">            if (failurePolicy != null ? !failurePolicy.equals(that.failurePolicy) :that.failurePolicy != null) return false;</span>
+<span class="nc bnc" id="L278" title="All 6 branches missed.">            if (name != null ? !name.equals(that.name) :that.name != null) return false;</span>
+<span class="nc bnc" id="L279" title="All 6 branches missed.">            if (namespaceSelector != null ? !namespaceSelector.equals(that.namespaceSelector) :that.namespaceSelector != null) return false;</span>
+<span class="nc bnc" id="L280" title="All 6 branches missed.">            if (rules != null ? !rules.equals(that.rules) :that.rules != null) return false;</span>
+<span class="nc bnc" id="L281" title="All 6 branches missed.">            if (sideEffects != null ? !sideEffects.equals(that.sideEffects) :that.sideEffects != null) return false;</span>
+<span class="nc" id="L282">            return true;</span>
+    }
+
+
+    public class ClientConfigNestedImpl&lt;N&gt; extends WebhookClientConfigFluentImpl&lt;WebhookFluent.ClientConfigNested&lt;N&gt;&gt; implements WebhookFluent.ClientConfigNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final WebhookClientConfigBuilder builder;
+    
+<span class="nc" id="L290">            ClientConfigNestedImpl(WebhookClientConfig item){</span>
+<span class="nc" id="L291">                    this.builder = new WebhookClientConfigBuilder(this, item);</span>
+<span class="nc" id="L292">            }</span>
+<span class="nc" id="L293">            ClientConfigNestedImpl(){</span>
+<span class="nc" id="L294">                    this.builder = new WebhookClientConfigBuilder(this);</span>
+<span class="nc" id="L295">            }</span>
+    
+    public N and(){
+<span class="nc" id="L298">            return (N) WebhookFluentImpl.this.withClientConfig(builder.build());</span>
+    }
+    public N endClientConfig(){
+<span class="nc" id="L301">            return and();</span>
+    }
+
+}
+    public class NamespaceSelectorNestedImpl&lt;N&gt; extends LabelSelectorFluentImpl&lt;WebhookFluent.NamespaceSelectorNested&lt;N&gt;&gt; implements WebhookFluent.NamespaceSelectorNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LabelSelectorBuilder builder;
+    
+<span class="nc" id="L309">            NamespaceSelectorNestedImpl(LabelSelector item){</span>
+<span class="nc" id="L310">                    this.builder = new LabelSelectorBuilder(this, item);</span>
+<span class="nc" id="L311">            }</span>
+<span class="nc" id="L312">            NamespaceSelectorNestedImpl(){</span>
+<span class="nc" id="L313">                    this.builder = new LabelSelectorBuilder(this);</span>
+<span class="nc" id="L314">            }</span>
+    
+    public N and(){
+<span class="nc" id="L317">            return (N) WebhookFluentImpl.this.withNamespaceSelector(builder.build());</span>
+    }
+    public N endNamespaceSelector(){
+<span class="nc" id="L320">            return and();</span>
+    }
+
+}
+    public class RulesNestedImpl&lt;N&gt; extends RuleWithOperationsFluentImpl&lt;WebhookFluent.RulesNested&lt;N&gt;&gt; implements WebhookFluent.RulesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RuleWithOperationsBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L329">            RulesNestedImpl(int index,RuleWithOperations item){</span>
+<span class="nc" id="L330">                    this.index = index;</span>
+<span class="nc" id="L331">                    this.builder = new RuleWithOperationsBuilder(this, item);</span>
+<span class="nc" id="L332">            }</span>
+<span class="nc" id="L333">            RulesNestedImpl(){</span>
+<span class="nc" id="L334">                    this.index = -1;</span>
+<span class="nc" id="L335">                    this.builder = new RuleWithOperationsBuilder(this);</span>
+<span class="nc" id="L336">            }</span>
+    
+    public N and(){
+<span class="nc" id="L339">            return (N) WebhookFluentImpl.this.setToRules(index, builder.build());</span>
+    }
+    public N endRule(){
+<span class="nc" id="L342">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

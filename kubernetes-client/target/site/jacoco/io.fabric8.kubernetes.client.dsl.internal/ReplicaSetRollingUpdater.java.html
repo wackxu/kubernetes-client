@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReplicaSetRollingUpdater.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.dsl.internal</a> &gt; <span class="el_source">ReplicaSetRollingUpdater.java</span></div><h1>ReplicaSetRollingUpdater.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.dsl.internal;
+
+import okhttp3.OkHttpClient;
+import io.fabric8.kubernetes.api.model.Pod;
+import io.fabric8.kubernetes.api.model.PodList;
+import io.fabric8.kubernetes.api.model.apps.DoneableReplicaSet;
+import io.fabric8.kubernetes.api.model.LabelSelectorRequirement;
+import io.fabric8.kubernetes.api.model.apps.ReplicaSet;
+import io.fabric8.kubernetes.api.model.apps.ReplicaSetBuilder;
+import io.fabric8.kubernetes.api.model.apps.ReplicaSetList;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.Watch;
+import io.fabric8.kubernetes.client.Watcher;
+import io.fabric8.kubernetes.client.dsl.Operation;
+import io.fabric8.kubernetes.client.dsl.RollableScalableResource;
+import io.fabric8.kubernetes.client.dsl.FilterWatchListDeletable;
+
+class ReplicaSetRollingUpdater extends RollingUpdater&lt;ReplicaSet, ReplicaSetList, DoneableReplicaSet&gt; {
+
+  ReplicaSetRollingUpdater(OkHttpClient client, Config config, String namespace) {
+<span class="nc" id="L36">    super(client, config, namespace);</span>
+<span class="nc" id="L37">  }</span>
+
+  ReplicaSetRollingUpdater(OkHttpClient client, Config config, String namespace, long rollingTimeoutMillis, long loggingIntervalMillis) {
+<span class="nc" id="L40">    super(client, config, namespace, rollingTimeoutMillis, loggingIntervalMillis);</span>
+<span class="nc" id="L41">  }</span>
+
+  @Override
+  protected ReplicaSet createClone(ReplicaSet obj, String newName, String newDeploymentHash) {
+<span class="nc" id="L45">    return new ReplicaSetBuilder(obj)</span>
+<span class="nc" id="L46">      .editMetadata()</span>
+<span class="nc" id="L47">      .withResourceVersion(null)</span>
+<span class="nc" id="L48">      .withName(newName)</span>
+<span class="nc" id="L49">      .endMetadata()</span>
+<span class="nc" id="L50">      .editSpec()</span>
+<span class="nc" id="L51">      .withReplicas(0)</span>
+<span class="nc" id="L52">      .editSelector().addToMatchLabels(DEPLOYMENT_KEY, newDeploymentHash).endSelector()</span>
+<span class="nc" id="L53">      .editTemplate().editMetadata().addToLabels(DEPLOYMENT_KEY, newDeploymentHash).endMetadata().endTemplate()</span>
+<span class="nc" id="L54">      .endSpec()</span>
+<span class="nc" id="L55">      .build();</span>
+  }
+
+  @Override
+  protected PodList listSelectedPods(ReplicaSet obj) {
+<span class="nc" id="L60">    FilterWatchListDeletable&lt;Pod, PodList, Boolean, Watch, Watcher&lt;Pod&gt;&gt; podLister = pods().inNamespace(namespace);</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">    if (obj.getSpec().getSelector().getMatchLabels() != null) {</span>
+<span class="nc" id="L62">      podLister.withLabels(obj.getSpec().getSelector().getMatchLabels());</span>
+    }
+<span class="nc bnc" id="L64" title="All 2 branches missed.">    if (obj.getSpec().getSelector().getMatchExpressions() != null) {</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">      for (LabelSelectorRequirement req : obj.getSpec().getSelector().getMatchExpressions()) {</span>
+<span class="nc bnc" id="L66" title="All 5 branches missed.">        switch (req.getOperator()) {</span>
+          case &quot;In&quot;:
+<span class="nc" id="L68">            podLister.withLabelIn(req.getKey(), req.getValues().toArray(new String[]{}));</span>
+<span class="nc" id="L69">            break;</span>
+          case &quot;NotIn&quot;:
+<span class="nc" id="L71">            podLister.withLabelNotIn(req.getKey(), req.getValues().toArray(new String[]{}));</span>
+<span class="nc" id="L72">            break;</span>
+          case &quot;DoesNotExist&quot;:
+<span class="nc" id="L74">            podLister.withoutLabel(req.getKey());</span>
+<span class="nc" id="L75">            break;</span>
+          case &quot;Exists&quot;:
+<span class="nc" id="L77">            podLister.withLabel(req.getKey());</span>
+            break;
+        }
+<span class="nc" id="L80">      }</span>
+    }
+<span class="nc" id="L82">    return podLister.list();</span>
+  }
+
+  @Override
+  protected void updateDeploymentKey(DoneableReplicaSet obj, String hash) {
+<span class="nc" id="L87">    obj.editSpec()</span>
+<span class="nc" id="L88">      .editSelector().addToMatchLabels(DEPLOYMENT_KEY, hash).endSelector()</span>
+<span class="nc" id="L89">      .editTemplate().editMetadata().addToLabels(DEPLOYMENT_KEY, hash).endMetadata().endTemplate()</span>
+<span class="nc" id="L90">      .endSpec();</span>
+<span class="nc" id="L91">  }</span>
+
+  @Override
+  protected void removeDeploymentKey(DoneableReplicaSet obj) {
+<span class="nc" id="L95">    obj.editSpec()</span>
+<span class="nc" id="L96">      .editSelector().removeFromMatchLabels(DEPLOYMENT_KEY).endSelector()</span>
+<span class="nc" id="L97">      .editTemplate().editMetadata().removeFromLabels(DEPLOYMENT_KEY).endMetadata().endTemplate()</span>
+<span class="nc" id="L98">      .endSpec();</span>
+<span class="nc" id="L99">  }</span>
+
+  @Override
+  protected int getReplicas(ReplicaSet obj) {
+<span class="nc" id="L103">    return obj.getSpec().getReplicas();</span>
+  }
+
+  @Override
+  protected ReplicaSet setReplicas(ReplicaSet obj, int replicas) {
+<span class="nc" id="L108">    return new ReplicaSetBuilder(obj).editSpec().withReplicas(replicas).endSpec().build();</span>
+  }
+
+  @Override
+  protected Operation&lt;ReplicaSet, ReplicaSetList, DoneableReplicaSet, RollableScalableResource&lt;ReplicaSet, DoneableReplicaSet&gt;&gt; resources() {
+<span class="nc" id="L113">    return new ReplicaSetOperationsImpl(client, config, namespace);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

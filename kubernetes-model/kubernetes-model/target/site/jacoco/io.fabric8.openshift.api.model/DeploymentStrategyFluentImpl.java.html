@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeploymentStrategyFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">DeploymentStrategyFluentImpl.java</span></div><h1>DeploymentStrategyFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.ResourceRequirementsBuilder;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import io.fabric8.kubernetes.api.model.ResourceRequirements;
+import java.util.LinkedHashMap;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ResourceRequirementsFluentImpl;
+import javax.validation.Valid;
+import java.lang.Long;
+import java.lang.Object;
+import java.util.Map;
+
+public class DeploymentStrategyFluentImpl&lt;A extends io.fabric8.openshift.api.model.DeploymentStrategyFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements io.fabric8.openshift.api.model.DeploymentStrategyFluent&lt;A&gt;{
+
+    private Long activeDeadlineSeconds;
+    private Map&lt;String,String&gt; annotations;
+    private CustomDeploymentStrategyParamsBuilder customParams;
+    private Map&lt;String,String&gt; labels;
+    private RecreateDeploymentStrategyParamsBuilder recreateParams;
+    private ResourceRequirementsBuilder resources;
+    private RollingDeploymentStrategyParamsBuilder rollingParams;
+    private String type;
+
+<span class="fc" id="L29">    public DeploymentStrategyFluentImpl(){</span>
+<span class="fc" id="L30">    }</span>
+<span class="nc" id="L31">    public DeploymentStrategyFluentImpl(io.fabric8.openshift.api.model.DeploymentStrategy instance){</span>
+<span class="nc" id="L32">            this.withActiveDeadlineSeconds(instance.getActiveDeadlineSeconds()); </span>
+<span class="nc" id="L33">            this.withAnnotations(instance.getAnnotations()); </span>
+<span class="nc" id="L34">            this.withCustomParams(instance.getCustomParams()); </span>
+<span class="nc" id="L35">            this.withLabels(instance.getLabels()); </span>
+<span class="nc" id="L36">            this.withRecreateParams(instance.getRecreateParams()); </span>
+<span class="nc" id="L37">            this.withResources(instance.getResources()); </span>
+<span class="nc" id="L38">            this.withRollingParams(instance.getRollingParams()); </span>
+<span class="nc" id="L39">            this.withType(instance.getType()); </span>
+<span class="nc" id="L40">    }</span>
+
+    public Long getActiveDeadlineSeconds(){
+<span class="fc" id="L43">            return this.activeDeadlineSeconds;</span>
+    }
+
+    public A withActiveDeadlineSeconds(Long activeDeadlineSeconds){
+<span class="fc" id="L47">            this.activeDeadlineSeconds=activeDeadlineSeconds; return (A) this;</span>
+    }
+
+    public Boolean hasActiveDeadlineSeconds(){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            return this.activeDeadlineSeconds != null;</span>
+    }
+
+    public A withNewActiveDeadlineSeconds(String arg1){
+<span class="nc" id="L55">            return (A)withActiveDeadlineSeconds(new Long(arg1));</span>
+    }
+
+    public A withNewActiveDeadlineSeconds(long arg1){
+<span class="nc" id="L59">            return (A)withActiveDeadlineSeconds(new Long(arg1));</span>
+    }
+
+    public A addToAnnotations(String key,String value){
+<span class="nc bnc" id="L63" title="All 6 branches missed.">            if(this.annotations == null &amp;&amp; key != null &amp;&amp; value != null) { this.annotations = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L64" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.annotations.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToAnnotations(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L68" title="All 4 branches missed.">            if(this.annotations == null &amp;&amp; map != null) { this.annotations = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if(map != null) { this.annotations.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromAnnotations(String key){
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if(this.annotations == null) { return (A) this; }</span>
+<span class="nc bnc" id="L74" title="All 4 branches missed.">            if(key != null &amp;&amp; this.annotations != null) {this.annotations.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromAnnotations(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if(this.annotations == null) { return (A) this; }</span>
+<span class="nc bnc" id="L79" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.annotations != null){this.annotations.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getAnnotations(){
+<span class="fc" id="L83">            return this.annotations;</span>
+    }
+
+    public A withAnnotations(Map&lt;String,String&gt; annotations){
+<span class="fc bfc" id="L87" title="All 2 branches covered.">            if (annotations == null) { this.annotations =  new LinkedHashMap&lt;String,String&gt;();} else {this.annotations = new LinkedHashMap&lt;String,String&gt;(annotations);} return (A) this;</span>
+    }
+
+    public Boolean hasAnnotations(){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            return this.annotations != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildCustomParams instead.
+ * @return The buildable object.
+ */
+@Deprecated public CustomDeploymentStrategyParams getCustomParams(){
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">            return this.customParams!=null?this.customParams.build():null;</span>
+    }
+
+    public CustomDeploymentStrategyParams buildCustomParams(){
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            return this.customParams!=null?this.customParams.build():null;</span>
+    }
+
+    public A withCustomParams(CustomDeploymentStrategyParams customParams){
+<span class="fc" id="L108">            _visitables.remove(this.customParams);</span>
+<span class="pc bpc" id="L109" title="1 of 2 branches missed.">            if (customParams!=null){ this.customParams= new CustomDeploymentStrategyParamsBuilder(customParams); _visitables.add(this.customParams);} return (A) this;</span>
+    }
+
+    public Boolean hasCustomParams(){
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            return this.customParams != null;</span>
+    }
+
+    public DeploymentStrategyFluent.CustomParamsNested&lt;A&gt; withNewCustomParams(){
+<span class="nc" id="L117">            return new CustomParamsNestedImpl();</span>
+    }
+
+    public DeploymentStrategyFluent.CustomParamsNested&lt;A&gt; withNewCustomParamsLike(CustomDeploymentStrategyParams item){
+<span class="nc" id="L121">            return new CustomParamsNestedImpl(item);</span>
+    }
+
+    public DeploymentStrategyFluent.CustomParamsNested&lt;A&gt; editCustomParams(){
+<span class="nc" id="L125">            return withNewCustomParamsLike(getCustomParams());</span>
+    }
+
+    public DeploymentStrategyFluent.CustomParamsNested&lt;A&gt; editOrNewCustomParams(){
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            return withNewCustomParamsLike(getCustomParams() != null ? getCustomParams(): new CustomDeploymentStrategyParamsBuilder().build());</span>
+    }
+
+    public DeploymentStrategyFluent.CustomParamsNested&lt;A&gt; editOrNewCustomParamsLike(CustomDeploymentStrategyParams item){
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            return withNewCustomParamsLike(getCustomParams() != null ? getCustomParams(): item);</span>
+    }
+
+    public A addToLabels(String key,String value){
+<span class="nc bnc" id="L137" title="All 6 branches missed.">            if(this.labels == null &amp;&amp; key != null &amp;&amp; value != null) { this.labels = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L138" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.labels.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToLabels(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L142" title="All 4 branches missed.">            if(this.labels == null &amp;&amp; map != null) { this.labels = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            if(map != null) { this.labels.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromLabels(String key){
+<span class="nc bnc" id="L147" title="All 2 branches missed.">            if(this.labels == null) { return (A) this; }</span>
+<span class="nc bnc" id="L148" title="All 4 branches missed.">            if(key != null &amp;&amp; this.labels != null) {this.labels.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromLabels(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            if(this.labels == null) { return (A) this; }</span>
+<span class="nc bnc" id="L153" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.labels != null){this.labels.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getLabels(){
+<span class="fc" id="L157">            return this.labels;</span>
+    }
+
+    public A withLabels(Map&lt;String,String&gt; labels){
+<span class="fc bfc" id="L161" title="All 2 branches covered.">            if (labels == null) { this.labels =  new LinkedHashMap&lt;String,String&gt;();} else {this.labels = new LinkedHashMap&lt;String,String&gt;(labels);} return (A) this;</span>
+    }
+
+    public Boolean hasLabels(){
+<span class="nc bnc" id="L165" title="All 2 branches missed.">            return this.labels != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildRecreateParams instead.
+ * @return The buildable object.
+ */
+@Deprecated public RecreateDeploymentStrategyParams getRecreateParams(){
+<span class="pc bpc" id="L174" title="1 of 2 branches missed.">            return this.recreateParams!=null?this.recreateParams.build():null;</span>
+    }
+
+    public RecreateDeploymentStrategyParams buildRecreateParams(){
+<span class="nc bnc" id="L178" title="All 2 branches missed.">            return this.recreateParams!=null?this.recreateParams.build():null;</span>
+    }
+
+    public A withRecreateParams(RecreateDeploymentStrategyParams recreateParams){
+<span class="fc" id="L182">            _visitables.remove(this.recreateParams);</span>
+<span class="pc bpc" id="L183" title="1 of 2 branches missed.">            if (recreateParams!=null){ this.recreateParams= new RecreateDeploymentStrategyParamsBuilder(recreateParams); _visitables.add(this.recreateParams);} return (A) this;</span>
+    }
+
+    public Boolean hasRecreateParams(){
+<span class="nc bnc" id="L187" title="All 2 branches missed.">            return this.recreateParams != null;</span>
+    }
+
+    public DeploymentStrategyFluent.RecreateParamsNested&lt;A&gt; withNewRecreateParams(){
+<span class="nc" id="L191">            return new RecreateParamsNestedImpl();</span>
+    }
+
+    public DeploymentStrategyFluent.RecreateParamsNested&lt;A&gt; withNewRecreateParamsLike(RecreateDeploymentStrategyParams item){
+<span class="nc" id="L195">            return new RecreateParamsNestedImpl(item);</span>
+    }
+
+    public DeploymentStrategyFluent.RecreateParamsNested&lt;A&gt; editRecreateParams(){
+<span class="nc" id="L199">            return withNewRecreateParamsLike(getRecreateParams());</span>
+    }
+
+    public DeploymentStrategyFluent.RecreateParamsNested&lt;A&gt; editOrNewRecreateParams(){
+<span class="nc bnc" id="L203" title="All 2 branches missed.">            return withNewRecreateParamsLike(getRecreateParams() != null ? getRecreateParams(): new RecreateDeploymentStrategyParamsBuilder().build());</span>
+    }
+
+    public DeploymentStrategyFluent.RecreateParamsNested&lt;A&gt; editOrNewRecreateParamsLike(RecreateDeploymentStrategyParams item){
+<span class="nc bnc" id="L207" title="All 2 branches missed.">            return withNewRecreateParamsLike(getRecreateParams() != null ? getRecreateParams(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildResources instead.
+ * @return The buildable object.
+ */
+@Deprecated public ResourceRequirements getResources(){
+<span class="pc bpc" id="L216" title="1 of 2 branches missed.">            return this.resources!=null?this.resources.build():null;</span>
+    }
+
+    public ResourceRequirements buildResources(){
+<span class="nc bnc" id="L220" title="All 2 branches missed.">            return this.resources!=null?this.resources.build():null;</span>
+    }
+
+    public A withResources(ResourceRequirements resources){
+<span class="fc" id="L224">            _visitables.remove(this.resources);</span>
+<span class="pc bpc" id="L225" title="1 of 2 branches missed.">            if (resources!=null){ this.resources= new ResourceRequirementsBuilder(resources); _visitables.add(this.resources);} return (A) this;</span>
+    }
+
+    public Boolean hasResources(){
+<span class="nc bnc" id="L229" title="All 2 branches missed.">            return this.resources != null;</span>
+    }
+
+    public DeploymentStrategyFluent.ResourcesNested&lt;A&gt; withNewResources(){
+<span class="nc" id="L233">            return new ResourcesNestedImpl();</span>
+    }
+
+    public DeploymentStrategyFluent.ResourcesNested&lt;A&gt; withNewResourcesLike(ResourceRequirements item){
+<span class="nc" id="L237">            return new ResourcesNestedImpl(item);</span>
+    }
+
+    public DeploymentStrategyFluent.ResourcesNested&lt;A&gt; editResources(){
+<span class="nc" id="L241">            return withNewResourcesLike(getResources());</span>
+    }
+
+    public DeploymentStrategyFluent.ResourcesNested&lt;A&gt; editOrNewResources(){
+<span class="nc bnc" id="L245" title="All 2 branches missed.">            return withNewResourcesLike(getResources() != null ? getResources(): new ResourceRequirementsBuilder().build());</span>
+    }
+
+    public DeploymentStrategyFluent.ResourcesNested&lt;A&gt; editOrNewResourcesLike(ResourceRequirements item){
+<span class="nc bnc" id="L249" title="All 2 branches missed.">            return withNewResourcesLike(getResources() != null ? getResources(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildRollingParams instead.
+ * @return The buildable object.
+ */
+@Deprecated public RollingDeploymentStrategyParams getRollingParams(){
+<span class="pc bpc" id="L258" title="1 of 2 branches missed.">            return this.rollingParams!=null?this.rollingParams.build():null;</span>
+    }
+
+    public RollingDeploymentStrategyParams buildRollingParams(){
+<span class="nc bnc" id="L262" title="All 2 branches missed.">            return this.rollingParams!=null?this.rollingParams.build():null;</span>
+    }
+
+    public A withRollingParams(RollingDeploymentStrategyParams rollingParams){
+<span class="fc" id="L266">            _visitables.remove(this.rollingParams);</span>
+<span class="fc bfc" id="L267" title="All 2 branches covered.">            if (rollingParams!=null){ this.rollingParams= new RollingDeploymentStrategyParamsBuilder(rollingParams); _visitables.add(this.rollingParams);} return (A) this;</span>
+    }
+
+    public Boolean hasRollingParams(){
+<span class="nc bnc" id="L271" title="All 2 branches missed.">            return this.rollingParams != null;</span>
+    }
+
+    public DeploymentStrategyFluent.RollingParamsNested&lt;A&gt; withNewRollingParams(){
+<span class="fc" id="L275">            return new RollingParamsNestedImpl();</span>
+    }
+
+    public DeploymentStrategyFluent.RollingParamsNested&lt;A&gt; withNewRollingParamsLike(RollingDeploymentStrategyParams item){
+<span class="nc" id="L279">            return new RollingParamsNestedImpl(item);</span>
+    }
+
+    public DeploymentStrategyFluent.RollingParamsNested&lt;A&gt; editRollingParams(){
+<span class="nc" id="L283">            return withNewRollingParamsLike(getRollingParams());</span>
+    }
+
+    public DeploymentStrategyFluent.RollingParamsNested&lt;A&gt; editOrNewRollingParams(){
+<span class="nc bnc" id="L287" title="All 2 branches missed.">            return withNewRollingParamsLike(getRollingParams() != null ? getRollingParams(): new RollingDeploymentStrategyParamsBuilder().build());</span>
+    }
+
+    public DeploymentStrategyFluent.RollingParamsNested&lt;A&gt; editOrNewRollingParamsLike(RollingDeploymentStrategyParams item){
+<span class="nc bnc" id="L291" title="All 2 branches missed.">            return withNewRollingParamsLike(getRollingParams() != null ? getRollingParams(): item);</span>
+    }
+
+    public String getType(){
+<span class="fc" id="L295">            return this.type;</span>
+    }
+
+    public A withType(String type){
+<span class="fc" id="L299">            this.type=type; return (A) this;</span>
+    }
+
+    public Boolean hasType(){
+<span class="nc bnc" id="L303" title="All 2 branches missed.">            return this.type != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L307" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L308" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L309" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L310">            DeploymentStrategyFluentImpl that = (DeploymentStrategyFluentImpl) o;</span>
+<span class="nc bnc" id="L311" title="All 6 branches missed.">            if (activeDeadlineSeconds != null ? !activeDeadlineSeconds.equals(that.activeDeadlineSeconds) :that.activeDeadlineSeconds != null) return false;</span>
+<span class="nc bnc" id="L312" title="All 6 branches missed.">            if (annotations != null ? !annotations.equals(that.annotations) :that.annotations != null) return false;</span>
+<span class="nc bnc" id="L313" title="All 6 branches missed.">            if (customParams != null ? !customParams.equals(that.customParams) :that.customParams != null) return false;</span>
+<span class="nc bnc" id="L314" title="All 6 branches missed.">            if (labels != null ? !labels.equals(that.labels) :that.labels != null) return false;</span>
+<span class="nc bnc" id="L315" title="All 6 branches missed.">            if (recreateParams != null ? !recreateParams.equals(that.recreateParams) :that.recreateParams != null) return false;</span>
+<span class="nc bnc" id="L316" title="All 6 branches missed.">            if (resources != null ? !resources.equals(that.resources) :that.resources != null) return false;</span>
+<span class="nc bnc" id="L317" title="All 6 branches missed.">            if (rollingParams != null ? !rollingParams.equals(that.rollingParams) :that.rollingParams != null) return false;</span>
+<span class="nc bnc" id="L318" title="All 6 branches missed.">            if (type != null ? !type.equals(that.type) :that.type != null) return false;</span>
+<span class="nc" id="L319">            return true;</span>
+    }
+
+
+    public class CustomParamsNestedImpl&lt;N&gt; extends CustomDeploymentStrategyParamsFluentImpl&lt;DeploymentStrategyFluent.CustomParamsNested&lt;N&gt;&gt; implements DeploymentStrategyFluent.CustomParamsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CustomDeploymentStrategyParamsBuilder builder;
+    
+<span class="nc" id="L327">            CustomParamsNestedImpl(CustomDeploymentStrategyParams item){</span>
+<span class="nc" id="L328">                    this.builder = new CustomDeploymentStrategyParamsBuilder(this, item);</span>
+<span class="nc" id="L329">            }</span>
+<span class="nc" id="L330">            CustomParamsNestedImpl(){</span>
+<span class="nc" id="L331">                    this.builder = new CustomDeploymentStrategyParamsBuilder(this);</span>
+<span class="nc" id="L332">            }</span>
+    
+    public N and(){
+<span class="nc" id="L335">            return (N) DeploymentStrategyFluentImpl.this.withCustomParams(builder.build());</span>
+    }
+    public N endCustomParams(){
+<span class="nc" id="L338">            return and();</span>
+    }
+
+}
+    public class RecreateParamsNestedImpl&lt;N&gt; extends RecreateDeploymentStrategyParamsFluentImpl&lt;DeploymentStrategyFluent.RecreateParamsNested&lt;N&gt;&gt; implements DeploymentStrategyFluent.RecreateParamsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RecreateDeploymentStrategyParamsBuilder builder;
+    
+<span class="nc" id="L346">            RecreateParamsNestedImpl(RecreateDeploymentStrategyParams item){</span>
+<span class="nc" id="L347">                    this.builder = new RecreateDeploymentStrategyParamsBuilder(this, item);</span>
+<span class="nc" id="L348">            }</span>
+<span class="nc" id="L349">            RecreateParamsNestedImpl(){</span>
+<span class="nc" id="L350">                    this.builder = new RecreateDeploymentStrategyParamsBuilder(this);</span>
+<span class="nc" id="L351">            }</span>
+    
+    public N and(){
+<span class="nc" id="L354">            return (N) DeploymentStrategyFluentImpl.this.withRecreateParams(builder.build());</span>
+    }
+    public N endRecreateParams(){
+<span class="nc" id="L357">            return and();</span>
+    }
+
+}
+    public class ResourcesNestedImpl&lt;N&gt; extends ResourceRequirementsFluentImpl&lt;DeploymentStrategyFluent.ResourcesNested&lt;N&gt;&gt; implements DeploymentStrategyFluent.ResourcesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ResourceRequirementsBuilder builder;
+    
+<span class="nc" id="L365">            ResourcesNestedImpl(ResourceRequirements item){</span>
+<span class="nc" id="L366">                    this.builder = new ResourceRequirementsBuilder(this, item);</span>
+<span class="nc" id="L367">            }</span>
+<span class="nc" id="L368">            ResourcesNestedImpl(){</span>
+<span class="nc" id="L369">                    this.builder = new ResourceRequirementsBuilder(this);</span>
+<span class="nc" id="L370">            }</span>
+    
+    public N and(){
+<span class="nc" id="L373">            return (N) DeploymentStrategyFluentImpl.this.withResources(builder.build());</span>
+    }
+    public N endResources(){
+<span class="nc" id="L376">            return and();</span>
+    }
+
+}
+    public class RollingParamsNestedImpl&lt;N&gt; extends RollingDeploymentStrategyParamsFluentImpl&lt;DeploymentStrategyFluent.RollingParamsNested&lt;N&gt;&gt; implements DeploymentStrategyFluent.RollingParamsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RollingDeploymentStrategyParamsBuilder builder;
+    
+<span class="nc" id="L384">            RollingParamsNestedImpl(RollingDeploymentStrategyParams item){</span>
+<span class="nc" id="L385">                    this.builder = new RollingDeploymentStrategyParamsBuilder(this, item);</span>
+<span class="nc" id="L386">            }</span>
+<span class="fc" id="L387">            RollingParamsNestedImpl(){</span>
+<span class="fc" id="L388">                    this.builder = new RollingDeploymentStrategyParamsBuilder(this);</span>
+<span class="fc" id="L389">            }</span>
+    
+    public N and(){
+<span class="fc" id="L392">            return (N) DeploymentStrategyFluentImpl.this.withRollingParams(builder.build());</span>
+    }
+    public N endRollingParams(){
+<span class="fc" id="L395">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

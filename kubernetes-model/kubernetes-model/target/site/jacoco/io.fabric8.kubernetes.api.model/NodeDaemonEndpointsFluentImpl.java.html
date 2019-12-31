@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NodeDaemonEndpointsFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">NodeDaemonEndpointsFluentImpl.java</span></div><h1>NodeDaemonEndpointsFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.Integer;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class NodeDaemonEndpointsFluentImpl&lt;A extends NodeDaemonEndpointsFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements NodeDaemonEndpointsFluent&lt;A&gt;{
+
+    private DaemonEndpointBuilder kubeletEndpoint;
+
+<span class="nc" id="L16">    public NodeDaemonEndpointsFluentImpl(){</span>
+<span class="nc" id="L17">    }</span>
+<span class="nc" id="L18">    public NodeDaemonEndpointsFluentImpl(NodeDaemonEndpoints instance){</span>
+<span class="nc" id="L19">            this.withKubeletEndpoint(instance.getKubeletEndpoint()); </span>
+<span class="nc" id="L20">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildKubeletEndpoint instead.
+ * @return The buildable object.
+ */
+@Deprecated public DaemonEndpoint getKubeletEndpoint(){
+<span class="nc bnc" id="L28" title="All 2 branches missed.">            return this.kubeletEndpoint!=null?this.kubeletEndpoint.build():null;</span>
+    }
+
+    public DaemonEndpoint buildKubeletEndpoint(){
+<span class="nc bnc" id="L32" title="All 2 branches missed.">            return this.kubeletEndpoint!=null?this.kubeletEndpoint.build():null;</span>
+    }
+
+    public A withKubeletEndpoint(DaemonEndpoint kubeletEndpoint){
+<span class="nc" id="L36">            _visitables.remove(this.kubeletEndpoint);</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            if (kubeletEndpoint!=null){ this.kubeletEndpoint= new DaemonEndpointBuilder(kubeletEndpoint); _visitables.add(this.kubeletEndpoint);} return (A) this;</span>
+    }
+
+    public Boolean hasKubeletEndpoint(){
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            return this.kubeletEndpoint != null;</span>
+    }
+
+    public A withNewKubeletEndpoint(Integer port){
+<span class="nc" id="L45">            return (A)withKubeletEndpoint(new DaemonEndpoint(port));</span>
+    }
+
+    public NodeDaemonEndpointsFluent.KubeletEndpointNested&lt;A&gt; withNewKubeletEndpoint(){
+<span class="nc" id="L49">            return new KubeletEndpointNestedImpl();</span>
+    }
+
+    public NodeDaemonEndpointsFluent.KubeletEndpointNested&lt;A&gt; withNewKubeletEndpointLike(DaemonEndpoint item){
+<span class="nc" id="L53">            return new KubeletEndpointNestedImpl(item);</span>
+    }
+
+    public NodeDaemonEndpointsFluent.KubeletEndpointNested&lt;A&gt; editKubeletEndpoint(){
+<span class="nc" id="L57">            return withNewKubeletEndpointLike(getKubeletEndpoint());</span>
+    }
+
+    public NodeDaemonEndpointsFluent.KubeletEndpointNested&lt;A&gt; editOrNewKubeletEndpoint(){
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            return withNewKubeletEndpointLike(getKubeletEndpoint() != null ? getKubeletEndpoint(): new DaemonEndpointBuilder().build());</span>
+    }
+
+    public NodeDaemonEndpointsFluent.KubeletEndpointNested&lt;A&gt; editOrNewKubeletEndpointLike(DaemonEndpoint item){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            return withNewKubeletEndpointLike(getKubeletEndpoint() != null ? getKubeletEndpoint(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L70" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L72">            NodeDaemonEndpointsFluentImpl that = (NodeDaemonEndpointsFluentImpl) o;</span>
+<span class="nc bnc" id="L73" title="All 6 branches missed.">            if (kubeletEndpoint != null ? !kubeletEndpoint.equals(that.kubeletEndpoint) :that.kubeletEndpoint != null) return false;</span>
+<span class="nc" id="L74">            return true;</span>
+    }
+
+
+    public class KubeletEndpointNestedImpl&lt;N&gt; extends DaemonEndpointFluentImpl&lt;NodeDaemonEndpointsFluent.KubeletEndpointNested&lt;N&gt;&gt; implements NodeDaemonEndpointsFluent.KubeletEndpointNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final DaemonEndpointBuilder builder;
+    
+<span class="nc" id="L82">            KubeletEndpointNestedImpl(DaemonEndpoint item){</span>
+<span class="nc" id="L83">                    this.builder = new DaemonEndpointBuilder(this, item);</span>
+<span class="nc" id="L84">            }</span>
+<span class="nc" id="L85">            KubeletEndpointNestedImpl(){</span>
+<span class="nc" id="L86">                    this.builder = new DaemonEndpointBuilder(this);</span>
+<span class="nc" id="L87">            }</span>
+    
+    public N and(){
+<span class="nc" id="L90">            return (N) NodeDaemonEndpointsFluentImpl.this.withKubeletEndpoint(builder.build());</span>
+    }
+    public N endKubeletEndpoint(){
+<span class="nc" id="L93">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

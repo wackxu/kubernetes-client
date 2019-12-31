@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>URLFromOpenshiftRouteImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Openshift :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.client</a> &gt; <span class="el_source">URLFromOpenshiftRouteImpl.java</span></div><h1>URLFromOpenshiftRouteImpl.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.fabric8.openshift.client;
+
+import io.fabric8.kubernetes.api.model.RootPaths;
+import io.fabric8.kubernetes.api.model.Service;
+import io.fabric8.kubernetes.api.model.ServicePort;
+import io.fabric8.kubernetes.client.KubernetesClient;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.ServiceToURLProvider;
+import io.fabric8.kubernetes.client.utils.URLFromServiceUtil;
+import io.fabric8.openshift.api.model.Route;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
+<span class="nc" id="L36">public class URLFromOpenshiftRouteImpl implements ServiceToURLProvider {</span>
+<span class="nc" id="L37">  public static final Logger logger = LoggerFactory.getLogger(URLFromOpenshiftRouteImpl.class);</span>
+<span class="nc" id="L38">  private final ConcurrentMap&lt;URL, Boolean&gt; IS_OPENSHIFT = new ConcurrentHashMap&lt;&gt;();</span>
+
+  @Override
+  public String getURL(Service service, String portName, String namespace, KubernetesClient client) {
+<span class="nc" id="L42">    String serviceName = service.getMetadata().getName();</span>
+<span class="nc" id="L43">    ServicePort port = URLFromServiceUtil.getServicePortByName(service, portName);</span>
+<span class="nc bnc" id="L44" title="All 6 branches missed.">    if(port != null &amp;&amp; port.getName() != null &amp;&amp; isOpenShift(client)) {</span>
+      try {
+<span class="nc" id="L46">        String serviceProtocol = port.getProtocol();</span>
+<span class="nc" id="L47">        OpenShiftClient openShiftClient = client.adapt(OpenShiftClient.class);</span>
+<span class="nc" id="L48">        Route route = openShiftClient.routes().inNamespace(namespace).withName(service.getMetadata().getName()).get();</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        if (route != null) {</span>
+<span class="nc" id="L50">          return (serviceProtocol + &quot;://&quot; + route.getSpec().getHost()).toLowerCase();</span>
+        }
+<span class="nc" id="L52">      } catch (KubernetesClientException e) {</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if(e.getCode() == HttpURLConnection.HTTP_FORBIDDEN) {</span>
+<span class="nc" id="L54">          logger.warn(&quot;Could not lookup route:&quot; + serviceName + &quot; in namespace:&quot;+ namespace +&quot;, due to: &quot; + e.getMessage());</span>
+        }
+<span class="nc" id="L56">      }</span>
+    }
+<span class="nc" id="L58">    return null;</span>
+  }
+
+  @Override
+  public int getPriority() {
+<span class="nc" id="L63">    return ServiceToUrlImplPriority.FOURTH.getValue();</span>
+  }
+
+  public boolean isOpenShift(KubernetesClient client) {
+<span class="nc" id="L67">    URL masterUrl = client.getMasterUrl();</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">    if (IS_OPENSHIFT.containsKey(masterUrl)) {</span>
+<span class="nc" id="L69">      return IS_OPENSHIFT.get(masterUrl);</span>
+    } else {
+<span class="nc" id="L71">      RootPaths rootPaths = client.rootPaths();</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">      if (rootPaths != null) {</span>
+<span class="nc" id="L73">        List&lt;String&gt; paths = rootPaths.getPaths();</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        if (paths != null) {</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">          for (String path : paths) {</span>
+<span class="nc bnc" id="L76" title="All 4 branches missed.">            if (java.util.Objects.equals(&quot;/oapi&quot;, path) || java.util.Objects.equals(&quot;oapi&quot;, path)) {</span>
+<span class="nc" id="L77">              IS_OPENSHIFT.putIfAbsent(masterUrl, true);</span>
+<span class="nc" id="L78">              return true;</span>
+            }
+<span class="nc" id="L80">          }</span>
+        }
+      }
+    }
+<span class="nc" id="L84">    IS_OPENSHIFT.putIfAbsent(masterUrl, false);</span>
+<span class="nc" id="L85">    return false;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

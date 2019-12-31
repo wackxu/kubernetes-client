@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OpenshiftClusterRoleScopeRestrictionFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">OpenshiftClusterRoleScopeRestrictionFluentImpl.java</span></div><h1>OpenshiftClusterRoleScopeRestrictionFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class OpenshiftClusterRoleScopeRestrictionFluentImpl&lt;A extends OpenshiftClusterRoleScopeRestrictionFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements OpenshiftClusterRoleScopeRestrictionFluent&lt;A&gt;{
+
+    private Boolean allowEscalation;
+    private List&lt;String&gt; namespaces;
+    private List&lt;String&gt; roleNames;
+
+<span class="nc" id="L20">    public OpenshiftClusterRoleScopeRestrictionFluentImpl(){</span>
+<span class="nc" id="L21">    }</span>
+<span class="nc" id="L22">    public OpenshiftClusterRoleScopeRestrictionFluentImpl(OpenshiftClusterRoleScopeRestriction instance){</span>
+<span class="nc" id="L23">            this.withAllowEscalation(instance.getAllowEscalation()); </span>
+<span class="nc" id="L24">            this.withNamespaces(instance.getNamespaces()); </span>
+<span class="nc" id="L25">            this.withRoleNames(instance.getRoleNames()); </span>
+<span class="nc" id="L26">    }</span>
+
+    public Boolean isAllowEscalation(){
+<span class="nc" id="L29">            return this.allowEscalation;</span>
+    }
+
+    public A withAllowEscalation(Boolean allowEscalation){
+<span class="nc" id="L33">            this.allowEscalation=allowEscalation; return (A) this;</span>
+    }
+
+    public Boolean hasAllowEscalation(){
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            return this.allowEscalation != null;</span>
+    }
+
+    public A withNewAllowEscalation(String arg1){
+<span class="nc" id="L41">            return (A)withAllowEscalation(new Boolean(arg1));</span>
+    }
+
+    public A withNewAllowEscalation(boolean arg1){
+<span class="nc" id="L45">            return (A)withAllowEscalation(new Boolean(arg1));</span>
+    }
+
+    public A addToNamespaces(int index,String item){
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            if (this.namespaces == null) {this.namespaces = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L50">            this.namespaces.add(index, item);</span>
+<span class="nc" id="L51">            return (A)this;</span>
+    }
+
+    public A setToNamespaces(int index,String item){
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            if (this.namespaces == null) {this.namespaces = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L56">            this.namespaces.set(index, item); return (A)this;</span>
+    }
+
+    public A addToNamespaces(String... items){
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            if (this.namespaces == null) {this.namespaces = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            for (String item : items) {this.namespaces.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToNamespaces(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (this.namespaces == null) {this.namespaces = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            for (String item : items) {this.namespaces.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromNamespaces(String... items){
+<span class="nc bnc" id="L70" title="All 4 branches missed.">            for (String item : items) {if (this.namespaces!= null){ this.namespaces.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromNamespaces(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L74" title="All 4 branches missed.">            for (String item : items) {if (this.namespaces!= null){ this.namespaces.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getNamespaces(){
+<span class="nc" id="L78">            return this.namespaces;</span>
+    }
+
+    public String getNamespace(int index){
+<span class="nc" id="L82">            return this.namespaces.get(index);</span>
+    }
+
+    public String getFirstNamespace(){
+<span class="nc" id="L86">            return this.namespaces.get(0);</span>
+    }
+
+    public String getLastNamespace(){
+<span class="nc" id="L90">            return this.namespaces.get(namespaces.size() - 1);</span>
+    }
+
+    public String getMatchingNamespace(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L94" title="All 4 branches missed.">            for (String item: namespaces) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withNamespaces(List&lt;String&gt; namespaces){
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            if (this.namespaces != null) { _visitables.removeAll(this.namespaces);}</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            if (namespaces != null) {this.namespaces = new ArrayList&lt;String&gt;(); for (String item : namespaces){this.addToNamespaces(item);}} else { this.namespaces = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withNamespaces(String... namespaces){
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            if (this.namespaces != null) {this.namespaces.clear();}</span>
+<span class="nc bnc" id="L104" title="All 4 branches missed.">            if (namespaces != null) {for (String item :namespaces){ this.addToNamespaces(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasNamespaces(){
+<span class="nc bnc" id="L108" title="All 4 branches missed.">            return namespaces != null &amp;&amp; !namespaces.isEmpty();</span>
+    }
+
+    public A addToRoleNames(int index,String item){
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            if (this.roleNames == null) {this.roleNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L113">            this.roleNames.add(index, item);</span>
+<span class="nc" id="L114">            return (A)this;</span>
+    }
+
+    public A setToRoleNames(int index,String item){
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            if (this.roleNames == null) {this.roleNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L119">            this.roleNames.set(index, item); return (A)this;</span>
+    }
+
+    public A addToRoleNames(String... items){
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            if (this.roleNames == null) {this.roleNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            for (String item : items) {this.roleNames.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToRoleNames(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            if (this.roleNames == null) {this.roleNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            for (String item : items) {this.roleNames.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromRoleNames(String... items){
+<span class="nc bnc" id="L133" title="All 4 branches missed.">            for (String item : items) {if (this.roleNames!= null){ this.roleNames.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromRoleNames(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L137" title="All 4 branches missed.">            for (String item : items) {if (this.roleNames!= null){ this.roleNames.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getRoleNames(){
+<span class="nc" id="L141">            return this.roleNames;</span>
+    }
+
+    public String getRoleName(int index){
+<span class="nc" id="L145">            return this.roleNames.get(index);</span>
+    }
+
+    public String getFirstRoleName(){
+<span class="nc" id="L149">            return this.roleNames.get(0);</span>
+    }
+
+    public String getLastRoleName(){
+<span class="nc" id="L153">            return this.roleNames.get(roleNames.size() - 1);</span>
+    }
+
+    public String getMatchingRoleName(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L157" title="All 4 branches missed.">            for (String item: roleNames) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withRoleNames(List&lt;String&gt; roleNames){
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            if (this.roleNames != null) { _visitables.removeAll(this.roleNames);}</span>
+<span class="nc bnc" id="L162" title="All 4 branches missed.">            if (roleNames != null) {this.roleNames = new ArrayList&lt;String&gt;(); for (String item : roleNames){this.addToRoleNames(item);}} else { this.roleNames = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withRoleNames(String... roleNames){
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            if (this.roleNames != null) {this.roleNames.clear();}</span>
+<span class="nc bnc" id="L167" title="All 4 branches missed.">            if (roleNames != null) {for (String item :roleNames){ this.addToRoleNames(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasRoleNames(){
+<span class="nc bnc" id="L171" title="All 4 branches missed.">            return roleNames != null &amp;&amp; !roleNames.isEmpty();</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L176" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L178">            OpenshiftClusterRoleScopeRestrictionFluentImpl that = (OpenshiftClusterRoleScopeRestrictionFluentImpl) o;</span>
+<span class="nc bnc" id="L179" title="All 6 branches missed.">            if (allowEscalation != null ? !allowEscalation.equals(that.allowEscalation) :that.allowEscalation != null) return false;</span>
+<span class="nc bnc" id="L180" title="All 6 branches missed.">            if (namespaces != null ? !namespaces.equals(that.namespaces) :that.namespaces != null) return false;</span>
+<span class="nc bnc" id="L181" title="All 6 branches missed.">            if (roleNames != null ? !roleNames.equals(that.roleNames) :that.roleNames != null) return false;</span>
+<span class="nc" id="L182">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

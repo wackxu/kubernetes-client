@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SubjectAccessReviewSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.authorization</a> &gt; <span class="el_source">SubjectAccessReviewSpecFluentImpl.java</span></div><h1>SubjectAccessReviewSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.authorization;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.util.LinkedHashMap;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.Map;
+
+public class SubjectAccessReviewSpecFluentImpl&lt;A extends SubjectAccessReviewSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements SubjectAccessReviewSpecFluent&lt;A&gt;{
+
+    private Map&lt;String,ArrayList&lt;String&gt;&gt; extra;
+    private List&lt;String&gt; groups;
+    private NonResourceAttributesBuilder nonResourceAttributes;
+    private ResourceAttributesBuilder resourceAttributes;
+    private String uid;
+    private String user;
+
+<span class="nc" id="L28">    public SubjectAccessReviewSpecFluentImpl(){</span>
+<span class="nc" id="L29">    }</span>
+<span class="nc" id="L30">    public SubjectAccessReviewSpecFluentImpl(SubjectAccessReviewSpec instance){</span>
+<span class="nc" id="L31">            this.withExtra(instance.getExtra()); </span>
+<span class="nc" id="L32">            this.withGroups(instance.getGroups()); </span>
+<span class="nc" id="L33">            this.withNonResourceAttributes(instance.getNonResourceAttributes()); </span>
+<span class="nc" id="L34">            this.withResourceAttributes(instance.getResourceAttributes()); </span>
+<span class="nc" id="L35">            this.withUid(instance.getUid()); </span>
+<span class="nc" id="L36">            this.withUser(instance.getUser()); </span>
+<span class="nc" id="L37">    }</span>
+
+    public A addToExtra(String key,ArrayList&lt;String&gt; value){
+<span class="nc bnc" id="L40" title="All 6 branches missed.">            if(this.extra == null &amp;&amp; key != null &amp;&amp; value != null) { this.extra = new LinkedHashMap&lt;String,ArrayList&lt;String&gt;&gt;(); }</span>
+<span class="nc bnc" id="L41" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.extra.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToExtra(Map&lt;String,ArrayList&lt;String&gt;&gt; map){
+<span class="nc bnc" id="L45" title="All 4 branches missed.">            if(this.extra == null &amp;&amp; map != null) { this.extra = new LinkedHashMap&lt;String,ArrayList&lt;String&gt;&gt;(); }</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if(map != null) { this.extra.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromExtra(String key){
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            if(this.extra == null) { return (A) this; }</span>
+<span class="nc bnc" id="L51" title="All 4 branches missed.">            if(key != null &amp;&amp; this.extra != null) {this.extra.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromExtra(Map&lt;String,ArrayList&lt;String&gt;&gt; map){
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            if(this.extra == null) { return (A) this; }</span>
+<span class="nc bnc" id="L56" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.extra != null){this.extra.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,ArrayList&lt;String&gt;&gt; getExtra(){
+<span class="nc" id="L60">            return this.extra;</span>
+    }
+
+    public A withExtra(Map&lt;String,ArrayList&lt;String&gt;&gt; extra){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            if (extra == null) { this.extra =  new LinkedHashMap&lt;String,ArrayList&lt;String&gt;&gt;();} else {this.extra = new LinkedHashMap&lt;String,ArrayList&lt;String&gt;&gt;(extra);} return (A) this;</span>
+    }
+
+    public Boolean hasExtra(){
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            return this.extra != null;</span>
+    }
+
+    public A addToGroups(int index,String item){
+<span class="nc bnc" id="L72" title="All 2 branches missed.">            if (this.groups == null) {this.groups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L73">            this.groups.add(index, item);</span>
+<span class="nc" id="L74">            return (A)this;</span>
+    }
+
+    public A setToGroups(int index,String item){
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (this.groups == null) {this.groups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L79">            this.groups.set(index, item); return (A)this;</span>
+    }
+
+    public A addToGroups(String... items){
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            if (this.groups == null) {this.groups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            for (String item : items) {this.groups.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToGroups(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            if (this.groups == null) {this.groups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            for (String item : items) {this.groups.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromGroups(String... items){
+<span class="nc bnc" id="L93" title="All 4 branches missed.">            for (String item : items) {if (this.groups!= null){ this.groups.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromGroups(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L97" title="All 4 branches missed.">            for (String item : items) {if (this.groups!= null){ this.groups.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getGroups(){
+<span class="nc" id="L101">            return this.groups;</span>
+    }
+
+    public String getGroup(int index){
+<span class="nc" id="L105">            return this.groups.get(index);</span>
+    }
+
+    public String getFirstGroup(){
+<span class="nc" id="L109">            return this.groups.get(0);</span>
+    }
+
+    public String getLastGroup(){
+<span class="nc" id="L113">            return this.groups.get(groups.size() - 1);</span>
+    }
+
+    public String getMatchingGroup(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L117" title="All 4 branches missed.">            for (String item: groups) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withGroups(List&lt;String&gt; groups){
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            if (this.groups != null) { _visitables.removeAll(this.groups);}</span>
+<span class="nc bnc" id="L122" title="All 4 branches missed.">            if (groups != null) {this.groups = new ArrayList&lt;String&gt;(); for (String item : groups){this.addToGroups(item);}} else { this.groups = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withGroups(String... groups){
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            if (this.groups != null) {this.groups.clear();}</span>
+<span class="nc bnc" id="L127" title="All 4 branches missed.">            if (groups != null) {for (String item :groups){ this.addToGroups(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasGroups(){
+<span class="nc bnc" id="L131" title="All 4 branches missed.">            return groups != null &amp;&amp; !groups.isEmpty();</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildNonResourceAttributes instead.
+ * @return The buildable object.
+ */
+@Deprecated public NonResourceAttributes getNonResourceAttributes(){
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            return this.nonResourceAttributes!=null?this.nonResourceAttributes.build():null;</span>
+    }
+
+    public NonResourceAttributes buildNonResourceAttributes(){
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            return this.nonResourceAttributes!=null?this.nonResourceAttributes.build():null;</span>
+    }
+
+    public A withNonResourceAttributes(NonResourceAttributes nonResourceAttributes){
+<span class="nc" id="L148">            _visitables.remove(this.nonResourceAttributes);</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (nonResourceAttributes!=null){ this.nonResourceAttributes= new NonResourceAttributesBuilder(nonResourceAttributes); _visitables.add(this.nonResourceAttributes);} return (A) this;</span>
+    }
+
+    public Boolean hasNonResourceAttributes(){
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            return this.nonResourceAttributes != null;</span>
+    }
+
+    public A withNewNonResourceAttributes(String path,String verb){
+<span class="nc" id="L157">            return (A)withNonResourceAttributes(new NonResourceAttributes(path, verb));</span>
+    }
+
+    public SubjectAccessReviewSpecFluent.NonResourceAttributesNested&lt;A&gt; withNewNonResourceAttributes(){
+<span class="nc" id="L161">            return new NonResourceAttributesNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewSpecFluent.NonResourceAttributesNested&lt;A&gt; withNewNonResourceAttributesLike(NonResourceAttributes item){
+<span class="nc" id="L165">            return new NonResourceAttributesNestedImpl(item);</span>
+    }
+
+    public SubjectAccessReviewSpecFluent.NonResourceAttributesNested&lt;A&gt; editNonResourceAttributes(){
+<span class="nc" id="L169">            return withNewNonResourceAttributesLike(getNonResourceAttributes());</span>
+    }
+
+    public SubjectAccessReviewSpecFluent.NonResourceAttributesNested&lt;A&gt; editOrNewNonResourceAttributes(){
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            return withNewNonResourceAttributesLike(getNonResourceAttributes() != null ? getNonResourceAttributes(): new NonResourceAttributesBuilder().build());</span>
+    }
+
+    public SubjectAccessReviewSpecFluent.NonResourceAttributesNested&lt;A&gt; editOrNewNonResourceAttributesLike(NonResourceAttributes item){
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            return withNewNonResourceAttributesLike(getNonResourceAttributes() != null ? getNonResourceAttributes(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildResourceAttributes instead.
+ * @return The buildable object.
+ */
+@Deprecated public ResourceAttributes getResourceAttributes(){
+<span class="nc bnc" id="L186" title="All 2 branches missed.">            return this.resourceAttributes!=null?this.resourceAttributes.build():null;</span>
+    }
+
+    public ResourceAttributes buildResourceAttributes(){
+<span class="nc bnc" id="L190" title="All 2 branches missed.">            return this.resourceAttributes!=null?this.resourceAttributes.build():null;</span>
+    }
+
+    public A withResourceAttributes(ResourceAttributes resourceAttributes){
+<span class="nc" id="L194">            _visitables.remove(this.resourceAttributes);</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">            if (resourceAttributes!=null){ this.resourceAttributes= new ResourceAttributesBuilder(resourceAttributes); _visitables.add(this.resourceAttributes);} return (A) this;</span>
+    }
+
+    public Boolean hasResourceAttributes(){
+<span class="nc bnc" id="L199" title="All 2 branches missed.">            return this.resourceAttributes != null;</span>
+    }
+
+    public SubjectAccessReviewSpecFluent.ResourceAttributesNested&lt;A&gt; withNewResourceAttributes(){
+<span class="nc" id="L203">            return new ResourceAttributesNestedImpl();</span>
+    }
+
+    public SubjectAccessReviewSpecFluent.ResourceAttributesNested&lt;A&gt; withNewResourceAttributesLike(ResourceAttributes item){
+<span class="nc" id="L207">            return new ResourceAttributesNestedImpl(item);</span>
+    }
+
+    public SubjectAccessReviewSpecFluent.ResourceAttributesNested&lt;A&gt; editResourceAttributes(){
+<span class="nc" id="L211">            return withNewResourceAttributesLike(getResourceAttributes());</span>
+    }
+
+    public SubjectAccessReviewSpecFluent.ResourceAttributesNested&lt;A&gt; editOrNewResourceAttributes(){
+<span class="nc bnc" id="L215" title="All 2 branches missed.">            return withNewResourceAttributesLike(getResourceAttributes() != null ? getResourceAttributes(): new ResourceAttributesBuilder().build());</span>
+    }
+
+    public SubjectAccessReviewSpecFluent.ResourceAttributesNested&lt;A&gt; editOrNewResourceAttributesLike(ResourceAttributes item){
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            return withNewResourceAttributesLike(getResourceAttributes() != null ? getResourceAttributes(): item);</span>
+    }
+
+    public String getUid(){
+<span class="nc" id="L223">            return this.uid;</span>
+    }
+
+    public A withUid(String uid){
+<span class="nc" id="L227">            this.uid=uid; return (A) this;</span>
+    }
+
+    public Boolean hasUid(){
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            return this.uid != null;</span>
+    }
+
+    public String getUser(){
+<span class="nc" id="L235">            return this.user;</span>
+    }
+
+    public A withUser(String user){
+<span class="nc" id="L239">            this.user=user; return (A) this;</span>
+    }
+
+    public Boolean hasUser(){
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            return this.user != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L247" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L248" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L249" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L250">            SubjectAccessReviewSpecFluentImpl that = (SubjectAccessReviewSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L251" title="All 6 branches missed.">            if (extra != null ? !extra.equals(that.extra) :that.extra != null) return false;</span>
+<span class="nc bnc" id="L252" title="All 6 branches missed.">            if (groups != null ? !groups.equals(that.groups) :that.groups != null) return false;</span>
+<span class="nc bnc" id="L253" title="All 6 branches missed.">            if (nonResourceAttributes != null ? !nonResourceAttributes.equals(that.nonResourceAttributes) :that.nonResourceAttributes != null) return false;</span>
+<span class="nc bnc" id="L254" title="All 6 branches missed.">            if (resourceAttributes != null ? !resourceAttributes.equals(that.resourceAttributes) :that.resourceAttributes != null) return false;</span>
+<span class="nc bnc" id="L255" title="All 6 branches missed.">            if (uid != null ? !uid.equals(that.uid) :that.uid != null) return false;</span>
+<span class="nc bnc" id="L256" title="All 6 branches missed.">            if (user != null ? !user.equals(that.user) :that.user != null) return false;</span>
+<span class="nc" id="L257">            return true;</span>
+    }
+
+
+    public class NonResourceAttributesNestedImpl&lt;N&gt; extends NonResourceAttributesFluentImpl&lt;SubjectAccessReviewSpecFluent.NonResourceAttributesNested&lt;N&gt;&gt; implements SubjectAccessReviewSpecFluent.NonResourceAttributesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NonResourceAttributesBuilder builder;
+    
+<span class="nc" id="L265">            NonResourceAttributesNestedImpl(NonResourceAttributes item){</span>
+<span class="nc" id="L266">                    this.builder = new NonResourceAttributesBuilder(this, item);</span>
+<span class="nc" id="L267">            }</span>
+<span class="nc" id="L268">            NonResourceAttributesNestedImpl(){</span>
+<span class="nc" id="L269">                    this.builder = new NonResourceAttributesBuilder(this);</span>
+<span class="nc" id="L270">            }</span>
+    
+    public N and(){
+<span class="nc" id="L273">            return (N) SubjectAccessReviewSpecFluentImpl.this.withNonResourceAttributes(builder.build());</span>
+    }
+    public N endNonResourceAttributes(){
+<span class="nc" id="L276">            return and();</span>
+    }
+
+}
+    public class ResourceAttributesNestedImpl&lt;N&gt; extends ResourceAttributesFluentImpl&lt;SubjectAccessReviewSpecFluent.ResourceAttributesNested&lt;N&gt;&gt; implements SubjectAccessReviewSpecFluent.ResourceAttributesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ResourceAttributesBuilder builder;
+    
+<span class="nc" id="L284">            ResourceAttributesNestedImpl(ResourceAttributes item){</span>
+<span class="nc" id="L285">                    this.builder = new ResourceAttributesBuilder(this, item);</span>
+<span class="nc" id="L286">            }</span>
+<span class="nc" id="L287">            ResourceAttributesNestedImpl(){</span>
+<span class="nc" id="L288">                    this.builder = new ResourceAttributesBuilder(this);</span>
+<span class="nc" id="L289">            }</span>
+    
+    public N and(){
+<span class="nc" id="L292">            return (N) SubjectAccessReviewSpecFluentImpl.this.withResourceAttributes(builder.build());</span>
+    }
+    public N endResourceAttributes(){
+<span class="nc" id="L295">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

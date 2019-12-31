@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>KubernetesServer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Server Mock</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.server.mock</a> &gt; <span class="el_source">KubernetesServer.java</span></div><h1>KubernetesServer.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.server.mock;
+
+import io.fabric8.kubernetes.client.NamespacedKubernetesClient;
+import io.fabric8.mockwebserver.Context;
+import io.fabric8.mockwebserver.ServerRequest;
+import io.fabric8.mockwebserver.ServerResponse;
+import io.fabric8.mockwebserver.crud.CrudDispatcher;
+import io.fabric8.mockwebserver.dsl.MockServerExpectation;
+import okhttp3.mockwebserver.MockWebServer;
+import org.junit.rules.ExternalResource;
+
+import java.util.HashMap;
+import java.util.Queue;
+
+public class KubernetesServer extends ExternalResource {
+
+  private KubernetesMockServer mock;
+  private NamespacedKubernetesClient client;
+  private boolean https;
+  // In this mode the mock web server will store, read, update and delete
+  // kubernetes resources using an in memory map and will appear as a real api
+  // server.
+  private boolean crudMode;
+
+  public KubernetesServer() {
+<span class="nc" id="L41">    this(true, false);</span>
+<span class="nc" id="L42">  }</span>
+
+  public KubernetesServer(boolean https) {
+<span class="nc" id="L45">    this(https, false);</span>
+<span class="nc" id="L46">  }</span>
+
+<span class="nc" id="L48">  public KubernetesServer(boolean https, boolean crudMode) {</span>
+<span class="nc" id="L49">    this.https = https;</span>
+<span class="nc" id="L50">    this.crudMode = crudMode;</span>
+<span class="nc" id="L51">  }</span>
+
+  public void before() {
+<span class="nc bnc" id="L54" title="All 2 branches missed.">    mock = crudMode</span>
+      ? new KubernetesMockServer(new Context(), new MockWebServer(), new HashMap&lt;ServerRequest, Queue&lt;ServerResponse&gt;&gt;(), new KubernetesCrudDispatcher(), true)
+      : new KubernetesMockServer(https);
+<span class="nc" id="L57">    mock.init();</span>
+<span class="nc" id="L58">    client = mock.createClient();</span>
+<span class="nc" id="L59">  }</span>
+
+  public void after() {
+<span class="nc" id="L62">    mock.destroy();</span>
+<span class="nc" id="L63">    client.close();</span>
+<span class="nc" id="L64">  }</span>
+
+  public NamespacedKubernetesClient getClient() {
+<span class="nc" id="L67">    return client;</span>
+  }
+
+  public MockServerExpectation expect() {
+<span class="nc" id="L71">    return mock.expect();</span>
+  }
+
+  @Deprecated
+  public &lt;T&gt; void expectAndReturnAsJson(String path, int code, T body) {
+<span class="nc" id="L76">   expect().withPath(path).andReturn(code, body).always();</span>
+<span class="nc" id="L77">  }</span>
+  @Deprecated
+  public void expectAndReturnAsString(String path, int code, String body) {
+<span class="nc" id="L80">    expect().withPath(path).andReturn(code, body).always();</span>
+<span class="nc" id="L81">  }</span>
+  @Deprecated
+  public &lt;T&gt; void expectAndReturnAsJson(String method, String path, int code, T body) {
+<span class="nc" id="L84">    expect().withPath(path).andReturn(code, body).always();</span>
+<span class="nc" id="L85">  }</span>
+  @Deprecated
+  public void expectAndReturnAsString(String method, String path, int code, String body) {
+<span class="nc" id="L88">    expect().withPath(path).andReturn(code, body).always();</span>
+<span class="nc" id="L89">  }</span>
+
+  public MockWebServer getMockServer() {
+<span class="nc" id="L92">    return mock.getServer();</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

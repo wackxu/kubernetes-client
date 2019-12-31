@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PersistentVolumeSpecBuilder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">PersistentVolumeSpecBuilder.java</span></div><h1>PersistentVolumeSpecBuilder.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import io.fabric8.kubernetes.api.builder.VisitableBuilder;
+import java.lang.Object;
+import java.lang.Boolean;
+import javax.validation.Validator;
+
+public class PersistentVolumeSpecBuilder extends PersistentVolumeSpecFluentImpl&lt;PersistentVolumeSpecBuilder&gt; implements VisitableBuilder&lt;PersistentVolumeSpec,PersistentVolumeSpecBuilder&gt;{
+
+    PersistentVolumeSpecFluent&lt;?&gt; fluent;
+    Boolean validationEnabled;
+    Validator validator;
+
+    public PersistentVolumeSpecBuilder(){
+<span class="nc" id="L15">            this(true);</span>
+<span class="nc" id="L16">    }</span>
+    public PersistentVolumeSpecBuilder(Boolean validationEnabled){
+<span class="nc" id="L18">            this(new PersistentVolumeSpec(), validationEnabled);</span>
+<span class="nc" id="L19">    }</span>
+    public PersistentVolumeSpecBuilder(PersistentVolumeSpecFluent&lt;?&gt; fluent){
+<span class="nc" id="L21">            this(fluent, true);</span>
+<span class="nc" id="L22">    }</span>
+    public PersistentVolumeSpecBuilder(PersistentVolumeSpecFluent&lt;?&gt; fluent,Boolean validationEnabled){
+<span class="nc" id="L24">            this(fluent, new PersistentVolumeSpec(), validationEnabled);</span>
+<span class="nc" id="L25">    }</span>
+    public PersistentVolumeSpecBuilder(PersistentVolumeSpecFluent&lt;?&gt; fluent,PersistentVolumeSpec instance){
+<span class="nc" id="L27">            this(fluent, instance, true);</span>
+<span class="nc" id="L28">    }</span>
+<span class="nc" id="L29">    public PersistentVolumeSpecBuilder(PersistentVolumeSpecFluent&lt;?&gt; fluent,PersistentVolumeSpec instance,Boolean validationEnabled){</span>
+<span class="nc" id="L30">            this.fluent = fluent; </span>
+<span class="nc" id="L31">            fluent.withAccessModes(instance.getAccessModes()); </span>
+<span class="nc" id="L32">            fluent.withAwsElasticBlockStore(instance.getAwsElasticBlockStore()); </span>
+<span class="nc" id="L33">            fluent.withAzureDisk(instance.getAzureDisk()); </span>
+<span class="nc" id="L34">            fluent.withAzureFile(instance.getAzureFile()); </span>
+<span class="nc" id="L35">            fluent.withCapacity(instance.getCapacity()); </span>
+<span class="nc" id="L36">            fluent.withCephfs(instance.getCephfs()); </span>
+<span class="nc" id="L37">            fluent.withCinder(instance.getCinder()); </span>
+<span class="nc" id="L38">            fluent.withClaimRef(instance.getClaimRef()); </span>
+<span class="nc" id="L39">            fluent.withCsi(instance.getCsi()); </span>
+<span class="nc" id="L40">            fluent.withFc(instance.getFc()); </span>
+<span class="nc" id="L41">            fluent.withFlexVolume(instance.getFlexVolume()); </span>
+<span class="nc" id="L42">            fluent.withFlocker(instance.getFlocker()); </span>
+<span class="nc" id="L43">            fluent.withGcePersistentDisk(instance.getGcePersistentDisk()); </span>
+<span class="nc" id="L44">            fluent.withGlusterfs(instance.getGlusterfs()); </span>
+<span class="nc" id="L45">            fluent.withHostPath(instance.getHostPath()); </span>
+<span class="nc" id="L46">            fluent.withIscsi(instance.getIscsi()); </span>
+<span class="nc" id="L47">            fluent.withLocal(instance.getLocal()); </span>
+<span class="nc" id="L48">            fluent.withMountOptions(instance.getMountOptions()); </span>
+<span class="nc" id="L49">            fluent.withNfs(instance.getNfs()); </span>
+<span class="nc" id="L50">            fluent.withNodeAffinity(instance.getNodeAffinity()); </span>
+<span class="nc" id="L51">            fluent.withPersistentVolumeReclaimPolicy(instance.getPersistentVolumeReclaimPolicy()); </span>
+<span class="nc" id="L52">            fluent.withPhotonPersistentDisk(instance.getPhotonPersistentDisk()); </span>
+<span class="nc" id="L53">            fluent.withPortworxVolume(instance.getPortworxVolume()); </span>
+<span class="nc" id="L54">            fluent.withQuobyte(instance.getQuobyte()); </span>
+<span class="nc" id="L55">            fluent.withRbd(instance.getRbd()); </span>
+<span class="nc" id="L56">            fluent.withScaleIO(instance.getScaleIO()); </span>
+<span class="nc" id="L57">            fluent.withStorageClassName(instance.getStorageClassName()); </span>
+<span class="nc" id="L58">            fluent.withStorageos(instance.getStorageos()); </span>
+<span class="nc" id="L59">            fluent.withVolumeMode(instance.getVolumeMode()); </span>
+<span class="nc" id="L60">            fluent.withVsphereVolume(instance.getVsphereVolume()); </span>
+<span class="nc" id="L61">            this.validationEnabled = validationEnabled; </span>
+<span class="nc" id="L62">    }</span>
+    public PersistentVolumeSpecBuilder(PersistentVolumeSpec instance){
+<span class="nc" id="L64">            this(instance,true);</span>
+<span class="nc" id="L65">    }</span>
+<span class="nc" id="L66">    public PersistentVolumeSpecBuilder(PersistentVolumeSpec instance,Boolean validationEnabled){</span>
+<span class="nc" id="L67">            this.fluent = this; </span>
+<span class="nc" id="L68">            this.withAccessModes(instance.getAccessModes()); </span>
+<span class="nc" id="L69">            this.withAwsElasticBlockStore(instance.getAwsElasticBlockStore()); </span>
+<span class="nc" id="L70">            this.withAzureDisk(instance.getAzureDisk()); </span>
+<span class="nc" id="L71">            this.withAzureFile(instance.getAzureFile()); </span>
+<span class="nc" id="L72">            this.withCapacity(instance.getCapacity()); </span>
+<span class="nc" id="L73">            this.withCephfs(instance.getCephfs()); </span>
+<span class="nc" id="L74">            this.withCinder(instance.getCinder()); </span>
+<span class="nc" id="L75">            this.withClaimRef(instance.getClaimRef()); </span>
+<span class="nc" id="L76">            this.withCsi(instance.getCsi()); </span>
+<span class="nc" id="L77">            this.withFc(instance.getFc()); </span>
+<span class="nc" id="L78">            this.withFlexVolume(instance.getFlexVolume()); </span>
+<span class="nc" id="L79">            this.withFlocker(instance.getFlocker()); </span>
+<span class="nc" id="L80">            this.withGcePersistentDisk(instance.getGcePersistentDisk()); </span>
+<span class="nc" id="L81">            this.withGlusterfs(instance.getGlusterfs()); </span>
+<span class="nc" id="L82">            this.withHostPath(instance.getHostPath()); </span>
+<span class="nc" id="L83">            this.withIscsi(instance.getIscsi()); </span>
+<span class="nc" id="L84">            this.withLocal(instance.getLocal()); </span>
+<span class="nc" id="L85">            this.withMountOptions(instance.getMountOptions()); </span>
+<span class="nc" id="L86">            this.withNfs(instance.getNfs()); </span>
+<span class="nc" id="L87">            this.withNodeAffinity(instance.getNodeAffinity()); </span>
+<span class="nc" id="L88">            this.withPersistentVolumeReclaimPolicy(instance.getPersistentVolumeReclaimPolicy()); </span>
+<span class="nc" id="L89">            this.withPhotonPersistentDisk(instance.getPhotonPersistentDisk()); </span>
+<span class="nc" id="L90">            this.withPortworxVolume(instance.getPortworxVolume()); </span>
+<span class="nc" id="L91">            this.withQuobyte(instance.getQuobyte()); </span>
+<span class="nc" id="L92">            this.withRbd(instance.getRbd()); </span>
+<span class="nc" id="L93">            this.withScaleIO(instance.getScaleIO()); </span>
+<span class="nc" id="L94">            this.withStorageClassName(instance.getStorageClassName()); </span>
+<span class="nc" id="L95">            this.withStorageos(instance.getStorageos()); </span>
+<span class="nc" id="L96">            this.withVolumeMode(instance.getVolumeMode()); </span>
+<span class="nc" id="L97">            this.withVsphereVolume(instance.getVsphereVolume()); </span>
+<span class="nc" id="L98">            this.validationEnabled = validationEnabled; </span>
+<span class="nc" id="L99">    }</span>
+    public PersistentVolumeSpecBuilder(Validator validator){
+<span class="nc" id="L101">            this(new PersistentVolumeSpec(), true);</span>
+<span class="nc" id="L102">    }</span>
+<span class="nc" id="L103">    public PersistentVolumeSpecBuilder(PersistentVolumeSpecFluent&lt;?&gt; fluent,PersistentVolumeSpec instance,Validator validator){</span>
+<span class="nc" id="L104">            this.fluent = fluent; </span>
+<span class="nc" id="L105">            fluent.withAccessModes(instance.getAccessModes()); </span>
+<span class="nc" id="L106">            fluent.withAwsElasticBlockStore(instance.getAwsElasticBlockStore()); </span>
+<span class="nc" id="L107">            fluent.withAzureDisk(instance.getAzureDisk()); </span>
+<span class="nc" id="L108">            fluent.withAzureFile(instance.getAzureFile()); </span>
+<span class="nc" id="L109">            fluent.withCapacity(instance.getCapacity()); </span>
+<span class="nc" id="L110">            fluent.withCephfs(instance.getCephfs()); </span>
+<span class="nc" id="L111">            fluent.withCinder(instance.getCinder()); </span>
+<span class="nc" id="L112">            fluent.withClaimRef(instance.getClaimRef()); </span>
+<span class="nc" id="L113">            fluent.withCsi(instance.getCsi()); </span>
+<span class="nc" id="L114">            fluent.withFc(instance.getFc()); </span>
+<span class="nc" id="L115">            fluent.withFlexVolume(instance.getFlexVolume()); </span>
+<span class="nc" id="L116">            fluent.withFlocker(instance.getFlocker()); </span>
+<span class="nc" id="L117">            fluent.withGcePersistentDisk(instance.getGcePersistentDisk()); </span>
+<span class="nc" id="L118">            fluent.withGlusterfs(instance.getGlusterfs()); </span>
+<span class="nc" id="L119">            fluent.withHostPath(instance.getHostPath()); </span>
+<span class="nc" id="L120">            fluent.withIscsi(instance.getIscsi()); </span>
+<span class="nc" id="L121">            fluent.withLocal(instance.getLocal()); </span>
+<span class="nc" id="L122">            fluent.withMountOptions(instance.getMountOptions()); </span>
+<span class="nc" id="L123">            fluent.withNfs(instance.getNfs()); </span>
+<span class="nc" id="L124">            fluent.withNodeAffinity(instance.getNodeAffinity()); </span>
+<span class="nc" id="L125">            fluent.withPersistentVolumeReclaimPolicy(instance.getPersistentVolumeReclaimPolicy()); </span>
+<span class="nc" id="L126">            fluent.withPhotonPersistentDisk(instance.getPhotonPersistentDisk()); </span>
+<span class="nc" id="L127">            fluent.withPortworxVolume(instance.getPortworxVolume()); </span>
+<span class="nc" id="L128">            fluent.withQuobyte(instance.getQuobyte()); </span>
+<span class="nc" id="L129">            fluent.withRbd(instance.getRbd()); </span>
+<span class="nc" id="L130">            fluent.withScaleIO(instance.getScaleIO()); </span>
+<span class="nc" id="L131">            fluent.withStorageClassName(instance.getStorageClassName()); </span>
+<span class="nc" id="L132">            fluent.withStorageos(instance.getStorageos()); </span>
+<span class="nc" id="L133">            fluent.withVolumeMode(instance.getVolumeMode()); </span>
+<span class="nc" id="L134">            fluent.withVsphereVolume(instance.getVsphereVolume()); </span>
+<span class="nc" id="L135">            this.validator = validator;</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            this.validationEnabled = validator != null; </span>
+<span class="nc" id="L137">    }</span>
+<span class="nc" id="L138">    public PersistentVolumeSpecBuilder(PersistentVolumeSpec instance,Validator validator){</span>
+<span class="nc" id="L139">            this.fluent = this; </span>
+<span class="nc" id="L140">            this.withAccessModes(instance.getAccessModes()); </span>
+<span class="nc" id="L141">            this.withAwsElasticBlockStore(instance.getAwsElasticBlockStore()); </span>
+<span class="nc" id="L142">            this.withAzureDisk(instance.getAzureDisk()); </span>
+<span class="nc" id="L143">            this.withAzureFile(instance.getAzureFile()); </span>
+<span class="nc" id="L144">            this.withCapacity(instance.getCapacity()); </span>
+<span class="nc" id="L145">            this.withCephfs(instance.getCephfs()); </span>
+<span class="nc" id="L146">            this.withCinder(instance.getCinder()); </span>
+<span class="nc" id="L147">            this.withClaimRef(instance.getClaimRef()); </span>
+<span class="nc" id="L148">            this.withCsi(instance.getCsi()); </span>
+<span class="nc" id="L149">            this.withFc(instance.getFc()); </span>
+<span class="nc" id="L150">            this.withFlexVolume(instance.getFlexVolume()); </span>
+<span class="nc" id="L151">            this.withFlocker(instance.getFlocker()); </span>
+<span class="nc" id="L152">            this.withGcePersistentDisk(instance.getGcePersistentDisk()); </span>
+<span class="nc" id="L153">            this.withGlusterfs(instance.getGlusterfs()); </span>
+<span class="nc" id="L154">            this.withHostPath(instance.getHostPath()); </span>
+<span class="nc" id="L155">            this.withIscsi(instance.getIscsi()); </span>
+<span class="nc" id="L156">            this.withLocal(instance.getLocal()); </span>
+<span class="nc" id="L157">            this.withMountOptions(instance.getMountOptions()); </span>
+<span class="nc" id="L158">            this.withNfs(instance.getNfs()); </span>
+<span class="nc" id="L159">            this.withNodeAffinity(instance.getNodeAffinity()); </span>
+<span class="nc" id="L160">            this.withPersistentVolumeReclaimPolicy(instance.getPersistentVolumeReclaimPolicy()); </span>
+<span class="nc" id="L161">            this.withPhotonPersistentDisk(instance.getPhotonPersistentDisk()); </span>
+<span class="nc" id="L162">            this.withPortworxVolume(instance.getPortworxVolume()); </span>
+<span class="nc" id="L163">            this.withQuobyte(instance.getQuobyte()); </span>
+<span class="nc" id="L164">            this.withRbd(instance.getRbd()); </span>
+<span class="nc" id="L165">            this.withScaleIO(instance.getScaleIO()); </span>
+<span class="nc" id="L166">            this.withStorageClassName(instance.getStorageClassName()); </span>
+<span class="nc" id="L167">            this.withStorageos(instance.getStorageos()); </span>
+<span class="nc" id="L168">            this.withVolumeMode(instance.getVolumeMode()); </span>
+<span class="nc" id="L169">            this.withVsphereVolume(instance.getVsphereVolume()); </span>
+<span class="nc" id="L170">            this.validator = validator; </span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">            this.validationEnabled = validator != null; </span>
+<span class="nc" id="L172">    }</span>
+
+    public PersistentVolumeSpec build(){
+<span class="nc" id="L175">            PersistentVolumeSpec buildable = new PersistentVolumeSpec(fluent.getAccessModes(),fluent.getAwsElasticBlockStore(),fluent.getAzureDisk(),fluent.getAzureFile(),fluent.getCapacity(),fluent.getCephfs(),fluent.getCinder(),fluent.getClaimRef(),fluent.getCsi(),fluent.getFc(),fluent.getFlexVolume(),fluent.getFlocker(),fluent.getGcePersistentDisk(),fluent.getGlusterfs(),fluent.getHostPath(),fluent.getIscsi(),fluent.getLocal(),fluent.getMountOptions(),fluent.getNfs(),fluent.getNodeAffinity(),fluent.getPersistentVolumeReclaimPolicy(),fluent.getPhotonPersistentDisk(),fluent.getPortworxVolume(),fluent.getQuobyte(),fluent.getRbd(),fluent.getScaleIO(),fluent.getStorageClassName(),fluent.getStorageos(),fluent.getVolumeMode(),fluent.getVsphereVolume());</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">            if (validationEnabled) {io.fabric8.kubernetes.api.builder.ValidationUtils.validate(buildable, validator);}</span>
+<span class="nc" id="L177">            return buildable;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L182" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L184">            PersistentVolumeSpecBuilder that = (PersistentVolumeSpecBuilder) o;</span>
+<span class="nc bnc" id="L185" title="All 10 branches missed.">            if (fluent != null &amp;&amp;fluent != this ? !fluent.equals(that.fluent) :that.fluent != null &amp;&amp;fluent != this ) return false;</span>
+
+<span class="nc bnc" id="L187" title="All 6 branches missed.">            if (validationEnabled != null ? !validationEnabled.equals(that.validationEnabled) :that.validationEnabled != null) return false;</span>
+<span class="nc" id="L188">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

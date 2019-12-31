@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DownwardAPIVolumeFileFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">DownwardAPIVolumeFileFluentImpl.java</span></div><h1>DownwardAPIVolumeFileFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Integer;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class DownwardAPIVolumeFileFluentImpl&lt;A extends DownwardAPIVolumeFileFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements DownwardAPIVolumeFileFluent&lt;A&gt;{
+
+    private ObjectFieldSelectorBuilder fieldRef;
+    private Integer mode;
+    private String path;
+    private ResourceFieldSelectorBuilder resourceFieldRef;
+
+<span class="nc" id="L20">    public DownwardAPIVolumeFileFluentImpl(){</span>
+<span class="nc" id="L21">    }</span>
+<span class="nc" id="L22">    public DownwardAPIVolumeFileFluentImpl(DownwardAPIVolumeFile instance){</span>
+<span class="nc" id="L23">            this.withFieldRef(instance.getFieldRef()); </span>
+<span class="nc" id="L24">            this.withMode(instance.getMode()); </span>
+<span class="nc" id="L25">            this.withPath(instance.getPath()); </span>
+<span class="nc" id="L26">            this.withResourceFieldRef(instance.getResourceFieldRef()); </span>
+<span class="nc" id="L27">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildFieldRef instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectFieldSelector getFieldRef(){
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            return this.fieldRef!=null?this.fieldRef.build():null;</span>
+    }
+
+    public ObjectFieldSelector buildFieldRef(){
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            return this.fieldRef!=null?this.fieldRef.build():null;</span>
+    }
+
+    public A withFieldRef(ObjectFieldSelector fieldRef){
+<span class="nc" id="L43">            _visitables.remove(this.fieldRef);</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            if (fieldRef!=null){ this.fieldRef= new ObjectFieldSelectorBuilder(fieldRef); _visitables.add(this.fieldRef);} return (A) this;</span>
+    }
+
+    public Boolean hasFieldRef(){
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            return this.fieldRef != null;</span>
+    }
+
+    public A withNewFieldRef(String apiVersion,String fieldPath){
+<span class="nc" id="L52">            return (A)withFieldRef(new ObjectFieldSelector(apiVersion, fieldPath));</span>
+    }
+
+    public DownwardAPIVolumeFileFluent.FieldRefNested&lt;A&gt; withNewFieldRef(){
+<span class="nc" id="L56">            return new FieldRefNestedImpl();</span>
+    }
+
+    public DownwardAPIVolumeFileFluent.FieldRefNested&lt;A&gt; withNewFieldRefLike(ObjectFieldSelector item){
+<span class="nc" id="L60">            return new FieldRefNestedImpl(item);</span>
+    }
+
+    public DownwardAPIVolumeFileFluent.FieldRefNested&lt;A&gt; editFieldRef(){
+<span class="nc" id="L64">            return withNewFieldRefLike(getFieldRef());</span>
+    }
+
+    public DownwardAPIVolumeFileFluent.FieldRefNested&lt;A&gt; editOrNewFieldRef(){
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            return withNewFieldRefLike(getFieldRef() != null ? getFieldRef(): new ObjectFieldSelectorBuilder().build());</span>
+    }
+
+    public DownwardAPIVolumeFileFluent.FieldRefNested&lt;A&gt; editOrNewFieldRefLike(ObjectFieldSelector item){
+<span class="nc bnc" id="L72" title="All 2 branches missed.">            return withNewFieldRefLike(getFieldRef() != null ? getFieldRef(): item);</span>
+    }
+
+    public Integer getMode(){
+<span class="nc" id="L76">            return this.mode;</span>
+    }
+
+    public A withMode(Integer mode){
+<span class="nc" id="L80">            this.mode=mode; return (A) this;</span>
+    }
+
+    public Boolean hasMode(){
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            return this.mode != null;</span>
+    }
+
+    public String getPath(){
+<span class="nc" id="L88">            return this.path;</span>
+    }
+
+    public A withPath(String path){
+<span class="nc" id="L92">            this.path=path; return (A) this;</span>
+    }
+
+    public Boolean hasPath(){
+<span class="nc bnc" id="L96" title="All 2 branches missed.">            return this.path != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildResourceFieldRef instead.
+ * @return The buildable object.
+ */
+@Deprecated public ResourceFieldSelector getResourceFieldRef(){
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            return this.resourceFieldRef!=null?this.resourceFieldRef.build():null;</span>
+    }
+
+    public ResourceFieldSelector buildResourceFieldRef(){
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            return this.resourceFieldRef!=null?this.resourceFieldRef.build():null;</span>
+    }
+
+    public A withResourceFieldRef(ResourceFieldSelector resourceFieldRef){
+<span class="nc" id="L113">            _visitables.remove(this.resourceFieldRef);</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">            if (resourceFieldRef!=null){ this.resourceFieldRef= new ResourceFieldSelectorBuilder(resourceFieldRef); _visitables.add(this.resourceFieldRef);} return (A) this;</span>
+    }
+
+    public Boolean hasResourceFieldRef(){
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            return this.resourceFieldRef != null;</span>
+    }
+
+    public DownwardAPIVolumeFileFluent.ResourceFieldRefNested&lt;A&gt; withNewResourceFieldRef(){
+<span class="nc" id="L122">            return new ResourceFieldRefNestedImpl();</span>
+    }
+
+    public DownwardAPIVolumeFileFluent.ResourceFieldRefNested&lt;A&gt; withNewResourceFieldRefLike(ResourceFieldSelector item){
+<span class="nc" id="L126">            return new ResourceFieldRefNestedImpl(item);</span>
+    }
+
+    public DownwardAPIVolumeFileFluent.ResourceFieldRefNested&lt;A&gt; editResourceFieldRef(){
+<span class="nc" id="L130">            return withNewResourceFieldRefLike(getResourceFieldRef());</span>
+    }
+
+    public DownwardAPIVolumeFileFluent.ResourceFieldRefNested&lt;A&gt; editOrNewResourceFieldRef(){
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            return withNewResourceFieldRefLike(getResourceFieldRef() != null ? getResourceFieldRef(): new ResourceFieldSelectorBuilder().build());</span>
+    }
+
+    public DownwardAPIVolumeFileFluent.ResourceFieldRefNested&lt;A&gt; editOrNewResourceFieldRefLike(ResourceFieldSelector item){
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            return withNewResourceFieldRefLike(getResourceFieldRef() != null ? getResourceFieldRef(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L142" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L143" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L145">            DownwardAPIVolumeFileFluentImpl that = (DownwardAPIVolumeFileFluentImpl) o;</span>
+<span class="nc bnc" id="L146" title="All 6 branches missed.">            if (fieldRef != null ? !fieldRef.equals(that.fieldRef) :that.fieldRef != null) return false;</span>
+<span class="nc bnc" id="L147" title="All 6 branches missed.">            if (mode != null ? !mode.equals(that.mode) :that.mode != null) return false;</span>
+<span class="nc bnc" id="L148" title="All 6 branches missed.">            if (path != null ? !path.equals(that.path) :that.path != null) return false;</span>
+<span class="nc bnc" id="L149" title="All 6 branches missed.">            if (resourceFieldRef != null ? !resourceFieldRef.equals(that.resourceFieldRef) :that.resourceFieldRef != null) return false;</span>
+<span class="nc" id="L150">            return true;</span>
+    }
+
+
+    public class FieldRefNestedImpl&lt;N&gt; extends ObjectFieldSelectorFluentImpl&lt;DownwardAPIVolumeFileFluent.FieldRefNested&lt;N&gt;&gt; implements DownwardAPIVolumeFileFluent.FieldRefNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectFieldSelectorBuilder builder;
+    
+<span class="nc" id="L158">            FieldRefNestedImpl(ObjectFieldSelector item){</span>
+<span class="nc" id="L159">                    this.builder = new ObjectFieldSelectorBuilder(this, item);</span>
+<span class="nc" id="L160">            }</span>
+<span class="nc" id="L161">            FieldRefNestedImpl(){</span>
+<span class="nc" id="L162">                    this.builder = new ObjectFieldSelectorBuilder(this);</span>
+<span class="nc" id="L163">            }</span>
+    
+    public N and(){
+<span class="nc" id="L166">            return (N) DownwardAPIVolumeFileFluentImpl.this.withFieldRef(builder.build());</span>
+    }
+    public N endFieldRef(){
+<span class="nc" id="L169">            return and();</span>
+    }
+
+}
+    public class ResourceFieldRefNestedImpl&lt;N&gt; extends ResourceFieldSelectorFluentImpl&lt;DownwardAPIVolumeFileFluent.ResourceFieldRefNested&lt;N&gt;&gt; implements DownwardAPIVolumeFileFluent.ResourceFieldRefNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ResourceFieldSelectorBuilder builder;
+    
+<span class="nc" id="L177">            ResourceFieldRefNestedImpl(ResourceFieldSelector item){</span>
+<span class="nc" id="L178">                    this.builder = new ResourceFieldSelectorBuilder(this, item);</span>
+<span class="nc" id="L179">            }</span>
+<span class="nc" id="L180">            ResourceFieldRefNestedImpl(){</span>
+<span class="nc" id="L181">                    this.builder = new ResourceFieldSelectorBuilder(this);</span>
+<span class="nc" id="L182">            }</span>
+    
+    public N and(){
+<span class="nc" id="L185">            return (N) DownwardAPIVolumeFileFluentImpl.this.withResourceFieldRef(builder.build());</span>
+    }
+    public N endResourceFieldRef(){
+<span class="nc" id="L188">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

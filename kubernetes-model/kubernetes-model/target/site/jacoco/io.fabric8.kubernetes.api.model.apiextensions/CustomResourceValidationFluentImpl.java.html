@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomResourceValidationFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.apiextensions</a> &gt; <span class="el_source">CustomResourceValidationFluentImpl.java</span></div><h1>CustomResourceValidationFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.apiextensions;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class CustomResourceValidationFluentImpl&lt;A extends CustomResourceValidationFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements CustomResourceValidationFluent&lt;A&gt;{
+
+    private JSONSchemaPropsBuilder openAPIV3Schema;
+
+<span class="nc" id="L15">    public CustomResourceValidationFluentImpl(){</span>
+<span class="nc" id="L16">    }</span>
+<span class="nc" id="L17">    public CustomResourceValidationFluentImpl(CustomResourceValidation instance){</span>
+<span class="nc" id="L18">            this.withOpenAPIV3Schema(instance.getOpenAPIV3Schema()); </span>
+<span class="nc" id="L19">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildOpenAPIV3Schema instead.
+ * @return The buildable object.
+ */
+@Deprecated public JSONSchemaProps getOpenAPIV3Schema(){
+<span class="nc bnc" id="L27" title="All 2 branches missed.">            return this.openAPIV3Schema!=null?this.openAPIV3Schema.build():null;</span>
+    }
+
+    public JSONSchemaProps buildOpenAPIV3Schema(){
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            return this.openAPIV3Schema!=null?this.openAPIV3Schema.build():null;</span>
+    }
+
+    public A withOpenAPIV3Schema(JSONSchemaProps openAPIV3Schema){
+<span class="nc" id="L35">            _visitables.remove(this.openAPIV3Schema);</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            if (openAPIV3Schema!=null){ this.openAPIV3Schema= new JSONSchemaPropsBuilder(openAPIV3Schema); _visitables.add(this.openAPIV3Schema);} return (A) this;</span>
+    }
+
+    public Boolean hasOpenAPIV3Schema(){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            return this.openAPIV3Schema != null;</span>
+    }
+
+    public CustomResourceValidationFluent.OpenAPIV3SchemaNested&lt;A&gt; withNewOpenAPIV3Schema(){
+<span class="nc" id="L44">            return new OpenAPIV3SchemaNestedImpl();</span>
+    }
+
+    public CustomResourceValidationFluent.OpenAPIV3SchemaNested&lt;A&gt; withNewOpenAPIV3SchemaLike(JSONSchemaProps item){
+<span class="nc" id="L48">            return new OpenAPIV3SchemaNestedImpl(item);</span>
+    }
+
+    public CustomResourceValidationFluent.OpenAPIV3SchemaNested&lt;A&gt; editOpenAPIV3Schema(){
+<span class="nc" id="L52">            return withNewOpenAPIV3SchemaLike(getOpenAPIV3Schema());</span>
+    }
+
+    public CustomResourceValidationFluent.OpenAPIV3SchemaNested&lt;A&gt; editOrNewOpenAPIV3Schema(){
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            return withNewOpenAPIV3SchemaLike(getOpenAPIV3Schema() != null ? getOpenAPIV3Schema(): new JSONSchemaPropsBuilder().build());</span>
+    }
+
+    public CustomResourceValidationFluent.OpenAPIV3SchemaNested&lt;A&gt; editOrNewOpenAPIV3SchemaLike(JSONSchemaProps item){
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            return withNewOpenAPIV3SchemaLike(getOpenAPIV3Schema() != null ? getOpenAPIV3Schema(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L65" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L67">            CustomResourceValidationFluentImpl that = (CustomResourceValidationFluentImpl) o;</span>
+<span class="nc bnc" id="L68" title="All 6 branches missed.">            if (openAPIV3Schema != null ? !openAPIV3Schema.equals(that.openAPIV3Schema) :that.openAPIV3Schema != null) return false;</span>
+<span class="nc" id="L69">            return true;</span>
+    }
+
+
+    public class OpenAPIV3SchemaNestedImpl&lt;N&gt; extends JSONSchemaPropsFluentImpl&lt;CustomResourceValidationFluent.OpenAPIV3SchemaNested&lt;N&gt;&gt; implements CustomResourceValidationFluent.OpenAPIV3SchemaNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JSONSchemaPropsBuilder builder;
+    
+<span class="nc" id="L77">            OpenAPIV3SchemaNestedImpl(JSONSchemaProps item){</span>
+<span class="nc" id="L78">                    this.builder = new JSONSchemaPropsBuilder(this, item);</span>
+<span class="nc" id="L79">            }</span>
+<span class="nc" id="L80">            OpenAPIV3SchemaNestedImpl(){</span>
+<span class="nc" id="L81">                    this.builder = new JSONSchemaPropsBuilder(this);</span>
+<span class="nc" id="L82">            }</span>
+    
+    public N and(){
+<span class="nc" id="L85">            return (N) CustomResourceValidationFluentImpl.this.withOpenAPIV3Schema(builder.build());</span>
+    }
+    public N endOpenAPIV3Schema(){
+<span class="nc" id="L88">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

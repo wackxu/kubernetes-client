@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImageStreamTagFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">ImageStreamTagFluentImpl.java</span></div><h1>ImageStreamTagFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.ObjectMetaFluentImpl;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import javax.validation.Valid;
+import java.lang.Long;
+import java.util.Collection;
+import java.lang.Object;
+
+public class ImageStreamTagFluentImpl&lt;A extends ImageStreamTagFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ImageStreamTagFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private List&lt;TagEventConditionBuilder&gt; conditions;
+    private Long generation;
+    private ImageBuilder image;
+    private String kind;
+    private ImageLookupPolicyBuilder lookupPolicy;
+    private ObjectMetaBuilder metadata;
+    private TagReferenceBuilder tag;
+
+<span class="fc" id="L34">    public ImageStreamTagFluentImpl(){</span>
+<span class="fc" id="L35">    }</span>
+<span class="nc" id="L36">    public ImageStreamTagFluentImpl(ImageStreamTag instance){</span>
+<span class="nc" id="L37">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L38">            this.withConditions(instance.getConditions()); </span>
+<span class="nc" id="L39">            this.withGeneration(instance.getGeneration()); </span>
+<span class="nc" id="L40">            this.withImage(instance.getImage()); </span>
+<span class="nc" id="L41">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L42">            this.withLookupPolicy(instance.getLookupPolicy()); </span>
+<span class="nc" id="L43">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L44">            this.withTag(instance.getTag()); </span>
+<span class="nc" id="L45">    }</span>
+
+    public String getApiVersion(){
+<span class="fc" id="L48">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="fc" id="L52">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public A addToConditions(int index,TagEventCondition item){
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;TagEventConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L61" title="All 4 branches missed.">            TagEventConditionBuilder builder = new TagEventConditionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.conditions.add(index &gt;= 0 ? index : conditions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToConditions(int index,TagEventCondition item){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;TagEventConditionBuilder&gt;();}</span>
+<span class="nc" id="L66">            TagEventConditionBuilder builder = new TagEventConditionBuilder(item);</span>
+<span class="nc bnc" id="L67" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L68" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= conditions.size()) { conditions.add(builder); } else { conditions.set(index, builder);}</span>
+<span class="nc" id="L69">             return (A)this;</span>
+    }
+
+    public A addToConditions(TagEventCondition... items){
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;TagEventConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            for (TagEventCondition item : items) {TagEventConditionBuilder builder = new TagEventConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToConditions(Collection&lt;TagEventCondition&gt; items){
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;TagEventConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            for (TagEventCondition item : items) {TagEventConditionBuilder builder = new TagEventConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromConditions(TagEventCondition... items){
+<span class="nc bnc" id="L83" title="All 4 branches missed.">            for (TagEventCondition item : items) {TagEventConditionBuilder builder = new TagEventConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromConditions(Collection&lt;TagEventCondition&gt; items){
+<span class="nc bnc" id="L87" title="All 4 branches missed.">            for (TagEventCondition item : items) {TagEventConditionBuilder builder = new TagEventConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildConditions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;TagEventCondition&gt; getConditions(){
+<span class="fc" id="L96">            return build(conditions);</span>
+    }
+
+    public List&lt;TagEventCondition&gt; buildConditions(){
+<span class="nc" id="L100">            return build(conditions);</span>
+    }
+
+    public TagEventCondition buildCondition(int index){
+<span class="nc" id="L104">            return this.conditions.get(index).build();</span>
+    }
+
+    public TagEventCondition buildFirstCondition(){
+<span class="nc" id="L108">            return this.conditions.get(0).build();</span>
+    }
+
+    public TagEventCondition buildLastCondition(){
+<span class="nc" id="L112">            return this.conditions.get(conditions.size() - 1).build();</span>
+    }
+
+    public TagEventCondition buildMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;TagEventConditionBuilder&gt; predicate){
+<span class="nc bnc" id="L116" title="All 4 branches missed.">            for (TagEventConditionBuilder item: conditions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withConditions(List&lt;TagEventCondition&gt; conditions){
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">            if (this.conditions != null) { _visitables.removeAll(this.conditions);}</span>
+<span class="pc bpc" id="L121" title="2 of 4 branches missed.">            if (conditions != null) {this.conditions = new ArrayList&lt;TagEventConditionBuilder&gt;(); for (TagEventCondition item : conditions){this.addToConditions(item);}} else { this.conditions = new ArrayList&lt;TagEventConditionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withConditions(TagEventCondition... conditions){
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            if (this.conditions != null) {this.conditions.clear();}</span>
+<span class="nc bnc" id="L126" title="All 4 branches missed.">            if (conditions != null) {for (TagEventCondition item :conditions){ this.addToConditions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasConditions(){
+<span class="nc bnc" id="L130" title="All 4 branches missed.">            return conditions != null &amp;&amp; !conditions.isEmpty();</span>
+    }
+
+    public ImageStreamTagFluent.ConditionsNested&lt;A&gt; addNewCondition(){
+<span class="nc" id="L134">            return new ConditionsNestedImpl();</span>
+    }
+
+    public ImageStreamTagFluent.ConditionsNested&lt;A&gt; addNewConditionLike(TagEventCondition item){
+<span class="nc" id="L138">            return new ConditionsNestedImpl(-1, item);</span>
+    }
+
+    public ImageStreamTagFluent.ConditionsNested&lt;A&gt; setNewConditionLike(int index,TagEventCondition item){
+<span class="nc" id="L142">            return new ConditionsNestedImpl(index, item);</span>
+    }
+
+    public ImageStreamTagFluent.ConditionsNested&lt;A&gt; editCondition(int index){
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            if (conditions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit conditions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L147">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public ImageStreamTagFluent.ConditionsNested&lt;A&gt; editFirstCondition(){
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (conditions.size() == 0) throw new RuntimeException(&quot;Can't edit first conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L152">            return setNewConditionLike(0, buildCondition(0));</span>
+    }
+
+    public ImageStreamTagFluent.ConditionsNested&lt;A&gt; editLastCondition(){
+<span class="nc" id="L156">            int index = conditions.size() - 1;</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L158">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public ImageStreamTagFluent.ConditionsNested&lt;A&gt; editMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;TagEventConditionBuilder&gt; predicate){
+<span class="nc" id="L162">            int index = -1;</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            for (int i=0;i&lt;conditions.size();i++) { </span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            if (predicate.apply(conditions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching conditions. No match found.&quot;);</span>
+<span class="nc" id="L167">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public Long getGeneration(){
+<span class="fc" id="L171">            return this.generation;</span>
+    }
+
+    public A withGeneration(Long generation){
+<span class="fc" id="L175">            this.generation=generation; return (A) this;</span>
+    }
+
+    public Boolean hasGeneration(){
+<span class="nc bnc" id="L179" title="All 2 branches missed.">            return this.generation != null;</span>
+    }
+
+    public A withNewGeneration(String arg1){
+<span class="nc" id="L183">            return (A)withGeneration(new Long(arg1));</span>
+    }
+
+    public A withNewGeneration(long arg1){
+<span class="nc" id="L187">            return (A)withGeneration(new Long(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildImage instead.
+ * @return The buildable object.
+ */
+@Deprecated public Image getImage(){
+<span class="pc bpc" id="L196" title="1 of 2 branches missed.">            return this.image!=null?this.image.build():null;</span>
+    }
+
+    public Image buildImage(){
+<span class="nc bnc" id="L200" title="All 2 branches missed.">            return this.image!=null?this.image.build():null;</span>
+    }
+
+    public A withImage(Image image){
+<span class="fc" id="L204">            _visitables.remove(this.image);</span>
+<span class="fc bfc" id="L205" title="All 2 branches covered.">            if (image!=null){ this.image= new ImageBuilder(image); _visitables.add(this.image);} return (A) this;</span>
+    }
+
+    public Boolean hasImage(){
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            return this.image != null;</span>
+    }
+
+    public ImageStreamTagFluent.ImageNested&lt;A&gt; withNewImage(){
+<span class="nc" id="L213">            return new ImageNestedImpl();</span>
+    }
+
+    public ImageStreamTagFluent.ImageNested&lt;A&gt; withNewImageLike(Image item){
+<span class="nc" id="L217">            return new ImageNestedImpl(item);</span>
+    }
+
+    public ImageStreamTagFluent.ImageNested&lt;A&gt; editImage(){
+<span class="nc" id="L221">            return withNewImageLike(getImage());</span>
+    }
+
+    public ImageStreamTagFluent.ImageNested&lt;A&gt; editOrNewImage(){
+<span class="nc bnc" id="L225" title="All 2 branches missed.">            return withNewImageLike(getImage() != null ? getImage(): new ImageBuilder().build());</span>
+    }
+
+    public ImageStreamTagFluent.ImageNested&lt;A&gt; editOrNewImageLike(Image item){
+<span class="nc bnc" id="L229" title="All 2 branches missed.">            return withNewImageLike(getImage() != null ? getImage(): item);</span>
+    }
+
+    public String getKind(){
+<span class="fc" id="L233">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="fc" id="L237">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L241" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildLookupPolicy instead.
+ * @return The buildable object.
+ */
+@Deprecated public ImageLookupPolicy getLookupPolicy(){
+<span class="pc bpc" id="L250" title="1 of 2 branches missed.">            return this.lookupPolicy!=null?this.lookupPolicy.build():null;</span>
+    }
+
+    public ImageLookupPolicy buildLookupPolicy(){
+<span class="nc bnc" id="L254" title="All 2 branches missed.">            return this.lookupPolicy!=null?this.lookupPolicy.build():null;</span>
+    }
+
+    public A withLookupPolicy(ImageLookupPolicy lookupPolicy){
+<span class="fc" id="L258">            _visitables.remove(this.lookupPolicy);</span>
+<span class="fc bfc" id="L259" title="All 2 branches covered.">            if (lookupPolicy!=null){ this.lookupPolicy= new ImageLookupPolicyBuilder(lookupPolicy); _visitables.add(this.lookupPolicy);} return (A) this;</span>
+    }
+
+    public Boolean hasLookupPolicy(){
+<span class="nc bnc" id="L263" title="All 2 branches missed.">            return this.lookupPolicy != null;</span>
+    }
+
+    public A withNewLookupPolicy(Boolean local){
+<span class="nc" id="L267">            return (A)withLookupPolicy(new ImageLookupPolicy(local));</span>
+    }
+
+    public ImageStreamTagFluent.LookupPolicyNested&lt;A&gt; withNewLookupPolicy(){
+<span class="nc" id="L271">            return new LookupPolicyNestedImpl();</span>
+    }
+
+    public ImageStreamTagFluent.LookupPolicyNested&lt;A&gt; withNewLookupPolicyLike(ImageLookupPolicy item){
+<span class="nc" id="L275">            return new LookupPolicyNestedImpl(item);</span>
+    }
+
+    public ImageStreamTagFluent.LookupPolicyNested&lt;A&gt; editLookupPolicy(){
+<span class="nc" id="L279">            return withNewLookupPolicyLike(getLookupPolicy());</span>
+    }
+
+    public ImageStreamTagFluent.LookupPolicyNested&lt;A&gt; editOrNewLookupPolicy(){
+<span class="nc bnc" id="L283" title="All 2 branches missed.">            return withNewLookupPolicyLike(getLookupPolicy() != null ? getLookupPolicy(): new ImageLookupPolicyBuilder().build());</span>
+    }
+
+    public ImageStreamTagFluent.LookupPolicyNested&lt;A&gt; editOrNewLookupPolicyLike(ImageLookupPolicy item){
+<span class="nc bnc" id="L287" title="All 2 branches missed.">            return withNewLookupPolicyLike(getLookupPolicy() != null ? getLookupPolicy(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="pc bpc" id="L296" title="1 of 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L300" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="fc" id="L304">            _visitables.remove(this.metadata);</span>
+<span class="fc bfc" id="L305" title="All 2 branches covered.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L309" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public ImageStreamTagFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="fc" id="L313">            return new MetadataNestedImpl();</span>
+    }
+
+    public ImageStreamTagFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L317">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public ImageStreamTagFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L321">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public ImageStreamTagFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L325" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public ImageStreamTagFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L329" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTag instead.
+ * @return The buildable object.
+ */
+@Deprecated public TagReference getTag(){
+<span class="pc bpc" id="L338" title="1 of 2 branches missed.">            return this.tag!=null?this.tag.build():null;</span>
+    }
+
+    public TagReference buildTag(){
+<span class="nc bnc" id="L342" title="All 2 branches missed.">            return this.tag!=null?this.tag.build():null;</span>
+    }
+
+    public A withTag(TagReference tag){
+<span class="fc" id="L346">            _visitables.remove(this.tag);</span>
+<span class="fc bfc" id="L347" title="All 2 branches covered.">            if (tag!=null){ this.tag= new TagReferenceBuilder(tag); _visitables.add(this.tag);} return (A) this;</span>
+    }
+
+    public Boolean hasTag(){
+<span class="nc bnc" id="L351" title="All 2 branches missed.">            return this.tag != null;</span>
+    }
+
+    public ImageStreamTagFluent.TagNested&lt;A&gt; withNewTag(){
+<span class="nc" id="L355">            return new TagNestedImpl();</span>
+    }
+
+    public ImageStreamTagFluent.TagNested&lt;A&gt; withNewTagLike(TagReference item){
+<span class="nc" id="L359">            return new TagNestedImpl(item);</span>
+    }
+
+    public ImageStreamTagFluent.TagNested&lt;A&gt; editTag(){
+<span class="nc" id="L363">            return withNewTagLike(getTag());</span>
+    }
+
+    public ImageStreamTagFluent.TagNested&lt;A&gt; editOrNewTag(){
+<span class="nc bnc" id="L367" title="All 2 branches missed.">            return withNewTagLike(getTag() != null ? getTag(): new TagReferenceBuilder().build());</span>
+    }
+
+    public ImageStreamTagFluent.TagNested&lt;A&gt; editOrNewTagLike(TagReference item){
+<span class="nc bnc" id="L371" title="All 2 branches missed.">            return withNewTagLike(getTag() != null ? getTag(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L375" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L376" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L377" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L378">            ImageStreamTagFluentImpl that = (ImageStreamTagFluentImpl) o;</span>
+<span class="nc bnc" id="L379" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L380" title="All 6 branches missed.">            if (conditions != null ? !conditions.equals(that.conditions) :that.conditions != null) return false;</span>
+<span class="nc bnc" id="L381" title="All 6 branches missed.">            if (generation != null ? !generation.equals(that.generation) :that.generation != null) return false;</span>
+<span class="nc bnc" id="L382" title="All 6 branches missed.">            if (image != null ? !image.equals(that.image) :that.image != null) return false;</span>
+<span class="nc bnc" id="L383" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L384" title="All 6 branches missed.">            if (lookupPolicy != null ? !lookupPolicy.equals(that.lookupPolicy) :that.lookupPolicy != null) return false;</span>
+<span class="nc bnc" id="L385" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L386" title="All 6 branches missed.">            if (tag != null ? !tag.equals(that.tag) :that.tag != null) return false;</span>
+<span class="nc" id="L387">            return true;</span>
+    }
+
+
+    public class ConditionsNestedImpl&lt;N&gt; extends TagEventConditionFluentImpl&lt;ImageStreamTagFluent.ConditionsNested&lt;N&gt;&gt; implements ImageStreamTagFluent.ConditionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TagEventConditionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L396">            ConditionsNestedImpl(int index,TagEventCondition item){</span>
+<span class="nc" id="L397">                    this.index = index;</span>
+<span class="nc" id="L398">                    this.builder = new TagEventConditionBuilder(this, item);</span>
+<span class="nc" id="L399">            }</span>
+<span class="nc" id="L400">            ConditionsNestedImpl(){</span>
+<span class="nc" id="L401">                    this.index = -1;</span>
+<span class="nc" id="L402">                    this.builder = new TagEventConditionBuilder(this);</span>
+<span class="nc" id="L403">            }</span>
+    
+    public N and(){
+<span class="nc" id="L406">            return (N) ImageStreamTagFluentImpl.this.setToConditions(index, builder.build());</span>
+    }
+    public N endCondition(){
+<span class="nc" id="L409">            return and();</span>
+    }
+
+}
+    public class ImageNestedImpl&lt;N&gt; extends ImageFluentImpl&lt;ImageStreamTagFluent.ImageNested&lt;N&gt;&gt; implements ImageStreamTagFluent.ImageNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageBuilder builder;
+    
+<span class="nc" id="L417">            ImageNestedImpl(Image item){</span>
+<span class="nc" id="L418">                    this.builder = new ImageBuilder(this, item);</span>
+<span class="nc" id="L419">            }</span>
+<span class="nc" id="L420">            ImageNestedImpl(){</span>
+<span class="nc" id="L421">                    this.builder = new ImageBuilder(this);</span>
+<span class="nc" id="L422">            }</span>
+    
+    public N and(){
+<span class="nc" id="L425">            return (N) ImageStreamTagFluentImpl.this.withImage(builder.build());</span>
+    }
+    public N endImage(){
+<span class="nc" id="L428">            return and();</span>
+    }
+
+}
+    public class LookupPolicyNestedImpl&lt;N&gt; extends ImageLookupPolicyFluentImpl&lt;ImageStreamTagFluent.LookupPolicyNested&lt;N&gt;&gt; implements ImageStreamTagFluent.LookupPolicyNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageLookupPolicyBuilder builder;
+    
+<span class="nc" id="L436">            LookupPolicyNestedImpl(ImageLookupPolicy item){</span>
+<span class="nc" id="L437">                    this.builder = new ImageLookupPolicyBuilder(this, item);</span>
+<span class="nc" id="L438">            }</span>
+<span class="nc" id="L439">            LookupPolicyNestedImpl(){</span>
+<span class="nc" id="L440">                    this.builder = new ImageLookupPolicyBuilder(this);</span>
+<span class="nc" id="L441">            }</span>
+    
+    public N and(){
+<span class="nc" id="L444">            return (N) ImageStreamTagFluentImpl.this.withLookupPolicy(builder.build());</span>
+    }
+    public N endLookupPolicy(){
+<span class="nc" id="L447">            return and();</span>
+    }
+
+}
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;ImageStreamTagFluent.MetadataNested&lt;N&gt;&gt; implements ImageStreamTagFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L455">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L456">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L457">            }</span>
+<span class="fc" id="L458">            MetadataNestedImpl(){</span>
+<span class="fc" id="L459">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="fc" id="L460">            }</span>
+    
+    public N and(){
+<span class="fc" id="L463">            return (N) ImageStreamTagFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="fc" id="L466">            return and();</span>
+    }
+
+}
+    public class TagNestedImpl&lt;N&gt; extends TagReferenceFluentImpl&lt;ImageStreamTagFluent.TagNested&lt;N&gt;&gt; implements ImageStreamTagFluent.TagNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TagReferenceBuilder builder;
+    
+<span class="nc" id="L474">            TagNestedImpl(TagReference item){</span>
+<span class="nc" id="L475">                    this.builder = new TagReferenceBuilder(this, item);</span>
+<span class="nc" id="L476">            }</span>
+<span class="nc" id="L477">            TagNestedImpl(){</span>
+<span class="nc" id="L478">                    this.builder = new TagReferenceBuilder(this);</span>
+<span class="nc" id="L479">            }</span>
+    
+    public N and(){
+<span class="nc" id="L482">            return (N) ImageStreamTagFluentImpl.this.withTag(builder.build());</span>
+    }
+    public N endTag(){
+<span class="nc" id="L485">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

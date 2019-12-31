@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Readiness.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.internal.readiness</a> &gt; <span class="el_source">Readiness.java</span></div><h1>Readiness.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.internal.readiness;
+
+import io.fabric8.kubernetes.api.model.EndpointSubset;
+import io.fabric8.kubernetes.api.model.Endpoints;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.Pod;
+import io.fabric8.kubernetes.api.model.PodCondition;
+import io.fabric8.kubernetes.api.model.Node;
+import io.fabric8.kubernetes.api.model.NodeCondition;
+import io.fabric8.kubernetes.api.model.ReplicationController;
+import io.fabric8.kubernetes.api.model.ReplicationControllerSpec;
+import io.fabric8.kubernetes.api.model.ReplicationControllerStatus;
+import io.fabric8.kubernetes.api.model.apps.Deployment;
+import io.fabric8.kubernetes.api.model.apps.DeploymentSpec;
+import io.fabric8.kubernetes.api.model.apps.DeploymentStatus;
+import io.fabric8.kubernetes.api.model.apps.ReplicaSet;
+import io.fabric8.kubernetes.api.model.apps.ReplicaSetSpec;
+import io.fabric8.kubernetes.api.model.apps.ReplicaSetStatus;
+import io.fabric8.kubernetes.api.model.apps.StatefulSet;
+import io.fabric8.kubernetes.api.model.apps.StatefulSetSpec;
+import io.fabric8.kubernetes.api.model.apps.StatefulSetStatus;
+import io.fabric8.kubernetes.client.utils.Utils;
+import io.fabric8.openshift.api.model.DeploymentConfig;
+import io.fabric8.openshift.api.model.DeploymentConfigSpec;
+import io.fabric8.openshift.api.model.DeploymentConfigStatus;
+
+<span class="nc" id="L42">public class Readiness {</span>
+
+  private static final String POD_READY = &quot;Ready&quot;;
+  private static final String NODE_READY = &quot;Ready&quot;;
+  private static final String TRUE = &quot;True&quot;;
+
+
+  public static boolean isReadinessApplicable(Class&lt;? extends HasMetadata&gt; itemClass) {
+<span class="nc bnc" id="L50" title="All 2 branches missed.">    return Deployment.class.isAssignableFrom(itemClass)</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">      || ReplicaSet.class.isAssignableFrom(itemClass)</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">      || Pod.class.isAssignableFrom(itemClass)</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">      || DeploymentConfig.class.isAssignableFrom(itemClass)</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">      || ReplicationController.class.isAssignableFrom(itemClass)</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">      || Endpoints.class.isAssignableFrom(itemClass)</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">      || Node.class.isAssignableFrom(itemClass)</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">      || StatefulSet.class.isAssignableFrom(itemClass)</span>
+      ;
+  }
+
+  public static boolean isReady(HasMetadata item) {
+<span class="nc bnc" id="L62" title="All 2 branches missed.">    if (item instanceof Deployment) {</span>
+<span class="nc" id="L63">      return isDeploymentReady((Deployment) item);</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">    } else if (item instanceof ReplicaSet) {</span>
+<span class="nc" id="L65">      return isReplicaSetReady((ReplicaSet) item);</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">    } else if (item instanceof Pod) {</span>
+<span class="nc" id="L67">      return isPodReady((Pod) item);</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">    } else if (item instanceof DeploymentConfig) {</span>
+<span class="nc" id="L69">      return isDeploymentConfigReady((DeploymentConfig) item);</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">    } else if (item instanceof ReplicationController) {</span>
+<span class="nc" id="L71">      return isReplicationControllerReady((ReplicationController) item);</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">    } else if (item instanceof Endpoints) {</span>
+<span class="nc" id="L73">      return isEndpointsReady((Endpoints) item);</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">    } else if (item instanceof Node) {</span>
+<span class="nc" id="L75">      return isNodeReady((Node) item);</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">    } else if (item instanceof StatefulSet) {</span>
+<span class="nc" id="L77">      return isStatefulSetReady((StatefulSet) item);</span>
+    } else {
+<span class="nc bnc" id="L79" title="All 2 branches missed.">      throw new IllegalArgumentException(&quot;Item needs to be one of [Node, Deployment, ReplicaSet, StatefulSet, Pod, DeploymentConfig, ReplicationController], but was: [&quot; + item != null ? item.getKind() : &quot;Unknown (null)&quot; + &quot;]&quot;);</span>
+    }
+  }
+
+  public static boolean isStatefulSetReady(StatefulSet ss) {
+<span class="nc" id="L84">    Utils.checkNotNull(ss, &quot;StatefulSet can't be null.&quot;);</span>
+<span class="nc" id="L85">    StatefulSetSpec spec = ss.getSpec();</span>
+<span class="nc" id="L86">    StatefulSetStatus status =ss.getStatus();</span>
+
+<span class="nc bnc" id="L88" title="All 4 branches missed.">    if (status == null || status.getReplicas() == null) {</span>
+<span class="nc" id="L89">      return false;</span>
+    }
+
+    //Can be true in testing, so handle it to make test writing easier.
+<span class="nc bnc" id="L93" title="All 4 branches missed.">    if (spec == null || spec.getReplicas() == null) {</span>
+<span class="nc" id="L94">      return false;</span>
+    }
+
+<span class="nc bnc" id="L97" title="All 2 branches missed.">    return spec.getReplicas().intValue() == status.getReplicas();</span>
+  }
+
+
+  public static boolean isDeploymentReady(Deployment d) {
+<span class="nc" id="L102">    Utils.checkNotNull(d, &quot;Deployment can't be null.&quot;);</span>
+<span class="nc" id="L103">    DeploymentSpec spec = d.getSpec();</span>
+<span class="nc" id="L104">    DeploymentStatus status = d.getStatus();</span>
+
+<span class="nc bnc" id="L106" title="All 6 branches missed.">    if (status == null || status.getReplicas() == null || status.getAvailableReplicas() == null) {</span>
+<span class="nc" id="L107">      return false;</span>
+    }
+
+    //Can be true in testing, so handle it to make test writing easier.
+<span class="nc bnc" id="L111" title="All 4 branches missed.">    if (spec == null || spec.getReplicas() == null) {</span>
+<span class="nc" id="L112">      return false;</span>
+    }
+
+<span class="nc bnc" id="L115" title="All 2 branches missed.">    return spec.getReplicas().intValue() == status.getReplicas() &amp;&amp;</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">      spec.getReplicas().intValue() &lt;= status.getAvailableReplicas();</span>
+  }
+
+
+  public static boolean isReplicaSetReady(ReplicaSet r) {
+<span class="nc" id="L121">    Utils.checkNotNull(r, &quot;ReplicationController can't be null.&quot;);</span>
+<span class="nc" id="L122">    ReplicaSetSpec spec = r.getSpec();</span>
+<span class="nc" id="L123">    ReplicaSetStatus status = r.getStatus();</span>
+
+<span class="nc bnc" id="L125" title="All 4 branches missed.">    if (status == null || status.getReadyReplicas() == null) {</span>
+<span class="nc" id="L126">      return false;</span>
+    }
+
+    //Can be true in testing, so handle it to make test writing easier.
+<span class="nc bnc" id="L130" title="All 4 branches missed.">    if (spec == null || spec.getReplicas() == null) {</span>
+<span class="nc" id="L131">      return false;</span>
+    }
+<span class="nc bnc" id="L133" title="All 2 branches missed.">    return spec.getReplicas().intValue() == status.getReadyReplicas();</span>
+  }
+
+
+  public static boolean isDeploymentConfigReady(DeploymentConfig d) {
+<span class="nc" id="L138">    Utils.checkNotNull(d, &quot;Deployment can't be null.&quot;);</span>
+<span class="nc" id="L139">    DeploymentConfigSpec spec = d.getSpec();</span>
+<span class="nc" id="L140">    DeploymentConfigStatus status = d.getStatus();</span>
+
+<span class="nc bnc" id="L142" title="All 6 branches missed.">    if (status == null || status.getReplicas() == null || status.getAvailableReplicas() == null) {</span>
+<span class="nc" id="L143">      return false;</span>
+    }
+
+    //Can be true in testing, so handle it to make test writing easier.
+<span class="nc bnc" id="L147" title="All 4 branches missed.">    if (spec == null || spec.getReplicas() == null) {</span>
+<span class="nc" id="L148">      return false;</span>
+    }
+
+<span class="nc bnc" id="L151" title="All 2 branches missed.">    return spec.getReplicas().intValue() == status.getReplicas() &amp;&amp;</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">      spec.getReplicas().intValue() &lt;= status.getAvailableReplicas();</span>
+  }
+
+  public static boolean isReplicationControllerReady(ReplicationController r) {
+<span class="nc" id="L156">    Utils.checkNotNull(r, &quot;ReplicationController can't be null.&quot;);</span>
+<span class="nc" id="L157">    ReplicationControllerSpec spec = r.getSpec();</span>
+<span class="nc" id="L158">    ReplicationControllerStatus status = r.getStatus();</span>
+
+<span class="nc bnc" id="L160" title="All 4 branches missed.">    if (status == null || status.getReadyReplicas() == null) {</span>
+<span class="nc" id="L161">      return false;</span>
+    }
+
+    //Can be true in testing, so handle it to make test writing easier.
+<span class="nc bnc" id="L165" title="All 4 branches missed.">    if (spec == null || spec.getReplicas() == null) {</span>
+<span class="nc" id="L166">      return false;</span>
+    }
+
+<span class="nc bnc" id="L169" title="All 2 branches missed.">    return spec.getReplicas().intValue() == status.getReadyReplicas();</span>
+  }
+
+  public static boolean isEndpointsReady(Endpoints e) {
+<span class="nc" id="L173">    Utils.checkNotNull(e, &quot;Endpoints can't be null.&quot;);</span>
+<span class="nc" id="L174">    String name = e.getMetadata().getName();</span>
+<span class="nc" id="L175">    Utils.checkNotNull(name, &quot;Endpoints name can't be null.&quot;);</span>
+
+<span class="nc bnc" id="L177" title="All 2 branches missed.">    if (e.getSubsets() == null) {</span>
+<span class="nc" id="L178">      return false;</span>
+    }
+
+<span class="nc bnc" id="L181" title="All 2 branches missed.">    for (EndpointSubset subset : e.getSubsets()) {</span>
+<span class="nc bnc" id="L182" title="All 4 branches missed.">      if(!subset.getAddresses().isEmpty() &amp;&amp; !subset.getPorts().isEmpty()) {</span>
+<span class="nc" id="L183">        return true;</span>
+      }
+<span class="nc" id="L185">    }</span>
+<span class="nc" id="L186">    return false;</span>
+  }
+
+  public static boolean isPodReady(Pod pod) {
+<span class="nc" id="L190">    Utils.checkNotNull(pod, &quot;Pod can't be null.&quot;);</span>
+<span class="nc" id="L191">    PodCondition condition = getPodReadyCondition(pod);</span>
+
+    //Can be true in testing, so handle it to make test writing easier.
+<span class="nc bnc" id="L194" title="All 4 branches missed.">    if (condition == null  || condition.getStatus() == null) {</span>
+<span class="nc" id="L195">      return false;</span>
+    }
+<span class="nc" id="L197">    return condition.getStatus().equalsIgnoreCase(TRUE);</span>
+  }
+
+
+  /**
+   * Returns the ready condition of the pod.
+   * @param pod   The target pod.
+   * @return      The {@link PodCondition} or null if not found.
+   */
+  private static PodCondition getPodReadyCondition(Pod pod) {
+<span class="nc" id="L207">    Utils.checkNotNull(pod, &quot;Pod can't be null.&quot;);</span>
+
+<span class="nc bnc" id="L209" title="All 4 branches missed.">    if (pod.getStatus() == null || pod.getStatus().getConditions() == null) {</span>
+<span class="nc" id="L210">      return null;</span>
+    }
+
+<span class="nc bnc" id="L213" title="All 2 branches missed.">    for (PodCondition condition : pod.getStatus().getConditions()) {</span>
+<span class="nc bnc" id="L214" title="All 2 branches missed.">      if (POD_READY.equals(condition.getType())) {</span>
+<span class="nc" id="L215">        return condition;</span>
+      }
+<span class="nc" id="L217">    }</span>
+<span class="nc" id="L218">    return null;</span>
+  }
+
+  public static boolean isNodeReady(Node node) {
+<span class="nc" id="L222">    Utils.checkNotNull(node, &quot;Node can't be null.&quot;);</span>
+<span class="nc" id="L223">    NodeCondition condition = getNodeReadyCondition(node);</span>
+<span class="nc bnc" id="L224" title="All 4 branches missed.">    if (condition == null || condition.getStatus() == null) {</span>
+<span class="nc" id="L225">      return false;</span>
+    }
+<span class="nc" id="L227">    return condition.getStatus().equalsIgnoreCase(TRUE);</span>
+  }
+
+  /**
+   * Returns the ready condition of the node.
+   * 
+   * @param node The target node.
+   * @return The {@link NodeCondition} or null if not found.
+   */
+  private static NodeCondition getNodeReadyCondition(Node node) {
+<span class="nc" id="L237">    Utils.checkNotNull(node, &quot;Node can't be null.&quot;);</span>
+
+<span class="nc bnc" id="L239" title="All 4 branches missed.">    if (node.getStatus() == null || node.getStatus().getConditions() == null) {</span>
+<span class="nc" id="L240">      return null;</span>
+    }
+
+<span class="nc bnc" id="L243" title="All 2 branches missed.">    for (NodeCondition condition : node.getStatus().getConditions()) {</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">      if (NODE_READY.equals(condition.getType())) {</span>
+<span class="nc" id="L245">        return condition;</span>
+      }
+<span class="nc" id="L247">    }</span>
+<span class="nc" id="L248">    return null;</span>
+  }
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthInfoFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">AuthInfoFluentImpl.java</span></div><h1>AuthInfoFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.util.LinkedHashMap;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.Map;
+
+public class AuthInfoFluentImpl&lt;A extends AuthInfoFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements AuthInfoFluent&lt;A&gt;{
+
+    private String as;
+    private List&lt;String&gt; asGroups;
+    private Map&lt;String,ArrayList&lt;String&gt;&gt; asUserExtra;
+    private AuthProviderConfigBuilder authProvider;
+    private String clientCertificate;
+    private String clientCertificateData;
+    private String clientKey;
+    private String clientKeyData;
+    private ExecConfigBuilder exec;
+    private List&lt;NamedExtensionBuilder&gt; extensions;
+    private String password;
+    private String token;
+    private String tokenFile;
+    private String username;
+
+<span class="nc" id="L36">    public AuthInfoFluentImpl(){</span>
+<span class="nc" id="L37">    }</span>
+<span class="nc" id="L38">    public AuthInfoFluentImpl(AuthInfo instance){</span>
+<span class="nc" id="L39">            this.withAs(instance.getAs()); </span>
+<span class="nc" id="L40">            this.withAsGroups(instance.getAsGroups()); </span>
+<span class="nc" id="L41">            this.withAsUserExtra(instance.getAsUserExtra()); </span>
+<span class="nc" id="L42">            this.withAuthProvider(instance.getAuthProvider()); </span>
+<span class="nc" id="L43">            this.withClientCertificate(instance.getClientCertificate()); </span>
+<span class="nc" id="L44">            this.withClientCertificateData(instance.getClientCertificateData()); </span>
+<span class="nc" id="L45">            this.withClientKey(instance.getClientKey()); </span>
+<span class="nc" id="L46">            this.withClientKeyData(instance.getClientKeyData()); </span>
+<span class="nc" id="L47">            this.withExec(instance.getExec()); </span>
+<span class="nc" id="L48">            this.withExtensions(instance.getExtensions()); </span>
+<span class="nc" id="L49">            this.withPassword(instance.getPassword()); </span>
+<span class="nc" id="L50">            this.withToken(instance.getToken()); </span>
+<span class="nc" id="L51">            this.withTokenFile(instance.getTokenFile()); </span>
+<span class="nc" id="L52">            this.withUsername(instance.getUsername()); </span>
+<span class="nc" id="L53">    }</span>
+
+    public String getAs(){
+<span class="nc" id="L56">            return this.as;</span>
+    }
+
+    public A withAs(String as){
+<span class="nc" id="L60">            this.as=as; return (A) this;</span>
+    }
+
+    public Boolean hasAs(){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            return this.as != null;</span>
+    }
+
+    public A addToAsGroups(int index,String item){
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            if (this.asGroups == null) {this.asGroups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L69">            this.asGroups.add(index, item);</span>
+<span class="nc" id="L70">            return (A)this;</span>
+    }
+
+    public A setToAsGroups(int index,String item){
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            if (this.asGroups == null) {this.asGroups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L75">            this.asGroups.set(index, item); return (A)this;</span>
+    }
+
+    public A addToAsGroups(String... items){
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            if (this.asGroups == null) {this.asGroups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            for (String item : items) {this.asGroups.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToAsGroups(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            if (this.asGroups == null) {this.asGroups = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            for (String item : items) {this.asGroups.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromAsGroups(String... items){
+<span class="nc bnc" id="L89" title="All 4 branches missed.">            for (String item : items) {if (this.asGroups!= null){ this.asGroups.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAsGroups(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L93" title="All 4 branches missed.">            for (String item : items) {if (this.asGroups!= null){ this.asGroups.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getAsGroups(){
+<span class="nc" id="L97">            return this.asGroups;</span>
+    }
+
+    public String getAsGroup(int index){
+<span class="nc" id="L101">            return this.asGroups.get(index);</span>
+    }
+
+    public String getFirstAsGroup(){
+<span class="nc" id="L105">            return this.asGroups.get(0);</span>
+    }
+
+    public String getLastAsGroup(){
+<span class="nc" id="L109">            return this.asGroups.get(asGroups.size() - 1);</span>
+    }
+
+    public String getMatchingAsGroup(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L113" title="All 4 branches missed.">            for (String item: asGroups) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withAsGroups(List&lt;String&gt; asGroups){
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            if (this.asGroups != null) { _visitables.removeAll(this.asGroups);}</span>
+<span class="nc bnc" id="L118" title="All 4 branches missed.">            if (asGroups != null) {this.asGroups = new ArrayList&lt;String&gt;(); for (String item : asGroups){this.addToAsGroups(item);}} else { this.asGroups = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withAsGroups(String... asGroups){
+<span class="nc bnc" id="L122" title="All 2 branches missed.">            if (this.asGroups != null) {this.asGroups.clear();}</span>
+<span class="nc bnc" id="L123" title="All 4 branches missed.">            if (asGroups != null) {for (String item :asGroups){ this.addToAsGroups(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAsGroups(){
+<span class="nc bnc" id="L127" title="All 4 branches missed.">            return asGroups != null &amp;&amp; !asGroups.isEmpty();</span>
+    }
+
+    public A addToAsUserExtra(String key,ArrayList&lt;String&gt; value){
+<span class="nc bnc" id="L131" title="All 6 branches missed.">            if(this.asUserExtra == null &amp;&amp; key != null &amp;&amp; value != null) { this.asUserExtra = new LinkedHashMap&lt;String,ArrayList&lt;String&gt;&gt;(); }</span>
+<span class="nc bnc" id="L132" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.asUserExtra.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToAsUserExtra(Map&lt;String,ArrayList&lt;String&gt;&gt; map){
+<span class="nc bnc" id="L136" title="All 4 branches missed.">            if(this.asUserExtra == null &amp;&amp; map != null) { this.asUserExtra = new LinkedHashMap&lt;String,ArrayList&lt;String&gt;&gt;(); }</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            if(map != null) { this.asUserExtra.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromAsUserExtra(String key){
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            if(this.asUserExtra == null) { return (A) this; }</span>
+<span class="nc bnc" id="L142" title="All 4 branches missed.">            if(key != null &amp;&amp; this.asUserExtra != null) {this.asUserExtra.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromAsUserExtra(Map&lt;String,ArrayList&lt;String&gt;&gt; map){
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            if(this.asUserExtra == null) { return (A) this; }</span>
+<span class="nc bnc" id="L147" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.asUserExtra != null){this.asUserExtra.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,ArrayList&lt;String&gt;&gt; getAsUserExtra(){
+<span class="nc" id="L151">            return this.asUserExtra;</span>
+    }
+
+    public A withAsUserExtra(Map&lt;String,ArrayList&lt;String&gt;&gt; asUserExtra){
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            if (asUserExtra == null) { this.asUserExtra =  new LinkedHashMap&lt;String,ArrayList&lt;String&gt;&gt;();} else {this.asUserExtra = new LinkedHashMap&lt;String,ArrayList&lt;String&gt;&gt;(asUserExtra);} return (A) this;</span>
+    }
+
+    public Boolean hasAsUserExtra(){
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            return this.asUserExtra != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildAuthProvider instead.
+ * @return The buildable object.
+ */
+@Deprecated public AuthProviderConfig getAuthProvider(){
+<span class="nc bnc" id="L168" title="All 2 branches missed.">            return this.authProvider!=null?this.authProvider.build():null;</span>
+    }
+
+    public AuthProviderConfig buildAuthProvider(){
+<span class="nc bnc" id="L172" title="All 2 branches missed.">            return this.authProvider!=null?this.authProvider.build():null;</span>
+    }
+
+    public A withAuthProvider(AuthProviderConfig authProvider){
+<span class="nc" id="L176">            _visitables.remove(this.authProvider);</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            if (authProvider!=null){ this.authProvider= new AuthProviderConfigBuilder(authProvider); _visitables.add(this.authProvider);} return (A) this;</span>
+    }
+
+    public Boolean hasAuthProvider(){
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            return this.authProvider != null;</span>
+    }
+
+    public AuthInfoFluent.AuthProviderNested&lt;A&gt; withNewAuthProvider(){
+<span class="nc" id="L185">            return new AuthProviderNestedImpl();</span>
+    }
+
+    public AuthInfoFluent.AuthProviderNested&lt;A&gt; withNewAuthProviderLike(AuthProviderConfig item){
+<span class="nc" id="L189">            return new AuthProviderNestedImpl(item);</span>
+    }
+
+    public AuthInfoFluent.AuthProviderNested&lt;A&gt; editAuthProvider(){
+<span class="nc" id="L193">            return withNewAuthProviderLike(getAuthProvider());</span>
+    }
+
+    public AuthInfoFluent.AuthProviderNested&lt;A&gt; editOrNewAuthProvider(){
+<span class="nc bnc" id="L197" title="All 2 branches missed.">            return withNewAuthProviderLike(getAuthProvider() != null ? getAuthProvider(): new AuthProviderConfigBuilder().build());</span>
+    }
+
+    public AuthInfoFluent.AuthProviderNested&lt;A&gt; editOrNewAuthProviderLike(AuthProviderConfig item){
+<span class="nc bnc" id="L201" title="All 2 branches missed.">            return withNewAuthProviderLike(getAuthProvider() != null ? getAuthProvider(): item);</span>
+    }
+
+    public String getClientCertificate(){
+<span class="nc" id="L205">            return this.clientCertificate;</span>
+    }
+
+    public A withClientCertificate(String clientCertificate){
+<span class="nc" id="L209">            this.clientCertificate=clientCertificate; return (A) this;</span>
+    }
+
+    public Boolean hasClientCertificate(){
+<span class="nc bnc" id="L213" title="All 2 branches missed.">            return this.clientCertificate != null;</span>
+    }
+
+    public String getClientCertificateData(){
+<span class="nc" id="L217">            return this.clientCertificateData;</span>
+    }
+
+    public A withClientCertificateData(String clientCertificateData){
+<span class="nc" id="L221">            this.clientCertificateData=clientCertificateData; return (A) this;</span>
+    }
+
+    public Boolean hasClientCertificateData(){
+<span class="nc bnc" id="L225" title="All 2 branches missed.">            return this.clientCertificateData != null;</span>
+    }
+
+    public String getClientKey(){
+<span class="nc" id="L229">            return this.clientKey;</span>
+    }
+
+    public A withClientKey(String clientKey){
+<span class="nc" id="L233">            this.clientKey=clientKey; return (A) this;</span>
+    }
+
+    public Boolean hasClientKey(){
+<span class="nc bnc" id="L237" title="All 2 branches missed.">            return this.clientKey != null;</span>
+    }
+
+    public String getClientKeyData(){
+<span class="nc" id="L241">            return this.clientKeyData;</span>
+    }
+
+    public A withClientKeyData(String clientKeyData){
+<span class="nc" id="L245">            this.clientKeyData=clientKeyData; return (A) this;</span>
+    }
+
+    public Boolean hasClientKeyData(){
+<span class="nc bnc" id="L249" title="All 2 branches missed.">            return this.clientKeyData != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildExec instead.
+ * @return The buildable object.
+ */
+@Deprecated public ExecConfig getExec(){
+<span class="nc bnc" id="L258" title="All 2 branches missed.">            return this.exec!=null?this.exec.build():null;</span>
+    }
+
+    public ExecConfig buildExec(){
+<span class="nc bnc" id="L262" title="All 2 branches missed.">            return this.exec!=null?this.exec.build():null;</span>
+    }
+
+    public A withExec(ExecConfig exec){
+<span class="nc" id="L266">            _visitables.remove(this.exec);</span>
+<span class="nc bnc" id="L267" title="All 2 branches missed.">            if (exec!=null){ this.exec= new ExecConfigBuilder(exec); _visitables.add(this.exec);} return (A) this;</span>
+    }
+
+    public Boolean hasExec(){
+<span class="nc bnc" id="L271" title="All 2 branches missed.">            return this.exec != null;</span>
+    }
+
+    public AuthInfoFluent.ExecNested&lt;A&gt; withNewExec(){
+<span class="nc" id="L275">            return new ExecNestedImpl();</span>
+    }
+
+    public AuthInfoFluent.ExecNested&lt;A&gt; withNewExecLike(ExecConfig item){
+<span class="nc" id="L279">            return new ExecNestedImpl(item);</span>
+    }
+
+    public AuthInfoFluent.ExecNested&lt;A&gt; editExec(){
+<span class="nc" id="L283">            return withNewExecLike(getExec());</span>
+    }
+
+    public AuthInfoFluent.ExecNested&lt;A&gt; editOrNewExec(){
+<span class="nc bnc" id="L287" title="All 2 branches missed.">            return withNewExecLike(getExec() != null ? getExec(): new ExecConfigBuilder().build());</span>
+    }
+
+    public AuthInfoFluent.ExecNested&lt;A&gt; editOrNewExecLike(ExecConfig item){
+<span class="nc bnc" id="L291" title="All 2 branches missed.">            return withNewExecLike(getExec() != null ? getExec(): item);</span>
+    }
+
+    public A addToExtensions(int index,NamedExtension item){
+<span class="nc bnc" id="L295" title="All 2 branches missed.">            if (this.extensions == null) {this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;();}</span>
+<span class="nc bnc" id="L296" title="All 4 branches missed.">            NamedExtensionBuilder builder = new NamedExtensionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.extensions.add(index &gt;= 0 ? index : extensions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToExtensions(int index,NamedExtension item){
+<span class="nc bnc" id="L300" title="All 2 branches missed.">            if (this.extensions == null) {this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;();}</span>
+<span class="nc" id="L301">            NamedExtensionBuilder builder = new NamedExtensionBuilder(item);</span>
+<span class="nc bnc" id="L302" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L303" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= extensions.size()) { extensions.add(builder); } else { extensions.set(index, builder);}</span>
+<span class="nc" id="L304">             return (A)this;</span>
+    }
+
+    public A addToExtensions(NamedExtension... items){
+<span class="nc bnc" id="L308" title="All 2 branches missed.">            if (this.extensions == null) {this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;();}</span>
+<span class="nc bnc" id="L309" title="All 2 branches missed.">            for (NamedExtension item : items) {NamedExtensionBuilder builder = new NamedExtensionBuilder(item);_visitables.add(builder);this.extensions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToExtensions(Collection&lt;NamedExtension&gt; items){
+<span class="nc bnc" id="L313" title="All 2 branches missed.">            if (this.extensions == null) {this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;();}</span>
+<span class="nc bnc" id="L314" title="All 2 branches missed.">            for (NamedExtension item : items) {NamedExtensionBuilder builder = new NamedExtensionBuilder(item);_visitables.add(builder);this.extensions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromExtensions(NamedExtension... items){
+<span class="nc bnc" id="L318" title="All 4 branches missed.">            for (NamedExtension item : items) {NamedExtensionBuilder builder = new NamedExtensionBuilder(item);_visitables.remove(builder);if (this.extensions != null) {this.extensions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromExtensions(Collection&lt;NamedExtension&gt; items){
+<span class="nc bnc" id="L322" title="All 4 branches missed.">            for (NamedExtension item : items) {NamedExtensionBuilder builder = new NamedExtensionBuilder(item);_visitables.remove(builder);if (this.extensions != null) {this.extensions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildExtensions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;NamedExtension&gt; getExtensions(){
+<span class="nc" id="L331">            return build(extensions);</span>
+    }
+
+    public List&lt;NamedExtension&gt; buildExtensions(){
+<span class="nc" id="L335">            return build(extensions);</span>
+    }
+
+    public NamedExtension buildExtension(int index){
+<span class="nc" id="L339">            return this.extensions.get(index).build();</span>
+    }
+
+    public NamedExtension buildFirstExtension(){
+<span class="nc" id="L343">            return this.extensions.get(0).build();</span>
+    }
+
+    public NamedExtension buildLastExtension(){
+<span class="nc" id="L347">            return this.extensions.get(extensions.size() - 1).build();</span>
+    }
+
+    public NamedExtension buildMatchingExtension(io.fabric8.kubernetes.api.builder.Predicate&lt;NamedExtensionBuilder&gt; predicate){
+<span class="nc bnc" id="L351" title="All 4 branches missed.">            for (NamedExtensionBuilder item: extensions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withExtensions(List&lt;NamedExtension&gt; extensions){
+<span class="nc bnc" id="L355" title="All 2 branches missed.">            if (this.extensions != null) { _visitables.removeAll(this.extensions);}</span>
+<span class="nc bnc" id="L356" title="All 4 branches missed.">            if (extensions != null) {this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;(); for (NamedExtension item : extensions){this.addToExtensions(item);}} else { this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withExtensions(NamedExtension... extensions){
+<span class="nc bnc" id="L360" title="All 2 branches missed.">            if (this.extensions != null) {this.extensions.clear();}</span>
+<span class="nc bnc" id="L361" title="All 4 branches missed.">            if (extensions != null) {for (NamedExtension item :extensions){ this.addToExtensions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasExtensions(){
+<span class="nc bnc" id="L365" title="All 4 branches missed.">            return extensions != null &amp;&amp; !extensions.isEmpty();</span>
+    }
+
+    public AuthInfoFluent.ExtensionsNested&lt;A&gt; addNewExtension(){
+<span class="nc" id="L369">            return new ExtensionsNestedImpl();</span>
+    }
+
+    public AuthInfoFluent.ExtensionsNested&lt;A&gt; addNewExtensionLike(NamedExtension item){
+<span class="nc" id="L373">            return new ExtensionsNestedImpl(-1, item);</span>
+    }
+
+    public AuthInfoFluent.ExtensionsNested&lt;A&gt; setNewExtensionLike(int index,NamedExtension item){
+<span class="nc" id="L377">            return new ExtensionsNestedImpl(index, item);</span>
+    }
+
+    public AuthInfoFluent.ExtensionsNested&lt;A&gt; editExtension(int index){
+<span class="nc bnc" id="L381" title="All 2 branches missed.">            if (extensions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit extensions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L382">            return setNewExtensionLike(index, buildExtension(index));</span>
+    }
+
+    public AuthInfoFluent.ExtensionsNested&lt;A&gt; editFirstExtension(){
+<span class="nc bnc" id="L386" title="All 2 branches missed.">            if (extensions.size() == 0) throw new RuntimeException(&quot;Can't edit first extensions. The list is empty.&quot;);</span>
+<span class="nc" id="L387">            return setNewExtensionLike(0, buildExtension(0));</span>
+    }
+
+    public AuthInfoFluent.ExtensionsNested&lt;A&gt; editLastExtension(){
+<span class="nc" id="L391">            int index = extensions.size() - 1;</span>
+<span class="nc bnc" id="L392" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last extensions. The list is empty.&quot;);</span>
+<span class="nc" id="L393">            return setNewExtensionLike(index, buildExtension(index));</span>
+    }
+
+    public AuthInfoFluent.ExtensionsNested&lt;A&gt; editMatchingExtension(io.fabric8.kubernetes.api.builder.Predicate&lt;NamedExtensionBuilder&gt; predicate){
+<span class="nc" id="L397">            int index = -1;</span>
+<span class="nc bnc" id="L398" title="All 2 branches missed.">            for (int i=0;i&lt;extensions.size();i++) { </span>
+<span class="nc bnc" id="L399" title="All 2 branches missed.">            if (predicate.apply(extensions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L401" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching extensions. No match found.&quot;);</span>
+<span class="nc" id="L402">            return setNewExtensionLike(index, buildExtension(index));</span>
+    }
+
+    public String getPassword(){
+<span class="nc" id="L406">            return this.password;</span>
+    }
+
+    public A withPassword(String password){
+<span class="nc" id="L410">            this.password=password; return (A) this;</span>
+    }
+
+    public Boolean hasPassword(){
+<span class="nc bnc" id="L414" title="All 2 branches missed.">            return this.password != null;</span>
+    }
+
+    public String getToken(){
+<span class="nc" id="L418">            return this.token;</span>
+    }
+
+    public A withToken(String token){
+<span class="nc" id="L422">            this.token=token; return (A) this;</span>
+    }
+
+    public Boolean hasToken(){
+<span class="nc bnc" id="L426" title="All 2 branches missed.">            return this.token != null;</span>
+    }
+
+    public String getTokenFile(){
+<span class="nc" id="L430">            return this.tokenFile;</span>
+    }
+
+    public A withTokenFile(String tokenFile){
+<span class="nc" id="L434">            this.tokenFile=tokenFile; return (A) this;</span>
+    }
+
+    public Boolean hasTokenFile(){
+<span class="nc bnc" id="L438" title="All 2 branches missed.">            return this.tokenFile != null;</span>
+    }
+
+    public String getUsername(){
+<span class="nc" id="L442">            return this.username;</span>
+    }
+
+    public A withUsername(String username){
+<span class="nc" id="L446">            this.username=username; return (A) this;</span>
+    }
+
+    public Boolean hasUsername(){
+<span class="nc bnc" id="L450" title="All 2 branches missed.">            return this.username != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L454" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L455" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L456" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L457">            AuthInfoFluentImpl that = (AuthInfoFluentImpl) o;</span>
+<span class="nc bnc" id="L458" title="All 6 branches missed.">            if (as != null ? !as.equals(that.as) :that.as != null) return false;</span>
+<span class="nc bnc" id="L459" title="All 6 branches missed.">            if (asGroups != null ? !asGroups.equals(that.asGroups) :that.asGroups != null) return false;</span>
+<span class="nc bnc" id="L460" title="All 6 branches missed.">            if (asUserExtra != null ? !asUserExtra.equals(that.asUserExtra) :that.asUserExtra != null) return false;</span>
+<span class="nc bnc" id="L461" title="All 6 branches missed.">            if (authProvider != null ? !authProvider.equals(that.authProvider) :that.authProvider != null) return false;</span>
+<span class="nc bnc" id="L462" title="All 6 branches missed.">            if (clientCertificate != null ? !clientCertificate.equals(that.clientCertificate) :that.clientCertificate != null) return false;</span>
+<span class="nc bnc" id="L463" title="All 6 branches missed.">            if (clientCertificateData != null ? !clientCertificateData.equals(that.clientCertificateData) :that.clientCertificateData != null) return false;</span>
+<span class="nc bnc" id="L464" title="All 6 branches missed.">            if (clientKey != null ? !clientKey.equals(that.clientKey) :that.clientKey != null) return false;</span>
+<span class="nc bnc" id="L465" title="All 6 branches missed.">            if (clientKeyData != null ? !clientKeyData.equals(that.clientKeyData) :that.clientKeyData != null) return false;</span>
+<span class="nc bnc" id="L466" title="All 6 branches missed.">            if (exec != null ? !exec.equals(that.exec) :that.exec != null) return false;</span>
+<span class="nc bnc" id="L467" title="All 6 branches missed.">            if (extensions != null ? !extensions.equals(that.extensions) :that.extensions != null) return false;</span>
+<span class="nc bnc" id="L468" title="All 6 branches missed.">            if (password != null ? !password.equals(that.password) :that.password != null) return false;</span>
+<span class="nc bnc" id="L469" title="All 6 branches missed.">            if (token != null ? !token.equals(that.token) :that.token != null) return false;</span>
+<span class="nc bnc" id="L470" title="All 6 branches missed.">            if (tokenFile != null ? !tokenFile.equals(that.tokenFile) :that.tokenFile != null) return false;</span>
+<span class="nc bnc" id="L471" title="All 6 branches missed.">            if (username != null ? !username.equals(that.username) :that.username != null) return false;</span>
+<span class="nc" id="L472">            return true;</span>
+    }
+
+
+    public class AuthProviderNestedImpl&lt;N&gt; extends AuthProviderConfigFluentImpl&lt;AuthInfoFluent.AuthProviderNested&lt;N&gt;&gt; implements AuthInfoFluent.AuthProviderNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final AuthProviderConfigBuilder builder;
+    
+<span class="nc" id="L480">            AuthProviderNestedImpl(AuthProviderConfig item){</span>
+<span class="nc" id="L481">                    this.builder = new AuthProviderConfigBuilder(this, item);</span>
+<span class="nc" id="L482">            }</span>
+<span class="nc" id="L483">            AuthProviderNestedImpl(){</span>
+<span class="nc" id="L484">                    this.builder = new AuthProviderConfigBuilder(this);</span>
+<span class="nc" id="L485">            }</span>
+    
+    public N and(){
+<span class="nc" id="L488">            return (N) AuthInfoFluentImpl.this.withAuthProvider(builder.build());</span>
+    }
+    public N endAuthProvider(){
+<span class="nc" id="L491">            return and();</span>
+    }
+
+}
+    public class ExecNestedImpl&lt;N&gt; extends ExecConfigFluentImpl&lt;AuthInfoFluent.ExecNested&lt;N&gt;&gt; implements AuthInfoFluent.ExecNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ExecConfigBuilder builder;
+    
+<span class="nc" id="L499">            ExecNestedImpl(ExecConfig item){</span>
+<span class="nc" id="L500">                    this.builder = new ExecConfigBuilder(this, item);</span>
+<span class="nc" id="L501">            }</span>
+<span class="nc" id="L502">            ExecNestedImpl(){</span>
+<span class="nc" id="L503">                    this.builder = new ExecConfigBuilder(this);</span>
+<span class="nc" id="L504">            }</span>
+    
+    public N and(){
+<span class="nc" id="L507">            return (N) AuthInfoFluentImpl.this.withExec(builder.build());</span>
+    }
+    public N endExec(){
+<span class="nc" id="L510">            return and();</span>
+    }
+
+}
+    public class ExtensionsNestedImpl&lt;N&gt; extends NamedExtensionFluentImpl&lt;AuthInfoFluent.ExtensionsNested&lt;N&gt;&gt; implements AuthInfoFluent.ExtensionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NamedExtensionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L519">            ExtensionsNestedImpl(int index,NamedExtension item){</span>
+<span class="nc" id="L520">                    this.index = index;</span>
+<span class="nc" id="L521">                    this.builder = new NamedExtensionBuilder(this, item);</span>
+<span class="nc" id="L522">            }</span>
+<span class="nc" id="L523">            ExtensionsNestedImpl(){</span>
+<span class="nc" id="L524">                    this.index = -1;</span>
+<span class="nc" id="L525">                    this.builder = new NamedExtensionBuilder(this);</span>
+<span class="nc" id="L526">            }</span>
+    
+    public N and(){
+<span class="nc" id="L529">            return (N) AuthInfoFluentImpl.this.setToExtensions(index, builder.build());</span>
+    }
+    public N endExtension(){
+<span class="nc" id="L532">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

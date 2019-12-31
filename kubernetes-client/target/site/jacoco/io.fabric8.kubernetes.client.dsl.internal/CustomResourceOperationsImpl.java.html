@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomResourceOperationsImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.dsl.internal</a> &gt; <span class="el_source">CustomResourceOperationsImpl.java</span></div><h1>CustomResourceOperationsImpl.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.dsl.internal;
+
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.fabric8.kubernetes.api.model.KubernetesResourceList;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinition;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.Watch;
+import io.fabric8.kubernetes.client.Watcher;
+import io.fabric8.kubernetes.client.dsl.EditReplacePatchDeletable;
+import io.fabric8.kubernetes.client.dsl.Gettable;
+import io.fabric8.kubernetes.client.dsl.MixedOperation;
+import io.fabric8.kubernetes.client.dsl.NonNamespaceOperation;
+import io.fabric8.kubernetes.client.dsl.Replaceable;
+import io.fabric8.kubernetes.client.dsl.Resource;
+import io.fabric8.kubernetes.client.dsl.Watchable;
+import io.fabric8.kubernetes.client.dsl.base.HasMetadataOperation;
+import io.fabric8.kubernetes.internal.KubernetesDeserializer;
+import okhttp3.OkHttpClient;
+
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+
+/**
+ */
+public class CustomResourceOperationsImpl&lt;T extends HasMetadata, L extends KubernetesResourceList, D extends Doneable&lt;T&gt;&gt; extends HasMetadataOperation&lt;T, L, D,
+    Resource&lt;T, D&gt;&gt; implements MixedOperation&lt;T, L, D, Resource&lt;T, D&gt;&gt; {
+
+  private final boolean resourceNamespaced;
+
+  public CustomResourceOperationsImpl(OkHttpClient httpClient, Config configuration, CustomResourceDefinition crd, Class&lt;T&gt; resourceType, Class&lt;L&gt; resourceListType, Class&lt;D&gt; doneType) {
+<span class="nc" id="L48">    this(httpClient, configuration, apiGroup(crd), apiVersion(crd), resourceT(crd), resourceNamespaced(crd), null, null, false, null, null, false, resourceType, resourceListType, doneType);</span>
+<span class="nc" id="L49">  }</span>
+
+  public CustomResourceOperationsImpl(OkHttpClient client, Config config, String apiGroup, String apiVersion, String resourceT, boolean resouceNamespaced, String namespace, String name, Boolean cascading, T item, String resourceVersion, Boolean reloadingFromServer, Class&lt;T&gt; type, Class&lt;L&gt; listType, Class&lt;D&gt; doneableType) {
+<span class="nc" id="L52">    super(client, config, apiGroup, apiVersion, resourceT, namespace, name, cascading, item, resourceVersion, reloadingFromServer, type, listType, doneableType);</span>
+<span class="nc" id="L53">    this.resourceNamespaced = resouceNamespaced;</span>
+<span class="nc" id="L54">    this.apiVersion = getAPIGroup() + &quot;/&quot; + getAPIVersion();</span>
+
+<span class="nc" id="L56">    KubernetesDeserializer.registerCustomKind(type.getSimpleName(), type);</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">    if (KubernetesResource.class.isAssignableFrom(listType)) {</span>
+<span class="nc" id="L58">      KubernetesDeserializer.registerCustomKind(listType.getSimpleName(), (Class&lt;? extends KubernetesResource&gt;) listType);</span>
+    }
+<span class="nc" id="L60">  }</span>
+
+  protected static String apiGroup(CustomResourceDefinition crd) {
+<span class="nc" id="L63">    return crd.getSpec().getGroup();</span>
+  }
+
+  protected static String apiVersion(CustomResourceDefinition crd) {
+<span class="nc" id="L67">    return crd.getSpec().getVersion();</span>
+  }
+
+  protected static String resourceT(CustomResourceDefinition crd) {
+<span class="nc" id="L71">    return crd.getSpec().getNames().getPlural();</span>
+  }
+
+  protected static String name(CustomResourceDefinition crd) {
+<span class="nc" id="L75">    return crd.getMetadata().getName();</span>
+  }
+
+  protected static boolean resourceNamespaced(CustomResourceDefinition crd) {
+<span class="nc" id="L79">    return &quot;Namespaced&quot;.equals(crd.getSpec().getScope());</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;T, L, D, Resource&lt;T, D&gt;&gt; inAnyNamespace() {
+<span class="nc" id="L84">    return inNamespace(null);</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;T, L, D, Resource&lt;T, D&gt;&gt; inNamespace(String namespace) {
+<span class="nc" id="L89">    return new CustomResourceOperationsImpl&lt;&gt;(client, getConfig(), getAPIGroup(), getAPIVersion(), getResourceT(), resourceNamespaced, namespace, getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getType(), getListType(), getDoneableType());</span>
+  }
+
+  @Override
+  public boolean isResourceNamespaced() {
+<span class="nc" id="L94">    return resourceNamespaced;</span>
+  }
+
+  @Override
+  public Resource&lt;T, D&gt; withName(String name) {
+<span class="nc bnc" id="L99" title="All 4 branches missed.">    if (name == null || name.length() == 0) {</span>
+<span class="nc" id="L100">      throw new IllegalArgumentException(&quot;Name must be provided.&quot;);</span>
+    }
+<span class="nc" id="L102">    return new CustomResourceOperationsImpl&lt;&gt;(client, getConfig(), getAPIGroup(), getAPIVersion(), getResourceT(), resourceNamespaced, getNamespace(), name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getType(), getListType(), getDoneableType());</span>
+  }
+
+  @Override
+  public Replaceable&lt;T, T&gt; lockResourceVersion(String resourceVersion) {
+<span class="nc" id="L107">    return new CustomResourceOperationsImpl&lt;&gt;(client, getConfig(), getAPIGroup(), getAPIVersion(), getResourceT(), resourceNamespaced, getNamespace(), getName(), isCascading(), getItem(), resourceVersion, isReloadingFromServer(), getType(), getListType(), getDoneableType());</span>
+  }
+
+  @Override
+  protected Resource&lt;T, D&gt; createItemOperation(T item) throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+<span class="nc" id="L112">    return new CustomResourceOperationsImpl&lt;&gt;(client, getConfig(), getAPIGroup(), getAPIVersion(), getResourceT(), resourceNamespaced, getNamespace(), getName(), isCascading(), item, getResourceVersion(), isReloadingFromServer(), getType(), getListType(), getDoneableType());</span>
+  }
+
+  @Override
+  public Resource&lt;T, D&gt; load(InputStream is) {
+<span class="nc" id="L117">    return new CustomResourceOperationsImpl&lt;&gt;(client, getConfig(), getAPIGroup(), getAPIVersion(), getResourceT(), resourceNamespaced, getNamespace(), getName(), isCascading(), unmarshal(is, getType()), getResourceVersion(), isReloadingFromServer(), getType(), getListType(), getDoneableType());</span>
+  }
+
+  @Override
+  public Gettable&lt;T&gt; fromServer() {
+<span class="nc" id="L122">    return new CustomResourceOperationsImpl&lt;&gt;(client, getConfig(), getAPIGroup(), getAPIVersion(), getResourceT(), resourceNamespaced, getNamespace(), getName(), isCascading(), getItem(), getResourceVersion(), true, getType(), getListType(), getDoneableType());</span>
+  }
+
+  @Override
+  public Watchable&lt;Watch, Watcher&lt;T&gt;&gt; withResourceVersion(String resourceVersion) {
+<span class="nc" id="L127">    return new CustomResourceOperationsImpl&lt;&gt;(client, getConfig(), getAPIGroup(), getAPIVersion(), getResourceT(), resourceNamespaced, getNamespace(), getName(), isCascading(), getItem(), resourceVersion, isReloadingFromServer(), getType(), getListType(), getDoneableType());</span>
+  }
+
+  @Override
+  public EditReplacePatchDeletable&lt;T, T, D, Boolean&gt; cascading(boolean cascading) {
+<span class="nc" id="L132">    return new CustomResourceOperationsImpl&lt;&gt;(client, getConfig(), getAPIGroup(), getAPIVersion(), getResourceT(), resourceNamespaced, getNamespace(), getName(), cascading, getItem(), getResourceVersion(), isReloadingFromServer(), getType(), getListType(), getDoneableType());</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

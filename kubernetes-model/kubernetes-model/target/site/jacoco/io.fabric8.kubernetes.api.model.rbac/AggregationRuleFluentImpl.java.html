@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AggregationRuleFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.rbac</a> &gt; <span class="el_source">AggregationRuleFluentImpl.java</span></div><h1>AggregationRuleFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.rbac;
+
+import io.fabric8.kubernetes.api.model.LabelSelectorBuilder;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.LabelSelectorFluentImpl;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.model.LabelSelector;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class AggregationRuleFluentImpl&lt;A extends AggregationRuleFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements AggregationRuleFluent&lt;A&gt;{
+
+    private List&lt;LabelSelectorBuilder&gt; clusterRoleSelectors;
+
+<span class="nc" id="L23">    public AggregationRuleFluentImpl(){</span>
+<span class="nc" id="L24">    }</span>
+<span class="nc" id="L25">    public AggregationRuleFluentImpl(AggregationRule instance){</span>
+<span class="nc" id="L26">            this.withClusterRoleSelectors(instance.getClusterRoleSelectors()); </span>
+<span class="nc" id="L27">    }</span>
+
+    public A addToClusterRoleSelectors(int index,LabelSelector item){
+<span class="nc bnc" id="L30" title="All 2 branches missed.">            if (this.clusterRoleSelectors == null) {this.clusterRoleSelectors = new ArrayList&lt;LabelSelectorBuilder&gt;();}</span>
+<span class="nc bnc" id="L31" title="All 4 branches missed.">            LabelSelectorBuilder builder = new LabelSelectorBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.clusterRoleSelectors.add(index &gt;= 0 ? index : clusterRoleSelectors.size(), builder); return (A)this;</span>
+    }
+
+    public A setToClusterRoleSelectors(int index,LabelSelector item){
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            if (this.clusterRoleSelectors == null) {this.clusterRoleSelectors = new ArrayList&lt;LabelSelectorBuilder&gt;();}</span>
+<span class="nc" id="L36">            LabelSelectorBuilder builder = new LabelSelectorBuilder(item);</span>
+<span class="nc bnc" id="L37" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L38" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= clusterRoleSelectors.size()) { clusterRoleSelectors.add(builder); } else { clusterRoleSelectors.set(index, builder);}</span>
+<span class="nc" id="L39">             return (A)this;</span>
+    }
+
+    public A addToClusterRoleSelectors(LabelSelector... items){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            if (this.clusterRoleSelectors == null) {this.clusterRoleSelectors = new ArrayList&lt;LabelSelectorBuilder&gt;();}</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            for (LabelSelector item : items) {LabelSelectorBuilder builder = new LabelSelectorBuilder(item);_visitables.add(builder);this.clusterRoleSelectors.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToClusterRoleSelectors(Collection&lt;LabelSelector&gt; items){
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            if (this.clusterRoleSelectors == null) {this.clusterRoleSelectors = new ArrayList&lt;LabelSelectorBuilder&gt;();}</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            for (LabelSelector item : items) {LabelSelectorBuilder builder = new LabelSelectorBuilder(item);_visitables.add(builder);this.clusterRoleSelectors.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromClusterRoleSelectors(LabelSelector... items){
+<span class="nc bnc" id="L53" title="All 4 branches missed.">            for (LabelSelector item : items) {LabelSelectorBuilder builder = new LabelSelectorBuilder(item);_visitables.remove(builder);if (this.clusterRoleSelectors != null) {this.clusterRoleSelectors.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromClusterRoleSelectors(Collection&lt;LabelSelector&gt; items){
+<span class="nc bnc" id="L57" title="All 4 branches missed.">            for (LabelSelector item : items) {LabelSelectorBuilder builder = new LabelSelectorBuilder(item);_visitables.remove(builder);if (this.clusterRoleSelectors != null) {this.clusterRoleSelectors.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildClusterRoleSelectors instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;LabelSelector&gt; getClusterRoleSelectors(){
+<span class="nc" id="L66">            return build(clusterRoleSelectors);</span>
+    }
+
+    public List&lt;LabelSelector&gt; buildClusterRoleSelectors(){
+<span class="nc" id="L70">            return build(clusterRoleSelectors);</span>
+    }
+
+    public LabelSelector buildClusterRoleSelector(int index){
+<span class="nc" id="L74">            return this.clusterRoleSelectors.get(index).build();</span>
+    }
+
+    public LabelSelector buildFirstClusterRoleSelector(){
+<span class="nc" id="L78">            return this.clusterRoleSelectors.get(0).build();</span>
+    }
+
+    public LabelSelector buildLastClusterRoleSelector(){
+<span class="nc" id="L82">            return this.clusterRoleSelectors.get(clusterRoleSelectors.size() - 1).build();</span>
+    }
+
+    public LabelSelector buildMatchingClusterRoleSelector(io.fabric8.kubernetes.api.builder.Predicate&lt;LabelSelectorBuilder&gt; predicate){
+<span class="nc bnc" id="L86" title="All 4 branches missed.">            for (LabelSelectorBuilder item: clusterRoleSelectors) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withClusterRoleSelectors(List&lt;LabelSelector&gt; clusterRoleSelectors){
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            if (this.clusterRoleSelectors != null) { _visitables.removeAll(this.clusterRoleSelectors);}</span>
+<span class="nc bnc" id="L91" title="All 4 branches missed.">            if (clusterRoleSelectors != null) {this.clusterRoleSelectors = new ArrayList&lt;LabelSelectorBuilder&gt;(); for (LabelSelector item : clusterRoleSelectors){this.addToClusterRoleSelectors(item);}} else { this.clusterRoleSelectors = new ArrayList&lt;LabelSelectorBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withClusterRoleSelectors(LabelSelector... clusterRoleSelectors){
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (this.clusterRoleSelectors != null) {this.clusterRoleSelectors.clear();}</span>
+<span class="nc bnc" id="L96" title="All 4 branches missed.">            if (clusterRoleSelectors != null) {for (LabelSelector item :clusterRoleSelectors){ this.addToClusterRoleSelectors(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasClusterRoleSelectors(){
+<span class="nc bnc" id="L100" title="All 4 branches missed.">            return clusterRoleSelectors != null &amp;&amp; !clusterRoleSelectors.isEmpty();</span>
+    }
+
+    public AggregationRuleFluent.ClusterRoleSelectorsNested&lt;A&gt; addNewClusterRoleSelector(){
+<span class="nc" id="L104">            return new ClusterRoleSelectorsNestedImpl();</span>
+    }
+
+    public AggregationRuleFluent.ClusterRoleSelectorsNested&lt;A&gt; addNewClusterRoleSelectorLike(LabelSelector item){
+<span class="nc" id="L108">            return new ClusterRoleSelectorsNestedImpl(-1, item);</span>
+    }
+
+    public AggregationRuleFluent.ClusterRoleSelectorsNested&lt;A&gt; setNewClusterRoleSelectorLike(int index,LabelSelector item){
+<span class="nc" id="L112">            return new ClusterRoleSelectorsNestedImpl(index, item);</span>
+    }
+
+    public AggregationRuleFluent.ClusterRoleSelectorsNested&lt;A&gt; editClusterRoleSelector(int index){
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            if (clusterRoleSelectors.size() &lt;= index) throw new RuntimeException(&quot;Can't edit clusterRoleSelectors. Index exceeds size.&quot;);</span>
+<span class="nc" id="L117">            return setNewClusterRoleSelectorLike(index, buildClusterRoleSelector(index));</span>
+    }
+
+    public AggregationRuleFluent.ClusterRoleSelectorsNested&lt;A&gt; editFirstClusterRoleSelector(){
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            if (clusterRoleSelectors.size() == 0) throw new RuntimeException(&quot;Can't edit first clusterRoleSelectors. The list is empty.&quot;);</span>
+<span class="nc" id="L122">            return setNewClusterRoleSelectorLike(0, buildClusterRoleSelector(0));</span>
+    }
+
+    public AggregationRuleFluent.ClusterRoleSelectorsNested&lt;A&gt; editLastClusterRoleSelector(){
+<span class="nc" id="L126">            int index = clusterRoleSelectors.size() - 1;</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last clusterRoleSelectors. The list is empty.&quot;);</span>
+<span class="nc" id="L128">            return setNewClusterRoleSelectorLike(index, buildClusterRoleSelector(index));</span>
+    }
+
+    public AggregationRuleFluent.ClusterRoleSelectorsNested&lt;A&gt; editMatchingClusterRoleSelector(io.fabric8.kubernetes.api.builder.Predicate&lt;LabelSelectorBuilder&gt; predicate){
+<span class="nc" id="L132">            int index = -1;</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            for (int i=0;i&lt;clusterRoleSelectors.size();i++) { </span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            if (predicate.apply(clusterRoleSelectors.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching clusterRoleSelectors. No match found.&quot;);</span>
+<span class="nc" id="L137">            return setNewClusterRoleSelectorLike(index, buildClusterRoleSelector(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L142" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L144">            AggregationRuleFluentImpl that = (AggregationRuleFluentImpl) o;</span>
+<span class="nc bnc" id="L145" title="All 6 branches missed.">            if (clusterRoleSelectors != null ? !clusterRoleSelectors.equals(that.clusterRoleSelectors) :that.clusterRoleSelectors != null) return false;</span>
+<span class="nc" id="L146">            return true;</span>
+    }
+
+
+    public class ClusterRoleSelectorsNestedImpl&lt;N&gt; extends LabelSelectorFluentImpl&lt;AggregationRuleFluent.ClusterRoleSelectorsNested&lt;N&gt;&gt; implements AggregationRuleFluent.ClusterRoleSelectorsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LabelSelectorBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L155">            ClusterRoleSelectorsNestedImpl(int index,LabelSelector item){</span>
+<span class="nc" id="L156">                    this.index = index;</span>
+<span class="nc" id="L157">                    this.builder = new LabelSelectorBuilder(this, item);</span>
+<span class="nc" id="L158">            }</span>
+<span class="nc" id="L159">            ClusterRoleSelectorsNestedImpl(){</span>
+<span class="nc" id="L160">                    this.index = -1;</span>
+<span class="nc" id="L161">                    this.builder = new LabelSelectorBuilder(this);</span>
+<span class="nc" id="L162">            }</span>
+    
+    public N and(){
+<span class="nc" id="L165">            return (N) AggregationRuleFluentImpl.this.setToClusterRoleSelectors(index, builder.build());</span>
+    }
+    public N endClusterRoleSelector(){
+<span class="nc" id="L168">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

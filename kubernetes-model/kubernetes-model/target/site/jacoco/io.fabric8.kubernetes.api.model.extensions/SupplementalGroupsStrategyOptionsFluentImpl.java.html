@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SupplementalGroupsStrategyOptionsFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.extensions</a> &gt; <span class="el_source">SupplementalGroupsStrategyOptionsFluentImpl.java</span></div><h1>SupplementalGroupsStrategyOptionsFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.extensions;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Long;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class SupplementalGroupsStrategyOptionsFluentImpl&lt;A extends SupplementalGroupsStrategyOptionsFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements SupplementalGroupsStrategyOptionsFluent&lt;A&gt;{
+
+    private List&lt;IDRangeBuilder&gt; ranges;
+    private String rule;
+
+<span class="nc" id="L23">    public SupplementalGroupsStrategyOptionsFluentImpl(){</span>
+<span class="nc" id="L24">    }</span>
+<span class="nc" id="L25">    public SupplementalGroupsStrategyOptionsFluentImpl(SupplementalGroupsStrategyOptions instance){</span>
+<span class="nc" id="L26">            this.withRanges(instance.getRanges()); </span>
+<span class="nc" id="L27">            this.withRule(instance.getRule()); </span>
+<span class="nc" id="L28">    }</span>
+
+    public A addToRanges(int index,IDRange item){
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            if (this.ranges == null) {this.ranges = new ArrayList&lt;IDRangeBuilder&gt;();}</span>
+<span class="nc bnc" id="L32" title="All 4 branches missed.">            IDRangeBuilder builder = new IDRangeBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.ranges.add(index &gt;= 0 ? index : ranges.size(), builder); return (A)this;</span>
+    }
+
+    public A setToRanges(int index,IDRange item){
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            if (this.ranges == null) {this.ranges = new ArrayList&lt;IDRangeBuilder&gt;();}</span>
+<span class="nc" id="L37">            IDRangeBuilder builder = new IDRangeBuilder(item);</span>
+<span class="nc bnc" id="L38" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L39" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= ranges.size()) { ranges.add(builder); } else { ranges.set(index, builder);}</span>
+<span class="nc" id="L40">             return (A)this;</span>
+    }
+
+    public A addToRanges(IDRange... items){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            if (this.ranges == null) {this.ranges = new ArrayList&lt;IDRangeBuilder&gt;();}</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            for (IDRange item : items) {IDRangeBuilder builder = new IDRangeBuilder(item);_visitables.add(builder);this.ranges.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToRanges(Collection&lt;IDRange&gt; items){
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            if (this.ranges == null) {this.ranges = new ArrayList&lt;IDRangeBuilder&gt;();}</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            for (IDRange item : items) {IDRangeBuilder builder = new IDRangeBuilder(item);_visitables.add(builder);this.ranges.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromRanges(IDRange... items){
+<span class="nc bnc" id="L54" title="All 4 branches missed.">            for (IDRange item : items) {IDRangeBuilder builder = new IDRangeBuilder(item);_visitables.remove(builder);if (this.ranges != null) {this.ranges.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromRanges(Collection&lt;IDRange&gt; items){
+<span class="nc bnc" id="L58" title="All 4 branches missed.">            for (IDRange item : items) {IDRangeBuilder builder = new IDRangeBuilder(item);_visitables.remove(builder);if (this.ranges != null) {this.ranges.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildRanges instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;IDRange&gt; getRanges(){
+<span class="nc" id="L67">            return build(ranges);</span>
+    }
+
+    public List&lt;IDRange&gt; buildRanges(){
+<span class="nc" id="L71">            return build(ranges);</span>
+    }
+
+    public IDRange buildRange(int index){
+<span class="nc" id="L75">            return this.ranges.get(index).build();</span>
+    }
+
+    public IDRange buildFirstRange(){
+<span class="nc" id="L79">            return this.ranges.get(0).build();</span>
+    }
+
+    public IDRange buildLastRange(){
+<span class="nc" id="L83">            return this.ranges.get(ranges.size() - 1).build();</span>
+    }
+
+    public IDRange buildMatchingRange(io.fabric8.kubernetes.api.builder.Predicate&lt;IDRangeBuilder&gt; predicate){
+<span class="nc bnc" id="L87" title="All 4 branches missed.">            for (IDRangeBuilder item: ranges) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withRanges(List&lt;IDRange&gt; ranges){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (this.ranges != null) { _visitables.removeAll(this.ranges);}</span>
+<span class="nc bnc" id="L92" title="All 4 branches missed.">            if (ranges != null) {this.ranges = new ArrayList&lt;IDRangeBuilder&gt;(); for (IDRange item : ranges){this.addToRanges(item);}} else { this.ranges = new ArrayList&lt;IDRangeBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withRanges(IDRange... ranges){
+<span class="nc bnc" id="L96" title="All 2 branches missed.">            if (this.ranges != null) {this.ranges.clear();}</span>
+<span class="nc bnc" id="L97" title="All 4 branches missed.">            if (ranges != null) {for (IDRange item :ranges){ this.addToRanges(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasRanges(){
+<span class="nc bnc" id="L101" title="All 4 branches missed.">            return ranges != null &amp;&amp; !ranges.isEmpty();</span>
+    }
+
+    public A addNewRange(Long max,Long min){
+<span class="nc" id="L105">            return (A)addToRanges(new IDRange(max, min));</span>
+    }
+
+    public SupplementalGroupsStrategyOptionsFluent.RangesNested&lt;A&gt; addNewRange(){
+<span class="nc" id="L109">            return new RangesNestedImpl();</span>
+    }
+
+    public SupplementalGroupsStrategyOptionsFluent.RangesNested&lt;A&gt; addNewRangeLike(IDRange item){
+<span class="nc" id="L113">            return new RangesNestedImpl(-1, item);</span>
+    }
+
+    public SupplementalGroupsStrategyOptionsFluent.RangesNested&lt;A&gt; setNewRangeLike(int index,IDRange item){
+<span class="nc" id="L117">            return new RangesNestedImpl(index, item);</span>
+    }
+
+    public SupplementalGroupsStrategyOptionsFluent.RangesNested&lt;A&gt; editRange(int index){
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            if (ranges.size() &lt;= index) throw new RuntimeException(&quot;Can't edit ranges. Index exceeds size.&quot;);</span>
+<span class="nc" id="L122">            return setNewRangeLike(index, buildRange(index));</span>
+    }
+
+    public SupplementalGroupsStrategyOptionsFluent.RangesNested&lt;A&gt; editFirstRange(){
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            if (ranges.size() == 0) throw new RuntimeException(&quot;Can't edit first ranges. The list is empty.&quot;);</span>
+<span class="nc" id="L127">            return setNewRangeLike(0, buildRange(0));</span>
+    }
+
+    public SupplementalGroupsStrategyOptionsFluent.RangesNested&lt;A&gt; editLastRange(){
+<span class="nc" id="L131">            int index = ranges.size() - 1;</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last ranges. The list is empty.&quot;);</span>
+<span class="nc" id="L133">            return setNewRangeLike(index, buildRange(index));</span>
+    }
+
+    public SupplementalGroupsStrategyOptionsFluent.RangesNested&lt;A&gt; editMatchingRange(io.fabric8.kubernetes.api.builder.Predicate&lt;IDRangeBuilder&gt; predicate){
+<span class="nc" id="L137">            int index = -1;</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            for (int i=0;i&lt;ranges.size();i++) { </span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            if (predicate.apply(ranges.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching ranges. No match found.&quot;);</span>
+<span class="nc" id="L142">            return setNewRangeLike(index, buildRange(index));</span>
+    }
+
+    public String getRule(){
+<span class="nc" id="L146">            return this.rule;</span>
+    }
+
+    public A withRule(String rule){
+<span class="nc" id="L150">            this.rule=rule; return (A) this;</span>
+    }
+
+    public Boolean hasRule(){
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            return this.rule != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L159" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L161">            SupplementalGroupsStrategyOptionsFluentImpl that = (SupplementalGroupsStrategyOptionsFluentImpl) o;</span>
+<span class="nc bnc" id="L162" title="All 6 branches missed.">            if (ranges != null ? !ranges.equals(that.ranges) :that.ranges != null) return false;</span>
+<span class="nc bnc" id="L163" title="All 6 branches missed.">            if (rule != null ? !rule.equals(that.rule) :that.rule != null) return false;</span>
+<span class="nc" id="L164">            return true;</span>
+    }
+
+
+    public class RangesNestedImpl&lt;N&gt; extends IDRangeFluentImpl&lt;SupplementalGroupsStrategyOptionsFluent.RangesNested&lt;N&gt;&gt; implements SupplementalGroupsStrategyOptionsFluent.RangesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final IDRangeBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L173">            RangesNestedImpl(int index,IDRange item){</span>
+<span class="nc" id="L174">                    this.index = index;</span>
+<span class="nc" id="L175">                    this.builder = new IDRangeBuilder(this, item);</span>
+<span class="nc" id="L176">            }</span>
+<span class="nc" id="L177">            RangesNestedImpl(){</span>
+<span class="nc" id="L178">                    this.index = -1;</span>
+<span class="nc" id="L179">                    this.builder = new IDRangeBuilder(this);</span>
+<span class="nc" id="L180">            }</span>
+    
+    public N and(){
+<span class="nc" id="L183">            return (N) SupplementalGroupsStrategyOptionsFluentImpl.this.setToRanges(index, builder.build());</span>
+    }
+    public N endRange(){
+<span class="nc" id="L186">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

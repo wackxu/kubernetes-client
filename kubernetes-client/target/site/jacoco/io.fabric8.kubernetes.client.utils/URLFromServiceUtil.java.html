@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>URLFromServiceUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.utils</a> &gt; <span class="el_source">URLFromServiceUtil.java</span></div><h1>URLFromServiceUtil.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.fabric8.kubernetes.client.utils;
+
+import io.fabric8.kubernetes.api.model.*;
+import io.fabric8.kubernetes.api.model.extensions.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
+<span class="nc" id="L29">public class URLFromServiceUtil {</span>
+<span class="nc" id="L30">  public static Logger logger = LoggerFactory.getLogger(URLFromServiceUtil.class);</span>
+  public static final String DEFAULT_PROTO = &quot;tcp&quot;;
+  private static final String HOST_SUFFIX = &quot;_SERVICE_HOST&quot;;
+  private static final String PORT_SUFFIX = &quot;_SERVICE_PORT&quot;;
+  private static final String PROTO_SUFFIX = &quot;_TCP_PROTO&quot;;
+
+  public static String resolveHostFromEnvVarOrSystemProperty(String serviceName) {
+<span class="nc" id="L37">    return getEnvVarOrSystemProperty(toServiceHostEnvironmentVariable(serviceName), &quot;&quot;);</span>
+  }
+
+  private static String getEnvVarOrSystemProperty(String envVarName, String defaultValue) {
+<span class="nc" id="L41">    String answer = null;</span>
+    try {
+<span class="nc" id="L43">      answer = System.getenv(envVarName);</span>
+<span class="nc" id="L44">    } catch (Exception e) {</span>
+<span class="nc" id="L45">      logger.warn(&quot;Failed to look up environment variable $&quot; + envVarName + &quot;. &quot; + e, e);</span>
+<span class="nc" id="L46">    }</span>
+<span class="nc bnc" id="L47" title="All 4 branches missed.">    if (answer == null || answer.isEmpty()) {</span>
+<span class="nc" id="L48">      answer = System.getProperty(envVarName, defaultValue);</span>
+    }
+<span class="nc bnc" id="L50" title="All 2 branches missed.">    if (!answer.isEmpty()) {</span>
+<span class="nc" id="L51">      return answer;</span>
+    } else {
+<span class="nc" id="L53">      return defaultValue;</span>
+    }
+  }
+
+  public static String resolveProtocolFromEnvVarOrSystemProperty(String serviceName, String servicePort) {
+<span class="nc" id="L58">    return getEnvVarOrSystemProperty(toEnvVariable(serviceName + PORT_SUFFIX + &quot;_&quot; + servicePort + PROTO_SUFFIX), DEFAULT_PROTO);</span>
+  }
+
+  public static Map&lt;String, String&gt; getOrCreateAnnotations(HasMetadata entity) {
+<span class="nc" id="L62">    ObjectMeta metadata = getOrCreateMetadata(entity);</span>
+<span class="nc" id="L63">    Map&lt;String, String&gt; answer = metadata.getAnnotations();</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">    if (answer == null) {</span>
+      // use linked so the annotations can be in the FIFO order
+<span class="nc" id="L66">      answer = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L67">      metadata.setAnnotations(answer);</span>
+    }
+<span class="nc" id="L69">    return answer;</span>
+  }
+
+  public static ObjectMeta getOrCreateMetadata(HasMetadata entity) {
+<span class="nc" id="L73">    ObjectMeta metadata = entity.getMetadata();</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">    if (metadata == null) {</span>
+<span class="nc" id="L75">      metadata = new ObjectMeta();</span>
+<span class="nc" id="L76">      entity.setMetadata(metadata);</span>
+    }
+<span class="nc" id="L78">    return metadata;</span>
+  }
+
+  public static String resolvePortFromEnvVarOrSystemProperty(String serviceName, String portName) {
+<span class="nc" id="L82">    String envVarName = toServicePortEnvironmentVariable(serviceName, portName);</span>
+<span class="nc" id="L83">    return getEnvVarOrSystemProperty(envVarName, &quot;&quot;);</span>
+  }
+
+  public static String toServicePortEnvironmentVariable(String serviceName, String portName) {
+<span class="nc bnc" id="L87" title="All 2 branches missed.">    String name = serviceName + PORT_SUFFIX + (portName.isEmpty() ? &quot;_&quot; + portName : &quot;&quot;);</span>
+<span class="nc" id="L88">    return toEnvVariable(name);</span>
+  }
+
+  private static String toServiceHostEnvironmentVariable(String serviceName) {
+<span class="nc" id="L92">    return toEnvVariable(serviceName + HOST_SUFFIX);</span>
+  }
+
+  public static String toEnvVariable(String serviceName) {
+<span class="nc" id="L96">    return serviceName.toUpperCase().replaceAll(&quot;-&quot;, &quot;_&quot;);</span>
+  }
+
+  public static String getURLFromIngressList(List&lt;Ingress&gt; ingressList, String namespace, String serviceName, ServicePort port) {
+<span class="nc bnc" id="L100" title="All 2 branches missed.">    for(Ingress item : ingressList) {</span>
+<span class="nc" id="L101">      String ns = getNamespace(item);</span>
+<span class="nc bnc" id="L102" title="All 4 branches missed.">      if(Objects.equals(ns, namespace) &amp;&amp; item.getSpec() != null) {</span>
+<span class="nc" id="L103">        return getURLFromIngressSpec(item.getSpec(), serviceName, port);</span>
+      }
+<span class="nc" id="L105">    }</span>
+<span class="nc" id="L106">    return null;</span>
+  }
+
+  public static String getURLFromIngressSpec(IngressSpec spec, String serviceName, ServicePort port) {
+<span class="nc" id="L110">    List&lt;IngressRule&gt; ingressRules = spec.getRules();</span>
+<span class="nc bnc" id="L111" title="All 4 branches missed.">    if(ingressRules != null &amp;&amp; !ingressRules.isEmpty()) {</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">      for(IngressRule rule : ingressRules) {</span>
+<span class="nc" id="L113">        HTTPIngressRuleValue http = rule.getHttp();</span>
+<span class="nc bnc" id="L114" title="All 4 branches missed.">        if(http != null &amp;&amp; http.getPaths() != null) {</span>
+<span class="nc" id="L115">          return getURLFromIngressRules(http.getPaths(), spec, serviceName, port, rule);</span>
+        }
+<span class="nc" id="L117">      }</span>
+    }
+<span class="nc" id="L119">    return null;</span>
+  }
+
+  public static String getURLFromIngressRules(List&lt;HTTPIngressPath&gt; paths, IngressSpec spec, String serviceName, ServicePort port, IngressRule rule) {
+<span class="nc bnc" id="L123" title="All 2 branches missed.">    for(HTTPIngressPath path : paths) {</span>
+<span class="nc" id="L124">      IngressBackend backend = path.getBackend();</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">      if(backend != null) {</span>
+<span class="nc" id="L126">        String backendServiceName = backend.getServiceName();</span>
+<span class="nc bnc" id="L127" title="All 4 branches missed.">        if(serviceName.equals(backendServiceName) &amp;&amp; portsMatch(port, backend.getServicePort())) {</span>
+<span class="nc" id="L128">          String pathPostFix = path.getPath();</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">          if(spec.getTls() != null) {</span>
+<span class="nc" id="L130">            return getURLFromTLSHost(rule, pathPostFix);</span>
+          }
+<span class="nc" id="L132">          String answer = rule.getHost();</span>
+<span class="nc bnc" id="L133" title="All 4 branches missed.">          if(answer != null &amp;&amp; !answer.isEmpty()) {</span>
+<span class="nc" id="L134">            pathPostFix = fixPathPostFixIfEmpty(pathPostFix);</span>
+<span class="nc" id="L135">            return &quot;http://&quot; + URLUtils.pathJoin(answer, pathPostFix);</span>
+          }
+        }
+      }
+<span class="nc" id="L139">    }</span>
+<span class="nc" id="L140">    return null;</span>
+  }
+
+  public static String getURLFromTLSHost(IngressRule rule, String pathPostFix) {
+<span class="nc" id="L144">    String host = rule.getHost();</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">    if (!host.isEmpty()) {</span>
+<span class="nc" id="L146">      pathPostFix = fixPathPostFixIfEmpty(pathPostFix);</span>
+<span class="nc" id="L147">      return &quot;https://&quot; + URLUtils.pathJoin(host, pathPostFix);</span>
+    }
+<span class="nc" id="L149">    return null;</span>
+  }
+
+  private static String fixPathPostFixIfEmpty(String pathPostFix) {
+<span class="nc bnc" id="L153" title="All 2 branches missed.">    return pathPostFix.isEmpty() ? &quot;/&quot; : pathPostFix;</span>
+  }
+
+  private static boolean portsMatch(ServicePort servicePort, IntOrString intOrString) {
+<span class="nc bnc" id="L157" title="All 2 branches missed.">    if (intOrString != null) {</span>
+<span class="nc" id="L158">      Integer port = servicePort.getPort();</span>
+<span class="nc" id="L159">      Integer intVal = intOrString.getIntVal();</span>
+<span class="nc" id="L160">      String strVal = intOrString.getStrVal();</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">      if (intVal != null) {</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">        if (port != null) {</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">          return port.intValue() == intVal.intValue();</span>
+        } else {
+          /// should we find the port by name now?
+        }
+<span class="nc bnc" id="L167" title="All 2 branches missed.">      } else if (strVal != null ){</span>
+<span class="nc" id="L168">        return strVal.equals(servicePort.getName());</span>
+      }
+    }
+<span class="nc" id="L171">    return false;</span>
+  }
+
+  public static String getNamespace(HasMetadata entity) {
+<span class="nc bnc" id="L175" title="All 2 branches missed.">    if (entity != null) {</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">      return entity.getMetadata() != null ? entity.getMetadata().getNamespace() : null;</span>
+    } else {
+<span class="nc" id="L178">      return null;</span>
+    }
+  }
+
+  public static ServicePort getServicePortByName(Service service, String portName) {
+<span class="nc bnc" id="L183" title="All 2 branches missed.">    if (portName.isEmpty()) {</span>
+<span class="nc" id="L184">      return service.getSpec().getPorts().iterator().next();</span>
+    }
+
+<span class="nc bnc" id="L187" title="All 2 branches missed.">    for (ServicePort servicePort : service.getSpec().getPorts()) {</span>
+<span class="nc bnc" id="L188" title="All 2 branches missed.">      if (Objects.equals(servicePort.getName(), portName)) {</span>
+<span class="nc" id="L189">        return servicePort;</span>
+      }
+<span class="nc" id="L191">    }</span>
+<span class="nc" id="L192">    return null;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>KubeSchemaBuilder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">KubeSchemaBuilder.java</span></div><h1>KubeSchemaBuilder.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import io.fabric8.kubernetes.api.builder.VisitableBuilder;
+import java.lang.Object;
+import java.lang.Boolean;
+import javax.validation.Validator;
+
+public class KubeSchemaBuilder extends KubeSchemaFluentImpl&lt;KubeSchemaBuilder&gt; implements VisitableBuilder&lt;KubeSchema,KubeSchemaBuilder&gt;{
+
+    KubeSchemaFluent&lt;?&gt; fluent;
+    Boolean validationEnabled;
+    Validator validator;
+
+    public KubeSchemaBuilder(){
+<span class="nc" id="L15">            this(true);</span>
+<span class="nc" id="L16">    }</span>
+    public KubeSchemaBuilder(Boolean validationEnabled){
+<span class="nc" id="L18">            this(new KubeSchema(), validationEnabled);</span>
+<span class="nc" id="L19">    }</span>
+    public KubeSchemaBuilder(KubeSchemaFluent&lt;?&gt; fluent){
+<span class="nc" id="L21">            this(fluent, true);</span>
+<span class="nc" id="L22">    }</span>
+    public KubeSchemaBuilder(KubeSchemaFluent&lt;?&gt; fluent,Boolean validationEnabled){
+<span class="nc" id="L24">            this(fluent, new KubeSchema(), validationEnabled);</span>
+<span class="nc" id="L25">    }</span>
+    public KubeSchemaBuilder(KubeSchemaFluent&lt;?&gt; fluent,KubeSchema instance){
+<span class="nc" id="L27">            this(fluent, instance, true);</span>
+<span class="nc" id="L28">    }</span>
+<span class="nc" id="L29">    public KubeSchemaBuilder(KubeSchemaFluent&lt;?&gt; fluent,KubeSchema instance,Boolean validationEnabled){</span>
+<span class="nc" id="L30">            this.fluent = fluent; </span>
+<span class="nc" id="L31">            fluent.withAdmissionRequest(instance.getAdmissionRequest()); </span>
+<span class="nc" id="L32">            fluent.withAdmissionResponse(instance.getAdmissionResponse()); </span>
+<span class="nc" id="L33">            fluent.withAdmissionReview(instance.getAdmissionReview()); </span>
+<span class="nc" id="L34">            fluent.withAdmissionWebhook(instance.getAdmissionWebhook()); </span>
+<span class="nc" id="L35">            fluent.withAggregationRule(instance.getAggregationRule()); </span>
+<span class="nc" id="L36">            fluent.withBaseKubernetesList(instance.getBaseKubernetesList()); </span>
+<span class="nc" id="L37">            fluent.withBinding(instance.getBinding()); </span>
+<span class="nc" id="L38">            fluent.withBuildConfigList(instance.getBuildConfigList()); </span>
+<span class="nc" id="L39">            fluent.withBuildList(instance.getBuildList()); </span>
+<span class="nc" id="L40">            fluent.withBuildRequest(instance.getBuildRequest()); </span>
+<span class="nc" id="L41">            fluent.withCertificateSigningRequest(instance.getCertificateSigningRequest()); </span>
+<span class="nc" id="L42">            fluent.withCertificateSigningRequestCondition(instance.getCertificateSigningRequestCondition()); </span>
+<span class="nc" id="L43">            fluent.withCertificateSigningRequestList(instance.getCertificateSigningRequestList()); </span>
+<span class="nc" id="L44">            fluent.withCertificateSigningRequestSpec(instance.getCertificateSigningRequestSpec()); </span>
+<span class="nc" id="L45">            fluent.withCertificateSigningRequestStatus(instance.getCertificateSigningRequestStatus()); </span>
+<span class="nc" id="L46">            fluent.withClusterRole(instance.getClusterRole()); </span>
+<span class="nc" id="L47">            fluent.withClusterRoleBinding(instance.getClusterRoleBinding()); </span>
+<span class="nc" id="L48">            fluent.withClusterRoleBindingList(instance.getClusterRoleBindingList()); </span>
+<span class="nc" id="L49">            fluent.withClusterRoleList(instance.getClusterRoleList()); </span>
+<span class="nc" id="L50">            fluent.withComponentStatusList(instance.getComponentStatusList()); </span>
+<span class="nc" id="L51">            fluent.withConfig(instance.getConfig()); </span>
+<span class="nc" id="L52">            fluent.withConfigMap(instance.getConfigMap()); </span>
+<span class="nc" id="L53">            fluent.withConfigMapList(instance.getConfigMapList()); </span>
+<span class="nc" id="L54">            fluent.withContainerStatus(instance.getContainerStatus()); </span>
+<span class="nc" id="L55">            fluent.withCronJob(instance.getCronJob()); </span>
+<span class="nc" id="L56">            fluent.withCronJobList(instance.getCronJobList()); </span>
+<span class="nc" id="L57">            fluent.withCustomResourceDefinition(instance.getCustomResourceDefinition()); </span>
+<span class="nc" id="L58">            fluent.withCustomResourceDefinitionCondition(instance.getCustomResourceDefinitionCondition()); </span>
+<span class="nc" id="L59">            fluent.withCustomResourceDefinitionList(instance.getCustomResourceDefinitionList()); </span>
+<span class="nc" id="L60">            fluent.withCustomResourceDefinitionNames(instance.getCustomResourceDefinitionNames()); </span>
+<span class="nc" id="L61">            fluent.withCustomResourceDefinitionSpec(instance.getCustomResourceDefinitionSpec()); </span>
+<span class="nc" id="L62">            fluent.withCustomResourceDefinitionStatus(instance.getCustomResourceDefinitionStatus()); </span>
+<span class="nc" id="L63">            fluent.withDaemonSet(instance.getDaemonSet()); </span>
+<span class="nc" id="L64">            fluent.withDaemonSetList(instance.getDaemonSetList()); </span>
+<span class="nc" id="L65">            fluent.withDeleteOptions(instance.getDeleteOptions()); </span>
+<span class="nc" id="L66">            fluent.withDeployment(instance.getDeployment()); </span>
+<span class="nc" id="L67">            fluent.withDeploymentConfig(instance.getDeploymentConfig()); </span>
+<span class="nc" id="L68">            fluent.withDeploymentConfigList(instance.getDeploymentConfigList()); </span>
+<span class="nc" id="L69">            fluent.withDeploymentList(instance.getDeploymentList()); </span>
+<span class="nc" id="L70">            fluent.withDeploymentRollback(instance.getDeploymentRollback()); </span>
+<span class="nc" id="L71">            fluent.withEndpoints(instance.getEndpoints()); </span>
+<span class="nc" id="L72">            fluent.withEndpointsList(instance.getEndpointsList()); </span>
+<span class="nc" id="L73">            fluent.withEnvVar(instance.getEnvVar()); </span>
+<span class="nc" id="L74">            fluent.withEvent(instance.getEvent()); </span>
+<span class="nc" id="L75">            fluent.withEventList(instance.getEventList()); </span>
+<span class="nc" id="L76">            fluent.withEventSeries(instance.getEventSeries()); </span>
+<span class="nc" id="L77">            fluent.withEventSeriesState(instance.getEventSeriesState()); </span>
+<span class="nc" id="L78">            fluent.withGroup(instance.getGroup()); </span>
+<span class="nc" id="L79">            fluent.withGroupList(instance.getGroupList()); </span>
+<span class="nc" id="L80">            fluent.withHorizontalPodAutoscaler(instance.getHorizontalPodAutoscaler()); </span>
+<span class="nc" id="L81">            fluent.withHorizontalPodAutoscalerList(instance.getHorizontalPodAutoscalerList()); </span>
+<span class="nc" id="L82">            fluent.withIdentity(instance.getIdentity()); </span>
+<span class="nc" id="L83">            fluent.withIdentityList(instance.getIdentityList()); </span>
+<span class="nc" id="L84">            fluent.withImageList(instance.getImageList()); </span>
+<span class="nc" id="L85">            fluent.withImageStreamImport(instance.getImageStreamImport()); </span>
+<span class="nc" id="L86">            fluent.withImageStreamList(instance.getImageStreamList()); </span>
+<span class="nc" id="L87">            fluent.withImageStreamTagList(instance.getImageStreamTagList()); </span>
+<span class="nc" id="L88">            fluent.withInfo(instance.getInfo()); </span>
+<span class="nc" id="L89">            fluent.withIngress(instance.getIngress()); </span>
+<span class="nc" id="L90">            fluent.withIngressList(instance.getIngressList()); </span>
+<span class="nc" id="L91">            fluent.withInitializer(instance.getInitializer()); </span>
+<span class="nc" id="L92">            fluent.withInitializers(instance.getInitializers()); </span>
+<span class="nc" id="L93">            fluent.withJSONSchemaPropsorStringArray(instance.getJSONSchemaPropsorStringArray()); </span>
+<span class="nc" id="L94">            fluent.withJob(instance.getJob()); </span>
+<span class="nc" id="L95">            fluent.withJobList(instance.getJobList()); </span>
+<span class="nc" id="L96">            fluent.withK8sLocalSubjectAccessReview(instance.getK8sLocalSubjectAccessReview()); </span>
+<span class="nc" id="L97">            fluent.withK8sSubjectAccessReview(instance.getK8sSubjectAccessReview()); </span>
+<span class="nc" id="L98">            fluent.withLimitRangeList(instance.getLimitRangeList()); </span>
+<span class="nc" id="L99">            fluent.withLocalSubjectAccessReview(instance.getLocalSubjectAccessReview()); </span>
+<span class="nc" id="L100">            fluent.withMutatingWebhookConfiguration(instance.getMutatingWebhookConfiguration()); </span>
+<span class="nc" id="L101">            fluent.withMutatingWebhookConfigurationList(instance.getMutatingWebhookConfigurationList()); </span>
+<span class="nc" id="L102">            fluent.withNamespace(instance.getNamespace()); </span>
+<span class="nc" id="L103">            fluent.withNamespaceList(instance.getNamespaceList()); </span>
+<span class="nc" id="L104">            fluent.withNetNameSpace(instance.getNetNameSpace()); </span>
+<span class="nc" id="L105">            fluent.withNetNameSpaceList(instance.getNetNameSpaceList()); </span>
+<span class="nc" id="L106">            fluent.withNetworkPolicy(instance.getNetworkPolicy()); </span>
+<span class="nc" id="L107">            fluent.withNetworkPolicyList(instance.getNetworkPolicyList()); </span>
+<span class="nc" id="L108">            fluent.withNode(instance.getNode()); </span>
+<span class="nc" id="L109">            fluent.withNodeList(instance.getNodeList()); </span>
+<span class="nc" id="L110">            fluent.withOAuthAccessToken(instance.getOAuthAccessToken()); </span>
+<span class="nc" id="L111">            fluent.withOAuthAccessTokenList(instance.getOAuthAccessTokenList()); </span>
+<span class="nc" id="L112">            fluent.withOAuthAuthorizeToken(instance.getOAuthAuthorizeToken()); </span>
+<span class="nc" id="L113">            fluent.withOAuthAuthorizeTokenList(instance.getOAuthAuthorizeTokenList()); </span>
+<span class="nc" id="L114">            fluent.withOAuthClient(instance.getOAuthClient()); </span>
+<span class="nc" id="L115">            fluent.withOAuthClientAuthorization(instance.getOAuthClientAuthorization()); </span>
+<span class="nc" id="L116">            fluent.withOAuthClientAuthorizationList(instance.getOAuthClientAuthorizationList()); </span>
+<span class="nc" id="L117">            fluent.withOAuthClientList(instance.getOAuthClientList()); </span>
+<span class="nc" id="L118">            fluent.withObjectMeta(instance.getObjectMeta()); </span>
+<span class="nc" id="L119">            fluent.withOpenshiftClusterRole(instance.getOpenshiftClusterRole()); </span>
+<span class="nc" id="L120">            fluent.withOpenshiftClusterRoleBinding(instance.getOpenshiftClusterRoleBinding()); </span>
+<span class="nc" id="L121">            fluent.withOpenshiftClusterRoleBindingList(instance.getOpenshiftClusterRoleBindingList()); </span>
+<span class="nc" id="L122">            fluent.withOpenshiftRole(instance.getOpenshiftRole()); </span>
+<span class="nc" id="L123">            fluent.withOpenshiftRoleBinding(instance.getOpenshiftRoleBinding()); </span>
+<span class="nc" id="L124">            fluent.withOpenshiftRoleBindingList(instance.getOpenshiftRoleBindingList()); </span>
+<span class="nc" id="L125">            fluent.withOpenshiftRoleBindingRestriction(instance.getOpenshiftRoleBindingRestriction()); </span>
+<span class="nc" id="L126">            fluent.withOpenshiftRoleList(instance.getOpenshiftRoleList()); </span>
+<span class="nc" id="L127">            fluent.withOperation(instance.getOperation()); </span>
+<span class="nc" id="L128">            fluent.withPatch(instance.getPatch()); </span>
+<span class="nc" id="L129">            fluent.withPatchType(instance.getPatchType()); </span>
+<span class="nc" id="L130">            fluent.withPersistentVolume(instance.getPersistentVolume()); </span>
+<span class="nc" id="L131">            fluent.withPersistentVolumeClaim(instance.getPersistentVolumeClaim()); </span>
+<span class="nc" id="L132">            fluent.withPersistentVolumeClaimList(instance.getPersistentVolumeClaimList()); </span>
+<span class="nc" id="L133">            fluent.withPersistentVolumeList(instance.getPersistentVolumeList()); </span>
+<span class="nc" id="L134">            fluent.withPodDisruptionBudget(instance.getPodDisruptionBudget()); </span>
+<span class="nc" id="L135">            fluent.withPodDisruptionBudgetList(instance.getPodDisruptionBudgetList()); </span>
+<span class="nc" id="L136">            fluent.withPodList(instance.getPodList()); </span>
+<span class="nc" id="L137">            fluent.withPodPreset(instance.getPodPreset()); </span>
+<span class="nc" id="L138">            fluent.withPodPresetList(instance.getPodPresetList()); </span>
+<span class="nc" id="L139">            fluent.withPodPresetSpec(instance.getPodPresetSpec()); </span>
+<span class="nc" id="L140">            fluent.withPodSecurityPolicy(instance.getPodSecurityPolicy()); </span>
+<span class="nc" id="L141">            fluent.withPodSecurityPolicyList(instance.getPodSecurityPolicyList()); </span>
+<span class="nc" id="L142">            fluent.withPodTemplateList(instance.getPodTemplateList()); </span>
+<span class="nc" id="L143">            fluent.withPriorityClass(instance.getPriorityClass()); </span>
+<span class="nc" id="L144">            fluent.withPriorityClassList(instance.getPriorityClassList()); </span>
+<span class="nc" id="L145">            fluent.withProject(instance.getProject()); </span>
+<span class="nc" id="L146">            fluent.withProjectList(instance.getProjectList()); </span>
+<span class="nc" id="L147">            fluent.withProjectRequest(instance.getProjectRequest()); </span>
+<span class="nc" id="L148">            fluent.withQuantity(instance.getQuantity()); </span>
+<span class="nc" id="L149">            fluent.withReplicaSet(instance.getReplicaSet()); </span>
+<span class="nc" id="L150">            fluent.withReplicaSetList(instance.getReplicaSetList()); </span>
+<span class="nc" id="L151">            fluent.withReplicationControllerList(instance.getReplicationControllerList()); </span>
+<span class="nc" id="L152">            fluent.withResourceQuota(instance.getResourceQuota()); </span>
+<span class="nc" id="L153">            fluent.withResourceQuotaList(instance.getResourceQuotaList()); </span>
+<span class="nc" id="L154">            fluent.withRole(instance.getRole()); </span>
+<span class="nc" id="L155">            fluent.withRoleBinding(instance.getRoleBinding()); </span>
+<span class="nc" id="L156">            fluent.withRoleBindingList(instance.getRoleBindingList()); </span>
+<span class="nc" id="L157">            fluent.withRoleList(instance.getRoleList()); </span>
+<span class="nc" id="L158">            fluent.withRootPaths(instance.getRootPaths()); </span>
+<span class="nc" id="L159">            fluent.withRoute(instance.getRoute()); </span>
+<span class="nc" id="L160">            fluent.withRouteList(instance.getRouteList()); </span>
+<span class="nc" id="L161">            fluent.withRule(instance.getRule()); </span>
+<span class="nc" id="L162">            fluent.withRuleWithOperations(instance.getRuleWithOperations()); </span>
+<span class="nc" id="L163">            fluent.withScale(instance.getScale()); </span>
+<span class="nc" id="L164">            fluent.withSecret(instance.getSecret()); </span>
+<span class="nc" id="L165">            fluent.withSecretList(instance.getSecretList()); </span>
+<span class="nc" id="L166">            fluent.withSecurityContextConstraints(instance.getSecurityContextConstraints()); </span>
+<span class="nc" id="L167">            fluent.withSecurityContextConstraintsList(instance.getSecurityContextConstraintsList()); </span>
+<span class="nc" id="L168">            fluent.withServiceAccount(instance.getServiceAccount()); </span>
+<span class="nc" id="L169">            fluent.withServiceAccountList(instance.getServiceAccountList()); </span>
+<span class="nc" id="L170">            fluent.withServiceList(instance.getServiceList()); </span>
+<span class="nc" id="L171">            fluent.withStatefulSet(instance.getStatefulSet()); </span>
+<span class="nc" id="L172">            fluent.withStatefulSetList(instance.getStatefulSetList()); </span>
+<span class="nc" id="L173">            fluent.withStatus(instance.getStatus()); </span>
+<span class="nc" id="L174">            fluent.withStorageClass(instance.getStorageClass()); </span>
+<span class="nc" id="L175">            fluent.withStorageClassList(instance.getStorageClassList()); </span>
+<span class="nc" id="L176">            fluent.withSubjectAccessReview(instance.getSubjectAccessReview()); </span>
+<span class="nc" id="L177">            fluent.withSubjectAccessReviewResponse(instance.getSubjectAccessReviewResponse()); </span>
+<span class="nc" id="L178">            fluent.withTagEvent(instance.getTagEvent()); </span>
+<span class="nc" id="L179">            fluent.withTemplate(instance.getTemplate()); </span>
+<span class="nc" id="L180">            fluent.withTemplateList(instance.getTemplateList()); </span>
+<span class="nc" id="L181">            fluent.withTokenReview(instance.getTokenReview()); </span>
+<span class="nc" id="L182">            fluent.withToleration(instance.getToleration()); </span>
+<span class="nc" id="L183">            fluent.withTypeMeta(instance.getTypeMeta()); </span>
+<span class="nc" id="L184">            fluent.withUser(instance.getUser()); </span>
+<span class="nc" id="L185">            fluent.withUserList(instance.getUserList()); </span>
+<span class="nc" id="L186">            fluent.withValidatingWebhookConfiguration(instance.getValidatingWebhookConfiguration()); </span>
+<span class="nc" id="L187">            fluent.withValidatingWebhookConfigurationList(instance.getValidatingWebhookConfigurationList()); </span>
+<span class="nc" id="L188">            fluent.withWatchEvent(instance.getWatchEvent()); </span>
+<span class="nc" id="L189">            this.validationEnabled = validationEnabled; </span>
+<span class="nc" id="L190">    }</span>
+    public KubeSchemaBuilder(KubeSchema instance){
+<span class="nc" id="L192">            this(instance,true);</span>
+<span class="nc" id="L193">    }</span>
+<span class="nc" id="L194">    public KubeSchemaBuilder(KubeSchema instance,Boolean validationEnabled){</span>
+<span class="nc" id="L195">            this.fluent = this; </span>
+<span class="nc" id="L196">            this.withAdmissionRequest(instance.getAdmissionRequest()); </span>
+<span class="nc" id="L197">            this.withAdmissionResponse(instance.getAdmissionResponse()); </span>
+<span class="nc" id="L198">            this.withAdmissionReview(instance.getAdmissionReview()); </span>
+<span class="nc" id="L199">            this.withAdmissionWebhook(instance.getAdmissionWebhook()); </span>
+<span class="nc" id="L200">            this.withAggregationRule(instance.getAggregationRule()); </span>
+<span class="nc" id="L201">            this.withBaseKubernetesList(instance.getBaseKubernetesList()); </span>
+<span class="nc" id="L202">            this.withBinding(instance.getBinding()); </span>
+<span class="nc" id="L203">            this.withBuildConfigList(instance.getBuildConfigList()); </span>
+<span class="nc" id="L204">            this.withBuildList(instance.getBuildList()); </span>
+<span class="nc" id="L205">            this.withBuildRequest(instance.getBuildRequest()); </span>
+<span class="nc" id="L206">            this.withCertificateSigningRequest(instance.getCertificateSigningRequest()); </span>
+<span class="nc" id="L207">            this.withCertificateSigningRequestCondition(instance.getCertificateSigningRequestCondition()); </span>
+<span class="nc" id="L208">            this.withCertificateSigningRequestList(instance.getCertificateSigningRequestList()); </span>
+<span class="nc" id="L209">            this.withCertificateSigningRequestSpec(instance.getCertificateSigningRequestSpec()); </span>
+<span class="nc" id="L210">            this.withCertificateSigningRequestStatus(instance.getCertificateSigningRequestStatus()); </span>
+<span class="nc" id="L211">            this.withClusterRole(instance.getClusterRole()); </span>
+<span class="nc" id="L212">            this.withClusterRoleBinding(instance.getClusterRoleBinding()); </span>
+<span class="nc" id="L213">            this.withClusterRoleBindingList(instance.getClusterRoleBindingList()); </span>
+<span class="nc" id="L214">            this.withClusterRoleList(instance.getClusterRoleList()); </span>
+<span class="nc" id="L215">            this.withComponentStatusList(instance.getComponentStatusList()); </span>
+<span class="nc" id="L216">            this.withConfig(instance.getConfig()); </span>
+<span class="nc" id="L217">            this.withConfigMap(instance.getConfigMap()); </span>
+<span class="nc" id="L218">            this.withConfigMapList(instance.getConfigMapList()); </span>
+<span class="nc" id="L219">            this.withContainerStatus(instance.getContainerStatus()); </span>
+<span class="nc" id="L220">            this.withCronJob(instance.getCronJob()); </span>
+<span class="nc" id="L221">            this.withCronJobList(instance.getCronJobList()); </span>
+<span class="nc" id="L222">            this.withCustomResourceDefinition(instance.getCustomResourceDefinition()); </span>
+<span class="nc" id="L223">            this.withCustomResourceDefinitionCondition(instance.getCustomResourceDefinitionCondition()); </span>
+<span class="nc" id="L224">            this.withCustomResourceDefinitionList(instance.getCustomResourceDefinitionList()); </span>
+<span class="nc" id="L225">            this.withCustomResourceDefinitionNames(instance.getCustomResourceDefinitionNames()); </span>
+<span class="nc" id="L226">            this.withCustomResourceDefinitionSpec(instance.getCustomResourceDefinitionSpec()); </span>
+<span class="nc" id="L227">            this.withCustomResourceDefinitionStatus(instance.getCustomResourceDefinitionStatus()); </span>
+<span class="nc" id="L228">            this.withDaemonSet(instance.getDaemonSet()); </span>
+<span class="nc" id="L229">            this.withDaemonSetList(instance.getDaemonSetList()); </span>
+<span class="nc" id="L230">            this.withDeleteOptions(instance.getDeleteOptions()); </span>
+<span class="nc" id="L231">            this.withDeployment(instance.getDeployment()); </span>
+<span class="nc" id="L232">            this.withDeploymentConfig(instance.getDeploymentConfig()); </span>
+<span class="nc" id="L233">            this.withDeploymentConfigList(instance.getDeploymentConfigList()); </span>
+<span class="nc" id="L234">            this.withDeploymentList(instance.getDeploymentList()); </span>
+<span class="nc" id="L235">            this.withDeploymentRollback(instance.getDeploymentRollback()); </span>
+<span class="nc" id="L236">            this.withEndpoints(instance.getEndpoints()); </span>
+<span class="nc" id="L237">            this.withEndpointsList(instance.getEndpointsList()); </span>
+<span class="nc" id="L238">            this.withEnvVar(instance.getEnvVar()); </span>
+<span class="nc" id="L239">            this.withEvent(instance.getEvent()); </span>
+<span class="nc" id="L240">            this.withEventList(instance.getEventList()); </span>
+<span class="nc" id="L241">            this.withEventSeries(instance.getEventSeries()); </span>
+<span class="nc" id="L242">            this.withEventSeriesState(instance.getEventSeriesState()); </span>
+<span class="nc" id="L243">            this.withGroup(instance.getGroup()); </span>
+<span class="nc" id="L244">            this.withGroupList(instance.getGroupList()); </span>
+<span class="nc" id="L245">            this.withHorizontalPodAutoscaler(instance.getHorizontalPodAutoscaler()); </span>
+<span class="nc" id="L246">            this.withHorizontalPodAutoscalerList(instance.getHorizontalPodAutoscalerList()); </span>
+<span class="nc" id="L247">            this.withIdentity(instance.getIdentity()); </span>
+<span class="nc" id="L248">            this.withIdentityList(instance.getIdentityList()); </span>
+<span class="nc" id="L249">            this.withImageList(instance.getImageList()); </span>
+<span class="nc" id="L250">            this.withImageStreamImport(instance.getImageStreamImport()); </span>
+<span class="nc" id="L251">            this.withImageStreamList(instance.getImageStreamList()); </span>
+<span class="nc" id="L252">            this.withImageStreamTagList(instance.getImageStreamTagList()); </span>
+<span class="nc" id="L253">            this.withInfo(instance.getInfo()); </span>
+<span class="nc" id="L254">            this.withIngress(instance.getIngress()); </span>
+<span class="nc" id="L255">            this.withIngressList(instance.getIngressList()); </span>
+<span class="nc" id="L256">            this.withInitializer(instance.getInitializer()); </span>
+<span class="nc" id="L257">            this.withInitializers(instance.getInitializers()); </span>
+<span class="nc" id="L258">            this.withJSONSchemaPropsorStringArray(instance.getJSONSchemaPropsorStringArray()); </span>
+<span class="nc" id="L259">            this.withJob(instance.getJob()); </span>
+<span class="nc" id="L260">            this.withJobList(instance.getJobList()); </span>
+<span class="nc" id="L261">            this.withK8sLocalSubjectAccessReview(instance.getK8sLocalSubjectAccessReview()); </span>
+<span class="nc" id="L262">            this.withK8sSubjectAccessReview(instance.getK8sSubjectAccessReview()); </span>
+<span class="nc" id="L263">            this.withLimitRangeList(instance.getLimitRangeList()); </span>
+<span class="nc" id="L264">            this.withLocalSubjectAccessReview(instance.getLocalSubjectAccessReview()); </span>
+<span class="nc" id="L265">            this.withMutatingWebhookConfiguration(instance.getMutatingWebhookConfiguration()); </span>
+<span class="nc" id="L266">            this.withMutatingWebhookConfigurationList(instance.getMutatingWebhookConfigurationList()); </span>
+<span class="nc" id="L267">            this.withNamespace(instance.getNamespace()); </span>
+<span class="nc" id="L268">            this.withNamespaceList(instance.getNamespaceList()); </span>
+<span class="nc" id="L269">            this.withNetNameSpace(instance.getNetNameSpace()); </span>
+<span class="nc" id="L270">            this.withNetNameSpaceList(instance.getNetNameSpaceList()); </span>
+<span class="nc" id="L271">            this.withNetworkPolicy(instance.getNetworkPolicy()); </span>
+<span class="nc" id="L272">            this.withNetworkPolicyList(instance.getNetworkPolicyList()); </span>
+<span class="nc" id="L273">            this.withNode(instance.getNode()); </span>
+<span class="nc" id="L274">            this.withNodeList(instance.getNodeList()); </span>
+<span class="nc" id="L275">            this.withOAuthAccessToken(instance.getOAuthAccessToken()); </span>
+<span class="nc" id="L276">            this.withOAuthAccessTokenList(instance.getOAuthAccessTokenList()); </span>
+<span class="nc" id="L277">            this.withOAuthAuthorizeToken(instance.getOAuthAuthorizeToken()); </span>
+<span class="nc" id="L278">            this.withOAuthAuthorizeTokenList(instance.getOAuthAuthorizeTokenList()); </span>
+<span class="nc" id="L279">            this.withOAuthClient(instance.getOAuthClient()); </span>
+<span class="nc" id="L280">            this.withOAuthClientAuthorization(instance.getOAuthClientAuthorization()); </span>
+<span class="nc" id="L281">            this.withOAuthClientAuthorizationList(instance.getOAuthClientAuthorizationList()); </span>
+<span class="nc" id="L282">            this.withOAuthClientList(instance.getOAuthClientList()); </span>
+<span class="nc" id="L283">            this.withObjectMeta(instance.getObjectMeta()); </span>
+<span class="nc" id="L284">            this.withOpenshiftClusterRole(instance.getOpenshiftClusterRole()); </span>
+<span class="nc" id="L285">            this.withOpenshiftClusterRoleBinding(instance.getOpenshiftClusterRoleBinding()); </span>
+<span class="nc" id="L286">            this.withOpenshiftClusterRoleBindingList(instance.getOpenshiftClusterRoleBindingList()); </span>
+<span class="nc" id="L287">            this.withOpenshiftRole(instance.getOpenshiftRole()); </span>
+<span class="nc" id="L288">            this.withOpenshiftRoleBinding(instance.getOpenshiftRoleBinding()); </span>
+<span class="nc" id="L289">            this.withOpenshiftRoleBindingList(instance.getOpenshiftRoleBindingList()); </span>
+<span class="nc" id="L290">            this.withOpenshiftRoleBindingRestriction(instance.getOpenshiftRoleBindingRestriction()); </span>
+<span class="nc" id="L291">            this.withOpenshiftRoleList(instance.getOpenshiftRoleList()); </span>
+<span class="nc" id="L292">            this.withOperation(instance.getOperation()); </span>
+<span class="nc" id="L293">            this.withPatch(instance.getPatch()); </span>
+<span class="nc" id="L294">            this.withPatchType(instance.getPatchType()); </span>
+<span class="nc" id="L295">            this.withPersistentVolume(instance.getPersistentVolume()); </span>
+<span class="nc" id="L296">            this.withPersistentVolumeClaim(instance.getPersistentVolumeClaim()); </span>
+<span class="nc" id="L297">            this.withPersistentVolumeClaimList(instance.getPersistentVolumeClaimList()); </span>
+<span class="nc" id="L298">            this.withPersistentVolumeList(instance.getPersistentVolumeList()); </span>
+<span class="nc" id="L299">            this.withPodDisruptionBudget(instance.getPodDisruptionBudget()); </span>
+<span class="nc" id="L300">            this.withPodDisruptionBudgetList(instance.getPodDisruptionBudgetList()); </span>
+<span class="nc" id="L301">            this.withPodList(instance.getPodList()); </span>
+<span class="nc" id="L302">            this.withPodPreset(instance.getPodPreset()); </span>
+<span class="nc" id="L303">            this.withPodPresetList(instance.getPodPresetList()); </span>
+<span class="nc" id="L304">            this.withPodPresetSpec(instance.getPodPresetSpec()); </span>
+<span class="nc" id="L305">            this.withPodSecurityPolicy(instance.getPodSecurityPolicy()); </span>
+<span class="nc" id="L306">            this.withPodSecurityPolicyList(instance.getPodSecurityPolicyList()); </span>
+<span class="nc" id="L307">            this.withPodTemplateList(instance.getPodTemplateList()); </span>
+<span class="nc" id="L308">            this.withPriorityClass(instance.getPriorityClass()); </span>
+<span class="nc" id="L309">            this.withPriorityClassList(instance.getPriorityClassList()); </span>
+<span class="nc" id="L310">            this.withProject(instance.getProject()); </span>
+<span class="nc" id="L311">            this.withProjectList(instance.getProjectList()); </span>
+<span class="nc" id="L312">            this.withProjectRequest(instance.getProjectRequest()); </span>
+<span class="nc" id="L313">            this.withQuantity(instance.getQuantity()); </span>
+<span class="nc" id="L314">            this.withReplicaSet(instance.getReplicaSet()); </span>
+<span class="nc" id="L315">            this.withReplicaSetList(instance.getReplicaSetList()); </span>
+<span class="nc" id="L316">            this.withReplicationControllerList(instance.getReplicationControllerList()); </span>
+<span class="nc" id="L317">            this.withResourceQuota(instance.getResourceQuota()); </span>
+<span class="nc" id="L318">            this.withResourceQuotaList(instance.getResourceQuotaList()); </span>
+<span class="nc" id="L319">            this.withRole(instance.getRole()); </span>
+<span class="nc" id="L320">            this.withRoleBinding(instance.getRoleBinding()); </span>
+<span class="nc" id="L321">            this.withRoleBindingList(instance.getRoleBindingList()); </span>
+<span class="nc" id="L322">            this.withRoleList(instance.getRoleList()); </span>
+<span class="nc" id="L323">            this.withRootPaths(instance.getRootPaths()); </span>
+<span class="nc" id="L324">            this.withRoute(instance.getRoute()); </span>
+<span class="nc" id="L325">            this.withRouteList(instance.getRouteList()); </span>
+<span class="nc" id="L326">            this.withRule(instance.getRule()); </span>
+<span class="nc" id="L327">            this.withRuleWithOperations(instance.getRuleWithOperations()); </span>
+<span class="nc" id="L328">            this.withScale(instance.getScale()); </span>
+<span class="nc" id="L329">            this.withSecret(instance.getSecret()); </span>
+<span class="nc" id="L330">            this.withSecretList(instance.getSecretList()); </span>
+<span class="nc" id="L331">            this.withSecurityContextConstraints(instance.getSecurityContextConstraints()); </span>
+<span class="nc" id="L332">            this.withSecurityContextConstraintsList(instance.getSecurityContextConstraintsList()); </span>
+<span class="nc" id="L333">            this.withServiceAccount(instance.getServiceAccount()); </span>
+<span class="nc" id="L334">            this.withServiceAccountList(instance.getServiceAccountList()); </span>
+<span class="nc" id="L335">            this.withServiceList(instance.getServiceList()); </span>
+<span class="nc" id="L336">            this.withStatefulSet(instance.getStatefulSet()); </span>
+<span class="nc" id="L337">            this.withStatefulSetList(instance.getStatefulSetList()); </span>
+<span class="nc" id="L338">            this.withStatus(instance.getStatus()); </span>
+<span class="nc" id="L339">            this.withStorageClass(instance.getStorageClass()); </span>
+<span class="nc" id="L340">            this.withStorageClassList(instance.getStorageClassList()); </span>
+<span class="nc" id="L341">            this.withSubjectAccessReview(instance.getSubjectAccessReview()); </span>
+<span class="nc" id="L342">            this.withSubjectAccessReviewResponse(instance.getSubjectAccessReviewResponse()); </span>
+<span class="nc" id="L343">            this.withTagEvent(instance.getTagEvent()); </span>
+<span class="nc" id="L344">            this.withTemplate(instance.getTemplate()); </span>
+<span class="nc" id="L345">            this.withTemplateList(instance.getTemplateList()); </span>
+<span class="nc" id="L346">            this.withTokenReview(instance.getTokenReview()); </span>
+<span class="nc" id="L347">            this.withToleration(instance.getToleration()); </span>
+<span class="nc" id="L348">            this.withTypeMeta(instance.getTypeMeta()); </span>
+<span class="nc" id="L349">            this.withUser(instance.getUser()); </span>
+<span class="nc" id="L350">            this.withUserList(instance.getUserList()); </span>
+<span class="nc" id="L351">            this.withValidatingWebhookConfiguration(instance.getValidatingWebhookConfiguration()); </span>
+<span class="nc" id="L352">            this.withValidatingWebhookConfigurationList(instance.getValidatingWebhookConfigurationList()); </span>
+<span class="nc" id="L353">            this.withWatchEvent(instance.getWatchEvent()); </span>
+<span class="nc" id="L354">            this.validationEnabled = validationEnabled; </span>
+<span class="nc" id="L355">    }</span>
+    public KubeSchemaBuilder(Validator validator){
+<span class="nc" id="L357">            this(new KubeSchema(), true);</span>
+<span class="nc" id="L358">    }</span>
+<span class="nc" id="L359">    public KubeSchemaBuilder(KubeSchemaFluent&lt;?&gt; fluent,KubeSchema instance,Validator validator){</span>
+<span class="nc" id="L360">            this.fluent = fluent; </span>
+<span class="nc" id="L361">            fluent.withAdmissionRequest(instance.getAdmissionRequest()); </span>
+<span class="nc" id="L362">            fluent.withAdmissionResponse(instance.getAdmissionResponse()); </span>
+<span class="nc" id="L363">            fluent.withAdmissionReview(instance.getAdmissionReview()); </span>
+<span class="nc" id="L364">            fluent.withAdmissionWebhook(instance.getAdmissionWebhook()); </span>
+<span class="nc" id="L365">            fluent.withAggregationRule(instance.getAggregationRule()); </span>
+<span class="nc" id="L366">            fluent.withBaseKubernetesList(instance.getBaseKubernetesList()); </span>
+<span class="nc" id="L367">            fluent.withBinding(instance.getBinding()); </span>
+<span class="nc" id="L368">            fluent.withBuildConfigList(instance.getBuildConfigList()); </span>
+<span class="nc" id="L369">            fluent.withBuildList(instance.getBuildList()); </span>
+<span class="nc" id="L370">            fluent.withBuildRequest(instance.getBuildRequest()); </span>
+<span class="nc" id="L371">            fluent.withCertificateSigningRequest(instance.getCertificateSigningRequest()); </span>
+<span class="nc" id="L372">            fluent.withCertificateSigningRequestCondition(instance.getCertificateSigningRequestCondition()); </span>
+<span class="nc" id="L373">            fluent.withCertificateSigningRequestList(instance.getCertificateSigningRequestList()); </span>
+<span class="nc" id="L374">            fluent.withCertificateSigningRequestSpec(instance.getCertificateSigningRequestSpec()); </span>
+<span class="nc" id="L375">            fluent.withCertificateSigningRequestStatus(instance.getCertificateSigningRequestStatus()); </span>
+<span class="nc" id="L376">            fluent.withClusterRole(instance.getClusterRole()); </span>
+<span class="nc" id="L377">            fluent.withClusterRoleBinding(instance.getClusterRoleBinding()); </span>
+<span class="nc" id="L378">            fluent.withClusterRoleBindingList(instance.getClusterRoleBindingList()); </span>
+<span class="nc" id="L379">            fluent.withClusterRoleList(instance.getClusterRoleList()); </span>
+<span class="nc" id="L380">            fluent.withComponentStatusList(instance.getComponentStatusList()); </span>
+<span class="nc" id="L381">            fluent.withConfig(instance.getConfig()); </span>
+<span class="nc" id="L382">            fluent.withConfigMap(instance.getConfigMap()); </span>
+<span class="nc" id="L383">            fluent.withConfigMapList(instance.getConfigMapList()); </span>
+<span class="nc" id="L384">            fluent.withContainerStatus(instance.getContainerStatus()); </span>
+<span class="nc" id="L385">            fluent.withCronJob(instance.getCronJob()); </span>
+<span class="nc" id="L386">            fluent.withCronJobList(instance.getCronJobList()); </span>
+<span class="nc" id="L387">            fluent.withCustomResourceDefinition(instance.getCustomResourceDefinition()); </span>
+<span class="nc" id="L388">            fluent.withCustomResourceDefinitionCondition(instance.getCustomResourceDefinitionCondition()); </span>
+<span class="nc" id="L389">            fluent.withCustomResourceDefinitionList(instance.getCustomResourceDefinitionList()); </span>
+<span class="nc" id="L390">            fluent.withCustomResourceDefinitionNames(instance.getCustomResourceDefinitionNames()); </span>
+<span class="nc" id="L391">            fluent.withCustomResourceDefinitionSpec(instance.getCustomResourceDefinitionSpec()); </span>
+<span class="nc" id="L392">            fluent.withCustomResourceDefinitionStatus(instance.getCustomResourceDefinitionStatus()); </span>
+<span class="nc" id="L393">            fluent.withDaemonSet(instance.getDaemonSet()); </span>
+<span class="nc" id="L394">            fluent.withDaemonSetList(instance.getDaemonSetList()); </span>
+<span class="nc" id="L395">            fluent.withDeleteOptions(instance.getDeleteOptions()); </span>
+<span class="nc" id="L396">            fluent.withDeployment(instance.getDeployment()); </span>
+<span class="nc" id="L397">            fluent.withDeploymentConfig(instance.getDeploymentConfig()); </span>
+<span class="nc" id="L398">            fluent.withDeploymentConfigList(instance.getDeploymentConfigList()); </span>
+<span class="nc" id="L399">            fluent.withDeploymentList(instance.getDeploymentList()); </span>
+<span class="nc" id="L400">            fluent.withDeploymentRollback(instance.getDeploymentRollback()); </span>
+<span class="nc" id="L401">            fluent.withEndpoints(instance.getEndpoints()); </span>
+<span class="nc" id="L402">            fluent.withEndpointsList(instance.getEndpointsList()); </span>
+<span class="nc" id="L403">            fluent.withEnvVar(instance.getEnvVar()); </span>
+<span class="nc" id="L404">            fluent.withEvent(instance.getEvent()); </span>
+<span class="nc" id="L405">            fluent.withEventList(instance.getEventList()); </span>
+<span class="nc" id="L406">            fluent.withEventSeries(instance.getEventSeries()); </span>
+<span class="nc" id="L407">            fluent.withEventSeriesState(instance.getEventSeriesState()); </span>
+<span class="nc" id="L408">            fluent.withGroup(instance.getGroup()); </span>
+<span class="nc" id="L409">            fluent.withGroupList(instance.getGroupList()); </span>
+<span class="nc" id="L410">            fluent.withHorizontalPodAutoscaler(instance.getHorizontalPodAutoscaler()); </span>
+<span class="nc" id="L411">            fluent.withHorizontalPodAutoscalerList(instance.getHorizontalPodAutoscalerList()); </span>
+<span class="nc" id="L412">            fluent.withIdentity(instance.getIdentity()); </span>
+<span class="nc" id="L413">            fluent.withIdentityList(instance.getIdentityList()); </span>
+<span class="nc" id="L414">            fluent.withImageList(instance.getImageList()); </span>
+<span class="nc" id="L415">            fluent.withImageStreamImport(instance.getImageStreamImport()); </span>
+<span class="nc" id="L416">            fluent.withImageStreamList(instance.getImageStreamList()); </span>
+<span class="nc" id="L417">            fluent.withImageStreamTagList(instance.getImageStreamTagList()); </span>
+<span class="nc" id="L418">            fluent.withInfo(instance.getInfo()); </span>
+<span class="nc" id="L419">            fluent.withIngress(instance.getIngress()); </span>
+<span class="nc" id="L420">            fluent.withIngressList(instance.getIngressList()); </span>
+<span class="nc" id="L421">            fluent.withInitializer(instance.getInitializer()); </span>
+<span class="nc" id="L422">            fluent.withInitializers(instance.getInitializers()); </span>
+<span class="nc" id="L423">            fluent.withJSONSchemaPropsorStringArray(instance.getJSONSchemaPropsorStringArray()); </span>
+<span class="nc" id="L424">            fluent.withJob(instance.getJob()); </span>
+<span class="nc" id="L425">            fluent.withJobList(instance.getJobList()); </span>
+<span class="nc" id="L426">            fluent.withK8sLocalSubjectAccessReview(instance.getK8sLocalSubjectAccessReview()); </span>
+<span class="nc" id="L427">            fluent.withK8sSubjectAccessReview(instance.getK8sSubjectAccessReview()); </span>
+<span class="nc" id="L428">            fluent.withLimitRangeList(instance.getLimitRangeList()); </span>
+<span class="nc" id="L429">            fluent.withLocalSubjectAccessReview(instance.getLocalSubjectAccessReview()); </span>
+<span class="nc" id="L430">            fluent.withMutatingWebhookConfiguration(instance.getMutatingWebhookConfiguration()); </span>
+<span class="nc" id="L431">            fluent.withMutatingWebhookConfigurationList(instance.getMutatingWebhookConfigurationList()); </span>
+<span class="nc" id="L432">            fluent.withNamespace(instance.getNamespace()); </span>
+<span class="nc" id="L433">            fluent.withNamespaceList(instance.getNamespaceList()); </span>
+<span class="nc" id="L434">            fluent.withNetNameSpace(instance.getNetNameSpace()); </span>
+<span class="nc" id="L435">            fluent.withNetNameSpaceList(instance.getNetNameSpaceList()); </span>
+<span class="nc" id="L436">            fluent.withNetworkPolicy(instance.getNetworkPolicy()); </span>
+<span class="nc" id="L437">            fluent.withNetworkPolicyList(instance.getNetworkPolicyList()); </span>
+<span class="nc" id="L438">            fluent.withNode(instance.getNode()); </span>
+<span class="nc" id="L439">            fluent.withNodeList(instance.getNodeList()); </span>
+<span class="nc" id="L440">            fluent.withOAuthAccessToken(instance.getOAuthAccessToken()); </span>
+<span class="nc" id="L441">            fluent.withOAuthAccessTokenList(instance.getOAuthAccessTokenList()); </span>
+<span class="nc" id="L442">            fluent.withOAuthAuthorizeToken(instance.getOAuthAuthorizeToken()); </span>
+<span class="nc" id="L443">            fluent.withOAuthAuthorizeTokenList(instance.getOAuthAuthorizeTokenList()); </span>
+<span class="nc" id="L444">            fluent.withOAuthClient(instance.getOAuthClient()); </span>
+<span class="nc" id="L445">            fluent.withOAuthClientAuthorization(instance.getOAuthClientAuthorization()); </span>
+<span class="nc" id="L446">            fluent.withOAuthClientAuthorizationList(instance.getOAuthClientAuthorizationList()); </span>
+<span class="nc" id="L447">            fluent.withOAuthClientList(instance.getOAuthClientList()); </span>
+<span class="nc" id="L448">            fluent.withObjectMeta(instance.getObjectMeta()); </span>
+<span class="nc" id="L449">            fluent.withOpenshiftClusterRole(instance.getOpenshiftClusterRole()); </span>
+<span class="nc" id="L450">            fluent.withOpenshiftClusterRoleBinding(instance.getOpenshiftClusterRoleBinding()); </span>
+<span class="nc" id="L451">            fluent.withOpenshiftClusterRoleBindingList(instance.getOpenshiftClusterRoleBindingList()); </span>
+<span class="nc" id="L452">            fluent.withOpenshiftRole(instance.getOpenshiftRole()); </span>
+<span class="nc" id="L453">            fluent.withOpenshiftRoleBinding(instance.getOpenshiftRoleBinding()); </span>
+<span class="nc" id="L454">            fluent.withOpenshiftRoleBindingList(instance.getOpenshiftRoleBindingList()); </span>
+<span class="nc" id="L455">            fluent.withOpenshiftRoleBindingRestriction(instance.getOpenshiftRoleBindingRestriction()); </span>
+<span class="nc" id="L456">            fluent.withOpenshiftRoleList(instance.getOpenshiftRoleList()); </span>
+<span class="nc" id="L457">            fluent.withOperation(instance.getOperation()); </span>
+<span class="nc" id="L458">            fluent.withPatch(instance.getPatch()); </span>
+<span class="nc" id="L459">            fluent.withPatchType(instance.getPatchType()); </span>
+<span class="nc" id="L460">            fluent.withPersistentVolume(instance.getPersistentVolume()); </span>
+<span class="nc" id="L461">            fluent.withPersistentVolumeClaim(instance.getPersistentVolumeClaim()); </span>
+<span class="nc" id="L462">            fluent.withPersistentVolumeClaimList(instance.getPersistentVolumeClaimList()); </span>
+<span class="nc" id="L463">            fluent.withPersistentVolumeList(instance.getPersistentVolumeList()); </span>
+<span class="nc" id="L464">            fluent.withPodDisruptionBudget(instance.getPodDisruptionBudget()); </span>
+<span class="nc" id="L465">            fluent.withPodDisruptionBudgetList(instance.getPodDisruptionBudgetList()); </span>
+<span class="nc" id="L466">            fluent.withPodList(instance.getPodList()); </span>
+<span class="nc" id="L467">            fluent.withPodPreset(instance.getPodPreset()); </span>
+<span class="nc" id="L468">            fluent.withPodPresetList(instance.getPodPresetList()); </span>
+<span class="nc" id="L469">            fluent.withPodPresetSpec(instance.getPodPresetSpec()); </span>
+<span class="nc" id="L470">            fluent.withPodSecurityPolicy(instance.getPodSecurityPolicy()); </span>
+<span class="nc" id="L471">            fluent.withPodSecurityPolicyList(instance.getPodSecurityPolicyList()); </span>
+<span class="nc" id="L472">            fluent.withPodTemplateList(instance.getPodTemplateList()); </span>
+<span class="nc" id="L473">            fluent.withPriorityClass(instance.getPriorityClass()); </span>
+<span class="nc" id="L474">            fluent.withPriorityClassList(instance.getPriorityClassList()); </span>
+<span class="nc" id="L475">            fluent.withProject(instance.getProject()); </span>
+<span class="nc" id="L476">            fluent.withProjectList(instance.getProjectList()); </span>
+<span class="nc" id="L477">            fluent.withProjectRequest(instance.getProjectRequest()); </span>
+<span class="nc" id="L478">            fluent.withQuantity(instance.getQuantity()); </span>
+<span class="nc" id="L479">            fluent.withReplicaSet(instance.getReplicaSet()); </span>
+<span class="nc" id="L480">            fluent.withReplicaSetList(instance.getReplicaSetList()); </span>
+<span class="nc" id="L481">            fluent.withReplicationControllerList(instance.getReplicationControllerList()); </span>
+<span class="nc" id="L482">            fluent.withResourceQuota(instance.getResourceQuota()); </span>
+<span class="nc" id="L483">            fluent.withResourceQuotaList(instance.getResourceQuotaList()); </span>
+<span class="nc" id="L484">            fluent.withRole(instance.getRole()); </span>
+<span class="nc" id="L485">            fluent.withRoleBinding(instance.getRoleBinding()); </span>
+<span class="nc" id="L486">            fluent.withRoleBindingList(instance.getRoleBindingList()); </span>
+<span class="nc" id="L487">            fluent.withRoleList(instance.getRoleList()); </span>
+<span class="nc" id="L488">            fluent.withRootPaths(instance.getRootPaths()); </span>
+<span class="nc" id="L489">            fluent.withRoute(instance.getRoute()); </span>
+<span class="nc" id="L490">            fluent.withRouteList(instance.getRouteList()); </span>
+<span class="nc" id="L491">            fluent.withRule(instance.getRule()); </span>
+<span class="nc" id="L492">            fluent.withRuleWithOperations(instance.getRuleWithOperations()); </span>
+<span class="nc" id="L493">            fluent.withScale(instance.getScale()); </span>
+<span class="nc" id="L494">            fluent.withSecret(instance.getSecret()); </span>
+<span class="nc" id="L495">            fluent.withSecretList(instance.getSecretList()); </span>
+<span class="nc" id="L496">            fluent.withSecurityContextConstraints(instance.getSecurityContextConstraints()); </span>
+<span class="nc" id="L497">            fluent.withSecurityContextConstraintsList(instance.getSecurityContextConstraintsList()); </span>
+<span class="nc" id="L498">            fluent.withServiceAccount(instance.getServiceAccount()); </span>
+<span class="nc" id="L499">            fluent.withServiceAccountList(instance.getServiceAccountList()); </span>
+<span class="nc" id="L500">            fluent.withServiceList(instance.getServiceList()); </span>
+<span class="nc" id="L501">            fluent.withStatefulSet(instance.getStatefulSet()); </span>
+<span class="nc" id="L502">            fluent.withStatefulSetList(instance.getStatefulSetList()); </span>
+<span class="nc" id="L503">            fluent.withStatus(instance.getStatus()); </span>
+<span class="nc" id="L504">            fluent.withStorageClass(instance.getStorageClass()); </span>
+<span class="nc" id="L505">            fluent.withStorageClassList(instance.getStorageClassList()); </span>
+<span class="nc" id="L506">            fluent.withSubjectAccessReview(instance.getSubjectAccessReview()); </span>
+<span class="nc" id="L507">            fluent.withSubjectAccessReviewResponse(instance.getSubjectAccessReviewResponse()); </span>
+<span class="nc" id="L508">            fluent.withTagEvent(instance.getTagEvent()); </span>
+<span class="nc" id="L509">            fluent.withTemplate(instance.getTemplate()); </span>
+<span class="nc" id="L510">            fluent.withTemplateList(instance.getTemplateList()); </span>
+<span class="nc" id="L511">            fluent.withTokenReview(instance.getTokenReview()); </span>
+<span class="nc" id="L512">            fluent.withToleration(instance.getToleration()); </span>
+<span class="nc" id="L513">            fluent.withTypeMeta(instance.getTypeMeta()); </span>
+<span class="nc" id="L514">            fluent.withUser(instance.getUser()); </span>
+<span class="nc" id="L515">            fluent.withUserList(instance.getUserList()); </span>
+<span class="nc" id="L516">            fluent.withValidatingWebhookConfiguration(instance.getValidatingWebhookConfiguration()); </span>
+<span class="nc" id="L517">            fluent.withValidatingWebhookConfigurationList(instance.getValidatingWebhookConfigurationList()); </span>
+<span class="nc" id="L518">            fluent.withWatchEvent(instance.getWatchEvent()); </span>
+<span class="nc" id="L519">            this.validator = validator;</span>
+<span class="nc bnc" id="L520" title="All 2 branches missed.">            this.validationEnabled = validator != null; </span>
+<span class="nc" id="L521">    }</span>
+<span class="nc" id="L522">    public KubeSchemaBuilder(KubeSchema instance,Validator validator){</span>
+<span class="nc" id="L523">            this.fluent = this; </span>
+<span class="nc" id="L524">            this.withAdmissionRequest(instance.getAdmissionRequest()); </span>
+<span class="nc" id="L525">            this.withAdmissionResponse(instance.getAdmissionResponse()); </span>
+<span class="nc" id="L526">            this.withAdmissionReview(instance.getAdmissionReview()); </span>
+<span class="nc" id="L527">            this.withAdmissionWebhook(instance.getAdmissionWebhook()); </span>
+<span class="nc" id="L528">            this.withAggregationRule(instance.getAggregationRule()); </span>
+<span class="nc" id="L529">            this.withBaseKubernetesList(instance.getBaseKubernetesList()); </span>
+<span class="nc" id="L530">            this.withBinding(instance.getBinding()); </span>
+<span class="nc" id="L531">            this.withBuildConfigList(instance.getBuildConfigList()); </span>
+<span class="nc" id="L532">            this.withBuildList(instance.getBuildList()); </span>
+<span class="nc" id="L533">            this.withBuildRequest(instance.getBuildRequest()); </span>
+<span class="nc" id="L534">            this.withCertificateSigningRequest(instance.getCertificateSigningRequest()); </span>
+<span class="nc" id="L535">            this.withCertificateSigningRequestCondition(instance.getCertificateSigningRequestCondition()); </span>
+<span class="nc" id="L536">            this.withCertificateSigningRequestList(instance.getCertificateSigningRequestList()); </span>
+<span class="nc" id="L537">            this.withCertificateSigningRequestSpec(instance.getCertificateSigningRequestSpec()); </span>
+<span class="nc" id="L538">            this.withCertificateSigningRequestStatus(instance.getCertificateSigningRequestStatus()); </span>
+<span class="nc" id="L539">            this.withClusterRole(instance.getClusterRole()); </span>
+<span class="nc" id="L540">            this.withClusterRoleBinding(instance.getClusterRoleBinding()); </span>
+<span class="nc" id="L541">            this.withClusterRoleBindingList(instance.getClusterRoleBindingList()); </span>
+<span class="nc" id="L542">            this.withClusterRoleList(instance.getClusterRoleList()); </span>
+<span class="nc" id="L543">            this.withComponentStatusList(instance.getComponentStatusList()); </span>
+<span class="nc" id="L544">            this.withConfig(instance.getConfig()); </span>
+<span class="nc" id="L545">            this.withConfigMap(instance.getConfigMap()); </span>
+<span class="nc" id="L546">            this.withConfigMapList(instance.getConfigMapList()); </span>
+<span class="nc" id="L547">            this.withContainerStatus(instance.getContainerStatus()); </span>
+<span class="nc" id="L548">            this.withCronJob(instance.getCronJob()); </span>
+<span class="nc" id="L549">            this.withCronJobList(instance.getCronJobList()); </span>
+<span class="nc" id="L550">            this.withCustomResourceDefinition(instance.getCustomResourceDefinition()); </span>
+<span class="nc" id="L551">            this.withCustomResourceDefinitionCondition(instance.getCustomResourceDefinitionCondition()); </span>
+<span class="nc" id="L552">            this.withCustomResourceDefinitionList(instance.getCustomResourceDefinitionList()); </span>
+<span class="nc" id="L553">            this.withCustomResourceDefinitionNames(instance.getCustomResourceDefinitionNames()); </span>
+<span class="nc" id="L554">            this.withCustomResourceDefinitionSpec(instance.getCustomResourceDefinitionSpec()); </span>
+<span class="nc" id="L555">            this.withCustomResourceDefinitionStatus(instance.getCustomResourceDefinitionStatus()); </span>
+<span class="nc" id="L556">            this.withDaemonSet(instance.getDaemonSet()); </span>
+<span class="nc" id="L557">            this.withDaemonSetList(instance.getDaemonSetList()); </span>
+<span class="nc" id="L558">            this.withDeleteOptions(instance.getDeleteOptions()); </span>
+<span class="nc" id="L559">            this.withDeployment(instance.getDeployment()); </span>
+<span class="nc" id="L560">            this.withDeploymentConfig(instance.getDeploymentConfig()); </span>
+<span class="nc" id="L561">            this.withDeploymentConfigList(instance.getDeploymentConfigList()); </span>
+<span class="nc" id="L562">            this.withDeploymentList(instance.getDeploymentList()); </span>
+<span class="nc" id="L563">            this.withDeploymentRollback(instance.getDeploymentRollback()); </span>
+<span class="nc" id="L564">            this.withEndpoints(instance.getEndpoints()); </span>
+<span class="nc" id="L565">            this.withEndpointsList(instance.getEndpointsList()); </span>
+<span class="nc" id="L566">            this.withEnvVar(instance.getEnvVar()); </span>
+<span class="nc" id="L567">            this.withEvent(instance.getEvent()); </span>
+<span class="nc" id="L568">            this.withEventList(instance.getEventList()); </span>
+<span class="nc" id="L569">            this.withEventSeries(instance.getEventSeries()); </span>
+<span class="nc" id="L570">            this.withEventSeriesState(instance.getEventSeriesState()); </span>
+<span class="nc" id="L571">            this.withGroup(instance.getGroup()); </span>
+<span class="nc" id="L572">            this.withGroupList(instance.getGroupList()); </span>
+<span class="nc" id="L573">            this.withHorizontalPodAutoscaler(instance.getHorizontalPodAutoscaler()); </span>
+<span class="nc" id="L574">            this.withHorizontalPodAutoscalerList(instance.getHorizontalPodAutoscalerList()); </span>
+<span class="nc" id="L575">            this.withIdentity(instance.getIdentity()); </span>
+<span class="nc" id="L576">            this.withIdentityList(instance.getIdentityList()); </span>
+<span class="nc" id="L577">            this.withImageList(instance.getImageList()); </span>
+<span class="nc" id="L578">            this.withImageStreamImport(instance.getImageStreamImport()); </span>
+<span class="nc" id="L579">            this.withImageStreamList(instance.getImageStreamList()); </span>
+<span class="nc" id="L580">            this.withImageStreamTagList(instance.getImageStreamTagList()); </span>
+<span class="nc" id="L581">            this.withInfo(instance.getInfo()); </span>
+<span class="nc" id="L582">            this.withIngress(instance.getIngress()); </span>
+<span class="nc" id="L583">            this.withIngressList(instance.getIngressList()); </span>
+<span class="nc" id="L584">            this.withInitializer(instance.getInitializer()); </span>
+<span class="nc" id="L585">            this.withInitializers(instance.getInitializers()); </span>
+<span class="nc" id="L586">            this.withJSONSchemaPropsorStringArray(instance.getJSONSchemaPropsorStringArray()); </span>
+<span class="nc" id="L587">            this.withJob(instance.getJob()); </span>
+<span class="nc" id="L588">            this.withJobList(instance.getJobList()); </span>
+<span class="nc" id="L589">            this.withK8sLocalSubjectAccessReview(instance.getK8sLocalSubjectAccessReview()); </span>
+<span class="nc" id="L590">            this.withK8sSubjectAccessReview(instance.getK8sSubjectAccessReview()); </span>
+<span class="nc" id="L591">            this.withLimitRangeList(instance.getLimitRangeList()); </span>
+<span class="nc" id="L592">            this.withLocalSubjectAccessReview(instance.getLocalSubjectAccessReview()); </span>
+<span class="nc" id="L593">            this.withMutatingWebhookConfiguration(instance.getMutatingWebhookConfiguration()); </span>
+<span class="nc" id="L594">            this.withMutatingWebhookConfigurationList(instance.getMutatingWebhookConfigurationList()); </span>
+<span class="nc" id="L595">            this.withNamespace(instance.getNamespace()); </span>
+<span class="nc" id="L596">            this.withNamespaceList(instance.getNamespaceList()); </span>
+<span class="nc" id="L597">            this.withNetNameSpace(instance.getNetNameSpace()); </span>
+<span class="nc" id="L598">            this.withNetNameSpaceList(instance.getNetNameSpaceList()); </span>
+<span class="nc" id="L599">            this.withNetworkPolicy(instance.getNetworkPolicy()); </span>
+<span class="nc" id="L600">            this.withNetworkPolicyList(instance.getNetworkPolicyList()); </span>
+<span class="nc" id="L601">            this.withNode(instance.getNode()); </span>
+<span class="nc" id="L602">            this.withNodeList(instance.getNodeList()); </span>
+<span class="nc" id="L603">            this.withOAuthAccessToken(instance.getOAuthAccessToken()); </span>
+<span class="nc" id="L604">            this.withOAuthAccessTokenList(instance.getOAuthAccessTokenList()); </span>
+<span class="nc" id="L605">            this.withOAuthAuthorizeToken(instance.getOAuthAuthorizeToken()); </span>
+<span class="nc" id="L606">            this.withOAuthAuthorizeTokenList(instance.getOAuthAuthorizeTokenList()); </span>
+<span class="nc" id="L607">            this.withOAuthClient(instance.getOAuthClient()); </span>
+<span class="nc" id="L608">            this.withOAuthClientAuthorization(instance.getOAuthClientAuthorization()); </span>
+<span class="nc" id="L609">            this.withOAuthClientAuthorizationList(instance.getOAuthClientAuthorizationList()); </span>
+<span class="nc" id="L610">            this.withOAuthClientList(instance.getOAuthClientList()); </span>
+<span class="nc" id="L611">            this.withObjectMeta(instance.getObjectMeta()); </span>
+<span class="nc" id="L612">            this.withOpenshiftClusterRole(instance.getOpenshiftClusterRole()); </span>
+<span class="nc" id="L613">            this.withOpenshiftClusterRoleBinding(instance.getOpenshiftClusterRoleBinding()); </span>
+<span class="nc" id="L614">            this.withOpenshiftClusterRoleBindingList(instance.getOpenshiftClusterRoleBindingList()); </span>
+<span class="nc" id="L615">            this.withOpenshiftRole(instance.getOpenshiftRole()); </span>
+<span class="nc" id="L616">            this.withOpenshiftRoleBinding(instance.getOpenshiftRoleBinding()); </span>
+<span class="nc" id="L617">            this.withOpenshiftRoleBindingList(instance.getOpenshiftRoleBindingList()); </span>
+<span class="nc" id="L618">            this.withOpenshiftRoleBindingRestriction(instance.getOpenshiftRoleBindingRestriction()); </span>
+<span class="nc" id="L619">            this.withOpenshiftRoleList(instance.getOpenshiftRoleList()); </span>
+<span class="nc" id="L620">            this.withOperation(instance.getOperation()); </span>
+<span class="nc" id="L621">            this.withPatch(instance.getPatch()); </span>
+<span class="nc" id="L622">            this.withPatchType(instance.getPatchType()); </span>
+<span class="nc" id="L623">            this.withPersistentVolume(instance.getPersistentVolume()); </span>
+<span class="nc" id="L624">            this.withPersistentVolumeClaim(instance.getPersistentVolumeClaim()); </span>
+<span class="nc" id="L625">            this.withPersistentVolumeClaimList(instance.getPersistentVolumeClaimList()); </span>
+<span class="nc" id="L626">            this.withPersistentVolumeList(instance.getPersistentVolumeList()); </span>
+<span class="nc" id="L627">            this.withPodDisruptionBudget(instance.getPodDisruptionBudget()); </span>
+<span class="nc" id="L628">            this.withPodDisruptionBudgetList(instance.getPodDisruptionBudgetList()); </span>
+<span class="nc" id="L629">            this.withPodList(instance.getPodList()); </span>
+<span class="nc" id="L630">            this.withPodPreset(instance.getPodPreset()); </span>
+<span class="nc" id="L631">            this.withPodPresetList(instance.getPodPresetList()); </span>
+<span class="nc" id="L632">            this.withPodPresetSpec(instance.getPodPresetSpec()); </span>
+<span class="nc" id="L633">            this.withPodSecurityPolicy(instance.getPodSecurityPolicy()); </span>
+<span class="nc" id="L634">            this.withPodSecurityPolicyList(instance.getPodSecurityPolicyList()); </span>
+<span class="nc" id="L635">            this.withPodTemplateList(instance.getPodTemplateList()); </span>
+<span class="nc" id="L636">            this.withPriorityClass(instance.getPriorityClass()); </span>
+<span class="nc" id="L637">            this.withPriorityClassList(instance.getPriorityClassList()); </span>
+<span class="nc" id="L638">            this.withProject(instance.getProject()); </span>
+<span class="nc" id="L639">            this.withProjectList(instance.getProjectList()); </span>
+<span class="nc" id="L640">            this.withProjectRequest(instance.getProjectRequest()); </span>
+<span class="nc" id="L641">            this.withQuantity(instance.getQuantity()); </span>
+<span class="nc" id="L642">            this.withReplicaSet(instance.getReplicaSet()); </span>
+<span class="nc" id="L643">            this.withReplicaSetList(instance.getReplicaSetList()); </span>
+<span class="nc" id="L644">            this.withReplicationControllerList(instance.getReplicationControllerList()); </span>
+<span class="nc" id="L645">            this.withResourceQuota(instance.getResourceQuota()); </span>
+<span class="nc" id="L646">            this.withResourceQuotaList(instance.getResourceQuotaList()); </span>
+<span class="nc" id="L647">            this.withRole(instance.getRole()); </span>
+<span class="nc" id="L648">            this.withRoleBinding(instance.getRoleBinding()); </span>
+<span class="nc" id="L649">            this.withRoleBindingList(instance.getRoleBindingList()); </span>
+<span class="nc" id="L650">            this.withRoleList(instance.getRoleList()); </span>
+<span class="nc" id="L651">            this.withRootPaths(instance.getRootPaths()); </span>
+<span class="nc" id="L652">            this.withRoute(instance.getRoute()); </span>
+<span class="nc" id="L653">            this.withRouteList(instance.getRouteList()); </span>
+<span class="nc" id="L654">            this.withRule(instance.getRule()); </span>
+<span class="nc" id="L655">            this.withRuleWithOperations(instance.getRuleWithOperations()); </span>
+<span class="nc" id="L656">            this.withScale(instance.getScale()); </span>
+<span class="nc" id="L657">            this.withSecret(instance.getSecret()); </span>
+<span class="nc" id="L658">            this.withSecretList(instance.getSecretList()); </span>
+<span class="nc" id="L659">            this.withSecurityContextConstraints(instance.getSecurityContextConstraints()); </span>
+<span class="nc" id="L660">            this.withSecurityContextConstraintsList(instance.getSecurityContextConstraintsList()); </span>
+<span class="nc" id="L661">            this.withServiceAccount(instance.getServiceAccount()); </span>
+<span class="nc" id="L662">            this.withServiceAccountList(instance.getServiceAccountList()); </span>
+<span class="nc" id="L663">            this.withServiceList(instance.getServiceList()); </span>
+<span class="nc" id="L664">            this.withStatefulSet(instance.getStatefulSet()); </span>
+<span class="nc" id="L665">            this.withStatefulSetList(instance.getStatefulSetList()); </span>
+<span class="nc" id="L666">            this.withStatus(instance.getStatus()); </span>
+<span class="nc" id="L667">            this.withStorageClass(instance.getStorageClass()); </span>
+<span class="nc" id="L668">            this.withStorageClassList(instance.getStorageClassList()); </span>
+<span class="nc" id="L669">            this.withSubjectAccessReview(instance.getSubjectAccessReview()); </span>
+<span class="nc" id="L670">            this.withSubjectAccessReviewResponse(instance.getSubjectAccessReviewResponse()); </span>
+<span class="nc" id="L671">            this.withTagEvent(instance.getTagEvent()); </span>
+<span class="nc" id="L672">            this.withTemplate(instance.getTemplate()); </span>
+<span class="nc" id="L673">            this.withTemplateList(instance.getTemplateList()); </span>
+<span class="nc" id="L674">            this.withTokenReview(instance.getTokenReview()); </span>
+<span class="nc" id="L675">            this.withToleration(instance.getToleration()); </span>
+<span class="nc" id="L676">            this.withTypeMeta(instance.getTypeMeta()); </span>
+<span class="nc" id="L677">            this.withUser(instance.getUser()); </span>
+<span class="nc" id="L678">            this.withUserList(instance.getUserList()); </span>
+<span class="nc" id="L679">            this.withValidatingWebhookConfiguration(instance.getValidatingWebhookConfiguration()); </span>
+<span class="nc" id="L680">            this.withValidatingWebhookConfigurationList(instance.getValidatingWebhookConfigurationList()); </span>
+<span class="nc" id="L681">            this.withWatchEvent(instance.getWatchEvent()); </span>
+<span class="nc" id="L682">            this.validator = validator; </span>
+<span class="nc bnc" id="L683" title="All 2 branches missed.">            this.validationEnabled = validator != null; </span>
+<span class="nc" id="L684">    }</span>
+
+    public KubeSchema build(){
+<span class="nc" id="L687">            KubeSchema buildable = new KubeSchema(fluent.getAdmissionRequest(),fluent.getAdmissionResponse(),fluent.getAdmissionReview(),fluent.getAdmissionWebhook(),fluent.getAggregationRule(),fluent.getBaseKubernetesList(),fluent.getBinding(),fluent.getBuildConfigList(),fluent.getBuildList(),fluent.getBuildRequest(),fluent.getCertificateSigningRequest(),fluent.getCertificateSigningRequestCondition(),fluent.getCertificateSigningRequestList(),fluent.getCertificateSigningRequestSpec(),fluent.getCertificateSigningRequestStatus(),fluent.getClusterRole(),fluent.getClusterRoleBinding(),fluent.getClusterRoleBindingList(),fluent.getClusterRoleList(),fluent.getComponentStatusList(),fluent.getConfig(),fluent.getConfigMap(),fluent.getConfigMapList(),fluent.getContainerStatus(),fluent.getCronJob(),fluent.getCronJobList(),fluent.getCustomResourceDefinition(),fluent.getCustomResourceDefinitionCondition(),fluent.getCustomResourceDefinitionList(),fluent.getCustomResourceDefinitionNames(),fluent.getCustomResourceDefinitionSpec(),fluent.getCustomResourceDefinitionStatus(),fluent.getDaemonSet(),fluent.getDaemonSetList(),fluent.getDeleteOptions(),fluent.getDeployment(),fluent.getDeploymentConfig(),fluent.getDeploymentConfigList(),fluent.getDeploymentList(),fluent.getDeploymentRollback(),fluent.getEndpoints(),fluent.getEndpointsList(),fluent.getEnvVar(),fluent.getEvent(),fluent.getEventList(),fluent.getEventSeries(),fluent.getEventSeriesState(),fluent.getGroup(),fluent.getGroupList(),fluent.getHorizontalPodAutoscaler(),fluent.getHorizontalPodAutoscalerList(),fluent.getIdentity(),fluent.getIdentityList(),fluent.getImageList(),fluent.getImageStreamImport(),fluent.getImageStreamList(),fluent.getImageStreamTagList(),fluent.getInfo(),fluent.getIngress(),fluent.getIngressList(),fluent.getInitializer(),fluent.getInitializers(),fluent.getJSONSchemaPropsorStringArray(),fluent.getJob(),fluent.getJobList(),fluent.getK8sLocalSubjectAccessReview(),fluent.getK8sSubjectAccessReview(),fluent.getLimitRangeList(),fluent.getLocalSubjectAccessReview(),fluent.getMutatingWebhookConfiguration(),fluent.getMutatingWebhookConfigurationList(),fluent.getNamespace(),fluent.getNamespaceList(),fluent.getNetNameSpace(),fluent.getNetNameSpaceList(),fluent.getNetworkPolicy(),fluent.getNetworkPolicyList(),fluent.getNode(),fluent.getNodeList(),fluent.getOAuthAccessToken(),fluent.getOAuthAccessTokenList(),fluent.getOAuthAuthorizeToken(),fluent.getOAuthAuthorizeTokenList(),fluent.getOAuthClient(),fluent.getOAuthClientAuthorization(),fluent.getOAuthClientAuthorizationList(),fluent.getOAuthClientList(),fluent.getObjectMeta(),fluent.getOpenshiftClusterRole(),fluent.getOpenshiftClusterRoleBinding(),fluent.getOpenshiftClusterRoleBindingList(),fluent.getOpenshiftRole(),fluent.getOpenshiftRoleBinding(),fluent.getOpenshiftRoleBindingList(),fluent.getOpenshiftRoleBindingRestriction(),fluent.getOpenshiftRoleList(),fluent.getOperation(),fluent.getPatch(),fluent.getPatchType(),fluent.getPersistentVolume(),fluent.getPersistentVolumeClaim(),fluent.getPersistentVolumeClaimList(),fluent.getPersistentVolumeList(),fluent.getPodDisruptionBudget(),fluent.getPodDisruptionBudgetList(),fluent.getPodList(),fluent.getPodPreset(),fluent.getPodPresetList(),fluent.getPodPresetSpec(),fluent.getPodSecurityPolicy(),fluent.getPodSecurityPolicyList(),fluent.getPodTemplateList(),fluent.getPriorityClass(),fluent.getPriorityClassList(),fluent.getProject(),fluent.getProjectList(),fluent.getProjectRequest(),fluent.getQuantity(),fluent.getReplicaSet(),fluent.getReplicaSetList(),fluent.getReplicationControllerList(),fluent.getResourceQuota(),fluent.getResourceQuotaList(),fluent.getRole(),fluent.getRoleBinding(),fluent.getRoleBindingList(),fluent.getRoleList(),fluent.getRootPaths(),fluent.getRoute(),fluent.getRouteList(),fluent.getRule(),fluent.getRuleWithOperations(),fluent.getScale(),fluent.getSecret(),fluent.getSecretList(),fluent.getSecurityContextConstraints(),fluent.getSecurityContextConstraintsList(),fluent.getServiceAccount(),fluent.getServiceAccountList(),fluent.getServiceList(),fluent.getStatefulSet(),fluent.getStatefulSetList(),fluent.getStatus(),fluent.getStorageClass(),fluent.getStorageClassList(),fluent.getSubjectAccessReview(),fluent.getSubjectAccessReviewResponse(),fluent.getTagEvent(),fluent.getTemplate(),fluent.getTemplateList(),fluent.getTokenReview(),fluent.getToleration(),fluent.getTypeMeta(),fluent.getUser(),fluent.getUserList(),fluent.getValidatingWebhookConfiguration(),fluent.getValidatingWebhookConfigurationList(),fluent.getWatchEvent());</span>
+<span class="nc bnc" id="L688" title="All 2 branches missed.">            if (validationEnabled) {io.fabric8.kubernetes.api.builder.ValidationUtils.validate(buildable, validator);}</span>
+<span class="nc" id="L689">            return buildable;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L693" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L694" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L695" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L696">            KubeSchemaBuilder that = (KubeSchemaBuilder) o;</span>
+<span class="nc bnc" id="L697" title="All 10 branches missed.">            if (fluent != null &amp;&amp;fluent != this ? !fluent.equals(that.fluent) :that.fluent != null &amp;&amp;fluent != this ) return false;</span>
+
+<span class="nc bnc" id="L699" title="All 6 branches missed.">            if (validationEnabled != null ? !validationEnabled.equals(that.validationEnabled) :that.validationEnabled != null) return false;</span>
+<span class="nc" id="L700">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImageImportSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">ImageImportSpecFluentImpl.java</span></div><h1>ImageImportSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import io.fabric8.kubernetes.api.model.LocalObjectReferenceFluentImpl;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectReferenceFluentImpl;
+import io.fabric8.kubernetes.api.model.LocalObjectReferenceBuilder;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.ObjectReferenceBuilder;
+import io.fabric8.kubernetes.api.model.LocalObjectReference;
+import java.lang.Object;
+
+public class ImageImportSpecFluentImpl&lt;A extends ImageImportSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ImageImportSpecFluent&lt;A&gt;{
+
+    private ObjectReferenceBuilder from;
+    private TagImportPolicyBuilder importPolicy;
+    private Boolean includeManifest;
+    private TagReferencePolicyBuilder referencePolicy;
+    private LocalObjectReferenceBuilder to;
+
+<span class="fc" id="L26">    public ImageImportSpecFluentImpl(){</span>
+<span class="fc" id="L27">    }</span>
+<span class="nc" id="L28">    public ImageImportSpecFluentImpl(ImageImportSpec instance){</span>
+<span class="nc" id="L29">            this.withFrom(instance.getFrom()); </span>
+<span class="nc" id="L30">            this.withImportPolicy(instance.getImportPolicy()); </span>
+<span class="nc" id="L31">            this.withIncludeManifest(instance.getIncludeManifest()); </span>
+<span class="nc" id="L32">            this.withReferencePolicy(instance.getReferencePolicy()); </span>
+<span class="nc" id="L33">            this.withTo(instance.getTo()); </span>
+<span class="nc" id="L34">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildFrom instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getFrom(){
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public ObjectReference buildFrom(){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public A withFrom(ObjectReference from){
+<span class="fc" id="L50">            _visitables.remove(this.from);</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">            if (from!=null){ this.from= new ObjectReferenceBuilder(from); _visitables.add(this.from);} return (A) this;</span>
+    }
+
+    public Boolean hasFrom(){
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            return this.from != null;</span>
+    }
+
+    public ImageImportSpecFluent.FromNested&lt;A&gt; withNewFrom(){
+<span class="fc" id="L59">            return new FromNestedImpl();</span>
+    }
+
+    public ImageImportSpecFluent.FromNested&lt;A&gt; withNewFromLike(ObjectReference item){
+<span class="nc" id="L63">            return new FromNestedImpl(item);</span>
+    }
+
+    public ImageImportSpecFluent.FromNested&lt;A&gt; editFrom(){
+<span class="nc" id="L67">            return withNewFromLike(getFrom());</span>
+    }
+
+    public ImageImportSpecFluent.FromNested&lt;A&gt; editOrNewFrom(){
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public ImageImportSpecFluent.FromNested&lt;A&gt; editOrNewFromLike(ObjectReference item){
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildImportPolicy instead.
+ * @return The buildable object.
+ */
+@Deprecated public TagImportPolicy getImportPolicy(){
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">            return this.importPolicy!=null?this.importPolicy.build():null;</span>
+    }
+
+    public TagImportPolicy buildImportPolicy(){
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            return this.importPolicy!=null?this.importPolicy.build():null;</span>
+    }
+
+    public A withImportPolicy(TagImportPolicy importPolicy){
+<span class="fc" id="L92">            _visitables.remove(this.importPolicy);</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">            if (importPolicy!=null){ this.importPolicy= new TagImportPolicyBuilder(importPolicy); _visitables.add(this.importPolicy);} return (A) this;</span>
+    }
+
+    public Boolean hasImportPolicy(){
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            return this.importPolicy != null;</span>
+    }
+
+    public A withNewImportPolicy(Boolean insecure,Boolean scheduled){
+<span class="nc" id="L101">            return (A)withImportPolicy(new TagImportPolicy(insecure, scheduled));</span>
+    }
+
+    public ImageImportSpecFluent.ImportPolicyNested&lt;A&gt; withNewImportPolicy(){
+<span class="fc" id="L105">            return new ImportPolicyNestedImpl();</span>
+    }
+
+    public ImageImportSpecFluent.ImportPolicyNested&lt;A&gt; withNewImportPolicyLike(TagImportPolicy item){
+<span class="nc" id="L109">            return new ImportPolicyNestedImpl(item);</span>
+    }
+
+    public ImageImportSpecFluent.ImportPolicyNested&lt;A&gt; editImportPolicy(){
+<span class="nc" id="L113">            return withNewImportPolicyLike(getImportPolicy());</span>
+    }
+
+    public ImageImportSpecFluent.ImportPolicyNested&lt;A&gt; editOrNewImportPolicy(){
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            return withNewImportPolicyLike(getImportPolicy() != null ? getImportPolicy(): new TagImportPolicyBuilder().build());</span>
+    }
+
+    public ImageImportSpecFluent.ImportPolicyNested&lt;A&gt; editOrNewImportPolicyLike(TagImportPolicy item){
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            return withNewImportPolicyLike(getImportPolicy() != null ? getImportPolicy(): item);</span>
+    }
+
+    public Boolean isIncludeManifest(){
+<span class="fc" id="L125">            return this.includeManifest;</span>
+    }
+
+    public A withIncludeManifest(Boolean includeManifest){
+<span class="fc" id="L129">            this.includeManifest=includeManifest; return (A) this;</span>
+    }
+
+    public Boolean hasIncludeManifest(){
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            return this.includeManifest != null;</span>
+    }
+
+    public A withNewIncludeManifest(String arg1){
+<span class="nc" id="L137">            return (A)withIncludeManifest(new Boolean(arg1));</span>
+    }
+
+    public A withNewIncludeManifest(boolean arg1){
+<span class="nc" id="L141">            return (A)withIncludeManifest(new Boolean(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildReferencePolicy instead.
+ * @return The buildable object.
+ */
+@Deprecated public TagReferencePolicy getReferencePolicy(){
+<span class="pc bpc" id="L150" title="1 of 2 branches missed.">            return this.referencePolicy!=null?this.referencePolicy.build():null;</span>
+    }
+
+    public TagReferencePolicy buildReferencePolicy(){
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            return this.referencePolicy!=null?this.referencePolicy.build():null;</span>
+    }
+
+    public A withReferencePolicy(TagReferencePolicy referencePolicy){
+<span class="fc" id="L158">            _visitables.remove(this.referencePolicy);</span>
+<span class="fc bfc" id="L159" title="All 2 branches covered.">            if (referencePolicy!=null){ this.referencePolicy= new TagReferencePolicyBuilder(referencePolicy); _visitables.add(this.referencePolicy);} return (A) this;</span>
+    }
+
+    public Boolean hasReferencePolicy(){
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            return this.referencePolicy != null;</span>
+    }
+
+    public A withNewReferencePolicy(String type){
+<span class="nc" id="L167">            return (A)withReferencePolicy(new TagReferencePolicy(type));</span>
+    }
+
+    public ImageImportSpecFluent.ReferencePolicyNested&lt;A&gt; withNewReferencePolicy(){
+<span class="fc" id="L171">            return new ReferencePolicyNestedImpl();</span>
+    }
+
+    public ImageImportSpecFluent.ReferencePolicyNested&lt;A&gt; withNewReferencePolicyLike(TagReferencePolicy item){
+<span class="nc" id="L175">            return new ReferencePolicyNestedImpl(item);</span>
+    }
+
+    public ImageImportSpecFluent.ReferencePolicyNested&lt;A&gt; editReferencePolicy(){
+<span class="nc" id="L179">            return withNewReferencePolicyLike(getReferencePolicy());</span>
+    }
+
+    public ImageImportSpecFluent.ReferencePolicyNested&lt;A&gt; editOrNewReferencePolicy(){
+<span class="nc bnc" id="L183" title="All 2 branches missed.">            return withNewReferencePolicyLike(getReferencePolicy() != null ? getReferencePolicy(): new TagReferencePolicyBuilder().build());</span>
+    }
+
+    public ImageImportSpecFluent.ReferencePolicyNested&lt;A&gt; editOrNewReferencePolicyLike(TagReferencePolicy item){
+<span class="nc bnc" id="L187" title="All 2 branches missed.">            return withNewReferencePolicyLike(getReferencePolicy() != null ? getReferencePolicy(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTo instead.
+ * @return The buildable object.
+ */
+@Deprecated public LocalObjectReference getTo(){
+<span class="pc bpc" id="L196" title="1 of 2 branches missed.">            return this.to!=null?this.to.build():null;</span>
+    }
+
+    public LocalObjectReference buildTo(){
+<span class="nc bnc" id="L200" title="All 2 branches missed.">            return this.to!=null?this.to.build():null;</span>
+    }
+
+    public A withTo(LocalObjectReference to){
+<span class="fc" id="L204">            _visitables.remove(this.to);</span>
+<span class="fc bfc" id="L205" title="All 2 branches covered.">            if (to!=null){ this.to= new LocalObjectReferenceBuilder(to); _visitables.add(this.to);} return (A) this;</span>
+    }
+
+    public Boolean hasTo(){
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            return this.to != null;</span>
+    }
+
+    public A withNewTo(String name){
+<span class="nc" id="L213">            return (A)withTo(new LocalObjectReference(name));</span>
+    }
+
+    public ImageImportSpecFluent.ToNested&lt;A&gt; withNewTo(){
+<span class="fc" id="L217">            return new ToNestedImpl();</span>
+    }
+
+    public ImageImportSpecFluent.ToNested&lt;A&gt; withNewToLike(LocalObjectReference item){
+<span class="nc" id="L221">            return new ToNestedImpl(item);</span>
+    }
+
+    public ImageImportSpecFluent.ToNested&lt;A&gt; editTo(){
+<span class="nc" id="L225">            return withNewToLike(getTo());</span>
+    }
+
+    public ImageImportSpecFluent.ToNested&lt;A&gt; editOrNewTo(){
+<span class="nc bnc" id="L229" title="All 2 branches missed.">            return withNewToLike(getTo() != null ? getTo(): new LocalObjectReferenceBuilder().build());</span>
+    }
+
+    public ImageImportSpecFluent.ToNested&lt;A&gt; editOrNewToLike(LocalObjectReference item){
+<span class="nc bnc" id="L233" title="All 2 branches missed.">            return withNewToLike(getTo() != null ? getTo(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L237" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L238" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L240">            ImageImportSpecFluentImpl that = (ImageImportSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L241" title="All 6 branches missed.">            if (from != null ? !from.equals(that.from) :that.from != null) return false;</span>
+<span class="nc bnc" id="L242" title="All 6 branches missed.">            if (importPolicy != null ? !importPolicy.equals(that.importPolicy) :that.importPolicy != null) return false;</span>
+<span class="nc bnc" id="L243" title="All 6 branches missed.">            if (includeManifest != null ? !includeManifest.equals(that.includeManifest) :that.includeManifest != null) return false;</span>
+<span class="nc bnc" id="L244" title="All 6 branches missed.">            if (referencePolicy != null ? !referencePolicy.equals(that.referencePolicy) :that.referencePolicy != null) return false;</span>
+<span class="nc bnc" id="L245" title="All 6 branches missed.">            if (to != null ? !to.equals(that.to) :that.to != null) return false;</span>
+<span class="nc" id="L246">            return true;</span>
+    }
+
+
+    public class FromNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;ImageImportSpecFluent.FromNested&lt;N&gt;&gt; implements ImageImportSpecFluent.FromNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L254">            FromNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L255">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L256">            }</span>
+<span class="fc" id="L257">            FromNestedImpl(){</span>
+<span class="fc" id="L258">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="fc" id="L259">            }</span>
+    
+    public N and(){
+<span class="fc" id="L262">            return (N) ImageImportSpecFluentImpl.this.withFrom(builder.build());</span>
+    }
+    public N endFrom(){
+<span class="fc" id="L265">            return and();</span>
+    }
+
+}
+    public class ImportPolicyNestedImpl&lt;N&gt; extends TagImportPolicyFluentImpl&lt;ImageImportSpecFluent.ImportPolicyNested&lt;N&gt;&gt; implements ImageImportSpecFluent.ImportPolicyNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TagImportPolicyBuilder builder;
+    
+<span class="nc" id="L273">            ImportPolicyNestedImpl(TagImportPolicy item){</span>
+<span class="nc" id="L274">                    this.builder = new TagImportPolicyBuilder(this, item);</span>
+<span class="nc" id="L275">            }</span>
+<span class="fc" id="L276">            ImportPolicyNestedImpl(){</span>
+<span class="fc" id="L277">                    this.builder = new TagImportPolicyBuilder(this);</span>
+<span class="fc" id="L278">            }</span>
+    
+    public N and(){
+<span class="fc" id="L281">            return (N) ImageImportSpecFluentImpl.this.withImportPolicy(builder.build());</span>
+    }
+    public N endImportPolicy(){
+<span class="fc" id="L284">            return and();</span>
+    }
+
+}
+    public class ReferencePolicyNestedImpl&lt;N&gt; extends TagReferencePolicyFluentImpl&lt;ImageImportSpecFluent.ReferencePolicyNested&lt;N&gt;&gt; implements ImageImportSpecFluent.ReferencePolicyNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TagReferencePolicyBuilder builder;
+    
+<span class="nc" id="L292">            ReferencePolicyNestedImpl(TagReferencePolicy item){</span>
+<span class="nc" id="L293">                    this.builder = new TagReferencePolicyBuilder(this, item);</span>
+<span class="nc" id="L294">            }</span>
+<span class="fc" id="L295">            ReferencePolicyNestedImpl(){</span>
+<span class="fc" id="L296">                    this.builder = new TagReferencePolicyBuilder(this);</span>
+<span class="fc" id="L297">            }</span>
+    
+    public N and(){
+<span class="fc" id="L300">            return (N) ImageImportSpecFluentImpl.this.withReferencePolicy(builder.build());</span>
+    }
+    public N endReferencePolicy(){
+<span class="fc" id="L303">            return and();</span>
+    }
+
+}
+    public class ToNestedImpl&lt;N&gt; extends LocalObjectReferenceFluentImpl&lt;ImageImportSpecFluent.ToNested&lt;N&gt;&gt; implements ImageImportSpecFluent.ToNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LocalObjectReferenceBuilder builder;
+    
+<span class="nc" id="L311">            ToNestedImpl(LocalObjectReference item){</span>
+<span class="nc" id="L312">                    this.builder = new LocalObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L313">            }</span>
+<span class="fc" id="L314">            ToNestedImpl(){</span>
+<span class="fc" id="L315">                    this.builder = new LocalObjectReferenceBuilder(this);</span>
+<span class="fc" id="L316">            }</span>
+    
+    public N and(){
+<span class="fc" id="L319">            return (N) ImageImportSpecFluentImpl.this.withTo(builder.build());</span>
+    }
+    public N endTo(){
+<span class="fc" id="L322">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

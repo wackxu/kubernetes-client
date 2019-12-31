@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CronJobSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.batch</a> &gt; <span class="el_source">CronJobSpecFluentImpl.java</span></div><h1>CronJobSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.batch;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Integer;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Long;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class CronJobSpecFluentImpl&lt;A extends CronJobSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements CronJobSpecFluent&lt;A&gt;{
+
+    private String concurrencyPolicy;
+    private Integer failedJobsHistoryLimit;
+    private JobTemplateSpecBuilder jobTemplate;
+    private String schedule;
+    private Long startingDeadlineSeconds;
+    private Integer successfulJobsHistoryLimit;
+    private Boolean suspend;
+
+<span class="nc" id="L24">    public CronJobSpecFluentImpl(){</span>
+<span class="nc" id="L25">    }</span>
+<span class="nc" id="L26">    public CronJobSpecFluentImpl(CronJobSpec instance){</span>
+<span class="nc" id="L27">            this.withConcurrencyPolicy(instance.getConcurrencyPolicy()); </span>
+<span class="nc" id="L28">            this.withFailedJobsHistoryLimit(instance.getFailedJobsHistoryLimit()); </span>
+<span class="nc" id="L29">            this.withJobTemplate(instance.getJobTemplate()); </span>
+<span class="nc" id="L30">            this.withSchedule(instance.getSchedule()); </span>
+<span class="nc" id="L31">            this.withStartingDeadlineSeconds(instance.getStartingDeadlineSeconds()); </span>
+<span class="nc" id="L32">            this.withSuccessfulJobsHistoryLimit(instance.getSuccessfulJobsHistoryLimit()); </span>
+<span class="nc" id="L33">            this.withSuspend(instance.getSuspend()); </span>
+<span class="nc" id="L34">    }</span>
+
+    public String getConcurrencyPolicy(){
+<span class="nc" id="L37">            return this.concurrencyPolicy;</span>
+    }
+
+    public A withConcurrencyPolicy(String concurrencyPolicy){
+<span class="nc" id="L41">            this.concurrencyPolicy=concurrencyPolicy; return (A) this;</span>
+    }
+
+    public Boolean hasConcurrencyPolicy(){
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            return this.concurrencyPolicy != null;</span>
+    }
+
+    public Integer getFailedJobsHistoryLimit(){
+<span class="nc" id="L49">            return this.failedJobsHistoryLimit;</span>
+    }
+
+    public A withFailedJobsHistoryLimit(Integer failedJobsHistoryLimit){
+<span class="nc" id="L53">            this.failedJobsHistoryLimit=failedJobsHistoryLimit; return (A) this;</span>
+    }
+
+    public Boolean hasFailedJobsHistoryLimit(){
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            return this.failedJobsHistoryLimit != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildJobTemplate instead.
+ * @return The buildable object.
+ */
+@Deprecated public JobTemplateSpec getJobTemplate(){
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            return this.jobTemplate!=null?this.jobTemplate.build():null;</span>
+    }
+
+    public JobTemplateSpec buildJobTemplate(){
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            return this.jobTemplate!=null?this.jobTemplate.build():null;</span>
+    }
+
+    public A withJobTemplate(JobTemplateSpec jobTemplate){
+<span class="nc" id="L74">            _visitables.remove(this.jobTemplate);</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            if (jobTemplate!=null){ this.jobTemplate= new JobTemplateSpecBuilder(jobTemplate); _visitables.add(this.jobTemplate);} return (A) this;</span>
+    }
+
+    public Boolean hasJobTemplate(){
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            return this.jobTemplate != null;</span>
+    }
+
+    public CronJobSpecFluent.JobTemplateNested&lt;A&gt; withNewJobTemplate(){
+<span class="nc" id="L83">            return new JobTemplateNestedImpl();</span>
+    }
+
+    public CronJobSpecFluent.JobTemplateNested&lt;A&gt; withNewJobTemplateLike(JobTemplateSpec item){
+<span class="nc" id="L87">            return new JobTemplateNestedImpl(item);</span>
+    }
+
+    public CronJobSpecFluent.JobTemplateNested&lt;A&gt; editJobTemplate(){
+<span class="nc" id="L91">            return withNewJobTemplateLike(getJobTemplate());</span>
+    }
+
+    public CronJobSpecFluent.JobTemplateNested&lt;A&gt; editOrNewJobTemplate(){
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            return withNewJobTemplateLike(getJobTemplate() != null ? getJobTemplate(): new JobTemplateSpecBuilder().build());</span>
+    }
+
+    public CronJobSpecFluent.JobTemplateNested&lt;A&gt; editOrNewJobTemplateLike(JobTemplateSpec item){
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            return withNewJobTemplateLike(getJobTemplate() != null ? getJobTemplate(): item);</span>
+    }
+
+    public String getSchedule(){
+<span class="nc" id="L103">            return this.schedule;</span>
+    }
+
+    public A withSchedule(String schedule){
+<span class="nc" id="L107">            this.schedule=schedule; return (A) this;</span>
+    }
+
+    public Boolean hasSchedule(){
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            return this.schedule != null;</span>
+    }
+
+    public Long getStartingDeadlineSeconds(){
+<span class="nc" id="L115">            return this.startingDeadlineSeconds;</span>
+    }
+
+    public A withStartingDeadlineSeconds(Long startingDeadlineSeconds){
+<span class="nc" id="L119">            this.startingDeadlineSeconds=startingDeadlineSeconds; return (A) this;</span>
+    }
+
+    public Boolean hasStartingDeadlineSeconds(){
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            return this.startingDeadlineSeconds != null;</span>
+    }
+
+    public A withNewStartingDeadlineSeconds(String arg1){
+<span class="nc" id="L127">            return (A)withStartingDeadlineSeconds(new Long(arg1));</span>
+    }
+
+    public A withNewStartingDeadlineSeconds(long arg1){
+<span class="nc" id="L131">            return (A)withStartingDeadlineSeconds(new Long(arg1));</span>
+    }
+
+    public Integer getSuccessfulJobsHistoryLimit(){
+<span class="nc" id="L135">            return this.successfulJobsHistoryLimit;</span>
+    }
+
+    public A withSuccessfulJobsHistoryLimit(Integer successfulJobsHistoryLimit){
+<span class="nc" id="L139">            this.successfulJobsHistoryLimit=successfulJobsHistoryLimit; return (A) this;</span>
+    }
+
+    public Boolean hasSuccessfulJobsHistoryLimit(){
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            return this.successfulJobsHistoryLimit != null;</span>
+    }
+
+    public Boolean isSuspend(){
+<span class="nc" id="L147">            return this.suspend;</span>
+    }
+
+    public A withSuspend(Boolean suspend){
+<span class="nc" id="L151">            this.suspend=suspend; return (A) this;</span>
+    }
+
+    public Boolean hasSuspend(){
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            return this.suspend != null;</span>
+    }
+
+    public A withNewSuspend(String arg1){
+<span class="nc" id="L159">            return (A)withSuspend(new Boolean(arg1));</span>
+    }
+
+    public A withNewSuspend(boolean arg1){
+<span class="nc" id="L163">            return (A)withSuspend(new Boolean(arg1));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L168" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L170">            CronJobSpecFluentImpl that = (CronJobSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L171" title="All 6 branches missed.">            if (concurrencyPolicy != null ? !concurrencyPolicy.equals(that.concurrencyPolicy) :that.concurrencyPolicy != null) return false;</span>
+<span class="nc bnc" id="L172" title="All 6 branches missed.">            if (failedJobsHistoryLimit != null ? !failedJobsHistoryLimit.equals(that.failedJobsHistoryLimit) :that.failedJobsHistoryLimit != null) return false;</span>
+<span class="nc bnc" id="L173" title="All 6 branches missed.">            if (jobTemplate != null ? !jobTemplate.equals(that.jobTemplate) :that.jobTemplate != null) return false;</span>
+<span class="nc bnc" id="L174" title="All 6 branches missed.">            if (schedule != null ? !schedule.equals(that.schedule) :that.schedule != null) return false;</span>
+<span class="nc bnc" id="L175" title="All 6 branches missed.">            if (startingDeadlineSeconds != null ? !startingDeadlineSeconds.equals(that.startingDeadlineSeconds) :that.startingDeadlineSeconds != null) return false;</span>
+<span class="nc bnc" id="L176" title="All 6 branches missed.">            if (successfulJobsHistoryLimit != null ? !successfulJobsHistoryLimit.equals(that.successfulJobsHistoryLimit) :that.successfulJobsHistoryLimit != null) return false;</span>
+<span class="nc bnc" id="L177" title="All 6 branches missed.">            if (suspend != null ? !suspend.equals(that.suspend) :that.suspend != null) return false;</span>
+<span class="nc" id="L178">            return true;</span>
+    }
+
+
+    public class JobTemplateNestedImpl&lt;N&gt; extends JobTemplateSpecFluentImpl&lt;CronJobSpecFluent.JobTemplateNested&lt;N&gt;&gt; implements CronJobSpecFluent.JobTemplateNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JobTemplateSpecBuilder builder;
+    
+<span class="nc" id="L186">            JobTemplateNestedImpl(JobTemplateSpec item){</span>
+<span class="nc" id="L187">                    this.builder = new JobTemplateSpecBuilder(this, item);</span>
+<span class="nc" id="L188">            }</span>
+<span class="nc" id="L189">            JobTemplateNestedImpl(){</span>
+<span class="nc" id="L190">                    this.builder = new JobTemplateSpecBuilder(this);</span>
+<span class="nc" id="L191">            }</span>
+    
+    public N and(){
+<span class="nc" id="L194">            return (N) CronJobSpecFluentImpl.this.withJobTemplate(builder.build());</span>
+    }
+    public N endJobTemplate(){
+<span class="nc" id="L197">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

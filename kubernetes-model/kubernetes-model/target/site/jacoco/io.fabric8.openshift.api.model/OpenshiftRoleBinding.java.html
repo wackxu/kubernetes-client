@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OpenshiftRoleBinding.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">OpenshiftRoleBinding.java</span></div><h1>OpenshiftRoleBinding.java</h1><pre class="source lang-java linenums">
+package io.fabric8.openshift.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import io.fabric8.kubernetes.model.annotation.ApiGroup;
+import io.fabric8.kubernetes.model.annotation.ApiVersion;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import io.sundr.transform.annotations.VelocityTransformation;
+import io.sundr.transform.annotations.VelocityTransformations;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;groupNames&quot;,
+    &quot;roleRef&quot;,
+    &quot;subjects&quot;,
+    &quot;userNames&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L49">@ToString</span>
+<span class="nc bnc" id="L50" title="All 70 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+@ApiVersion(&quot;v1&quot;)
+@ApiGroup(&quot;authorization.openshift.io&quot;)
+@VelocityTransformations({
+    @VelocityTransformation(value = &quot;/manifest.vm&quot;, outputPath = &quot;openshift.properties&quot;, gather = true)
+})
+public class OpenshiftRoleBinding implements HasMetadata
+{
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L65">    @NotNull</span>
+    @JsonProperty(&quot;apiVersion&quot;)
+    private String apiVersion = &quot;authorization.openshift.io/v1&quot;;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L72">    @JsonProperty(&quot;groupNames&quot;)</span>
+    @Valid
+    private List&lt;String&gt; groupNames = new ArrayList&lt;String&gt;();
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L80">    @NotNull</span>
+    @JsonProperty(&quot;kind&quot;)
+    private String kind = &quot;RoleBinding&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    @Valid
+    @CheckObjectMeta(regexp = &quot;^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$&quot;, max = 253)
+    private ObjectMeta metadata;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;roleRef&quot;)
+    @Valid
+    private ObjectReference roleRef;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L102">    @JsonProperty(&quot;subjects&quot;)</span>
+    @Valid
+    private List&lt;ObjectReference&gt; subjects = new ArrayList&lt;ObjectReference&gt;();
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L109">    @JsonProperty(&quot;userNames&quot;)</span>
+    @Valid
+    private List&lt;String&gt; userNames = new ArrayList&lt;String&gt;();
+<span class="nc" id="L112">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L119">    public OpenshiftRoleBinding() {</span>
+<span class="nc" id="L120">    }</span>
+
+    /**
+     * 
+     * @param groupNames
+     * @param metadata
+     * @param apiVersion
+     * @param kind
+     * @param subjects
+     * @param userNames
+     * @param roleRef
+     */
+<span class="nc" id="L132">    public OpenshiftRoleBinding(String apiVersion, List&lt;String&gt; groupNames, String kind, ObjectMeta metadata, ObjectReference roleRef, List&lt;ObjectReference&gt; subjects, List&lt;String&gt; userNames) {</span>
+<span class="nc" id="L133">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L134">        this.groupNames = groupNames;</span>
+<span class="nc" id="L135">        this.kind = kind;</span>
+<span class="nc" id="L136">        this.metadata = metadata;</span>
+<span class="nc" id="L137">        this.roleRef = roleRef;</span>
+<span class="nc" id="L138">        this.subjects = subjects;</span>
+<span class="nc" id="L139">        this.userNames = userNames;</span>
+<span class="nc" id="L140">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public String getApiVersion() {
+<span class="nc" id="L151">        return apiVersion;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param apiVersion
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public void setApiVersion(String apiVersion) {
+<span class="nc" id="L163">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L164">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The groupNames
+     */
+    @JsonProperty(&quot;groupNames&quot;)
+    public List&lt;String&gt; getGroupNames() {
+<span class="nc" id="L174">        return groupNames;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param groupNames
+     *     The groupNames
+     */
+    @JsonProperty(&quot;groupNames&quot;)
+    public void setGroupNames(List&lt;String&gt; groupNames) {
+<span class="nc" id="L185">        this.groupNames = groupNames;</span>
+<span class="nc" id="L186">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public String getKind() {
+<span class="nc" id="L197">        return kind;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param kind
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public void setKind(String kind) {
+<span class="nc" id="L209">        this.kind = kind;</span>
+<span class="nc" id="L210">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public ObjectMeta getMetadata() {
+<span class="nc" id="L220">        return metadata;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param metadata
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public void setMetadata(ObjectMeta metadata) {
+<span class="nc" id="L231">        this.metadata = metadata;</span>
+<span class="nc" id="L232">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The roleRef
+     */
+    @JsonProperty(&quot;roleRef&quot;)
+    public ObjectReference getRoleRef() {
+<span class="nc" id="L242">        return roleRef;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param roleRef
+     *     The roleRef
+     */
+    @JsonProperty(&quot;roleRef&quot;)
+    public void setRoleRef(ObjectReference roleRef) {
+<span class="nc" id="L253">        this.roleRef = roleRef;</span>
+<span class="nc" id="L254">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The subjects
+     */
+    @JsonProperty(&quot;subjects&quot;)
+    public List&lt;ObjectReference&gt; getSubjects() {
+<span class="nc" id="L264">        return subjects;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param subjects
+     *     The subjects
+     */
+    @JsonProperty(&quot;subjects&quot;)
+    public void setSubjects(List&lt;ObjectReference&gt; subjects) {
+<span class="nc" id="L275">        this.subjects = subjects;</span>
+<span class="nc" id="L276">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The userNames
+     */
+    @JsonProperty(&quot;userNames&quot;)
+    public List&lt;String&gt; getUserNames() {
+<span class="nc" id="L286">        return userNames;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param userNames
+     *     The userNames
+     */
+    @JsonProperty(&quot;userNames&quot;)
+    public void setUserNames(List&lt;String&gt; userNames) {
+<span class="nc" id="L297">        this.userNames = userNames;</span>
+<span class="nc" id="L298">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L302">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L307">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L308">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

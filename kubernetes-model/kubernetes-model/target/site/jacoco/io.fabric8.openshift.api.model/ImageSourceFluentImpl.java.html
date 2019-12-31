@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImageSourceFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">ImageSourceFluentImpl.java</span></div><h1>ImageSourceFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import io.fabric8.kubernetes.api.model.LocalObjectReferenceFluentImpl;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectReferenceFluentImpl;
+import io.fabric8.kubernetes.api.model.LocalObjectReferenceBuilder;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.ObjectReferenceBuilder;
+import io.fabric8.kubernetes.api.model.LocalObjectReference;
+import java.util.Collection;
+import java.lang.Object;
+
+public class ImageSourceFluentImpl&lt;A extends ImageSourceFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ImageSourceFluent&lt;A&gt;{
+
+    private List&lt;String&gt; as;
+    private ObjectReferenceBuilder from;
+    private List&lt;ImageSourcePathBuilder&gt; paths;
+    private LocalObjectReferenceBuilder pullSecret;
+
+<span class="fc" id="L29">    public ImageSourceFluentImpl(){</span>
+<span class="fc" id="L30">    }</span>
+<span class="nc" id="L31">    public ImageSourceFluentImpl(ImageSource instance){</span>
+<span class="nc" id="L32">            this.withAs(instance.getAs()); </span>
+<span class="nc" id="L33">            this.withFrom(instance.getFrom()); </span>
+<span class="nc" id="L34">            this.withPaths(instance.getPaths()); </span>
+<span class="nc" id="L35">            this.withPullSecret(instance.getPullSecret()); </span>
+<span class="nc" id="L36">    }</span>
+
+    public A addToAs(int index,String item){
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            if (this.as == null) {this.as = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L40">            this.as.add(index, item);</span>
+<span class="nc" id="L41">            return (A)this;</span>
+    }
+
+    public A setToAs(int index,String item){
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            if (this.as == null) {this.as = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L46">            this.as.set(index, item); return (A)this;</span>
+    }
+
+    public A addToAs(String... items){
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            if (this.as == null) {this.as = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            for (String item : items) {this.as.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToAs(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            if (this.as == null) {this.as = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            for (String item : items) {this.as.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromAs(String... items){
+<span class="nc bnc" id="L60" title="All 4 branches missed.">            for (String item : items) {if (this.as!= null){ this.as.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAs(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L64" title="All 4 branches missed.">            for (String item : items) {if (this.as!= null){ this.as.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getAs(){
+<span class="fc" id="L68">            return this.as;</span>
+    }
+
+    public String getA(int index){
+<span class="nc" id="L72">            return this.as.get(index);</span>
+    }
+
+    public String getFirstA(){
+<span class="nc" id="L76">            return this.as.get(0);</span>
+    }
+
+    public String getLastA(){
+<span class="nc" id="L80">            return this.as.get(as.size() - 1);</span>
+    }
+
+    public String getMatchingA(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L84" title="All 4 branches missed.">            for (String item: as) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withAs(List&lt;String&gt; as){
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">            if (this.as != null) { _visitables.removeAll(this.as);}</span>
+<span class="pc bpc" id="L89" title="2 of 4 branches missed.">            if (as != null) {this.as = new ArrayList&lt;String&gt;(); for (String item : as){this.addToAs(item);}} else { this.as = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withAs(String... as){
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            if (this.as != null) {this.as.clear();}</span>
+<span class="nc bnc" id="L94" title="All 4 branches missed.">            if (as != null) {for (String item :as){ this.addToAs(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAs(){
+<span class="nc bnc" id="L98" title="All 4 branches missed.">            return as != null &amp;&amp; !as.isEmpty();</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildFrom instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getFrom(){
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public ObjectReference buildFrom(){
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public A withFrom(ObjectReference from){
+<span class="fc" id="L115">            _visitables.remove(this.from);</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">            if (from!=null){ this.from= new ObjectReferenceBuilder(from); _visitables.add(this.from);} return (A) this;</span>
+    }
+
+    public Boolean hasFrom(){
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            return this.from != null;</span>
+    }
+
+    public ImageSourceFluent.FromNested&lt;A&gt; withNewFrom(){
+<span class="nc" id="L124">            return new FromNestedImpl();</span>
+    }
+
+    public ImageSourceFluent.FromNested&lt;A&gt; withNewFromLike(ObjectReference item){
+<span class="nc" id="L128">            return new FromNestedImpl(item);</span>
+    }
+
+    public ImageSourceFluent.FromNested&lt;A&gt; editFrom(){
+<span class="nc" id="L132">            return withNewFromLike(getFrom());</span>
+    }
+
+    public ImageSourceFluent.FromNested&lt;A&gt; editOrNewFrom(){
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public ImageSourceFluent.FromNested&lt;A&gt; editOrNewFromLike(ObjectReference item){
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): item);</span>
+    }
+
+    public A addToPaths(int index,ImageSourcePath item){
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            if (this.paths == null) {this.paths = new ArrayList&lt;ImageSourcePathBuilder&gt;();}</span>
+<span class="nc bnc" id="L145" title="All 4 branches missed.">            ImageSourcePathBuilder builder = new ImageSourcePathBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.paths.add(index &gt;= 0 ? index : paths.size(), builder); return (A)this;</span>
+    }
+
+    public A setToPaths(int index,ImageSourcePath item){
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (this.paths == null) {this.paths = new ArrayList&lt;ImageSourcePathBuilder&gt;();}</span>
+<span class="nc" id="L150">            ImageSourcePathBuilder builder = new ImageSourcePathBuilder(item);</span>
+<span class="nc bnc" id="L151" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L152" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= paths.size()) { paths.add(builder); } else { paths.set(index, builder);}</span>
+<span class="nc" id="L153">             return (A)this;</span>
+    }
+
+    public A addToPaths(ImageSourcePath... items){
+<span class="pc bpc" id="L157" title="1 of 2 branches missed.">            if (this.paths == null) {this.paths = new ArrayList&lt;ImageSourcePathBuilder&gt;();}</span>
+<span class="fc bfc" id="L158" title="All 2 branches covered.">            for (ImageSourcePath item : items) {ImageSourcePathBuilder builder = new ImageSourcePathBuilder(item);_visitables.add(builder);this.paths.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToPaths(Collection&lt;ImageSourcePath&gt; items){
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (this.paths == null) {this.paths = new ArrayList&lt;ImageSourcePathBuilder&gt;();}</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            for (ImageSourcePath item : items) {ImageSourcePathBuilder builder = new ImageSourcePathBuilder(item);_visitables.add(builder);this.paths.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromPaths(ImageSourcePath... items){
+<span class="nc bnc" id="L167" title="All 4 branches missed.">            for (ImageSourcePath item : items) {ImageSourcePathBuilder builder = new ImageSourcePathBuilder(item);_visitables.remove(builder);if (this.paths != null) {this.paths.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromPaths(Collection&lt;ImageSourcePath&gt; items){
+<span class="nc bnc" id="L171" title="All 4 branches missed.">            for (ImageSourcePath item : items) {ImageSourcePathBuilder builder = new ImageSourcePathBuilder(item);_visitables.remove(builder);if (this.paths != null) {this.paths.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPaths instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;ImageSourcePath&gt; getPaths(){
+<span class="fc" id="L180">            return build(paths);</span>
+    }
+
+    public List&lt;ImageSourcePath&gt; buildPaths(){
+<span class="nc" id="L184">            return build(paths);</span>
+    }
+
+    public ImageSourcePath buildPath(int index){
+<span class="nc" id="L188">            return this.paths.get(index).build();</span>
+    }
+
+    public ImageSourcePath buildFirstPath(){
+<span class="nc" id="L192">            return this.paths.get(0).build();</span>
+    }
+
+    public ImageSourcePath buildLastPath(){
+<span class="nc" id="L196">            return this.paths.get(paths.size() - 1).build();</span>
+    }
+
+    public ImageSourcePath buildMatchingPath(io.fabric8.kubernetes.api.builder.Predicate&lt;ImageSourcePathBuilder&gt; predicate){
+<span class="nc bnc" id="L200" title="All 4 branches missed.">            for (ImageSourcePathBuilder item: paths) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withPaths(List&lt;ImageSourcePath&gt; paths){
+<span class="pc bpc" id="L204" title="1 of 2 branches missed.">            if (this.paths != null) { _visitables.removeAll(this.paths);}</span>
+<span class="pc bpc" id="L205" title="1 of 4 branches missed.">            if (paths != null) {this.paths = new ArrayList&lt;ImageSourcePathBuilder&gt;(); for (ImageSourcePath item : paths){this.addToPaths(item);}} else { this.paths = new ArrayList&lt;ImageSourcePathBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withPaths(ImageSourcePath... paths){
+<span class="pc bpc" id="L209" title="1 of 2 branches missed.">            if (this.paths != null) {this.paths.clear();}</span>
+<span class="pc bpc" id="L210" title="1 of 4 branches missed.">            if (paths != null) {for (ImageSourcePath item :paths){ this.addToPaths(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasPaths(){
+<span class="nc bnc" id="L214" title="All 4 branches missed.">            return paths != null &amp;&amp; !paths.isEmpty();</span>
+    }
+
+    public A addNewPath(String destinationDir,String sourcePath){
+<span class="nc" id="L218">            return (A)addToPaths(new ImageSourcePath(destinationDir, sourcePath));</span>
+    }
+
+    public ImageSourceFluent.PathsNested&lt;A&gt; addNewPath(){
+<span class="nc" id="L222">            return new PathsNestedImpl();</span>
+    }
+
+    public ImageSourceFluent.PathsNested&lt;A&gt; addNewPathLike(ImageSourcePath item){
+<span class="nc" id="L226">            return new PathsNestedImpl(-1, item);</span>
+    }
+
+    public ImageSourceFluent.PathsNested&lt;A&gt; setNewPathLike(int index,ImageSourcePath item){
+<span class="nc" id="L230">            return new PathsNestedImpl(index, item);</span>
+    }
+
+    public ImageSourceFluent.PathsNested&lt;A&gt; editPath(int index){
+<span class="nc bnc" id="L234" title="All 2 branches missed.">            if (paths.size() &lt;= index) throw new RuntimeException(&quot;Can't edit paths. Index exceeds size.&quot;);</span>
+<span class="nc" id="L235">            return setNewPathLike(index, buildPath(index));</span>
+    }
+
+    public ImageSourceFluent.PathsNested&lt;A&gt; editFirstPath(){
+<span class="nc bnc" id="L239" title="All 2 branches missed.">            if (paths.size() == 0) throw new RuntimeException(&quot;Can't edit first paths. The list is empty.&quot;);</span>
+<span class="nc" id="L240">            return setNewPathLike(0, buildPath(0));</span>
+    }
+
+    public ImageSourceFluent.PathsNested&lt;A&gt; editLastPath(){
+<span class="nc" id="L244">            int index = paths.size() - 1;</span>
+<span class="nc bnc" id="L245" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last paths. The list is empty.&quot;);</span>
+<span class="nc" id="L246">            return setNewPathLike(index, buildPath(index));</span>
+    }
+
+    public ImageSourceFluent.PathsNested&lt;A&gt; editMatchingPath(io.fabric8.kubernetes.api.builder.Predicate&lt;ImageSourcePathBuilder&gt; predicate){
+<span class="nc" id="L250">            int index = -1;</span>
+<span class="nc bnc" id="L251" title="All 2 branches missed.">            for (int i=0;i&lt;paths.size();i++) { </span>
+<span class="nc bnc" id="L252" title="All 2 branches missed.">            if (predicate.apply(paths.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L254" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching paths. No match found.&quot;);</span>
+<span class="nc" id="L255">            return setNewPathLike(index, buildPath(index));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPullSecret instead.
+ * @return The buildable object.
+ */
+@Deprecated public LocalObjectReference getPullSecret(){
+<span class="pc bpc" id="L264" title="1 of 2 branches missed.">            return this.pullSecret!=null?this.pullSecret.build():null;</span>
+    }
+
+    public LocalObjectReference buildPullSecret(){
+<span class="nc bnc" id="L268" title="All 2 branches missed.">            return this.pullSecret!=null?this.pullSecret.build():null;</span>
+    }
+
+    public A withPullSecret(LocalObjectReference pullSecret){
+<span class="fc" id="L272">            _visitables.remove(this.pullSecret);</span>
+<span class="fc bfc" id="L273" title="All 2 branches covered.">            if (pullSecret!=null){ this.pullSecret= new LocalObjectReferenceBuilder(pullSecret); _visitables.add(this.pullSecret);} return (A) this;</span>
+    }
+
+    public Boolean hasPullSecret(){
+<span class="nc bnc" id="L277" title="All 2 branches missed.">            return this.pullSecret != null;</span>
+    }
+
+    public A withNewPullSecret(String name){
+<span class="nc" id="L281">            return (A)withPullSecret(new LocalObjectReference(name));</span>
+    }
+
+    public ImageSourceFluent.PullSecretNested&lt;A&gt; withNewPullSecret(){
+<span class="nc" id="L285">            return new PullSecretNestedImpl();</span>
+    }
+
+    public ImageSourceFluent.PullSecretNested&lt;A&gt; withNewPullSecretLike(LocalObjectReference item){
+<span class="nc" id="L289">            return new PullSecretNestedImpl(item);</span>
+    }
+
+    public ImageSourceFluent.PullSecretNested&lt;A&gt; editPullSecret(){
+<span class="nc" id="L293">            return withNewPullSecretLike(getPullSecret());</span>
+    }
+
+    public ImageSourceFluent.PullSecretNested&lt;A&gt; editOrNewPullSecret(){
+<span class="nc bnc" id="L297" title="All 2 branches missed.">            return withNewPullSecretLike(getPullSecret() != null ? getPullSecret(): new LocalObjectReferenceBuilder().build());</span>
+    }
+
+    public ImageSourceFluent.PullSecretNested&lt;A&gt; editOrNewPullSecretLike(LocalObjectReference item){
+<span class="nc bnc" id="L301" title="All 2 branches missed.">            return withNewPullSecretLike(getPullSecret() != null ? getPullSecret(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L305" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L306" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L307" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L308">            ImageSourceFluentImpl that = (ImageSourceFluentImpl) o;</span>
+<span class="nc bnc" id="L309" title="All 6 branches missed.">            if (as != null ? !as.equals(that.as) :that.as != null) return false;</span>
+<span class="nc bnc" id="L310" title="All 6 branches missed.">            if (from != null ? !from.equals(that.from) :that.from != null) return false;</span>
+<span class="nc bnc" id="L311" title="All 6 branches missed.">            if (paths != null ? !paths.equals(that.paths) :that.paths != null) return false;</span>
+<span class="nc bnc" id="L312" title="All 6 branches missed.">            if (pullSecret != null ? !pullSecret.equals(that.pullSecret) :that.pullSecret != null) return false;</span>
+<span class="nc" id="L313">            return true;</span>
+    }
+
+
+    public class FromNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;ImageSourceFluent.FromNested&lt;N&gt;&gt; implements ImageSourceFluent.FromNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L321">            FromNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L322">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L323">            }</span>
+<span class="nc" id="L324">            FromNestedImpl(){</span>
+<span class="nc" id="L325">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L326">            }</span>
+    
+    public N and(){
+<span class="nc" id="L329">            return (N) ImageSourceFluentImpl.this.withFrom(builder.build());</span>
+    }
+    public N endFrom(){
+<span class="nc" id="L332">            return and();</span>
+    }
+
+}
+    public class PathsNestedImpl&lt;N&gt; extends ImageSourcePathFluentImpl&lt;ImageSourceFluent.PathsNested&lt;N&gt;&gt; implements ImageSourceFluent.PathsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageSourcePathBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L341">            PathsNestedImpl(int index,ImageSourcePath item){</span>
+<span class="nc" id="L342">                    this.index = index;</span>
+<span class="nc" id="L343">                    this.builder = new ImageSourcePathBuilder(this, item);</span>
+<span class="nc" id="L344">            }</span>
+<span class="nc" id="L345">            PathsNestedImpl(){</span>
+<span class="nc" id="L346">                    this.index = -1;</span>
+<span class="nc" id="L347">                    this.builder = new ImageSourcePathBuilder(this);</span>
+<span class="nc" id="L348">            }</span>
+    
+    public N and(){
+<span class="nc" id="L351">            return (N) ImageSourceFluentImpl.this.setToPaths(index, builder.build());</span>
+    }
+    public N endPath(){
+<span class="nc" id="L354">            return and();</span>
+    }
+
+}
+    public class PullSecretNestedImpl&lt;N&gt; extends LocalObjectReferenceFluentImpl&lt;ImageSourceFluent.PullSecretNested&lt;N&gt;&gt; implements ImageSourceFluent.PullSecretNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LocalObjectReferenceBuilder builder;
+    
+<span class="nc" id="L362">            PullSecretNestedImpl(LocalObjectReference item){</span>
+<span class="nc" id="L363">                    this.builder = new LocalObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L364">            }</span>
+<span class="nc" id="L365">            PullSecretNestedImpl(){</span>
+<span class="nc" id="L366">                    this.builder = new LocalObjectReferenceBuilder(this);</span>
+<span class="nc" id="L367">            }</span>
+    
+    public N and(){
+<span class="nc" id="L370">            return (N) ImageSourceFluentImpl.this.withPullSecret(builder.build());</span>
+    }
+    public N endPullSecret(){
+<span class="nc" id="L373">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

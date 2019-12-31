@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NamedAuthInfoFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">NamedAuthInfoFluentImpl.java</span></div><h1>NamedAuthInfoFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class NamedAuthInfoFluentImpl&lt;A extends NamedAuthInfoFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements NamedAuthInfoFluent&lt;A&gt;{
+
+    private String name;
+    private AuthInfoBuilder user;
+
+<span class="nc" id="L17">    public NamedAuthInfoFluentImpl(){</span>
+<span class="nc" id="L18">    }</span>
+<span class="nc" id="L19">    public NamedAuthInfoFluentImpl(NamedAuthInfo instance){</span>
+<span class="nc" id="L20">            this.withName(instance.getName()); </span>
+<span class="nc" id="L21">            this.withUser(instance.getUser()); </span>
+<span class="nc" id="L22">    }</span>
+
+    public String getName(){
+<span class="nc" id="L25">            return this.name;</span>
+    }
+
+    public A withName(String name){
+<span class="nc" id="L29">            this.name=name; return (A) this;</span>
+    }
+
+    public Boolean hasName(){
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            return this.name != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildUser instead.
+ * @return The buildable object.
+ */
+@Deprecated public AuthInfo getUser(){
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            return this.user!=null?this.user.build():null;</span>
+    }
+
+    public AuthInfo buildUser(){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            return this.user!=null?this.user.build():null;</span>
+    }
+
+    public A withUser(AuthInfo user){
+<span class="nc" id="L50">            _visitables.remove(this.user);</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            if (user!=null){ this.user= new AuthInfoBuilder(user); _visitables.add(this.user);} return (A) this;</span>
+    }
+
+    public Boolean hasUser(){
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            return this.user != null;</span>
+    }
+
+    public NamedAuthInfoFluent.UserNested&lt;A&gt; withNewUser(){
+<span class="nc" id="L59">            return new UserNestedImpl();</span>
+    }
+
+    public NamedAuthInfoFluent.UserNested&lt;A&gt; withNewUserLike(AuthInfo item){
+<span class="nc" id="L63">            return new UserNestedImpl(item);</span>
+    }
+
+    public NamedAuthInfoFluent.UserNested&lt;A&gt; editUser(){
+<span class="nc" id="L67">            return withNewUserLike(getUser());</span>
+    }
+
+    public NamedAuthInfoFluent.UserNested&lt;A&gt; editOrNewUser(){
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            return withNewUserLike(getUser() != null ? getUser(): new AuthInfoBuilder().build());</span>
+    }
+
+    public NamedAuthInfoFluent.UserNested&lt;A&gt; editOrNewUserLike(AuthInfo item){
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            return withNewUserLike(getUser() != null ? getUser(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L80" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L82">            NamedAuthInfoFluentImpl that = (NamedAuthInfoFluentImpl) o;</span>
+<span class="nc bnc" id="L83" title="All 6 branches missed.">            if (name != null ? !name.equals(that.name) :that.name != null) return false;</span>
+<span class="nc bnc" id="L84" title="All 6 branches missed.">            if (user != null ? !user.equals(that.user) :that.user != null) return false;</span>
+<span class="nc" id="L85">            return true;</span>
+    }
+
+
+    public class UserNestedImpl&lt;N&gt; extends AuthInfoFluentImpl&lt;NamedAuthInfoFluent.UserNested&lt;N&gt;&gt; implements NamedAuthInfoFluent.UserNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final AuthInfoBuilder builder;
+    
+<span class="nc" id="L93">            UserNestedImpl(AuthInfo item){</span>
+<span class="nc" id="L94">                    this.builder = new AuthInfoBuilder(this, item);</span>
+<span class="nc" id="L95">            }</span>
+<span class="nc" id="L96">            UserNestedImpl(){</span>
+<span class="nc" id="L97">                    this.builder = new AuthInfoBuilder(this);</span>
+<span class="nc" id="L98">            }</span>
+    
+    public N and(){
+<span class="nc" id="L101">            return (N) NamedAuthInfoFluentImpl.this.withUser(builder.build());</span>
+    }
+    public N endUser(){
+<span class="nc" id="L104">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

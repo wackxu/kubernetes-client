@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomResourceDefinitionVersion.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.apiextensions</a> &gt; <span class="el_source">CustomResourceDefinitionVersion.java</span></div><h1>CustomResourceDefinitionVersion.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.apiextensions;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;additionalPrinterColumns&quot;,
+    &quot;name&quot;,
+    &quot;schema&quot;,
+    &quot;served&quot;,
+    &quot;storage&quot;,
+    &quot;subresources&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L43">@ToString</span>
+<span class="nc bnc" id="L44" title="All 62 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class CustomResourceDefinitionVersion implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L53">    @JsonProperty(&quot;additionalPrinterColumns&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;CustomResourceColumnDefinition&gt; additionalPrinterColumns = new ArrayList&lt;CustomResourceColumnDefinition&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;name&quot;)
+    private String name;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;schema&quot;)
+    @Valid
+    private CustomResourceValidation schema;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;served&quot;)
+    private Boolean served;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;storage&quot;)
+    private Boolean storage;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;subresources&quot;)
+    @Valid
+    private CustomResourceSubresources subresources;
+<span class="nc" id="L89">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L96">    public CustomResourceDefinitionVersion() {</span>
+<span class="nc" id="L97">    }</span>
+
+    /**
+     * 
+     * @param schema
+     * @param served
+     * @param name
+     * @param subresources
+     * @param storage
+     * @param additionalPrinterColumns
+     */
+<span class="nc" id="L108">    public CustomResourceDefinitionVersion(List&lt;CustomResourceColumnDefinition&gt; additionalPrinterColumns, String name, CustomResourceValidation schema, Boolean served, Boolean storage, CustomResourceSubresources subresources) {</span>
+<span class="nc" id="L109">        this.additionalPrinterColumns = additionalPrinterColumns;</span>
+<span class="nc" id="L110">        this.name = name;</span>
+<span class="nc" id="L111">        this.schema = schema;</span>
+<span class="nc" id="L112">        this.served = served;</span>
+<span class="nc" id="L113">        this.storage = storage;</span>
+<span class="nc" id="L114">        this.subresources = subresources;</span>
+<span class="nc" id="L115">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The additionalPrinterColumns
+     */
+    @JsonProperty(&quot;additionalPrinterColumns&quot;)
+    public List&lt;CustomResourceColumnDefinition&gt; getAdditionalPrinterColumns() {
+<span class="nc" id="L125">        return additionalPrinterColumns;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param additionalPrinterColumns
+     *     The additionalPrinterColumns
+     */
+    @JsonProperty(&quot;additionalPrinterColumns&quot;)
+    public void setAdditionalPrinterColumns(List&lt;CustomResourceColumnDefinition&gt; additionalPrinterColumns) {
+<span class="nc" id="L136">        this.additionalPrinterColumns = additionalPrinterColumns;</span>
+<span class="nc" id="L137">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The name
+     */
+    @JsonProperty(&quot;name&quot;)
+    public String getName() {
+<span class="nc" id="L147">        return name;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param name
+     *     The name
+     */
+    @JsonProperty(&quot;name&quot;)
+    public void setName(String name) {
+<span class="nc" id="L158">        this.name = name;</span>
+<span class="nc" id="L159">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The schema
+     */
+    @JsonProperty(&quot;schema&quot;)
+    public CustomResourceValidation getSchema() {
+<span class="nc" id="L169">        return schema;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param schema
+     *     The schema
+     */
+    @JsonProperty(&quot;schema&quot;)
+    public void setSchema(CustomResourceValidation schema) {
+<span class="nc" id="L180">        this.schema = schema;</span>
+<span class="nc" id="L181">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The served
+     */
+    @JsonProperty(&quot;served&quot;)
+    public Boolean getServed() {
+<span class="nc" id="L191">        return served;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param served
+     *     The served
+     */
+    @JsonProperty(&quot;served&quot;)
+    public void setServed(Boolean served) {
+<span class="nc" id="L202">        this.served = served;</span>
+<span class="nc" id="L203">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The storage
+     */
+    @JsonProperty(&quot;storage&quot;)
+    public Boolean getStorage() {
+<span class="nc" id="L213">        return storage;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param storage
+     *     The storage
+     */
+    @JsonProperty(&quot;storage&quot;)
+    public void setStorage(Boolean storage) {
+<span class="nc" id="L224">        this.storage = storage;</span>
+<span class="nc" id="L225">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The subresources
+     */
+    @JsonProperty(&quot;subresources&quot;)
+    public CustomResourceSubresources getSubresources() {
+<span class="nc" id="L235">        return subresources;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param subresources
+     *     The subresources
+     */
+    @JsonProperty(&quot;subresources&quot;)
+    public void setSubresources(CustomResourceSubresources subresources) {
+<span class="nc" id="L246">        this.subresources = subresources;</span>
+<span class="nc" id="L247">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L251">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L256">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L257">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

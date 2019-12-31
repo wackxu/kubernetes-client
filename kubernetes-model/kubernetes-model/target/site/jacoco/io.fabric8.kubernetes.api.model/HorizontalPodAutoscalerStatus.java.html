@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HorizontalPodAutoscalerStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">HorizontalPodAutoscalerStatus.java</span></div><h1>HorizontalPodAutoscalerStatus.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;conditions&quot;,
+    &quot;currentMetrics&quot;,
+    &quot;currentReplicas&quot;,
+    &quot;desiredReplicas&quot;,
+    &quot;lastScaleTime&quot;,
+    &quot;observedGeneration&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L42">@ToString</span>
+<span class="nc bnc" id="L43" title="All 62 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class HorizontalPodAutoscalerStatus implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L52">    @JsonProperty(&quot;conditions&quot;)</span>
+    @Valid
+    private List&lt;HorizontalPodAutoscalerCondition&gt; conditions = new ArrayList&lt;HorizontalPodAutoscalerCondition&gt;();
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L59">    @JsonProperty(&quot;currentMetrics&quot;)</span>
+    @Valid
+    private List&lt;MetricStatus&gt; currentMetrics = new ArrayList&lt;MetricStatus&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;currentReplicas&quot;)
+    private Integer currentReplicas;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;desiredReplicas&quot;)
+    private Integer desiredReplicas;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;lastScaleTime&quot;)
+    @Valid
+    private String lastScaleTime;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;observedGeneration&quot;)
+    private Long observedGeneration;
+<span class="nc" id="L87">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L94">    public HorizontalPodAutoscalerStatus() {</span>
+<span class="nc" id="L95">    }</span>
+
+    /**
+     * 
+     * @param desiredReplicas
+     * @param currentReplicas
+     * @param conditions
+     * @param lastScaleTime
+     * @param observedGeneration
+     * @param currentMetrics
+     */
+<span class="nc" id="L106">    public HorizontalPodAutoscalerStatus(List&lt;HorizontalPodAutoscalerCondition&gt; conditions, List&lt;MetricStatus&gt; currentMetrics, Integer currentReplicas, Integer desiredReplicas, String lastScaleTime, Long observedGeneration) {</span>
+<span class="nc" id="L107">        this.conditions = conditions;</span>
+<span class="nc" id="L108">        this.currentMetrics = currentMetrics;</span>
+<span class="nc" id="L109">        this.currentReplicas = currentReplicas;</span>
+<span class="nc" id="L110">        this.desiredReplicas = desiredReplicas;</span>
+<span class="nc" id="L111">        this.lastScaleTime = lastScaleTime;</span>
+<span class="nc" id="L112">        this.observedGeneration = observedGeneration;</span>
+<span class="nc" id="L113">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The conditions
+     */
+    @JsonProperty(&quot;conditions&quot;)
+    public List&lt;HorizontalPodAutoscalerCondition&gt; getConditions() {
+<span class="nc" id="L123">        return conditions;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param conditions
+     *     The conditions
+     */
+    @JsonProperty(&quot;conditions&quot;)
+    public void setConditions(List&lt;HorizontalPodAutoscalerCondition&gt; conditions) {
+<span class="nc" id="L134">        this.conditions = conditions;</span>
+<span class="nc" id="L135">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The currentMetrics
+     */
+    @JsonProperty(&quot;currentMetrics&quot;)
+    public List&lt;MetricStatus&gt; getCurrentMetrics() {
+<span class="nc" id="L145">        return currentMetrics;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param currentMetrics
+     *     The currentMetrics
+     */
+    @JsonProperty(&quot;currentMetrics&quot;)
+    public void setCurrentMetrics(List&lt;MetricStatus&gt; currentMetrics) {
+<span class="nc" id="L156">        this.currentMetrics = currentMetrics;</span>
+<span class="nc" id="L157">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The currentReplicas
+     */
+    @JsonProperty(&quot;currentReplicas&quot;)
+    public Integer getCurrentReplicas() {
+<span class="nc" id="L167">        return currentReplicas;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param currentReplicas
+     *     The currentReplicas
+     */
+    @JsonProperty(&quot;currentReplicas&quot;)
+    public void setCurrentReplicas(Integer currentReplicas) {
+<span class="nc" id="L178">        this.currentReplicas = currentReplicas;</span>
+<span class="nc" id="L179">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The desiredReplicas
+     */
+    @JsonProperty(&quot;desiredReplicas&quot;)
+    public Integer getDesiredReplicas() {
+<span class="nc" id="L189">        return desiredReplicas;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param desiredReplicas
+     *     The desiredReplicas
+     */
+    @JsonProperty(&quot;desiredReplicas&quot;)
+    public void setDesiredReplicas(Integer desiredReplicas) {
+<span class="nc" id="L200">        this.desiredReplicas = desiredReplicas;</span>
+<span class="nc" id="L201">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The lastScaleTime
+     */
+    @JsonProperty(&quot;lastScaleTime&quot;)
+    public String getLastScaleTime() {
+<span class="nc" id="L211">        return lastScaleTime;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param lastScaleTime
+     *     The lastScaleTime
+     */
+    @JsonProperty(&quot;lastScaleTime&quot;)
+    public void setLastScaleTime(String lastScaleTime) {
+<span class="nc" id="L222">        this.lastScaleTime = lastScaleTime;</span>
+<span class="nc" id="L223">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The observedGeneration
+     */
+    @JsonProperty(&quot;observedGeneration&quot;)
+    public Long getObservedGeneration() {
+<span class="nc" id="L233">        return observedGeneration;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param observedGeneration
+     *     The observedGeneration
+     */
+    @JsonProperty(&quot;observedGeneration&quot;)
+    public void setObservedGeneration(Long observedGeneration) {
+<span class="nc" id="L244">        this.observedGeneration = observedGeneration;</span>
+<span class="nc" id="L245">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L249">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L254">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L255">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

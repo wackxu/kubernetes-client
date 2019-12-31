@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NonBlockingInputStreamPumper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.utils</a> &gt; <span class="el_source">NonBlockingInputStreamPumper.java</span></div><h1>NonBlockingInputStreamPumper.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.utils;
+
+import io.fabric8.kubernetes.client.Callback;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+//USE: when pumping streams, which do not react great to interruption (e.g. System.in).
+//DONT USE: When using stream that don't support great in.available() (e.g. okio.RealBufferSource.inputStream()).
+public class NonBlockingInputStreamPumper extends InputStreamPumper {
+
+<span class="nc" id="L30">    private static final Logger LOGGER = LoggerFactory.getLogger(InputStreamReader.class);</span>
+
+    public NonBlockingInputStreamPumper(InputStream in, Callback&lt;byte[]&gt; callback) {
+<span class="nc" id="L33">      this(in, callback, null);</span>
+<span class="nc" id="L34">    }</span>
+
+    public NonBlockingInputStreamPumper(InputStream in, Callback&lt;byte[]&gt; callback, Runnable onClose) {
+<span class="nc" id="L37">      super(in, callback, onClose);</span>
+<span class="nc" id="L38">    }</span>
+
+    @Override
+    public void run() {
+<span class="nc" id="L42">        synchronized (this) {</span>
+<span class="nc" id="L43">          thread = Thread.currentThread();</span>
+<span class="nc" id="L44">        }</span>
+<span class="nc" id="L45">        byte[] buffer = new byte[1024];</span>
+        try {
+<span class="nc bnc" id="L47" title="All 4 branches missed.">            while (keepReading &amp;&amp; !Thread.currentThread().isInterrupted()) {</span>
+<span class="nc bnc" id="L48" title="All 6 branches missed.">              while (in.available() &gt; 0 &amp;&amp; keepReading &amp;&amp; !Thread.currentThread().isInterrupted()) {</span>
+<span class="nc" id="L49">                int length = in.read(buffer);</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">                if (length &lt; 0) {</span>
+<span class="nc" id="L51">                  throw new IOException(&quot;EOF has been reached!&quot;);</span>
+                }
+<span class="nc" id="L53">                byte[] actual = new byte[length];</span>
+<span class="nc" id="L54">                System.arraycopy(buffer, 0, actual, 0, length);</span>
+<span class="nc" id="L55">                callback.call(actual);</span>
+<span class="nc" id="L56">              }</span>
+<span class="nc" id="L57">              Thread.sleep(50); // Pause to avoid tight loop if external proc is too slow</span>
+            }
+<span class="nc" id="L59">        } catch (IOException e) {</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            if (!keepReading) {</span>
+<span class="nc" id="L61">              return;</span>
+            }
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            if (!thread.isInterrupted()) {</span>
+<span class="nc" id="L64">                LOGGER.error(&quot;Error while pumping stream.&quot;, e);</span>
+            } else {
+<span class="nc" id="L66">                LOGGER.debug(&quot;Interrupted while pumping stream.&quot;);</span>
+            }
+<span class="nc" id="L68">        } catch (InterruptedException e) {</span>
+<span class="nc" id="L69">          Thread.interrupted();</span>
+<span class="nc" id="L70">        }</span>
+<span class="nc" id="L71">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

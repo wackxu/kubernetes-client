@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HorizontalPodAutoscalerSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">HorizontalPodAutoscalerSpecFluentImpl.java</span></div><h1>HorizontalPodAutoscalerSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import java.lang.Integer;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class HorizontalPodAutoscalerSpecFluentImpl&lt;A extends HorizontalPodAutoscalerSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements HorizontalPodAutoscalerSpecFluent&lt;A&gt;{
+
+    private Integer maxReplicas;
+    private List&lt;MetricSpecBuilder&gt; metrics;
+    private Integer minReplicas;
+    private CrossVersionObjectReferenceBuilder scaleTargetRef;
+
+<span class="nc" id="L25">    public HorizontalPodAutoscalerSpecFluentImpl(){</span>
+<span class="nc" id="L26">    }</span>
+<span class="nc" id="L27">    public HorizontalPodAutoscalerSpecFluentImpl(HorizontalPodAutoscalerSpec instance){</span>
+<span class="nc" id="L28">            this.withMaxReplicas(instance.getMaxReplicas()); </span>
+<span class="nc" id="L29">            this.withMetrics(instance.getMetrics()); </span>
+<span class="nc" id="L30">            this.withMinReplicas(instance.getMinReplicas()); </span>
+<span class="nc" id="L31">            this.withScaleTargetRef(instance.getScaleTargetRef()); </span>
+<span class="nc" id="L32">    }</span>
+
+    public Integer getMaxReplicas(){
+<span class="nc" id="L35">            return this.maxReplicas;</span>
+    }
+
+    public A withMaxReplicas(Integer maxReplicas){
+<span class="nc" id="L39">            this.maxReplicas=maxReplicas; return (A) this;</span>
+    }
+
+    public Boolean hasMaxReplicas(){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            return this.maxReplicas != null;</span>
+    }
+
+    public A addToMetrics(int index,MetricSpec item){
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            if (this.metrics == null) {this.metrics = new ArrayList&lt;MetricSpecBuilder&gt;();}</span>
+<span class="nc bnc" id="L48" title="All 4 branches missed.">            MetricSpecBuilder builder = new MetricSpecBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.metrics.add(index &gt;= 0 ? index : metrics.size(), builder); return (A)this;</span>
+    }
+
+    public A setToMetrics(int index,MetricSpec item){
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            if (this.metrics == null) {this.metrics = new ArrayList&lt;MetricSpecBuilder&gt;();}</span>
+<span class="nc" id="L53">            MetricSpecBuilder builder = new MetricSpecBuilder(item);</span>
+<span class="nc bnc" id="L54" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L55" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= metrics.size()) { metrics.add(builder); } else { metrics.set(index, builder);}</span>
+<span class="nc" id="L56">             return (A)this;</span>
+    }
+
+    public A addToMetrics(MetricSpec... items){
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            if (this.metrics == null) {this.metrics = new ArrayList&lt;MetricSpecBuilder&gt;();}</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            for (MetricSpec item : items) {MetricSpecBuilder builder = new MetricSpecBuilder(item);_visitables.add(builder);this.metrics.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToMetrics(Collection&lt;MetricSpec&gt; items){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (this.metrics == null) {this.metrics = new ArrayList&lt;MetricSpecBuilder&gt;();}</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            for (MetricSpec item : items) {MetricSpecBuilder builder = new MetricSpecBuilder(item);_visitables.add(builder);this.metrics.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromMetrics(MetricSpec... items){
+<span class="nc bnc" id="L70" title="All 4 branches missed.">            for (MetricSpec item : items) {MetricSpecBuilder builder = new MetricSpecBuilder(item);_visitables.remove(builder);if (this.metrics != null) {this.metrics.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromMetrics(Collection&lt;MetricSpec&gt; items){
+<span class="nc bnc" id="L74" title="All 4 branches missed.">            for (MetricSpec item : items) {MetricSpecBuilder builder = new MetricSpecBuilder(item);_visitables.remove(builder);if (this.metrics != null) {this.metrics.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetrics instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;MetricSpec&gt; getMetrics(){
+<span class="nc" id="L83">            return build(metrics);</span>
+    }
+
+    public List&lt;MetricSpec&gt; buildMetrics(){
+<span class="nc" id="L87">            return build(metrics);</span>
+    }
+
+    public MetricSpec buildMetric(int index){
+<span class="nc" id="L91">            return this.metrics.get(index).build();</span>
+    }
+
+    public MetricSpec buildFirstMetric(){
+<span class="nc" id="L95">            return this.metrics.get(0).build();</span>
+    }
+
+    public MetricSpec buildLastMetric(){
+<span class="nc" id="L99">            return this.metrics.get(metrics.size() - 1).build();</span>
+    }
+
+    public MetricSpec buildMatchingMetric(io.fabric8.kubernetes.api.builder.Predicate&lt;MetricSpecBuilder&gt; predicate){
+<span class="nc bnc" id="L103" title="All 4 branches missed.">            for (MetricSpecBuilder item: metrics) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withMetrics(List&lt;MetricSpec&gt; metrics){
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            if (this.metrics != null) { _visitables.removeAll(this.metrics);}</span>
+<span class="nc bnc" id="L108" title="All 4 branches missed.">            if (metrics != null) {this.metrics = new ArrayList&lt;MetricSpecBuilder&gt;(); for (MetricSpec item : metrics){this.addToMetrics(item);}} else { this.metrics = new ArrayList&lt;MetricSpecBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withMetrics(MetricSpec... metrics){
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            if (this.metrics != null) {this.metrics.clear();}</span>
+<span class="nc bnc" id="L113" title="All 4 branches missed.">            if (metrics != null) {for (MetricSpec item :metrics){ this.addToMetrics(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasMetrics(){
+<span class="nc bnc" id="L117" title="All 4 branches missed.">            return metrics != null &amp;&amp; !metrics.isEmpty();</span>
+    }
+
+    public HorizontalPodAutoscalerSpecFluent.MetricsNested&lt;A&gt; addNewMetric(){
+<span class="nc" id="L121">            return new MetricsNestedImpl();</span>
+    }
+
+    public HorizontalPodAutoscalerSpecFluent.MetricsNested&lt;A&gt; addNewMetricLike(MetricSpec item){
+<span class="nc" id="L125">            return new MetricsNestedImpl(-1, item);</span>
+    }
+
+    public HorizontalPodAutoscalerSpecFluent.MetricsNested&lt;A&gt; setNewMetricLike(int index,MetricSpec item){
+<span class="nc" id="L129">            return new MetricsNestedImpl(index, item);</span>
+    }
+
+    public HorizontalPodAutoscalerSpecFluent.MetricsNested&lt;A&gt; editMetric(int index){
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (metrics.size() &lt;= index) throw new RuntimeException(&quot;Can't edit metrics. Index exceeds size.&quot;);</span>
+<span class="nc" id="L134">            return setNewMetricLike(index, buildMetric(index));</span>
+    }
+
+    public HorizontalPodAutoscalerSpecFluent.MetricsNested&lt;A&gt; editFirstMetric(){
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            if (metrics.size() == 0) throw new RuntimeException(&quot;Can't edit first metrics. The list is empty.&quot;);</span>
+<span class="nc" id="L139">            return setNewMetricLike(0, buildMetric(0));</span>
+    }
+
+    public HorizontalPodAutoscalerSpecFluent.MetricsNested&lt;A&gt; editLastMetric(){
+<span class="nc" id="L143">            int index = metrics.size() - 1;</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last metrics. The list is empty.&quot;);</span>
+<span class="nc" id="L145">            return setNewMetricLike(index, buildMetric(index));</span>
+    }
+
+    public HorizontalPodAutoscalerSpecFluent.MetricsNested&lt;A&gt; editMatchingMetric(io.fabric8.kubernetes.api.builder.Predicate&lt;MetricSpecBuilder&gt; predicate){
+<span class="nc" id="L149">            int index = -1;</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">            for (int i=0;i&lt;metrics.size();i++) { </span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (predicate.apply(metrics.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching metrics. No match found.&quot;);</span>
+<span class="nc" id="L154">            return setNewMetricLike(index, buildMetric(index));</span>
+    }
+
+    public Integer getMinReplicas(){
+<span class="nc" id="L158">            return this.minReplicas;</span>
+    }
+
+    public A withMinReplicas(Integer minReplicas){
+<span class="nc" id="L162">            this.minReplicas=minReplicas; return (A) this;</span>
+    }
+
+    public Boolean hasMinReplicas(){
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            return this.minReplicas != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildScaleTargetRef instead.
+ * @return The buildable object.
+ */
+@Deprecated public CrossVersionObjectReference getScaleTargetRef(){
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            return this.scaleTargetRef!=null?this.scaleTargetRef.build():null;</span>
+    }
+
+    public CrossVersionObjectReference buildScaleTargetRef(){
+<span class="nc bnc" id="L179" title="All 2 branches missed.">            return this.scaleTargetRef!=null?this.scaleTargetRef.build():null;</span>
+    }
+
+    public A withScaleTargetRef(CrossVersionObjectReference scaleTargetRef){
+<span class="nc" id="L183">            _visitables.remove(this.scaleTargetRef);</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">            if (scaleTargetRef!=null){ this.scaleTargetRef= new CrossVersionObjectReferenceBuilder(scaleTargetRef); _visitables.add(this.scaleTargetRef);} return (A) this;</span>
+    }
+
+    public Boolean hasScaleTargetRef(){
+<span class="nc bnc" id="L188" title="All 2 branches missed.">            return this.scaleTargetRef != null;</span>
+    }
+
+    public A withNewScaleTargetRef(String apiVersion,String kind,String name){
+<span class="nc" id="L192">            return (A)withScaleTargetRef(new CrossVersionObjectReference(apiVersion, kind, name));</span>
+    }
+
+    public HorizontalPodAutoscalerSpecFluent.ScaleTargetRefNested&lt;A&gt; withNewScaleTargetRef(){
+<span class="nc" id="L196">            return new ScaleTargetRefNestedImpl();</span>
+    }
+
+    public HorizontalPodAutoscalerSpecFluent.ScaleTargetRefNested&lt;A&gt; withNewScaleTargetRefLike(CrossVersionObjectReference item){
+<span class="nc" id="L200">            return new ScaleTargetRefNestedImpl(item);</span>
+    }
+
+    public HorizontalPodAutoscalerSpecFluent.ScaleTargetRefNested&lt;A&gt; editScaleTargetRef(){
+<span class="nc" id="L204">            return withNewScaleTargetRefLike(getScaleTargetRef());</span>
+    }
+
+    public HorizontalPodAutoscalerSpecFluent.ScaleTargetRefNested&lt;A&gt; editOrNewScaleTargetRef(){
+<span class="nc bnc" id="L208" title="All 2 branches missed.">            return withNewScaleTargetRefLike(getScaleTargetRef() != null ? getScaleTargetRef(): new CrossVersionObjectReferenceBuilder().build());</span>
+    }
+
+    public HorizontalPodAutoscalerSpecFluent.ScaleTargetRefNested&lt;A&gt; editOrNewScaleTargetRefLike(CrossVersionObjectReference item){
+<span class="nc bnc" id="L212" title="All 2 branches missed.">            return withNewScaleTargetRefLike(getScaleTargetRef() != null ? getScaleTargetRef(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L216" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L217" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L218" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L219">            HorizontalPodAutoscalerSpecFluentImpl that = (HorizontalPodAutoscalerSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L220" title="All 6 branches missed.">            if (maxReplicas != null ? !maxReplicas.equals(that.maxReplicas) :that.maxReplicas != null) return false;</span>
+<span class="nc bnc" id="L221" title="All 6 branches missed.">            if (metrics != null ? !metrics.equals(that.metrics) :that.metrics != null) return false;</span>
+<span class="nc bnc" id="L222" title="All 6 branches missed.">            if (minReplicas != null ? !minReplicas.equals(that.minReplicas) :that.minReplicas != null) return false;</span>
+<span class="nc bnc" id="L223" title="All 6 branches missed.">            if (scaleTargetRef != null ? !scaleTargetRef.equals(that.scaleTargetRef) :that.scaleTargetRef != null) return false;</span>
+<span class="nc" id="L224">            return true;</span>
+    }
+
+
+    public class MetricsNestedImpl&lt;N&gt; extends MetricSpecFluentImpl&lt;HorizontalPodAutoscalerSpecFluent.MetricsNested&lt;N&gt;&gt; implements HorizontalPodAutoscalerSpecFluent.MetricsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final MetricSpecBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L233">            MetricsNestedImpl(int index,MetricSpec item){</span>
+<span class="nc" id="L234">                    this.index = index;</span>
+<span class="nc" id="L235">                    this.builder = new MetricSpecBuilder(this, item);</span>
+<span class="nc" id="L236">            }</span>
+<span class="nc" id="L237">            MetricsNestedImpl(){</span>
+<span class="nc" id="L238">                    this.index = -1;</span>
+<span class="nc" id="L239">                    this.builder = new MetricSpecBuilder(this);</span>
+<span class="nc" id="L240">            }</span>
+    
+    public N and(){
+<span class="nc" id="L243">            return (N) HorizontalPodAutoscalerSpecFluentImpl.this.setToMetrics(index, builder.build());</span>
+    }
+    public N endMetric(){
+<span class="nc" id="L246">            return and();</span>
+    }
+
+}
+    public class ScaleTargetRefNestedImpl&lt;N&gt; extends CrossVersionObjectReferenceFluentImpl&lt;HorizontalPodAutoscalerSpecFluent.ScaleTargetRefNested&lt;N&gt;&gt; implements HorizontalPodAutoscalerSpecFluent.ScaleTargetRefNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CrossVersionObjectReferenceBuilder builder;
+    
+<span class="nc" id="L254">            ScaleTargetRefNestedImpl(CrossVersionObjectReference item){</span>
+<span class="nc" id="L255">                    this.builder = new CrossVersionObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L256">            }</span>
+<span class="nc" id="L257">            ScaleTargetRefNestedImpl(){</span>
+<span class="nc" id="L258">                    this.builder = new CrossVersionObjectReferenceBuilder(this);</span>
+<span class="nc" id="L259">            }</span>
+    
+    public N and(){
+<span class="nc" id="L262">            return (N) HorizontalPodAutoscalerSpecFluentImpl.this.withScaleTargetRef(builder.build());</span>
+    }
+    public N endScaleTargetRef(){
+<span class="nc" id="L265">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

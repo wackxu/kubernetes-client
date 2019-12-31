@@ -1,0 +1,1651 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JSONSchemaPropsFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.apiextensions</a> &gt; <span class="el_source">JSONSchemaPropsFluentImpl.java</span></div><h1>JSONSchemaPropsFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.apiextensions;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.util.LinkedHashMap;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import java.lang.Double;
+import javax.validation.Valid;
+import java.lang.Long;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.Map;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.Deprecated;
+
+public class JSONSchemaPropsFluentImpl&lt;A extends JSONSchemaPropsFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements JSONSchemaPropsFluent&lt;A&gt;{
+
+    private String $ref;
+    private String $schema;
+    private JSONSchemaPropsOrBoolBuilder additionalItems;
+    private JSONSchemaPropsOrBoolBuilder additionalProperties;
+    private List&lt;JSONSchemaPropsBuilder&gt; allOf;
+    private List&lt;JSONSchemaPropsBuilder&gt; anyOf;
+    private JSONBuilder _default;
+    private Map&lt;String,JSONSchemaProps&gt; definitions;
+    private Map&lt;String,JSONSchemaPropsOrStringArray&gt; dependencies;
+    private String description;
+    private List&lt;JSONBuilder&gt; _enum;
+    private JSONBuilder example;
+    private Boolean exclusiveMaximum;
+    private Boolean exclusiveMinimum;
+    private ExternalDocumentationBuilder externalDocs;
+    private String format;
+    private String id;
+    private JSONSchemaPropsOrArrayBuilder items;
+    private Long maxItems;
+    private Long maxLength;
+    private Long maxProperties;
+    private Double maximum;
+    private Long minItems;
+    private Long minLength;
+    private Long minProperties;
+    private Double minimum;
+    private Double multipleOf;
+    private JSONSchemaPropsBuilder not;
+    private List&lt;JSONSchemaPropsBuilder&gt; oneOf;
+    private String pattern;
+    private Map&lt;String,JSONSchemaProps&gt; patternProperties;
+    private Map&lt;String,JSONSchemaProps&gt; properties;
+    private List&lt;String&gt; required;
+    private String title;
+    private String type;
+    private Boolean uniqueItems;
+
+<span class="nc" id="L60">    public JSONSchemaPropsFluentImpl(){</span>
+<span class="nc" id="L61">    }</span>
+<span class="nc" id="L62">    public JSONSchemaPropsFluentImpl(JSONSchemaProps instance){</span>
+<span class="nc" id="L63">            this.withRef(instance.get$ref()); </span>
+<span class="nc" id="L64">            this.withSchema(instance.get$schema()); </span>
+<span class="nc" id="L65">            this.withAdditionalItems(instance.getAdditionalItems()); </span>
+<span class="nc" id="L66">            this.withAdditionalProperties(instance.getAdditionalProperties()); </span>
+<span class="nc" id="L67">            this.withAllOf(instance.getAllOf()); </span>
+<span class="nc" id="L68">            this.withAnyOf(instance.getAnyOf()); </span>
+<span class="nc" id="L69">            this.withDefault(instance.getDefault()); </span>
+<span class="nc" id="L70">            this.withDefinitions(instance.getDefinitions()); </span>
+<span class="nc" id="L71">            this.withDependencies(instance.getDependencies()); </span>
+<span class="nc" id="L72">            this.withDescription(instance.getDescription()); </span>
+<span class="nc" id="L73">            this.withEnum(instance.getEnum()); </span>
+<span class="nc" id="L74">            this.withExample(instance.getExample()); </span>
+<span class="nc" id="L75">            this.withExclusiveMaximum(instance.getExclusiveMaximum()); </span>
+<span class="nc" id="L76">            this.withExclusiveMinimum(instance.getExclusiveMinimum()); </span>
+<span class="nc" id="L77">            this.withExternalDocs(instance.getExternalDocs()); </span>
+<span class="nc" id="L78">            this.withFormat(instance.getFormat()); </span>
+<span class="nc" id="L79">            this.withId(instance.getId()); </span>
+<span class="nc" id="L80">            this.withItems(instance.getItems()); </span>
+<span class="nc" id="L81">            this.withMaxItems(instance.getMaxItems()); </span>
+<span class="nc" id="L82">            this.withMaxLength(instance.getMaxLength()); </span>
+<span class="nc" id="L83">            this.withMaxProperties(instance.getMaxProperties()); </span>
+<span class="nc" id="L84">            this.withMaximum(instance.getMaximum()); </span>
+<span class="nc" id="L85">            this.withMinItems(instance.getMinItems()); </span>
+<span class="nc" id="L86">            this.withMinLength(instance.getMinLength()); </span>
+<span class="nc" id="L87">            this.withMinProperties(instance.getMinProperties()); </span>
+<span class="nc" id="L88">            this.withMinimum(instance.getMinimum()); </span>
+<span class="nc" id="L89">            this.withMultipleOf(instance.getMultipleOf()); </span>
+<span class="nc" id="L90">            this.withNot(instance.getNot()); </span>
+<span class="nc" id="L91">            this.withOneOf(instance.getOneOf()); </span>
+<span class="nc" id="L92">            this.withPattern(instance.getPattern()); </span>
+<span class="nc" id="L93">            this.withPatternProperties(instance.getPatternProperties()); </span>
+<span class="nc" id="L94">            this.withProperties(instance.getProperties()); </span>
+<span class="nc" id="L95">            this.withRequired(instance.getRequired()); </span>
+<span class="nc" id="L96">            this.withTitle(instance.getTitle()); </span>
+<span class="nc" id="L97">            this.withType(instance.getType()); </span>
+<span class="nc" id="L98">            this.withUniqueItems(instance.getUniqueItems()); </span>
+<span class="nc" id="L99">    }</span>
+
+    public String getRef(){
+<span class="nc" id="L102">            return this.$ref;</span>
+    }
+
+    public A withRef(String $ref){
+<span class="nc" id="L106">            this.$ref=$ref; return (A) this;</span>
+    }
+
+    public Boolean hasRef(){
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            return this.$ref != null;</span>
+    }
+
+    public String getSchema(){
+<span class="nc" id="L114">            return this.$schema;</span>
+    }
+
+    public A withSchema(String $schema){
+<span class="nc" id="L118">            this.$schema=$schema; return (A) this;</span>
+    }
+
+    public Boolean hasSchema(){
+<span class="nc bnc" id="L122" title="All 2 branches missed.">            return this.$schema != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildAdditionalItems instead.
+ * @return The buildable object.
+ */
+@Deprecated public JSONSchemaPropsOrBool getAdditionalItems(){
+<span class="nc bnc" id="L131" title="All 2 branches missed.">            return this.additionalItems!=null?this.additionalItems.build():null;</span>
+    }
+
+    public JSONSchemaPropsOrBool buildAdditionalItems(){
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            return this.additionalItems!=null?this.additionalItems.build():null;</span>
+    }
+
+    public A withAdditionalItems(JSONSchemaPropsOrBool additionalItems){
+<span class="nc" id="L139">            _visitables.remove(this.additionalItems);</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            if (additionalItems!=null){ this.additionalItems= new JSONSchemaPropsOrBoolBuilder(additionalItems); _visitables.add(this.additionalItems);} return (A) this;</span>
+    }
+
+    public Boolean hasAdditionalItems(){
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            return this.additionalItems != null;</span>
+    }
+
+    public JSONSchemaPropsFluent.AdditionalItemsNested&lt;A&gt; withNewAdditionalItems(){
+<span class="nc" id="L148">            return new AdditionalItemsNestedImpl();</span>
+    }
+
+    public JSONSchemaPropsFluent.AdditionalItemsNested&lt;A&gt; withNewAdditionalItemsLike(JSONSchemaPropsOrBool item){
+<span class="nc" id="L152">            return new AdditionalItemsNestedImpl(item);</span>
+    }
+
+    public JSONSchemaPropsFluent.AdditionalItemsNested&lt;A&gt; editAdditionalItems(){
+<span class="nc" id="L156">            return withNewAdditionalItemsLike(getAdditionalItems());</span>
+    }
+
+    public JSONSchemaPropsFluent.AdditionalItemsNested&lt;A&gt; editOrNewAdditionalItems(){
+<span class="nc bnc" id="L160" title="All 2 branches missed.">            return withNewAdditionalItemsLike(getAdditionalItems() != null ? getAdditionalItems(): new JSONSchemaPropsOrBoolBuilder().build());</span>
+    }
+
+    public JSONSchemaPropsFluent.AdditionalItemsNested&lt;A&gt; editOrNewAdditionalItemsLike(JSONSchemaPropsOrBool item){
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            return withNewAdditionalItemsLike(getAdditionalItems() != null ? getAdditionalItems(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildAdditionalProperties instead.
+ * @return The buildable object.
+ */
+@Deprecated public JSONSchemaPropsOrBool getAdditionalProperties(){
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            return this.additionalProperties!=null?this.additionalProperties.build():null;</span>
+    }
+
+    public JSONSchemaPropsOrBool buildAdditionalProperties(){
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            return this.additionalProperties!=null?this.additionalProperties.build():null;</span>
+    }
+
+    public A withAdditionalProperties(JSONSchemaPropsOrBool additionalProperties){
+<span class="nc" id="L181">            _visitables.remove(this.additionalProperties);</span>
+<span class="nc bnc" id="L182" title="All 2 branches missed.">            if (additionalProperties!=null){ this.additionalProperties= new JSONSchemaPropsOrBoolBuilder(additionalProperties); _visitables.add(this.additionalProperties);} return (A) this;</span>
+    }
+
+    public Boolean hasAdditionalProperties(){
+<span class="nc bnc" id="L186" title="All 2 branches missed.">            return this.additionalProperties != null;</span>
+    }
+
+    public JSONSchemaPropsFluent.AdditionalPropertiesNested&lt;A&gt; withNewAdditionalProperties(){
+<span class="nc" id="L190">            return new AdditionalPropertiesNestedImpl();</span>
+    }
+
+    public JSONSchemaPropsFluent.AdditionalPropertiesNested&lt;A&gt; withNewAdditionalPropertiesLike(JSONSchemaPropsOrBool item){
+<span class="nc" id="L194">            return new AdditionalPropertiesNestedImpl(item);</span>
+    }
+
+    public JSONSchemaPropsFluent.AdditionalPropertiesNested&lt;A&gt; editAdditionalProperties(){
+<span class="nc" id="L198">            return withNewAdditionalPropertiesLike(getAdditionalProperties());</span>
+    }
+
+    public JSONSchemaPropsFluent.AdditionalPropertiesNested&lt;A&gt; editOrNewAdditionalProperties(){
+<span class="nc bnc" id="L202" title="All 2 branches missed.">            return withNewAdditionalPropertiesLike(getAdditionalProperties() != null ? getAdditionalProperties(): new JSONSchemaPropsOrBoolBuilder().build());</span>
+    }
+
+    public JSONSchemaPropsFluent.AdditionalPropertiesNested&lt;A&gt; editOrNewAdditionalPropertiesLike(JSONSchemaPropsOrBool item){
+<span class="nc bnc" id="L206" title="All 2 branches missed.">            return withNewAdditionalPropertiesLike(getAdditionalProperties() != null ? getAdditionalProperties(): item);</span>
+    }
+
+    public A addToAllOf(int index,JSONSchemaProps item){
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            if (this.allOf == null) {this.allOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();}</span>
+<span class="nc bnc" id="L211" title="All 4 branches missed.">            JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.allOf.add(index &gt;= 0 ? index : allOf.size(), builder); return (A)this;</span>
+    }
+
+    public A setToAllOf(int index,JSONSchemaProps item){
+<span class="nc bnc" id="L215" title="All 2 branches missed.">            if (this.allOf == null) {this.allOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();}</span>
+<span class="nc" id="L216">            JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);</span>
+<span class="nc bnc" id="L217" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L218" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= allOf.size()) { allOf.add(builder); } else { allOf.set(index, builder);}</span>
+<span class="nc" id="L219">             return (A)this;</span>
+    }
+
+    public A addToAllOf(JSONSchemaProps... items){
+<span class="nc bnc" id="L223" title="All 2 branches missed.">            if (this.allOf == null) {this.allOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();}</span>
+<span class="nc bnc" id="L224" title="All 2 branches missed.">            for (JSONSchemaProps item : items) {JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.add(builder);this.allOf.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToAllOf(Collection&lt;JSONSchemaProps&gt; items){
+<span class="nc bnc" id="L228" title="All 2 branches missed.">            if (this.allOf == null) {this.allOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();}</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">            for (JSONSchemaProps item : items) {JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.add(builder);this.allOf.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromAllOf(JSONSchemaProps... items){
+<span class="nc bnc" id="L233" title="All 4 branches missed.">            for (JSONSchemaProps item : items) {JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.remove(builder);if (this.allOf != null) {this.allOf.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAllOf(Collection&lt;JSONSchemaProps&gt; items){
+<span class="nc bnc" id="L237" title="All 4 branches missed.">            for (JSONSchemaProps item : items) {JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.remove(builder);if (this.allOf != null) {this.allOf.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildAllOf instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;JSONSchemaProps&gt; getAllOf(){
+<span class="nc" id="L246">            return build(allOf);</span>
+    }
+
+    public List&lt;JSONSchemaProps&gt; buildAllOf(){
+<span class="nc" id="L250">            return build(allOf);</span>
+    }
+
+    public JSONSchemaProps buildAllOf(int index){
+<span class="nc" id="L254">            return this.allOf.get(index).build();</span>
+    }
+
+    public JSONSchemaProps buildFirstAllOf(){
+<span class="nc" id="L258">            return this.allOf.get(0).build();</span>
+    }
+
+    public JSONSchemaProps buildLastAllOf(){
+<span class="nc" id="L262">            return this.allOf.get(allOf.size() - 1).build();</span>
+    }
+
+    public JSONSchemaProps buildMatchingAllOf(io.fabric8.kubernetes.api.builder.Predicate&lt;JSONSchemaPropsBuilder&gt; predicate){
+<span class="nc bnc" id="L266" title="All 4 branches missed.">            for (JSONSchemaPropsBuilder item: allOf) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withAllOf(List&lt;JSONSchemaProps&gt; allOf){
+<span class="nc bnc" id="L270" title="All 2 branches missed.">            if (this.allOf != null) { _visitables.removeAll(this.allOf);}</span>
+<span class="nc bnc" id="L271" title="All 4 branches missed.">            if (allOf != null) {this.allOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;(); for (JSONSchemaProps item : allOf){this.addToAllOf(item);}} else { this.allOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withAllOf(JSONSchemaProps... allOf){
+<span class="nc bnc" id="L275" title="All 2 branches missed.">            if (this.allOf != null) {this.allOf.clear();}</span>
+<span class="nc bnc" id="L276" title="All 4 branches missed.">            if (allOf != null) {for (JSONSchemaProps item :allOf){ this.addToAllOf(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAllOf(){
+<span class="nc bnc" id="L280" title="All 4 branches missed.">            return allOf != null &amp;&amp; !allOf.isEmpty();</span>
+    }
+
+    public JSONSchemaPropsFluent.AllOfNested&lt;A&gt; addNewAllOf(){
+<span class="nc" id="L284">            return new AllOfNestedImpl();</span>
+    }
+
+    public JSONSchemaPropsFluent.AllOfNested&lt;A&gt; addNewAllOfLike(JSONSchemaProps item){
+<span class="nc" id="L288">            return new AllOfNestedImpl(-1, item);</span>
+    }
+
+    public JSONSchemaPropsFluent.AllOfNested&lt;A&gt; setNewAllOfLike(int index,JSONSchemaProps item){
+<span class="nc" id="L292">            return new AllOfNestedImpl(index, item);</span>
+    }
+
+    public JSONSchemaPropsFluent.AllOfNested&lt;A&gt; editAllOf(int index){
+<span class="nc bnc" id="L296" title="All 2 branches missed.">            if (allOf.size() &lt;= index) throw new RuntimeException(&quot;Can't edit allOf. Index exceeds size.&quot;);</span>
+<span class="nc" id="L297">            return setNewAllOfLike(index, buildAllOf(index));</span>
+    }
+
+    public JSONSchemaPropsFluent.AllOfNested&lt;A&gt; editFirstAllOf(){
+<span class="nc bnc" id="L301" title="All 2 branches missed.">            if (allOf.size() == 0) throw new RuntimeException(&quot;Can't edit first allOf. The list is empty.&quot;);</span>
+<span class="nc" id="L302">            return setNewAllOfLike(0, buildAllOf(0));</span>
+    }
+
+    public JSONSchemaPropsFluent.AllOfNested&lt;A&gt; editLastAllOf(){
+<span class="nc" id="L306">            int index = allOf.size() - 1;</span>
+<span class="nc bnc" id="L307" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last allOf. The list is empty.&quot;);</span>
+<span class="nc" id="L308">            return setNewAllOfLike(index, buildAllOf(index));</span>
+    }
+
+    public JSONSchemaPropsFluent.AllOfNested&lt;A&gt; editMatchingAllOf(io.fabric8.kubernetes.api.builder.Predicate&lt;JSONSchemaPropsBuilder&gt; predicate){
+<span class="nc" id="L312">            int index = -1;</span>
+<span class="nc bnc" id="L313" title="All 2 branches missed.">            for (int i=0;i&lt;allOf.size();i++) { </span>
+<span class="nc bnc" id="L314" title="All 2 branches missed.">            if (predicate.apply(allOf.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L316" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching allOf. No match found.&quot;);</span>
+<span class="nc" id="L317">            return setNewAllOfLike(index, buildAllOf(index));</span>
+    }
+
+    public A addToAnyOf(int index,JSONSchemaProps item){
+<span class="nc bnc" id="L321" title="All 2 branches missed.">            if (this.anyOf == null) {this.anyOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();}</span>
+<span class="nc bnc" id="L322" title="All 4 branches missed.">            JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.anyOf.add(index &gt;= 0 ? index : anyOf.size(), builder); return (A)this;</span>
+    }
+
+    public A setToAnyOf(int index,JSONSchemaProps item){
+<span class="nc bnc" id="L326" title="All 2 branches missed.">            if (this.anyOf == null) {this.anyOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();}</span>
+<span class="nc" id="L327">            JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);</span>
+<span class="nc bnc" id="L328" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L329" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= anyOf.size()) { anyOf.add(builder); } else { anyOf.set(index, builder);}</span>
+<span class="nc" id="L330">             return (A)this;</span>
+    }
+
+    public A addToAnyOf(JSONSchemaProps... items){
+<span class="nc bnc" id="L334" title="All 2 branches missed.">            if (this.anyOf == null) {this.anyOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();}</span>
+<span class="nc bnc" id="L335" title="All 2 branches missed.">            for (JSONSchemaProps item : items) {JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.add(builder);this.anyOf.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToAnyOf(Collection&lt;JSONSchemaProps&gt; items){
+<span class="nc bnc" id="L339" title="All 2 branches missed.">            if (this.anyOf == null) {this.anyOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();}</span>
+<span class="nc bnc" id="L340" title="All 2 branches missed.">            for (JSONSchemaProps item : items) {JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.add(builder);this.anyOf.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromAnyOf(JSONSchemaProps... items){
+<span class="nc bnc" id="L344" title="All 4 branches missed.">            for (JSONSchemaProps item : items) {JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.remove(builder);if (this.anyOf != null) {this.anyOf.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAnyOf(Collection&lt;JSONSchemaProps&gt; items){
+<span class="nc bnc" id="L348" title="All 4 branches missed.">            for (JSONSchemaProps item : items) {JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.remove(builder);if (this.anyOf != null) {this.anyOf.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildAnyOf instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;JSONSchemaProps&gt; getAnyOf(){
+<span class="nc" id="L357">            return build(anyOf);</span>
+    }
+
+    public List&lt;JSONSchemaProps&gt; buildAnyOf(){
+<span class="nc" id="L361">            return build(anyOf);</span>
+    }
+
+    public JSONSchemaProps buildAnyOf(int index){
+<span class="nc" id="L365">            return this.anyOf.get(index).build();</span>
+    }
+
+    public JSONSchemaProps buildFirstAnyOf(){
+<span class="nc" id="L369">            return this.anyOf.get(0).build();</span>
+    }
+
+    public JSONSchemaProps buildLastAnyOf(){
+<span class="nc" id="L373">            return this.anyOf.get(anyOf.size() - 1).build();</span>
+    }
+
+    public JSONSchemaProps buildMatchingAnyOf(io.fabric8.kubernetes.api.builder.Predicate&lt;JSONSchemaPropsBuilder&gt; predicate){
+<span class="nc bnc" id="L377" title="All 4 branches missed.">            for (JSONSchemaPropsBuilder item: anyOf) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withAnyOf(List&lt;JSONSchemaProps&gt; anyOf){
+<span class="nc bnc" id="L381" title="All 2 branches missed.">            if (this.anyOf != null) { _visitables.removeAll(this.anyOf);}</span>
+<span class="nc bnc" id="L382" title="All 4 branches missed.">            if (anyOf != null) {this.anyOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;(); for (JSONSchemaProps item : anyOf){this.addToAnyOf(item);}} else { this.anyOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withAnyOf(JSONSchemaProps... anyOf){
+<span class="nc bnc" id="L386" title="All 2 branches missed.">            if (this.anyOf != null) {this.anyOf.clear();}</span>
+<span class="nc bnc" id="L387" title="All 4 branches missed.">            if (anyOf != null) {for (JSONSchemaProps item :anyOf){ this.addToAnyOf(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAnyOf(){
+<span class="nc bnc" id="L391" title="All 4 branches missed.">            return anyOf != null &amp;&amp; !anyOf.isEmpty();</span>
+    }
+
+    public JSONSchemaPropsFluent.AnyOfNested&lt;A&gt; addNewAnyOf(){
+<span class="nc" id="L395">            return new AnyOfNestedImpl();</span>
+    }
+
+    public JSONSchemaPropsFluent.AnyOfNested&lt;A&gt; addNewAnyOfLike(JSONSchemaProps item){
+<span class="nc" id="L399">            return new AnyOfNestedImpl(-1, item);</span>
+    }
+
+    public JSONSchemaPropsFluent.AnyOfNested&lt;A&gt; setNewAnyOfLike(int index,JSONSchemaProps item){
+<span class="nc" id="L403">            return new AnyOfNestedImpl(index, item);</span>
+    }
+
+    public JSONSchemaPropsFluent.AnyOfNested&lt;A&gt; editAnyOf(int index){
+<span class="nc bnc" id="L407" title="All 2 branches missed.">            if (anyOf.size() &lt;= index) throw new RuntimeException(&quot;Can't edit anyOf. Index exceeds size.&quot;);</span>
+<span class="nc" id="L408">            return setNewAnyOfLike(index, buildAnyOf(index));</span>
+    }
+
+    public JSONSchemaPropsFluent.AnyOfNested&lt;A&gt; editFirstAnyOf(){
+<span class="nc bnc" id="L412" title="All 2 branches missed.">            if (anyOf.size() == 0) throw new RuntimeException(&quot;Can't edit first anyOf. The list is empty.&quot;);</span>
+<span class="nc" id="L413">            return setNewAnyOfLike(0, buildAnyOf(0));</span>
+    }
+
+    public JSONSchemaPropsFluent.AnyOfNested&lt;A&gt; editLastAnyOf(){
+<span class="nc" id="L417">            int index = anyOf.size() - 1;</span>
+<span class="nc bnc" id="L418" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last anyOf. The list is empty.&quot;);</span>
+<span class="nc" id="L419">            return setNewAnyOfLike(index, buildAnyOf(index));</span>
+    }
+
+    public JSONSchemaPropsFluent.AnyOfNested&lt;A&gt; editMatchingAnyOf(io.fabric8.kubernetes.api.builder.Predicate&lt;JSONSchemaPropsBuilder&gt; predicate){
+<span class="nc" id="L423">            int index = -1;</span>
+<span class="nc bnc" id="L424" title="All 2 branches missed.">            for (int i=0;i&lt;anyOf.size();i++) { </span>
+<span class="nc bnc" id="L425" title="All 2 branches missed.">            if (predicate.apply(anyOf.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L427" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching anyOf. No match found.&quot;);</span>
+<span class="nc" id="L428">            return setNewAnyOfLike(index, buildAnyOf(index));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildDefault instead.
+ * @return The buildable object.
+ */
+@Deprecated public JSON getDefault(){
+<span class="nc bnc" id="L437" title="All 2 branches missed.">            return this._default!=null?this._default.build():null;</span>
+    }
+
+    public JSON buildDefault(){
+<span class="nc bnc" id="L441" title="All 2 branches missed.">            return this._default!=null?this._default.build():null;</span>
+    }
+
+    public A withDefault(JSON _default){
+<span class="nc" id="L445">            _visitables.remove(this._default);</span>
+<span class="nc bnc" id="L446" title="All 2 branches missed.">            if (_default!=null){ this._default= new JSONBuilder(_default); _visitables.add(this._default);} return (A) this;</span>
+    }
+
+    public Boolean hasDefault(){
+<span class="nc bnc" id="L450" title="All 2 branches missed.">            return this._default != null;</span>
+    }
+
+    public A withNewDefault(String raw){
+<span class="nc" id="L454">            return (A)withDefault(new JSON(raw));</span>
+    }
+
+    public JSONSchemaPropsFluent.DefaultNested&lt;A&gt; withNewDefault(){
+<span class="nc" id="L458">            return new DefaultNestedImpl();</span>
+    }
+
+    public JSONSchemaPropsFluent.DefaultNested&lt;A&gt; withNewDefaultLike(JSON item){
+<span class="nc" id="L462">            return new DefaultNestedImpl(item);</span>
+    }
+
+    public JSONSchemaPropsFluent.DefaultNested&lt;A&gt; editDefault(){
+<span class="nc" id="L466">            return withNewDefaultLike(getDefault());</span>
+    }
+
+    public JSONSchemaPropsFluent.DefaultNested&lt;A&gt; editOrNewDefault(){
+<span class="nc bnc" id="L470" title="All 2 branches missed.">            return withNewDefaultLike(getDefault() != null ? getDefault(): new JSONBuilder().build());</span>
+    }
+
+    public JSONSchemaPropsFluent.DefaultNested&lt;A&gt; editOrNewDefaultLike(JSON item){
+<span class="nc bnc" id="L474" title="All 2 branches missed.">            return withNewDefaultLike(getDefault() != null ? getDefault(): item);</span>
+    }
+
+    public A addToDefinitions(String key,JSONSchemaProps value){
+<span class="nc bnc" id="L478" title="All 6 branches missed.">            if(this.definitions == null &amp;&amp; key != null &amp;&amp; value != null) { this.definitions = new LinkedHashMap&lt;String,JSONSchemaProps&gt;(); }</span>
+<span class="nc bnc" id="L479" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.definitions.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToDefinitions(Map&lt;String,JSONSchemaProps&gt; map){
+<span class="nc bnc" id="L483" title="All 4 branches missed.">            if(this.definitions == null &amp;&amp; map != null) { this.definitions = new LinkedHashMap&lt;String,JSONSchemaProps&gt;(); }</span>
+<span class="nc bnc" id="L484" title="All 2 branches missed.">            if(map != null) { this.definitions.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromDefinitions(String key){
+<span class="nc bnc" id="L488" title="All 2 branches missed.">            if(this.definitions == null) { return (A) this; }</span>
+<span class="nc bnc" id="L489" title="All 4 branches missed.">            if(key != null &amp;&amp; this.definitions != null) {this.definitions.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromDefinitions(Map&lt;String,JSONSchemaProps&gt; map){
+<span class="nc bnc" id="L493" title="All 2 branches missed.">            if(this.definitions == null) { return (A) this; }</span>
+<span class="nc bnc" id="L494" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.definitions != null){this.definitions.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,JSONSchemaProps&gt; getDefinitions(){
+<span class="nc" id="L498">            return this.definitions;</span>
+    }
+
+    public A withDefinitions(Map&lt;String,JSONSchemaProps&gt; definitions){
+<span class="nc bnc" id="L502" title="All 2 branches missed.">            if (definitions == null) { this.definitions =  new LinkedHashMap&lt;String,JSONSchemaProps&gt;();} else {this.definitions = new LinkedHashMap&lt;String,JSONSchemaProps&gt;(definitions);} return (A) this;</span>
+    }
+
+    public Boolean hasDefinitions(){
+<span class="nc bnc" id="L506" title="All 2 branches missed.">            return this.definitions != null;</span>
+    }
+
+    public A addToDependencies(String key,JSONSchemaPropsOrStringArray value){
+<span class="nc bnc" id="L510" title="All 6 branches missed.">            if(this.dependencies == null &amp;&amp; key != null &amp;&amp; value != null) { this.dependencies = new LinkedHashMap&lt;String,JSONSchemaPropsOrStringArray&gt;(); }</span>
+<span class="nc bnc" id="L511" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.dependencies.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToDependencies(Map&lt;String,JSONSchemaPropsOrStringArray&gt; map){
+<span class="nc bnc" id="L515" title="All 4 branches missed.">            if(this.dependencies == null &amp;&amp; map != null) { this.dependencies = new LinkedHashMap&lt;String,JSONSchemaPropsOrStringArray&gt;(); }</span>
+<span class="nc bnc" id="L516" title="All 2 branches missed.">            if(map != null) { this.dependencies.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromDependencies(String key){
+<span class="nc bnc" id="L520" title="All 2 branches missed.">            if(this.dependencies == null) { return (A) this; }</span>
+<span class="nc bnc" id="L521" title="All 4 branches missed.">            if(key != null &amp;&amp; this.dependencies != null) {this.dependencies.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromDependencies(Map&lt;String,JSONSchemaPropsOrStringArray&gt; map){
+<span class="nc bnc" id="L525" title="All 2 branches missed.">            if(this.dependencies == null) { return (A) this; }</span>
+<span class="nc bnc" id="L526" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.dependencies != null){this.dependencies.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,JSONSchemaPropsOrStringArray&gt; getDependencies(){
+<span class="nc" id="L530">            return this.dependencies;</span>
+    }
+
+    public A withDependencies(Map&lt;String,JSONSchemaPropsOrStringArray&gt; dependencies){
+<span class="nc bnc" id="L534" title="All 2 branches missed.">            if (dependencies == null) { this.dependencies =  new LinkedHashMap&lt;String,JSONSchemaPropsOrStringArray&gt;();} else {this.dependencies = new LinkedHashMap&lt;String,JSONSchemaPropsOrStringArray&gt;(dependencies);} return (A) this;</span>
+    }
+
+    public Boolean hasDependencies(){
+<span class="nc bnc" id="L538" title="All 2 branches missed.">            return this.dependencies != null;</span>
+    }
+
+    public String getDescription(){
+<span class="nc" id="L542">            return this.description;</span>
+    }
+
+    public A withDescription(String description){
+<span class="nc" id="L546">            this.description=description; return (A) this;</span>
+    }
+
+    public Boolean hasDescription(){
+<span class="nc bnc" id="L550" title="All 2 branches missed.">            return this.description != null;</span>
+    }
+
+    public A addToEnum(int index,JSON item){
+<span class="nc bnc" id="L554" title="All 2 branches missed.">            if (this._enum == null) {this._enum = new ArrayList&lt;JSONBuilder&gt;();}</span>
+<span class="nc bnc" id="L555" title="All 4 branches missed.">            JSONBuilder builder = new JSONBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this._enum.add(index &gt;= 0 ? index : _enum.size(), builder); return (A)this;</span>
+    }
+
+    public A setToEnum(int index,JSON item){
+<span class="nc bnc" id="L559" title="All 2 branches missed.">            if (this._enum == null) {this._enum = new ArrayList&lt;JSONBuilder&gt;();}</span>
+<span class="nc" id="L560">            JSONBuilder builder = new JSONBuilder(item);</span>
+<span class="nc bnc" id="L561" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L562" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _enum.size()) { _enum.add(builder); } else { _enum.set(index, builder);}</span>
+<span class="nc" id="L563">             return (A)this;</span>
+    }
+
+    public A addToEnum(JSON... items){
+<span class="nc bnc" id="L567" title="All 2 branches missed.">            if (this._enum == null) {this._enum = new ArrayList&lt;JSONBuilder&gt;();}</span>
+<span class="nc bnc" id="L568" title="All 2 branches missed.">            for (JSON item : items) {JSONBuilder builder = new JSONBuilder(item);_visitables.add(builder);this._enum.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToEnum(Collection&lt;JSON&gt; items){
+<span class="nc bnc" id="L572" title="All 2 branches missed.">            if (this._enum == null) {this._enum = new ArrayList&lt;JSONBuilder&gt;();}</span>
+<span class="nc bnc" id="L573" title="All 2 branches missed.">            for (JSON item : items) {JSONBuilder builder = new JSONBuilder(item);_visitables.add(builder);this._enum.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromEnum(JSON... items){
+<span class="nc bnc" id="L577" title="All 4 branches missed.">            for (JSON item : items) {JSONBuilder builder = new JSONBuilder(item);_visitables.remove(builder);if (this._enum != null) {this._enum.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromEnum(Collection&lt;JSON&gt; items){
+<span class="nc bnc" id="L581" title="All 4 branches missed.">            for (JSON item : items) {JSONBuilder builder = new JSONBuilder(item);_visitables.remove(builder);if (this._enum != null) {this._enum.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildEnum instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;JSON&gt; getEnum(){
+<span class="nc" id="L590">            return build(_enum);</span>
+    }
+
+    public List&lt;JSON&gt; buildEnum(){
+<span class="nc" id="L594">            return build(_enum);</span>
+    }
+
+    public JSON buildEnum(int index){
+<span class="nc" id="L598">            return this._enum.get(index).build();</span>
+    }
+
+    public JSON buildFirstEnum(){
+<span class="nc" id="L602">            return this._enum.get(0).build();</span>
+    }
+
+    public JSON buildLastEnum(){
+<span class="nc" id="L606">            return this._enum.get(_enum.size() - 1).build();</span>
+    }
+
+    public JSON buildMatchingEnum(io.fabric8.kubernetes.api.builder.Predicate&lt;JSONBuilder&gt; predicate){
+<span class="nc bnc" id="L610" title="All 4 branches missed.">            for (JSONBuilder item: _enum) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withEnum(List&lt;JSON&gt; _enum){
+<span class="nc bnc" id="L614" title="All 2 branches missed.">            if (this._enum != null) { _visitables.removeAll(this._enum);}</span>
+<span class="nc bnc" id="L615" title="All 4 branches missed.">            if (_enum != null) {this._enum = new ArrayList&lt;JSONBuilder&gt;(); for (JSON item : _enum){this.addToEnum(item);}} else { this._enum = new ArrayList&lt;JSONBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withEnum(JSON... _enum){
+<span class="nc bnc" id="L619" title="All 2 branches missed.">            if (this._enum != null) {this._enum.clear();}</span>
+<span class="nc bnc" id="L620" title="All 4 branches missed.">            if (_enum != null) {for (JSON item :_enum){ this.addToEnum(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasEnum(){
+<span class="nc bnc" id="L624" title="All 4 branches missed.">            return _enum != null &amp;&amp; !_enum.isEmpty();</span>
+    }
+
+    public A addNewEnum(String raw){
+<span class="nc" id="L628">            return (A)addToEnum(new JSON(raw));</span>
+    }
+
+    public JSONSchemaPropsFluent.EnumNested&lt;A&gt; addNewEnum(){
+<span class="nc" id="L632">            return new EnumNestedImpl();</span>
+    }
+
+    public JSONSchemaPropsFluent.EnumNested&lt;A&gt; addNewEnumLike(JSON item){
+<span class="nc" id="L636">            return new EnumNestedImpl(-1, item);</span>
+    }
+
+    public JSONSchemaPropsFluent.EnumNested&lt;A&gt; setNewEnumLike(int index,JSON item){
+<span class="nc" id="L640">            return new EnumNestedImpl(index, item);</span>
+    }
+
+    public JSONSchemaPropsFluent.EnumNested&lt;A&gt; editEnum(int index){
+<span class="nc bnc" id="L644" title="All 2 branches missed.">            if (_enum.size() &lt;= index) throw new RuntimeException(&quot;Can't edit _enum. Index exceeds size.&quot;);</span>
+<span class="nc" id="L645">            return setNewEnumLike(index, buildEnum(index));</span>
+    }
+
+    public JSONSchemaPropsFluent.EnumNested&lt;A&gt; editFirstEnum(){
+<span class="nc bnc" id="L649" title="All 2 branches missed.">            if (_enum.size() == 0) throw new RuntimeException(&quot;Can't edit first _enum. The list is empty.&quot;);</span>
+<span class="nc" id="L650">            return setNewEnumLike(0, buildEnum(0));</span>
+    }
+
+    public JSONSchemaPropsFluent.EnumNested&lt;A&gt; editLastEnum(){
+<span class="nc" id="L654">            int index = _enum.size() - 1;</span>
+<span class="nc bnc" id="L655" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last _enum. The list is empty.&quot;);</span>
+<span class="nc" id="L656">            return setNewEnumLike(index, buildEnum(index));</span>
+    }
+
+    public JSONSchemaPropsFluent.EnumNested&lt;A&gt; editMatchingEnum(io.fabric8.kubernetes.api.builder.Predicate&lt;JSONBuilder&gt; predicate){
+<span class="nc" id="L660">            int index = -1;</span>
+<span class="nc bnc" id="L661" title="All 2 branches missed.">            for (int i=0;i&lt;_enum.size();i++) { </span>
+<span class="nc bnc" id="L662" title="All 2 branches missed.">            if (predicate.apply(_enum.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L664" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching _enum. No match found.&quot;);</span>
+<span class="nc" id="L665">            return setNewEnumLike(index, buildEnum(index));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildExample instead.
+ * @return The buildable object.
+ */
+@Deprecated public JSON getExample(){
+<span class="nc bnc" id="L674" title="All 2 branches missed.">            return this.example!=null?this.example.build():null;</span>
+    }
+
+    public JSON buildExample(){
+<span class="nc bnc" id="L678" title="All 2 branches missed.">            return this.example!=null?this.example.build():null;</span>
+    }
+
+    public A withExample(JSON example){
+<span class="nc" id="L682">            _visitables.remove(this.example);</span>
+<span class="nc bnc" id="L683" title="All 2 branches missed.">            if (example!=null){ this.example= new JSONBuilder(example); _visitables.add(this.example);} return (A) this;</span>
+    }
+
+    public Boolean hasExample(){
+<span class="nc bnc" id="L687" title="All 2 branches missed.">            return this.example != null;</span>
+    }
+
+    public A withNewExample(String raw){
+<span class="nc" id="L691">            return (A)withExample(new JSON(raw));</span>
+    }
+
+    public JSONSchemaPropsFluent.ExampleNested&lt;A&gt; withNewExample(){
+<span class="nc" id="L695">            return new ExampleNestedImpl();</span>
+    }
+
+    public JSONSchemaPropsFluent.ExampleNested&lt;A&gt; withNewExampleLike(JSON item){
+<span class="nc" id="L699">            return new ExampleNestedImpl(item);</span>
+    }
+
+    public JSONSchemaPropsFluent.ExampleNested&lt;A&gt; editExample(){
+<span class="nc" id="L703">            return withNewExampleLike(getExample());</span>
+    }
+
+    public JSONSchemaPropsFluent.ExampleNested&lt;A&gt; editOrNewExample(){
+<span class="nc bnc" id="L707" title="All 2 branches missed.">            return withNewExampleLike(getExample() != null ? getExample(): new JSONBuilder().build());</span>
+    }
+
+    public JSONSchemaPropsFluent.ExampleNested&lt;A&gt; editOrNewExampleLike(JSON item){
+<span class="nc bnc" id="L711" title="All 2 branches missed.">            return withNewExampleLike(getExample() != null ? getExample(): item);</span>
+    }
+
+    public Boolean isExclusiveMaximum(){
+<span class="nc" id="L715">            return this.exclusiveMaximum;</span>
+    }
+
+    public A withExclusiveMaximum(Boolean exclusiveMaximum){
+<span class="nc" id="L719">            this.exclusiveMaximum=exclusiveMaximum; return (A) this;</span>
+    }
+
+    public Boolean hasExclusiveMaximum(){
+<span class="nc bnc" id="L723" title="All 2 branches missed.">            return this.exclusiveMaximum != null;</span>
+    }
+
+    public A withNewExclusiveMaximum(String arg1){
+<span class="nc" id="L727">            return (A)withExclusiveMaximum(new Boolean(arg1));</span>
+    }
+
+    public A withNewExclusiveMaximum(boolean arg1){
+<span class="nc" id="L731">            return (A)withExclusiveMaximum(new Boolean(arg1));</span>
+    }
+
+    public Boolean isExclusiveMinimum(){
+<span class="nc" id="L735">            return this.exclusiveMinimum;</span>
+    }
+
+    public A withExclusiveMinimum(Boolean exclusiveMinimum){
+<span class="nc" id="L739">            this.exclusiveMinimum=exclusiveMinimum; return (A) this;</span>
+    }
+
+    public Boolean hasExclusiveMinimum(){
+<span class="nc bnc" id="L743" title="All 2 branches missed.">            return this.exclusiveMinimum != null;</span>
+    }
+
+    public A withNewExclusiveMinimum(String arg1){
+<span class="nc" id="L747">            return (A)withExclusiveMinimum(new Boolean(arg1));</span>
+    }
+
+    public A withNewExclusiveMinimum(boolean arg1){
+<span class="nc" id="L751">            return (A)withExclusiveMinimum(new Boolean(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildExternalDocs instead.
+ * @return The buildable object.
+ */
+@Deprecated public ExternalDocumentation getExternalDocs(){
+<span class="nc bnc" id="L760" title="All 2 branches missed.">            return this.externalDocs!=null?this.externalDocs.build():null;</span>
+    }
+
+    public ExternalDocumentation buildExternalDocs(){
+<span class="nc bnc" id="L764" title="All 2 branches missed.">            return this.externalDocs!=null?this.externalDocs.build():null;</span>
+    }
+
+    public A withExternalDocs(ExternalDocumentation externalDocs){
+<span class="nc" id="L768">            _visitables.remove(this.externalDocs);</span>
+<span class="nc bnc" id="L769" title="All 2 branches missed.">            if (externalDocs!=null){ this.externalDocs= new ExternalDocumentationBuilder(externalDocs); _visitables.add(this.externalDocs);} return (A) this;</span>
+    }
+
+    public Boolean hasExternalDocs(){
+<span class="nc bnc" id="L773" title="All 2 branches missed.">            return this.externalDocs != null;</span>
+    }
+
+    public A withNewExternalDocs(String description,String url){
+<span class="nc" id="L777">            return (A)withExternalDocs(new ExternalDocumentation(description, url));</span>
+    }
+
+    public JSONSchemaPropsFluent.ExternalDocsNested&lt;A&gt; withNewExternalDocs(){
+<span class="nc" id="L781">            return new ExternalDocsNestedImpl();</span>
+    }
+
+    public JSONSchemaPropsFluent.ExternalDocsNested&lt;A&gt; withNewExternalDocsLike(ExternalDocumentation item){
+<span class="nc" id="L785">            return new ExternalDocsNestedImpl(item);</span>
+    }
+
+    public JSONSchemaPropsFluent.ExternalDocsNested&lt;A&gt; editExternalDocs(){
+<span class="nc" id="L789">            return withNewExternalDocsLike(getExternalDocs());</span>
+    }
+
+    public JSONSchemaPropsFluent.ExternalDocsNested&lt;A&gt; editOrNewExternalDocs(){
+<span class="nc bnc" id="L793" title="All 2 branches missed.">            return withNewExternalDocsLike(getExternalDocs() != null ? getExternalDocs(): new ExternalDocumentationBuilder().build());</span>
+    }
+
+    public JSONSchemaPropsFluent.ExternalDocsNested&lt;A&gt; editOrNewExternalDocsLike(ExternalDocumentation item){
+<span class="nc bnc" id="L797" title="All 2 branches missed.">            return withNewExternalDocsLike(getExternalDocs() != null ? getExternalDocs(): item);</span>
+    }
+
+    public String getFormat(){
+<span class="nc" id="L801">            return this.format;</span>
+    }
+
+    public A withFormat(String format){
+<span class="nc" id="L805">            this.format=format; return (A) this;</span>
+    }
+
+    public Boolean hasFormat(){
+<span class="nc bnc" id="L809" title="All 2 branches missed.">            return this.format != null;</span>
+    }
+
+    public String getId(){
+<span class="nc" id="L813">            return this.id;</span>
+    }
+
+    public A withId(String id){
+<span class="nc" id="L817">            this.id=id; return (A) this;</span>
+    }
+
+    public Boolean hasId(){
+<span class="nc bnc" id="L821" title="All 2 branches missed.">            return this.id != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildItems instead.
+ * @return The buildable object.
+ */
+@Deprecated public JSONSchemaPropsOrArray getItems(){
+<span class="nc bnc" id="L830" title="All 2 branches missed.">            return this.items!=null?this.items.build():null;</span>
+    }
+
+    public JSONSchemaPropsOrArray buildItems(){
+<span class="nc bnc" id="L834" title="All 2 branches missed.">            return this.items!=null?this.items.build():null;</span>
+    }
+
+    public A withItems(JSONSchemaPropsOrArray items){
+<span class="nc" id="L838">            _visitables.remove(this.items);</span>
+<span class="nc bnc" id="L839" title="All 2 branches missed.">            if (items!=null){ this.items= new JSONSchemaPropsOrArrayBuilder(items); _visitables.add(this.items);} return (A) this;</span>
+    }
+
+    public Boolean hasItems(){
+<span class="nc bnc" id="L843" title="All 2 branches missed.">            return this.items != null;</span>
+    }
+
+    public JSONSchemaPropsFluent.ItemsNested&lt;A&gt; withNewItems(){
+<span class="nc" id="L847">            return new ItemsNestedImpl();</span>
+    }
+
+    public JSONSchemaPropsFluent.ItemsNested&lt;A&gt; withNewItemsLike(JSONSchemaPropsOrArray item){
+<span class="nc" id="L851">            return new ItemsNestedImpl(item);</span>
+    }
+
+    public JSONSchemaPropsFluent.ItemsNested&lt;A&gt; editItems(){
+<span class="nc" id="L855">            return withNewItemsLike(getItems());</span>
+    }
+
+    public JSONSchemaPropsFluent.ItemsNested&lt;A&gt; editOrNewItems(){
+<span class="nc bnc" id="L859" title="All 2 branches missed.">            return withNewItemsLike(getItems() != null ? getItems(): new JSONSchemaPropsOrArrayBuilder().build());</span>
+    }
+
+    public JSONSchemaPropsFluent.ItemsNested&lt;A&gt; editOrNewItemsLike(JSONSchemaPropsOrArray item){
+<span class="nc bnc" id="L863" title="All 2 branches missed.">            return withNewItemsLike(getItems() != null ? getItems(): item);</span>
+    }
+
+    public Long getMaxItems(){
+<span class="nc" id="L867">            return this.maxItems;</span>
+    }
+
+    public A withMaxItems(Long maxItems){
+<span class="nc" id="L871">            this.maxItems=maxItems; return (A) this;</span>
+    }
+
+    public Boolean hasMaxItems(){
+<span class="nc bnc" id="L875" title="All 2 branches missed.">            return this.maxItems != null;</span>
+    }
+
+    public A withNewMaxItems(String arg1){
+<span class="nc" id="L879">            return (A)withMaxItems(new Long(arg1));</span>
+    }
+
+    public A withNewMaxItems(long arg1){
+<span class="nc" id="L883">            return (A)withMaxItems(new Long(arg1));</span>
+    }
+
+    public Long getMaxLength(){
+<span class="nc" id="L887">            return this.maxLength;</span>
+    }
+
+    public A withMaxLength(Long maxLength){
+<span class="nc" id="L891">            this.maxLength=maxLength; return (A) this;</span>
+    }
+
+    public Boolean hasMaxLength(){
+<span class="nc bnc" id="L895" title="All 2 branches missed.">            return this.maxLength != null;</span>
+    }
+
+    public A withNewMaxLength(String arg1){
+<span class="nc" id="L899">            return (A)withMaxLength(new Long(arg1));</span>
+    }
+
+    public A withNewMaxLength(long arg1){
+<span class="nc" id="L903">            return (A)withMaxLength(new Long(arg1));</span>
+    }
+
+    public Long getMaxProperties(){
+<span class="nc" id="L907">            return this.maxProperties;</span>
+    }
+
+    public A withMaxProperties(Long maxProperties){
+<span class="nc" id="L911">            this.maxProperties=maxProperties; return (A) this;</span>
+    }
+
+    public Boolean hasMaxProperties(){
+<span class="nc bnc" id="L915" title="All 2 branches missed.">            return this.maxProperties != null;</span>
+    }
+
+    public A withNewMaxProperties(String arg1){
+<span class="nc" id="L919">            return (A)withMaxProperties(new Long(arg1));</span>
+    }
+
+    public A withNewMaxProperties(long arg1){
+<span class="nc" id="L923">            return (A)withMaxProperties(new Long(arg1));</span>
+    }
+
+    public Double getMaximum(){
+<span class="nc" id="L927">            return this.maximum;</span>
+    }
+
+    public A withMaximum(Double maximum){
+<span class="nc" id="L931">            this.maximum=maximum; return (A) this;</span>
+    }
+
+    public Boolean hasMaximum(){
+<span class="nc bnc" id="L935" title="All 2 branches missed.">            return this.maximum != null;</span>
+    }
+
+    public A withNewMaximum(String arg1){
+<span class="nc" id="L939">            return (A)withMaximum(new Double(arg1));</span>
+    }
+
+    public A withNewMaximum(double arg1){
+<span class="nc" id="L943">            return (A)withMaximum(new Double(arg1));</span>
+    }
+
+    public Long getMinItems(){
+<span class="nc" id="L947">            return this.minItems;</span>
+    }
+
+    public A withMinItems(Long minItems){
+<span class="nc" id="L951">            this.minItems=minItems; return (A) this;</span>
+    }
+
+    public Boolean hasMinItems(){
+<span class="nc bnc" id="L955" title="All 2 branches missed.">            return this.minItems != null;</span>
+    }
+
+    public A withNewMinItems(String arg1){
+<span class="nc" id="L959">            return (A)withMinItems(new Long(arg1));</span>
+    }
+
+    public A withNewMinItems(long arg1){
+<span class="nc" id="L963">            return (A)withMinItems(new Long(arg1));</span>
+    }
+
+    public Long getMinLength(){
+<span class="nc" id="L967">            return this.minLength;</span>
+    }
+
+    public A withMinLength(Long minLength){
+<span class="nc" id="L971">            this.minLength=minLength; return (A) this;</span>
+    }
+
+    public Boolean hasMinLength(){
+<span class="nc bnc" id="L975" title="All 2 branches missed.">            return this.minLength != null;</span>
+    }
+
+    public A withNewMinLength(String arg1){
+<span class="nc" id="L979">            return (A)withMinLength(new Long(arg1));</span>
+    }
+
+    public A withNewMinLength(long arg1){
+<span class="nc" id="L983">            return (A)withMinLength(new Long(arg1));</span>
+    }
+
+    public Long getMinProperties(){
+<span class="nc" id="L987">            return this.minProperties;</span>
+    }
+
+    public A withMinProperties(Long minProperties){
+<span class="nc" id="L991">            this.minProperties=minProperties; return (A) this;</span>
+    }
+
+    public Boolean hasMinProperties(){
+<span class="nc bnc" id="L995" title="All 2 branches missed.">            return this.minProperties != null;</span>
+    }
+
+    public A withNewMinProperties(String arg1){
+<span class="nc" id="L999">            return (A)withMinProperties(new Long(arg1));</span>
+    }
+
+    public A withNewMinProperties(long arg1){
+<span class="nc" id="L1003">            return (A)withMinProperties(new Long(arg1));</span>
+    }
+
+    public Double getMinimum(){
+<span class="nc" id="L1007">            return this.minimum;</span>
+    }
+
+    public A withMinimum(Double minimum){
+<span class="nc" id="L1011">            this.minimum=minimum; return (A) this;</span>
+    }
+
+    public Boolean hasMinimum(){
+<span class="nc bnc" id="L1015" title="All 2 branches missed.">            return this.minimum != null;</span>
+    }
+
+    public A withNewMinimum(String arg1){
+<span class="nc" id="L1019">            return (A)withMinimum(new Double(arg1));</span>
+    }
+
+    public A withNewMinimum(double arg1){
+<span class="nc" id="L1023">            return (A)withMinimum(new Double(arg1));</span>
+    }
+
+    public Double getMultipleOf(){
+<span class="nc" id="L1027">            return this.multipleOf;</span>
+    }
+
+    public A withMultipleOf(Double multipleOf){
+<span class="nc" id="L1031">            this.multipleOf=multipleOf; return (A) this;</span>
+    }
+
+    public Boolean hasMultipleOf(){
+<span class="nc bnc" id="L1035" title="All 2 branches missed.">            return this.multipleOf != null;</span>
+    }
+
+    public A withNewMultipleOf(String arg1){
+<span class="nc" id="L1039">            return (A)withMultipleOf(new Double(arg1));</span>
+    }
+
+    public A withNewMultipleOf(double arg1){
+<span class="nc" id="L1043">            return (A)withMultipleOf(new Double(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildNot instead.
+ * @return The buildable object.
+ */
+@Deprecated public JSONSchemaProps getNot(){
+<span class="nc bnc" id="L1052" title="All 2 branches missed.">            return this.not!=null?this.not.build():null;</span>
+    }
+
+    public JSONSchemaProps buildNot(){
+<span class="nc bnc" id="L1056" title="All 2 branches missed.">            return this.not!=null?this.not.build():null;</span>
+    }
+
+    public A withNot(JSONSchemaProps not){
+<span class="nc" id="L1060">            _visitables.remove(this.not);</span>
+<span class="nc bnc" id="L1061" title="All 2 branches missed.">            if (not!=null){ this.not= new JSONSchemaPropsBuilder(not); _visitables.add(this.not);} return (A) this;</span>
+    }
+
+    public Boolean hasNot(){
+<span class="nc bnc" id="L1065" title="All 2 branches missed.">            return this.not != null;</span>
+    }
+
+    public JSONSchemaPropsFluent.NotNested&lt;A&gt; withNewNot(){
+<span class="nc" id="L1069">            return new NotNestedImpl();</span>
+    }
+
+    public JSONSchemaPropsFluent.NotNested&lt;A&gt; withNewNotLike(JSONSchemaProps item){
+<span class="nc" id="L1073">            return new NotNestedImpl(item);</span>
+    }
+
+    public JSONSchemaPropsFluent.NotNested&lt;A&gt; editNot(){
+<span class="nc" id="L1077">            return withNewNotLike(getNot());</span>
+    }
+
+    public JSONSchemaPropsFluent.NotNested&lt;A&gt; editOrNewNot(){
+<span class="nc bnc" id="L1081" title="All 2 branches missed.">            return withNewNotLike(getNot() != null ? getNot(): new JSONSchemaPropsBuilder().build());</span>
+    }
+
+    public JSONSchemaPropsFluent.NotNested&lt;A&gt; editOrNewNotLike(JSONSchemaProps item){
+<span class="nc bnc" id="L1085" title="All 2 branches missed.">            return withNewNotLike(getNot() != null ? getNot(): item);</span>
+    }
+
+    public A addToOneOf(int index,JSONSchemaProps item){
+<span class="nc bnc" id="L1089" title="All 2 branches missed.">            if (this.oneOf == null) {this.oneOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();}</span>
+<span class="nc bnc" id="L1090" title="All 4 branches missed.">            JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.oneOf.add(index &gt;= 0 ? index : oneOf.size(), builder); return (A)this;</span>
+    }
+
+    public A setToOneOf(int index,JSONSchemaProps item){
+<span class="nc bnc" id="L1094" title="All 2 branches missed.">            if (this.oneOf == null) {this.oneOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();}</span>
+<span class="nc" id="L1095">            JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);</span>
+<span class="nc bnc" id="L1096" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L1097" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= oneOf.size()) { oneOf.add(builder); } else { oneOf.set(index, builder);}</span>
+<span class="nc" id="L1098">             return (A)this;</span>
+    }
+
+    public A addToOneOf(JSONSchemaProps... items){
+<span class="nc bnc" id="L1102" title="All 2 branches missed.">            if (this.oneOf == null) {this.oneOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();}</span>
+<span class="nc bnc" id="L1103" title="All 2 branches missed.">            for (JSONSchemaProps item : items) {JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.add(builder);this.oneOf.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToOneOf(Collection&lt;JSONSchemaProps&gt; items){
+<span class="nc bnc" id="L1107" title="All 2 branches missed.">            if (this.oneOf == null) {this.oneOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();}</span>
+<span class="nc bnc" id="L1108" title="All 2 branches missed.">            for (JSONSchemaProps item : items) {JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.add(builder);this.oneOf.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromOneOf(JSONSchemaProps... items){
+<span class="nc bnc" id="L1112" title="All 4 branches missed.">            for (JSONSchemaProps item : items) {JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.remove(builder);if (this.oneOf != null) {this.oneOf.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromOneOf(Collection&lt;JSONSchemaProps&gt; items){
+<span class="nc bnc" id="L1116" title="All 4 branches missed.">            for (JSONSchemaProps item : items) {JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.remove(builder);if (this.oneOf != null) {this.oneOf.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildOneOf instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;JSONSchemaProps&gt; getOneOf(){
+<span class="nc" id="L1125">            return build(oneOf);</span>
+    }
+
+    public List&lt;JSONSchemaProps&gt; buildOneOf(){
+<span class="nc" id="L1129">            return build(oneOf);</span>
+    }
+
+    public JSONSchemaProps buildOneOf(int index){
+<span class="nc" id="L1133">            return this.oneOf.get(index).build();</span>
+    }
+
+    public JSONSchemaProps buildFirstOneOf(){
+<span class="nc" id="L1137">            return this.oneOf.get(0).build();</span>
+    }
+
+    public JSONSchemaProps buildLastOneOf(){
+<span class="nc" id="L1141">            return this.oneOf.get(oneOf.size() - 1).build();</span>
+    }
+
+    public JSONSchemaProps buildMatchingOneOf(io.fabric8.kubernetes.api.builder.Predicate&lt;JSONSchemaPropsBuilder&gt; predicate){
+<span class="nc bnc" id="L1145" title="All 4 branches missed.">            for (JSONSchemaPropsBuilder item: oneOf) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withOneOf(List&lt;JSONSchemaProps&gt; oneOf){
+<span class="nc bnc" id="L1149" title="All 2 branches missed.">            if (this.oneOf != null) { _visitables.removeAll(this.oneOf);}</span>
+<span class="nc bnc" id="L1150" title="All 4 branches missed.">            if (oneOf != null) {this.oneOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;(); for (JSONSchemaProps item : oneOf){this.addToOneOf(item);}} else { this.oneOf = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withOneOf(JSONSchemaProps... oneOf){
+<span class="nc bnc" id="L1154" title="All 2 branches missed.">            if (this.oneOf != null) {this.oneOf.clear();}</span>
+<span class="nc bnc" id="L1155" title="All 4 branches missed.">            if (oneOf != null) {for (JSONSchemaProps item :oneOf){ this.addToOneOf(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasOneOf(){
+<span class="nc bnc" id="L1159" title="All 4 branches missed.">            return oneOf != null &amp;&amp; !oneOf.isEmpty();</span>
+    }
+
+    public JSONSchemaPropsFluent.OneOfNested&lt;A&gt; addNewOneOf(){
+<span class="nc" id="L1163">            return new OneOfNestedImpl();</span>
+    }
+
+    public JSONSchemaPropsFluent.OneOfNested&lt;A&gt; addNewOneOfLike(JSONSchemaProps item){
+<span class="nc" id="L1167">            return new OneOfNestedImpl(-1, item);</span>
+    }
+
+    public JSONSchemaPropsFluent.OneOfNested&lt;A&gt; setNewOneOfLike(int index,JSONSchemaProps item){
+<span class="nc" id="L1171">            return new OneOfNestedImpl(index, item);</span>
+    }
+
+    public JSONSchemaPropsFluent.OneOfNested&lt;A&gt; editOneOf(int index){
+<span class="nc bnc" id="L1175" title="All 2 branches missed.">            if (oneOf.size() &lt;= index) throw new RuntimeException(&quot;Can't edit oneOf. Index exceeds size.&quot;);</span>
+<span class="nc" id="L1176">            return setNewOneOfLike(index, buildOneOf(index));</span>
+    }
+
+    public JSONSchemaPropsFluent.OneOfNested&lt;A&gt; editFirstOneOf(){
+<span class="nc bnc" id="L1180" title="All 2 branches missed.">            if (oneOf.size() == 0) throw new RuntimeException(&quot;Can't edit first oneOf. The list is empty.&quot;);</span>
+<span class="nc" id="L1181">            return setNewOneOfLike(0, buildOneOf(0));</span>
+    }
+
+    public JSONSchemaPropsFluent.OneOfNested&lt;A&gt; editLastOneOf(){
+<span class="nc" id="L1185">            int index = oneOf.size() - 1;</span>
+<span class="nc bnc" id="L1186" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last oneOf. The list is empty.&quot;);</span>
+<span class="nc" id="L1187">            return setNewOneOfLike(index, buildOneOf(index));</span>
+    }
+
+    public JSONSchemaPropsFluent.OneOfNested&lt;A&gt; editMatchingOneOf(io.fabric8.kubernetes.api.builder.Predicate&lt;JSONSchemaPropsBuilder&gt; predicate){
+<span class="nc" id="L1191">            int index = -1;</span>
+<span class="nc bnc" id="L1192" title="All 2 branches missed.">            for (int i=0;i&lt;oneOf.size();i++) { </span>
+<span class="nc bnc" id="L1193" title="All 2 branches missed.">            if (predicate.apply(oneOf.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L1195" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching oneOf. No match found.&quot;);</span>
+<span class="nc" id="L1196">            return setNewOneOfLike(index, buildOneOf(index));</span>
+    }
+
+    public String getPattern(){
+<span class="nc" id="L1200">            return this.pattern;</span>
+    }
+
+    public A withPattern(String pattern){
+<span class="nc" id="L1204">            this.pattern=pattern; return (A) this;</span>
+    }
+
+    public Boolean hasPattern(){
+<span class="nc bnc" id="L1208" title="All 2 branches missed.">            return this.pattern != null;</span>
+    }
+
+    public A addToPatternProperties(String key,JSONSchemaProps value){
+<span class="nc bnc" id="L1212" title="All 6 branches missed.">            if(this.patternProperties == null &amp;&amp; key != null &amp;&amp; value != null) { this.patternProperties = new LinkedHashMap&lt;String,JSONSchemaProps&gt;(); }</span>
+<span class="nc bnc" id="L1213" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.patternProperties.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToPatternProperties(Map&lt;String,JSONSchemaProps&gt; map){
+<span class="nc bnc" id="L1217" title="All 4 branches missed.">            if(this.patternProperties == null &amp;&amp; map != null) { this.patternProperties = new LinkedHashMap&lt;String,JSONSchemaProps&gt;(); }</span>
+<span class="nc bnc" id="L1218" title="All 2 branches missed.">            if(map != null) { this.patternProperties.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromPatternProperties(String key){
+<span class="nc bnc" id="L1222" title="All 2 branches missed.">            if(this.patternProperties == null) { return (A) this; }</span>
+<span class="nc bnc" id="L1223" title="All 4 branches missed.">            if(key != null &amp;&amp; this.patternProperties != null) {this.patternProperties.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromPatternProperties(Map&lt;String,JSONSchemaProps&gt; map){
+<span class="nc bnc" id="L1227" title="All 2 branches missed.">            if(this.patternProperties == null) { return (A) this; }</span>
+<span class="nc bnc" id="L1228" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.patternProperties != null){this.patternProperties.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,JSONSchemaProps&gt; getPatternProperties(){
+<span class="nc" id="L1232">            return this.patternProperties;</span>
+    }
+
+    public A withPatternProperties(Map&lt;String,JSONSchemaProps&gt; patternProperties){
+<span class="nc bnc" id="L1236" title="All 2 branches missed.">            if (patternProperties == null) { this.patternProperties =  new LinkedHashMap&lt;String,JSONSchemaProps&gt;();} else {this.patternProperties = new LinkedHashMap&lt;String,JSONSchemaProps&gt;(patternProperties);} return (A) this;</span>
+    }
+
+    public Boolean hasPatternProperties(){
+<span class="nc bnc" id="L1240" title="All 2 branches missed.">            return this.patternProperties != null;</span>
+    }
+
+    public A addToProperties(String key,JSONSchemaProps value){
+<span class="nc bnc" id="L1244" title="All 6 branches missed.">            if(this.properties == null &amp;&amp; key != null &amp;&amp; value != null) { this.properties = new LinkedHashMap&lt;String,JSONSchemaProps&gt;(); }</span>
+<span class="nc bnc" id="L1245" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.properties.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToProperties(Map&lt;String,JSONSchemaProps&gt; map){
+<span class="nc bnc" id="L1249" title="All 4 branches missed.">            if(this.properties == null &amp;&amp; map != null) { this.properties = new LinkedHashMap&lt;String,JSONSchemaProps&gt;(); }</span>
+<span class="nc bnc" id="L1250" title="All 2 branches missed.">            if(map != null) { this.properties.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromProperties(String key){
+<span class="nc bnc" id="L1254" title="All 2 branches missed.">            if(this.properties == null) { return (A) this; }</span>
+<span class="nc bnc" id="L1255" title="All 4 branches missed.">            if(key != null &amp;&amp; this.properties != null) {this.properties.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromProperties(Map&lt;String,JSONSchemaProps&gt; map){
+<span class="nc bnc" id="L1259" title="All 2 branches missed.">            if(this.properties == null) { return (A) this; }</span>
+<span class="nc bnc" id="L1260" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.properties != null){this.properties.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,JSONSchemaProps&gt; getProperties(){
+<span class="nc" id="L1264">            return this.properties;</span>
+    }
+
+    public A withProperties(Map&lt;String,JSONSchemaProps&gt; properties){
+<span class="nc bnc" id="L1268" title="All 2 branches missed.">            if (properties == null) { this.properties =  new LinkedHashMap&lt;String,JSONSchemaProps&gt;();} else {this.properties = new LinkedHashMap&lt;String,JSONSchemaProps&gt;(properties);} return (A) this;</span>
+    }
+
+    public Boolean hasProperties(){
+<span class="nc bnc" id="L1272" title="All 2 branches missed.">            return this.properties != null;</span>
+    }
+
+    public A addToRequired(int index,String item){
+<span class="nc bnc" id="L1276" title="All 2 branches missed.">            if (this.required == null) {this.required = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L1277">            this.required.add(index, item);</span>
+<span class="nc" id="L1278">            return (A)this;</span>
+    }
+
+    public A setToRequired(int index,String item){
+<span class="nc bnc" id="L1282" title="All 2 branches missed.">            if (this.required == null) {this.required = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L1283">            this.required.set(index, item); return (A)this;</span>
+    }
+
+    public A addToRequired(String... items){
+<span class="nc bnc" id="L1287" title="All 2 branches missed.">            if (this.required == null) {this.required = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L1288" title="All 2 branches missed.">            for (String item : items) {this.required.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToRequired(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L1292" title="All 2 branches missed.">            if (this.required == null) {this.required = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L1293" title="All 2 branches missed.">            for (String item : items) {this.required.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromRequired(String... items){
+<span class="nc bnc" id="L1297" title="All 4 branches missed.">            for (String item : items) {if (this.required!= null){ this.required.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromRequired(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L1301" title="All 4 branches missed.">            for (String item : items) {if (this.required!= null){ this.required.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getRequired(){
+<span class="nc" id="L1305">            return this.required;</span>
+    }
+
+    public String getRequired(int index){
+<span class="nc" id="L1309">            return this.required.get(index);</span>
+    }
+
+    public String getFirstRequired(){
+<span class="nc" id="L1313">            return this.required.get(0);</span>
+    }
+
+    public String getLastRequired(){
+<span class="nc" id="L1317">            return this.required.get(required.size() - 1);</span>
+    }
+
+    public String getMatchingRequired(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L1321" title="All 4 branches missed.">            for (String item: required) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withRequired(List&lt;String&gt; required){
+<span class="nc bnc" id="L1325" title="All 2 branches missed.">            if (this.required != null) { _visitables.removeAll(this.required);}</span>
+<span class="nc bnc" id="L1326" title="All 4 branches missed.">            if (required != null) {this.required = new ArrayList&lt;String&gt;(); for (String item : required){this.addToRequired(item);}} else { this.required = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withRequired(String... required){
+<span class="nc bnc" id="L1330" title="All 2 branches missed.">            if (this.required != null) {this.required.clear();}</span>
+<span class="nc bnc" id="L1331" title="All 4 branches missed.">            if (required != null) {for (String item :required){ this.addToRequired(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasRequired(){
+<span class="nc bnc" id="L1335" title="All 4 branches missed.">            return required != null &amp;&amp; !required.isEmpty();</span>
+    }
+
+    public String getTitle(){
+<span class="nc" id="L1339">            return this.title;</span>
+    }
+
+    public A withTitle(String title){
+<span class="nc" id="L1343">            this.title=title; return (A) this;</span>
+    }
+
+    public Boolean hasTitle(){
+<span class="nc bnc" id="L1347" title="All 2 branches missed.">            return this.title != null;</span>
+    }
+
+    public String getType(){
+<span class="nc" id="L1351">            return this.type;</span>
+    }
+
+    public A withType(String type){
+<span class="nc" id="L1355">            this.type=type; return (A) this;</span>
+    }
+
+    public Boolean hasType(){
+<span class="nc bnc" id="L1359" title="All 2 branches missed.">            return this.type != null;</span>
+    }
+
+    public Boolean isUniqueItems(){
+<span class="nc" id="L1363">            return this.uniqueItems;</span>
+    }
+
+    public A withUniqueItems(Boolean uniqueItems){
+<span class="nc" id="L1367">            this.uniqueItems=uniqueItems; return (A) this;</span>
+    }
+
+    public Boolean hasUniqueItems(){
+<span class="nc bnc" id="L1371" title="All 2 branches missed.">            return this.uniqueItems != null;</span>
+    }
+
+    public A withNewUniqueItems(String arg1){
+<span class="nc" id="L1375">            return (A)withUniqueItems(new Boolean(arg1));</span>
+    }
+
+    public A withNewUniqueItems(boolean arg1){
+<span class="nc" id="L1379">            return (A)withUniqueItems(new Boolean(arg1));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L1383" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L1384" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L1385" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L1386">            JSONSchemaPropsFluentImpl that = (JSONSchemaPropsFluentImpl) o;</span>
+<span class="nc bnc" id="L1387" title="All 6 branches missed.">            if ($ref != null ? !$ref.equals(that.$ref) :that.$ref != null) return false;</span>
+<span class="nc bnc" id="L1388" title="All 6 branches missed.">            if ($schema != null ? !$schema.equals(that.$schema) :that.$schema != null) return false;</span>
+<span class="nc bnc" id="L1389" title="All 6 branches missed.">            if (additionalItems != null ? !additionalItems.equals(that.additionalItems) :that.additionalItems != null) return false;</span>
+<span class="nc bnc" id="L1390" title="All 6 branches missed.">            if (additionalProperties != null ? !additionalProperties.equals(that.additionalProperties) :that.additionalProperties != null) return false;</span>
+<span class="nc bnc" id="L1391" title="All 6 branches missed.">            if (allOf != null ? !allOf.equals(that.allOf) :that.allOf != null) return false;</span>
+<span class="nc bnc" id="L1392" title="All 6 branches missed.">            if (anyOf != null ? !anyOf.equals(that.anyOf) :that.anyOf != null) return false;</span>
+<span class="nc bnc" id="L1393" title="All 6 branches missed.">            if (_default != null ? !_default.equals(that._default) :that._default != null) return false;</span>
+<span class="nc bnc" id="L1394" title="All 6 branches missed.">            if (definitions != null ? !definitions.equals(that.definitions) :that.definitions != null) return false;</span>
+<span class="nc bnc" id="L1395" title="All 6 branches missed.">            if (dependencies != null ? !dependencies.equals(that.dependencies) :that.dependencies != null) return false;</span>
+<span class="nc bnc" id="L1396" title="All 6 branches missed.">            if (description != null ? !description.equals(that.description) :that.description != null) return false;</span>
+<span class="nc bnc" id="L1397" title="All 6 branches missed.">            if (_enum != null ? !_enum.equals(that._enum) :that._enum != null) return false;</span>
+<span class="nc bnc" id="L1398" title="All 6 branches missed.">            if (example != null ? !example.equals(that.example) :that.example != null) return false;</span>
+<span class="nc bnc" id="L1399" title="All 6 branches missed.">            if (exclusiveMaximum != null ? !exclusiveMaximum.equals(that.exclusiveMaximum) :that.exclusiveMaximum != null) return false;</span>
+<span class="nc bnc" id="L1400" title="All 6 branches missed.">            if (exclusiveMinimum != null ? !exclusiveMinimum.equals(that.exclusiveMinimum) :that.exclusiveMinimum != null) return false;</span>
+<span class="nc bnc" id="L1401" title="All 6 branches missed.">            if (externalDocs != null ? !externalDocs.equals(that.externalDocs) :that.externalDocs != null) return false;</span>
+<span class="nc bnc" id="L1402" title="All 6 branches missed.">            if (format != null ? !format.equals(that.format) :that.format != null) return false;</span>
+<span class="nc bnc" id="L1403" title="All 6 branches missed.">            if (id != null ? !id.equals(that.id) :that.id != null) return false;</span>
+<span class="nc bnc" id="L1404" title="All 6 branches missed.">            if (items != null ? !items.equals(that.items) :that.items != null) return false;</span>
+<span class="nc bnc" id="L1405" title="All 6 branches missed.">            if (maxItems != null ? !maxItems.equals(that.maxItems) :that.maxItems != null) return false;</span>
+<span class="nc bnc" id="L1406" title="All 6 branches missed.">            if (maxLength != null ? !maxLength.equals(that.maxLength) :that.maxLength != null) return false;</span>
+<span class="nc bnc" id="L1407" title="All 6 branches missed.">            if (maxProperties != null ? !maxProperties.equals(that.maxProperties) :that.maxProperties != null) return false;</span>
+<span class="nc bnc" id="L1408" title="All 6 branches missed.">            if (maximum != null ? !maximum.equals(that.maximum) :that.maximum != null) return false;</span>
+<span class="nc bnc" id="L1409" title="All 6 branches missed.">            if (minItems != null ? !minItems.equals(that.minItems) :that.minItems != null) return false;</span>
+<span class="nc bnc" id="L1410" title="All 6 branches missed.">            if (minLength != null ? !minLength.equals(that.minLength) :that.minLength != null) return false;</span>
+<span class="nc bnc" id="L1411" title="All 6 branches missed.">            if (minProperties != null ? !minProperties.equals(that.minProperties) :that.minProperties != null) return false;</span>
+<span class="nc bnc" id="L1412" title="All 6 branches missed.">            if (minimum != null ? !minimum.equals(that.minimum) :that.minimum != null) return false;</span>
+<span class="nc bnc" id="L1413" title="All 6 branches missed.">            if (multipleOf != null ? !multipleOf.equals(that.multipleOf) :that.multipleOf != null) return false;</span>
+<span class="nc bnc" id="L1414" title="All 6 branches missed.">            if (not != null ? !not.equals(that.not) :that.not != null) return false;</span>
+<span class="nc bnc" id="L1415" title="All 6 branches missed.">            if (oneOf != null ? !oneOf.equals(that.oneOf) :that.oneOf != null) return false;</span>
+<span class="nc bnc" id="L1416" title="All 6 branches missed.">            if (pattern != null ? !pattern.equals(that.pattern) :that.pattern != null) return false;</span>
+<span class="nc bnc" id="L1417" title="All 6 branches missed.">            if (patternProperties != null ? !patternProperties.equals(that.patternProperties) :that.patternProperties != null) return false;</span>
+<span class="nc bnc" id="L1418" title="All 6 branches missed.">            if (properties != null ? !properties.equals(that.properties) :that.properties != null) return false;</span>
+<span class="nc bnc" id="L1419" title="All 6 branches missed.">            if (required != null ? !required.equals(that.required) :that.required != null) return false;</span>
+<span class="nc bnc" id="L1420" title="All 6 branches missed.">            if (title != null ? !title.equals(that.title) :that.title != null) return false;</span>
+<span class="nc bnc" id="L1421" title="All 6 branches missed.">            if (type != null ? !type.equals(that.type) :that.type != null) return false;</span>
+<span class="nc bnc" id="L1422" title="All 6 branches missed.">            if (uniqueItems != null ? !uniqueItems.equals(that.uniqueItems) :that.uniqueItems != null) return false;</span>
+<span class="nc" id="L1423">            return true;</span>
+    }
+
+
+    public class AdditionalItemsNestedImpl&lt;N&gt; extends JSONSchemaPropsOrBoolFluentImpl&lt;JSONSchemaPropsFluent.AdditionalItemsNested&lt;N&gt;&gt; implements JSONSchemaPropsFluent.AdditionalItemsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JSONSchemaPropsOrBoolBuilder builder;
+    
+<span class="nc" id="L1431">            AdditionalItemsNestedImpl(JSONSchemaPropsOrBool item){</span>
+<span class="nc" id="L1432">                    this.builder = new JSONSchemaPropsOrBoolBuilder(this, item);</span>
+<span class="nc" id="L1433">            }</span>
+<span class="nc" id="L1434">            AdditionalItemsNestedImpl(){</span>
+<span class="nc" id="L1435">                    this.builder = new JSONSchemaPropsOrBoolBuilder(this);</span>
+<span class="nc" id="L1436">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1439">            return (N) JSONSchemaPropsFluentImpl.this.withAdditionalItems(builder.build());</span>
+    }
+    public N endAdditionalItems(){
+<span class="nc" id="L1442">            return and();</span>
+    }
+
+}
+    public class AdditionalPropertiesNestedImpl&lt;N&gt; extends JSONSchemaPropsOrBoolFluentImpl&lt;JSONSchemaPropsFluent.AdditionalPropertiesNested&lt;N&gt;&gt; implements JSONSchemaPropsFluent.AdditionalPropertiesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JSONSchemaPropsOrBoolBuilder builder;
+    
+<span class="nc" id="L1450">            AdditionalPropertiesNestedImpl(JSONSchemaPropsOrBool item){</span>
+<span class="nc" id="L1451">                    this.builder = new JSONSchemaPropsOrBoolBuilder(this, item);</span>
+<span class="nc" id="L1452">            }</span>
+<span class="nc" id="L1453">            AdditionalPropertiesNestedImpl(){</span>
+<span class="nc" id="L1454">                    this.builder = new JSONSchemaPropsOrBoolBuilder(this);</span>
+<span class="nc" id="L1455">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1458">            return (N) JSONSchemaPropsFluentImpl.this.withAdditionalProperties(builder.build());</span>
+    }
+    public N endAdditionalProperties(){
+<span class="nc" id="L1461">            return and();</span>
+    }
+
+}
+    public class AllOfNestedImpl&lt;N&gt; extends JSONSchemaPropsFluentImpl&lt;JSONSchemaPropsFluent.AllOfNested&lt;N&gt;&gt; implements JSONSchemaPropsFluent.AllOfNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JSONSchemaPropsBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L1470">            AllOfNestedImpl(int index,JSONSchemaProps item){</span>
+<span class="nc" id="L1471">                    this.index = index;</span>
+<span class="nc" id="L1472">                    this.builder = new JSONSchemaPropsBuilder(this, item);</span>
+<span class="nc" id="L1473">            }</span>
+<span class="nc" id="L1474">            AllOfNestedImpl(){</span>
+<span class="nc" id="L1475">                    this.index = -1;</span>
+<span class="nc" id="L1476">                    this.builder = new JSONSchemaPropsBuilder(this);</span>
+<span class="nc" id="L1477">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1480">            return (N) JSONSchemaPropsFluentImpl.this.setToAllOf(index, builder.build());</span>
+    }
+    public N endAllOf(){
+<span class="nc" id="L1483">            return and();</span>
+    }
+
+}
+    public class AnyOfNestedImpl&lt;N&gt; extends JSONSchemaPropsFluentImpl&lt;JSONSchemaPropsFluent.AnyOfNested&lt;N&gt;&gt; implements JSONSchemaPropsFluent.AnyOfNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JSONSchemaPropsBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L1492">            AnyOfNestedImpl(int index,JSONSchemaProps item){</span>
+<span class="nc" id="L1493">                    this.index = index;</span>
+<span class="nc" id="L1494">                    this.builder = new JSONSchemaPropsBuilder(this, item);</span>
+<span class="nc" id="L1495">            }</span>
+<span class="nc" id="L1496">            AnyOfNestedImpl(){</span>
+<span class="nc" id="L1497">                    this.index = -1;</span>
+<span class="nc" id="L1498">                    this.builder = new JSONSchemaPropsBuilder(this);</span>
+<span class="nc" id="L1499">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1502">            return (N) JSONSchemaPropsFluentImpl.this.setToAnyOf(index, builder.build());</span>
+    }
+    public N endAnyOf(){
+<span class="nc" id="L1505">            return and();</span>
+    }
+
+}
+    public class DefaultNestedImpl&lt;N&gt; extends JSONFluentImpl&lt;JSONSchemaPropsFluent.DefaultNested&lt;N&gt;&gt; implements JSONSchemaPropsFluent.DefaultNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JSONBuilder builder;
+    
+<span class="nc" id="L1513">            DefaultNestedImpl(JSON item){</span>
+<span class="nc" id="L1514">                    this.builder = new JSONBuilder(this, item);</span>
+<span class="nc" id="L1515">            }</span>
+<span class="nc" id="L1516">            DefaultNestedImpl(){</span>
+<span class="nc" id="L1517">                    this.builder = new JSONBuilder(this);</span>
+<span class="nc" id="L1518">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1521">            return (N) JSONSchemaPropsFluentImpl.this.withDefault(builder.build());</span>
+    }
+    public N endDefault(){
+<span class="nc" id="L1524">            return and();</span>
+    }
+
+}
+    public class EnumNestedImpl&lt;N&gt; extends JSONFluentImpl&lt;JSONSchemaPropsFluent.EnumNested&lt;N&gt;&gt; implements JSONSchemaPropsFluent.EnumNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JSONBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L1533">            EnumNestedImpl(int index,JSON item){</span>
+<span class="nc" id="L1534">                    this.index = index;</span>
+<span class="nc" id="L1535">                    this.builder = new JSONBuilder(this, item);</span>
+<span class="nc" id="L1536">            }</span>
+<span class="nc" id="L1537">            EnumNestedImpl(){</span>
+<span class="nc" id="L1538">                    this.index = -1;</span>
+<span class="nc" id="L1539">                    this.builder = new JSONBuilder(this);</span>
+<span class="nc" id="L1540">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1543">            return (N) JSONSchemaPropsFluentImpl.this.setToEnum(index, builder.build());</span>
+    }
+    public N endEnum(){
+<span class="nc" id="L1546">            return and();</span>
+    }
+
+}
+    public class ExampleNestedImpl&lt;N&gt; extends JSONFluentImpl&lt;JSONSchemaPropsFluent.ExampleNested&lt;N&gt;&gt; implements JSONSchemaPropsFluent.ExampleNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JSONBuilder builder;
+    
+<span class="nc" id="L1554">            ExampleNestedImpl(JSON item){</span>
+<span class="nc" id="L1555">                    this.builder = new JSONBuilder(this, item);</span>
+<span class="nc" id="L1556">            }</span>
+<span class="nc" id="L1557">            ExampleNestedImpl(){</span>
+<span class="nc" id="L1558">                    this.builder = new JSONBuilder(this);</span>
+<span class="nc" id="L1559">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1562">            return (N) JSONSchemaPropsFluentImpl.this.withExample(builder.build());</span>
+    }
+    public N endExample(){
+<span class="nc" id="L1565">            return and();</span>
+    }
+
+}
+    public class ExternalDocsNestedImpl&lt;N&gt; extends ExternalDocumentationFluentImpl&lt;JSONSchemaPropsFluent.ExternalDocsNested&lt;N&gt;&gt; implements JSONSchemaPropsFluent.ExternalDocsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ExternalDocumentationBuilder builder;
+    
+<span class="nc" id="L1573">            ExternalDocsNestedImpl(ExternalDocumentation item){</span>
+<span class="nc" id="L1574">                    this.builder = new ExternalDocumentationBuilder(this, item);</span>
+<span class="nc" id="L1575">            }</span>
+<span class="nc" id="L1576">            ExternalDocsNestedImpl(){</span>
+<span class="nc" id="L1577">                    this.builder = new ExternalDocumentationBuilder(this);</span>
+<span class="nc" id="L1578">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1581">            return (N) JSONSchemaPropsFluentImpl.this.withExternalDocs(builder.build());</span>
+    }
+    public N endExternalDocs(){
+<span class="nc" id="L1584">            return and();</span>
+    }
+
+}
+    public class ItemsNestedImpl&lt;N&gt; extends JSONSchemaPropsOrArrayFluentImpl&lt;JSONSchemaPropsFluent.ItemsNested&lt;N&gt;&gt; implements JSONSchemaPropsFluent.ItemsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JSONSchemaPropsOrArrayBuilder builder;
+    
+<span class="nc" id="L1592">            ItemsNestedImpl(JSONSchemaPropsOrArray item){</span>
+<span class="nc" id="L1593">                    this.builder = new JSONSchemaPropsOrArrayBuilder(this, item);</span>
+<span class="nc" id="L1594">            }</span>
+<span class="nc" id="L1595">            ItemsNestedImpl(){</span>
+<span class="nc" id="L1596">                    this.builder = new JSONSchemaPropsOrArrayBuilder(this);</span>
+<span class="nc" id="L1597">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1600">            return (N) JSONSchemaPropsFluentImpl.this.withItems(builder.build());</span>
+    }
+    public N endItems(){
+<span class="nc" id="L1603">            return and();</span>
+    }
+
+}
+    public class NotNestedImpl&lt;N&gt; extends JSONSchemaPropsFluentImpl&lt;JSONSchemaPropsFluent.NotNested&lt;N&gt;&gt; implements JSONSchemaPropsFluent.NotNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JSONSchemaPropsBuilder builder;
+    
+<span class="nc" id="L1611">            NotNestedImpl(JSONSchemaProps item){</span>
+<span class="nc" id="L1612">                    this.builder = new JSONSchemaPropsBuilder(this, item);</span>
+<span class="nc" id="L1613">            }</span>
+<span class="nc" id="L1614">            NotNestedImpl(){</span>
+<span class="nc" id="L1615">                    this.builder = new JSONSchemaPropsBuilder(this);</span>
+<span class="nc" id="L1616">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1619">            return (N) JSONSchemaPropsFluentImpl.this.withNot(builder.build());</span>
+    }
+    public N endNot(){
+<span class="nc" id="L1622">            return and();</span>
+    }
+
+}
+    public class OneOfNestedImpl&lt;N&gt; extends JSONSchemaPropsFluentImpl&lt;JSONSchemaPropsFluent.OneOfNested&lt;N&gt;&gt; implements JSONSchemaPropsFluent.OneOfNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JSONSchemaPropsBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L1631">            OneOfNestedImpl(int index,JSONSchemaProps item){</span>
+<span class="nc" id="L1632">                    this.index = index;</span>
+<span class="nc" id="L1633">                    this.builder = new JSONSchemaPropsBuilder(this, item);</span>
+<span class="nc" id="L1634">            }</span>
+<span class="nc" id="L1635">            OneOfNestedImpl(){</span>
+<span class="nc" id="L1636">                    this.index = -1;</span>
+<span class="nc" id="L1637">                    this.builder = new JSONSchemaPropsBuilder(this);</span>
+<span class="nc" id="L1638">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1641">            return (N) JSONSchemaPropsFluentImpl.this.setToOneOf(index, builder.build());</span>
+    }
+    public N endOneOf(){
+<span class="nc" id="L1644">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

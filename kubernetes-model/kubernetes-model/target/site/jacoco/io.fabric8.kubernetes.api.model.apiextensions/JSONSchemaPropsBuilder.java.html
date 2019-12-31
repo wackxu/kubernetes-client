@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JSONSchemaPropsBuilder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.apiextensions</a> &gt; <span class="el_source">JSONSchemaPropsBuilder.java</span></div><h1>JSONSchemaPropsBuilder.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.apiextensions;
+
+import io.fabric8.kubernetes.api.builder.VisitableBuilder;
+import java.lang.Object;
+import java.lang.Boolean;
+import javax.validation.Validator;
+
+public class JSONSchemaPropsBuilder extends JSONSchemaPropsFluentImpl&lt;JSONSchemaPropsBuilder&gt; implements VisitableBuilder&lt;JSONSchemaProps,JSONSchemaPropsBuilder&gt;{
+
+    JSONSchemaPropsFluent&lt;?&gt; fluent;
+    Boolean validationEnabled;
+    Validator validator;
+
+    public JSONSchemaPropsBuilder(){
+<span class="nc" id="L15">            this(true);</span>
+<span class="nc" id="L16">    }</span>
+    public JSONSchemaPropsBuilder(Boolean validationEnabled){
+<span class="nc" id="L18">            this(new JSONSchemaProps(), validationEnabled);</span>
+<span class="nc" id="L19">    }</span>
+    public JSONSchemaPropsBuilder(JSONSchemaPropsFluent&lt;?&gt; fluent){
+<span class="nc" id="L21">            this(fluent, true);</span>
+<span class="nc" id="L22">    }</span>
+    public JSONSchemaPropsBuilder(JSONSchemaPropsFluent&lt;?&gt; fluent,Boolean validationEnabled){
+<span class="nc" id="L24">            this(fluent, new JSONSchemaProps(), validationEnabled);</span>
+<span class="nc" id="L25">    }</span>
+    public JSONSchemaPropsBuilder(JSONSchemaPropsFluent&lt;?&gt; fluent,JSONSchemaProps instance){
+<span class="nc" id="L27">            this(fluent, instance, true);</span>
+<span class="nc" id="L28">    }</span>
+<span class="nc" id="L29">    public JSONSchemaPropsBuilder(JSONSchemaPropsFluent&lt;?&gt; fluent,JSONSchemaProps instance,Boolean validationEnabled){</span>
+<span class="nc" id="L30">            this.fluent = fluent; </span>
+<span class="nc" id="L31">            fluent.withRef(instance.get$ref()); </span>
+<span class="nc" id="L32">            fluent.withSchema(instance.get$schema()); </span>
+<span class="nc" id="L33">            fluent.withAdditionalItems(instance.getAdditionalItems()); </span>
+<span class="nc" id="L34">            fluent.withAdditionalProperties(instance.getAdditionalProperties()); </span>
+<span class="nc" id="L35">            fluent.withAllOf(instance.getAllOf()); </span>
+<span class="nc" id="L36">            fluent.withAnyOf(instance.getAnyOf()); </span>
+<span class="nc" id="L37">            fluent.withDefault(instance.getDefault()); </span>
+<span class="nc" id="L38">            fluent.withDefinitions(instance.getDefinitions()); </span>
+<span class="nc" id="L39">            fluent.withDependencies(instance.getDependencies()); </span>
+<span class="nc" id="L40">            fluent.withDescription(instance.getDescription()); </span>
+<span class="nc" id="L41">            fluent.withEnum(instance.getEnum()); </span>
+<span class="nc" id="L42">            fluent.withExample(instance.getExample()); </span>
+<span class="nc" id="L43">            fluent.withExclusiveMaximum(instance.getExclusiveMaximum()); </span>
+<span class="nc" id="L44">            fluent.withExclusiveMinimum(instance.getExclusiveMinimum()); </span>
+<span class="nc" id="L45">            fluent.withExternalDocs(instance.getExternalDocs()); </span>
+<span class="nc" id="L46">            fluent.withFormat(instance.getFormat()); </span>
+<span class="nc" id="L47">            fluent.withId(instance.getId()); </span>
+<span class="nc" id="L48">            fluent.withItems(instance.getItems()); </span>
+<span class="nc" id="L49">            fluent.withMaxItems(instance.getMaxItems()); </span>
+<span class="nc" id="L50">            fluent.withMaxLength(instance.getMaxLength()); </span>
+<span class="nc" id="L51">            fluent.withMaxProperties(instance.getMaxProperties()); </span>
+<span class="nc" id="L52">            fluent.withMaximum(instance.getMaximum()); </span>
+<span class="nc" id="L53">            fluent.withMinItems(instance.getMinItems()); </span>
+<span class="nc" id="L54">            fluent.withMinLength(instance.getMinLength()); </span>
+<span class="nc" id="L55">            fluent.withMinProperties(instance.getMinProperties()); </span>
+<span class="nc" id="L56">            fluent.withMinimum(instance.getMinimum()); </span>
+<span class="nc" id="L57">            fluent.withMultipleOf(instance.getMultipleOf()); </span>
+<span class="nc" id="L58">            fluent.withNot(instance.getNot()); </span>
+<span class="nc" id="L59">            fluent.withOneOf(instance.getOneOf()); </span>
+<span class="nc" id="L60">            fluent.withPattern(instance.getPattern()); </span>
+<span class="nc" id="L61">            fluent.withPatternProperties(instance.getPatternProperties()); </span>
+<span class="nc" id="L62">            fluent.withProperties(instance.getProperties()); </span>
+<span class="nc" id="L63">            fluent.withRequired(instance.getRequired()); </span>
+<span class="nc" id="L64">            fluent.withTitle(instance.getTitle()); </span>
+<span class="nc" id="L65">            fluent.withType(instance.getType()); </span>
+<span class="nc" id="L66">            fluent.withUniqueItems(instance.getUniqueItems()); </span>
+<span class="nc" id="L67">            this.validationEnabled = validationEnabled; </span>
+<span class="nc" id="L68">    }</span>
+    public JSONSchemaPropsBuilder(JSONSchemaProps instance){
+<span class="nc" id="L70">            this(instance,true);</span>
+<span class="nc" id="L71">    }</span>
+<span class="nc" id="L72">    public JSONSchemaPropsBuilder(JSONSchemaProps instance,Boolean validationEnabled){</span>
+<span class="nc" id="L73">            this.fluent = this; </span>
+<span class="nc" id="L74">            this.withRef(instance.get$ref()); </span>
+<span class="nc" id="L75">            this.withSchema(instance.get$schema()); </span>
+<span class="nc" id="L76">            this.withAdditionalItems(instance.getAdditionalItems()); </span>
+<span class="nc" id="L77">            this.withAdditionalProperties(instance.getAdditionalProperties()); </span>
+<span class="nc" id="L78">            this.withAllOf(instance.getAllOf()); </span>
+<span class="nc" id="L79">            this.withAnyOf(instance.getAnyOf()); </span>
+<span class="nc" id="L80">            this.withDefault(instance.getDefault()); </span>
+<span class="nc" id="L81">            this.withDefinitions(instance.getDefinitions()); </span>
+<span class="nc" id="L82">            this.withDependencies(instance.getDependencies()); </span>
+<span class="nc" id="L83">            this.withDescription(instance.getDescription()); </span>
+<span class="nc" id="L84">            this.withEnum(instance.getEnum()); </span>
+<span class="nc" id="L85">            this.withExample(instance.getExample()); </span>
+<span class="nc" id="L86">            this.withExclusiveMaximum(instance.getExclusiveMaximum()); </span>
+<span class="nc" id="L87">            this.withExclusiveMinimum(instance.getExclusiveMinimum()); </span>
+<span class="nc" id="L88">            this.withExternalDocs(instance.getExternalDocs()); </span>
+<span class="nc" id="L89">            this.withFormat(instance.getFormat()); </span>
+<span class="nc" id="L90">            this.withId(instance.getId()); </span>
+<span class="nc" id="L91">            this.withItems(instance.getItems()); </span>
+<span class="nc" id="L92">            this.withMaxItems(instance.getMaxItems()); </span>
+<span class="nc" id="L93">            this.withMaxLength(instance.getMaxLength()); </span>
+<span class="nc" id="L94">            this.withMaxProperties(instance.getMaxProperties()); </span>
+<span class="nc" id="L95">            this.withMaximum(instance.getMaximum()); </span>
+<span class="nc" id="L96">            this.withMinItems(instance.getMinItems()); </span>
+<span class="nc" id="L97">            this.withMinLength(instance.getMinLength()); </span>
+<span class="nc" id="L98">            this.withMinProperties(instance.getMinProperties()); </span>
+<span class="nc" id="L99">            this.withMinimum(instance.getMinimum()); </span>
+<span class="nc" id="L100">            this.withMultipleOf(instance.getMultipleOf()); </span>
+<span class="nc" id="L101">            this.withNot(instance.getNot()); </span>
+<span class="nc" id="L102">            this.withOneOf(instance.getOneOf()); </span>
+<span class="nc" id="L103">            this.withPattern(instance.getPattern()); </span>
+<span class="nc" id="L104">            this.withPatternProperties(instance.getPatternProperties()); </span>
+<span class="nc" id="L105">            this.withProperties(instance.getProperties()); </span>
+<span class="nc" id="L106">            this.withRequired(instance.getRequired()); </span>
+<span class="nc" id="L107">            this.withTitle(instance.getTitle()); </span>
+<span class="nc" id="L108">            this.withType(instance.getType()); </span>
+<span class="nc" id="L109">            this.withUniqueItems(instance.getUniqueItems()); </span>
+<span class="nc" id="L110">            this.validationEnabled = validationEnabled; </span>
+<span class="nc" id="L111">    }</span>
+    public JSONSchemaPropsBuilder(Validator validator){
+<span class="nc" id="L113">            this(new JSONSchemaProps(), true);</span>
+<span class="nc" id="L114">    }</span>
+<span class="nc" id="L115">    public JSONSchemaPropsBuilder(JSONSchemaPropsFluent&lt;?&gt; fluent,JSONSchemaProps instance,Validator validator){</span>
+<span class="nc" id="L116">            this.fluent = fluent; </span>
+<span class="nc" id="L117">            fluent.withRef(instance.get$ref()); </span>
+<span class="nc" id="L118">            fluent.withSchema(instance.get$schema()); </span>
+<span class="nc" id="L119">            fluent.withAdditionalItems(instance.getAdditionalItems()); </span>
+<span class="nc" id="L120">            fluent.withAdditionalProperties(instance.getAdditionalProperties()); </span>
+<span class="nc" id="L121">            fluent.withAllOf(instance.getAllOf()); </span>
+<span class="nc" id="L122">            fluent.withAnyOf(instance.getAnyOf()); </span>
+<span class="nc" id="L123">            fluent.withDefault(instance.getDefault()); </span>
+<span class="nc" id="L124">            fluent.withDefinitions(instance.getDefinitions()); </span>
+<span class="nc" id="L125">            fluent.withDependencies(instance.getDependencies()); </span>
+<span class="nc" id="L126">            fluent.withDescription(instance.getDescription()); </span>
+<span class="nc" id="L127">            fluent.withEnum(instance.getEnum()); </span>
+<span class="nc" id="L128">            fluent.withExample(instance.getExample()); </span>
+<span class="nc" id="L129">            fluent.withExclusiveMaximum(instance.getExclusiveMaximum()); </span>
+<span class="nc" id="L130">            fluent.withExclusiveMinimum(instance.getExclusiveMinimum()); </span>
+<span class="nc" id="L131">            fluent.withExternalDocs(instance.getExternalDocs()); </span>
+<span class="nc" id="L132">            fluent.withFormat(instance.getFormat()); </span>
+<span class="nc" id="L133">            fluent.withId(instance.getId()); </span>
+<span class="nc" id="L134">            fluent.withItems(instance.getItems()); </span>
+<span class="nc" id="L135">            fluent.withMaxItems(instance.getMaxItems()); </span>
+<span class="nc" id="L136">            fluent.withMaxLength(instance.getMaxLength()); </span>
+<span class="nc" id="L137">            fluent.withMaxProperties(instance.getMaxProperties()); </span>
+<span class="nc" id="L138">            fluent.withMaximum(instance.getMaximum()); </span>
+<span class="nc" id="L139">            fluent.withMinItems(instance.getMinItems()); </span>
+<span class="nc" id="L140">            fluent.withMinLength(instance.getMinLength()); </span>
+<span class="nc" id="L141">            fluent.withMinProperties(instance.getMinProperties()); </span>
+<span class="nc" id="L142">            fluent.withMinimum(instance.getMinimum()); </span>
+<span class="nc" id="L143">            fluent.withMultipleOf(instance.getMultipleOf()); </span>
+<span class="nc" id="L144">            fluent.withNot(instance.getNot()); </span>
+<span class="nc" id="L145">            fluent.withOneOf(instance.getOneOf()); </span>
+<span class="nc" id="L146">            fluent.withPattern(instance.getPattern()); </span>
+<span class="nc" id="L147">            fluent.withPatternProperties(instance.getPatternProperties()); </span>
+<span class="nc" id="L148">            fluent.withProperties(instance.getProperties()); </span>
+<span class="nc" id="L149">            fluent.withRequired(instance.getRequired()); </span>
+<span class="nc" id="L150">            fluent.withTitle(instance.getTitle()); </span>
+<span class="nc" id="L151">            fluent.withType(instance.getType()); </span>
+<span class="nc" id="L152">            fluent.withUniqueItems(instance.getUniqueItems()); </span>
+<span class="nc" id="L153">            this.validator = validator;</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            this.validationEnabled = validator != null; </span>
+<span class="nc" id="L155">    }</span>
+<span class="nc" id="L156">    public JSONSchemaPropsBuilder(JSONSchemaProps instance,Validator validator){</span>
+<span class="nc" id="L157">            this.fluent = this; </span>
+<span class="nc" id="L158">            this.withRef(instance.get$ref()); </span>
+<span class="nc" id="L159">            this.withSchema(instance.get$schema()); </span>
+<span class="nc" id="L160">            this.withAdditionalItems(instance.getAdditionalItems()); </span>
+<span class="nc" id="L161">            this.withAdditionalProperties(instance.getAdditionalProperties()); </span>
+<span class="nc" id="L162">            this.withAllOf(instance.getAllOf()); </span>
+<span class="nc" id="L163">            this.withAnyOf(instance.getAnyOf()); </span>
+<span class="nc" id="L164">            this.withDefault(instance.getDefault()); </span>
+<span class="nc" id="L165">            this.withDefinitions(instance.getDefinitions()); </span>
+<span class="nc" id="L166">            this.withDependencies(instance.getDependencies()); </span>
+<span class="nc" id="L167">            this.withDescription(instance.getDescription()); </span>
+<span class="nc" id="L168">            this.withEnum(instance.getEnum()); </span>
+<span class="nc" id="L169">            this.withExample(instance.getExample()); </span>
+<span class="nc" id="L170">            this.withExclusiveMaximum(instance.getExclusiveMaximum()); </span>
+<span class="nc" id="L171">            this.withExclusiveMinimum(instance.getExclusiveMinimum()); </span>
+<span class="nc" id="L172">            this.withExternalDocs(instance.getExternalDocs()); </span>
+<span class="nc" id="L173">            this.withFormat(instance.getFormat()); </span>
+<span class="nc" id="L174">            this.withId(instance.getId()); </span>
+<span class="nc" id="L175">            this.withItems(instance.getItems()); </span>
+<span class="nc" id="L176">            this.withMaxItems(instance.getMaxItems()); </span>
+<span class="nc" id="L177">            this.withMaxLength(instance.getMaxLength()); </span>
+<span class="nc" id="L178">            this.withMaxProperties(instance.getMaxProperties()); </span>
+<span class="nc" id="L179">            this.withMaximum(instance.getMaximum()); </span>
+<span class="nc" id="L180">            this.withMinItems(instance.getMinItems()); </span>
+<span class="nc" id="L181">            this.withMinLength(instance.getMinLength()); </span>
+<span class="nc" id="L182">            this.withMinProperties(instance.getMinProperties()); </span>
+<span class="nc" id="L183">            this.withMinimum(instance.getMinimum()); </span>
+<span class="nc" id="L184">            this.withMultipleOf(instance.getMultipleOf()); </span>
+<span class="nc" id="L185">            this.withNot(instance.getNot()); </span>
+<span class="nc" id="L186">            this.withOneOf(instance.getOneOf()); </span>
+<span class="nc" id="L187">            this.withPattern(instance.getPattern()); </span>
+<span class="nc" id="L188">            this.withPatternProperties(instance.getPatternProperties()); </span>
+<span class="nc" id="L189">            this.withProperties(instance.getProperties()); </span>
+<span class="nc" id="L190">            this.withRequired(instance.getRequired()); </span>
+<span class="nc" id="L191">            this.withTitle(instance.getTitle()); </span>
+<span class="nc" id="L192">            this.withType(instance.getType()); </span>
+<span class="nc" id="L193">            this.withUniqueItems(instance.getUniqueItems()); </span>
+<span class="nc" id="L194">            this.validator = validator; </span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">            this.validationEnabled = validator != null; </span>
+<span class="nc" id="L196">    }</span>
+
+    public JSONSchemaProps build(){
+<span class="nc" id="L199">            JSONSchemaProps buildable = new JSONSchemaProps(fluent.getRef(),fluent.getSchema(),fluent.getAdditionalItems(),fluent.getAdditionalProperties(),fluent.getAllOf(),fluent.getAnyOf(),fluent.getDefault(),fluent.getDefinitions(),fluent.getDependencies(),fluent.getDescription(),fluent.getEnum(),fluent.getExample(),fluent.isExclusiveMaximum(),fluent.isExclusiveMinimum(),fluent.getExternalDocs(),fluent.getFormat(),fluent.getId(),fluent.getItems(),fluent.getMaxItems(),fluent.getMaxLength(),fluent.getMaxProperties(),fluent.getMaximum(),fluent.getMinItems(),fluent.getMinLength(),fluent.getMinProperties(),fluent.getMinimum(),fluent.getMultipleOf(),fluent.getNot(),fluent.getOneOf(),fluent.getPattern(),fluent.getPatternProperties(),fluent.getProperties(),fluent.getRequired(),fluent.getTitle(),fluent.getType(),fluent.isUniqueItems());</span>
+<span class="nc bnc" id="L200" title="All 2 branches missed.">            if (validationEnabled) {io.fabric8.kubernetes.api.builder.ValidationUtils.validate(buildable, validator);}</span>
+<span class="nc" id="L201">            return buildable;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L206" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L207" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L208">            JSONSchemaPropsBuilder that = (JSONSchemaPropsBuilder) o;</span>
+<span class="nc bnc" id="L209" title="All 10 branches missed.">            if (fluent != null &amp;&amp;fluent != this ? !fluent.equals(that.fluent) :that.fluent != null &amp;&amp;fluent != this ) return false;</span>
+
+<span class="nc bnc" id="L211" title="All 6 branches missed.">            if (validationEnabled != null ? !validationEnabled.equals(that.validationEnabled) :that.validationEnabled != null) return false;</span>
+<span class="nc" id="L212">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

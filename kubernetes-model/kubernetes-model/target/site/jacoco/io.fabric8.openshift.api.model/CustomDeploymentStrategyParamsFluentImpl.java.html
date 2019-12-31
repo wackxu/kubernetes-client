@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomDeploymentStrategyParamsFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">CustomDeploymentStrategyParamsFluentImpl.java</span></div><h1>CustomDeploymentStrategyParamsFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.model.EnvVarBuilder;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import io.fabric8.kubernetes.api.model.EnvVar;
+import java.util.Collection;
+import io.fabric8.kubernetes.api.model.EnvVarFluentImpl;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class CustomDeploymentStrategyParamsFluentImpl&lt;A extends CustomDeploymentStrategyParamsFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements CustomDeploymentStrategyParamsFluent&lt;A&gt;{
+
+    private List&lt;String&gt; command;
+    private List&lt;EnvVarBuilder&gt; environment;
+    private String image;
+
+<span class="nc" id="L26">    public CustomDeploymentStrategyParamsFluentImpl(){</span>
+<span class="nc" id="L27">    }</span>
+<span class="nc" id="L28">    public CustomDeploymentStrategyParamsFluentImpl(CustomDeploymentStrategyParams instance){</span>
+<span class="nc" id="L29">            this.withCommand(instance.getCommand()); </span>
+<span class="nc" id="L30">            this.withEnvironment(instance.getEnvironment()); </span>
+<span class="nc" id="L31">            this.withImage(instance.getImage()); </span>
+<span class="nc" id="L32">    }</span>
+
+    public A addToCommand(int index,String item){
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            if (this.command == null) {this.command = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L36">            this.command.add(index, item);</span>
+<span class="nc" id="L37">            return (A)this;</span>
+    }
+
+    public A setToCommand(int index,String item){
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            if (this.command == null) {this.command = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L42">            this.command.set(index, item); return (A)this;</span>
+    }
+
+    public A addToCommand(String... items){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (this.command == null) {this.command = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            for (String item : items) {this.command.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToCommand(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            if (this.command == null) {this.command = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            for (String item : items) {this.command.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromCommand(String... items){
+<span class="nc bnc" id="L56" title="All 4 branches missed.">            for (String item : items) {if (this.command!= null){ this.command.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromCommand(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L60" title="All 4 branches missed.">            for (String item : items) {if (this.command!= null){ this.command.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getCommand(){
+<span class="nc" id="L64">            return this.command;</span>
+    }
+
+    public String getCommand(int index){
+<span class="nc" id="L68">            return this.command.get(index);</span>
+    }
+
+    public String getFirstCommand(){
+<span class="nc" id="L72">            return this.command.get(0);</span>
+    }
+
+    public String getLastCommand(){
+<span class="nc" id="L76">            return this.command.get(command.size() - 1);</span>
+    }
+
+    public String getMatchingCommand(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L80" title="All 4 branches missed.">            for (String item: command) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withCommand(List&lt;String&gt; command){
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            if (this.command != null) { _visitables.removeAll(this.command);}</span>
+<span class="nc bnc" id="L85" title="All 4 branches missed.">            if (command != null) {this.command = new ArrayList&lt;String&gt;(); for (String item : command){this.addToCommand(item);}} else { this.command = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withCommand(String... command){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (this.command != null) {this.command.clear();}</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">            if (command != null) {for (String item :command){ this.addToCommand(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasCommand(){
+<span class="nc bnc" id="L94" title="All 4 branches missed.">            return command != null &amp;&amp; !command.isEmpty();</span>
+    }
+
+    public A addToEnvironment(int index,EnvVar item){
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            if (this.environment == null) {this.environment = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.environment.add(index &gt;= 0 ? index : environment.size(), builder); return (A)this;</span>
+    }
+
+    public A setToEnvironment(int index,EnvVar item){
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            if (this.environment == null) {this.environment = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc" id="L104">            EnvVarBuilder builder = new EnvVarBuilder(item);</span>
+<span class="nc bnc" id="L105" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L106" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= environment.size()) { environment.add(builder); } else { environment.set(index, builder);}</span>
+<span class="nc" id="L107">             return (A)this;</span>
+    }
+
+    public A addToEnvironment(EnvVar... items){
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            if (this.environment == null) {this.environment = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(builder);this.environment.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToEnvironment(Collection&lt;EnvVar&gt; items){
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            if (this.environment == null) {this.environment = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(builder);this.environment.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromEnvironment(EnvVar... items){
+<span class="nc bnc" id="L121" title="All 4 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.remove(builder);if (this.environment != null) {this.environment.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromEnvironment(Collection&lt;EnvVar&gt; items){
+<span class="nc bnc" id="L125" title="All 4 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.remove(builder);if (this.environment != null) {this.environment.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildEnvironment instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;EnvVar&gt; getEnvironment(){
+<span class="nc" id="L134">            return build(environment);</span>
+    }
+
+    public List&lt;EnvVar&gt; buildEnvironment(){
+<span class="nc" id="L138">            return build(environment);</span>
+    }
+
+    public EnvVar buildEnvironment(int index){
+<span class="nc" id="L142">            return this.environment.get(index).build();</span>
+    }
+
+    public EnvVar buildFirstEnvironment(){
+<span class="nc" id="L146">            return this.environment.get(0).build();</span>
+    }
+
+    public EnvVar buildLastEnvironment(){
+<span class="nc" id="L150">            return this.environment.get(environment.size() - 1).build();</span>
+    }
+
+    public EnvVar buildMatchingEnvironment(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvVarBuilder&gt; predicate){
+<span class="nc bnc" id="L154" title="All 4 branches missed.">            for (EnvVarBuilder item: environment) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withEnvironment(List&lt;EnvVar&gt; environment){
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            if (this.environment != null) { _visitables.removeAll(this.environment);}</span>
+<span class="nc bnc" id="L159" title="All 4 branches missed.">            if (environment != null) {this.environment = new ArrayList&lt;EnvVarBuilder&gt;(); for (EnvVar item : environment){this.addToEnvironment(item);}} else { this.environment = new ArrayList&lt;EnvVarBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withEnvironment(EnvVar... environment){
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            if (this.environment != null) {this.environment.clear();}</span>
+<span class="nc bnc" id="L164" title="All 4 branches missed.">            if (environment != null) {for (EnvVar item :environment){ this.addToEnvironment(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasEnvironment(){
+<span class="nc bnc" id="L168" title="All 4 branches missed.">            return environment != null &amp;&amp; !environment.isEmpty();</span>
+    }
+
+    public CustomDeploymentStrategyParamsFluent.EnvironmentNested&lt;A&gt; addNewEnvironment(){
+<span class="nc" id="L172">            return new EnvironmentNestedImpl();</span>
+    }
+
+    public CustomDeploymentStrategyParamsFluent.EnvironmentNested&lt;A&gt; addNewEnvironmentLike(EnvVar item){
+<span class="nc" id="L176">            return new EnvironmentNestedImpl(-1, item);</span>
+    }
+
+    public CustomDeploymentStrategyParamsFluent.EnvironmentNested&lt;A&gt; setNewEnvironmentLike(int index,EnvVar item){
+<span class="nc" id="L180">            return new EnvironmentNestedImpl(index, item);</span>
+    }
+
+    public CustomDeploymentStrategyParamsFluent.EnvironmentNested&lt;A&gt; editEnvironment(int index){
+<span class="nc bnc" id="L184" title="All 2 branches missed.">            if (environment.size() &lt;= index) throw new RuntimeException(&quot;Can't edit environment. Index exceeds size.&quot;);</span>
+<span class="nc" id="L185">            return setNewEnvironmentLike(index, buildEnvironment(index));</span>
+    }
+
+    public CustomDeploymentStrategyParamsFluent.EnvironmentNested&lt;A&gt; editFirstEnvironment(){
+<span class="nc bnc" id="L189" title="All 2 branches missed.">            if (environment.size() == 0) throw new RuntimeException(&quot;Can't edit first environment. The list is empty.&quot;);</span>
+<span class="nc" id="L190">            return setNewEnvironmentLike(0, buildEnvironment(0));</span>
+    }
+
+    public CustomDeploymentStrategyParamsFluent.EnvironmentNested&lt;A&gt; editLastEnvironment(){
+<span class="nc" id="L194">            int index = environment.size() - 1;</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last environment. The list is empty.&quot;);</span>
+<span class="nc" id="L196">            return setNewEnvironmentLike(index, buildEnvironment(index));</span>
+    }
+
+    public CustomDeploymentStrategyParamsFluent.EnvironmentNested&lt;A&gt; editMatchingEnvironment(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvVarBuilder&gt; predicate){
+<span class="nc" id="L200">            int index = -1;</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">            for (int i=0;i&lt;environment.size();i++) { </span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">            if (predicate.apply(environment.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L204" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching environment. No match found.&quot;);</span>
+<span class="nc" id="L205">            return setNewEnvironmentLike(index, buildEnvironment(index));</span>
+    }
+
+    public String getImage(){
+<span class="nc" id="L209">            return this.image;</span>
+    }
+
+    public A withImage(String image){
+<span class="nc" id="L213">            this.image=image; return (A) this;</span>
+    }
+
+    public Boolean hasImage(){
+<span class="nc bnc" id="L217" title="All 2 branches missed.">            return this.image != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L221" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L222" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L224">            CustomDeploymentStrategyParamsFluentImpl that = (CustomDeploymentStrategyParamsFluentImpl) o;</span>
+<span class="nc bnc" id="L225" title="All 6 branches missed.">            if (command != null ? !command.equals(that.command) :that.command != null) return false;</span>
+<span class="nc bnc" id="L226" title="All 6 branches missed.">            if (environment != null ? !environment.equals(that.environment) :that.environment != null) return false;</span>
+<span class="nc bnc" id="L227" title="All 6 branches missed.">            if (image != null ? !image.equals(that.image) :that.image != null) return false;</span>
+<span class="nc" id="L228">            return true;</span>
+    }
+
+
+    public class EnvironmentNestedImpl&lt;N&gt; extends EnvVarFluentImpl&lt;CustomDeploymentStrategyParamsFluent.EnvironmentNested&lt;N&gt;&gt; implements CustomDeploymentStrategyParamsFluent.EnvironmentNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EnvVarBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L237">            EnvironmentNestedImpl(int index,EnvVar item){</span>
+<span class="nc" id="L238">                    this.index = index;</span>
+<span class="nc" id="L239">                    this.builder = new EnvVarBuilder(this, item);</span>
+<span class="nc" id="L240">            }</span>
+<span class="nc" id="L241">            EnvironmentNestedImpl(){</span>
+<span class="nc" id="L242">                    this.index = -1;</span>
+<span class="nc" id="L243">                    this.builder = new EnvVarBuilder(this);</span>
+<span class="nc" id="L244">            }</span>
+    
+    public N and(){
+<span class="nc" id="L247">            return (N) CustomDeploymentStrategyParamsFluentImpl.this.setToEnvironment(index, builder.build());</span>
+    }
+    public N endEnvironment(){
+<span class="nc" id="L250">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RouteSpec.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">RouteSpec.java</span></div><h1>RouteSpec.java</h1><pre class="source lang-java linenums">
+package io.fabric8.openshift.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;alternateBackends&quot;,
+    &quot;host&quot;,
+    &quot;path&quot;,
+    &quot;port&quot;,
+    &quot;tls&quot;,
+    &quot;to&quot;,
+    &quot;wildcardPolicy&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L44">@ToString</span>
+<span class="pc bpc" id="L45" title="61 of 70 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class RouteSpec implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L54">    @JsonProperty(&quot;alternateBackends&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;RouteTargetReference&gt; alternateBackends = new ArrayList&lt;RouteTargetReference&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;host&quot;)
+    private String host;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;path&quot;)
+    private String path;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;port&quot;)
+    @Valid
+    private RoutePort port;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;tls&quot;)
+    @Valid
+    private TLSConfig tls;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;to&quot;)
+    @Valid
+    private RouteTargetReference to;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;wildcardPolicy&quot;)
+    private String wildcardPolicy;
+<span class="fc" id="L97">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L104">    public RouteSpec() {</span>
+<span class="fc" id="L105">    }</span>
+
+    /**
+     * 
+     * @param path
+     * @param alternateBackends
+     * @param port
+     * @param wildcardPolicy
+     * @param host
+     * @param tls
+     * @param to
+     */
+<span class="fc" id="L117">    public RouteSpec(List&lt;RouteTargetReference&gt; alternateBackends, String host, String path, RoutePort port, TLSConfig tls, RouteTargetReference to, String wildcardPolicy) {</span>
+<span class="fc" id="L118">        this.alternateBackends = alternateBackends;</span>
+<span class="fc" id="L119">        this.host = host;</span>
+<span class="fc" id="L120">        this.path = path;</span>
+<span class="fc" id="L121">        this.port = port;</span>
+<span class="fc" id="L122">        this.tls = tls;</span>
+<span class="fc" id="L123">        this.to = to;</span>
+<span class="fc" id="L124">        this.wildcardPolicy = wildcardPolicy;</span>
+<span class="fc" id="L125">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The alternateBackends
+     */
+    @JsonProperty(&quot;alternateBackends&quot;)
+    public List&lt;RouteTargetReference&gt; getAlternateBackends() {
+<span class="fc" id="L135">        return alternateBackends;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param alternateBackends
+     *     The alternateBackends
+     */
+    @JsonProperty(&quot;alternateBackends&quot;)
+    public void setAlternateBackends(List&lt;RouteTargetReference&gt; alternateBackends) {
+<span class="fc" id="L146">        this.alternateBackends = alternateBackends;</span>
+<span class="fc" id="L147">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The host
+     */
+    @JsonProperty(&quot;host&quot;)
+    public String getHost() {
+<span class="fc" id="L157">        return host;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param host
+     *     The host
+     */
+    @JsonProperty(&quot;host&quot;)
+    public void setHost(String host) {
+<span class="fc" id="L168">        this.host = host;</span>
+<span class="fc" id="L169">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The path
+     */
+    @JsonProperty(&quot;path&quot;)
+    public String getPath() {
+<span class="fc" id="L179">        return path;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param path
+     *     The path
+     */
+    @JsonProperty(&quot;path&quot;)
+    public void setPath(String path) {
+<span class="fc" id="L190">        this.path = path;</span>
+<span class="fc" id="L191">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The port
+     */
+    @JsonProperty(&quot;port&quot;)
+    public RoutePort getPort() {
+<span class="fc" id="L201">        return port;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param port
+     *     The port
+     */
+    @JsonProperty(&quot;port&quot;)
+    public void setPort(RoutePort port) {
+<span class="fc" id="L212">        this.port = port;</span>
+<span class="fc" id="L213">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The tls
+     */
+    @JsonProperty(&quot;tls&quot;)
+    public TLSConfig getTls() {
+<span class="fc" id="L223">        return tls;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param tls
+     *     The tls
+     */
+    @JsonProperty(&quot;tls&quot;)
+    public void setTls(TLSConfig tls) {
+<span class="fc" id="L234">        this.tls = tls;</span>
+<span class="fc" id="L235">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The to
+     */
+    @JsonProperty(&quot;to&quot;)
+    public RouteTargetReference getTo() {
+<span class="fc" id="L245">        return to;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param to
+     *     The to
+     */
+    @JsonProperty(&quot;to&quot;)
+    public void setTo(RouteTargetReference to) {
+<span class="fc" id="L256">        this.to = to;</span>
+<span class="fc" id="L257">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The wildcardPolicy
+     */
+    @JsonProperty(&quot;wildcardPolicy&quot;)
+    public String getWildcardPolicy() {
+<span class="fc" id="L267">        return wildcardPolicy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param wildcardPolicy
+     *     The wildcardPolicy
+     */
+    @JsonProperty(&quot;wildcardPolicy&quot;)
+    public void setWildcardPolicy(String wildcardPolicy) {
+<span class="nc" id="L278">        this.wildcardPolicy = wildcardPolicy;</span>
+<span class="nc" id="L279">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L283">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="fc" id="L288">        this.additionalProperties.put(name, value);</span>
+<span class="fc" id="L289">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

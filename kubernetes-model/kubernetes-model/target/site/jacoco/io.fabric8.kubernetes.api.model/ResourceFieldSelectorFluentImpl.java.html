@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ResourceFieldSelectorFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ResourceFieldSelectorFluentImpl.java</span></div><h1>ResourceFieldSelectorFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import java.lang.String;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import java.lang.Boolean;
+import java.lang.Override;
+import com.fasterxml.jackson.core.JsonParser;
+import javax.validation.Valid;
+import java.lang.Object;
+
+public class ResourceFieldSelectorFluentImpl&lt;A extends ResourceFieldSelectorFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ResourceFieldSelectorFluent&lt;A&gt;{
+
+    private String containerName;
+    private QuantityBuilder divisor;
+    private String resource;
+
+<span class="nc" id="L25">    public ResourceFieldSelectorFluentImpl(){</span>
+<span class="nc" id="L26">    }</span>
+<span class="nc" id="L27">    public ResourceFieldSelectorFluentImpl(ResourceFieldSelector instance){</span>
+<span class="nc" id="L28">            this.withContainerName(instance.getContainerName()); </span>
+<span class="nc" id="L29">            this.withDivisor(instance.getDivisor()); </span>
+<span class="nc" id="L30">            this.withResource(instance.getResource()); </span>
+<span class="nc" id="L31">    }</span>
+
+    public String getContainerName(){
+<span class="nc" id="L34">            return this.containerName;</span>
+    }
+
+    public A withContainerName(String containerName){
+<span class="nc" id="L38">            this.containerName=containerName; return (A) this;</span>
+    }
+
+    public Boolean hasContainerName(){
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            return this.containerName != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildDivisor instead.
+ * @return The buildable object.
+ */
+@Deprecated public Quantity getDivisor(){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            return this.divisor!=null?this.divisor.build():null;</span>
+    }
+
+    public Quantity buildDivisor(){
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            return this.divisor!=null?this.divisor.build():null;</span>
+    }
+
+    public A withDivisor(Quantity divisor){
+<span class="nc" id="L59">            _visitables.remove(this.divisor);</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            if (divisor!=null){ this.divisor= new QuantityBuilder(divisor); _visitables.add(this.divisor);} return (A) this;</span>
+    }
+
+    public Boolean hasDivisor(){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            return this.divisor != null;</span>
+    }
+
+    public A withNewDivisor(String amount,String format){
+<span class="nc" id="L68">            return (A)withDivisor(new Quantity(amount, format));</span>
+    }
+
+    public A withNewDivisor(String amount){
+<span class="nc" id="L72">            return (A)withDivisor(new Quantity(amount));</span>
+    }
+
+    public ResourceFieldSelectorFluent.DivisorNested&lt;A&gt; withNewDivisor(){
+<span class="nc" id="L76">            return new DivisorNestedImpl();</span>
+    }
+
+    public ResourceFieldSelectorFluent.DivisorNested&lt;A&gt; withNewDivisorLike(Quantity item){
+<span class="nc" id="L80">            return new DivisorNestedImpl(item);</span>
+    }
+
+    public ResourceFieldSelectorFluent.DivisorNested&lt;A&gt; editDivisor(){
+<span class="nc" id="L84">            return withNewDivisorLike(getDivisor());</span>
+    }
+
+    public ResourceFieldSelectorFluent.DivisorNested&lt;A&gt; editOrNewDivisor(){
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            return withNewDivisorLike(getDivisor() != null ? getDivisor(): new QuantityBuilder().build());</span>
+    }
+
+    public ResourceFieldSelectorFluent.DivisorNested&lt;A&gt; editOrNewDivisorLike(Quantity item){
+<span class="nc bnc" id="L92" title="All 2 branches missed.">            return withNewDivisorLike(getDivisor() != null ? getDivisor(): item);</span>
+    }
+
+    public String getResource(){
+<span class="nc" id="L96">            return this.resource;</span>
+    }
+
+    public A withResource(String resource){
+<span class="nc" id="L100">            this.resource=resource; return (A) this;</span>
+    }
+
+    public Boolean hasResource(){
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            return this.resource != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L109" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L111">            ResourceFieldSelectorFluentImpl that = (ResourceFieldSelectorFluentImpl) o;</span>
+<span class="nc bnc" id="L112" title="All 6 branches missed.">            if (containerName != null ? !containerName.equals(that.containerName) :that.containerName != null) return false;</span>
+<span class="nc bnc" id="L113" title="All 6 branches missed.">            if (divisor != null ? !divisor.equals(that.divisor) :that.divisor != null) return false;</span>
+<span class="nc bnc" id="L114" title="All 6 branches missed.">            if (resource != null ? !resource.equals(that.resource) :that.resource != null) return false;</span>
+<span class="nc" id="L115">            return true;</span>
+    }
+
+
+    public class DivisorNestedImpl&lt;N&gt; extends QuantityFluentImpl&lt;ResourceFieldSelectorFluent.DivisorNested&lt;N&gt;&gt; implements ResourceFieldSelectorFluent.DivisorNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final QuantityBuilder builder;
+    
+<span class="nc" id="L123">            DivisorNestedImpl(Quantity item){</span>
+<span class="nc" id="L124">                    this.builder = new QuantityBuilder(this, item);</span>
+<span class="nc" id="L125">            }</span>
+<span class="nc" id="L126">            DivisorNestedImpl(){</span>
+<span class="nc" id="L127">                    this.builder = new QuantityBuilder(this);</span>
+<span class="nc" id="L128">            }</span>
+    
+    public N and(){
+<span class="nc" id="L131">            return (N) ResourceFieldSelectorFluentImpl.this.withDivisor(builder.build());</span>
+    }
+    public N endDivisor(){
+<span class="nc" id="L134">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

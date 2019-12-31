@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuildSource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">BuildSource.java</span></div><h1>BuildSource.java</h1><pre class="source lang-java linenums">
+package io.fabric8.openshift.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.fabric8.kubernetes.api.model.LocalObjectReference;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;binary&quot;,
+    &quot;configMaps&quot;,
+    &quot;contextDir&quot;,
+    &quot;dockerfile&quot;,
+    &quot;git&quot;,
+    &quot;images&quot;,
+    &quot;secrets&quot;,
+    &quot;sourceSecret&quot;,
+    &quot;type&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L47">@ToString</span>
+<span class="pc bpc" id="L48" title="75 of 86 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class BuildSource implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;binary&quot;)
+    @Valid
+    private BinaryBuildSource binary;
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L64">    @JsonProperty(&quot;configMaps&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;ConfigMapBuildSource&gt; configMaps = new ArrayList&lt;ConfigMapBuildSource&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;contextDir&quot;)
+    private String contextDir;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;dockerfile&quot;)
+    private String dockerfile;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;git&quot;)
+    @Valid
+    private GitBuildSource git;
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L91">    @JsonProperty(&quot;images&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;ImageSource&gt; images = new ArrayList&lt;ImageSource&gt;();
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L99">    @JsonProperty(&quot;secrets&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;SecretBuildSource&gt; secrets = new ArrayList&lt;SecretBuildSource&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;sourceSecret&quot;)
+    @Valid
+    private LocalObjectReference sourceSecret;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;type&quot;)
+    private String type;
+<span class="fc" id="L116">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L123">    public BuildSource() {</span>
+<span class="fc" id="L124">    }</span>
+
+    /**
+     * 
+     * @param sourceSecret
+     * @param images
+     * @param git
+     * @param configMaps
+     * @param binary
+     * @param dockerfile
+     * @param type
+     * @param secrets
+     * @param contextDir
+     */
+<span class="fc" id="L138">    public BuildSource(BinaryBuildSource binary, List&lt;ConfigMapBuildSource&gt; configMaps, String contextDir, String dockerfile, GitBuildSource git, List&lt;ImageSource&gt; images, List&lt;SecretBuildSource&gt; secrets, LocalObjectReference sourceSecret, String type) {</span>
+<span class="fc" id="L139">        this.binary = binary;</span>
+<span class="fc" id="L140">        this.configMaps = configMaps;</span>
+<span class="fc" id="L141">        this.contextDir = contextDir;</span>
+<span class="fc" id="L142">        this.dockerfile = dockerfile;</span>
+<span class="fc" id="L143">        this.git = git;</span>
+<span class="fc" id="L144">        this.images = images;</span>
+<span class="fc" id="L145">        this.secrets = secrets;</span>
+<span class="fc" id="L146">        this.sourceSecret = sourceSecret;</span>
+<span class="fc" id="L147">        this.type = type;</span>
+<span class="fc" id="L148">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The binary
+     */
+    @JsonProperty(&quot;binary&quot;)
+    public BinaryBuildSource getBinary() {
+<span class="fc" id="L158">        return binary;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param binary
+     *     The binary
+     */
+    @JsonProperty(&quot;binary&quot;)
+    public void setBinary(BinaryBuildSource binary) {
+<span class="fc" id="L169">        this.binary = binary;</span>
+<span class="fc" id="L170">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The configMaps
+     */
+    @JsonProperty(&quot;configMaps&quot;)
+    public List&lt;ConfigMapBuildSource&gt; getConfigMaps() {
+<span class="fc" id="L180">        return configMaps;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param configMaps
+     *     The configMaps
+     */
+    @JsonProperty(&quot;configMaps&quot;)
+    public void setConfigMaps(List&lt;ConfigMapBuildSource&gt; configMaps) {
+<span class="nc" id="L191">        this.configMaps = configMaps;</span>
+<span class="nc" id="L192">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The contextDir
+     */
+    @JsonProperty(&quot;contextDir&quot;)
+    public String getContextDir() {
+<span class="fc" id="L202">        return contextDir;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param contextDir
+     *     The contextDir
+     */
+    @JsonProperty(&quot;contextDir&quot;)
+    public void setContextDir(String contextDir) {
+<span class="fc" id="L213">        this.contextDir = contextDir;</span>
+<span class="fc" id="L214">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The dockerfile
+     */
+    @JsonProperty(&quot;dockerfile&quot;)
+    public String getDockerfile() {
+<span class="fc" id="L224">        return dockerfile;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param dockerfile
+     *     The dockerfile
+     */
+    @JsonProperty(&quot;dockerfile&quot;)
+    public void setDockerfile(String dockerfile) {
+<span class="fc" id="L235">        this.dockerfile = dockerfile;</span>
+<span class="fc" id="L236">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The git
+     */
+    @JsonProperty(&quot;git&quot;)
+    public GitBuildSource getGit() {
+<span class="fc" id="L246">        return git;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param git
+     *     The git
+     */
+    @JsonProperty(&quot;git&quot;)
+    public void setGit(GitBuildSource git) {
+<span class="fc" id="L257">        this.git = git;</span>
+<span class="fc" id="L258">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The images
+     */
+    @JsonProperty(&quot;images&quot;)
+    public List&lt;ImageSource&gt; getImages() {
+<span class="fc" id="L268">        return images;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param images
+     *     The images
+     */
+    @JsonProperty(&quot;images&quot;)
+    public void setImages(List&lt;ImageSource&gt; images) {
+<span class="fc" id="L279">        this.images = images;</span>
+<span class="fc" id="L280">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The secrets
+     */
+    @JsonProperty(&quot;secrets&quot;)
+    public List&lt;SecretBuildSource&gt; getSecrets() {
+<span class="fc" id="L290">        return secrets;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param secrets
+     *     The secrets
+     */
+    @JsonProperty(&quot;secrets&quot;)
+    public void setSecrets(List&lt;SecretBuildSource&gt; secrets) {
+<span class="fc" id="L301">        this.secrets = secrets;</span>
+<span class="fc" id="L302">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The sourceSecret
+     */
+    @JsonProperty(&quot;sourceSecret&quot;)
+    public LocalObjectReference getSourceSecret() {
+<span class="fc" id="L312">        return sourceSecret;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param sourceSecret
+     *     The sourceSecret
+     */
+    @JsonProperty(&quot;sourceSecret&quot;)
+    public void setSourceSecret(LocalObjectReference sourceSecret) {
+<span class="fc" id="L323">        this.sourceSecret = sourceSecret;</span>
+<span class="fc" id="L324">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The type
+     */
+    @JsonProperty(&quot;type&quot;)
+    public String getType() {
+<span class="fc" id="L334">        return type;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param type
+     *     The type
+     */
+    @JsonProperty(&quot;type&quot;)
+    public void setType(String type) {
+<span class="fc" id="L345">        this.type = type;</span>
+<span class="fc" id="L346">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L350">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L355">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L356">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

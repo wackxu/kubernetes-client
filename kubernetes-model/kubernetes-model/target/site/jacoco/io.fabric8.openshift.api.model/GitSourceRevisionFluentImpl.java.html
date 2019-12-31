@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GitSourceRevisionFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">GitSourceRevisionFluentImpl.java</span></div><h1>GitSourceRevisionFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class GitSourceRevisionFluentImpl&lt;A extends GitSourceRevisionFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements GitSourceRevisionFluent&lt;A&gt;{
+
+    private SourceControlUserBuilder author;
+    private String commit;
+    private SourceControlUserBuilder committer;
+    private String message;
+
+<span class="fc" id="L19">    public GitSourceRevisionFluentImpl(){</span>
+<span class="fc" id="L20">    }</span>
+<span class="nc" id="L21">    public GitSourceRevisionFluentImpl(GitSourceRevision instance){</span>
+<span class="nc" id="L22">            this.withAuthor(instance.getAuthor()); </span>
+<span class="nc" id="L23">            this.withCommit(instance.getCommit()); </span>
+<span class="nc" id="L24">            this.withCommitter(instance.getCommitter()); </span>
+<span class="nc" id="L25">            this.withMessage(instance.getMessage()); </span>
+<span class="nc" id="L26">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildAuthor instead.
+ * @return The buildable object.
+ */
+@Deprecated public SourceControlUser getAuthor(){
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">            return this.author!=null?this.author.build():null;</span>
+    }
+
+    public SourceControlUser buildAuthor(){
+<span class="nc bnc" id="L38" title="All 2 branches missed.">            return this.author!=null?this.author.build():null;</span>
+    }
+
+    public A withAuthor(SourceControlUser author){
+<span class="fc" id="L42">            _visitables.remove(this.author);</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">            if (author!=null){ this.author= new SourceControlUserBuilder(author); _visitables.add(this.author);} return (A) this;</span>
+    }
+
+    public Boolean hasAuthor(){
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            return this.author != null;</span>
+    }
+
+    public A withNewAuthor(String email,String name){
+<span class="nc" id="L51">            return (A)withAuthor(new SourceControlUser(email, name));</span>
+    }
+
+    public GitSourceRevisionFluent.AuthorNested&lt;A&gt; withNewAuthor(){
+<span class="nc" id="L55">            return new AuthorNestedImpl();</span>
+    }
+
+    public GitSourceRevisionFluent.AuthorNested&lt;A&gt; withNewAuthorLike(SourceControlUser item){
+<span class="nc" id="L59">            return new AuthorNestedImpl(item);</span>
+    }
+
+    public GitSourceRevisionFluent.AuthorNested&lt;A&gt; editAuthor(){
+<span class="nc" id="L63">            return withNewAuthorLike(getAuthor());</span>
+    }
+
+    public GitSourceRevisionFluent.AuthorNested&lt;A&gt; editOrNewAuthor(){
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            return withNewAuthorLike(getAuthor() != null ? getAuthor(): new SourceControlUserBuilder().build());</span>
+    }
+
+    public GitSourceRevisionFluent.AuthorNested&lt;A&gt; editOrNewAuthorLike(SourceControlUser item){
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            return withNewAuthorLike(getAuthor() != null ? getAuthor(): item);</span>
+    }
+
+    public String getCommit(){
+<span class="fc" id="L75">            return this.commit;</span>
+    }
+
+    public A withCommit(String commit){
+<span class="fc" id="L79">            this.commit=commit; return (A) this;</span>
+    }
+
+    public Boolean hasCommit(){
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            return this.commit != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildCommitter instead.
+ * @return The buildable object.
+ */
+@Deprecated public SourceControlUser getCommitter(){
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">            return this.committer!=null?this.committer.build():null;</span>
+    }
+
+    public SourceControlUser buildCommitter(){
+<span class="nc bnc" id="L96" title="All 2 branches missed.">            return this.committer!=null?this.committer.build():null;</span>
+    }
+
+    public A withCommitter(SourceControlUser committer){
+<span class="fc" id="L100">            _visitables.remove(this.committer);</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">            if (committer!=null){ this.committer= new SourceControlUserBuilder(committer); _visitables.add(this.committer);} return (A) this;</span>
+    }
+
+    public Boolean hasCommitter(){
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            return this.committer != null;</span>
+    }
+
+    public A withNewCommitter(String email,String name){
+<span class="nc" id="L109">            return (A)withCommitter(new SourceControlUser(email, name));</span>
+    }
+
+    public GitSourceRevisionFluent.CommitterNested&lt;A&gt; withNewCommitter(){
+<span class="nc" id="L113">            return new CommitterNestedImpl();</span>
+    }
+
+    public GitSourceRevisionFluent.CommitterNested&lt;A&gt; withNewCommitterLike(SourceControlUser item){
+<span class="nc" id="L117">            return new CommitterNestedImpl(item);</span>
+    }
+
+    public GitSourceRevisionFluent.CommitterNested&lt;A&gt; editCommitter(){
+<span class="nc" id="L121">            return withNewCommitterLike(getCommitter());</span>
+    }
+
+    public GitSourceRevisionFluent.CommitterNested&lt;A&gt; editOrNewCommitter(){
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            return withNewCommitterLike(getCommitter() != null ? getCommitter(): new SourceControlUserBuilder().build());</span>
+    }
+
+    public GitSourceRevisionFluent.CommitterNested&lt;A&gt; editOrNewCommitterLike(SourceControlUser item){
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            return withNewCommitterLike(getCommitter() != null ? getCommitter(): item);</span>
+    }
+
+    public String getMessage(){
+<span class="fc" id="L133">            return this.message;</span>
+    }
+
+    public A withMessage(String message){
+<span class="fc" id="L137">            this.message=message; return (A) this;</span>
+    }
+
+    public Boolean hasMessage(){
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            return this.message != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L146" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L148">            GitSourceRevisionFluentImpl that = (GitSourceRevisionFluentImpl) o;</span>
+<span class="nc bnc" id="L149" title="All 6 branches missed.">            if (author != null ? !author.equals(that.author) :that.author != null) return false;</span>
+<span class="nc bnc" id="L150" title="All 6 branches missed.">            if (commit != null ? !commit.equals(that.commit) :that.commit != null) return false;</span>
+<span class="nc bnc" id="L151" title="All 6 branches missed.">            if (committer != null ? !committer.equals(that.committer) :that.committer != null) return false;</span>
+<span class="nc bnc" id="L152" title="All 6 branches missed.">            if (message != null ? !message.equals(that.message) :that.message != null) return false;</span>
+<span class="nc" id="L153">            return true;</span>
+    }
+
+
+    public class AuthorNestedImpl&lt;N&gt; extends SourceControlUserFluentImpl&lt;GitSourceRevisionFluent.AuthorNested&lt;N&gt;&gt; implements GitSourceRevisionFluent.AuthorNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SourceControlUserBuilder builder;
+    
+<span class="nc" id="L161">            AuthorNestedImpl(SourceControlUser item){</span>
+<span class="nc" id="L162">                    this.builder = new SourceControlUserBuilder(this, item);</span>
+<span class="nc" id="L163">            }</span>
+<span class="nc" id="L164">            AuthorNestedImpl(){</span>
+<span class="nc" id="L165">                    this.builder = new SourceControlUserBuilder(this);</span>
+<span class="nc" id="L166">            }</span>
+    
+    public N and(){
+<span class="nc" id="L169">            return (N) GitSourceRevisionFluentImpl.this.withAuthor(builder.build());</span>
+    }
+    public N endAuthor(){
+<span class="nc" id="L172">            return and();</span>
+    }
+
+}
+    public class CommitterNestedImpl&lt;N&gt; extends SourceControlUserFluentImpl&lt;GitSourceRevisionFluent.CommitterNested&lt;N&gt;&gt; implements GitSourceRevisionFluent.CommitterNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SourceControlUserBuilder builder;
+    
+<span class="nc" id="L180">            CommitterNestedImpl(SourceControlUser item){</span>
+<span class="nc" id="L181">                    this.builder = new SourceControlUserBuilder(this, item);</span>
+<span class="nc" id="L182">            }</span>
+<span class="nc" id="L183">            CommitterNestedImpl(){</span>
+<span class="nc" id="L184">                    this.builder = new SourceControlUserBuilder(this);</span>
+<span class="nc" id="L185">            }</span>
+    
+    public N and(){
+<span class="nc" id="L188">            return (N) GitSourceRevisionFluentImpl.this.withCommitter(builder.build());</span>
+    }
+    public N endCommitter(){
+<span class="nc" id="L191">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OAuthAccessTokenFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">OAuthAccessTokenFluentImpl.java</span></div><h1>OAuthAccessTokenFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.ObjectMetaFluentImpl;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import java.lang.Integer;
+import javax.validation.Valid;
+import java.lang.Long;
+import java.util.Collection;
+import java.lang.Object;
+
+public class OAuthAccessTokenFluentImpl&lt;A extends OAuthAccessTokenFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements OAuthAccessTokenFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private String authorizeToken;
+    private String clientName;
+    private Long expiresIn;
+    private Integer inactivityTimeoutSeconds;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+    private String redirectURI;
+    private String refreshToken;
+    private List&lt;String&gt; scopes;
+    private String userName;
+    private String userUID;
+
+<span class="nc" id="L39">    public OAuthAccessTokenFluentImpl(){</span>
+<span class="nc" id="L40">    }</span>
+<span class="nc" id="L41">    public OAuthAccessTokenFluentImpl(OAuthAccessToken instance){</span>
+<span class="nc" id="L42">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L43">            this.withAuthorizeToken(instance.getAuthorizeToken()); </span>
+<span class="nc" id="L44">            this.withClientName(instance.getClientName()); </span>
+<span class="nc" id="L45">            this.withExpiresIn(instance.getExpiresIn()); </span>
+<span class="nc" id="L46">            this.withInactivityTimeoutSeconds(instance.getInactivityTimeoutSeconds()); </span>
+<span class="nc" id="L47">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L48">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L49">            this.withRedirectURI(instance.getRedirectURI()); </span>
+<span class="nc" id="L50">            this.withRefreshToken(instance.getRefreshToken()); </span>
+<span class="nc" id="L51">            this.withScopes(instance.getScopes()); </span>
+<span class="nc" id="L52">            this.withUserName(instance.getUserName()); </span>
+<span class="nc" id="L53">            this.withUserUID(instance.getUserUID()); </span>
+<span class="nc" id="L54">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L57">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L61">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public String getAuthorizeToken(){
+<span class="nc" id="L69">            return this.authorizeToken;</span>
+    }
+
+    public A withAuthorizeToken(String authorizeToken){
+<span class="nc" id="L73">            this.authorizeToken=authorizeToken; return (A) this;</span>
+    }
+
+    public Boolean hasAuthorizeToken(){
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            return this.authorizeToken != null;</span>
+    }
+
+    public String getClientName(){
+<span class="nc" id="L81">            return this.clientName;</span>
+    }
+
+    public A withClientName(String clientName){
+<span class="nc" id="L85">            this.clientName=clientName; return (A) this;</span>
+    }
+
+    public Boolean hasClientName(){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            return this.clientName != null;</span>
+    }
+
+    public Long getExpiresIn(){
+<span class="nc" id="L93">            return this.expiresIn;</span>
+    }
+
+    public A withExpiresIn(Long expiresIn){
+<span class="nc" id="L97">            this.expiresIn=expiresIn; return (A) this;</span>
+    }
+
+    public Boolean hasExpiresIn(){
+<span class="nc bnc" id="L101" title="All 2 branches missed.">            return this.expiresIn != null;</span>
+    }
+
+    public A withNewExpiresIn(String arg1){
+<span class="nc" id="L105">            return (A)withExpiresIn(new Long(arg1));</span>
+    }
+
+    public A withNewExpiresIn(long arg1){
+<span class="nc" id="L109">            return (A)withExpiresIn(new Long(arg1));</span>
+    }
+
+    public Integer getInactivityTimeoutSeconds(){
+<span class="nc" id="L113">            return this.inactivityTimeoutSeconds;</span>
+    }
+
+    public A withInactivityTimeoutSeconds(Integer inactivityTimeoutSeconds){
+<span class="nc" id="L117">            this.inactivityTimeoutSeconds=inactivityTimeoutSeconds; return (A) this;</span>
+    }
+
+    public Boolean hasInactivityTimeoutSeconds(){
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            return this.inactivityTimeoutSeconds != null;</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L125">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L129">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L142" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L150">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public OAuthAccessTokenFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L159">            return new MetadataNestedImpl();</span>
+    }
+
+    public OAuthAccessTokenFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L163">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public OAuthAccessTokenFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L167">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public OAuthAccessTokenFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L171" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public OAuthAccessTokenFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    public String getRedirectURI(){
+<span class="nc" id="L179">            return this.redirectURI;</span>
+    }
+
+    public A withRedirectURI(String redirectURI){
+<span class="nc" id="L183">            this.redirectURI=redirectURI; return (A) this;</span>
+    }
+
+    public Boolean hasRedirectURI(){
+<span class="nc bnc" id="L187" title="All 2 branches missed.">            return this.redirectURI != null;</span>
+    }
+
+    public String getRefreshToken(){
+<span class="nc" id="L191">            return this.refreshToken;</span>
+    }
+
+    public A withRefreshToken(String refreshToken){
+<span class="nc" id="L195">            this.refreshToken=refreshToken; return (A) this;</span>
+    }
+
+    public Boolean hasRefreshToken(){
+<span class="nc bnc" id="L199" title="All 2 branches missed.">            return this.refreshToken != null;</span>
+    }
+
+    public A addToScopes(int index,String item){
+<span class="nc bnc" id="L203" title="All 2 branches missed.">            if (this.scopes == null) {this.scopes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L204">            this.scopes.add(index, item);</span>
+<span class="nc" id="L205">            return (A)this;</span>
+    }
+
+    public A setToScopes(int index,String item){
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            if (this.scopes == null) {this.scopes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L210">            this.scopes.set(index, item); return (A)this;</span>
+    }
+
+    public A addToScopes(String... items){
+<span class="nc bnc" id="L214" title="All 2 branches missed.">            if (this.scopes == null) {this.scopes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L215" title="All 2 branches missed.">            for (String item : items) {this.scopes.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToScopes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            if (this.scopes == null) {this.scopes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">            for (String item : items) {this.scopes.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromScopes(String... items){
+<span class="nc bnc" id="L224" title="All 4 branches missed.">            for (String item : items) {if (this.scopes!= null){ this.scopes.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromScopes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L228" title="All 4 branches missed.">            for (String item : items) {if (this.scopes!= null){ this.scopes.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getScopes(){
+<span class="nc" id="L232">            return this.scopes;</span>
+    }
+
+    public String getScope(int index){
+<span class="nc" id="L236">            return this.scopes.get(index);</span>
+    }
+
+    public String getFirstScope(){
+<span class="nc" id="L240">            return this.scopes.get(0);</span>
+    }
+
+    public String getLastScope(){
+<span class="nc" id="L244">            return this.scopes.get(scopes.size() - 1);</span>
+    }
+
+    public String getMatchingScope(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L248" title="All 4 branches missed.">            for (String item: scopes) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withScopes(List&lt;String&gt; scopes){
+<span class="nc bnc" id="L252" title="All 2 branches missed.">            if (this.scopes != null) { _visitables.removeAll(this.scopes);}</span>
+<span class="nc bnc" id="L253" title="All 4 branches missed.">            if (scopes != null) {this.scopes = new ArrayList&lt;String&gt;(); for (String item : scopes){this.addToScopes(item);}} else { this.scopes = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withScopes(String... scopes){
+<span class="nc bnc" id="L257" title="All 2 branches missed.">            if (this.scopes != null) {this.scopes.clear();}</span>
+<span class="nc bnc" id="L258" title="All 4 branches missed.">            if (scopes != null) {for (String item :scopes){ this.addToScopes(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasScopes(){
+<span class="nc bnc" id="L262" title="All 4 branches missed.">            return scopes != null &amp;&amp; !scopes.isEmpty();</span>
+    }
+
+    public String getUserName(){
+<span class="nc" id="L266">            return this.userName;</span>
+    }
+
+    public A withUserName(String userName){
+<span class="nc" id="L270">            this.userName=userName; return (A) this;</span>
+    }
+
+    public Boolean hasUserName(){
+<span class="nc bnc" id="L274" title="All 2 branches missed.">            return this.userName != null;</span>
+    }
+
+    public String getUserUID(){
+<span class="nc" id="L278">            return this.userUID;</span>
+    }
+
+    public A withUserUID(String userUID){
+<span class="nc" id="L282">            this.userUID=userUID; return (A) this;</span>
+    }
+
+    public Boolean hasUserUID(){
+<span class="nc bnc" id="L286" title="All 2 branches missed.">            return this.userUID != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L290" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L291" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L292" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L293">            OAuthAccessTokenFluentImpl that = (OAuthAccessTokenFluentImpl) o;</span>
+<span class="nc bnc" id="L294" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L295" title="All 6 branches missed.">            if (authorizeToken != null ? !authorizeToken.equals(that.authorizeToken) :that.authorizeToken != null) return false;</span>
+<span class="nc bnc" id="L296" title="All 6 branches missed.">            if (clientName != null ? !clientName.equals(that.clientName) :that.clientName != null) return false;</span>
+<span class="nc bnc" id="L297" title="All 6 branches missed.">            if (expiresIn != null ? !expiresIn.equals(that.expiresIn) :that.expiresIn != null) return false;</span>
+<span class="nc bnc" id="L298" title="All 6 branches missed.">            if (inactivityTimeoutSeconds != null ? !inactivityTimeoutSeconds.equals(that.inactivityTimeoutSeconds) :that.inactivityTimeoutSeconds != null) return false;</span>
+<span class="nc bnc" id="L299" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L300" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L301" title="All 6 branches missed.">            if (redirectURI != null ? !redirectURI.equals(that.redirectURI) :that.redirectURI != null) return false;</span>
+<span class="nc bnc" id="L302" title="All 6 branches missed.">            if (refreshToken != null ? !refreshToken.equals(that.refreshToken) :that.refreshToken != null) return false;</span>
+<span class="nc bnc" id="L303" title="All 6 branches missed.">            if (scopes != null ? !scopes.equals(that.scopes) :that.scopes != null) return false;</span>
+<span class="nc bnc" id="L304" title="All 6 branches missed.">            if (userName != null ? !userName.equals(that.userName) :that.userName != null) return false;</span>
+<span class="nc bnc" id="L305" title="All 6 branches missed.">            if (userUID != null ? !userUID.equals(that.userUID) :that.userUID != null) return false;</span>
+<span class="nc" id="L306">            return true;</span>
+    }
+
+
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;OAuthAccessTokenFluent.MetadataNested&lt;N&gt;&gt; implements OAuthAccessTokenFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L314">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L315">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L316">            }</span>
+<span class="nc" id="L317">            MetadataNestedImpl(){</span>
+<span class="nc" id="L318">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L319">            }</span>
+    
+    public N and(){
+<span class="nc" id="L322">            return (N) OAuthAccessTokenFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L325">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

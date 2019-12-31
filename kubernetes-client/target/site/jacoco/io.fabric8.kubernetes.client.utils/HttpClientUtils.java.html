@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HttpClientUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.utils</a> &gt; <span class="el_source">HttpClientUtils.java</span></div><h1>HttpClientUtils.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.utils;
+
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.internal.SSLUtils;
+import okhttp3.*;
+import okhttp3.logging.HttpLoggingInterceptor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.KeyManager;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.MalformedURLException;
+import java.net.Proxy;
+import java.net.URL;
+import java.security.GeneralSecurityException;
+import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
+import static okhttp3.ConnectionSpec.CLEARTEXT;
+
+<span class="nc" id="L46">public class HttpClientUtils {</span>
+
+<span class="fc" id="L48">  private static Pattern VALID_IPV4_PATTERN = null;</span>
+  public static final String ipv4Pattern = &quot;(http:\\/\\/|https:\\/\\/)?(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])(\\/[0-9]\\d|1[0-9]\\d|2[0-9]\\d|3[0-2]\\d)?&quot;;
+<span class="fc" id="L50">  private static final Logger logger = LoggerFactory.getLogger(HttpClientUtils.class);</span>
+
+  static {
+    try {
+<span class="fc" id="L54">      VALID_IPV4_PATTERN = Pattern.compile(ipv4Pattern, Pattern.CASE_INSENSITIVE);</span>
+<span class="nc" id="L55">    } catch (PatternSyntaxException e) {</span>
+<span class="nc" id="L56">      throw KubernetesClientException.launderThrowable(&quot;Unable to compile ipv4address pattern.&quot;, e);</span>
+<span class="fc" id="L57">    }</span>
+<span class="fc" id="L58">  }</span>
+
+  public static OkHttpClient createHttpClient(final Config config) {
+        try {
+<span class="fc" id="L62">            OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();</span>
+
+            // Follow any redirects
+<span class="fc" id="L65">            httpClientBuilder.followRedirects(true);</span>
+<span class="fc" id="L66">            httpClientBuilder.followSslRedirects(true);</span>
+
+<span class="pc bpc" id="L68" title="2 of 4 branches missed.">            if (config.isTrustCerts() || config.isDisableHostnameVerification()) {</span>
+<span class="nc" id="L69">                httpClientBuilder.hostnameVerifier(new HostnameVerifier() {</span>
+                    @Override
+                    public boolean verify(String s, SSLSession sslSession) {
+<span class="nc" id="L72">                        return true;</span>
+                    }
+                });
+            }
+
+<span class="fc" id="L77">            TrustManager[] trustManagers = SSLUtils.trustManagers(config);</span>
+<span class="fc" id="L78">            KeyManager[] keyManagers = SSLUtils.keyManagers(config);</span>
+
+<span class="pc bpc" id="L80" title="4 of 6 branches missed.">            if (keyManagers != null || trustManagers != null || config.isTrustCerts()) {</span>
+<span class="fc" id="L81">                X509TrustManager trustManager = null;</span>
+<span class="pc bpc" id="L82" title="2 of 4 branches missed.">                if (trustManagers != null &amp;&amp; trustManagers.length == 1) {</span>
+<span class="fc" id="L83">                  trustManager = (X509TrustManager) trustManagers[0];</span>
+                }
+
+                try {
+<span class="fc" id="L87">                    SSLContext sslContext = SSLUtils.sslContext(keyManagers, trustManagers, config.isTrustCerts());</span>
+<span class="fc" id="L88">                    httpClientBuilder.sslSocketFactory(sslContext.getSocketFactory(), trustManager);</span>
+<span class="nc" id="L89">                } catch (GeneralSecurityException e) {</span>
+<span class="nc" id="L90">                    throw new AssertionError(); // The system has no TLS. Just give up.</span>
+<span class="fc" id="L91">                }</span>
+<span class="fc" id="L92">            } else {</span>
+<span class="nc" id="L93">              SSLContext context = SSLContext.getInstance(&quot;TLSv1.2&quot;);</span>
+<span class="nc" id="L94">              context.init(keyManagers, trustManagers, null);</span>
+<span class="nc" id="L95">              httpClientBuilder.sslSocketFactory(context.getSocketFactory(), (X509TrustManager) trustManagers[0]);</span>
+            }
+
+<span class="fc" id="L98">          httpClientBuilder.addInterceptor(new Interceptor() {</span>
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+<span class="nc" id="L101">              Request request = chain.request();</span>
+<span class="nc bnc" id="L102" title="All 4 branches missed.">              if (Utils.isNotNullOrEmpty(config.getUsername()) &amp;&amp; Utils.isNotNullOrEmpty(config.getPassword())) {</span>
+<span class="nc" id="L103">                Request authReq = chain.request().newBuilder().addHeader(&quot;Authorization&quot;, Credentials.basic(config.getUsername(), config.getPassword())).build();</span>
+<span class="nc" id="L104">                return chain.proceed(authReq);</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">              } else if (Utils.isNotNullOrEmpty(config.getOauthToken())) {</span>
+<span class="nc" id="L106">                Request authReq = chain.request().newBuilder().addHeader(&quot;Authorization&quot;, &quot;Bearer &quot; + config.getOauthToken()).build();</span>
+<span class="nc" id="L107">                return chain.proceed(authReq);</span>
+              }
+<span class="nc" id="L109">              return chain.proceed(request);</span>
+            }
+<span class="fc" id="L111">          }).addInterceptor(new ImpersonatorInterceptor(config))</span>
+<span class="fc" id="L112">            .addInterceptor(new BackwardsCompatibilityInterceptor());</span>
+
+<span class="fc" id="L114">            Logger reqLogger = LoggerFactory.getLogger(HttpLoggingInterceptor.class);</span>
+<span class="pc bpc" id="L115" title="1 of 2 branches missed.">            if (reqLogger.isTraceEnabled()) {</span>
+<span class="nc" id="L116">                HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();</span>
+<span class="nc" id="L117">                loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);</span>
+<span class="nc" id="L118">                httpClientBuilder.addNetworkInterceptor(loggingInterceptor);</span>
+            }
+
+<span class="pc bpc" id="L121" title="1 of 2 branches missed.">            if (config.getConnectionTimeout() &gt; 0) {</span>
+<span class="fc" id="L122">                httpClientBuilder.connectTimeout(config.getConnectionTimeout(), TimeUnit.MILLISECONDS);</span>
+            }
+
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">            if (config.getRequestTimeout() &gt; 0) {</span>
+<span class="fc" id="L126">                httpClientBuilder.readTimeout(config.getRequestTimeout(), TimeUnit.MILLISECONDS);</span>
+            }
+
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">            if (config.getWebsocketPingInterval() &gt; 0) {</span>
+<span class="fc" id="L130">              httpClientBuilder.pingInterval(config.getWebsocketPingInterval(), TimeUnit.MILLISECONDS);</span>
+            }
+
+<span class="pc bpc" id="L133" title="1 of 2 branches missed.">            if (config.getMaxConcurrentRequestsPerHost() &gt; 0) {</span>
+<span class="fc" id="L134">              Dispatcher dispatcher = new Dispatcher();</span>
+<span class="fc" id="L135">              dispatcher.setMaxRequests(config.getMaxConcurrentRequests());</span>
+<span class="fc" id="L136">              dispatcher.setMaxRequestsPerHost(config.getMaxConcurrentRequestsPerHost());</span>
+<span class="fc" id="L137">              httpClientBuilder.dispatcher(dispatcher);</span>
+            }
+
+            // Only check proxy if it's a full URL with protocol
+<span class="pc bpc" id="L141" title="1 of 4 branches missed.">            if (config.getMasterUrl().toLowerCase().startsWith(Config.HTTP_PROTOCOL_PREFIX) || config.getMasterUrl().startsWith(Config.HTTPS_PROTOCOL_PREFIX)) {</span>
+                try {
+<span class="fc" id="L143">                    URL proxyUrl = getProxyUrl(config);</span>
+<span class="pc bpc" id="L144" title="1 of 2 branches missed.">                    if (proxyUrl != null) {</span>
+<span class="nc" id="L145">                        httpClientBuilder.proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyUrl.getHost(), proxyUrl.getPort())));</span>
+
+<span class="nc bnc" id="L147" title="All 2 branches missed.">                        if (config.getProxyUsername() != null) {</span>
+<span class="nc" id="L148">                          httpClientBuilder.proxyAuthenticator(new Authenticator() {</span>
+                            @Override
+                            public Request authenticate(Route route, Response response) throws IOException {
+
+<span class="nc" id="L152">                              String credential = Credentials.basic(config.getProxyUsername(), config.getProxyPassword());</span>
+<span class="nc" id="L153">                              return response.request().newBuilder().header(&quot;Proxy-Authorization&quot;, credential).build();</span>
+                            }
+                          });
+                        }
+                    }
+
+<span class="nc" id="L159">                } catch (MalformedURLException e) {</span>
+<span class="nc" id="L160">                    throw new KubernetesClientException(&quot;Invalid proxy server configuration&quot;, e);</span>
+<span class="fc" id="L161">                }</span>
+            }
+
+<span class="pc bpc" id="L164" title="3 of 4 branches missed.">            if (config.getUserAgent() != null &amp;&amp; !config.getUserAgent().isEmpty()) {</span>
+<span class="nc" id="L165">                httpClientBuilder.addNetworkInterceptor(new Interceptor() {</span>
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+<span class="nc" id="L168">                        Request agent = chain.request().newBuilder().header(&quot;User-Agent&quot;, config.getUserAgent()).build();</span>
+<span class="nc" id="L169">                        return chain.proceed(agent);</span>
+                    }
+                });
+            }
+
+<span class="pc bpc" id="L174" title="2 of 4 branches missed.">            if (config.getTlsVersions() != null &amp;&amp; config.getTlsVersions().length &gt; 0) {</span>
+<span class="fc" id="L175">              ConnectionSpec spec = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)</span>
+<span class="fc" id="L176">                .tlsVersions(config.getTlsVersions())</span>
+<span class="fc" id="L177">                .build();</span>
+<span class="fc" id="L178">              httpClientBuilder.connectionSpecs(Arrays.asList(spec, CLEARTEXT));</span>
+            }
+
+<span class="fc" id="L181">            return httpClientBuilder.build();</span>
+<span class="nc" id="L182">        } catch (Exception e) {</span>
+<span class="nc" id="L183">            throw KubernetesClientException.launderThrowable(e);</span>
+        }
+    }
+
+    private static URL getProxyUrl(Config config) throws MalformedURLException {
+<span class="fc" id="L188">        URL master = new URL(config.getMasterUrl());</span>
+<span class="fc" id="L189">        String host = master.getHost();</span>
+<span class="fc bfc" id="L190" title="All 2 branches covered.">        if (config.getNoProxy() != null) {</span>
+<span class="pc bpc" id="L191" title="1 of 2 branches missed.">	        for (String noProxy : config.getNoProxy()) {</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">            if (isIpAddress(noProxy)) {</span>
+<span class="nc bnc" id="L193" title="All 2 branches missed.">              if (new IpAddressMatcher(noProxy).matches(host)) {</span>
+<span class="nc" id="L194">                return null;</span>
+              }
+            } else {
+<span class="nc bnc" id="L197" title="All 2 branches missed.">              if (host.contains(noProxy)) {</span>
+<span class="nc" id="L198">                return null;</span>
+              }
+            }
+	        }
+        }
+<span class="fc" id="L203">        String proxy = config.getHttpsProxy();</span>
+<span class="fc bfc" id="L204" title="All 2 branches covered.">        if (master.getProtocol().equals(&quot;http&quot;)) {</span>
+<span class="fc" id="L205">            proxy = config.getHttpProxy();</span>
+        }
+<span class="pc bpc" id="L207" title="1 of 2 branches missed.">        if (proxy != null) {</span>
+<span class="nc" id="L208">            return new URL(proxy);</span>
+        }
+<span class="fc" id="L210">        return null;</span>
+    }
+
+    private static boolean isIpAddress(String ipAddress) {
+<span class="nc" id="L214">        Matcher ipMatcher = VALID_IPV4_PATTERN.matcher(ipAddress);</span>
+<span class="nc" id="L215">        return ipMatcher.matches();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

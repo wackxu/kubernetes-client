@@ -1,0 +1,1005 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BaseOperation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.dsl.base</a> &gt; <span class="el_source">BaseOperation.java</span></div><h1>BaseOperation.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.dsl.base;
+
+import io.fabric8.kubernetes.api.builder.Function;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.KubernetesResourceList;
+import io.fabric8.kubernetes.api.model.LabelSelector;
+import io.fabric8.kubernetes.api.model.LabelSelectorRequirement;
+import io.fabric8.kubernetes.api.model.RootPaths;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.OperationInfo;
+import io.fabric8.kubernetes.client.Watch;
+import io.fabric8.kubernetes.client.Watcher;
+import io.fabric8.kubernetes.client.dsl.Deletable;
+import io.fabric8.kubernetes.client.dsl.EditReplacePatchDeletable;
+import io.fabric8.kubernetes.client.dsl.FilterWatchListDeletable;
+import io.fabric8.kubernetes.client.dsl.Gettable;
+import io.fabric8.kubernetes.client.dsl.MixedOperation;
+import io.fabric8.kubernetes.client.dsl.NonNamespaceOperation;
+import io.fabric8.kubernetes.client.dsl.Reaper;
+import io.fabric8.kubernetes.client.dsl.Replaceable;
+import io.fabric8.kubernetes.client.dsl.Resource;
+import io.fabric8.kubernetes.client.dsl.Watchable;
+import io.fabric8.kubernetes.client.dsl.internal.DefaultOperationInfo;
+import io.fabric8.kubernetes.client.dsl.internal.WatchConnectionManager;
+import io.fabric8.kubernetes.client.dsl.internal.WatchHTTPManager;
+import io.fabric8.kubernetes.client.internal.readiness.Readiness;
+import io.fabric8.kubernetes.client.utils.URLUtils;
+import io.fabric8.kubernetes.client.utils.Utils;
+import io.fabric8.kubernetes.client.utils.WatcherToggle;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.TreeMap;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Predicate;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+
+import static io.fabric8.kubernetes.client.utils.ApiVersionUtil.*;
+
+public class BaseOperation&lt;T, L extends KubernetesResourceList, D extends Doneable&lt;T&gt;, R extends Resource&lt;T, D&gt;&gt;
+  extends OperationSupport
+  implements
+  OperationInfo,
+  MixedOperation&lt;T, L, D, R&gt;,
+  Resource&lt;T,D&gt; {
+
+  private final Boolean cascading;
+  private final T item;
+
+  private final Map&lt;String, String&gt; labels;
+  private final Map&lt;String, String&gt; labelsNot;
+  private final Map&lt;String, String[]&gt; labelsIn;
+  private final Map&lt;String, String[]&gt; labelsNotIn;
+  private final Map&lt;String, String&gt; fields;
+
+  private final Class&lt;T&gt; type;
+  private final Class&lt;L&gt; listType;
+  private final Class&lt;D&gt; doneableType;
+  private final String resourceVersion;
+  private final Boolean reloadingFromServer;
+  private final long gracePeriodSeconds;
+
+  private boolean reaping;
+  protected Reaper reaper;
+  protected String apiVersion;
+
+  protected BaseOperation(OkHttpClient client, Config config, String apiGroupName, String apiVersionNumber, String resourceT, String namespace, String name, Boolean cascading, T item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields)  {
+<span class="nc" id="L98">    super(client, config, apiGroup(item, apiGroupName), apiVersion(item, apiVersionNumber), resourceT, namespace, name(item, name));</span>
+<span class="nc" id="L99">    this.cascading = cascading;</span>
+<span class="nc" id="L100">    this.item = item;</span>
+<span class="nc" id="L101">    this.reloadingFromServer = reloadingFromServer;</span>
+<span class="nc" id="L102">    this.type = (Class&lt;T&gt;) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];</span>
+<span class="nc" id="L103">    this.listType = (Class&lt;L&gt;) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];</span>
+<span class="nc" id="L104">    this.doneableType = (Class&lt;D&gt;) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[2];</span>
+<span class="nc" id="L105">    this.reaper = null;</span>
+<span class="nc" id="L106">    this.resourceVersion = resourceVersion;</span>
+<span class="nc" id="L107">    this.gracePeriodSeconds = gracePeriodSeconds;</span>
+<span class="nc" id="L108">    this.labels = labels;</span>
+<span class="nc" id="L109">    this.labelsNot = labelsNot;</span>
+<span class="nc" id="L110">    this.labelsIn = labelsIn;</span>
+<span class="nc" id="L111">    this.labelsNotIn = labelsNotIn;</span>
+<span class="nc" id="L112">    this.fields = fields;</span>
+<span class="nc" id="L113">  }</span>
+
+  protected BaseOperation(OkHttpClient client, Config config, String apiGroupName, String apiVersion, String resourceT, String namespace, String name, Boolean cascading, T item, String resourceVersion, Boolean reloadingFromServer, Class&lt;T&gt; type, Class&lt;L&gt; listType, Class&lt;D&gt; doneableType) {
+<span class="nc" id="L116">    super(client, config, apiGroup(item, apiGroupName), apiVersion(item, apiVersion), resourceT, namespace, name(item, name));</span>
+<span class="nc" id="L117">    this.cascading = cascading;</span>
+<span class="nc" id="L118">    this.item = item;</span>
+<span class="nc" id="L119">    this.resourceVersion = resourceVersion;</span>
+<span class="nc" id="L120">    this.reloadingFromServer = reloadingFromServer;</span>
+<span class="nc" id="L121">    this.type = type;</span>
+<span class="nc" id="L122">    this.listType = listType;</span>
+<span class="nc" id="L123">    this.doneableType = doneableType;</span>
+<span class="nc" id="L124">    this.reaper = null;</span>
+<span class="nc" id="L125">    this.gracePeriodSeconds = -1;</span>
+<span class="nc" id="L126">    this.labels = new TreeMap&lt;&gt;();</span>
+<span class="nc" id="L127">    this.labelsNot = new TreeMap&lt;&gt;();</span>
+<span class="nc" id="L128">    this.labelsIn = new TreeMap&lt;&gt;();</span>
+<span class="nc" id="L129">    this.labelsNotIn = new TreeMap&lt;&gt;();</span>
+<span class="nc" id="L130">    this.fields = new TreeMap&lt;&gt;();</span>
+<span class="nc" id="L131">  }</span>
+
+
+  /**
+   * Returns the name and falls back to the item name.
+   * @param item  The item.
+   * @param name  The name to check.
+   * @param &lt;T&gt;
+     * @return
+     */
+  private static &lt;T&gt; String name(T item, String name) {
+<span class="nc bnc" id="L142" title="All 4 branches missed.">    if (name != null &amp;&amp; !name.isEmpty()) {</span>
+<span class="nc" id="L143">      return name;</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">    } else if (item instanceof HasMetadata) {</span>
+<span class="nc" id="L145">      HasMetadata h = (HasMetadata) item;</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">      return h.getMetadata() != null ? h.getMetadata().getName() : null;</span>
+    }
+<span class="nc" id="L148">    return null;</span>
+  }
+
+
+
+
+  /**
+   * Helper method for list() and list(limit, continue) methods
+   *
+   * @param url
+   * @return list of corresponding Kubernetes Resources
+   */
+  private L listRequestHelper(URL url) {
+    try {
+<span class="nc" id="L162">      HttpUrl.Builder requestUrlBuilder = HttpUrl.get(url).newBuilder();</span>
+
+<span class="nc" id="L164">      addQueryStringParam(requestUrlBuilder, &quot;labelSelector&quot;, getLabelQueryParam());</span>
+<span class="nc" id="L165">      addQueryStringParam(requestUrlBuilder, &quot;fieldSelector&quot;, getFieldQueryParam());</span>
+
+<span class="nc" id="L167">      Request.Builder requestBuilder = new Request.Builder().get().url(requestUrlBuilder.build());</span>
+<span class="nc" id="L168">      L answer = handleResponse(requestBuilder, listType);</span>
+<span class="nc" id="L169">      updateApiVersion(answer);</span>
+<span class="nc" id="L170">      return answer;</span>
+<span class="nc" id="L171">    } catch (InterruptedException | ExecutionException | IOException e) {</span>
+<span class="nc" id="L172">      throw KubernetesClientException.launderThrowable(forOperationType(&quot;list&quot;), e);</span>
+    }
+  }
+
+  private void addQueryStringParam(HttpUrl.Builder requestUrlBuilder, String name, String value) {
+<span class="nc bnc" id="L177" title="All 2 branches missed.">    if(Utils.isNotNullOrEmpty(value)) {</span>
+<span class="nc" id="L178">      requestUrlBuilder.addQueryParameter(name, value);</span>
+    }
+<span class="nc" id="L180">  }</span>
+
+  @Override
+  public T get() {
+    try {
+<span class="nc" id="L185">      T answer = getMandatory();</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">      if (answer instanceof HasMetadata) {</span>
+<span class="nc" id="L187">        HasMetadata hasMetadata = (HasMetadata) answer;</span>
+<span class="nc" id="L188">        updateApiVersion(hasMetadata);</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">      } else if (answer instanceof KubernetesResourceList) {</span>
+<span class="nc" id="L190">        KubernetesResourceList list = (KubernetesResourceList) answer;</span>
+<span class="nc" id="L191">        updateApiVersion(list);</span>
+      }
+<span class="nc" id="L193">      return answer;</span>
+<span class="nc" id="L194">    } catch (KubernetesClientException e) {</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">      if (e.getCode() != 404) {</span>
+<span class="nc" id="L196">        throw e;</span>
+      }
+<span class="nc" id="L198">      return null;</span>
+    }
+  }
+
+  public T getMandatory() {
+<span class="nc bnc" id="L203" title="All 4 branches missed.">    if (item != null &amp;&amp; !reloadingFromServer) {</span>
+<span class="nc" id="L204">      return item;</span>
+    }
+    try {
+<span class="nc" id="L207">      URL requestUrl = null;</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">      if (item != null) {</span>
+<span class="nc" id="L209">        requestUrl = getNamespacedUrl(item);</span>
+      } else {
+<span class="nc" id="L211">        requestUrl = getNamespacedUrl();</span>
+      }
+<span class="nc bnc" id="L213" title="All 2 branches missed.">      if (name != null) {</span>
+<span class="nc" id="L214">        requestUrl = new URL(URLUtils.join(requestUrl.toString(), name));</span>
+<span class="nc bnc" id="L215" title="All 4 branches missed.">      } else if (item != null &amp;&amp; reloadingFromServer) {</span>
+<span class="nc" id="L216">        requestUrl = new URL(URLUtils.join(requestUrl.toString(), checkName(item)));</span>
+      }
+<span class="nc" id="L218">      return handleGet(requestUrl);</span>
+<span class="nc" id="L219">    } catch (KubernetesClientException e) {</span>
+<span class="nc" id="L220">      throw KubernetesClientException.launderThrowable(forOperationType(&quot;get&quot;), e);</span>
+      //if (e.getCode() != 404) {
+     //   throw e;
+      //} else {
+      //  String resourceType = type != null ? type.getSimpleName() : &quot;Resource&quot;;
+      //  String msg = resourceType + &quot; with name: [&quot; + getName() + &quot;]  not found in namespace: [&quot; + (Utils.isNotNullOrEmpty(getNamespace()) ? getName() : getConfig().getNamespace()) + &quot;]&quot;;
+     //   throw new KubernetesClientException(msg, 404, new StatusBuilder().withCode(404).withMessage(msg).build());
+     // }
+<span class="nc" id="L228">    } catch (InterruptedException | ExecutionException | IOException e) {</span>
+<span class="nc" id="L229">      throw KubernetesClientException.launderThrowable(forOperationType(&quot;get&quot;), e);</span>
+    }
+  }
+
+  public RootPaths getRootPaths() {
+    try {
+<span class="nc" id="L235">      URL requestUrl = new URL(config.getMasterUrl());</span>
+<span class="nc" id="L236">      Request.Builder req = new Request.Builder().get().url(requestUrl);</span>
+<span class="nc" id="L237">      return handleResponse(req, RootPaths.class);</span>
+<span class="nc" id="L238">    } catch (KubernetesClientException e) {</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">      if (e.getCode() != 404) {</span>
+<span class="nc" id="L240">        throw e;</span>
+      }
+<span class="nc" id="L242">      return null;</span>
+<span class="nc" id="L243">    } catch (InterruptedException | ExecutionException | IOException e) {</span>
+<span class="nc" id="L244">      throw KubernetesClientException.launderThrowable(e);</span>
+    }
+  }
+
+  @Override
+  public D edit() throws KubernetesClientException {
+<span class="nc" id="L250">    throw new KubernetesClientException(&quot;Cannot edit read-only resources&quot;);</span>
+  }
+
+  @Override
+  public R withName(String name) {
+<span class="nc bnc" id="L255" title="All 4 branches missed.">    if (name == null || name.length() == 0) {</span>
+<span class="nc" id="L256">      throw new IllegalArgumentException(&quot;Name must be provided.&quot;);</span>
+    }
+    try {
+<span class="nc" id="L259">      return (R) getClass()</span>
+<span class="nc" id="L260">        .getConstructor(OkHttpClient.class, getConfigType(), String.class, String.class, String.class, String.class, Boolean.class, getType(), String.class, Boolean.class, long.class, Map.class, Map.class, Map.class, Map.class, Map.class)</span>
+<span class="nc" id="L261">        .newInstance(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields());</span>
+<span class="nc" id="L262">    } catch (Throwable t) {</span>
+<span class="nc" id="L263">      throw KubernetesClientException.launderThrowable(t);</span>
+    }
+  }
+
+  @Override
+  public Replaceable&lt;T, T&gt; lockResourceVersion(String resourceVersion) {
+    try {
+<span class="nc" id="L270">      return getClass()</span>
+<span class="nc" id="L271">        .getConstructor(OkHttpClient.class, getConfigType(), String.class, String.class, String.class, String.class, Boolean.class, getType(), String.class, Boolean.class, long.class, Map.class, Map.class, Map.class, Map.class, Map.class)</span>
+<span class="nc" id="L272">        .newInstance(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), resourceVersion, isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields());</span>
+<span class="nc" id="L273">    } catch (Throwable t) {</span>
+<span class="nc" id="L274">      throw KubernetesClientException.launderThrowable(t);</span>
+    }
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;T, L, D, R&gt; inNamespace(String namespace) {
+    try {
+<span class="nc" id="L281">      return getClass()</span>
+<span class="nc" id="L282">        .getConstructor(OkHttpClient.class, getConfigType(), String.class, String.class, String.class, String.class, Boolean.class, getType(), String.class, Boolean.class, long.class, Map.class, Map.class, Map.class, Map.class, Map.class)</span>
+<span class="nc" id="L283">        .newInstance(client, getConfig(), getAPIGroup(), getAPIVersion(), namespace, getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields());</span>
+<span class="nc" id="L284">    } catch (Throwable t) {</span>
+<span class="nc" id="L285">      throw KubernetesClientException.launderThrowable(t);</span>
+    }
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;T, L, D, R&gt; inAnyNamespace() {
+<span class="nc" id="L291">    return inNamespace(null);</span>
+  }
+
+
+  @Override
+  public EditReplacePatchDeletable&lt;T, T, D, Boolean&gt; cascading(boolean cascading) {
+    try {
+<span class="nc" id="L298">      return getClass()</span>
+<span class="nc" id="L299">        .getConstructor(OkHttpClient.class, getConfigType(), String.class, String.class, String.class, String.class, Boolean.class, getType(), String.class, Boolean.class, long.class, Map.class, Map.class, Map.class, Map.class, Map.class)</span>
+<span class="nc" id="L300">        .newInstance(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), cascading, getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields());</span>
+<span class="nc" id="L301">    } catch (Throwable t) {</span>
+<span class="nc" id="L302">      throw KubernetesClientException.launderThrowable(t);</span>
+    }
+  }
+
+  @Override
+  public R load(InputStream is) {
+    try {
+<span class="nc" id="L309">      return (R) getClass()</span>
+<span class="nc" id="L310">        .getConstructor(OkHttpClient.class, getConfigType(), String.class, String.class, String.class, String.class, Boolean.class, getType(), String.class, Boolean.class, long.class, Map.class, Map.class, Map.class, Map.class, Map.class)</span>
+<span class="nc" id="L311">        .newInstance(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), unmarshal(is, type), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields());</span>
+<span class="nc" id="L312">    } catch (Throwable t) {</span>
+<span class="nc" id="L313">      throw KubernetesClientException.launderThrowable(t);</span>
+    }
+  }
+
+  @Override
+  public R load(URL url) {
+<span class="nc" id="L319">    try (InputStream inputStream = url.openStream()) {</span>
+<span class="nc" id="L320">      return load(inputStream);</span>
+<span class="nc" id="L321">    } catch (IOException e) {</span>
+<span class="nc" id="L322">      throw KubernetesClientException.launderThrowable(e);</span>
+    }
+  }
+
+  @Override
+  public R load(File file) {
+<span class="nc" id="L328">    try (FileInputStream fis = new FileInputStream(file)) {</span>
+<span class="nc" id="L329">      return load(fis);</span>
+<span class="nc" id="L330">    } catch (IOException e) {</span>
+<span class="nc" id="L331">      throw KubernetesClientException.launderThrowable(e);</span>
+    }
+  }
+
+  @Override
+  public R load(String path) {
+<span class="nc" id="L337">    return load(new File(path));</span>
+  }
+
+  @Override
+  public Gettable&lt;T&gt; fromServer() {
+    try {
+<span class="nc" id="L343">      return (R) getClass()</span>
+<span class="nc" id="L344">        .getConstructor(OkHttpClient.class, getConfigType(), String.class, String.class, String.class, String.class, Boolean.class, getType(), String.class, Boolean.class, long.class, Map.class, Map.class, Map.class, Map.class, Map.class)</span>
+<span class="nc" id="L345">        .newInstance(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), getResourceVersion(), true, getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields());</span>
+<span class="nc" id="L346">    } catch (Throwable t) {</span>
+<span class="nc" id="L347">      throw KubernetesClientException.launderThrowable(t);</span>
+    }
+  }
+
+  @Override
+  public T create(T... resources) throws KubernetesClientException {
+    try {
+<span class="nc bnc" id="L354" title="All 2 branches missed.">      if (resources.length &gt; 1) {</span>
+<span class="nc" id="L355">        throw new IllegalArgumentException(&quot;Too many items to create.&quot;);</span>
+<span class="nc bnc" id="L356" title="All 2 branches missed.">      } else if (resources.length == 1) {</span>
+<span class="nc" id="L357">        return handleCreate(resources[0]);</span>
+<span class="nc bnc" id="L358" title="All 2 branches missed.">      } else if (getItem() == null) {</span>
+<span class="nc" id="L359">        throw new IllegalArgumentException(&quot;Nothing to create.&quot;);</span>
+      } else {
+<span class="nc" id="L361">        return handleCreate(getItem());</span>
+      }
+<span class="nc" id="L363">    } catch (InterruptedException | ExecutionException | IOException e) {</span>
+<span class="nc" id="L364">      throw KubernetesClientException.launderThrowable(forOperationType(&quot;create&quot;), e);</span>
+    }
+  }
+
+  @Override
+  public D createNew() throws KubernetesClientException {
+<span class="nc" id="L370">    final Function&lt;T, T&gt; visitor = new Function&lt;T, T&gt;() {</span>
+      @Override
+      public T apply(T resource) {
+        try {
+<span class="nc" id="L374">          return create(resource);</span>
+<span class="nc" id="L375">        } catch (Exception e) {</span>
+<span class="nc" id="L376">          throw KubernetesClientException.launderThrowable(forOperationType(&quot;create&quot;), e);</span>
+        }
+      }
+    };
+
+    try {
+<span class="nc" id="L382">      return getDoneableType().getDeclaredConstructor(Function.class).newInstance(visitor);</span>
+<span class="nc" id="L383">    } catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException | InstantiationException e) {</span>
+<span class="nc" id="L384">      throw KubernetesClientException.launderThrowable(forOperationType(&quot;create&quot;), e);</span>
+    }
+  }
+
+
+  @Override
+  public D createOrReplaceWithNew() throws KubernetesClientException {
+<span class="nc" id="L391">    final Function&lt;T, T&gt; visitor = new Function&lt;T, T&gt;() {</span>
+      @Override
+      public T apply(T resource) {
+        try {
+<span class="nc" id="L395">          return createOrReplace(resource);</span>
+<span class="nc" id="L396">        } catch (Exception e) {</span>
+<span class="nc" id="L397">          throw KubernetesClientException.launderThrowable(forOperationType(&quot;create or replace&quot;), e);</span>
+        }
+      }
+    };
+
+    try {
+<span class="nc" id="L403">      return getDoneableType().getDeclaredConstructor(Function.class).newInstance(visitor);</span>
+<span class="nc" id="L404">    } catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException | InstantiationException e) {</span>
+<span class="nc" id="L405">      throw KubernetesClientException.launderThrowable(forOperationType(&quot;create or replace&quot;), e);</span>
+    }
+  }
+
+  @Override
+  public T createOrReplace(T... items) {
+<span class="nc" id="L411">    T item = getItem();</span>
+<span class="nc bnc" id="L412" title="All 2 branches missed.">    if (items.length &gt; 1) {</span>
+<span class="nc" id="L413">      throw new IllegalArgumentException(&quot;Too many items to create.&quot;);</span>
+<span class="nc bnc" id="L414" title="All 2 branches missed.">    } else if (items.length == 1) {</span>
+<span class="nc" id="L415">      item = items[0];</span>
+    }
+
+<span class="nc bnc" id="L418" title="All 2 branches missed.">    if (item == null) {</span>
+<span class="nc" id="L419">      throw new IllegalArgumentException(&quot;Nothing to create.&quot;);</span>
+    }
+
+<span class="nc bnc" id="L422" title="All 4 branches missed.">    if (Utils.isNullOrEmpty(name) &amp;&amp; item instanceof HasMetadata) {</span>
+<span class="nc" id="L423">      return withName(((HasMetadata)item).getMetadata().getName()).createOrReplace(item);</span>
+    }
+<span class="nc bnc" id="L425" title="All 2 branches missed.">    if (fromServer().get() == null) {</span>
+<span class="nc" id="L426">      return create(item);</span>
+    } else {
+<span class="nc" id="L428">      return replace(item);</span>
+    }
+  }
+
+  @Override
+  public FilterWatchListDeletable&lt;T, L, Boolean, Watch, Watcher&lt;T&gt;&gt; withLabels(Map&lt;String, String&gt; labels) {
+<span class="nc" id="L434">    this.labels.putAll(labels);</span>
+<span class="nc" id="L435">    return this;</span>
+  }
+
+  @Override
+  public FilterWatchListDeletable&lt;T, L, Boolean, Watch, Watcher&lt;T&gt;&gt; withLabelSelector(LabelSelector selector) {
+<span class="nc" id="L440">    Map&lt;String, String&gt; matchLabels = selector.getMatchLabels();</span>
+<span class="nc bnc" id="L441" title="All 2 branches missed.">    if (matchLabels != null) {</span>
+<span class="nc" id="L442">      this.labels.putAll(matchLabels);</span>
+    }
+<span class="nc" id="L444">    List&lt;LabelSelectorRequirement&gt; matchExpressions = selector.getMatchExpressions();</span>
+<span class="nc bnc" id="L445" title="All 2 branches missed.">    if (matchExpressions != null) {</span>
+<span class="nc bnc" id="L446" title="All 2 branches missed.">      for (LabelSelectorRequirement req : matchExpressions) {</span>
+<span class="nc" id="L447">        String operator = req.getOperator();</span>
+<span class="nc" id="L448">        String key = req.getKey();</span>
+<span class="nc bnc" id="L449" title="All 5 branches missed.">        switch (operator) {</span>
+          case &quot;In&quot;:
+<span class="nc" id="L451">            withLabelIn(key, req.getValues().toArray(new String[]{}));</span>
+<span class="nc" id="L452">            break;</span>
+          case &quot;NotIn&quot;:
+<span class="nc" id="L454">            withLabelNotIn(key, req.getValues().toArray(new String[]{}));</span>
+<span class="nc" id="L455">            break;</span>
+          case &quot;DoesNotExist&quot;:
+<span class="nc" id="L457">            withoutLabel(key);</span>
+<span class="nc" id="L458">            break;</span>
+          case &quot;Exists&quot;:
+<span class="nc" id="L460">            withLabel(key);</span>
+<span class="nc" id="L461">            break;</span>
+          default:
+<span class="nc" id="L463">            throw new IllegalArgumentException(&quot;Unsupported operator: &quot; + operator);</span>
+        }
+<span class="nc" id="L465">      }</span>
+    }
+<span class="nc" id="L467">    return this;</span>
+  }
+
+  @Override
+  public FilterWatchListDeletable&lt;T, L, Boolean, Watch, Watcher&lt;T&gt;&gt; withoutLabels(Map&lt;String, String&gt; labels) throws
+    KubernetesClientException {
+<span class="nc" id="L473">    labelsNot.putAll(labels);</span>
+<span class="nc" id="L474">    return this;</span>
+  }
+
+  @Override
+  public FilterWatchListDeletable&lt;T, L, Boolean, Watch, Watcher&lt;T&gt;&gt; withLabelIn(String key, String... values) throws
+    KubernetesClientException {
+<span class="nc" id="L480">    labelsIn.put(key, values);</span>
+<span class="nc" id="L481">    return this;</span>
+  }
+
+  @Override
+  public FilterWatchListDeletable&lt;T, L, Boolean, Watch, Watcher&lt;T&gt;&gt; withLabelNotIn(String key, String... values) throws
+    KubernetesClientException {
+<span class="nc" id="L487">    labelsNotIn.put(key, values);</span>
+<span class="nc" id="L488">    return this;</span>
+  }
+
+  @Override
+  public FilterWatchListDeletable&lt;T, L, Boolean, Watch, Watcher&lt;T&gt;&gt; withLabel(String key, String value) {
+<span class="nc" id="L493">    labels.put(key, value);</span>
+<span class="nc" id="L494">    return this;</span>
+  }
+
+  @Override
+  public FilterWatchListDeletable&lt;T, L, Boolean, Watch, Watcher&lt;T&gt;&gt; withLabel(String key) {
+<span class="nc" id="L499">    return withLabel(key, null);</span>
+  }
+
+  @Override
+  public FilterWatchListDeletable&lt;T, L, Boolean, Watch, Watcher&lt;T&gt;&gt; withoutLabel(String key, String value) {
+<span class="nc" id="L504">    labelsNot.put(key, value);</span>
+<span class="nc" id="L505">    return this;</span>
+  }
+
+  @Override
+  public FilterWatchListDeletable&lt;T, L, Boolean, Watch, Watcher&lt;T&gt;&gt; withoutLabel(String key) {
+<span class="nc" id="L510">    return withoutLabel(key, null);</span>
+  }
+
+  @Override
+  public FilterWatchListDeletable&lt;T, L, Boolean, Watch, Watcher&lt;T&gt;&gt; withFields(Map&lt;String, String&gt; labels) {
+<span class="nc" id="L515">    fields.putAll(labels);</span>
+<span class="nc" id="L516">    return this;</span>
+  }
+
+  @Override
+  public FilterWatchListDeletable&lt;T, L, Boolean, Watch, Watcher&lt;T&gt;&gt; withField(String key, String value) {
+<span class="nc" id="L521">    fields.put(key, value);</span>
+<span class="nc" id="L522">    return this;</span>
+  }
+
+  public String getLabelQueryParam() {
+<span class="nc" id="L526">    StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L527" title="All 4 branches missed.">    if (labels != null &amp;&amp; !labels.isEmpty()) {</span>
+<span class="nc bnc" id="L528" title="All 2 branches missed.">      for (Iterator&lt;Map.Entry&lt;String, String&gt;&gt; iter = labels.entrySet().iterator(); iter.hasNext(); ) {</span>
+<span class="nc bnc" id="L529" title="All 2 branches missed.">        if (sb.length() &gt; 0) {</span>
+<span class="nc" id="L530">          sb.append(&quot;,&quot;);</span>
+        }
+<span class="nc" id="L532">        Map.Entry&lt;String, String&gt; entry = iter.next();</span>
+<span class="nc bnc" id="L533" title="All 2 branches missed.">        if (entry.getValue() != null) {</span>
+<span class="nc" id="L534">            sb.append(entry.getKey()).append(&quot;=&quot;).append(entry.getValue());</span>
+        } else {
+<span class="nc" id="L536">            sb.append(entry.getKey());</span>
+        }
+<span class="nc" id="L538">      }</span>
+    }
+
+<span class="nc bnc" id="L541" title="All 4 branches missed.">    if (labelsNot != null &amp;&amp; !labelsNot.isEmpty()) {</span>
+<span class="nc bnc" id="L542" title="All 2 branches missed.">      for (Iterator&lt;Map.Entry&lt;String, String&gt;&gt; iter = labelsNot.entrySet().iterator(); iter.hasNext(); ) {</span>
+<span class="nc bnc" id="L543" title="All 2 branches missed.">        if (sb.length() &gt; 0) {</span>
+<span class="nc" id="L544">          sb.append(&quot;,&quot;);</span>
+        }
+<span class="nc" id="L546">        Map.Entry&lt;String, String&gt; entry = iter.next();</span>
+<span class="nc bnc" id="L547" title="All 2 branches missed.">        if (entry.getValue() != null) {</span>
+<span class="nc" id="L548">            sb.append(entry.getKey()).append(&quot;!=&quot;).append(entry.getValue());</span>
+        } else {
+<span class="nc" id="L550">            sb.append('!').append(entry.getKey());</span>
+        }
+<span class="nc" id="L552">      }</span>
+    }
+
+<span class="nc bnc" id="L555" title="All 4 branches missed.">    if (labelsIn != null &amp;&amp; !labelsIn.isEmpty()) {</span>
+<span class="nc bnc" id="L556" title="All 2 branches missed.">      for (Iterator&lt;Map.Entry&lt;String, String[]&gt;&gt; iter = labelsIn.entrySet().iterator(); iter.hasNext(); ) {</span>
+<span class="nc bnc" id="L557" title="All 2 branches missed.">        if (sb.length() &gt; 0) {</span>
+<span class="nc" id="L558">          sb.append(&quot;,&quot;);</span>
+        }
+<span class="nc" id="L560">        Map.Entry&lt;String, String[]&gt; entry = iter.next();</span>
+<span class="nc" id="L561">        sb.append(entry.getKey()).append(&quot; in &quot;).append(&quot;(&quot;).append(Utils.join(entry.getValue())).append(&quot;)&quot;);</span>
+<span class="nc" id="L562">      }</span>
+    }
+
+<span class="nc bnc" id="L565" title="All 4 branches missed.">    if (labelsNotIn != null &amp;&amp; !labelsNotIn.isEmpty()) {</span>
+<span class="nc bnc" id="L566" title="All 2 branches missed.">      for (Iterator&lt;Map.Entry&lt;String, String[]&gt;&gt; iter = labelsNotIn.entrySet().iterator(); iter.hasNext(); ) {</span>
+<span class="nc bnc" id="L567" title="All 2 branches missed.">        if (sb.length() &gt; 0) {</span>
+<span class="nc" id="L568">          sb.append(&quot;,&quot;);</span>
+        }
+<span class="nc" id="L570">        Map.Entry&lt;String, String[]&gt; entry = iter.next();</span>
+<span class="nc" id="L571">        sb.append(entry.getKey()).append(&quot; notin &quot;).append(&quot;(&quot;).append(Utils.join(entry.getValue())).append(&quot;)&quot;);</span>
+<span class="nc" id="L572">      }</span>
+    }
+<span class="nc" id="L574">    return sb.toString();</span>
+  }
+
+  public String getFieldQueryParam() {
+<span class="nc" id="L578">    StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L579" title="All 4 branches missed.">    if (fields != null &amp;&amp; !fields.isEmpty()) {</span>
+<span class="nc bnc" id="L580" title="All 2 branches missed.">      for (Iterator&lt;Map.Entry&lt;String, String&gt;&gt; iter = fields.entrySet().iterator(); iter.hasNext(); ) {</span>
+<span class="nc bnc" id="L581" title="All 2 branches missed.">        if (sb.length() &gt; 0) {</span>
+<span class="nc" id="L582">          sb.append(&quot;,&quot;);</span>
+        }
+<span class="nc" id="L584">        Map.Entry&lt;String, String&gt; entry = iter.next();</span>
+<span class="nc" id="L585">        sb.append(entry.getKey()).append(&quot;=&quot;).append(entry.getValue());</span>
+<span class="nc" id="L586">      }</span>
+    }
+<span class="nc" id="L588">    return sb.toString();</span>
+  }
+
+  public L list() throws KubernetesClientException {
+    try {
+<span class="nc" id="L593">      return listRequestHelper(getNamespacedUrl());</span>
+<span class="nc" id="L594">    } catch (IOException e) {</span>
+<span class="nc" id="L595">      throw KubernetesClientException.launderThrowable(forOperationType(&quot;list&quot;), e);</span>
+    }
+  }
+
+  public L list(Integer limitVal, String continueVal) throws KubernetesClientException {
+    try {
+<span class="nc" id="L601">      URL url = getNamespacedUrl();</span>
+<span class="nc bnc" id="L602" title="All 4 branches missed.">      if(limitVal != null &amp;&amp; continueVal == null) {</span>
+<span class="nc" id="L603">        url = new URL(URLUtils.join(url.toString(), &quot;?limit=&quot; + limitVal.toString()));</span>
+<span class="nc bnc" id="L604" title="All 2 branches missed.">      } else if(continueVal != null) {</span>
+<span class="nc" id="L605">        url = new URL(URLUtils.join(url.toString(), &quot;?continue=&quot; + continueVal + &quot;&amp;limit=&quot; + limitVal.toString() ));</span>
+      }
+<span class="nc" id="L607">      return listRequestHelper(url);</span>
+<span class="nc" id="L608">    } catch (MalformedURLException e) {</span>
+<span class="nc" id="L609">      throw KubernetesClientException.launderThrowable(forOperationType(&quot;list&quot;), e);</span>
+    }
+  }
+
+  @Override
+  public Boolean delete() {
+<span class="nc bnc" id="L615" title="All 6 branches missed.">    if (item != null || (name != null &amp;&amp; !name.isEmpty())) {</span>
+      try {
+<span class="nc bnc" id="L617" title="All 4 branches missed.">        if (cascading &amp;&amp; !isReaping()) {</span>
+<span class="nc bnc" id="L618" title="All 2 branches missed.">          if (reaper != null) {</span>
+<span class="nc" id="L619">            setReaping(true);</span>
+            //If the reaper also removes the target resource, we can return asap.
+<span class="nc bnc" id="L621" title="All 2 branches missed.">            if (reaper.reap()) {</span>
+<span class="nc" id="L622">              return true;</span>
+            }
+          }
+        }
+<span class="nc" id="L626">        deleteThis();</span>
+<span class="nc" id="L627">        return true;</span>
+<span class="nc" id="L628">      } catch (KubernetesClientException e) {</span>
+<span class="nc bnc" id="L629" title="All 2 branches missed.">        if (e.getCode() != 404) {</span>
+<span class="nc" id="L630">          throw e;</span>
+        }
+<span class="nc" id="L632">        return false;</span>
+      }
+    } else {
+      try {
+<span class="nc" id="L636">        deleteList();</span>
+<span class="nc" id="L637">        return true;</span>
+<span class="nc" id="L638">      } catch (KubernetesClientException e) {</span>
+<span class="nc bnc" id="L639" title="All 2 branches missed.">        if (e.getCode() != 404) {</span>
+<span class="nc" id="L640">          throw e;</span>
+        }
+<span class="nc" id="L642">        return false;</span>
+      }
+    }
+  }
+
+
+  @Override
+  public Boolean delete(T... items) {
+<span class="nc" id="L650">    return delete(Arrays.asList(items));</span>
+  }
+
+  @Override
+  public Boolean delete(List&lt;T&gt; items) {
+<span class="nc" id="L655">    boolean deleted = true;</span>
+<span class="nc bnc" id="L656" title="All 2 branches missed.">    if (items != null) {</span>
+<span class="nc bnc" id="L657" title="All 2 branches missed.">      for (T item : items) {</span>
+<span class="nc" id="L658">        updateApiVersionResource(item);</span>
+
+        try {
+<span class="nc" id="L661">          R op = createItemOperation(item);</span>
+<span class="nc" id="L662">          deleted &amp;= op.delete();</span>
+<span class="nc" id="L663">        } catch (KubernetesClientException e) {</span>
+<span class="nc bnc" id="L664" title="All 2 branches missed.">          if (e.getCode() != 404) {</span>
+<span class="nc" id="L665">            throw e;</span>
+          }
+<span class="nc" id="L667">          return false;</span>
+<span class="nc" id="L668">        } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {</span>
+<span class="nc" id="L669">          throw KubernetesClientException.launderThrowable(forOperationType(&quot;delete&quot;), e);</span>
+<span class="nc" id="L670">        }</span>
+<span class="nc" id="L671">      }</span>
+    }
+<span class="nc" id="L673">    return deleted;</span>
+  }
+
+  protected R createItemOperation(T item) throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+<span class="nc" id="L677">    return (R) getClass()</span>
+<span class="nc" id="L678">              .getConstructor(OkHttpClient.class, getConfigType(), String.class, String.class, String.class, String.class, Boolean.class, getType(), String.class, Boolean.class, long.class, Map.class, Map.class, Map.class, Map.class, Map.class)</span>
+<span class="nc" id="L679">              .newInstance(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), item, getResourceVersion(), true, getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields());</span>
+  }
+
+  void deleteThis() throws KubernetesClientException {
+    try {
+<span class="nc bnc" id="L684" title="All 2 branches missed.">      if (item != null) {</span>
+<span class="nc" id="L685">        updateApiVersionResource(item);</span>
+<span class="nc" id="L686">        handleDelete(item, gracePeriodSeconds, cascading);</span>
+      } else {
+<span class="nc" id="L688">        handleDelete(getResourceUrl(), gracePeriodSeconds, cascading);</span>
+      }
+<span class="nc" id="L690">    } catch (Exception e) {</span>
+<span class="nc" id="L691">      throw KubernetesClientException.launderThrowable(forOperationType(&quot;delete&quot;), e);</span>
+<span class="nc" id="L692">    }</span>
+<span class="nc" id="L693">  }</span>
+
+  void deleteList() throws KubernetesClientException {
+<span class="nc" id="L696">    delete(list().getItems());</span>
+<span class="nc" id="L697">  }</span>
+
+  @Override
+  public Watchable&lt;Watch, Watcher&lt;T&gt;&gt; withResourceVersion(String resourceVersion) {
+    try {
+<span class="nc" id="L702">      return getClass()</span>
+<span class="nc" id="L703">        .getConstructor(OkHttpClient.class, getConfigType(), String.class, String.class, String.class, String.class, Boolean.class, getType(), String.class, Boolean.class, long.class, Map.class, Map.class, Map.class, Map.class, Map.class)</span>
+<span class="nc" id="L704">        .newInstance(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), resourceVersion, isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields());</span>
+<span class="nc" id="L705">    } catch (Throwable t) {</span>
+<span class="nc" id="L706">      throw KubernetesClientException.launderThrowable(t);</span>
+    }
+  }
+
+  public Watch watch(final Watcher&lt;T&gt; watcher) throws KubernetesClientException {
+<span class="nc" id="L711">    return watch(resourceVersion, watcher);</span>
+  }
+
+  public Watch watch(String resourceVersion, final Watcher&lt;T&gt; watcher) throws KubernetesClientException {
+<span class="nc" id="L715">    WatcherToggle&lt;T&gt; watcherToggle = new WatcherToggle&lt;&gt;(watcher, true);</span>
+<span class="nc" id="L716">    WatchConnectionManager watch = null;</span>
+    try {
+<span class="nc" id="L718">      watch = new WatchConnectionManager(</span>
+        client,
+        this,
+        resourceVersion,
+        watcherToggle,
+<span class="nc" id="L723">        config.getWatchReconnectInterval(),</span>
+<span class="nc" id="L724">        config.getWatchReconnectLimit(),</span>
+<span class="nc" id="L725">        config.getWebsocketTimeout()</span>
+      );
+<span class="nc" id="L727">      watch.waitUntilReady();</span>
+<span class="nc" id="L728">      return watch;</span>
+<span class="nc" id="L729">    } catch (MalformedURLException e) {</span>
+<span class="nc" id="L730">      throw KubernetesClientException.launderThrowable(forOperationType(&quot;watch&quot;), e);</span>
+<span class="nc" id="L731">    } catch (KubernetesClientException ke) {</span>
+
+<span class="nc bnc" id="L733" title="All 2 branches missed.">      if (ke.getCode() != 200) {</span>
+<span class="nc bnc" id="L734" title="All 2 branches missed.">        if(watch != null){</span>
+          //release the watch
+<span class="nc" id="L736">          watch.close();</span>
+        }
+
+<span class="nc" id="L739">        throw ke;</span>
+      }
+
+<span class="nc bnc" id="L742" title="All 2 branches missed.">      if(watch != null){</span>
+        //release the watch after disabling the watcher (to avoid premature call to onClose)
+<span class="nc" id="L744">        watcherToggle.disable();</span>
+<span class="nc" id="L745">        watch.close();</span>
+      }
+
+      // If the HTTP return code is 200, we retry the watch again using a persistent hanging
+      // HTTP GET. This is meant to handle cases like kubectl local proxy which does not support
+      // websockets. Issue: https://github.com/kubernetes/kubernetes/issues/25126
+      try {
+<span class="nc" id="L752">        return new WatchHTTPManager(</span>
+          client,
+          this,
+          resourceVersion,
+          watcher,
+<span class="nc" id="L757">          config.getWatchReconnectInterval(),</span>
+<span class="nc" id="L758">          config.getWatchReconnectLimit(),</span>
+<span class="nc" id="L759">          config.getConnectionTimeout()</span>
+        );
+<span class="nc" id="L761">      } catch (MalformedURLException e) {</span>
+<span class="nc" id="L762">        throw KubernetesClientException.launderThrowable(forOperationType(&quot;watch&quot;), e);</span>
+      }
+    }
+  }
+
+  @Override
+  public T replace(T item) {
+<span class="nc" id="L769">    throw new KubernetesClientException(&quot;Cannot update read-only resources&quot;);</span>
+  }
+
+  @Override
+  public T patch(T item) {
+<span class="nc" id="L774">    throw new KubernetesClientException(&quot;Cannot update read-only resources&quot;);</span>
+  }
+
+  public boolean isResourceNamespaced() {
+<span class="nc" id="L778">    return true;</span>
+  }
+
+  protected T handleResponse(Request.Builder requestBuilder) throws ExecutionException, InterruptedException, KubernetesClientException, IOException {
+<span class="nc" id="L782">    return handleResponse(requestBuilder, getType());</span>
+  }
+
+  protected T handleCreate(T resource) throws ExecutionException, InterruptedException, KubernetesClientException, IOException {
+<span class="nc" id="L786">    updateApiVersionResource(resource);</span>
+<span class="nc" id="L787">    return handleCreate(resource, getType());</span>
+  }
+
+  protected T handleReplace(T updated) throws ExecutionException, InterruptedException, KubernetesClientException, IOException {
+<span class="nc" id="L791">    updateApiVersionResource(updated);</span>
+<span class="nc" id="L792">    return handleReplace(updated, getType());</span>
+  }
+
+  protected T handlePatch(T current, T updated) throws ExecutionException, InterruptedException, KubernetesClientException, IOException {
+<span class="nc" id="L796">    updateApiVersionResource(updated);</span>
+<span class="nc" id="L797">    return handlePatch(current, updated, getType());</span>
+  }
+
+  protected T handleGet(URL resourceUrl) throws InterruptedException, ExecutionException, IOException {
+<span class="nc" id="L801">    T answer = handleGet(resourceUrl, getType());</span>
+<span class="nc" id="L802">    updateApiVersionResource(answer);</span>
+<span class="nc" id="L803">    return answer;</span>
+  }
+
+  public Boolean isCascading() {
+<span class="nc" id="L807">    return cascading;</span>
+  }
+
+  public T getItem() {
+<span class="nc" id="L811">    return item;</span>
+  }
+
+  public String getResourceVersion() {
+<span class="nc" id="L815">    return resourceVersion;</span>
+  }
+
+  @Deprecated
+  public Boolean getReloadingFromServer() {
+<span class="nc" id="L820">    return isReloadingFromServer();</span>
+  }
+
+  public Boolean isReloadingFromServer() {
+<span class="nc" id="L824">    return reloadingFromServer;</span>
+  }
+
+  public Long getGracePeriodSeconds() {
+<span class="nc" id="L828">    return gracePeriodSeconds;</span>
+  }
+
+  public String getResourceT() {
+<span class="nc" id="L832">    return resourceT;</span>
+  }
+
+  public Class&lt;T&gt; getType() {
+<span class="nc" id="L836">    return type;</span>
+  }
+
+  public Class&lt;L&gt; getListType() {
+<span class="nc" id="L840">    return listType;</span>
+  }
+
+  public Class&lt;D&gt; getDoneableType() {
+<span class="nc" id="L844">    return doneableType;</span>
+  }
+
+  protected boolean isReaping() {
+<span class="nc" id="L848">    return reaping;</span>
+  }
+
+  protected void setReaping(boolean reaping) {
+<span class="nc" id="L852">    this.reaping = reaping;</span>
+<span class="nc" id="L853">  }</span>
+
+  protected Map&lt;String, String&gt; getLabels() {
+<span class="nc" id="L856">    return labels;</span>
+  }
+
+  protected Map&lt;String, String&gt; getLabelsNot() {
+<span class="nc" id="L860">    return labelsNot;</span>
+  }
+
+  protected Map&lt;String, String[]&gt; getLabelsIn() {
+<span class="nc" id="L864">    return labelsIn;</span>
+  }
+
+  protected Map&lt;String, String[]&gt; getLabelsNotIn() {
+<span class="nc" id="L868">    return labelsNotIn;</span>
+  }
+
+  protected Map&lt;String, String&gt; getFields() {
+<span class="nc" id="L872">    return fields;</span>
+  }
+
+  @Override
+  public String getKind() {
+<span class="nc bnc" id="L877" title="All 2 branches missed.">    return type != null ? type.getSimpleName() : &quot;Resource&quot;;</span>
+  }
+
+  @Override
+  public String getOperationType() {
+<span class="nc" id="L882">    return null;</span>
+  }
+
+  @Override
+  public OperationInfo forOperationType(String type) {
+<span class="nc" id="L887">    return new DefaultOperationInfo(getKind(), type, name, namespace);</span>
+  }
+
+  @Override
+  public Deletable&lt;Boolean&gt; withGracePeriod(long gracePeriodSeconds)
+  {
+    try {
+<span class="nc" id="L894">      return getClass()</span>
+<span class="nc" id="L895">        .getConstructor(OkHttpClient.class, getConfigType(), String.class, String.class, String.class, String.class, Boolean.class, getType(), String.class, Boolean.class, long.class, Map.class, Map.class, Map.class, Map.class, Map.class)</span>
+<span class="nc" id="L896">        .newInstance(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), gracePeriodSeconds, getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields());</span>
+<span class="nc" id="L897">    } catch (Throwable t) {</span>
+<span class="nc" id="L898">      throw KubernetesClientException.launderThrowable(t);</span>
+    }
+  }
+
+  protected Class&lt;? extends Config&gt; getConfigType() {
+<span class="nc" id="L903">    return Config.class;</span>
+  }
+
+  /**
+   * Updates the list or single item if it has a missing or incorrect apiGroupVersion
+   */
+  protected void updateApiVersionResource(Object resource) {
+<span class="nc bnc" id="L910" title="All 2 branches missed.">    if (resource instanceof HasMetadata) {</span>
+<span class="nc" id="L911">      HasMetadata hasMetadata = (HasMetadata) resource;</span>
+<span class="nc" id="L912">      updateApiVersion(hasMetadata);</span>
+<span class="nc bnc" id="L913" title="All 2 branches missed.">    } else if (resource instanceof KubernetesResourceList) {</span>
+<span class="nc" id="L914">      KubernetesResourceList list = (KubernetesResourceList) resource;</span>
+<span class="nc" id="L915">      updateApiVersion(list);</span>
+    }
+<span class="nc" id="L917">  }</span>
+
+  /**
+   * Updates the list items if they have missing or default apiGroupVersion values and the resource is currently
+   * using API Groups with custom version strings
+   */
+  protected void updateApiVersion(KubernetesResourceList list) {
+<span class="nc" id="L924">    String version = getApiVersion();</span>
+<span class="nc bnc" id="L925" title="All 6 branches missed.">    if (list != null &amp;&amp; version != null &amp;&amp; version.length() &gt; 0) {</span>
+<span class="nc" id="L926">      List items = list.getItems();</span>
+<span class="nc bnc" id="L927" title="All 2 branches missed.">      if (items != null) {</span>
+<span class="nc bnc" id="L928" title="All 2 branches missed.">        for (Object item : items) {</span>
+<span class="nc bnc" id="L929" title="All 2 branches missed.">          if (item instanceof HasMetadata) {</span>
+<span class="nc" id="L930">            updateApiVersion((HasMetadata) item);</span>
+          }
+<span class="nc" id="L932">        }</span>
+      }
+    }
+<span class="nc" id="L935">  }</span>
+
+
+  /**
+   * Updates the resource if it has missing or default apiGroupVersion values and the resource is currently
+   * using API Groups with custom version strings
+   */
+  protected void updateApiVersion(HasMetadata hasMetadata) {
+<span class="nc" id="L943">    String version = getApiVersion();</span>
+<span class="nc bnc" id="L944" title="All 6 branches missed.">    if (hasMetadata != null &amp;&amp; version != null &amp;&amp; version.length() &gt; 0) {</span>
+<span class="nc" id="L945">      String current = hasMetadata.getApiVersion();</span>
+      // lets overwrite the api version if its currently missing, the resource uses an API Group with '/'
+      // or we have the default of 'v1' when using an API group version like 'build.openshift.io/v1'
+<span class="nc bnc" id="L948" title="All 8 branches missed.">      if (current == null || &quot;v1&quot;.equals(current) || current.indexOf('/') &lt; 0 &amp;&amp; version.indexOf('/') &gt; 0) {</span>
+<span class="nc" id="L949">        hasMetadata.setApiVersion(version);</span>
+      }
+    }
+<span class="nc" id="L952">  }</span>
+
+  public String getApiVersion() {
+<span class="nc" id="L955">    return apiVersion;</span>
+  }
+
+  /**
+   * Return true if this is an API Group where the versions include a slash in them
+   */
+  public boolean isApiGroup() {
+<span class="nc bnc" id="L962" title="All 4 branches missed.">    return apiVersion != null &amp;&amp; apiVersion.indexOf('/') &gt; 0;</span>
+  }
+
+  @Override
+  public Boolean isReady() {
+<span class="nc" id="L967">    T i = get();</span>
+<span class="nc bnc" id="L968" title="All 4 branches missed.">    return i instanceof HasMetadata &amp;&amp; Readiness.isReady((HasMetadata)i);</span>
+  }
+
+  protected T waitUntilExists(long amount, TimeUnit timeUnit) throws InterruptedException {
+<span class="nc" id="L972">    return waitUntilCondition(Objects::nonNull, amount, timeUnit);</span>
+  }
+
+  @Override
+  public T waitUntilReady(long amount, TimeUnit timeUnit) throws InterruptedException {
+<span class="nc" id="L977">    return waitUntilExists(amount, timeUnit);</span>
+  }
+
+  @Override
+  public T waitUntilCondition(Predicate&lt;T&gt; condition, long amount, TimeUnit timeUnit)
+    throws InterruptedException {
+
+<span class="nc" id="L984">    long timeoutInMillis = timeUnit.toMillis(amount);</span>
+
+<span class="nc" id="L986">    long end = System.currentTimeMillis() + timeoutInMillis;</span>
+<span class="nc bnc" id="L987" title="All 2 branches missed.">    while (System.currentTimeMillis() &lt; end) {</span>
+<span class="nc" id="L988">      T item = get();</span>
+<span class="nc bnc" id="L989" title="All 2 branches missed.">      if (condition.test(item)) {</span>
+<span class="nc" id="L990">        return item;</span>
+      }
+
+      // in the future, this should probably be more intelligent
+<span class="nc" id="L994">      Thread.sleep(1000);</span>
+<span class="nc" id="L995">    }</span>
+
+<span class="nc" id="L997">    T item = get();</span>
+<span class="nc bnc" id="L998" title="All 2 branches missed.">    if (condition.test(item)) {</span>
+<span class="nc" id="L999">      return item;</span>
+    }
+
+<span class="nc" id="L1002">    throw new IllegalArgumentException(type.getSimpleName() + &quot; with name:[&quot; + name + &quot;] in namespace:[&quot; + namespace + &quot;] not found!&quot;);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

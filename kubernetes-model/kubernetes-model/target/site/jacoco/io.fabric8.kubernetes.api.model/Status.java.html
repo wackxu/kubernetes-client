@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Status.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">Status.java</span></div><h1>Status.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;code&quot;,
+    &quot;details&quot;,
+    &quot;message&quot;,
+    &quot;reason&quot;,
+    &quot;status&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L40">@ToString</span>
+<span class="nc bnc" id="L41" title="All 78 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class Status implements KubernetesResource
+{
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L51">    @NotNull</span>
+    @JsonProperty(&quot;apiVersion&quot;)
+    private String apiVersion = &quot;v1&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;code&quot;)
+    private Integer code;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;details&quot;)
+    @Valid
+    private StatusDetails details;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L72">    @NotNull</span>
+    @JsonProperty(&quot;kind&quot;)
+    private String kind = &quot;Status&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;message&quot;)
+    private String message;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    @Valid
+    private ListMeta metadata;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;reason&quot;)
+    private String reason;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;status&quot;)
+    private String status;
+<span class="nc" id="L100">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L107">    public Status() {</span>
+<span class="nc" id="L108">    }</span>
+
+    /**
+     * 
+     * @param reason
+     * @param metadata
+     * @param apiVersion
+     * @param code
+     * @param kind
+     * @param details
+     * @param message
+     * @param status
+     */
+<span class="nc" id="L121">    public Status(String apiVersion, Integer code, StatusDetails details, String kind, String message, ListMeta metadata, String reason, String status) {</span>
+<span class="nc" id="L122">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L123">        this.code = code;</span>
+<span class="nc" id="L124">        this.details = details;</span>
+<span class="nc" id="L125">        this.kind = kind;</span>
+<span class="nc" id="L126">        this.message = message;</span>
+<span class="nc" id="L127">        this.metadata = metadata;</span>
+<span class="nc" id="L128">        this.reason = reason;</span>
+<span class="nc" id="L129">        this.status = status;</span>
+<span class="nc" id="L130">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public String getApiVersion() {
+<span class="nc" id="L141">        return apiVersion;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param apiVersion
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public void setApiVersion(String apiVersion) {
+<span class="nc" id="L153">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L154">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The code
+     */
+    @JsonProperty(&quot;code&quot;)
+    public Integer getCode() {
+<span class="nc" id="L164">        return code;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param code
+     *     The code
+     */
+    @JsonProperty(&quot;code&quot;)
+    public void setCode(Integer code) {
+<span class="nc" id="L175">        this.code = code;</span>
+<span class="nc" id="L176">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The details
+     */
+    @JsonProperty(&quot;details&quot;)
+    public StatusDetails getDetails() {
+<span class="nc" id="L186">        return details;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param details
+     *     The details
+     */
+    @JsonProperty(&quot;details&quot;)
+    public void setDetails(StatusDetails details) {
+<span class="nc" id="L197">        this.details = details;</span>
+<span class="nc" id="L198">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public String getKind() {
+<span class="nc" id="L209">        return kind;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param kind
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public void setKind(String kind) {
+<span class="nc" id="L221">        this.kind = kind;</span>
+<span class="nc" id="L222">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The message
+     */
+    @JsonProperty(&quot;message&quot;)
+    public String getMessage() {
+<span class="nc" id="L232">        return message;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param message
+     *     The message
+     */
+    @JsonProperty(&quot;message&quot;)
+    public void setMessage(String message) {
+<span class="nc" id="L243">        this.message = message;</span>
+<span class="nc" id="L244">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public ListMeta getMetadata() {
+<span class="nc" id="L254">        return metadata;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param metadata
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public void setMetadata(ListMeta metadata) {
+<span class="nc" id="L265">        this.metadata = metadata;</span>
+<span class="nc" id="L266">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The reason
+     */
+    @JsonProperty(&quot;reason&quot;)
+    public String getReason() {
+<span class="nc" id="L276">        return reason;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param reason
+     *     The reason
+     */
+    @JsonProperty(&quot;reason&quot;)
+    public void setReason(String reason) {
+<span class="nc" id="L287">        this.reason = reason;</span>
+<span class="nc" id="L288">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The status
+     */
+    @JsonProperty(&quot;status&quot;)
+    public String getStatus() {
+<span class="nc" id="L298">        return status;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param status
+     *     The status
+     */
+    @JsonProperty(&quot;status&quot;)
+    public void setStatus(String status) {
+<span class="nc" id="L309">        this.status = status;</span>
+<span class="nc" id="L310">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L314">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L319">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L320">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

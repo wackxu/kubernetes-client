@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConfigFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ConfigFluentImpl.java</span></div><h1>ConfigFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class ConfigFluentImpl&lt;A extends ConfigFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ConfigFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private List&lt;NamedClusterBuilder&gt; clusters;
+    private List&lt;NamedContextBuilder&gt; contexts;
+    private String currentContext;
+    private List&lt;NamedExtensionBuilder&gt; extensions;
+    private String kind;
+    private PreferencesBuilder preferences;
+    private List&lt;NamedAuthInfoBuilder&gt; users;
+
+<span class="nc" id="L29">    public ConfigFluentImpl(){</span>
+<span class="nc" id="L30">    }</span>
+<span class="nc" id="L31">    public ConfigFluentImpl(Config instance){</span>
+<span class="nc" id="L32">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L33">            this.withClusters(instance.getClusters()); </span>
+<span class="nc" id="L34">            this.withContexts(instance.getContexts()); </span>
+<span class="nc" id="L35">            this.withCurrentContext(instance.getCurrentContext()); </span>
+<span class="nc" id="L36">            this.withExtensions(instance.getExtensions()); </span>
+<span class="nc" id="L37">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L38">            this.withPreferences(instance.getPreferences()); </span>
+<span class="nc" id="L39">            this.withUsers(instance.getUsers()); </span>
+<span class="nc" id="L40">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L43">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L47">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public A addToClusters(int index,NamedCluster item){
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            if (this.clusters == null) {this.clusters = new ArrayList&lt;NamedClusterBuilder&gt;();}</span>
+<span class="nc bnc" id="L56" title="All 4 branches missed.">            NamedClusterBuilder builder = new NamedClusterBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.clusters.add(index &gt;= 0 ? index : clusters.size(), builder); return (A)this;</span>
+    }
+
+    public A setToClusters(int index,NamedCluster item){
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            if (this.clusters == null) {this.clusters = new ArrayList&lt;NamedClusterBuilder&gt;();}</span>
+<span class="nc" id="L61">            NamedClusterBuilder builder = new NamedClusterBuilder(item);</span>
+<span class="nc bnc" id="L62" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L63" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= clusters.size()) { clusters.add(builder); } else { clusters.set(index, builder);}</span>
+<span class="nc" id="L64">             return (A)this;</span>
+    }
+
+    public A addToClusters(NamedCluster... items){
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            if (this.clusters == null) {this.clusters = new ArrayList&lt;NamedClusterBuilder&gt;();}</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            for (NamedCluster item : items) {NamedClusterBuilder builder = new NamedClusterBuilder(item);_visitables.add(builder);this.clusters.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToClusters(Collection&lt;NamedCluster&gt; items){
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if (this.clusters == null) {this.clusters = new ArrayList&lt;NamedClusterBuilder&gt;();}</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            for (NamedCluster item : items) {NamedClusterBuilder builder = new NamedClusterBuilder(item);_visitables.add(builder);this.clusters.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromClusters(NamedCluster... items){
+<span class="nc bnc" id="L78" title="All 4 branches missed.">            for (NamedCluster item : items) {NamedClusterBuilder builder = new NamedClusterBuilder(item);_visitables.remove(builder);if (this.clusters != null) {this.clusters.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromClusters(Collection&lt;NamedCluster&gt; items){
+<span class="nc bnc" id="L82" title="All 4 branches missed.">            for (NamedCluster item : items) {NamedClusterBuilder builder = new NamedClusterBuilder(item);_visitables.remove(builder);if (this.clusters != null) {this.clusters.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildClusters instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;NamedCluster&gt; getClusters(){
+<span class="nc" id="L91">            return build(clusters);</span>
+    }
+
+    public List&lt;NamedCluster&gt; buildClusters(){
+<span class="nc" id="L95">            return build(clusters);</span>
+    }
+
+    public NamedCluster buildCluster(int index){
+<span class="nc" id="L99">            return this.clusters.get(index).build();</span>
+    }
+
+    public NamedCluster buildFirstCluster(){
+<span class="nc" id="L103">            return this.clusters.get(0).build();</span>
+    }
+
+    public NamedCluster buildLastCluster(){
+<span class="nc" id="L107">            return this.clusters.get(clusters.size() - 1).build();</span>
+    }
+
+    public NamedCluster buildMatchingCluster(io.fabric8.kubernetes.api.builder.Predicate&lt;NamedClusterBuilder&gt; predicate){
+<span class="nc bnc" id="L111" title="All 4 branches missed.">            for (NamedClusterBuilder item: clusters) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withClusters(List&lt;NamedCluster&gt; clusters){
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            if (this.clusters != null) { _visitables.removeAll(this.clusters);}</span>
+<span class="nc bnc" id="L116" title="All 4 branches missed.">            if (clusters != null) {this.clusters = new ArrayList&lt;NamedClusterBuilder&gt;(); for (NamedCluster item : clusters){this.addToClusters(item);}} else { this.clusters = new ArrayList&lt;NamedClusterBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withClusters(NamedCluster... clusters){
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            if (this.clusters != null) {this.clusters.clear();}</span>
+<span class="nc bnc" id="L121" title="All 4 branches missed.">            if (clusters != null) {for (NamedCluster item :clusters){ this.addToClusters(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasClusters(){
+<span class="nc bnc" id="L125" title="All 4 branches missed.">            return clusters != null &amp;&amp; !clusters.isEmpty();</span>
+    }
+
+    public ConfigFluent.ClustersNested&lt;A&gt; addNewCluster(){
+<span class="nc" id="L129">            return new ClustersNestedImpl();</span>
+    }
+
+    public ConfigFluent.ClustersNested&lt;A&gt; addNewClusterLike(NamedCluster item){
+<span class="nc" id="L133">            return new ClustersNestedImpl(-1, item);</span>
+    }
+
+    public ConfigFluent.ClustersNested&lt;A&gt; setNewClusterLike(int index,NamedCluster item){
+<span class="nc" id="L137">            return new ClustersNestedImpl(index, item);</span>
+    }
+
+    public ConfigFluent.ClustersNested&lt;A&gt; editCluster(int index){
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            if (clusters.size() &lt;= index) throw new RuntimeException(&quot;Can't edit clusters. Index exceeds size.&quot;);</span>
+<span class="nc" id="L142">            return setNewClusterLike(index, buildCluster(index));</span>
+    }
+
+    public ConfigFluent.ClustersNested&lt;A&gt; editFirstCluster(){
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            if (clusters.size() == 0) throw new RuntimeException(&quot;Can't edit first clusters. The list is empty.&quot;);</span>
+<span class="nc" id="L147">            return setNewClusterLike(0, buildCluster(0));</span>
+    }
+
+    public ConfigFluent.ClustersNested&lt;A&gt; editLastCluster(){
+<span class="nc" id="L151">            int index = clusters.size() - 1;</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last clusters. The list is empty.&quot;);</span>
+<span class="nc" id="L153">            return setNewClusterLike(index, buildCluster(index));</span>
+    }
+
+    public ConfigFluent.ClustersNested&lt;A&gt; editMatchingCluster(io.fabric8.kubernetes.api.builder.Predicate&lt;NamedClusterBuilder&gt; predicate){
+<span class="nc" id="L157">            int index = -1;</span>
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            for (int i=0;i&lt;clusters.size();i++) { </span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            if (predicate.apply(clusters.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching clusters. No match found.&quot;);</span>
+<span class="nc" id="L162">            return setNewClusterLike(index, buildCluster(index));</span>
+    }
+
+    public A addToContexts(int index,NamedContext item){
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            if (this.contexts == null) {this.contexts = new ArrayList&lt;NamedContextBuilder&gt;();}</span>
+<span class="nc bnc" id="L167" title="All 4 branches missed.">            NamedContextBuilder builder = new NamedContextBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.contexts.add(index &gt;= 0 ? index : contexts.size(), builder); return (A)this;</span>
+    }
+
+    public A setToContexts(int index,NamedContext item){
+<span class="nc bnc" id="L171" title="All 2 branches missed.">            if (this.contexts == null) {this.contexts = new ArrayList&lt;NamedContextBuilder&gt;();}</span>
+<span class="nc" id="L172">            NamedContextBuilder builder = new NamedContextBuilder(item);</span>
+<span class="nc bnc" id="L173" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L174" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= contexts.size()) { contexts.add(builder); } else { contexts.set(index, builder);}</span>
+<span class="nc" id="L175">             return (A)this;</span>
+    }
+
+    public A addToContexts(NamedContext... items){
+<span class="nc bnc" id="L179" title="All 2 branches missed.">            if (this.contexts == null) {this.contexts = new ArrayList&lt;NamedContextBuilder&gt;();}</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">            for (NamedContext item : items) {NamedContextBuilder builder = new NamedContextBuilder(item);_visitables.add(builder);this.contexts.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToContexts(Collection&lt;NamedContext&gt; items){
+<span class="nc bnc" id="L184" title="All 2 branches missed.">            if (this.contexts == null) {this.contexts = new ArrayList&lt;NamedContextBuilder&gt;();}</span>
+<span class="nc bnc" id="L185" title="All 2 branches missed.">            for (NamedContext item : items) {NamedContextBuilder builder = new NamedContextBuilder(item);_visitables.add(builder);this.contexts.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromContexts(NamedContext... items){
+<span class="nc bnc" id="L189" title="All 4 branches missed.">            for (NamedContext item : items) {NamedContextBuilder builder = new NamedContextBuilder(item);_visitables.remove(builder);if (this.contexts != null) {this.contexts.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromContexts(Collection&lt;NamedContext&gt; items){
+<span class="nc bnc" id="L193" title="All 4 branches missed.">            for (NamedContext item : items) {NamedContextBuilder builder = new NamedContextBuilder(item);_visitables.remove(builder);if (this.contexts != null) {this.contexts.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildContexts instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;NamedContext&gt; getContexts(){
+<span class="nc" id="L202">            return build(contexts);</span>
+    }
+
+    public List&lt;NamedContext&gt; buildContexts(){
+<span class="nc" id="L206">            return build(contexts);</span>
+    }
+
+    public NamedContext buildContext(int index){
+<span class="nc" id="L210">            return this.contexts.get(index).build();</span>
+    }
+
+    public NamedContext buildFirstContext(){
+<span class="nc" id="L214">            return this.contexts.get(0).build();</span>
+    }
+
+    public NamedContext buildLastContext(){
+<span class="nc" id="L218">            return this.contexts.get(contexts.size() - 1).build();</span>
+    }
+
+    public NamedContext buildMatchingContext(io.fabric8.kubernetes.api.builder.Predicate&lt;NamedContextBuilder&gt; predicate){
+<span class="nc bnc" id="L222" title="All 4 branches missed.">            for (NamedContextBuilder item: contexts) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withContexts(List&lt;NamedContext&gt; contexts){
+<span class="nc bnc" id="L226" title="All 2 branches missed.">            if (this.contexts != null) { _visitables.removeAll(this.contexts);}</span>
+<span class="nc bnc" id="L227" title="All 4 branches missed.">            if (contexts != null) {this.contexts = new ArrayList&lt;NamedContextBuilder&gt;(); for (NamedContext item : contexts){this.addToContexts(item);}} else { this.contexts = new ArrayList&lt;NamedContextBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withContexts(NamedContext... contexts){
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            if (this.contexts != null) {this.contexts.clear();}</span>
+<span class="nc bnc" id="L232" title="All 4 branches missed.">            if (contexts != null) {for (NamedContext item :contexts){ this.addToContexts(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasContexts(){
+<span class="nc bnc" id="L236" title="All 4 branches missed.">            return contexts != null &amp;&amp; !contexts.isEmpty();</span>
+    }
+
+    public ConfigFluent.ContextsNested&lt;A&gt; addNewContext(){
+<span class="nc" id="L240">            return new ContextsNestedImpl();</span>
+    }
+
+    public ConfigFluent.ContextsNested&lt;A&gt; addNewContextLike(NamedContext item){
+<span class="nc" id="L244">            return new ContextsNestedImpl(-1, item);</span>
+    }
+
+    public ConfigFluent.ContextsNested&lt;A&gt; setNewContextLike(int index,NamedContext item){
+<span class="nc" id="L248">            return new ContextsNestedImpl(index, item);</span>
+    }
+
+    public ConfigFluent.ContextsNested&lt;A&gt; editContext(int index){
+<span class="nc bnc" id="L252" title="All 2 branches missed.">            if (contexts.size() &lt;= index) throw new RuntimeException(&quot;Can't edit contexts. Index exceeds size.&quot;);</span>
+<span class="nc" id="L253">            return setNewContextLike(index, buildContext(index));</span>
+    }
+
+    public ConfigFluent.ContextsNested&lt;A&gt; editFirstContext(){
+<span class="nc bnc" id="L257" title="All 2 branches missed.">            if (contexts.size() == 0) throw new RuntimeException(&quot;Can't edit first contexts. The list is empty.&quot;);</span>
+<span class="nc" id="L258">            return setNewContextLike(0, buildContext(0));</span>
+    }
+
+    public ConfigFluent.ContextsNested&lt;A&gt; editLastContext(){
+<span class="nc" id="L262">            int index = contexts.size() - 1;</span>
+<span class="nc bnc" id="L263" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last contexts. The list is empty.&quot;);</span>
+<span class="nc" id="L264">            return setNewContextLike(index, buildContext(index));</span>
+    }
+
+    public ConfigFluent.ContextsNested&lt;A&gt; editMatchingContext(io.fabric8.kubernetes.api.builder.Predicate&lt;NamedContextBuilder&gt; predicate){
+<span class="nc" id="L268">            int index = -1;</span>
+<span class="nc bnc" id="L269" title="All 2 branches missed.">            for (int i=0;i&lt;contexts.size();i++) { </span>
+<span class="nc bnc" id="L270" title="All 2 branches missed.">            if (predicate.apply(contexts.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L272" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching contexts. No match found.&quot;);</span>
+<span class="nc" id="L273">            return setNewContextLike(index, buildContext(index));</span>
+    }
+
+    public String getCurrentContext(){
+<span class="nc" id="L277">            return this.currentContext;</span>
+    }
+
+    public A withCurrentContext(String currentContext){
+<span class="nc" id="L281">            this.currentContext=currentContext; return (A) this;</span>
+    }
+
+    public Boolean hasCurrentContext(){
+<span class="nc bnc" id="L285" title="All 2 branches missed.">            return this.currentContext != null;</span>
+    }
+
+    public A addToExtensions(int index,NamedExtension item){
+<span class="nc bnc" id="L289" title="All 2 branches missed.">            if (this.extensions == null) {this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;();}</span>
+<span class="nc bnc" id="L290" title="All 4 branches missed.">            NamedExtensionBuilder builder = new NamedExtensionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.extensions.add(index &gt;= 0 ? index : extensions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToExtensions(int index,NamedExtension item){
+<span class="nc bnc" id="L294" title="All 2 branches missed.">            if (this.extensions == null) {this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;();}</span>
+<span class="nc" id="L295">            NamedExtensionBuilder builder = new NamedExtensionBuilder(item);</span>
+<span class="nc bnc" id="L296" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L297" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= extensions.size()) { extensions.add(builder); } else { extensions.set(index, builder);}</span>
+<span class="nc" id="L298">             return (A)this;</span>
+    }
+
+    public A addToExtensions(NamedExtension... items){
+<span class="nc bnc" id="L302" title="All 2 branches missed.">            if (this.extensions == null) {this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;();}</span>
+<span class="nc bnc" id="L303" title="All 2 branches missed.">            for (NamedExtension item : items) {NamedExtensionBuilder builder = new NamedExtensionBuilder(item);_visitables.add(builder);this.extensions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToExtensions(Collection&lt;NamedExtension&gt; items){
+<span class="nc bnc" id="L307" title="All 2 branches missed.">            if (this.extensions == null) {this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;();}</span>
+<span class="nc bnc" id="L308" title="All 2 branches missed.">            for (NamedExtension item : items) {NamedExtensionBuilder builder = new NamedExtensionBuilder(item);_visitables.add(builder);this.extensions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromExtensions(NamedExtension... items){
+<span class="nc bnc" id="L312" title="All 4 branches missed.">            for (NamedExtension item : items) {NamedExtensionBuilder builder = new NamedExtensionBuilder(item);_visitables.remove(builder);if (this.extensions != null) {this.extensions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromExtensions(Collection&lt;NamedExtension&gt; items){
+<span class="nc bnc" id="L316" title="All 4 branches missed.">            for (NamedExtension item : items) {NamedExtensionBuilder builder = new NamedExtensionBuilder(item);_visitables.remove(builder);if (this.extensions != null) {this.extensions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildExtensions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;NamedExtension&gt; getExtensions(){
+<span class="nc" id="L325">            return build(extensions);</span>
+    }
+
+    public List&lt;NamedExtension&gt; buildExtensions(){
+<span class="nc" id="L329">            return build(extensions);</span>
+    }
+
+    public NamedExtension buildExtension(int index){
+<span class="nc" id="L333">            return this.extensions.get(index).build();</span>
+    }
+
+    public NamedExtension buildFirstExtension(){
+<span class="nc" id="L337">            return this.extensions.get(0).build();</span>
+    }
+
+    public NamedExtension buildLastExtension(){
+<span class="nc" id="L341">            return this.extensions.get(extensions.size() - 1).build();</span>
+    }
+
+    public NamedExtension buildMatchingExtension(io.fabric8.kubernetes.api.builder.Predicate&lt;NamedExtensionBuilder&gt; predicate){
+<span class="nc bnc" id="L345" title="All 4 branches missed.">            for (NamedExtensionBuilder item: extensions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withExtensions(List&lt;NamedExtension&gt; extensions){
+<span class="nc bnc" id="L349" title="All 2 branches missed.">            if (this.extensions != null) { _visitables.removeAll(this.extensions);}</span>
+<span class="nc bnc" id="L350" title="All 4 branches missed.">            if (extensions != null) {this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;(); for (NamedExtension item : extensions){this.addToExtensions(item);}} else { this.extensions = new ArrayList&lt;NamedExtensionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withExtensions(NamedExtension... extensions){
+<span class="nc bnc" id="L354" title="All 2 branches missed.">            if (this.extensions != null) {this.extensions.clear();}</span>
+<span class="nc bnc" id="L355" title="All 4 branches missed.">            if (extensions != null) {for (NamedExtension item :extensions){ this.addToExtensions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasExtensions(){
+<span class="nc bnc" id="L359" title="All 4 branches missed.">            return extensions != null &amp;&amp; !extensions.isEmpty();</span>
+    }
+
+    public ConfigFluent.ExtensionsNested&lt;A&gt; addNewExtension(){
+<span class="nc" id="L363">            return new ExtensionsNestedImpl();</span>
+    }
+
+    public ConfigFluent.ExtensionsNested&lt;A&gt; addNewExtensionLike(NamedExtension item){
+<span class="nc" id="L367">            return new ExtensionsNestedImpl(-1, item);</span>
+    }
+
+    public ConfigFluent.ExtensionsNested&lt;A&gt; setNewExtensionLike(int index,NamedExtension item){
+<span class="nc" id="L371">            return new ExtensionsNestedImpl(index, item);</span>
+    }
+
+    public ConfigFluent.ExtensionsNested&lt;A&gt; editExtension(int index){
+<span class="nc bnc" id="L375" title="All 2 branches missed.">            if (extensions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit extensions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L376">            return setNewExtensionLike(index, buildExtension(index));</span>
+    }
+
+    public ConfigFluent.ExtensionsNested&lt;A&gt; editFirstExtension(){
+<span class="nc bnc" id="L380" title="All 2 branches missed.">            if (extensions.size() == 0) throw new RuntimeException(&quot;Can't edit first extensions. The list is empty.&quot;);</span>
+<span class="nc" id="L381">            return setNewExtensionLike(0, buildExtension(0));</span>
+    }
+
+    public ConfigFluent.ExtensionsNested&lt;A&gt; editLastExtension(){
+<span class="nc" id="L385">            int index = extensions.size() - 1;</span>
+<span class="nc bnc" id="L386" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last extensions. The list is empty.&quot;);</span>
+<span class="nc" id="L387">            return setNewExtensionLike(index, buildExtension(index));</span>
+    }
+
+    public ConfigFluent.ExtensionsNested&lt;A&gt; editMatchingExtension(io.fabric8.kubernetes.api.builder.Predicate&lt;NamedExtensionBuilder&gt; predicate){
+<span class="nc" id="L391">            int index = -1;</span>
+<span class="nc bnc" id="L392" title="All 2 branches missed.">            for (int i=0;i&lt;extensions.size();i++) { </span>
+<span class="nc bnc" id="L393" title="All 2 branches missed.">            if (predicate.apply(extensions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L395" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching extensions. No match found.&quot;);</span>
+<span class="nc" id="L396">            return setNewExtensionLike(index, buildExtension(index));</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L400">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L404">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L408" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPreferences instead.
+ * @return The buildable object.
+ */
+@Deprecated public Preferences getPreferences(){
+<span class="nc bnc" id="L417" title="All 2 branches missed.">            return this.preferences!=null?this.preferences.build():null;</span>
+    }
+
+    public Preferences buildPreferences(){
+<span class="nc bnc" id="L421" title="All 2 branches missed.">            return this.preferences!=null?this.preferences.build():null;</span>
+    }
+
+    public A withPreferences(Preferences preferences){
+<span class="nc" id="L425">            _visitables.remove(this.preferences);</span>
+<span class="nc bnc" id="L426" title="All 2 branches missed.">            if (preferences!=null){ this.preferences= new PreferencesBuilder(preferences); _visitables.add(this.preferences);} return (A) this;</span>
+    }
+
+    public Boolean hasPreferences(){
+<span class="nc bnc" id="L430" title="All 2 branches missed.">            return this.preferences != null;</span>
+    }
+
+    public ConfigFluent.PreferencesNested&lt;A&gt; withNewPreferences(){
+<span class="nc" id="L434">            return new PreferencesNestedImpl();</span>
+    }
+
+    public ConfigFluent.PreferencesNested&lt;A&gt; withNewPreferencesLike(Preferences item){
+<span class="nc" id="L438">            return new PreferencesNestedImpl(item);</span>
+    }
+
+    public ConfigFluent.PreferencesNested&lt;A&gt; editPreferences(){
+<span class="nc" id="L442">            return withNewPreferencesLike(getPreferences());</span>
+    }
+
+    public ConfigFluent.PreferencesNested&lt;A&gt; editOrNewPreferences(){
+<span class="nc bnc" id="L446" title="All 2 branches missed.">            return withNewPreferencesLike(getPreferences() != null ? getPreferences(): new PreferencesBuilder().build());</span>
+    }
+
+    public ConfigFluent.PreferencesNested&lt;A&gt; editOrNewPreferencesLike(Preferences item){
+<span class="nc bnc" id="L450" title="All 2 branches missed.">            return withNewPreferencesLike(getPreferences() != null ? getPreferences(): item);</span>
+    }
+
+    public A addToUsers(int index,NamedAuthInfo item){
+<span class="nc bnc" id="L454" title="All 2 branches missed.">            if (this.users == null) {this.users = new ArrayList&lt;NamedAuthInfoBuilder&gt;();}</span>
+<span class="nc bnc" id="L455" title="All 4 branches missed.">            NamedAuthInfoBuilder builder = new NamedAuthInfoBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.users.add(index &gt;= 0 ? index : users.size(), builder); return (A)this;</span>
+    }
+
+    public A setToUsers(int index,NamedAuthInfo item){
+<span class="nc bnc" id="L459" title="All 2 branches missed.">            if (this.users == null) {this.users = new ArrayList&lt;NamedAuthInfoBuilder&gt;();}</span>
+<span class="nc" id="L460">            NamedAuthInfoBuilder builder = new NamedAuthInfoBuilder(item);</span>
+<span class="nc bnc" id="L461" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L462" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= users.size()) { users.add(builder); } else { users.set(index, builder);}</span>
+<span class="nc" id="L463">             return (A)this;</span>
+    }
+
+    public A addToUsers(NamedAuthInfo... items){
+<span class="nc bnc" id="L467" title="All 2 branches missed.">            if (this.users == null) {this.users = new ArrayList&lt;NamedAuthInfoBuilder&gt;();}</span>
+<span class="nc bnc" id="L468" title="All 2 branches missed.">            for (NamedAuthInfo item : items) {NamedAuthInfoBuilder builder = new NamedAuthInfoBuilder(item);_visitables.add(builder);this.users.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToUsers(Collection&lt;NamedAuthInfo&gt; items){
+<span class="nc bnc" id="L472" title="All 2 branches missed.">            if (this.users == null) {this.users = new ArrayList&lt;NamedAuthInfoBuilder&gt;();}</span>
+<span class="nc bnc" id="L473" title="All 2 branches missed.">            for (NamedAuthInfo item : items) {NamedAuthInfoBuilder builder = new NamedAuthInfoBuilder(item);_visitables.add(builder);this.users.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromUsers(NamedAuthInfo... items){
+<span class="nc bnc" id="L477" title="All 4 branches missed.">            for (NamedAuthInfo item : items) {NamedAuthInfoBuilder builder = new NamedAuthInfoBuilder(item);_visitables.remove(builder);if (this.users != null) {this.users.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromUsers(Collection&lt;NamedAuthInfo&gt; items){
+<span class="nc bnc" id="L481" title="All 4 branches missed.">            for (NamedAuthInfo item : items) {NamedAuthInfoBuilder builder = new NamedAuthInfoBuilder(item);_visitables.remove(builder);if (this.users != null) {this.users.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildUsers instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;NamedAuthInfo&gt; getUsers(){
+<span class="nc" id="L490">            return build(users);</span>
+    }
+
+    public List&lt;NamedAuthInfo&gt; buildUsers(){
+<span class="nc" id="L494">            return build(users);</span>
+    }
+
+    public NamedAuthInfo buildUser(int index){
+<span class="nc" id="L498">            return this.users.get(index).build();</span>
+    }
+
+    public NamedAuthInfo buildFirstUser(){
+<span class="nc" id="L502">            return this.users.get(0).build();</span>
+    }
+
+    public NamedAuthInfo buildLastUser(){
+<span class="nc" id="L506">            return this.users.get(users.size() - 1).build();</span>
+    }
+
+    public NamedAuthInfo buildMatchingUser(io.fabric8.kubernetes.api.builder.Predicate&lt;NamedAuthInfoBuilder&gt; predicate){
+<span class="nc bnc" id="L510" title="All 4 branches missed.">            for (NamedAuthInfoBuilder item: users) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withUsers(List&lt;NamedAuthInfo&gt; users){
+<span class="nc bnc" id="L514" title="All 2 branches missed.">            if (this.users != null) { _visitables.removeAll(this.users);}</span>
+<span class="nc bnc" id="L515" title="All 4 branches missed.">            if (users != null) {this.users = new ArrayList&lt;NamedAuthInfoBuilder&gt;(); for (NamedAuthInfo item : users){this.addToUsers(item);}} else { this.users = new ArrayList&lt;NamedAuthInfoBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withUsers(NamedAuthInfo... users){
+<span class="nc bnc" id="L519" title="All 2 branches missed.">            if (this.users != null) {this.users.clear();}</span>
+<span class="nc bnc" id="L520" title="All 4 branches missed.">            if (users != null) {for (NamedAuthInfo item :users){ this.addToUsers(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasUsers(){
+<span class="nc bnc" id="L524" title="All 4 branches missed.">            return users != null &amp;&amp; !users.isEmpty();</span>
+    }
+
+    public ConfigFluent.UsersNested&lt;A&gt; addNewUser(){
+<span class="nc" id="L528">            return new UsersNestedImpl();</span>
+    }
+
+    public ConfigFluent.UsersNested&lt;A&gt; addNewUserLike(NamedAuthInfo item){
+<span class="nc" id="L532">            return new UsersNestedImpl(-1, item);</span>
+    }
+
+    public ConfigFluent.UsersNested&lt;A&gt; setNewUserLike(int index,NamedAuthInfo item){
+<span class="nc" id="L536">            return new UsersNestedImpl(index, item);</span>
+    }
+
+    public ConfigFluent.UsersNested&lt;A&gt; editUser(int index){
+<span class="nc bnc" id="L540" title="All 2 branches missed.">            if (users.size() &lt;= index) throw new RuntimeException(&quot;Can't edit users. Index exceeds size.&quot;);</span>
+<span class="nc" id="L541">            return setNewUserLike(index, buildUser(index));</span>
+    }
+
+    public ConfigFluent.UsersNested&lt;A&gt; editFirstUser(){
+<span class="nc bnc" id="L545" title="All 2 branches missed.">            if (users.size() == 0) throw new RuntimeException(&quot;Can't edit first users. The list is empty.&quot;);</span>
+<span class="nc" id="L546">            return setNewUserLike(0, buildUser(0));</span>
+    }
+
+    public ConfigFluent.UsersNested&lt;A&gt; editLastUser(){
+<span class="nc" id="L550">            int index = users.size() - 1;</span>
+<span class="nc bnc" id="L551" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last users. The list is empty.&quot;);</span>
+<span class="nc" id="L552">            return setNewUserLike(index, buildUser(index));</span>
+    }
+
+    public ConfigFluent.UsersNested&lt;A&gt; editMatchingUser(io.fabric8.kubernetes.api.builder.Predicate&lt;NamedAuthInfoBuilder&gt; predicate){
+<span class="nc" id="L556">            int index = -1;</span>
+<span class="nc bnc" id="L557" title="All 2 branches missed.">            for (int i=0;i&lt;users.size();i++) { </span>
+<span class="nc bnc" id="L558" title="All 2 branches missed.">            if (predicate.apply(users.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L560" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching users. No match found.&quot;);</span>
+<span class="nc" id="L561">            return setNewUserLike(index, buildUser(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L565" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L566" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L567" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L568">            ConfigFluentImpl that = (ConfigFluentImpl) o;</span>
+<span class="nc bnc" id="L569" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L570" title="All 6 branches missed.">            if (clusters != null ? !clusters.equals(that.clusters) :that.clusters != null) return false;</span>
+<span class="nc bnc" id="L571" title="All 6 branches missed.">            if (contexts != null ? !contexts.equals(that.contexts) :that.contexts != null) return false;</span>
+<span class="nc bnc" id="L572" title="All 6 branches missed.">            if (currentContext != null ? !currentContext.equals(that.currentContext) :that.currentContext != null) return false;</span>
+<span class="nc bnc" id="L573" title="All 6 branches missed.">            if (extensions != null ? !extensions.equals(that.extensions) :that.extensions != null) return false;</span>
+<span class="nc bnc" id="L574" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L575" title="All 6 branches missed.">            if (preferences != null ? !preferences.equals(that.preferences) :that.preferences != null) return false;</span>
+<span class="nc bnc" id="L576" title="All 6 branches missed.">            if (users != null ? !users.equals(that.users) :that.users != null) return false;</span>
+<span class="nc" id="L577">            return true;</span>
+    }
+
+
+    public class ClustersNestedImpl&lt;N&gt; extends NamedClusterFluentImpl&lt;ConfigFluent.ClustersNested&lt;N&gt;&gt; implements ConfigFluent.ClustersNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NamedClusterBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L586">            ClustersNestedImpl(int index,NamedCluster item){</span>
+<span class="nc" id="L587">                    this.index = index;</span>
+<span class="nc" id="L588">                    this.builder = new NamedClusterBuilder(this, item);</span>
+<span class="nc" id="L589">            }</span>
+<span class="nc" id="L590">            ClustersNestedImpl(){</span>
+<span class="nc" id="L591">                    this.index = -1;</span>
+<span class="nc" id="L592">                    this.builder = new NamedClusterBuilder(this);</span>
+<span class="nc" id="L593">            }</span>
+    
+    public N and(){
+<span class="nc" id="L596">            return (N) ConfigFluentImpl.this.setToClusters(index, builder.build());</span>
+    }
+    public N endCluster(){
+<span class="nc" id="L599">            return and();</span>
+    }
+
+}
+    public class ContextsNestedImpl&lt;N&gt; extends NamedContextFluentImpl&lt;ConfigFluent.ContextsNested&lt;N&gt;&gt; implements ConfigFluent.ContextsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NamedContextBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L608">            ContextsNestedImpl(int index,NamedContext item){</span>
+<span class="nc" id="L609">                    this.index = index;</span>
+<span class="nc" id="L610">                    this.builder = new NamedContextBuilder(this, item);</span>
+<span class="nc" id="L611">            }</span>
+<span class="nc" id="L612">            ContextsNestedImpl(){</span>
+<span class="nc" id="L613">                    this.index = -1;</span>
+<span class="nc" id="L614">                    this.builder = new NamedContextBuilder(this);</span>
+<span class="nc" id="L615">            }</span>
+    
+    public N and(){
+<span class="nc" id="L618">            return (N) ConfigFluentImpl.this.setToContexts(index, builder.build());</span>
+    }
+    public N endContext(){
+<span class="nc" id="L621">            return and();</span>
+    }
+
+}
+    public class ExtensionsNestedImpl&lt;N&gt; extends NamedExtensionFluentImpl&lt;ConfigFluent.ExtensionsNested&lt;N&gt;&gt; implements ConfigFluent.ExtensionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NamedExtensionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L630">            ExtensionsNestedImpl(int index,NamedExtension item){</span>
+<span class="nc" id="L631">                    this.index = index;</span>
+<span class="nc" id="L632">                    this.builder = new NamedExtensionBuilder(this, item);</span>
+<span class="nc" id="L633">            }</span>
+<span class="nc" id="L634">            ExtensionsNestedImpl(){</span>
+<span class="nc" id="L635">                    this.index = -1;</span>
+<span class="nc" id="L636">                    this.builder = new NamedExtensionBuilder(this);</span>
+<span class="nc" id="L637">            }</span>
+    
+    public N and(){
+<span class="nc" id="L640">            return (N) ConfigFluentImpl.this.setToExtensions(index, builder.build());</span>
+    }
+    public N endExtension(){
+<span class="nc" id="L643">            return and();</span>
+    }
+
+}
+    public class PreferencesNestedImpl&lt;N&gt; extends PreferencesFluentImpl&lt;ConfigFluent.PreferencesNested&lt;N&gt;&gt; implements ConfigFluent.PreferencesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PreferencesBuilder builder;
+    
+<span class="nc" id="L651">            PreferencesNestedImpl(Preferences item){</span>
+<span class="nc" id="L652">                    this.builder = new PreferencesBuilder(this, item);</span>
+<span class="nc" id="L653">            }</span>
+<span class="nc" id="L654">            PreferencesNestedImpl(){</span>
+<span class="nc" id="L655">                    this.builder = new PreferencesBuilder(this);</span>
+<span class="nc" id="L656">            }</span>
+    
+    public N and(){
+<span class="nc" id="L659">            return (N) ConfigFluentImpl.this.withPreferences(builder.build());</span>
+    }
+    public N endPreferences(){
+<span class="nc" id="L662">            return and();</span>
+    }
+
+}
+    public class UsersNestedImpl&lt;N&gt; extends NamedAuthInfoFluentImpl&lt;ConfigFluent.UsersNested&lt;N&gt;&gt; implements ConfigFluent.UsersNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NamedAuthInfoBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L671">            UsersNestedImpl(int index,NamedAuthInfo item){</span>
+<span class="nc" id="L672">                    this.index = index;</span>
+<span class="nc" id="L673">                    this.builder = new NamedAuthInfoBuilder(this, item);</span>
+<span class="nc" id="L674">            }</span>
+<span class="nc" id="L675">            UsersNestedImpl(){</span>
+<span class="nc" id="L676">                    this.index = -1;</span>
+<span class="nc" id="L677">                    this.builder = new NamedAuthInfoBuilder(this);</span>
+<span class="nc" id="L678">            }</span>
+    
+    public N and(){
+<span class="nc" id="L681">            return (N) ConfigFluentImpl.this.setToUsers(index, builder.build());</span>
+    }
+    public N endUser(){
+<span class="nc" id="L684">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

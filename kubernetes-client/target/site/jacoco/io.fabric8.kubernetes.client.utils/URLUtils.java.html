@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>URLUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.utils</a> &gt; <span class="el_source">URLUtils.java</span></div><h1>URLUtils.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.utils;
+
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+
+public class URLUtils {
+    private URLUtils() {}
+
+    public static String join(String... parts) {
+<span class="fc" id="L27">        StringBuilder sb = new StringBuilder();</span>
+
+<span class="fc" id="L29">        String urlQueryParams = &quot;&quot;;</span>
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">        if (parts.length &gt; 0) {</span>
+<span class="fc" id="L31">          String urlWithoutQuery = parts[0];</span>
+          try {
+<span class="fc" id="L33">            URI uri = new URI(parts[0]);</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">            if (containsQueryParam(uri)) {</span>
+<span class="fc" id="L35">              urlQueryParams = uri.getQuery();</span>
+<span class="fc" id="L36">              urlWithoutQuery = new URI(uri.getScheme(), uri.getAuthority(), uri.getPath(), null, uri.getFragment())</span>
+<span class="fc" id="L37">                .toString();</span>
+            }
+<span class="nc" id="L39">          } catch (URISyntaxException e) {</span>
+            // Not all first parameters are URL
+<span class="fc" id="L41">          }</span>
+<span class="fc" id="L42">          sb.append(urlWithoutQuery).append(&quot;/&quot;);</span>
+        }
+
+<span class="fc" id="L45">        StringBuilder queryParams = new StringBuilder();</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        for (int i = 1; i &lt; parts.length; i++) {</span>
+          try {
+<span class="fc" id="L48">            URI partUri = new URI(parts[i]);</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">            if (containsQueryParam(partUri)) {</span>
+<span class="fc" id="L50">              queryParams = getQueryParams(partUri, parts, i+1);</span>
+              // If we start detecting query params then everything will be query params part
+<span class="fc" id="L52">              break;</span>
+            }
+
+<span class="fc" id="L55">            sb.append(parts[i]);</span>
+
+<span class="nc" id="L57">          } catch (URISyntaxException e) {</span>
+<span class="nc" id="L58">            sb.append(parts[i]);</span>
+<span class="fc" id="L59">          }</span>
+
+<span class="pc bpc" id="L61" title="1 of 2 branches missed.">          if (i &lt; parts.length - 1) {</span>
+<span class="nc" id="L62">            sb.append(&quot;/&quot;);</span>
+          }
+
+        }
+
+<span class="fc" id="L67">        appendQueryParametersFromOriginalUrl(sb, urlQueryParams, queryParams);</span>
+<span class="fc" id="L68">        String joined = sb.toString();</span>
+
+        // And normalize it...
+<span class="fc" id="L71">        return joined</span>
+<span class="fc" id="L72">                .replaceAll(&quot;/+&quot;, &quot;/&quot;)</span>
+<span class="fc" id="L73">                .replaceAll(&quot;/\\?&quot;, &quot;?&quot;)</span>
+<span class="fc" id="L74">                .replaceAll(&quot;/#&quot;, &quot;#&quot;)</span>
+<span class="fc" id="L75">                .replaceAll(&quot;:/&quot;, &quot;://&quot;);</span>
+
+    }
+
+  private static void appendQueryParametersFromOriginalUrl(StringBuilder sb, String urlQueryParams, StringBuilder queryParams) {
+<span class="fc bfc" id="L80" title="All 2 branches covered.">    if (!urlQueryParams.isEmpty()) {</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">      if (queryParams.length() == 0) {</span>
+<span class="fc" id="L82">        queryParams.append(&quot;?&quot;);</span>
+      } else {
+<span class="fc" id="L84">        queryParams.append(&quot;&amp;&quot;);</span>
+      }
+<span class="fc" id="L86">      queryParams.append(urlQueryParams);</span>
+    }
+
+<span class="fc" id="L89">    sb.append(queryParams);</span>
+<span class="fc" id="L90">  }</span>
+
+  private static StringBuilder getQueryParams(URI firstPart, String[] parts, int index) {
+<span class="fc" id="L93">        StringBuilder queryParams = new StringBuilder();</span>
+<span class="fc" id="L94">        queryParams.append(firstPart.toString());</span>
+
+<span class="fc bfc" id="L96" title="All 2 branches covered.">        for (int i = index; i &lt; parts.length; i++) {</span>
+<span class="fc" id="L97">            String param = parts[i];</span>
+
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">            if (!param.startsWith(&quot;&amp;&quot;)) {</span>
+<span class="fc" id="L100">                queryParams.append(&quot;&amp;&quot;);</span>
+            }
+<span class="fc" id="L102">            queryParams.append((param));</span>
+        }
+
+<span class="fc" id="L105">        return queryParams;</span>
+    }
+
+    private static boolean containsQueryParam(URI uri) {
+<span class="fc bfc" id="L109" title="All 2 branches covered.">       return uri.getQuery() != null;</span>
+    }
+
+  /**
+   * Joins all the given strings, ignoring nulls so that they form a URL with / between the paths without a // if the previous path ends with / and the next path starts with / unless a path item is blank
+   *
+   * @returns the strings concatenated together with / while avoiding a double // between non blank strings.
+   */
+  public static String pathJoin(String... strings) {
+<span class="nc" id="L118">    StringBuilder buffer = new StringBuilder();</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">    for (String string : strings) {</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">      if (string == null) {</span>
+<span class="nc" id="L121">        continue;</span>
+      }
+<span class="nc bnc" id="L123" title="All 2 branches missed.">      if (buffer.length() &gt; 0) {</span>
+<span class="nc" id="L124">        boolean bufferEndsWithSeparator = buffer.toString().endsWith(&quot;/&quot;);</span>
+<span class="nc" id="L125">        boolean stringStartsWithSeparator = string.startsWith(&quot;/&quot;);</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">        if (bufferEndsWithSeparator) {</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">          if (stringStartsWithSeparator) {</span>
+<span class="nc" id="L128">            string = string.substring(1);</span>
+          }
+        } else {
+<span class="nc bnc" id="L131" title="All 2 branches missed.">          if (!stringStartsWithSeparator) {</span>
+<span class="nc" id="L132">            buffer.append(&quot;/&quot;);</span>
+          }
+        }
+      }
+<span class="nc" id="L136">      buffer.append(string);</span>
+    }
+<span class="nc" id="L138">    return buffer.toString();</span>
+  }
+
+  public static boolean isValidURL(String url) {
+<span class="nc bnc" id="L142" title="All 2 branches missed.">    if (url != null) {</span>
+      try {
+<span class="nc" id="L144">        URI u = new URI(url);</span>
+<span class="nc" id="L145">      } catch (URISyntaxException exception) {</span>
+<span class="nc" id="L146">        return false;</span>
+<span class="nc" id="L147">      }</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">      return url.contains(&quot;null&quot;) ? false : true;</span>
+    } else {
+<span class="nc" id="L150">      return false;</span>
+    }
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

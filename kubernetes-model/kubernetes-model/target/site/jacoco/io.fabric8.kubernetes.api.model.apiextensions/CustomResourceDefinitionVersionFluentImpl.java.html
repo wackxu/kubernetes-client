@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomResourceDefinitionVersionFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.apiextensions</a> &gt; <span class="el_source">CustomResourceDefinitionVersionFluentImpl.java</span></div><h1>CustomResourceDefinitionVersionFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.apiextensions;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class CustomResourceDefinitionVersionFluentImpl&lt;A extends CustomResourceDefinitionVersionFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements CustomResourceDefinitionVersionFluent&lt;A&gt;{
+
+    private List&lt;CustomResourceColumnDefinitionBuilder&gt; additionalPrinterColumns;
+    private String name;
+    private CustomResourceValidationBuilder schema;
+    private Boolean served;
+    private Boolean storage;
+    private CustomResourceSubresourcesBuilder subresources;
+
+<span class="nc" id="L26">    public CustomResourceDefinitionVersionFluentImpl(){</span>
+<span class="nc" id="L27">    }</span>
+<span class="nc" id="L28">    public CustomResourceDefinitionVersionFluentImpl(CustomResourceDefinitionVersion instance){</span>
+<span class="nc" id="L29">            this.withAdditionalPrinterColumns(instance.getAdditionalPrinterColumns()); </span>
+<span class="nc" id="L30">            this.withName(instance.getName()); </span>
+<span class="nc" id="L31">            this.withSchema(instance.getSchema()); </span>
+<span class="nc" id="L32">            this.withServed(instance.getServed()); </span>
+<span class="nc" id="L33">            this.withStorage(instance.getStorage()); </span>
+<span class="nc" id="L34">            this.withSubresources(instance.getSubresources()); </span>
+<span class="nc" id="L35">    }</span>
+
+    public A addToAdditionalPrinterColumns(int index,CustomResourceColumnDefinition item){
+<span class="nc bnc" id="L38" title="All 2 branches missed.">            if (this.additionalPrinterColumns == null) {this.additionalPrinterColumns = new ArrayList&lt;CustomResourceColumnDefinitionBuilder&gt;();}</span>
+<span class="nc bnc" id="L39" title="All 4 branches missed.">            CustomResourceColumnDefinitionBuilder builder = new CustomResourceColumnDefinitionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.additionalPrinterColumns.add(index &gt;= 0 ? index : additionalPrinterColumns.size(), builder); return (A)this;</span>
+    }
+
+    public A setToAdditionalPrinterColumns(int index,CustomResourceColumnDefinition item){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            if (this.additionalPrinterColumns == null) {this.additionalPrinterColumns = new ArrayList&lt;CustomResourceColumnDefinitionBuilder&gt;();}</span>
+<span class="nc" id="L44">            CustomResourceColumnDefinitionBuilder builder = new CustomResourceColumnDefinitionBuilder(item);</span>
+<span class="nc bnc" id="L45" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L46" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= additionalPrinterColumns.size()) { additionalPrinterColumns.add(builder); } else { additionalPrinterColumns.set(index, builder);}</span>
+<span class="nc" id="L47">             return (A)this;</span>
+    }
+
+    public A addToAdditionalPrinterColumns(CustomResourceColumnDefinition... items){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            if (this.additionalPrinterColumns == null) {this.additionalPrinterColumns = new ArrayList&lt;CustomResourceColumnDefinitionBuilder&gt;();}</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            for (CustomResourceColumnDefinition item : items) {CustomResourceColumnDefinitionBuilder builder = new CustomResourceColumnDefinitionBuilder(item);_visitables.add(builder);this.additionalPrinterColumns.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToAdditionalPrinterColumns(Collection&lt;CustomResourceColumnDefinition&gt; items){
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            if (this.additionalPrinterColumns == null) {this.additionalPrinterColumns = new ArrayList&lt;CustomResourceColumnDefinitionBuilder&gt;();}</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            for (CustomResourceColumnDefinition item : items) {CustomResourceColumnDefinitionBuilder builder = new CustomResourceColumnDefinitionBuilder(item);_visitables.add(builder);this.additionalPrinterColumns.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromAdditionalPrinterColumns(CustomResourceColumnDefinition... items){
+<span class="nc bnc" id="L61" title="All 4 branches missed.">            for (CustomResourceColumnDefinition item : items) {CustomResourceColumnDefinitionBuilder builder = new CustomResourceColumnDefinitionBuilder(item);_visitables.remove(builder);if (this.additionalPrinterColumns != null) {this.additionalPrinterColumns.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAdditionalPrinterColumns(Collection&lt;CustomResourceColumnDefinition&gt; items){
+<span class="nc bnc" id="L65" title="All 4 branches missed.">            for (CustomResourceColumnDefinition item : items) {CustomResourceColumnDefinitionBuilder builder = new CustomResourceColumnDefinitionBuilder(item);_visitables.remove(builder);if (this.additionalPrinterColumns != null) {this.additionalPrinterColumns.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildAdditionalPrinterColumns instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;CustomResourceColumnDefinition&gt; getAdditionalPrinterColumns(){
+<span class="nc" id="L74">            return build(additionalPrinterColumns);</span>
+    }
+
+    public List&lt;CustomResourceColumnDefinition&gt; buildAdditionalPrinterColumns(){
+<span class="nc" id="L78">            return build(additionalPrinterColumns);</span>
+    }
+
+    public CustomResourceColumnDefinition buildAdditionalPrinterColumn(int index){
+<span class="nc" id="L82">            return this.additionalPrinterColumns.get(index).build();</span>
+    }
+
+    public CustomResourceColumnDefinition buildFirstAdditionalPrinterColumn(){
+<span class="nc" id="L86">            return this.additionalPrinterColumns.get(0).build();</span>
+    }
+
+    public CustomResourceColumnDefinition buildLastAdditionalPrinterColumn(){
+<span class="nc" id="L90">            return this.additionalPrinterColumns.get(additionalPrinterColumns.size() - 1).build();</span>
+    }
+
+    public CustomResourceColumnDefinition buildMatchingAdditionalPrinterColumn(io.fabric8.kubernetes.api.builder.Predicate&lt;CustomResourceColumnDefinitionBuilder&gt; predicate){
+<span class="nc bnc" id="L94" title="All 4 branches missed.">            for (CustomResourceColumnDefinitionBuilder item: additionalPrinterColumns) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withAdditionalPrinterColumns(List&lt;CustomResourceColumnDefinition&gt; additionalPrinterColumns){
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            if (this.additionalPrinterColumns != null) { _visitables.removeAll(this.additionalPrinterColumns);}</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            if (additionalPrinterColumns != null) {this.additionalPrinterColumns = new ArrayList&lt;CustomResourceColumnDefinitionBuilder&gt;(); for (CustomResourceColumnDefinition item : additionalPrinterColumns){this.addToAdditionalPrinterColumns(item);}} else { this.additionalPrinterColumns = new ArrayList&lt;CustomResourceColumnDefinitionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withAdditionalPrinterColumns(CustomResourceColumnDefinition... additionalPrinterColumns){
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            if (this.additionalPrinterColumns != null) {this.additionalPrinterColumns.clear();}</span>
+<span class="nc bnc" id="L104" title="All 4 branches missed.">            if (additionalPrinterColumns != null) {for (CustomResourceColumnDefinition item :additionalPrinterColumns){ this.addToAdditionalPrinterColumns(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAdditionalPrinterColumns(){
+<span class="nc bnc" id="L108" title="All 4 branches missed.">            return additionalPrinterColumns != null &amp;&amp; !additionalPrinterColumns.isEmpty();</span>
+    }
+
+    public CustomResourceDefinitionVersionFluent.AdditionalPrinterColumnsNested&lt;A&gt; addNewAdditionalPrinterColumn(){
+<span class="nc" id="L112">            return new AdditionalPrinterColumnsNestedImpl();</span>
+    }
+
+    public CustomResourceDefinitionVersionFluent.AdditionalPrinterColumnsNested&lt;A&gt; addNewAdditionalPrinterColumnLike(CustomResourceColumnDefinition item){
+<span class="nc" id="L116">            return new AdditionalPrinterColumnsNestedImpl(-1, item);</span>
+    }
+
+    public CustomResourceDefinitionVersionFluent.AdditionalPrinterColumnsNested&lt;A&gt; setNewAdditionalPrinterColumnLike(int index,CustomResourceColumnDefinition item){
+<span class="nc" id="L120">            return new AdditionalPrinterColumnsNestedImpl(index, item);</span>
+    }
+
+    public CustomResourceDefinitionVersionFluent.AdditionalPrinterColumnsNested&lt;A&gt; editAdditionalPrinterColumn(int index){
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            if (additionalPrinterColumns.size() &lt;= index) throw new RuntimeException(&quot;Can't edit additionalPrinterColumns. Index exceeds size.&quot;);</span>
+<span class="nc" id="L125">            return setNewAdditionalPrinterColumnLike(index, buildAdditionalPrinterColumn(index));</span>
+    }
+
+    public CustomResourceDefinitionVersionFluent.AdditionalPrinterColumnsNested&lt;A&gt; editFirstAdditionalPrinterColumn(){
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            if (additionalPrinterColumns.size() == 0) throw new RuntimeException(&quot;Can't edit first additionalPrinterColumns. The list is empty.&quot;);</span>
+<span class="nc" id="L130">            return setNewAdditionalPrinterColumnLike(0, buildAdditionalPrinterColumn(0));</span>
+    }
+
+    public CustomResourceDefinitionVersionFluent.AdditionalPrinterColumnsNested&lt;A&gt; editLastAdditionalPrinterColumn(){
+<span class="nc" id="L134">            int index = additionalPrinterColumns.size() - 1;</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last additionalPrinterColumns. The list is empty.&quot;);</span>
+<span class="nc" id="L136">            return setNewAdditionalPrinterColumnLike(index, buildAdditionalPrinterColumn(index));</span>
+    }
+
+    public CustomResourceDefinitionVersionFluent.AdditionalPrinterColumnsNested&lt;A&gt; editMatchingAdditionalPrinterColumn(io.fabric8.kubernetes.api.builder.Predicate&lt;CustomResourceColumnDefinitionBuilder&gt; predicate){
+<span class="nc" id="L140">            int index = -1;</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            for (int i=0;i&lt;additionalPrinterColumns.size();i++) { </span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">            if (predicate.apply(additionalPrinterColumns.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching additionalPrinterColumns. No match found.&quot;);</span>
+<span class="nc" id="L145">            return setNewAdditionalPrinterColumnLike(index, buildAdditionalPrinterColumn(index));</span>
+    }
+
+    public String getName(){
+<span class="nc" id="L149">            return this.name;</span>
+    }
+
+    public A withName(String name){
+<span class="nc" id="L153">            this.name=name; return (A) this;</span>
+    }
+
+    public Boolean hasName(){
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            return this.name != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSchema instead.
+ * @return The buildable object.
+ */
+@Deprecated public CustomResourceValidation getSchema(){
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            return this.schema!=null?this.schema.build():null;</span>
+    }
+
+    public CustomResourceValidation buildSchema(){
+<span class="nc bnc" id="L170" title="All 2 branches missed.">            return this.schema!=null?this.schema.build():null;</span>
+    }
+
+    public A withSchema(CustomResourceValidation schema){
+<span class="nc" id="L174">            _visitables.remove(this.schema);</span>
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            if (schema!=null){ this.schema= new CustomResourceValidationBuilder(schema); _visitables.add(this.schema);} return (A) this;</span>
+    }
+
+    public Boolean hasSchema(){
+<span class="nc bnc" id="L179" title="All 2 branches missed.">            return this.schema != null;</span>
+    }
+
+    public CustomResourceDefinitionVersionFluent.SchemaNested&lt;A&gt; withNewSchema(){
+<span class="nc" id="L183">            return new SchemaNestedImpl();</span>
+    }
+
+    public CustomResourceDefinitionVersionFluent.SchemaNested&lt;A&gt; withNewSchemaLike(CustomResourceValidation item){
+<span class="nc" id="L187">            return new SchemaNestedImpl(item);</span>
+    }
+
+    public CustomResourceDefinitionVersionFluent.SchemaNested&lt;A&gt; editSchema(){
+<span class="nc" id="L191">            return withNewSchemaLike(getSchema());</span>
+    }
+
+    public CustomResourceDefinitionVersionFluent.SchemaNested&lt;A&gt; editOrNewSchema(){
+<span class="nc bnc" id="L195" title="All 2 branches missed.">            return withNewSchemaLike(getSchema() != null ? getSchema(): new CustomResourceValidationBuilder().build());</span>
+    }
+
+    public CustomResourceDefinitionVersionFluent.SchemaNested&lt;A&gt; editOrNewSchemaLike(CustomResourceValidation item){
+<span class="nc bnc" id="L199" title="All 2 branches missed.">            return withNewSchemaLike(getSchema() != null ? getSchema(): item);</span>
+    }
+
+    public Boolean isServed(){
+<span class="nc" id="L203">            return this.served;</span>
+    }
+
+    public A withServed(Boolean served){
+<span class="nc" id="L207">            this.served=served; return (A) this;</span>
+    }
+
+    public Boolean hasServed(){
+<span class="nc bnc" id="L211" title="All 2 branches missed.">            return this.served != null;</span>
+    }
+
+    public A withNewServed(String arg1){
+<span class="nc" id="L215">            return (A)withServed(new Boolean(arg1));</span>
+    }
+
+    public A withNewServed(boolean arg1){
+<span class="nc" id="L219">            return (A)withServed(new Boolean(arg1));</span>
+    }
+
+    public Boolean isStorage(){
+<span class="nc" id="L223">            return this.storage;</span>
+    }
+
+    public A withStorage(Boolean storage){
+<span class="nc" id="L227">            this.storage=storage; return (A) this;</span>
+    }
+
+    public Boolean hasStorage(){
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            return this.storage != null;</span>
+    }
+
+    public A withNewStorage(String arg1){
+<span class="nc" id="L235">            return (A)withStorage(new Boolean(arg1));</span>
+    }
+
+    public A withNewStorage(boolean arg1){
+<span class="nc" id="L239">            return (A)withStorage(new Boolean(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSubresources instead.
+ * @return The buildable object.
+ */
+@Deprecated public CustomResourceSubresources getSubresources(){
+<span class="nc bnc" id="L248" title="All 2 branches missed.">            return this.subresources!=null?this.subresources.build():null;</span>
+    }
+
+    public CustomResourceSubresources buildSubresources(){
+<span class="nc bnc" id="L252" title="All 2 branches missed.">            return this.subresources!=null?this.subresources.build():null;</span>
+    }
+
+    public A withSubresources(CustomResourceSubresources subresources){
+<span class="nc" id="L256">            _visitables.remove(this.subresources);</span>
+<span class="nc bnc" id="L257" title="All 2 branches missed.">            if (subresources!=null){ this.subresources= new CustomResourceSubresourcesBuilder(subresources); _visitables.add(this.subresources);} return (A) this;</span>
+    }
+
+    public Boolean hasSubresources(){
+<span class="nc bnc" id="L261" title="All 2 branches missed.">            return this.subresources != null;</span>
+    }
+
+    public CustomResourceDefinitionVersionFluent.SubresourcesNested&lt;A&gt; withNewSubresources(){
+<span class="nc" id="L265">            return new SubresourcesNestedImpl();</span>
+    }
+
+    public CustomResourceDefinitionVersionFluent.SubresourcesNested&lt;A&gt; withNewSubresourcesLike(CustomResourceSubresources item){
+<span class="nc" id="L269">            return new SubresourcesNestedImpl(item);</span>
+    }
+
+    public CustomResourceDefinitionVersionFluent.SubresourcesNested&lt;A&gt; editSubresources(){
+<span class="nc" id="L273">            return withNewSubresourcesLike(getSubresources());</span>
+    }
+
+    public CustomResourceDefinitionVersionFluent.SubresourcesNested&lt;A&gt; editOrNewSubresources(){
+<span class="nc bnc" id="L277" title="All 2 branches missed.">            return withNewSubresourcesLike(getSubresources() != null ? getSubresources(): new CustomResourceSubresourcesBuilder().build());</span>
+    }
+
+    public CustomResourceDefinitionVersionFluent.SubresourcesNested&lt;A&gt; editOrNewSubresourcesLike(CustomResourceSubresources item){
+<span class="nc bnc" id="L281" title="All 2 branches missed.">            return withNewSubresourcesLike(getSubresources() != null ? getSubresources(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L285" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L286" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L287" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L288">            CustomResourceDefinitionVersionFluentImpl that = (CustomResourceDefinitionVersionFluentImpl) o;</span>
+<span class="nc bnc" id="L289" title="All 6 branches missed.">            if (additionalPrinterColumns != null ? !additionalPrinterColumns.equals(that.additionalPrinterColumns) :that.additionalPrinterColumns != null) return false;</span>
+<span class="nc bnc" id="L290" title="All 6 branches missed.">            if (name != null ? !name.equals(that.name) :that.name != null) return false;</span>
+<span class="nc bnc" id="L291" title="All 6 branches missed.">            if (schema != null ? !schema.equals(that.schema) :that.schema != null) return false;</span>
+<span class="nc bnc" id="L292" title="All 6 branches missed.">            if (served != null ? !served.equals(that.served) :that.served != null) return false;</span>
+<span class="nc bnc" id="L293" title="All 6 branches missed.">            if (storage != null ? !storage.equals(that.storage) :that.storage != null) return false;</span>
+<span class="nc bnc" id="L294" title="All 6 branches missed.">            if (subresources != null ? !subresources.equals(that.subresources) :that.subresources != null) return false;</span>
+<span class="nc" id="L295">            return true;</span>
+    }
+
+
+    public class AdditionalPrinterColumnsNestedImpl&lt;N&gt; extends CustomResourceColumnDefinitionFluentImpl&lt;CustomResourceDefinitionVersionFluent.AdditionalPrinterColumnsNested&lt;N&gt;&gt; implements CustomResourceDefinitionVersionFluent.AdditionalPrinterColumnsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CustomResourceColumnDefinitionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L304">            AdditionalPrinterColumnsNestedImpl(int index,CustomResourceColumnDefinition item){</span>
+<span class="nc" id="L305">                    this.index = index;</span>
+<span class="nc" id="L306">                    this.builder = new CustomResourceColumnDefinitionBuilder(this, item);</span>
+<span class="nc" id="L307">            }</span>
+<span class="nc" id="L308">            AdditionalPrinterColumnsNestedImpl(){</span>
+<span class="nc" id="L309">                    this.index = -1;</span>
+<span class="nc" id="L310">                    this.builder = new CustomResourceColumnDefinitionBuilder(this);</span>
+<span class="nc" id="L311">            }</span>
+    
+    public N and(){
+<span class="nc" id="L314">            return (N) CustomResourceDefinitionVersionFluentImpl.this.setToAdditionalPrinterColumns(index, builder.build());</span>
+    }
+    public N endAdditionalPrinterColumn(){
+<span class="nc" id="L317">            return and();</span>
+    }
+
+}
+    public class SchemaNestedImpl&lt;N&gt; extends CustomResourceValidationFluentImpl&lt;CustomResourceDefinitionVersionFluent.SchemaNested&lt;N&gt;&gt; implements CustomResourceDefinitionVersionFluent.SchemaNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CustomResourceValidationBuilder builder;
+    
+<span class="nc" id="L325">            SchemaNestedImpl(CustomResourceValidation item){</span>
+<span class="nc" id="L326">                    this.builder = new CustomResourceValidationBuilder(this, item);</span>
+<span class="nc" id="L327">            }</span>
+<span class="nc" id="L328">            SchemaNestedImpl(){</span>
+<span class="nc" id="L329">                    this.builder = new CustomResourceValidationBuilder(this);</span>
+<span class="nc" id="L330">            }</span>
+    
+    public N and(){
+<span class="nc" id="L333">            return (N) CustomResourceDefinitionVersionFluentImpl.this.withSchema(builder.build());</span>
+    }
+    public N endSchema(){
+<span class="nc" id="L336">            return and();</span>
+    }
+
+}
+    public class SubresourcesNestedImpl&lt;N&gt; extends CustomResourceSubresourcesFluentImpl&lt;CustomResourceDefinitionVersionFluent.SubresourcesNested&lt;N&gt;&gt; implements CustomResourceDefinitionVersionFluent.SubresourcesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CustomResourceSubresourcesBuilder builder;
+    
+<span class="nc" id="L344">            SubresourcesNestedImpl(CustomResourceSubresources item){</span>
+<span class="nc" id="L345">                    this.builder = new CustomResourceSubresourcesBuilder(this, item);</span>
+<span class="nc" id="L346">            }</span>
+<span class="nc" id="L347">            SubresourcesNestedImpl(){</span>
+<span class="nc" id="L348">                    this.builder = new CustomResourceSubresourcesBuilder(this);</span>
+<span class="nc" id="L349">            }</span>
+    
+    public N and(){
+<span class="nc" id="L352">            return (N) CustomResourceDefinitionVersionFluentImpl.this.withSubresources(builder.build());</span>
+    }
+    public N endSubresources(){
+<span class="nc" id="L355">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

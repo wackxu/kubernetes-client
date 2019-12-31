@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StorageClass.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.storage</a> &gt; <span class="el_source">StorageClass.java</span></div><h1>StorageClass.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.storage;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.TopologySelectorTerm;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import io.fabric8.kubernetes.model.annotation.ApiGroup;
+import io.fabric8.kubernetes.model.annotation.ApiVersion;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import io.sundr.transform.annotations.VelocityTransformation;
+import io.sundr.transform.annotations.VelocityTransformations;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;allowVolumeExpansion&quot;,
+    &quot;allowedTopologies&quot;,
+    &quot;mountOptions&quot;,
+    &quot;parameters&quot;,
+    &quot;provisioner&quot;,
+    &quot;reclaimPolicy&quot;,
+    &quot;volumeBindingMode&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L52">@ToString</span>
+<span class="nc bnc" id="L53" title="All 94 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+@ApiVersion(&quot;v1&quot;)
+@ApiGroup(&quot;storage.k8s.io&quot;)
+@VelocityTransformations({
+    @VelocityTransformation(value = &quot;/manifest.vm&quot;, outputPath = &quot;kubernetes.properties&quot;, gather = true)
+})
+public class StorageClass implements HasMetadata
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;allowVolumeExpansion&quot;)
+    private Boolean allowVolumeExpansion;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L73">    @JsonProperty(&quot;allowedTopologies&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;TopologySelectorTerm&gt; allowedTopologies = new ArrayList&lt;TopologySelectorTerm&gt;();
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L82">    @NotNull</span>
+    @JsonProperty(&quot;apiVersion&quot;)
+    private java.lang.String apiVersion = &quot;storage.k8s.io/v1&quot;;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L90">    @NotNull</span>
+    @JsonProperty(&quot;kind&quot;)
+    private java.lang.String kind = &quot;StorageClass&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    @Valid
+    @CheckObjectMeta(regexp = &quot;^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$&quot;, max = 253)
+    private ObjectMeta metadata;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L105">    @JsonProperty(&quot;mountOptions&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;java.lang.String&gt; mountOptions = new ArrayList&lt;java.lang.String&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;parameters&quot;)
+    @Valid
+    private Map&lt;String, String&gt; parameters;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;provisioner&quot;)
+    private java.lang.String provisioner;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;reclaimPolicy&quot;)
+    private java.lang.String reclaimPolicy;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;volumeBindingMode&quot;)
+    private java.lang.String volumeBindingMode;
+<span class="nc" id="L134">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L141">    public StorageClass() {</span>
+<span class="nc" id="L142">    }</span>
+
+    /**
+     * 
+     * @param volumeBindingMode
+     * @param metadata
+     * @param provisioner
+     * @param apiVersion
+     * @param allowVolumeExpansion
+     * @param reclaimPolicy
+     * @param kind
+     * @param mountOptions
+     * @param parameters
+     * @param allowedTopologies
+     */
+<span class="nc" id="L157">    public StorageClass(Boolean allowVolumeExpansion, List&lt;TopologySelectorTerm&gt; allowedTopologies, java.lang.String apiVersion, java.lang.String kind, ObjectMeta metadata, List&lt;java.lang.String&gt; mountOptions, Map&lt;String, String&gt; parameters, java.lang.String provisioner, java.lang.String reclaimPolicy, java.lang.String volumeBindingMode) {</span>
+<span class="nc" id="L158">        this.allowVolumeExpansion = allowVolumeExpansion;</span>
+<span class="nc" id="L159">        this.allowedTopologies = allowedTopologies;</span>
+<span class="nc" id="L160">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L161">        this.kind = kind;</span>
+<span class="nc" id="L162">        this.metadata = metadata;</span>
+<span class="nc" id="L163">        this.mountOptions = mountOptions;</span>
+<span class="nc" id="L164">        this.parameters = parameters;</span>
+<span class="nc" id="L165">        this.provisioner = provisioner;</span>
+<span class="nc" id="L166">        this.reclaimPolicy = reclaimPolicy;</span>
+<span class="nc" id="L167">        this.volumeBindingMode = volumeBindingMode;</span>
+<span class="nc" id="L168">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The allowVolumeExpansion
+     */
+    @JsonProperty(&quot;allowVolumeExpansion&quot;)
+    public Boolean getAllowVolumeExpansion() {
+<span class="nc" id="L178">        return allowVolumeExpansion;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param allowVolumeExpansion
+     *     The allowVolumeExpansion
+     */
+    @JsonProperty(&quot;allowVolumeExpansion&quot;)
+    public void setAllowVolumeExpansion(Boolean allowVolumeExpansion) {
+<span class="nc" id="L189">        this.allowVolumeExpansion = allowVolumeExpansion;</span>
+<span class="nc" id="L190">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The allowedTopologies
+     */
+    @JsonProperty(&quot;allowedTopologies&quot;)
+    public List&lt;TopologySelectorTerm&gt; getAllowedTopologies() {
+<span class="nc" id="L200">        return allowedTopologies;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param allowedTopologies
+     *     The allowedTopologies
+     */
+    @JsonProperty(&quot;allowedTopologies&quot;)
+    public void setAllowedTopologies(List&lt;TopologySelectorTerm&gt; allowedTopologies) {
+<span class="nc" id="L211">        this.allowedTopologies = allowedTopologies;</span>
+<span class="nc" id="L212">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public java.lang.String getApiVersion() {
+<span class="nc" id="L223">        return apiVersion;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param apiVersion
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public void setApiVersion(java.lang.String apiVersion) {
+<span class="nc" id="L235">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L236">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public java.lang.String getKind() {
+<span class="nc" id="L247">        return kind;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param kind
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public void setKind(java.lang.String kind) {
+<span class="nc" id="L259">        this.kind = kind;</span>
+<span class="nc" id="L260">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public ObjectMeta getMetadata() {
+<span class="nc" id="L270">        return metadata;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param metadata
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public void setMetadata(ObjectMeta metadata) {
+<span class="nc" id="L281">        this.metadata = metadata;</span>
+<span class="nc" id="L282">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The mountOptions
+     */
+    @JsonProperty(&quot;mountOptions&quot;)
+    public List&lt;java.lang.String&gt; getMountOptions() {
+<span class="nc" id="L292">        return mountOptions;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param mountOptions
+     *     The mountOptions
+     */
+    @JsonProperty(&quot;mountOptions&quot;)
+    public void setMountOptions(List&lt;java.lang.String&gt; mountOptions) {
+<span class="nc" id="L303">        this.mountOptions = mountOptions;</span>
+<span class="nc" id="L304">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The parameters
+     */
+    @JsonProperty(&quot;parameters&quot;)
+    public Map&lt;String, String&gt; getParameters() {
+<span class="nc" id="L314">        return parameters;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param parameters
+     *     The parameters
+     */
+    @JsonProperty(&quot;parameters&quot;)
+    public void setParameters(Map&lt;String, String&gt; parameters) {
+<span class="nc" id="L325">        this.parameters = parameters;</span>
+<span class="nc" id="L326">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The provisioner
+     */
+    @JsonProperty(&quot;provisioner&quot;)
+    public java.lang.String getProvisioner() {
+<span class="nc" id="L336">        return provisioner;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param provisioner
+     *     The provisioner
+     */
+    @JsonProperty(&quot;provisioner&quot;)
+    public void setProvisioner(java.lang.String provisioner) {
+<span class="nc" id="L347">        this.provisioner = provisioner;</span>
+<span class="nc" id="L348">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The reclaimPolicy
+     */
+    @JsonProperty(&quot;reclaimPolicy&quot;)
+    public java.lang.String getReclaimPolicy() {
+<span class="nc" id="L358">        return reclaimPolicy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param reclaimPolicy
+     *     The reclaimPolicy
+     */
+    @JsonProperty(&quot;reclaimPolicy&quot;)
+    public void setReclaimPolicy(java.lang.String reclaimPolicy) {
+<span class="nc" id="L369">        this.reclaimPolicy = reclaimPolicy;</span>
+<span class="nc" id="L370">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The volumeBindingMode
+     */
+    @JsonProperty(&quot;volumeBindingMode&quot;)
+    public java.lang.String getVolumeBindingMode() {
+<span class="nc" id="L380">        return volumeBindingMode;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param volumeBindingMode
+     *     The volumeBindingMode
+     */
+    @JsonProperty(&quot;volumeBindingMode&quot;)
+    public void setVolumeBindingMode(java.lang.String volumeBindingMode) {
+<span class="nc" id="L391">        this.volumeBindingMode = volumeBindingMode;</span>
+<span class="nc" id="L392">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L396">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L401">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L402">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

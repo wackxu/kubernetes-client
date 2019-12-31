@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PriorityClassListFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.scheduling</a> &gt; <span class="el_source">PriorityClassListFluentImpl.java</span></div><h1>PriorityClassListFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.scheduling;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ListMeta;
+import io.fabric8.kubernetes.api.model.ListMetaBuilder;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.ListMetaFluentImpl;
+import java.util.Collection;
+import java.lang.Object;
+
+public class PriorityClassListFluentImpl&lt;A extends PriorityClassListFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements PriorityClassListFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private List&lt;PriorityClassBuilder&gt; items;
+    private String kind;
+    private ListMetaBuilder metadata;
+
+<span class="nc" id="L27">    public PriorityClassListFluentImpl(){</span>
+<span class="nc" id="L28">    }</span>
+<span class="nc" id="L29">    public PriorityClassListFluentImpl(PriorityClassList instance){</span>
+<span class="nc" id="L30">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L31">            this.withItems(instance.getItems()); </span>
+<span class="nc" id="L32">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L33">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L34">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L37">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L41">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public A addToItems(int index,PriorityClass item){
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            if (this.items == null) {this.items = new ArrayList&lt;PriorityClassBuilder&gt;();}</span>
+<span class="nc bnc" id="L50" title="All 4 branches missed.">            PriorityClassBuilder builder = new PriorityClassBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.items.add(index &gt;= 0 ? index : items.size(), builder); return (A)this;</span>
+    }
+
+    public A setToItems(int index,PriorityClass item){
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            if (this.items == null) {this.items = new ArrayList&lt;PriorityClassBuilder&gt;();}</span>
+<span class="nc" id="L55">            PriorityClassBuilder builder = new PriorityClassBuilder(item);</span>
+<span class="nc bnc" id="L56" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L57" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= items.size()) { items.add(builder); } else { items.set(index, builder);}</span>
+<span class="nc" id="L58">             return (A)this;</span>
+    }
+
+    public A addToItems(PriorityClass... items){
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            if (this.items == null) {this.items = new ArrayList&lt;PriorityClassBuilder&gt;();}</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            for (PriorityClass item : items) {PriorityClassBuilder builder = new PriorityClassBuilder(item);_visitables.add(builder);this.items.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToItems(Collection&lt;PriorityClass&gt; items){
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            if (this.items == null) {this.items = new ArrayList&lt;PriorityClassBuilder&gt;();}</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            for (PriorityClass item : items) {PriorityClassBuilder builder = new PriorityClassBuilder(item);_visitables.add(builder);this.items.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromItems(PriorityClass... items){
+<span class="nc bnc" id="L72" title="All 4 branches missed.">            for (PriorityClass item : items) {PriorityClassBuilder builder = new PriorityClassBuilder(item);_visitables.remove(builder);if (this.items != null) {this.items.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromItems(Collection&lt;PriorityClass&gt; items){
+<span class="nc bnc" id="L76" title="All 4 branches missed.">            for (PriorityClass item : items) {PriorityClassBuilder builder = new PriorityClassBuilder(item);_visitables.remove(builder);if (this.items != null) {this.items.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildItems instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;PriorityClass&gt; getItems(){
+<span class="nc" id="L85">            return build(items);</span>
+    }
+
+    public List&lt;PriorityClass&gt; buildItems(){
+<span class="nc" id="L89">            return build(items);</span>
+    }
+
+    public PriorityClass buildItem(int index){
+<span class="nc" id="L93">            return this.items.get(index).build();</span>
+    }
+
+    public PriorityClass buildFirstItem(){
+<span class="nc" id="L97">            return this.items.get(0).build();</span>
+    }
+
+    public PriorityClass buildLastItem(){
+<span class="nc" id="L101">            return this.items.get(items.size() - 1).build();</span>
+    }
+
+    public PriorityClass buildMatchingItem(io.fabric8.kubernetes.api.builder.Predicate&lt;PriorityClassBuilder&gt; predicate){
+<span class="nc bnc" id="L105" title="All 4 branches missed.">            for (PriorityClassBuilder item: items) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withItems(List&lt;PriorityClass&gt; items){
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            if (this.items != null) { _visitables.removeAll(this.items);}</span>
+<span class="nc bnc" id="L110" title="All 4 branches missed.">            if (items != null) {this.items = new ArrayList&lt;PriorityClassBuilder&gt;(); for (PriorityClass item : items){this.addToItems(item);}} else { this.items = new ArrayList&lt;PriorityClassBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withItems(PriorityClass... items){
+<span class="nc bnc" id="L114" title="All 2 branches missed.">            if (this.items != null) {this.items.clear();}</span>
+<span class="nc bnc" id="L115" title="All 4 branches missed.">            if (items != null) {for (PriorityClass item :items){ this.addToItems(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasItems(){
+<span class="nc bnc" id="L119" title="All 4 branches missed.">            return items != null &amp;&amp; !items.isEmpty();</span>
+    }
+
+    public PriorityClassListFluent.ItemsNested&lt;A&gt; addNewItem(){
+<span class="nc" id="L123">            return new ItemsNestedImpl();</span>
+    }
+
+    public PriorityClassListFluent.ItemsNested&lt;A&gt; addNewItemLike(PriorityClass item){
+<span class="nc" id="L127">            return new ItemsNestedImpl(-1, item);</span>
+    }
+
+    public PriorityClassListFluent.ItemsNested&lt;A&gt; setNewItemLike(int index,PriorityClass item){
+<span class="nc" id="L131">            return new ItemsNestedImpl(index, item);</span>
+    }
+
+    public PriorityClassListFluent.ItemsNested&lt;A&gt; editItem(int index){
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            if (items.size() &lt;= index) throw new RuntimeException(&quot;Can't edit items. Index exceeds size.&quot;);</span>
+<span class="nc" id="L136">            return setNewItemLike(index, buildItem(index));</span>
+    }
+
+    public PriorityClassListFluent.ItemsNested&lt;A&gt; editFirstItem(){
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            if (items.size() == 0) throw new RuntimeException(&quot;Can't edit first items. The list is empty.&quot;);</span>
+<span class="nc" id="L141">            return setNewItemLike(0, buildItem(0));</span>
+    }
+
+    public PriorityClassListFluent.ItemsNested&lt;A&gt; editLastItem(){
+<span class="nc" id="L145">            int index = items.size() - 1;</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last items. The list is empty.&quot;);</span>
+<span class="nc" id="L147">            return setNewItemLike(index, buildItem(index));</span>
+    }
+
+    public PriorityClassListFluent.ItemsNested&lt;A&gt; editMatchingItem(io.fabric8.kubernetes.api.builder.Predicate&lt;PriorityClassBuilder&gt; predicate){
+<span class="nc" id="L151">            int index = -1;</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            for (int i=0;i&lt;items.size();i++) { </span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            if (predicate.apply(items.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching items. No match found.&quot;);</span>
+<span class="nc" id="L156">            return setNewItemLike(index, buildItem(index));</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L160">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L164">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L168" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ListMeta getMetadata(){
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ListMeta buildMetadata(){
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ListMeta metadata){
+<span class="nc" id="L185">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ListMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L190" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public A withNewMetadata(String _continue,String resourceVersion,String selfLink){
+<span class="nc" id="L194">            return (A)withMetadata(new ListMeta(_continue, resourceVersion, selfLink));</span>
+    }
+
+    public PriorityClassListFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L198">            return new MetadataNestedImpl();</span>
+    }
+
+    public PriorityClassListFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ListMeta item){
+<span class="nc" id="L202">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public PriorityClassListFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L206">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public PriorityClassListFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ListMetaBuilder().build());</span>
+    }
+
+    public PriorityClassListFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ListMeta item){
+<span class="nc bnc" id="L214" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L218" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L219" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L221">            PriorityClassListFluentImpl that = (PriorityClassListFluentImpl) o;</span>
+<span class="nc bnc" id="L222" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L223" title="All 6 branches missed.">            if (items != null ? !items.equals(that.items) :that.items != null) return false;</span>
+<span class="nc bnc" id="L224" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L225" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc" id="L226">            return true;</span>
+    }
+
+
+    public class ItemsNestedImpl&lt;N&gt; extends PriorityClassFluentImpl&lt;PriorityClassListFluent.ItemsNested&lt;N&gt;&gt; implements PriorityClassListFluent.ItemsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PriorityClassBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L235">            ItemsNestedImpl(int index,PriorityClass item){</span>
+<span class="nc" id="L236">                    this.index = index;</span>
+<span class="nc" id="L237">                    this.builder = new PriorityClassBuilder(this, item);</span>
+<span class="nc" id="L238">            }</span>
+<span class="nc" id="L239">            ItemsNestedImpl(){</span>
+<span class="nc" id="L240">                    this.index = -1;</span>
+<span class="nc" id="L241">                    this.builder = new PriorityClassBuilder(this);</span>
+<span class="nc" id="L242">            }</span>
+    
+    public N and(){
+<span class="nc" id="L245">            return (N) PriorityClassListFluentImpl.this.setToItems(index, builder.build());</span>
+    }
+    public N endItem(){
+<span class="nc" id="L248">            return and();</span>
+    }
+
+}
+    public class MetadataNestedImpl&lt;N&gt; extends ListMetaFluentImpl&lt;PriorityClassListFluent.MetadataNested&lt;N&gt;&gt; implements PriorityClassListFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ListMetaBuilder builder;
+    
+<span class="nc" id="L256">            MetadataNestedImpl(ListMeta item){</span>
+<span class="nc" id="L257">                    this.builder = new ListMetaBuilder(this, item);</span>
+<span class="nc" id="L258">            }</span>
+<span class="nc" id="L259">            MetadataNestedImpl(){</span>
+<span class="nc" id="L260">                    this.builder = new ListMetaBuilder(this);</span>
+<span class="nc" id="L261">            }</span>
+    
+    public N and(){
+<span class="nc" id="L264">            return (N) PriorityClassListFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L267">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

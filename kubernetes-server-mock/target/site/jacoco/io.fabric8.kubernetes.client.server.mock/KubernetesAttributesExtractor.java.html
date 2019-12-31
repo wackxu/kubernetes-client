@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>KubernetesAttributesExtractor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Server Mock</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.server.mock</a> &gt; <span class="el_source">KubernetesAttributesExtractor.java</span></div><h1>KubernetesAttributesExtractor.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.server.mock;
+
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.client.utils.Serialization;
+import io.fabric8.kubernetes.client.utils.Utils;
+import io.fabric8.mockwebserver.crud.Attribute;
+import io.fabric8.mockwebserver.crud.AttributeExtractor;
+import io.fabric8.mockwebserver.crud.AttributeSet;
+import java.util.Map;
+import okhttp3.HttpUrl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+<span class="fc" id="L35">public class KubernetesAttributesExtractor implements AttributeExtractor&lt;HasMetadata&gt; {</span>
+
+<span class="fc" id="L37">  private static final Logger LOGGER = LoggerFactory.getLogger(KubernetesAttributesExtractor.class);</span>
+
+  public static final String KEY = &quot;key&quot;;
+  public static final String KIND = &quot;kind&quot;;
+  public static final String NAME = &quot;name&quot;;
+  public static final String NAMESPACE = &quot;namespace&quot;;
+  public static final String VALUE = &quot;value&quot;;
+
+  private static final String API_GROUP = &quot;/o?api(s/[a-zA-Z0-9-_.]+)?&quot;;
+  private static final String VERSION_GROUP = &quot;(/(?&lt;version&gt;[a-zA-Z0-9-_]+))?&quot;;
+  private static final String KIND_GROUP = &quot;/(?&lt;kind&gt;[^/?]+)&quot;;
+  private static final String NAME_GROUP = &quot;(/(?&lt;name&gt;[^/?]+))?&quot;;
+  private static final String NAMESPACE_GROUP = &quot;(/namespaces/(?&lt;namespace&gt;[^/]+))?&quot;;
+  private static final String END_GROUP = &quot;[^ /]*&quot;;
+
+<span class="fc" id="L52">  protected static final Pattern PATTERN = Pattern.compile(API_GROUP + VERSION_GROUP + NAMESPACE_GROUP + KIND_GROUP + NAME_GROUP + END_GROUP);</span>
+
+  private static final String LABEL_KEY_PREFIX = &quot;labels:&quot;;
+  private static final String KEY_GROUP = &quot;(?&lt;key&gt;[a-zA-Z0-9-_./]+)&quot;;
+  // Matches a==b and a=b but not a!=b.
+  private static final String EQUALITY_GROUP = &quot;(==|(?&lt;!!)=)&quot;;
+  private static final String VALUE_GROUP = &quot;(?&lt;value&gt;[a-zA-Z0-9-_.]+)&quot;;
+<span class="fc" id="L59">  private static final Pattern LABEL_REQUIREMENT_EQUALITY = Pattern.compile(KEY_GROUP + EQUALITY_GROUP + VALUE_GROUP);</span>
+
+  // These elements are added to the path/query fragment so that it can be parsed by HttpUrl. Their
+  // values are not important, HttpUrl expects the scheme to be http or https.
+  private static final String SCHEME = &quot;http&quot;;
+  private static final String HOST = &quot;localhost&quot;;
+
+  private HttpUrl parseUrlFromPathAndQuery(String s) {
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">    if (!s.startsWith(&quot;/&quot;)) {</span>
+<span class="nc" id="L68">      s = &quot;/&quot; + s;</span>
+    }
+<span class="fc" id="L70">    return HttpUrl.parse(String.format(&quot;%s://%s%s&quot;, SCHEME, HOST, s));</span>
+  }
+
+  @Override
+  public AttributeSet fromPath(String s) {
+<span class="pc bpc" id="L75" title="2 of 4 branches missed.">    if (s == null || s.isEmpty()) {</span>
+<span class="nc" id="L76">      return new AttributeSet();</span>
+    }
+
+    //Get paths
+<span class="fc" id="L80">    HttpUrl url = parseUrlFromPathAndQuery(s);</span>
+<span class="fc" id="L81">    Matcher m = PATTERN.matcher(url.encodedPath());</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">    if (m.matches()) {</span>
+<span class="fc" id="L83">      AttributeSet set = extract(m);</span>
+<span class="fc" id="L84">      set = AttributeSet.merge(set, extractQueryParameters(url));</span>
+<span class="fc" id="L85">      LOGGER.debug(&quot;fromPath {} : {}&quot;, s, set);</span>
+<span class="fc" id="L86">      return set;</span>
+    }
+<span class="nc" id="L88">    return new AttributeSet();</span>
+  }
+
+  @Override
+  public AttributeSet fromResource(String s) {
+<span class="nc bnc" id="L93" title="All 4 branches missed.">    if (s == null || s.isEmpty()) {</span>
+<span class="nc" id="L94">      return new AttributeSet();</span>
+    }
+
+<span class="nc" id="L97">    HasMetadata h = toKubernetesResource(s);</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">    if (h != null) {</span>
+<span class="nc" id="L99">      return extract(h);</span>
+    }
+
+<span class="nc" id="L102">    return new AttributeSet();</span>
+  }
+
+
+  @Override
+  public AttributeSet extract(String s) {
+<span class="pc bpc" id="L108" title="2 of 4 branches missed.">    if (s == null || s.isEmpty()) {</span>
+<span class="nc" id="L109">      return new AttributeSet();</span>
+    }
+
+<span class="fc" id="L112">    HasMetadata h = toKubernetesResource(s);</span>
+<span class="pc bpc" id="L113" title="1 of 2 branches missed.">    if (h != null) {</span>
+<span class="nc" id="L114">      return extract(h);</span>
+    }
+
+<span class="fc" id="L117">    return fromPath(s);</span>
+  }
+
+
+  @Override
+  public AttributeSet extract(HasMetadata o) {
+<span class="fc" id="L123">    AttributeSet attributes = new AttributeSet();</span>
+<span class="pc bpc" id="L124" title="1 of 2 branches missed.">    if (!Utils.isNullOrEmpty(o.getKind())) {</span>
+<span class="fc" id="L125">      attributes = attributes.add(new Attribute(KIND, o.getKind().toLowerCase()));</span>
+    }
+
+<span class="fc bfc" id="L128" title="All 2 branches covered.">    if (!Utils.isNullOrEmpty(o.getMetadata().getName())) {</span>
+<span class="fc" id="L129">      attributes = attributes.add(new Attribute(NAME, o.getMetadata().getName()));</span>
+    }
+
+<span class="fc bfc" id="L132" title="All 2 branches covered.">    if (!Utils.isNullOrEmpty(o.getMetadata().getNamespace())) {</span>
+<span class="fc" id="L133">      attributes = attributes.add(new Attribute(NAMESPACE, o.getMetadata().getNamespace()));</span>
+    }
+
+<span class="pc bpc" id="L136" title="1 of 2 branches missed.">    if (o.getMetadata().getLabels() != null) {</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">      for (Map.Entry&lt;String, String&gt; label : o.getMetadata().getLabels().entrySet()) {</span>
+<span class="fc" id="L138">        attributes = attributes.add(new Attribute(LABEL_KEY_PREFIX + label.getKey(), label.getValue()));</span>
+<span class="fc" id="L139">      }</span>
+    }
+<span class="fc" id="L141">    return attributes;</span>
+  }
+
+  private static AttributeSet extract(Matcher m) {
+<span class="fc" id="L145">    AttributeSet attributes = new AttributeSet();</span>
+<span class="pc bpc" id="L146" title="1 of 2 branches missed.">    if (m.matches()) {</span>
+<span class="fc" id="L147">      String kind = m.group(KIND);</span>
+<span class="pc bpc" id="L148" title="1 of 2 branches missed.">      if (!Utils.isNullOrEmpty(kind)) {</span>
+
+        //Poor mans to singular.
+        //Special Case for PodSecurityPolicies and NetworkPolicies because
+        //we need to return PodSecurityPolicy and NetworkPolicy respectively
+        //because it is returning PodSecurityPolicie and NetworkPolicie now
+        //Right now not adding generalised case of &quot;ies&quot; because it may break other resource not sure
+
+<span class="fc bfc" id="L156" title="All 2 branches covered.">        if (kind.endsWith(&quot;ses&quot;)) {</span>
+<span class="fc" id="L157">          kind = kind.substring(0, kind.length() - 2);</span>
+        }
+<span class="pc bpc" id="L159" title="1 of 2 branches missed.">        else if (kind.equalsIgnoreCase(&quot;PodSecurityPolicies&quot;) ||</span>
+<span class="pc bpc" id="L160" title="1 of 2 branches missed.">          kind.equalsIgnoreCase(&quot;NetworkPolicies&quot;)){</span>
+<span class="nc" id="L161">          kind = kind.substring(0,kind.length() - 3) + &quot;y&quot;;</span>
+        }
+<span class="pc bpc" id="L163" title="1 of 2 branches missed.">        else if (kind.equalsIgnoreCase(&quot;securityContextConstraints&quot;)){</span>
+          // do nothing
+          // because its a case which is ending with s but its name is
+          // like that, it is not plural
+        }
+<span class="pc bpc" id="L168" title="1 of 2 branches missed.">        else if (kind.endsWith(&quot;s&quot;)) {</span>
+<span class="fc" id="L169">          kind = kind.substring(0, kind.length() - 1);</span>
+        }
+<span class="fc" id="L171">        attributes = attributes.add(new Attribute(KIND, kind));</span>
+      }
+
+<span class="fc" id="L174">      String namespace = m.group(NAMESPACE);</span>
+<span class="fc bfc" id="L175" title="All 2 branches covered.">      if (!Utils.isNullOrEmpty(namespace)) {</span>
+<span class="fc" id="L176">        attributes = attributes.add(new Attribute(NAMESPACE, namespace));</span>
+      }
+
+      try {
+<span class="fc" id="L180">        String name = m.group(NAME);</span>
+<span class="fc bfc" id="L181" title="All 2 branches covered.">        if (!Utils.isNullOrEmpty(name)) {</span>
+<span class="fc" id="L182">          attributes = attributes.add(new Attribute(NAME, name));</span>
+        }
+<span class="nc" id="L184">      } catch (IllegalArgumentException e) {</span>
+        //group is missing, which is perfectly valid for create, update etc requests.
+<span class="fc" id="L186">      }</span>
+    }
+<span class="fc" id="L188">    return attributes;</span>
+  }
+
+  private static AttributeSet extractQueryParameters(HttpUrl url) {
+<span class="fc" id="L192">    AttributeSet attributes = new AttributeSet();</span>
+<span class="fc" id="L193">    String labelSelector = url.queryParameter(&quot;labelSelector&quot;);</span>
+<span class="fc bfc" id="L194" title="All 2 branches covered.">    if (labelSelector != null) {</span>
+<span class="fc bfc" id="L195" title="All 2 branches covered.">      for (String requirement : labelSelector.split(&quot;,&quot;)) {</span>
+<span class="fc" id="L196">        Matcher m = LABEL_REQUIREMENT_EQUALITY.matcher(requirement);</span>
+<span class="pc bpc" id="L197" title="1 of 2 branches missed.">        if (m.matches()) {</span>
+<span class="fc" id="L198">          attributes = attributes.add(new Attribute(LABEL_KEY_PREFIX + m.group(KEY), m.group(VALUE)));</span>
+        } else {
+<span class="nc" id="L200">          LOGGER.warn(&quot;Ignoring unsupported label requirement: {}&quot;, requirement);</span>
+        }
+      }
+    }
+<span class="fc" id="L204">    return attributes;</span>
+  }
+
+  private static HasMetadata toKubernetesResource(String s) {
+<span class="fc" id="L208">    try (InputStream stream = new ByteArrayInputStream(s.getBytes(StandardCharsets.UTF_8.name()))) {</span>
+<span class="nc" id="L209">      return Serialization.unmarshal(stream);</span>
+<span class="fc" id="L210">    } catch (Exception e) {</span>
+<span class="fc" id="L211">      return null;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PodDisruptionBudgetSpec.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.policy</a> &gt; <span class="el_source">PodDisruptionBudgetSpec.java</span></div><h1>PodDisruptionBudgetSpec.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.policy;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.IntOrString;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.fabric8.kubernetes.api.model.LabelSelector;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;maxUnavailable&quot;,
+    &quot;minAvailable&quot;,
+    &quot;selector&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L40">@ToString</span>
+<span class="nc bnc" id="L41" title="All 38 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class PodDisruptionBudgetSpec implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;maxUnavailable&quot;)
+    @Valid
+    private IntOrString maxUnavailable;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;minAvailable&quot;)
+    @Valid
+    private IntOrString minAvailable;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;selector&quot;)
+    @Valid
+    private LabelSelector selector;
+<span class="nc" id="L67">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L74">    public PodDisruptionBudgetSpec() {</span>
+<span class="nc" id="L75">    }</span>
+
+    /**
+     * 
+     * @param minAvailable
+     * @param maxUnavailable
+     * @param selector
+     */
+<span class="nc" id="L83">    public PodDisruptionBudgetSpec(IntOrString maxUnavailable, IntOrString minAvailable, LabelSelector selector) {</span>
+<span class="nc" id="L84">        this.maxUnavailable = maxUnavailable;</span>
+<span class="nc" id="L85">        this.minAvailable = minAvailable;</span>
+<span class="nc" id="L86">        this.selector = selector;</span>
+<span class="nc" id="L87">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The maxUnavailable
+     */
+    @JsonProperty(&quot;maxUnavailable&quot;)
+    public IntOrString getMaxUnavailable() {
+<span class="nc" id="L97">        return maxUnavailable;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param maxUnavailable
+     *     The maxUnavailable
+     */
+    @JsonProperty(&quot;maxUnavailable&quot;)
+    public void setMaxUnavailable(IntOrString maxUnavailable) {
+<span class="nc" id="L108">        this.maxUnavailable = maxUnavailable;</span>
+<span class="nc" id="L109">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The minAvailable
+     */
+    @JsonProperty(&quot;minAvailable&quot;)
+    public IntOrString getMinAvailable() {
+<span class="nc" id="L119">        return minAvailable;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param minAvailable
+     *     The minAvailable
+     */
+    @JsonProperty(&quot;minAvailable&quot;)
+    public void setMinAvailable(IntOrString minAvailable) {
+<span class="nc" id="L130">        this.minAvailable = minAvailable;</span>
+<span class="nc" id="L131">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The selector
+     */
+    @JsonProperty(&quot;selector&quot;)
+    public LabelSelector getSelector() {
+<span class="nc" id="L141">        return selector;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param selector
+     *     The selector
+     */
+    @JsonProperty(&quot;selector&quot;)
+    public void setSelector(LabelSelector selector) {
+<span class="nc" id="L152">        this.selector = selector;</span>
+<span class="nc" id="L153">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L157">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L162">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L163">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

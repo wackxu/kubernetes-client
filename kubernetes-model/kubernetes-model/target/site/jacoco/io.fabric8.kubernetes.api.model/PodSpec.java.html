@@ -1,0 +1,1016 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PodSpec.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">PodSpec.java</span></div><h1>PodSpec.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;activeDeadlineSeconds&quot;,
+    &quot;affinity&quot;,
+    &quot;automountServiceAccountToken&quot;,
+    &quot;containers&quot;,
+    &quot;dnsConfig&quot;,
+    &quot;dnsPolicy&quot;,
+    &quot;enableServiceLinks&quot;,
+    &quot;hostAliases&quot;,
+    &quot;hostIPC&quot;,
+    &quot;hostNetwork&quot;,
+    &quot;hostPID&quot;,
+    &quot;hostname&quot;,
+    &quot;imagePullSecrets&quot;,
+    &quot;initContainers&quot;,
+    &quot;nodeName&quot;,
+    &quot;nodeSelector&quot;,
+    &quot;priority&quot;,
+    &quot;priorityClassName&quot;,
+    &quot;readinessGates&quot;,
+    &quot;restartPolicy&quot;,
+    &quot;runtimeClassName&quot;,
+    &quot;schedulerName&quot;,
+    &quot;securityContext&quot;,
+    &quot;serviceAccount&quot;,
+    &quot;serviceAccountName&quot;,
+    &quot;shareProcessNamespace&quot;,
+    &quot;subdomain&quot;,
+    &quot;terminationGracePeriodSeconds&quot;,
+    &quot;tolerations&quot;,
+    &quot;volumes&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L66">@ToString</span>
+<span class="pc bpc" id="L67" title="208 of 254 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class PodSpec implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;activeDeadlineSeconds&quot;)
+    private Long activeDeadlineSeconds;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;affinity&quot;)
+    @Valid
+    private Affinity affinity;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;automountServiceAccountToken&quot;)
+    private Boolean automountServiceAccountToken;
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L95">    @JsonProperty(&quot;containers&quot;)</span>
+    @Valid
+    private List&lt;Container&gt; containers = new ArrayList&lt;Container&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;dnsConfig&quot;)
+    @Valid
+    private PodDNSConfig dnsConfig;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;dnsPolicy&quot;)
+    private java.lang.String dnsPolicy;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;enableServiceLinks&quot;)
+    private Boolean enableServiceLinks;
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L121">    @JsonProperty(&quot;hostAliases&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;HostAlias&gt; hostAliases = new ArrayList&lt;HostAlias&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;hostIPC&quot;)
+    private Boolean hostIPC;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;hostNetwork&quot;)
+    private Boolean hostNetwork;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;hostPID&quot;)
+    private Boolean hostPID;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;hostname&quot;)
+    private java.lang.String hostname;
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L153">    @JsonProperty(&quot;imagePullSecrets&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;LocalObjectReference&gt; imagePullSecrets = new ArrayList&lt;LocalObjectReference&gt;();
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L161">    @JsonProperty(&quot;initContainers&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;Container&gt; initContainers = new ArrayList&lt;Container&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;nodeName&quot;)
+    private java.lang.String nodeName;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;nodeSelector&quot;)
+    @Valid
+    private Map&lt;String, String&gt; nodeSelector;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;priority&quot;)
+    private Integer priority;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;priorityClassName&quot;)
+    private java.lang.String priorityClassName;
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L194">    @JsonProperty(&quot;readinessGates&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;PodReadinessGate&gt; readinessGates = new ArrayList&lt;PodReadinessGate&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;restartPolicy&quot;)
+    private java.lang.String restartPolicy;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;runtimeClassName&quot;)
+    private java.lang.String runtimeClassName;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;schedulerName&quot;)
+    private java.lang.String schedulerName;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;securityContext&quot;)
+    @Valid
+    private PodSecurityContext securityContext;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;serviceAccount&quot;)
+    private java.lang.String serviceAccount;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;serviceAccountName&quot;)
+    private java.lang.String serviceAccountName;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;shareProcessNamespace&quot;)
+    private Boolean shareProcessNamespace;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;subdomain&quot;)
+    private java.lang.String subdomain;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;terminationGracePeriodSeconds&quot;)
+    private Long terminationGracePeriodSeconds;
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L257">    @JsonProperty(&quot;tolerations&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;Toleration&gt; tolerations = new ArrayList&lt;Toleration&gt;();
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L265">    @JsonProperty(&quot;volumes&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;Volume&gt; volumes = new ArrayList&lt;Volume&gt;();
+<span class="fc" id="L269">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L276">    public PodSpec() {</span>
+<span class="fc" id="L277">    }</span>
+
+    /**
+     * 
+     * @param dnsPolicy
+     * @param nodeName
+     * @param terminationGracePeriodSeconds
+     * @param dnsConfig
+     * @param hostNetwork
+     * @param readinessGates
+     * @param serviceAccountName
+     * @param imagePullSecrets
+     * @param priorityClassName
+     * @param hostAliases
+     * @param securityContext
+     * @param nodeSelector
+     * @param hostname
+     * @param runtimeClassName
+     * @param tolerations
+     * @param automountServiceAccountToken
+     * @param schedulerName
+     * @param activeDeadlineSeconds
+     * @param enableServiceLinks
+     * @param hostIPC
+     * @param volumes
+     * @param serviceAccount
+     * @param priority
+     * @param restartPolicy
+     * @param shareProcessNamespace
+     * @param subdomain
+     * @param containers
+     * @param initContainers
+     * @param affinity
+     * @param hostPID
+     */
+<span class="fc" id="L312">    public PodSpec(Long activeDeadlineSeconds, Affinity affinity, Boolean automountServiceAccountToken, List&lt;Container&gt; containers, PodDNSConfig dnsConfig, java.lang.String dnsPolicy, Boolean enableServiceLinks, List&lt;HostAlias&gt; hostAliases, Boolean hostIPC, Boolean hostNetwork, Boolean hostPID, java.lang.String hostname, List&lt;LocalObjectReference&gt; imagePullSecrets, List&lt;Container&gt; initContainers, java.lang.String nodeName, Map&lt;String, String&gt; nodeSelector, Integer priority, java.lang.String priorityClassName, List&lt;PodReadinessGate&gt; readinessGates, java.lang.String restartPolicy, java.lang.String runtimeClassName, java.lang.String schedulerName, PodSecurityContext securityContext, java.lang.String serviceAccount, java.lang.String serviceAccountName, Boolean shareProcessNamespace, java.lang.String subdomain, Long terminationGracePeriodSeconds, List&lt;Toleration&gt; tolerations, List&lt;Volume&gt; volumes) {</span>
+<span class="fc" id="L313">        this.activeDeadlineSeconds = activeDeadlineSeconds;</span>
+<span class="fc" id="L314">        this.affinity = affinity;</span>
+<span class="fc" id="L315">        this.automountServiceAccountToken = automountServiceAccountToken;</span>
+<span class="fc" id="L316">        this.containers = containers;</span>
+<span class="fc" id="L317">        this.dnsConfig = dnsConfig;</span>
+<span class="fc" id="L318">        this.dnsPolicy = dnsPolicy;</span>
+<span class="fc" id="L319">        this.enableServiceLinks = enableServiceLinks;</span>
+<span class="fc" id="L320">        this.hostAliases = hostAliases;</span>
+<span class="fc" id="L321">        this.hostIPC = hostIPC;</span>
+<span class="fc" id="L322">        this.hostNetwork = hostNetwork;</span>
+<span class="fc" id="L323">        this.hostPID = hostPID;</span>
+<span class="fc" id="L324">        this.hostname = hostname;</span>
+<span class="fc" id="L325">        this.imagePullSecrets = imagePullSecrets;</span>
+<span class="fc" id="L326">        this.initContainers = initContainers;</span>
+<span class="fc" id="L327">        this.nodeName = nodeName;</span>
+<span class="fc" id="L328">        this.nodeSelector = nodeSelector;</span>
+<span class="fc" id="L329">        this.priority = priority;</span>
+<span class="fc" id="L330">        this.priorityClassName = priorityClassName;</span>
+<span class="fc" id="L331">        this.readinessGates = readinessGates;</span>
+<span class="fc" id="L332">        this.restartPolicy = restartPolicy;</span>
+<span class="fc" id="L333">        this.runtimeClassName = runtimeClassName;</span>
+<span class="fc" id="L334">        this.schedulerName = schedulerName;</span>
+<span class="fc" id="L335">        this.securityContext = securityContext;</span>
+<span class="fc" id="L336">        this.serviceAccount = serviceAccount;</span>
+<span class="fc" id="L337">        this.serviceAccountName = serviceAccountName;</span>
+<span class="fc" id="L338">        this.shareProcessNamespace = shareProcessNamespace;</span>
+<span class="fc" id="L339">        this.subdomain = subdomain;</span>
+<span class="fc" id="L340">        this.terminationGracePeriodSeconds = terminationGracePeriodSeconds;</span>
+<span class="fc" id="L341">        this.tolerations = tolerations;</span>
+<span class="fc" id="L342">        this.volumes = volumes;</span>
+<span class="fc" id="L343">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The activeDeadlineSeconds
+     */
+    @JsonProperty(&quot;activeDeadlineSeconds&quot;)
+    public Long getActiveDeadlineSeconds() {
+<span class="fc" id="L353">        return activeDeadlineSeconds;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param activeDeadlineSeconds
+     *     The activeDeadlineSeconds
+     */
+    @JsonProperty(&quot;activeDeadlineSeconds&quot;)
+    public void setActiveDeadlineSeconds(Long activeDeadlineSeconds) {
+<span class="fc" id="L364">        this.activeDeadlineSeconds = activeDeadlineSeconds;</span>
+<span class="fc" id="L365">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The affinity
+     */
+    @JsonProperty(&quot;affinity&quot;)
+    public Affinity getAffinity() {
+<span class="fc" id="L375">        return affinity;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param affinity
+     *     The affinity
+     */
+    @JsonProperty(&quot;affinity&quot;)
+    public void setAffinity(Affinity affinity) {
+<span class="nc" id="L386">        this.affinity = affinity;</span>
+<span class="nc" id="L387">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The automountServiceAccountToken
+     */
+    @JsonProperty(&quot;automountServiceAccountToken&quot;)
+    public Boolean getAutomountServiceAccountToken() {
+<span class="fc" id="L397">        return automountServiceAccountToken;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param automountServiceAccountToken
+     *     The automountServiceAccountToken
+     */
+    @JsonProperty(&quot;automountServiceAccountToken&quot;)
+    public void setAutomountServiceAccountToken(Boolean automountServiceAccountToken) {
+<span class="fc" id="L408">        this.automountServiceAccountToken = automountServiceAccountToken;</span>
+<span class="fc" id="L409">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The containers
+     */
+    @JsonProperty(&quot;containers&quot;)
+    public List&lt;Container&gt; getContainers() {
+<span class="fc" id="L419">        return containers;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param containers
+     *     The containers
+     */
+    @JsonProperty(&quot;containers&quot;)
+    public void setContainers(List&lt;Container&gt; containers) {
+<span class="fc" id="L430">        this.containers = containers;</span>
+<span class="fc" id="L431">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The dnsConfig
+     */
+    @JsonProperty(&quot;dnsConfig&quot;)
+    public PodDNSConfig getDnsConfig() {
+<span class="fc" id="L441">        return dnsConfig;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param dnsConfig
+     *     The dnsConfig
+     */
+    @JsonProperty(&quot;dnsConfig&quot;)
+    public void setDnsConfig(PodDNSConfig dnsConfig) {
+<span class="nc" id="L452">        this.dnsConfig = dnsConfig;</span>
+<span class="nc" id="L453">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The dnsPolicy
+     */
+    @JsonProperty(&quot;dnsPolicy&quot;)
+    public java.lang.String getDnsPolicy() {
+<span class="fc" id="L463">        return dnsPolicy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param dnsPolicy
+     *     The dnsPolicy
+     */
+    @JsonProperty(&quot;dnsPolicy&quot;)
+    public void setDnsPolicy(java.lang.String dnsPolicy) {
+<span class="fc" id="L474">        this.dnsPolicy = dnsPolicy;</span>
+<span class="fc" id="L475">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The enableServiceLinks
+     */
+    @JsonProperty(&quot;enableServiceLinks&quot;)
+    public Boolean getEnableServiceLinks() {
+<span class="fc" id="L485">        return enableServiceLinks;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param enableServiceLinks
+     *     The enableServiceLinks
+     */
+    @JsonProperty(&quot;enableServiceLinks&quot;)
+    public void setEnableServiceLinks(Boolean enableServiceLinks) {
+<span class="nc" id="L496">        this.enableServiceLinks = enableServiceLinks;</span>
+<span class="nc" id="L497">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The hostAliases
+     */
+    @JsonProperty(&quot;hostAliases&quot;)
+    public List&lt;HostAlias&gt; getHostAliases() {
+<span class="fc" id="L507">        return hostAliases;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param hostAliases
+     *     The hostAliases
+     */
+    @JsonProperty(&quot;hostAliases&quot;)
+    public void setHostAliases(List&lt;HostAlias&gt; hostAliases) {
+<span class="fc" id="L518">        this.hostAliases = hostAliases;</span>
+<span class="fc" id="L519">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The hostIPC
+     */
+    @JsonProperty(&quot;hostIPC&quot;)
+    public Boolean getHostIPC() {
+<span class="fc" id="L529">        return hostIPC;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param hostIPC
+     *     The hostIPC
+     */
+    @JsonProperty(&quot;hostIPC&quot;)
+    public void setHostIPC(Boolean hostIPC) {
+<span class="fc" id="L540">        this.hostIPC = hostIPC;</span>
+<span class="fc" id="L541">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The hostNetwork
+     */
+    @JsonProperty(&quot;hostNetwork&quot;)
+    public Boolean getHostNetwork() {
+<span class="fc" id="L551">        return hostNetwork;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param hostNetwork
+     *     The hostNetwork
+     */
+    @JsonProperty(&quot;hostNetwork&quot;)
+    public void setHostNetwork(Boolean hostNetwork) {
+<span class="fc" id="L562">        this.hostNetwork = hostNetwork;</span>
+<span class="fc" id="L563">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The hostPID
+     */
+    @JsonProperty(&quot;hostPID&quot;)
+    public Boolean getHostPID() {
+<span class="fc" id="L573">        return hostPID;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param hostPID
+     *     The hostPID
+     */
+    @JsonProperty(&quot;hostPID&quot;)
+    public void setHostPID(Boolean hostPID) {
+<span class="fc" id="L584">        this.hostPID = hostPID;</span>
+<span class="fc" id="L585">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The hostname
+     */
+    @JsonProperty(&quot;hostname&quot;)
+    public java.lang.String getHostname() {
+<span class="fc" id="L595">        return hostname;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param hostname
+     *     The hostname
+     */
+    @JsonProperty(&quot;hostname&quot;)
+    public void setHostname(java.lang.String hostname) {
+<span class="nc" id="L606">        this.hostname = hostname;</span>
+<span class="nc" id="L607">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The imagePullSecrets
+     */
+    @JsonProperty(&quot;imagePullSecrets&quot;)
+    public List&lt;LocalObjectReference&gt; getImagePullSecrets() {
+<span class="fc" id="L617">        return imagePullSecrets;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param imagePullSecrets
+     *     The imagePullSecrets
+     */
+    @JsonProperty(&quot;imagePullSecrets&quot;)
+    public void setImagePullSecrets(List&lt;LocalObjectReference&gt; imagePullSecrets) {
+<span class="fc" id="L628">        this.imagePullSecrets = imagePullSecrets;</span>
+<span class="fc" id="L629">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The initContainers
+     */
+    @JsonProperty(&quot;initContainers&quot;)
+    public List&lt;Container&gt; getInitContainers() {
+<span class="fc" id="L639">        return initContainers;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param initContainers
+     *     The initContainers
+     */
+    @JsonProperty(&quot;initContainers&quot;)
+    public void setInitContainers(List&lt;Container&gt; initContainers) {
+<span class="fc" id="L650">        this.initContainers = initContainers;</span>
+<span class="fc" id="L651">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The nodeName
+     */
+    @JsonProperty(&quot;nodeName&quot;)
+    public java.lang.String getNodeName() {
+<span class="fc" id="L661">        return nodeName;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param nodeName
+     *     The nodeName
+     */
+    @JsonProperty(&quot;nodeName&quot;)
+    public void setNodeName(java.lang.String nodeName) {
+<span class="fc" id="L672">        this.nodeName = nodeName;</span>
+<span class="fc" id="L673">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The nodeSelector
+     */
+    @JsonProperty(&quot;nodeSelector&quot;)
+    public Map&lt;String, String&gt; getNodeSelector() {
+<span class="fc" id="L683">        return nodeSelector;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param nodeSelector
+     *     The nodeSelector
+     */
+    @JsonProperty(&quot;nodeSelector&quot;)
+    public void setNodeSelector(Map&lt;String, String&gt; nodeSelector) {
+<span class="fc" id="L694">        this.nodeSelector = nodeSelector;</span>
+<span class="fc" id="L695">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The priority
+     */
+    @JsonProperty(&quot;priority&quot;)
+    public Integer getPriority() {
+<span class="fc" id="L705">        return priority;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param priority
+     *     The priority
+     */
+    @JsonProperty(&quot;priority&quot;)
+    public void setPriority(Integer priority) {
+<span class="nc" id="L716">        this.priority = priority;</span>
+<span class="nc" id="L717">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The priorityClassName
+     */
+    @JsonProperty(&quot;priorityClassName&quot;)
+    public java.lang.String getPriorityClassName() {
+<span class="fc" id="L727">        return priorityClassName;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param priorityClassName
+     *     The priorityClassName
+     */
+    @JsonProperty(&quot;priorityClassName&quot;)
+    public void setPriorityClassName(java.lang.String priorityClassName) {
+<span class="nc" id="L738">        this.priorityClassName = priorityClassName;</span>
+<span class="nc" id="L739">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The readinessGates
+     */
+    @JsonProperty(&quot;readinessGates&quot;)
+    public List&lt;PodReadinessGate&gt; getReadinessGates() {
+<span class="fc" id="L749">        return readinessGates;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param readinessGates
+     *     The readinessGates
+     */
+    @JsonProperty(&quot;readinessGates&quot;)
+    public void setReadinessGates(List&lt;PodReadinessGate&gt; readinessGates) {
+<span class="nc" id="L760">        this.readinessGates = readinessGates;</span>
+<span class="nc" id="L761">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The restartPolicy
+     */
+    @JsonProperty(&quot;restartPolicy&quot;)
+    public java.lang.String getRestartPolicy() {
+<span class="fc" id="L771">        return restartPolicy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param restartPolicy
+     *     The restartPolicy
+     */
+    @JsonProperty(&quot;restartPolicy&quot;)
+    public void setRestartPolicy(java.lang.String restartPolicy) {
+<span class="fc" id="L782">        this.restartPolicy = restartPolicy;</span>
+<span class="fc" id="L783">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The runtimeClassName
+     */
+    @JsonProperty(&quot;runtimeClassName&quot;)
+    public java.lang.String getRuntimeClassName() {
+<span class="fc" id="L793">        return runtimeClassName;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param runtimeClassName
+     *     The runtimeClassName
+     */
+    @JsonProperty(&quot;runtimeClassName&quot;)
+    public void setRuntimeClassName(java.lang.String runtimeClassName) {
+<span class="nc" id="L804">        this.runtimeClassName = runtimeClassName;</span>
+<span class="nc" id="L805">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The schedulerName
+     */
+    @JsonProperty(&quot;schedulerName&quot;)
+    public java.lang.String getSchedulerName() {
+<span class="fc" id="L815">        return schedulerName;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param schedulerName
+     *     The schedulerName
+     */
+    @JsonProperty(&quot;schedulerName&quot;)
+    public void setSchedulerName(java.lang.String schedulerName) {
+<span class="fc" id="L826">        this.schedulerName = schedulerName;</span>
+<span class="fc" id="L827">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The securityContext
+     */
+    @JsonProperty(&quot;securityContext&quot;)
+    public PodSecurityContext getSecurityContext() {
+<span class="fc" id="L837">        return securityContext;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param securityContext
+     *     The securityContext
+     */
+    @JsonProperty(&quot;securityContext&quot;)
+    public void setSecurityContext(PodSecurityContext securityContext) {
+<span class="nc" id="L848">        this.securityContext = securityContext;</span>
+<span class="nc" id="L849">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The serviceAccount
+     */
+    @JsonProperty(&quot;serviceAccount&quot;)
+    public java.lang.String getServiceAccount() {
+<span class="fc" id="L859">        return serviceAccount;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param serviceAccount
+     *     The serviceAccount
+     */
+    @JsonProperty(&quot;serviceAccount&quot;)
+    public void setServiceAccount(java.lang.String serviceAccount) {
+<span class="fc" id="L870">        this.serviceAccount = serviceAccount;</span>
+<span class="fc" id="L871">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The serviceAccountName
+     */
+    @JsonProperty(&quot;serviceAccountName&quot;)
+    public java.lang.String getServiceAccountName() {
+<span class="fc" id="L881">        return serviceAccountName;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param serviceAccountName
+     *     The serviceAccountName
+     */
+    @JsonProperty(&quot;serviceAccountName&quot;)
+    public void setServiceAccountName(java.lang.String serviceAccountName) {
+<span class="fc" id="L892">        this.serviceAccountName = serviceAccountName;</span>
+<span class="fc" id="L893">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The shareProcessNamespace
+     */
+    @JsonProperty(&quot;shareProcessNamespace&quot;)
+    public Boolean getShareProcessNamespace() {
+<span class="fc" id="L903">        return shareProcessNamespace;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param shareProcessNamespace
+     *     The shareProcessNamespace
+     */
+    @JsonProperty(&quot;shareProcessNamespace&quot;)
+    public void setShareProcessNamespace(Boolean shareProcessNamespace) {
+<span class="nc" id="L914">        this.shareProcessNamespace = shareProcessNamespace;</span>
+<span class="nc" id="L915">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The subdomain
+     */
+    @JsonProperty(&quot;subdomain&quot;)
+    public java.lang.String getSubdomain() {
+<span class="fc" id="L925">        return subdomain;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param subdomain
+     *     The subdomain
+     */
+    @JsonProperty(&quot;subdomain&quot;)
+    public void setSubdomain(java.lang.String subdomain) {
+<span class="fc" id="L936">        this.subdomain = subdomain;</span>
+<span class="fc" id="L937">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The terminationGracePeriodSeconds
+     */
+    @JsonProperty(&quot;terminationGracePeriodSeconds&quot;)
+    public Long getTerminationGracePeriodSeconds() {
+<span class="fc" id="L947">        return terminationGracePeriodSeconds;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param terminationGracePeriodSeconds
+     *     The terminationGracePeriodSeconds
+     */
+    @JsonProperty(&quot;terminationGracePeriodSeconds&quot;)
+    public void setTerminationGracePeriodSeconds(Long terminationGracePeriodSeconds) {
+<span class="fc" id="L958">        this.terminationGracePeriodSeconds = terminationGracePeriodSeconds;</span>
+<span class="fc" id="L959">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The tolerations
+     */
+    @JsonProperty(&quot;tolerations&quot;)
+    public List&lt;Toleration&gt; getTolerations() {
+<span class="fc" id="L969">        return tolerations;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param tolerations
+     *     The tolerations
+     */
+    @JsonProperty(&quot;tolerations&quot;)
+    public void setTolerations(List&lt;Toleration&gt; tolerations) {
+<span class="nc" id="L980">        this.tolerations = tolerations;</span>
+<span class="nc" id="L981">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The volumes
+     */
+    @JsonProperty(&quot;volumes&quot;)
+    public List&lt;Volume&gt; getVolumes() {
+<span class="fc" id="L991">        return volumes;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param volumes
+     *     The volumes
+     */
+    @JsonProperty(&quot;volumes&quot;)
+    public void setVolumes(List&lt;Volume&gt; volumes) {
+<span class="fc" id="L1002">        this.volumes = volumes;</span>
+<span class="fc" id="L1003">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L1007">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="fc" id="L1012">        this.additionalProperties.put(name, value);</span>
+<span class="fc" id="L1013">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

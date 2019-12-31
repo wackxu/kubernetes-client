@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CapabilitiesFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">CapabilitiesFluentImpl.java</span></div><h1>CapabilitiesFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class CapabilitiesFluentImpl&lt;A extends CapabilitiesFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements CapabilitiesFluent&lt;A&gt;{
+
+    private List&lt;String&gt; add;
+    private List&lt;String&gt; drop;
+
+<span class="nc" id="L20">    public CapabilitiesFluentImpl(){</span>
+<span class="nc" id="L21">    }</span>
+<span class="nc" id="L22">    public CapabilitiesFluentImpl(Capabilities instance){</span>
+<span class="nc" id="L23">            this.withAdd(instance.getAdd()); </span>
+<span class="nc" id="L24">            this.withDrop(instance.getDrop()); </span>
+<span class="nc" id="L25">    }</span>
+
+    public A addToAdd(int index,String item){
+<span class="nc bnc" id="L28" title="All 2 branches missed.">            if (this.add == null) {this.add = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L29">            this.add.add(index, item);</span>
+<span class="nc" id="L30">            return (A)this;</span>
+    }
+
+    public A setToAdd(int index,String item){
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            if (this.add == null) {this.add = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L35">            this.add.set(index, item); return (A)this;</span>
+    }
+
+    public A addToAdd(String... items){
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            if (this.add == null) {this.add = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            for (String item : items) {this.add.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToAdd(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            if (this.add == null) {this.add = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            for (String item : items) {this.add.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromAdd(String... items){
+<span class="nc bnc" id="L49" title="All 4 branches missed.">            for (String item : items) {if (this.add!= null){ this.add.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAdd(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L53" title="All 4 branches missed.">            for (String item : items) {if (this.add!= null){ this.add.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getAdd(){
+<span class="nc" id="L57">            return this.add;</span>
+    }
+
+    public String getAdd(int index){
+<span class="nc" id="L61">            return this.add.get(index);</span>
+    }
+
+    public String getFirstAdd(){
+<span class="nc" id="L65">            return this.add.get(0);</span>
+    }
+
+    public String getLastAdd(){
+<span class="nc" id="L69">            return this.add.get(add.size() - 1);</span>
+    }
+
+    public String getMatchingAdd(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L73" title="All 4 branches missed.">            for (String item: add) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withAdd(List&lt;String&gt; add){
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            if (this.add != null) { _visitables.removeAll(this.add);}</span>
+<span class="nc bnc" id="L78" title="All 4 branches missed.">            if (add != null) {this.add = new ArrayList&lt;String&gt;(); for (String item : add){this.addToAdd(item);}} else { this.add = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withAdd(String... add){
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            if (this.add != null) {this.add.clear();}</span>
+<span class="nc bnc" id="L83" title="All 4 branches missed.">            if (add != null) {for (String item :add){ this.addToAdd(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAdd(){
+<span class="nc bnc" id="L87" title="All 4 branches missed.">            return add != null &amp;&amp; !add.isEmpty();</span>
+    }
+
+    public A addToDrop(int index,String item){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (this.drop == null) {this.drop = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L92">            this.drop.add(index, item);</span>
+<span class="nc" id="L93">            return (A)this;</span>
+    }
+
+    public A setToDrop(int index,String item){
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            if (this.drop == null) {this.drop = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L98">            this.drop.set(index, item); return (A)this;</span>
+    }
+
+    public A addToDrop(String... items){
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            if (this.drop == null) {this.drop = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            for (String item : items) {this.drop.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToDrop(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            if (this.drop == null) {this.drop = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            for (String item : items) {this.drop.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromDrop(String... items){
+<span class="nc bnc" id="L112" title="All 4 branches missed.">            for (String item : items) {if (this.drop!= null){ this.drop.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromDrop(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L116" title="All 4 branches missed.">            for (String item : items) {if (this.drop!= null){ this.drop.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getDrop(){
+<span class="nc" id="L120">            return this.drop;</span>
+    }
+
+    public String getDrop(int index){
+<span class="nc" id="L124">            return this.drop.get(index);</span>
+    }
+
+    public String getFirstDrop(){
+<span class="nc" id="L128">            return this.drop.get(0);</span>
+    }
+
+    public String getLastDrop(){
+<span class="nc" id="L132">            return this.drop.get(drop.size() - 1);</span>
+    }
+
+    public String getMatchingDrop(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L136" title="All 4 branches missed.">            for (String item: drop) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withDrop(List&lt;String&gt; drop){
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            if (this.drop != null) { _visitables.removeAll(this.drop);}</span>
+<span class="nc bnc" id="L141" title="All 4 branches missed.">            if (drop != null) {this.drop = new ArrayList&lt;String&gt;(); for (String item : drop){this.addToDrop(item);}} else { this.drop = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withDrop(String... drop){
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (this.drop != null) {this.drop.clear();}</span>
+<span class="nc bnc" id="L146" title="All 4 branches missed.">            if (drop != null) {for (String item :drop){ this.addToDrop(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasDrop(){
+<span class="nc bnc" id="L150" title="All 4 branches missed.">            return drop != null &amp;&amp; !drop.isEmpty();</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L155" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L156" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L157">            CapabilitiesFluentImpl that = (CapabilitiesFluentImpl) o;</span>
+<span class="nc bnc" id="L158" title="All 6 branches missed.">            if (add != null ? !add.equals(that.add) :that.add != null) return false;</span>
+<span class="nc bnc" id="L159" title="All 6 branches missed.">            if (drop != null ? !drop.equals(that.drop) :that.drop != null) return false;</span>
+<span class="nc" id="L160">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

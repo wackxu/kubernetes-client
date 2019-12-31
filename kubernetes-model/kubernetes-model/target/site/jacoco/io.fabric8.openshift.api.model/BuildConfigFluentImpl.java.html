@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuildConfigFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">BuildConfigFluentImpl.java</span></div><h1>BuildConfigFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.ObjectMetaFluentImpl;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import javax.validation.Valid;
+import java.lang.Long;
+import java.lang.Object;
+
+public class BuildConfigFluentImpl&lt;A extends BuildConfigFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements BuildConfigFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+    private BuildConfigSpecBuilder spec;
+    private BuildConfigStatusBuilder status;
+
+<span class="fc" id="L26">    public BuildConfigFluentImpl(){</span>
+<span class="fc" id="L27">    }</span>
+<span class="nc" id="L28">    public BuildConfigFluentImpl(BuildConfig instance){</span>
+<span class="nc" id="L29">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L30">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L31">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L32">            this.withSpec(instance.getSpec()); </span>
+<span class="nc" id="L33">            this.withStatus(instance.getStatus()); </span>
+<span class="nc" id="L34">    }</span>
+
+    public String getApiVersion(){
+<span class="fc" id="L37">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="fc" id="L41">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public String getKind(){
+<span class="fc" id="L49">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="fc" id="L53">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="fc" id="L74">            _visitables.remove(this.metadata);</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public BuildConfigFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="fc" id="L83">            return new MetadataNestedImpl();</span>
+    }
+
+    public BuildConfigFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L87">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public BuildConfigFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L91">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public BuildConfigFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public BuildConfigFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSpec instead.
+ * @return The buildable object.
+ */
+@Deprecated public BuildConfigSpec getSpec(){
+<span class="pc bpc" id="L108" title="1 of 2 branches missed.">            return this.spec!=null?this.spec.build():null;</span>
+    }
+
+    public BuildConfigSpec buildSpec(){
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            return this.spec!=null?this.spec.build():null;</span>
+    }
+
+    public A withSpec(BuildConfigSpec spec){
+<span class="fc" id="L116">            _visitables.remove(this.spec);</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">            if (spec!=null){ this.spec= new BuildConfigSpecBuilder(spec); _visitables.add(this.spec);} return (A) this;</span>
+    }
+
+    public Boolean hasSpec(){
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            return this.spec != null;</span>
+    }
+
+    public BuildConfigFluent.SpecNested&lt;A&gt; withNewSpec(){
+<span class="fc" id="L125">            return new SpecNestedImpl();</span>
+    }
+
+    public BuildConfigFluent.SpecNested&lt;A&gt; withNewSpecLike(BuildConfigSpec item){
+<span class="nc" id="L129">            return new SpecNestedImpl(item);</span>
+    }
+
+    public BuildConfigFluent.SpecNested&lt;A&gt; editSpec(){
+<span class="nc" id="L133">            return withNewSpecLike(getSpec());</span>
+    }
+
+    public BuildConfigFluent.SpecNested&lt;A&gt; editOrNewSpec(){
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            return withNewSpecLike(getSpec() != null ? getSpec(): new BuildConfigSpecBuilder().build());</span>
+    }
+
+    public BuildConfigFluent.SpecNested&lt;A&gt; editOrNewSpecLike(BuildConfigSpec item){
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            return withNewSpecLike(getSpec() != null ? getSpec(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildStatus instead.
+ * @return The buildable object.
+ */
+@Deprecated public BuildConfigStatus getStatus(){
+<span class="pc bpc" id="L150" title="1 of 2 branches missed.">            return this.status!=null?this.status.build():null;</span>
+    }
+
+    public BuildConfigStatus buildStatus(){
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            return this.status!=null?this.status.build():null;</span>
+    }
+
+    public A withStatus(BuildConfigStatus status){
+<span class="fc" id="L158">            _visitables.remove(this.status);</span>
+<span class="pc bpc" id="L159" title="1 of 2 branches missed.">            if (status!=null){ this.status= new BuildConfigStatusBuilder(status); _visitables.add(this.status);} return (A) this;</span>
+    }
+
+    public Boolean hasStatus(){
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            return this.status != null;</span>
+    }
+
+    public A withNewStatus(Long lastVersion){
+<span class="nc" id="L167">            return (A)withStatus(new BuildConfigStatus(lastVersion));</span>
+    }
+
+    public BuildConfigFluent.StatusNested&lt;A&gt; withNewStatus(){
+<span class="nc" id="L171">            return new StatusNestedImpl();</span>
+    }
+
+    public BuildConfigFluent.StatusNested&lt;A&gt; withNewStatusLike(BuildConfigStatus item){
+<span class="nc" id="L175">            return new StatusNestedImpl(item);</span>
+    }
+
+    public BuildConfigFluent.StatusNested&lt;A&gt; editStatus(){
+<span class="nc" id="L179">            return withNewStatusLike(getStatus());</span>
+    }
+
+    public BuildConfigFluent.StatusNested&lt;A&gt; editOrNewStatus(){
+<span class="nc bnc" id="L183" title="All 2 branches missed.">            return withNewStatusLike(getStatus() != null ? getStatus(): new BuildConfigStatusBuilder().build());</span>
+    }
+
+    public BuildConfigFluent.StatusNested&lt;A&gt; editOrNewStatusLike(BuildConfigStatus item){
+<span class="nc bnc" id="L187" title="All 2 branches missed.">            return withNewStatusLike(getStatus() != null ? getStatus(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L191" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L192" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L193" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L194">            BuildConfigFluentImpl that = (BuildConfigFluentImpl) o;</span>
+<span class="nc bnc" id="L195" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L196" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L197" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L198" title="All 6 branches missed.">            if (spec != null ? !spec.equals(that.spec) :that.spec != null) return false;</span>
+<span class="nc bnc" id="L199" title="All 6 branches missed.">            if (status != null ? !status.equals(that.status) :that.status != null) return false;</span>
+<span class="nc" id="L200">            return true;</span>
+    }
+
+
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;BuildConfigFluent.MetadataNested&lt;N&gt;&gt; implements BuildConfigFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L208">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L209">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L210">            }</span>
+<span class="fc" id="L211">            MetadataNestedImpl(){</span>
+<span class="fc" id="L212">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="fc" id="L213">            }</span>
+    
+    public N and(){
+<span class="fc" id="L216">            return (N) BuildConfigFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="fc" id="L219">            return and();</span>
+    }
+
+}
+    public class SpecNestedImpl&lt;N&gt; extends BuildConfigSpecFluentImpl&lt;BuildConfigFluent.SpecNested&lt;N&gt;&gt; implements BuildConfigFluent.SpecNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BuildConfigSpecBuilder builder;
+    
+<span class="nc" id="L227">            SpecNestedImpl(BuildConfigSpec item){</span>
+<span class="nc" id="L228">                    this.builder = new BuildConfigSpecBuilder(this, item);</span>
+<span class="nc" id="L229">            }</span>
+<span class="fc" id="L230">            SpecNestedImpl(){</span>
+<span class="fc" id="L231">                    this.builder = new BuildConfigSpecBuilder(this);</span>
+<span class="fc" id="L232">            }</span>
+    
+    public N and(){
+<span class="fc" id="L235">            return (N) BuildConfigFluentImpl.this.withSpec(builder.build());</span>
+    }
+    public N endSpec(){
+<span class="fc" id="L238">            return and();</span>
+    }
+
+}
+    public class StatusNestedImpl&lt;N&gt; extends BuildConfigStatusFluentImpl&lt;BuildConfigFluent.StatusNested&lt;N&gt;&gt; implements BuildConfigFluent.StatusNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BuildConfigStatusBuilder builder;
+    
+<span class="nc" id="L246">            StatusNestedImpl(BuildConfigStatus item){</span>
+<span class="nc" id="L247">                    this.builder = new BuildConfigStatusBuilder(this, item);</span>
+<span class="nc" id="L248">            }</span>
+<span class="nc" id="L249">            StatusNestedImpl(){</span>
+<span class="nc" id="L250">                    this.builder = new BuildConfigStatusBuilder(this);</span>
+<span class="nc" id="L251">            }</span>
+    
+    public N and(){
+<span class="nc" id="L254">            return (N) BuildConfigFluentImpl.this.withStatus(builder.build());</span>
+    }
+    public N endStatus(){
+<span class="nc" id="L257">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

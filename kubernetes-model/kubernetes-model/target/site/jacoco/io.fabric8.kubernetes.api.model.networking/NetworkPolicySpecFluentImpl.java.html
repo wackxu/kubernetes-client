@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NetworkPolicySpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.networking</a> &gt; <span class="el_source">NetworkPolicySpecFluentImpl.java</span></div><h1>NetworkPolicySpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.networking;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.LabelSelectorFluentImpl;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.LabelSelectorBuilder;
+import io.fabric8.kubernetes.api.model.LabelSelector;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class NetworkPolicySpecFluentImpl&lt;A extends NetworkPolicySpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements NetworkPolicySpecFluent&lt;A&gt;{
+
+    private List&lt;NetworkPolicyEgressRuleBuilder&gt; egress;
+    private List&lt;NetworkPolicyIngressRuleBuilder&gt; ingress;
+    private LabelSelectorBuilder podSelector;
+    private List&lt;String&gt; policyTypes;
+
+<span class="nc" id="L27">    public NetworkPolicySpecFluentImpl(){</span>
+<span class="nc" id="L28">    }</span>
+<span class="nc" id="L29">    public NetworkPolicySpecFluentImpl(NetworkPolicySpec instance){</span>
+<span class="nc" id="L30">            this.withEgress(instance.getEgress()); </span>
+<span class="nc" id="L31">            this.withIngress(instance.getIngress()); </span>
+<span class="nc" id="L32">            this.withPodSelector(instance.getPodSelector()); </span>
+<span class="nc" id="L33">            this.withPolicyTypes(instance.getPolicyTypes()); </span>
+<span class="nc" id="L34">    }</span>
+
+    public A addToEgress(int index,NetworkPolicyEgressRule item){
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            if (this.egress == null) {this.egress = new ArrayList&lt;NetworkPolicyEgressRuleBuilder&gt;();}</span>
+<span class="nc bnc" id="L38" title="All 4 branches missed.">            NetworkPolicyEgressRuleBuilder builder = new NetworkPolicyEgressRuleBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.egress.add(index &gt;= 0 ? index : egress.size(), builder); return (A)this;</span>
+    }
+
+    public A setToEgress(int index,NetworkPolicyEgressRule item){
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            if (this.egress == null) {this.egress = new ArrayList&lt;NetworkPolicyEgressRuleBuilder&gt;();}</span>
+<span class="nc" id="L43">            NetworkPolicyEgressRuleBuilder builder = new NetworkPolicyEgressRuleBuilder(item);</span>
+<span class="nc bnc" id="L44" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L45" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= egress.size()) { egress.add(builder); } else { egress.set(index, builder);}</span>
+<span class="nc" id="L46">             return (A)this;</span>
+    }
+
+    public A addToEgress(NetworkPolicyEgressRule... items){
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            if (this.egress == null) {this.egress = new ArrayList&lt;NetworkPolicyEgressRuleBuilder&gt;();}</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            for (NetworkPolicyEgressRule item : items) {NetworkPolicyEgressRuleBuilder builder = new NetworkPolicyEgressRuleBuilder(item);_visitables.add(builder);this.egress.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToEgress(Collection&lt;NetworkPolicyEgressRule&gt; items){
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            if (this.egress == null) {this.egress = new ArrayList&lt;NetworkPolicyEgressRuleBuilder&gt;();}</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            for (NetworkPolicyEgressRule item : items) {NetworkPolicyEgressRuleBuilder builder = new NetworkPolicyEgressRuleBuilder(item);_visitables.add(builder);this.egress.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromEgress(NetworkPolicyEgressRule... items){
+<span class="nc bnc" id="L60" title="All 4 branches missed.">            for (NetworkPolicyEgressRule item : items) {NetworkPolicyEgressRuleBuilder builder = new NetworkPolicyEgressRuleBuilder(item);_visitables.remove(builder);if (this.egress != null) {this.egress.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromEgress(Collection&lt;NetworkPolicyEgressRule&gt; items){
+<span class="nc bnc" id="L64" title="All 4 branches missed.">            for (NetworkPolicyEgressRule item : items) {NetworkPolicyEgressRuleBuilder builder = new NetworkPolicyEgressRuleBuilder(item);_visitables.remove(builder);if (this.egress != null) {this.egress.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildEgress instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;NetworkPolicyEgressRule&gt; getEgress(){
+<span class="nc" id="L73">            return build(egress);</span>
+    }
+
+    public List&lt;NetworkPolicyEgressRule&gt; buildEgress(){
+<span class="nc" id="L77">            return build(egress);</span>
+    }
+
+    public NetworkPolicyEgressRule buildEgress(int index){
+<span class="nc" id="L81">            return this.egress.get(index).build();</span>
+    }
+
+    public NetworkPolicyEgressRule buildFirstEgress(){
+<span class="nc" id="L85">            return this.egress.get(0).build();</span>
+    }
+
+    public NetworkPolicyEgressRule buildLastEgress(){
+<span class="nc" id="L89">            return this.egress.get(egress.size() - 1).build();</span>
+    }
+
+    public NetworkPolicyEgressRule buildMatchingEgress(io.fabric8.kubernetes.api.builder.Predicate&lt;NetworkPolicyEgressRuleBuilder&gt; predicate){
+<span class="nc bnc" id="L93" title="All 4 branches missed.">            for (NetworkPolicyEgressRuleBuilder item: egress) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withEgress(List&lt;NetworkPolicyEgressRule&gt; egress){
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            if (this.egress != null) { _visitables.removeAll(this.egress);}</span>
+<span class="nc bnc" id="L98" title="All 4 branches missed.">            if (egress != null) {this.egress = new ArrayList&lt;NetworkPolicyEgressRuleBuilder&gt;(); for (NetworkPolicyEgressRule item : egress){this.addToEgress(item);}} else { this.egress = new ArrayList&lt;NetworkPolicyEgressRuleBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withEgress(NetworkPolicyEgressRule... egress){
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            if (this.egress != null) {this.egress.clear();}</span>
+<span class="nc bnc" id="L103" title="All 4 branches missed.">            if (egress != null) {for (NetworkPolicyEgressRule item :egress){ this.addToEgress(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasEgress(){
+<span class="nc bnc" id="L107" title="All 4 branches missed.">            return egress != null &amp;&amp; !egress.isEmpty();</span>
+    }
+
+    public NetworkPolicySpecFluent.EgressNested&lt;A&gt; addNewEgress(){
+<span class="nc" id="L111">            return new EgressNestedImpl();</span>
+    }
+
+    public NetworkPolicySpecFluent.EgressNested&lt;A&gt; addNewEgressLike(NetworkPolicyEgressRule item){
+<span class="nc" id="L115">            return new EgressNestedImpl(-1, item);</span>
+    }
+
+    public NetworkPolicySpecFluent.EgressNested&lt;A&gt; setNewEgressLike(int index,NetworkPolicyEgressRule item){
+<span class="nc" id="L119">            return new EgressNestedImpl(index, item);</span>
+    }
+
+    public NetworkPolicySpecFluent.EgressNested&lt;A&gt; editEgress(int index){
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            if (egress.size() &lt;= index) throw new RuntimeException(&quot;Can't edit egress. Index exceeds size.&quot;);</span>
+<span class="nc" id="L124">            return setNewEgressLike(index, buildEgress(index));</span>
+    }
+
+    public NetworkPolicySpecFluent.EgressNested&lt;A&gt; editFirstEgress(){
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            if (egress.size() == 0) throw new RuntimeException(&quot;Can't edit first egress. The list is empty.&quot;);</span>
+<span class="nc" id="L129">            return setNewEgressLike(0, buildEgress(0));</span>
+    }
+
+    public NetworkPolicySpecFluent.EgressNested&lt;A&gt; editLastEgress(){
+<span class="nc" id="L133">            int index = egress.size() - 1;</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last egress. The list is empty.&quot;);</span>
+<span class="nc" id="L135">            return setNewEgressLike(index, buildEgress(index));</span>
+    }
+
+    public NetworkPolicySpecFluent.EgressNested&lt;A&gt; editMatchingEgress(io.fabric8.kubernetes.api.builder.Predicate&lt;NetworkPolicyEgressRuleBuilder&gt; predicate){
+<span class="nc" id="L139">            int index = -1;</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            for (int i=0;i&lt;egress.size();i++) { </span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            if (predicate.apply(egress.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching egress. No match found.&quot;);</span>
+<span class="nc" id="L144">            return setNewEgressLike(index, buildEgress(index));</span>
+    }
+
+    public A addToIngress(int index,NetworkPolicyIngressRule item){
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            if (this.ingress == null) {this.ingress = new ArrayList&lt;NetworkPolicyIngressRuleBuilder&gt;();}</span>
+<span class="nc bnc" id="L149" title="All 4 branches missed.">            NetworkPolicyIngressRuleBuilder builder = new NetworkPolicyIngressRuleBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.ingress.add(index &gt;= 0 ? index : ingress.size(), builder); return (A)this;</span>
+    }
+
+    public A setToIngress(int index,NetworkPolicyIngressRule item){
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            if (this.ingress == null) {this.ingress = new ArrayList&lt;NetworkPolicyIngressRuleBuilder&gt;();}</span>
+<span class="nc" id="L154">            NetworkPolicyIngressRuleBuilder builder = new NetworkPolicyIngressRuleBuilder(item);</span>
+<span class="nc bnc" id="L155" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L156" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= ingress.size()) { ingress.add(builder); } else { ingress.set(index, builder);}</span>
+<span class="nc" id="L157">             return (A)this;</span>
+    }
+
+    public A addToIngress(NetworkPolicyIngressRule... items){
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            if (this.ingress == null) {this.ingress = new ArrayList&lt;NetworkPolicyIngressRuleBuilder&gt;();}</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            for (NetworkPolicyIngressRule item : items) {NetworkPolicyIngressRuleBuilder builder = new NetworkPolicyIngressRuleBuilder(item);_visitables.add(builder);this.ingress.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToIngress(Collection&lt;NetworkPolicyIngressRule&gt; items){
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            if (this.ingress == null) {this.ingress = new ArrayList&lt;NetworkPolicyIngressRuleBuilder&gt;();}</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            for (NetworkPolicyIngressRule item : items) {NetworkPolicyIngressRuleBuilder builder = new NetworkPolicyIngressRuleBuilder(item);_visitables.add(builder);this.ingress.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromIngress(NetworkPolicyIngressRule... items){
+<span class="nc bnc" id="L171" title="All 4 branches missed.">            for (NetworkPolicyIngressRule item : items) {NetworkPolicyIngressRuleBuilder builder = new NetworkPolicyIngressRuleBuilder(item);_visitables.remove(builder);if (this.ingress != null) {this.ingress.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromIngress(Collection&lt;NetworkPolicyIngressRule&gt; items){
+<span class="nc bnc" id="L175" title="All 4 branches missed.">            for (NetworkPolicyIngressRule item : items) {NetworkPolicyIngressRuleBuilder builder = new NetworkPolicyIngressRuleBuilder(item);_visitables.remove(builder);if (this.ingress != null) {this.ingress.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildIngress instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;NetworkPolicyIngressRule&gt; getIngress(){
+<span class="nc" id="L184">            return build(ingress);</span>
+    }
+
+    public List&lt;NetworkPolicyIngressRule&gt; buildIngress(){
+<span class="nc" id="L188">            return build(ingress);</span>
+    }
+
+    public NetworkPolicyIngressRule buildIngress(int index){
+<span class="nc" id="L192">            return this.ingress.get(index).build();</span>
+    }
+
+    public NetworkPolicyIngressRule buildFirstIngress(){
+<span class="nc" id="L196">            return this.ingress.get(0).build();</span>
+    }
+
+    public NetworkPolicyIngressRule buildLastIngress(){
+<span class="nc" id="L200">            return this.ingress.get(ingress.size() - 1).build();</span>
+    }
+
+    public NetworkPolicyIngressRule buildMatchingIngress(io.fabric8.kubernetes.api.builder.Predicate&lt;NetworkPolicyIngressRuleBuilder&gt; predicate){
+<span class="nc bnc" id="L204" title="All 4 branches missed.">            for (NetworkPolicyIngressRuleBuilder item: ingress) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withIngress(List&lt;NetworkPolicyIngressRule&gt; ingress){
+<span class="nc bnc" id="L208" title="All 2 branches missed.">            if (this.ingress != null) { _visitables.removeAll(this.ingress);}</span>
+<span class="nc bnc" id="L209" title="All 4 branches missed.">            if (ingress != null) {this.ingress = new ArrayList&lt;NetworkPolicyIngressRuleBuilder&gt;(); for (NetworkPolicyIngressRule item : ingress){this.addToIngress(item);}} else { this.ingress = new ArrayList&lt;NetworkPolicyIngressRuleBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withIngress(NetworkPolicyIngressRule... ingress){
+<span class="nc bnc" id="L213" title="All 2 branches missed.">            if (this.ingress != null) {this.ingress.clear();}</span>
+<span class="nc bnc" id="L214" title="All 4 branches missed.">            if (ingress != null) {for (NetworkPolicyIngressRule item :ingress){ this.addToIngress(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasIngress(){
+<span class="nc bnc" id="L218" title="All 4 branches missed.">            return ingress != null &amp;&amp; !ingress.isEmpty();</span>
+    }
+
+    public NetworkPolicySpecFluent.IngressNested&lt;A&gt; addNewIngress(){
+<span class="nc" id="L222">            return new IngressNestedImpl();</span>
+    }
+
+    public NetworkPolicySpecFluent.IngressNested&lt;A&gt; addNewIngressLike(NetworkPolicyIngressRule item){
+<span class="nc" id="L226">            return new IngressNestedImpl(-1, item);</span>
+    }
+
+    public NetworkPolicySpecFluent.IngressNested&lt;A&gt; setNewIngressLike(int index,NetworkPolicyIngressRule item){
+<span class="nc" id="L230">            return new IngressNestedImpl(index, item);</span>
+    }
+
+    public NetworkPolicySpecFluent.IngressNested&lt;A&gt; editIngress(int index){
+<span class="nc bnc" id="L234" title="All 2 branches missed.">            if (ingress.size() &lt;= index) throw new RuntimeException(&quot;Can't edit ingress. Index exceeds size.&quot;);</span>
+<span class="nc" id="L235">            return setNewIngressLike(index, buildIngress(index));</span>
+    }
+
+    public NetworkPolicySpecFluent.IngressNested&lt;A&gt; editFirstIngress(){
+<span class="nc bnc" id="L239" title="All 2 branches missed.">            if (ingress.size() == 0) throw new RuntimeException(&quot;Can't edit first ingress. The list is empty.&quot;);</span>
+<span class="nc" id="L240">            return setNewIngressLike(0, buildIngress(0));</span>
+    }
+
+    public NetworkPolicySpecFluent.IngressNested&lt;A&gt; editLastIngress(){
+<span class="nc" id="L244">            int index = ingress.size() - 1;</span>
+<span class="nc bnc" id="L245" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last ingress. The list is empty.&quot;);</span>
+<span class="nc" id="L246">            return setNewIngressLike(index, buildIngress(index));</span>
+    }
+
+    public NetworkPolicySpecFluent.IngressNested&lt;A&gt; editMatchingIngress(io.fabric8.kubernetes.api.builder.Predicate&lt;NetworkPolicyIngressRuleBuilder&gt; predicate){
+<span class="nc" id="L250">            int index = -1;</span>
+<span class="nc bnc" id="L251" title="All 2 branches missed.">            for (int i=0;i&lt;ingress.size();i++) { </span>
+<span class="nc bnc" id="L252" title="All 2 branches missed.">            if (predicate.apply(ingress.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L254" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching ingress. No match found.&quot;);</span>
+<span class="nc" id="L255">            return setNewIngressLike(index, buildIngress(index));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPodSelector instead.
+ * @return The buildable object.
+ */
+@Deprecated public LabelSelector getPodSelector(){
+<span class="nc bnc" id="L264" title="All 2 branches missed.">            return this.podSelector!=null?this.podSelector.build():null;</span>
+    }
+
+    public LabelSelector buildPodSelector(){
+<span class="nc bnc" id="L268" title="All 2 branches missed.">            return this.podSelector!=null?this.podSelector.build():null;</span>
+    }
+
+    public A withPodSelector(LabelSelector podSelector){
+<span class="nc" id="L272">            _visitables.remove(this.podSelector);</span>
+<span class="nc bnc" id="L273" title="All 2 branches missed.">            if (podSelector!=null){ this.podSelector= new LabelSelectorBuilder(podSelector); _visitables.add(this.podSelector);} return (A) this;</span>
+    }
+
+    public Boolean hasPodSelector(){
+<span class="nc bnc" id="L277" title="All 2 branches missed.">            return this.podSelector != null;</span>
+    }
+
+    public NetworkPolicySpecFluent.PodSelectorNested&lt;A&gt; withNewPodSelector(){
+<span class="nc" id="L281">            return new PodSelectorNestedImpl();</span>
+    }
+
+    public NetworkPolicySpecFluent.PodSelectorNested&lt;A&gt; withNewPodSelectorLike(LabelSelector item){
+<span class="nc" id="L285">            return new PodSelectorNestedImpl(item);</span>
+    }
+
+    public NetworkPolicySpecFluent.PodSelectorNested&lt;A&gt; editPodSelector(){
+<span class="nc" id="L289">            return withNewPodSelectorLike(getPodSelector());</span>
+    }
+
+    public NetworkPolicySpecFluent.PodSelectorNested&lt;A&gt; editOrNewPodSelector(){
+<span class="nc bnc" id="L293" title="All 2 branches missed.">            return withNewPodSelectorLike(getPodSelector() != null ? getPodSelector(): new LabelSelectorBuilder().build());</span>
+    }
+
+    public NetworkPolicySpecFluent.PodSelectorNested&lt;A&gt; editOrNewPodSelectorLike(LabelSelector item){
+<span class="nc bnc" id="L297" title="All 2 branches missed.">            return withNewPodSelectorLike(getPodSelector() != null ? getPodSelector(): item);</span>
+    }
+
+    public A addToPolicyTypes(int index,String item){
+<span class="nc bnc" id="L301" title="All 2 branches missed.">            if (this.policyTypes == null) {this.policyTypes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L302">            this.policyTypes.add(index, item);</span>
+<span class="nc" id="L303">            return (A)this;</span>
+    }
+
+    public A setToPolicyTypes(int index,String item){
+<span class="nc bnc" id="L307" title="All 2 branches missed.">            if (this.policyTypes == null) {this.policyTypes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L308">            this.policyTypes.set(index, item); return (A)this;</span>
+    }
+
+    public A addToPolicyTypes(String... items){
+<span class="nc bnc" id="L312" title="All 2 branches missed.">            if (this.policyTypes == null) {this.policyTypes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L313" title="All 2 branches missed.">            for (String item : items) {this.policyTypes.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToPolicyTypes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L317" title="All 2 branches missed.">            if (this.policyTypes == null) {this.policyTypes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L318" title="All 2 branches missed.">            for (String item : items) {this.policyTypes.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromPolicyTypes(String... items){
+<span class="nc bnc" id="L322" title="All 4 branches missed.">            for (String item : items) {if (this.policyTypes!= null){ this.policyTypes.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromPolicyTypes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L326" title="All 4 branches missed.">            for (String item : items) {if (this.policyTypes!= null){ this.policyTypes.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getPolicyTypes(){
+<span class="nc" id="L330">            return this.policyTypes;</span>
+    }
+
+    public String getPolicyType(int index){
+<span class="nc" id="L334">            return this.policyTypes.get(index);</span>
+    }
+
+    public String getFirstPolicyType(){
+<span class="nc" id="L338">            return this.policyTypes.get(0);</span>
+    }
+
+    public String getLastPolicyType(){
+<span class="nc" id="L342">            return this.policyTypes.get(policyTypes.size() - 1);</span>
+    }
+
+    public String getMatchingPolicyType(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L346" title="All 4 branches missed.">            for (String item: policyTypes) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withPolicyTypes(List&lt;String&gt; policyTypes){
+<span class="nc bnc" id="L350" title="All 2 branches missed.">            if (this.policyTypes != null) { _visitables.removeAll(this.policyTypes);}</span>
+<span class="nc bnc" id="L351" title="All 4 branches missed.">            if (policyTypes != null) {this.policyTypes = new ArrayList&lt;String&gt;(); for (String item : policyTypes){this.addToPolicyTypes(item);}} else { this.policyTypes = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withPolicyTypes(String... policyTypes){
+<span class="nc bnc" id="L355" title="All 2 branches missed.">            if (this.policyTypes != null) {this.policyTypes.clear();}</span>
+<span class="nc bnc" id="L356" title="All 4 branches missed.">            if (policyTypes != null) {for (String item :policyTypes){ this.addToPolicyTypes(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasPolicyTypes(){
+<span class="nc bnc" id="L360" title="All 4 branches missed.">            return policyTypes != null &amp;&amp; !policyTypes.isEmpty();</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L364" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L365" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L366" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L367">            NetworkPolicySpecFluentImpl that = (NetworkPolicySpecFluentImpl) o;</span>
+<span class="nc bnc" id="L368" title="All 6 branches missed.">            if (egress != null ? !egress.equals(that.egress) :that.egress != null) return false;</span>
+<span class="nc bnc" id="L369" title="All 6 branches missed.">            if (ingress != null ? !ingress.equals(that.ingress) :that.ingress != null) return false;</span>
+<span class="nc bnc" id="L370" title="All 6 branches missed.">            if (podSelector != null ? !podSelector.equals(that.podSelector) :that.podSelector != null) return false;</span>
+<span class="nc bnc" id="L371" title="All 6 branches missed.">            if (policyTypes != null ? !policyTypes.equals(that.policyTypes) :that.policyTypes != null) return false;</span>
+<span class="nc" id="L372">            return true;</span>
+    }
+
+
+    public class EgressNestedImpl&lt;N&gt; extends NetworkPolicyEgressRuleFluentImpl&lt;NetworkPolicySpecFluent.EgressNested&lt;N&gt;&gt; implements NetworkPolicySpecFluent.EgressNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NetworkPolicyEgressRuleBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L381">            EgressNestedImpl(int index,NetworkPolicyEgressRule item){</span>
+<span class="nc" id="L382">                    this.index = index;</span>
+<span class="nc" id="L383">                    this.builder = new NetworkPolicyEgressRuleBuilder(this, item);</span>
+<span class="nc" id="L384">            }</span>
+<span class="nc" id="L385">            EgressNestedImpl(){</span>
+<span class="nc" id="L386">                    this.index = -1;</span>
+<span class="nc" id="L387">                    this.builder = new NetworkPolicyEgressRuleBuilder(this);</span>
+<span class="nc" id="L388">            }</span>
+    
+    public N and(){
+<span class="nc" id="L391">            return (N) NetworkPolicySpecFluentImpl.this.setToEgress(index, builder.build());</span>
+    }
+    public N endEgress(){
+<span class="nc" id="L394">            return and();</span>
+    }
+
+}
+    public class IngressNestedImpl&lt;N&gt; extends NetworkPolicyIngressRuleFluentImpl&lt;NetworkPolicySpecFluent.IngressNested&lt;N&gt;&gt; implements NetworkPolicySpecFluent.IngressNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NetworkPolicyIngressRuleBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L403">            IngressNestedImpl(int index,NetworkPolicyIngressRule item){</span>
+<span class="nc" id="L404">                    this.index = index;</span>
+<span class="nc" id="L405">                    this.builder = new NetworkPolicyIngressRuleBuilder(this, item);</span>
+<span class="nc" id="L406">            }</span>
+<span class="nc" id="L407">            IngressNestedImpl(){</span>
+<span class="nc" id="L408">                    this.index = -1;</span>
+<span class="nc" id="L409">                    this.builder = new NetworkPolicyIngressRuleBuilder(this);</span>
+<span class="nc" id="L410">            }</span>
+    
+    public N and(){
+<span class="nc" id="L413">            return (N) NetworkPolicySpecFluentImpl.this.setToIngress(index, builder.build());</span>
+    }
+    public N endIngress(){
+<span class="nc" id="L416">            return and();</span>
+    }
+
+}
+    public class PodSelectorNestedImpl&lt;N&gt; extends LabelSelectorFluentImpl&lt;NetworkPolicySpecFluent.PodSelectorNested&lt;N&gt;&gt; implements NetworkPolicySpecFluent.PodSelectorNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LabelSelectorBuilder builder;
+    
+<span class="nc" id="L424">            PodSelectorNestedImpl(LabelSelector item){</span>
+<span class="nc" id="L425">                    this.builder = new LabelSelectorBuilder(this, item);</span>
+<span class="nc" id="L426">            }</span>
+<span class="nc" id="L427">            PodSelectorNestedImpl(){</span>
+<span class="nc" id="L428">                    this.builder = new LabelSelectorBuilder(this);</span>
+<span class="nc" id="L429">            }</span>
+    
+    public N and(){
+<span class="nc" id="L432">            return (N) NetworkPolicySpecFluentImpl.this.withPodSelector(builder.build());</span>
+    }
+    public N endPodSelector(){
+<span class="nc" id="L435">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

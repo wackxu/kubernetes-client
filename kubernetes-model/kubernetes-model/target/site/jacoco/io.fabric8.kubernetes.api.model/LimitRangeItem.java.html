@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LimitRangeItem.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">LimitRangeItem.java</span></div><h1>LimitRangeItem.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;default&quot;,
+    &quot;defaultRequest&quot;,
+    &quot;max&quot;,
+    &quot;maxLimitRequestRatio&quot;,
+    &quot;min&quot;,
+    &quot;type&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L40">@ToString</span>
+<span class="nc bnc" id="L41" title="All 62 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class LimitRangeItem implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;default&quot;)
+    @Valid
+    private Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; _default;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;defaultRequest&quot;)
+    @Valid
+    private Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; defaultRequest;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;max&quot;)
+    @Valid
+    private Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; max;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;maxLimitRequestRatio&quot;)
+    @Valid
+    private Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; maxLimitRequestRatio;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;min&quot;)
+    @Valid
+    private Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; min;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;type&quot;)
+    private java.lang.String type;
+<span class="nc" id="L87">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L94">    public LimitRangeItem() {</span>
+<span class="nc" id="L95">    }</span>
+
+    /**
+     * 
+     * @param _default
+     * @param min
+     * @param max
+     * @param maxLimitRequestRatio
+     * @param type
+     * @param defaultRequest
+     */
+<span class="nc" id="L106">    public LimitRangeItem(Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; _default, Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; defaultRequest, Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; max, Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; maxLimitRequestRatio, Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; min, java.lang.String type) {</span>
+<span class="nc" id="L107">        this._default = _default;</span>
+<span class="nc" id="L108">        this.defaultRequest = defaultRequest;</span>
+<span class="nc" id="L109">        this.max = max;</span>
+<span class="nc" id="L110">        this.maxLimitRequestRatio = maxLimitRequestRatio;</span>
+<span class="nc" id="L111">        this.min = min;</span>
+<span class="nc" id="L112">        this.type = type;</span>
+<span class="nc" id="L113">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The _default
+     */
+    @JsonProperty(&quot;default&quot;)
+    public Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; getDefault() {
+<span class="nc" id="L123">        return _default;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param _default
+     *     The default
+     */
+    @JsonProperty(&quot;default&quot;)
+    public void setDefault(Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; _default) {
+<span class="nc" id="L134">        this._default = _default;</span>
+<span class="nc" id="L135">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The defaultRequest
+     */
+    @JsonProperty(&quot;defaultRequest&quot;)
+    public Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; getDefaultRequest() {
+<span class="nc" id="L145">        return defaultRequest;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param defaultRequest
+     *     The defaultRequest
+     */
+    @JsonProperty(&quot;defaultRequest&quot;)
+    public void setDefaultRequest(Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; defaultRequest) {
+<span class="nc" id="L156">        this.defaultRequest = defaultRequest;</span>
+<span class="nc" id="L157">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The max
+     */
+    @JsonProperty(&quot;max&quot;)
+    public Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; getMax() {
+<span class="nc" id="L167">        return max;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param max
+     *     The max
+     */
+    @JsonProperty(&quot;max&quot;)
+    public void setMax(Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; max) {
+<span class="nc" id="L178">        this.max = max;</span>
+<span class="nc" id="L179">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The maxLimitRequestRatio
+     */
+    @JsonProperty(&quot;maxLimitRequestRatio&quot;)
+    public Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; getMaxLimitRequestRatio() {
+<span class="nc" id="L189">        return maxLimitRequestRatio;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param maxLimitRequestRatio
+     *     The maxLimitRequestRatio
+     */
+    @JsonProperty(&quot;maxLimitRequestRatio&quot;)
+    public void setMaxLimitRequestRatio(Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; maxLimitRequestRatio) {
+<span class="nc" id="L200">        this.maxLimitRequestRatio = maxLimitRequestRatio;</span>
+<span class="nc" id="L201">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The min
+     */
+    @JsonProperty(&quot;min&quot;)
+    public Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; getMin() {
+<span class="nc" id="L211">        return min;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param min
+     *     The min
+     */
+    @JsonProperty(&quot;min&quot;)
+    public void setMin(Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; min) {
+<span class="nc" id="L222">        this.min = min;</span>
+<span class="nc" id="L223">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The type
+     */
+    @JsonProperty(&quot;type&quot;)
+    public java.lang.String getType() {
+<span class="nc" id="L233">        return type;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param type
+     *     The type
+     */
+    @JsonProperty(&quot;type&quot;)
+    public void setType(java.lang.String type) {
+<span class="nc" id="L244">        this.type = type;</span>
+<span class="nc" id="L245">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L249">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L254">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L255">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

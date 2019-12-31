@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RBDVolumeSourceFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">RBDVolumeSourceFluentImpl.java</span></div><h1>RBDVolumeSourceFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class RBDVolumeSourceFluentImpl&lt;A extends RBDVolumeSourceFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements RBDVolumeSourceFluent&lt;A&gt;{
+
+    private String fsType;
+    private String image;
+    private String keyring;
+    private List&lt;String&gt; monitors;
+    private String pool;
+    private Boolean readOnly;
+    private LocalObjectReferenceBuilder secretRef;
+    private String user;
+
+<span class="nc" id="L27">    public RBDVolumeSourceFluentImpl(){</span>
+<span class="nc" id="L28">    }</span>
+<span class="nc" id="L29">    public RBDVolumeSourceFluentImpl(RBDVolumeSource instance){</span>
+<span class="nc" id="L30">            this.withFsType(instance.getFsType()); </span>
+<span class="nc" id="L31">            this.withImage(instance.getImage()); </span>
+<span class="nc" id="L32">            this.withKeyring(instance.getKeyring()); </span>
+<span class="nc" id="L33">            this.withMonitors(instance.getMonitors()); </span>
+<span class="nc" id="L34">            this.withPool(instance.getPool()); </span>
+<span class="nc" id="L35">            this.withReadOnly(instance.getReadOnly()); </span>
+<span class="nc" id="L36">            this.withSecretRef(instance.getSecretRef()); </span>
+<span class="nc" id="L37">            this.withUser(instance.getUser()); </span>
+<span class="nc" id="L38">    }</span>
+
+    public String getFsType(){
+<span class="nc" id="L41">            return this.fsType;</span>
+    }
+
+    public A withFsType(String fsType){
+<span class="nc" id="L45">            this.fsType=fsType; return (A) this;</span>
+    }
+
+    public Boolean hasFsType(){
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            return this.fsType != null;</span>
+    }
+
+    public String getImage(){
+<span class="nc" id="L53">            return this.image;</span>
+    }
+
+    public A withImage(String image){
+<span class="nc" id="L57">            this.image=image; return (A) this;</span>
+    }
+
+    public Boolean hasImage(){
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            return this.image != null;</span>
+    }
+
+    public String getKeyring(){
+<span class="nc" id="L65">            return this.keyring;</span>
+    }
+
+    public A withKeyring(String keyring){
+<span class="nc" id="L69">            this.keyring=keyring; return (A) this;</span>
+    }
+
+    public Boolean hasKeyring(){
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            return this.keyring != null;</span>
+    }
+
+    public A addToMonitors(int index,String item){
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            if (this.monitors == null) {this.monitors = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L78">            this.monitors.add(index, item);</span>
+<span class="nc" id="L79">            return (A)this;</span>
+    }
+
+    public A setToMonitors(int index,String item){
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            if (this.monitors == null) {this.monitors = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L84">            this.monitors.set(index, item); return (A)this;</span>
+    }
+
+    public A addToMonitors(String... items){
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            if (this.monitors == null) {this.monitors = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            for (String item : items) {this.monitors.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToMonitors(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            if (this.monitors == null) {this.monitors = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            for (String item : items) {this.monitors.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromMonitors(String... items){
+<span class="nc bnc" id="L98" title="All 4 branches missed.">            for (String item : items) {if (this.monitors!= null){ this.monitors.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromMonitors(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L102" title="All 4 branches missed.">            for (String item : items) {if (this.monitors!= null){ this.monitors.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getMonitors(){
+<span class="nc" id="L106">            return this.monitors;</span>
+    }
+
+    public String getMonitor(int index){
+<span class="nc" id="L110">            return this.monitors.get(index);</span>
+    }
+
+    public String getFirstMonitor(){
+<span class="nc" id="L114">            return this.monitors.get(0);</span>
+    }
+
+    public String getLastMonitor(){
+<span class="nc" id="L118">            return this.monitors.get(monitors.size() - 1);</span>
+    }
+
+    public String getMatchingMonitor(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L122" title="All 4 branches missed.">            for (String item: monitors) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withMonitors(List&lt;String&gt; monitors){
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            if (this.monitors != null) { _visitables.removeAll(this.monitors);}</span>
+<span class="nc bnc" id="L127" title="All 4 branches missed.">            if (monitors != null) {this.monitors = new ArrayList&lt;String&gt;(); for (String item : monitors){this.addToMonitors(item);}} else { this.monitors = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withMonitors(String... monitors){
+<span class="nc bnc" id="L131" title="All 2 branches missed.">            if (this.monitors != null) {this.monitors.clear();}</span>
+<span class="nc bnc" id="L132" title="All 4 branches missed.">            if (monitors != null) {for (String item :monitors){ this.addToMonitors(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasMonitors(){
+<span class="nc bnc" id="L136" title="All 4 branches missed.">            return monitors != null &amp;&amp; !monitors.isEmpty();</span>
+    }
+
+    public String getPool(){
+<span class="nc" id="L140">            return this.pool;</span>
+    }
+
+    public A withPool(String pool){
+<span class="nc" id="L144">            this.pool=pool; return (A) this;</span>
+    }
+
+    public Boolean hasPool(){
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            return this.pool != null;</span>
+    }
+
+    public Boolean isReadOnly(){
+<span class="nc" id="L152">            return this.readOnly;</span>
+    }
+
+    public A withReadOnly(Boolean readOnly){
+<span class="nc" id="L156">            this.readOnly=readOnly; return (A) this;</span>
+    }
+
+    public Boolean hasReadOnly(){
+<span class="nc bnc" id="L160" title="All 2 branches missed.">            return this.readOnly != null;</span>
+    }
+
+    public A withNewReadOnly(String arg1){
+<span class="nc" id="L164">            return (A)withReadOnly(new Boolean(arg1));</span>
+    }
+
+    public A withNewReadOnly(boolean arg1){
+<span class="nc" id="L168">            return (A)withReadOnly(new Boolean(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSecretRef instead.
+ * @return The buildable object.
+ */
+@Deprecated public LocalObjectReference getSecretRef(){
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            return this.secretRef!=null?this.secretRef.build():null;</span>
+    }
+
+    public LocalObjectReference buildSecretRef(){
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            return this.secretRef!=null?this.secretRef.build():null;</span>
+    }
+
+    public A withSecretRef(LocalObjectReference secretRef){
+<span class="nc" id="L185">            _visitables.remove(this.secretRef);</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">            if (secretRef!=null){ this.secretRef= new LocalObjectReferenceBuilder(secretRef); _visitables.add(this.secretRef);} return (A) this;</span>
+    }
+
+    public Boolean hasSecretRef(){
+<span class="nc bnc" id="L190" title="All 2 branches missed.">            return this.secretRef != null;</span>
+    }
+
+    public A withNewSecretRef(String name){
+<span class="nc" id="L194">            return (A)withSecretRef(new LocalObjectReference(name));</span>
+    }
+
+    public RBDVolumeSourceFluent.SecretRefNested&lt;A&gt; withNewSecretRef(){
+<span class="nc" id="L198">            return new SecretRefNestedImpl();</span>
+    }
+
+    public RBDVolumeSourceFluent.SecretRefNested&lt;A&gt; withNewSecretRefLike(LocalObjectReference item){
+<span class="nc" id="L202">            return new SecretRefNestedImpl(item);</span>
+    }
+
+    public RBDVolumeSourceFluent.SecretRefNested&lt;A&gt; editSecretRef(){
+<span class="nc" id="L206">            return withNewSecretRefLike(getSecretRef());</span>
+    }
+
+    public RBDVolumeSourceFluent.SecretRefNested&lt;A&gt; editOrNewSecretRef(){
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            return withNewSecretRefLike(getSecretRef() != null ? getSecretRef(): new LocalObjectReferenceBuilder().build());</span>
+    }
+
+    public RBDVolumeSourceFluent.SecretRefNested&lt;A&gt; editOrNewSecretRefLike(LocalObjectReference item){
+<span class="nc bnc" id="L214" title="All 2 branches missed.">            return withNewSecretRefLike(getSecretRef() != null ? getSecretRef(): item);</span>
+    }
+
+    public String getUser(){
+<span class="nc" id="L218">            return this.user;</span>
+    }
+
+    public A withUser(String user){
+<span class="nc" id="L222">            this.user=user; return (A) this;</span>
+    }
+
+    public Boolean hasUser(){
+<span class="nc bnc" id="L226" title="All 2 branches missed.">            return this.user != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L230" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L231" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L233">            RBDVolumeSourceFluentImpl that = (RBDVolumeSourceFluentImpl) o;</span>
+<span class="nc bnc" id="L234" title="All 6 branches missed.">            if (fsType != null ? !fsType.equals(that.fsType) :that.fsType != null) return false;</span>
+<span class="nc bnc" id="L235" title="All 6 branches missed.">            if (image != null ? !image.equals(that.image) :that.image != null) return false;</span>
+<span class="nc bnc" id="L236" title="All 6 branches missed.">            if (keyring != null ? !keyring.equals(that.keyring) :that.keyring != null) return false;</span>
+<span class="nc bnc" id="L237" title="All 6 branches missed.">            if (monitors != null ? !monitors.equals(that.monitors) :that.monitors != null) return false;</span>
+<span class="nc bnc" id="L238" title="All 6 branches missed.">            if (pool != null ? !pool.equals(that.pool) :that.pool != null) return false;</span>
+<span class="nc bnc" id="L239" title="All 6 branches missed.">            if (readOnly != null ? !readOnly.equals(that.readOnly) :that.readOnly != null) return false;</span>
+<span class="nc bnc" id="L240" title="All 6 branches missed.">            if (secretRef != null ? !secretRef.equals(that.secretRef) :that.secretRef != null) return false;</span>
+<span class="nc bnc" id="L241" title="All 6 branches missed.">            if (user != null ? !user.equals(that.user) :that.user != null) return false;</span>
+<span class="nc" id="L242">            return true;</span>
+    }
+
+
+    public class SecretRefNestedImpl&lt;N&gt; extends LocalObjectReferenceFluentImpl&lt;RBDVolumeSourceFluent.SecretRefNested&lt;N&gt;&gt; implements RBDVolumeSourceFluent.SecretRefNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LocalObjectReferenceBuilder builder;
+    
+<span class="nc" id="L250">            SecretRefNestedImpl(LocalObjectReference item){</span>
+<span class="nc" id="L251">                    this.builder = new LocalObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L252">            }</span>
+<span class="nc" id="L253">            SecretRefNestedImpl(){</span>
+<span class="nc" id="L254">                    this.builder = new LocalObjectReferenceBuilder(this);</span>
+<span class="nc" id="L255">            }</span>
+    
+    public N and(){
+<span class="nc" id="L258">            return (N) RBDVolumeSourceFluentImpl.this.withSecretRef(builder.build());</span>
+    }
+    public N endSecretRef(){
+<span class="nc" id="L261">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

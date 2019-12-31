@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EnvVarSourceFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">EnvVarSourceFluentImpl.java</span></div><h1>EnvVarSourceFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.lang.Object;
+
+public class EnvVarSourceFluentImpl&lt;A extends EnvVarSourceFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements EnvVarSourceFluent&lt;A&gt;{
+
+    private ConfigMapKeySelectorBuilder configMapKeyRef;
+    private ObjectFieldSelectorBuilder fieldRef;
+    private ResourceFieldSelectorBuilder resourceFieldRef;
+    private SecretKeySelectorBuilder secretKeyRef;
+
+<span class="fc" id="L19">    public EnvVarSourceFluentImpl(){</span>
+<span class="fc" id="L20">    }</span>
+<span class="nc" id="L21">    public EnvVarSourceFluentImpl(EnvVarSource instance){</span>
+<span class="nc" id="L22">            this.withConfigMapKeyRef(instance.getConfigMapKeyRef()); </span>
+<span class="nc" id="L23">            this.withFieldRef(instance.getFieldRef()); </span>
+<span class="nc" id="L24">            this.withResourceFieldRef(instance.getResourceFieldRef()); </span>
+<span class="nc" id="L25">            this.withSecretKeyRef(instance.getSecretKeyRef()); </span>
+<span class="nc" id="L26">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildConfigMapKeyRef instead.
+ * @return The buildable object.
+ */
+@Deprecated public ConfigMapKeySelector getConfigMapKeyRef(){
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">            return this.configMapKeyRef!=null?this.configMapKeyRef.build():null;</span>
+    }
+
+    public ConfigMapKeySelector buildConfigMapKeyRef(){
+<span class="nc bnc" id="L38" title="All 2 branches missed.">            return this.configMapKeyRef!=null?this.configMapKeyRef.build():null;</span>
+    }
+
+    public A withConfigMapKeyRef(ConfigMapKeySelector configMapKeyRef){
+<span class="fc" id="L42">            _visitables.remove(this.configMapKeyRef);</span>
+<span class="pc bpc" id="L43" title="1 of 2 branches missed.">            if (configMapKeyRef!=null){ this.configMapKeyRef= new ConfigMapKeySelectorBuilder(configMapKeyRef); _visitables.add(this.configMapKeyRef);} return (A) this;</span>
+    }
+
+    public Boolean hasConfigMapKeyRef(){
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            return this.configMapKeyRef != null;</span>
+    }
+
+    public A withNewConfigMapKeyRef(String key,String name,Boolean optional){
+<span class="nc" id="L51">            return (A)withConfigMapKeyRef(new ConfigMapKeySelector(key, name, optional));</span>
+    }
+
+    public EnvVarSourceFluent.ConfigMapKeyRefNested&lt;A&gt; withNewConfigMapKeyRef(){
+<span class="nc" id="L55">            return new ConfigMapKeyRefNestedImpl();</span>
+    }
+
+    public EnvVarSourceFluent.ConfigMapKeyRefNested&lt;A&gt; withNewConfigMapKeyRefLike(ConfigMapKeySelector item){
+<span class="nc" id="L59">            return new ConfigMapKeyRefNestedImpl(item);</span>
+    }
+
+    public EnvVarSourceFluent.ConfigMapKeyRefNested&lt;A&gt; editConfigMapKeyRef(){
+<span class="nc" id="L63">            return withNewConfigMapKeyRefLike(getConfigMapKeyRef());</span>
+    }
+
+    public EnvVarSourceFluent.ConfigMapKeyRefNested&lt;A&gt; editOrNewConfigMapKeyRef(){
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            return withNewConfigMapKeyRefLike(getConfigMapKeyRef() != null ? getConfigMapKeyRef(): new ConfigMapKeySelectorBuilder().build());</span>
+    }
+
+    public EnvVarSourceFluent.ConfigMapKeyRefNested&lt;A&gt; editOrNewConfigMapKeyRefLike(ConfigMapKeySelector item){
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            return withNewConfigMapKeyRefLike(getConfigMapKeyRef() != null ? getConfigMapKeyRef(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildFieldRef instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectFieldSelector getFieldRef(){
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">            return this.fieldRef!=null?this.fieldRef.build():null;</span>
+    }
+
+    public ObjectFieldSelector buildFieldRef(){
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            return this.fieldRef!=null?this.fieldRef.build():null;</span>
+    }
+
+    public A withFieldRef(ObjectFieldSelector fieldRef){
+<span class="fc" id="L88">            _visitables.remove(this.fieldRef);</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">            if (fieldRef!=null){ this.fieldRef= new ObjectFieldSelectorBuilder(fieldRef); _visitables.add(this.fieldRef);} return (A) this;</span>
+    }
+
+    public Boolean hasFieldRef(){
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            return this.fieldRef != null;</span>
+    }
+
+    public A withNewFieldRef(String apiVersion,String fieldPath){
+<span class="nc" id="L97">            return (A)withFieldRef(new ObjectFieldSelector(apiVersion, fieldPath));</span>
+    }
+
+    public EnvVarSourceFluent.FieldRefNested&lt;A&gt; withNewFieldRef(){
+<span class="fc" id="L101">            return new FieldRefNestedImpl();</span>
+    }
+
+    public EnvVarSourceFluent.FieldRefNested&lt;A&gt; withNewFieldRefLike(ObjectFieldSelector item){
+<span class="nc" id="L105">            return new FieldRefNestedImpl(item);</span>
+    }
+
+    public EnvVarSourceFluent.FieldRefNested&lt;A&gt; editFieldRef(){
+<span class="nc" id="L109">            return withNewFieldRefLike(getFieldRef());</span>
+    }
+
+    public EnvVarSourceFluent.FieldRefNested&lt;A&gt; editOrNewFieldRef(){
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            return withNewFieldRefLike(getFieldRef() != null ? getFieldRef(): new ObjectFieldSelectorBuilder().build());</span>
+    }
+
+    public EnvVarSourceFluent.FieldRefNested&lt;A&gt; editOrNewFieldRefLike(ObjectFieldSelector item){
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            return withNewFieldRefLike(getFieldRef() != null ? getFieldRef(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildResourceFieldRef instead.
+ * @return The buildable object.
+ */
+@Deprecated public ResourceFieldSelector getResourceFieldRef(){
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">            return this.resourceFieldRef!=null?this.resourceFieldRef.build():null;</span>
+    }
+
+    public ResourceFieldSelector buildResourceFieldRef(){
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            return this.resourceFieldRef!=null?this.resourceFieldRef.build():null;</span>
+    }
+
+    public A withResourceFieldRef(ResourceFieldSelector resourceFieldRef){
+<span class="fc" id="L134">            _visitables.remove(this.resourceFieldRef);</span>
+<span class="pc bpc" id="L135" title="1 of 2 branches missed.">            if (resourceFieldRef!=null){ this.resourceFieldRef= new ResourceFieldSelectorBuilder(resourceFieldRef); _visitables.add(this.resourceFieldRef);} return (A) this;</span>
+    }
+
+    public Boolean hasResourceFieldRef(){
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            return this.resourceFieldRef != null;</span>
+    }
+
+    public EnvVarSourceFluent.ResourceFieldRefNested&lt;A&gt; withNewResourceFieldRef(){
+<span class="nc" id="L143">            return new ResourceFieldRefNestedImpl();</span>
+    }
+
+    public EnvVarSourceFluent.ResourceFieldRefNested&lt;A&gt; withNewResourceFieldRefLike(ResourceFieldSelector item){
+<span class="nc" id="L147">            return new ResourceFieldRefNestedImpl(item);</span>
+    }
+
+    public EnvVarSourceFluent.ResourceFieldRefNested&lt;A&gt; editResourceFieldRef(){
+<span class="nc" id="L151">            return withNewResourceFieldRefLike(getResourceFieldRef());</span>
+    }
+
+    public EnvVarSourceFluent.ResourceFieldRefNested&lt;A&gt; editOrNewResourceFieldRef(){
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            return withNewResourceFieldRefLike(getResourceFieldRef() != null ? getResourceFieldRef(): new ResourceFieldSelectorBuilder().build());</span>
+    }
+
+    public EnvVarSourceFluent.ResourceFieldRefNested&lt;A&gt; editOrNewResourceFieldRefLike(ResourceFieldSelector item){
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            return withNewResourceFieldRefLike(getResourceFieldRef() != null ? getResourceFieldRef(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSecretKeyRef instead.
+ * @return The buildable object.
+ */
+@Deprecated public SecretKeySelector getSecretKeyRef(){
+<span class="pc bpc" id="L168" title="1 of 2 branches missed.">            return this.secretKeyRef!=null?this.secretKeyRef.build():null;</span>
+    }
+
+    public SecretKeySelector buildSecretKeyRef(){
+<span class="nc bnc" id="L172" title="All 2 branches missed.">            return this.secretKeyRef!=null?this.secretKeyRef.build():null;</span>
+    }
+
+    public A withSecretKeyRef(SecretKeySelector secretKeyRef){
+<span class="fc" id="L176">            _visitables.remove(this.secretKeyRef);</span>
+<span class="pc bpc" id="L177" title="1 of 2 branches missed.">            if (secretKeyRef!=null){ this.secretKeyRef= new SecretKeySelectorBuilder(secretKeyRef); _visitables.add(this.secretKeyRef);} return (A) this;</span>
+    }
+
+    public Boolean hasSecretKeyRef(){
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            return this.secretKeyRef != null;</span>
+    }
+
+    public A withNewSecretKeyRef(String key,String name,Boolean optional){
+<span class="nc" id="L185">            return (A)withSecretKeyRef(new SecretKeySelector(key, name, optional));</span>
+    }
+
+    public EnvVarSourceFluent.SecretKeyRefNested&lt;A&gt; withNewSecretKeyRef(){
+<span class="nc" id="L189">            return new SecretKeyRefNestedImpl();</span>
+    }
+
+    public EnvVarSourceFluent.SecretKeyRefNested&lt;A&gt; withNewSecretKeyRefLike(SecretKeySelector item){
+<span class="nc" id="L193">            return new SecretKeyRefNestedImpl(item);</span>
+    }
+
+    public EnvVarSourceFluent.SecretKeyRefNested&lt;A&gt; editSecretKeyRef(){
+<span class="nc" id="L197">            return withNewSecretKeyRefLike(getSecretKeyRef());</span>
+    }
+
+    public EnvVarSourceFluent.SecretKeyRefNested&lt;A&gt; editOrNewSecretKeyRef(){
+<span class="nc bnc" id="L201" title="All 2 branches missed.">            return withNewSecretKeyRefLike(getSecretKeyRef() != null ? getSecretKeyRef(): new SecretKeySelectorBuilder().build());</span>
+    }
+
+    public EnvVarSourceFluent.SecretKeyRefNested&lt;A&gt; editOrNewSecretKeyRefLike(SecretKeySelector item){
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            return withNewSecretKeyRefLike(getSecretKeyRef() != null ? getSecretKeyRef(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L210" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L211" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L212">            EnvVarSourceFluentImpl that = (EnvVarSourceFluentImpl) o;</span>
+<span class="nc bnc" id="L213" title="All 6 branches missed.">            if (configMapKeyRef != null ? !configMapKeyRef.equals(that.configMapKeyRef) :that.configMapKeyRef != null) return false;</span>
+<span class="nc bnc" id="L214" title="All 6 branches missed.">            if (fieldRef != null ? !fieldRef.equals(that.fieldRef) :that.fieldRef != null) return false;</span>
+<span class="nc bnc" id="L215" title="All 6 branches missed.">            if (resourceFieldRef != null ? !resourceFieldRef.equals(that.resourceFieldRef) :that.resourceFieldRef != null) return false;</span>
+<span class="nc bnc" id="L216" title="All 6 branches missed.">            if (secretKeyRef != null ? !secretKeyRef.equals(that.secretKeyRef) :that.secretKeyRef != null) return false;</span>
+<span class="nc" id="L217">            return true;</span>
+    }
+
+
+    public class ConfigMapKeyRefNestedImpl&lt;N&gt; extends ConfigMapKeySelectorFluentImpl&lt;EnvVarSourceFluent.ConfigMapKeyRefNested&lt;N&gt;&gt; implements EnvVarSourceFluent.ConfigMapKeyRefNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ConfigMapKeySelectorBuilder builder;
+    
+<span class="nc" id="L225">            ConfigMapKeyRefNestedImpl(ConfigMapKeySelector item){</span>
+<span class="nc" id="L226">                    this.builder = new ConfigMapKeySelectorBuilder(this, item);</span>
+<span class="nc" id="L227">            }</span>
+<span class="nc" id="L228">            ConfigMapKeyRefNestedImpl(){</span>
+<span class="nc" id="L229">                    this.builder = new ConfigMapKeySelectorBuilder(this);</span>
+<span class="nc" id="L230">            }</span>
+    
+    public N and(){
+<span class="nc" id="L233">            return (N) EnvVarSourceFluentImpl.this.withConfigMapKeyRef(builder.build());</span>
+    }
+    public N endConfigMapKeyRef(){
+<span class="nc" id="L236">            return and();</span>
+    }
+
+}
+    public class FieldRefNestedImpl&lt;N&gt; extends ObjectFieldSelectorFluentImpl&lt;EnvVarSourceFluent.FieldRefNested&lt;N&gt;&gt; implements EnvVarSourceFluent.FieldRefNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectFieldSelectorBuilder builder;
+    
+<span class="nc" id="L244">            FieldRefNestedImpl(ObjectFieldSelector item){</span>
+<span class="nc" id="L245">                    this.builder = new ObjectFieldSelectorBuilder(this, item);</span>
+<span class="nc" id="L246">            }</span>
+<span class="fc" id="L247">            FieldRefNestedImpl(){</span>
+<span class="fc" id="L248">                    this.builder = new ObjectFieldSelectorBuilder(this);</span>
+<span class="fc" id="L249">            }</span>
+    
+    public N and(){
+<span class="fc" id="L252">            return (N) EnvVarSourceFluentImpl.this.withFieldRef(builder.build());</span>
+    }
+    public N endFieldRef(){
+<span class="fc" id="L255">            return and();</span>
+    }
+
+}
+    public class ResourceFieldRefNestedImpl&lt;N&gt; extends ResourceFieldSelectorFluentImpl&lt;EnvVarSourceFluent.ResourceFieldRefNested&lt;N&gt;&gt; implements EnvVarSourceFluent.ResourceFieldRefNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ResourceFieldSelectorBuilder builder;
+    
+<span class="nc" id="L263">            ResourceFieldRefNestedImpl(ResourceFieldSelector item){</span>
+<span class="nc" id="L264">                    this.builder = new ResourceFieldSelectorBuilder(this, item);</span>
+<span class="nc" id="L265">            }</span>
+<span class="nc" id="L266">            ResourceFieldRefNestedImpl(){</span>
+<span class="nc" id="L267">                    this.builder = new ResourceFieldSelectorBuilder(this);</span>
+<span class="nc" id="L268">            }</span>
+    
+    public N and(){
+<span class="nc" id="L271">            return (N) EnvVarSourceFluentImpl.this.withResourceFieldRef(builder.build());</span>
+    }
+    public N endResourceFieldRef(){
+<span class="nc" id="L274">            return and();</span>
+    }
+
+}
+    public class SecretKeyRefNestedImpl&lt;N&gt; extends SecretKeySelectorFluentImpl&lt;EnvVarSourceFluent.SecretKeyRefNested&lt;N&gt;&gt; implements EnvVarSourceFluent.SecretKeyRefNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SecretKeySelectorBuilder builder;
+    
+<span class="nc" id="L282">            SecretKeyRefNestedImpl(SecretKeySelector item){</span>
+<span class="nc" id="L283">                    this.builder = new SecretKeySelectorBuilder(this, item);</span>
+<span class="nc" id="L284">            }</span>
+<span class="nc" id="L285">            SecretKeyRefNestedImpl(){</span>
+<span class="nc" id="L286">                    this.builder = new SecretKeySelectorBuilder(this);</span>
+<span class="nc" id="L287">            }</span>
+    
+    public N and(){
+<span class="nc" id="L290">            return (N) EnvVarSourceFluentImpl.this.withSecretKeyRef(builder.build());</span>
+    }
+    public N endSecretKeyRef(){
+<span class="nc" id="L293">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

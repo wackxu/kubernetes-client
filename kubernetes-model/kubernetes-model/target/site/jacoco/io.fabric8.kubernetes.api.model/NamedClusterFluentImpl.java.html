@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NamedClusterFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">NamedClusterFluentImpl.java</span></div><h1>NamedClusterFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class NamedClusterFluentImpl&lt;A extends NamedClusterFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements NamedClusterFluent&lt;A&gt;{
+
+    private ClusterBuilder cluster;
+    private String name;
+
+<span class="nc" id="L17">    public NamedClusterFluentImpl(){</span>
+<span class="nc" id="L18">    }</span>
+<span class="nc" id="L19">    public NamedClusterFluentImpl(NamedCluster instance){</span>
+<span class="nc" id="L20">            this.withCluster(instance.getCluster()); </span>
+<span class="nc" id="L21">            this.withName(instance.getName()); </span>
+<span class="nc" id="L22">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildCluster instead.
+ * @return The buildable object.
+ */
+@Deprecated public Cluster getCluster(){
+<span class="nc bnc" id="L30" title="All 2 branches missed.">            return this.cluster!=null?this.cluster.build():null;</span>
+    }
+
+    public Cluster buildCluster(){
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            return this.cluster!=null?this.cluster.build():null;</span>
+    }
+
+    public A withCluster(Cluster cluster){
+<span class="nc" id="L38">            _visitables.remove(this.cluster);</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            if (cluster!=null){ this.cluster= new ClusterBuilder(cluster); _visitables.add(this.cluster);} return (A) this;</span>
+    }
+
+    public Boolean hasCluster(){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            return this.cluster != null;</span>
+    }
+
+    public NamedClusterFluent.ClusterNested&lt;A&gt; withNewCluster(){
+<span class="nc" id="L47">            return new ClusterNestedImpl();</span>
+    }
+
+    public NamedClusterFluent.ClusterNested&lt;A&gt; withNewClusterLike(Cluster item){
+<span class="nc" id="L51">            return new ClusterNestedImpl(item);</span>
+    }
+
+    public NamedClusterFluent.ClusterNested&lt;A&gt; editCluster(){
+<span class="nc" id="L55">            return withNewClusterLike(getCluster());</span>
+    }
+
+    public NamedClusterFluent.ClusterNested&lt;A&gt; editOrNewCluster(){
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            return withNewClusterLike(getCluster() != null ? getCluster(): new ClusterBuilder().build());</span>
+    }
+
+    public NamedClusterFluent.ClusterNested&lt;A&gt; editOrNewClusterLike(Cluster item){
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            return withNewClusterLike(getCluster() != null ? getCluster(): item);</span>
+    }
+
+    public String getName(){
+<span class="nc" id="L67">            return this.name;</span>
+    }
+
+    public A withName(String name){
+<span class="nc" id="L71">            this.name=name; return (A) this;</span>
+    }
+
+    public Boolean hasName(){
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            return this.name != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L80" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L82">            NamedClusterFluentImpl that = (NamedClusterFluentImpl) o;</span>
+<span class="nc bnc" id="L83" title="All 6 branches missed.">            if (cluster != null ? !cluster.equals(that.cluster) :that.cluster != null) return false;</span>
+<span class="nc bnc" id="L84" title="All 6 branches missed.">            if (name != null ? !name.equals(that.name) :that.name != null) return false;</span>
+<span class="nc" id="L85">            return true;</span>
+    }
+
+
+    public class ClusterNestedImpl&lt;N&gt; extends ClusterFluentImpl&lt;NamedClusterFluent.ClusterNested&lt;N&gt;&gt; implements NamedClusterFluent.ClusterNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ClusterBuilder builder;
+    
+<span class="nc" id="L93">            ClusterNestedImpl(Cluster item){</span>
+<span class="nc" id="L94">                    this.builder = new ClusterBuilder(this, item);</span>
+<span class="nc" id="L95">            }</span>
+<span class="nc" id="L96">            ClusterNestedImpl(){</span>
+<span class="nc" id="L97">                    this.builder = new ClusterBuilder(this);</span>
+<span class="nc" id="L98">            }</span>
+    
+    public N and(){
+<span class="nc" id="L101">            return (N) NamedClusterFluentImpl.this.withCluster(builder.build());</span>
+    }
+    public N endCluster(){
+<span class="nc" id="L104">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

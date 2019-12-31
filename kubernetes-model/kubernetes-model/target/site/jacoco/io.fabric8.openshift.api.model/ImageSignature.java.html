@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImageSignature.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">ImageSignature.java</span></div><h1>ImageSignature.java</h1><pre class="source lang-java linenums">
+package io.fabric8.openshift.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;conditions&quot;,
+    &quot;content&quot;,
+    &quot;created&quot;,
+    &quot;imageIdentity&quot;,
+    &quot;issuedBy&quot;,
+    &quot;issuedTo&quot;,
+    &quot;signedClaims&quot;,
+    &quot;type&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L48">@ToString</span>
+<span class="nc bnc" id="L49" title="All 102 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class ImageSignature implements HasMetadata
+{
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L59">    @NotNull</span>
+    @JsonProperty(&quot;apiVersion&quot;)
+    private java.lang.String apiVersion = &quot;image.openshift.io/v1&quot;;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L66">    @JsonProperty(&quot;conditions&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;SignatureCondition&gt; conditions = new ArrayList&lt;SignatureCondition&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;content&quot;)
+    private java.lang.String content;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;created&quot;)
+    @Valid
+    private String created;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;imageIdentity&quot;)
+    private java.lang.String imageIdentity;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;issuedBy&quot;)
+    @Valid
+    private SignatureIssuer issuedBy;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;issuedTo&quot;)
+    @Valid
+    private SignatureSubject issuedTo;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L108">    @NotNull</span>
+    @JsonProperty(&quot;kind&quot;)
+    private java.lang.String kind = &quot;ImageSignature&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    @Valid
+    @CheckObjectMeta(regexp = &quot;^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$&quot;, max = 253)
+    private ObjectMeta metadata;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;signedClaims&quot;)
+    @Valid
+    private Map&lt;String, String&gt; signedClaims;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;type&quot;)
+    private java.lang.String type;
+<span class="nc" id="L132">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L139">    public ImageSignature() {</span>
+<span class="nc" id="L140">    }</span>
+
+    /**
+     * 
+     * @param metadata
+     * @param apiVersion
+     * @param issuedTo
+     * @param created
+     * @param kind
+     * @param issuedBy
+     * @param signedClaims
+     * @param conditions
+     * @param type
+     * @param content
+     * @param imageIdentity
+     */
+<span class="nc" id="L156">    public ImageSignature(java.lang.String apiVersion, List&lt;SignatureCondition&gt; conditions, java.lang.String content, String created, java.lang.String imageIdentity, SignatureIssuer issuedBy, SignatureSubject issuedTo, java.lang.String kind, ObjectMeta metadata, Map&lt;String, String&gt; signedClaims, java.lang.String type) {</span>
+<span class="nc" id="L157">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L158">        this.conditions = conditions;</span>
+<span class="nc" id="L159">        this.content = content;</span>
+<span class="nc" id="L160">        this.created = created;</span>
+<span class="nc" id="L161">        this.imageIdentity = imageIdentity;</span>
+<span class="nc" id="L162">        this.issuedBy = issuedBy;</span>
+<span class="nc" id="L163">        this.issuedTo = issuedTo;</span>
+<span class="nc" id="L164">        this.kind = kind;</span>
+<span class="nc" id="L165">        this.metadata = metadata;</span>
+<span class="nc" id="L166">        this.signedClaims = signedClaims;</span>
+<span class="nc" id="L167">        this.type = type;</span>
+<span class="nc" id="L168">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public java.lang.String getApiVersion() {
+<span class="nc" id="L179">        return apiVersion;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param apiVersion
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public void setApiVersion(java.lang.String apiVersion) {
+<span class="nc" id="L191">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L192">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The conditions
+     */
+    @JsonProperty(&quot;conditions&quot;)
+    public List&lt;SignatureCondition&gt; getConditions() {
+<span class="nc" id="L202">        return conditions;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param conditions
+     *     The conditions
+     */
+    @JsonProperty(&quot;conditions&quot;)
+    public void setConditions(List&lt;SignatureCondition&gt; conditions) {
+<span class="nc" id="L213">        this.conditions = conditions;</span>
+<span class="nc" id="L214">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The content
+     */
+    @JsonProperty(&quot;content&quot;)
+    public java.lang.String getContent() {
+<span class="nc" id="L224">        return content;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param content
+     *     The content
+     */
+    @JsonProperty(&quot;content&quot;)
+    public void setContent(java.lang.String content) {
+<span class="nc" id="L235">        this.content = content;</span>
+<span class="nc" id="L236">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The created
+     */
+    @JsonProperty(&quot;created&quot;)
+    public String getCreated() {
+<span class="nc" id="L246">        return created;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param created
+     *     The created
+     */
+    @JsonProperty(&quot;created&quot;)
+    public void setCreated(String created) {
+<span class="nc" id="L257">        this.created = created;</span>
+<span class="nc" id="L258">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The imageIdentity
+     */
+    @JsonProperty(&quot;imageIdentity&quot;)
+    public java.lang.String getImageIdentity() {
+<span class="nc" id="L268">        return imageIdentity;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param imageIdentity
+     *     The imageIdentity
+     */
+    @JsonProperty(&quot;imageIdentity&quot;)
+    public void setImageIdentity(java.lang.String imageIdentity) {
+<span class="nc" id="L279">        this.imageIdentity = imageIdentity;</span>
+<span class="nc" id="L280">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The issuedBy
+     */
+    @JsonProperty(&quot;issuedBy&quot;)
+    public SignatureIssuer getIssuedBy() {
+<span class="nc" id="L290">        return issuedBy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param issuedBy
+     *     The issuedBy
+     */
+    @JsonProperty(&quot;issuedBy&quot;)
+    public void setIssuedBy(SignatureIssuer issuedBy) {
+<span class="nc" id="L301">        this.issuedBy = issuedBy;</span>
+<span class="nc" id="L302">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The issuedTo
+     */
+    @JsonProperty(&quot;issuedTo&quot;)
+    public SignatureSubject getIssuedTo() {
+<span class="nc" id="L312">        return issuedTo;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param issuedTo
+     *     The issuedTo
+     */
+    @JsonProperty(&quot;issuedTo&quot;)
+    public void setIssuedTo(SignatureSubject issuedTo) {
+<span class="nc" id="L323">        this.issuedTo = issuedTo;</span>
+<span class="nc" id="L324">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public java.lang.String getKind() {
+<span class="nc" id="L335">        return kind;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param kind
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public void setKind(java.lang.String kind) {
+<span class="nc" id="L347">        this.kind = kind;</span>
+<span class="nc" id="L348">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public ObjectMeta getMetadata() {
+<span class="nc" id="L358">        return metadata;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param metadata
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public void setMetadata(ObjectMeta metadata) {
+<span class="nc" id="L369">        this.metadata = metadata;</span>
+<span class="nc" id="L370">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The signedClaims
+     */
+    @JsonProperty(&quot;signedClaims&quot;)
+    public Map&lt;String, String&gt; getSignedClaims() {
+<span class="nc" id="L380">        return signedClaims;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param signedClaims
+     *     The signedClaims
+     */
+    @JsonProperty(&quot;signedClaims&quot;)
+    public void setSignedClaims(Map&lt;String, String&gt; signedClaims) {
+<span class="nc" id="L391">        this.signedClaims = signedClaims;</span>
+<span class="nc" id="L392">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The type
+     */
+    @JsonProperty(&quot;type&quot;)
+    public java.lang.String getType() {
+<span class="nc" id="L402">        return type;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param type
+     *     The type
+     */
+    @JsonProperty(&quot;type&quot;)
+    public void setType(java.lang.String type) {
+<span class="nc" id="L413">        this.type = type;</span>
+<span class="nc" id="L414">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L418">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L423">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L424">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

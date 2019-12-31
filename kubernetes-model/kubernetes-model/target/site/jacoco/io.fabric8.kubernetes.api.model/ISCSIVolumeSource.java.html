@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ISCSIVolumeSource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ISCSIVolumeSource.java</span></div><h1>ISCSIVolumeSource.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;chapAuthDiscovery&quot;,
+    &quot;chapAuthSession&quot;,
+    &quot;fsType&quot;,
+    &quot;initiatorName&quot;,
+    &quot;iqn&quot;,
+    &quot;iscsiInterface&quot;,
+    &quot;lun&quot;,
+    &quot;portals&quot;,
+    &quot;readOnly&quot;,
+    &quot;secretRef&quot;,
+    &quot;targetPortal&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L47">@ToString</span>
+<span class="nc bnc" id="L48" title="All 102 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class ISCSIVolumeSource implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;chapAuthDiscovery&quot;)
+    private Boolean chapAuthDiscovery;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;chapAuthSession&quot;)
+    private Boolean chapAuthSession;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    private String fsType;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;initiatorName&quot;)
+    private String initiatorName;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;iqn&quot;)
+    private String iqn;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;iscsiInterface&quot;)
+    private String iscsiInterface;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;lun&quot;)
+    private Integer lun;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L99">    @JsonProperty(&quot;portals&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;String&gt; portals = new ArrayList&lt;String&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    private Boolean readOnly;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;secretRef&quot;)
+    @Valid
+    private LocalObjectReference secretRef;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;targetPortal&quot;)
+    private String targetPortal;
+<span class="nc" id="L122">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L129">    public ISCSIVolumeSource() {</span>
+<span class="nc" id="L130">    }</span>
+
+    /**
+     * 
+     * @param chapAuthSession
+     * @param iscsiInterface
+     * @param lun
+     * @param chapAuthDiscovery
+     * @param iqn
+     * @param portals
+     * @param secretRef
+     * @param initiatorName
+     * @param readOnly
+     * @param fsType
+     * @param targetPortal
+     */
+<span class="nc" id="L146">    public ISCSIVolumeSource(Boolean chapAuthDiscovery, Boolean chapAuthSession, String fsType, String initiatorName, String iqn, String iscsiInterface, Integer lun, List&lt;String&gt; portals, Boolean readOnly, LocalObjectReference secretRef, String targetPortal) {</span>
+<span class="nc" id="L147">        this.chapAuthDiscovery = chapAuthDiscovery;</span>
+<span class="nc" id="L148">        this.chapAuthSession = chapAuthSession;</span>
+<span class="nc" id="L149">        this.fsType = fsType;</span>
+<span class="nc" id="L150">        this.initiatorName = initiatorName;</span>
+<span class="nc" id="L151">        this.iqn = iqn;</span>
+<span class="nc" id="L152">        this.iscsiInterface = iscsiInterface;</span>
+<span class="nc" id="L153">        this.lun = lun;</span>
+<span class="nc" id="L154">        this.portals = portals;</span>
+<span class="nc" id="L155">        this.readOnly = readOnly;</span>
+<span class="nc" id="L156">        this.secretRef = secretRef;</span>
+<span class="nc" id="L157">        this.targetPortal = targetPortal;</span>
+<span class="nc" id="L158">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The chapAuthDiscovery
+     */
+    @JsonProperty(&quot;chapAuthDiscovery&quot;)
+    public Boolean getChapAuthDiscovery() {
+<span class="nc" id="L168">        return chapAuthDiscovery;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param chapAuthDiscovery
+     *     The chapAuthDiscovery
+     */
+    @JsonProperty(&quot;chapAuthDiscovery&quot;)
+    public void setChapAuthDiscovery(Boolean chapAuthDiscovery) {
+<span class="nc" id="L179">        this.chapAuthDiscovery = chapAuthDiscovery;</span>
+<span class="nc" id="L180">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The chapAuthSession
+     */
+    @JsonProperty(&quot;chapAuthSession&quot;)
+    public Boolean getChapAuthSession() {
+<span class="nc" id="L190">        return chapAuthSession;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param chapAuthSession
+     *     The chapAuthSession
+     */
+    @JsonProperty(&quot;chapAuthSession&quot;)
+    public void setChapAuthSession(Boolean chapAuthSession) {
+<span class="nc" id="L201">        this.chapAuthSession = chapAuthSession;</span>
+<span class="nc" id="L202">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The fsType
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    public String getFsType() {
+<span class="nc" id="L212">        return fsType;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param fsType
+     *     The fsType
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    public void setFsType(String fsType) {
+<span class="nc" id="L223">        this.fsType = fsType;</span>
+<span class="nc" id="L224">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The initiatorName
+     */
+    @JsonProperty(&quot;initiatorName&quot;)
+    public String getInitiatorName() {
+<span class="nc" id="L234">        return initiatorName;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param initiatorName
+     *     The initiatorName
+     */
+    @JsonProperty(&quot;initiatorName&quot;)
+    public void setInitiatorName(String initiatorName) {
+<span class="nc" id="L245">        this.initiatorName = initiatorName;</span>
+<span class="nc" id="L246">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The iqn
+     */
+    @JsonProperty(&quot;iqn&quot;)
+    public String getIqn() {
+<span class="nc" id="L256">        return iqn;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param iqn
+     *     The iqn
+     */
+    @JsonProperty(&quot;iqn&quot;)
+    public void setIqn(String iqn) {
+<span class="nc" id="L267">        this.iqn = iqn;</span>
+<span class="nc" id="L268">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The iscsiInterface
+     */
+    @JsonProperty(&quot;iscsiInterface&quot;)
+    public String getIscsiInterface() {
+<span class="nc" id="L278">        return iscsiInterface;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param iscsiInterface
+     *     The iscsiInterface
+     */
+    @JsonProperty(&quot;iscsiInterface&quot;)
+    public void setIscsiInterface(String iscsiInterface) {
+<span class="nc" id="L289">        this.iscsiInterface = iscsiInterface;</span>
+<span class="nc" id="L290">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The lun
+     */
+    @JsonProperty(&quot;lun&quot;)
+    public Integer getLun() {
+<span class="nc" id="L300">        return lun;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param lun
+     *     The lun
+     */
+    @JsonProperty(&quot;lun&quot;)
+    public void setLun(Integer lun) {
+<span class="nc" id="L311">        this.lun = lun;</span>
+<span class="nc" id="L312">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The portals
+     */
+    @JsonProperty(&quot;portals&quot;)
+    public List&lt;String&gt; getPortals() {
+<span class="nc" id="L322">        return portals;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param portals
+     *     The portals
+     */
+    @JsonProperty(&quot;portals&quot;)
+    public void setPortals(List&lt;String&gt; portals) {
+<span class="nc" id="L333">        this.portals = portals;</span>
+<span class="nc" id="L334">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The readOnly
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    public Boolean getReadOnly() {
+<span class="nc" id="L344">        return readOnly;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param readOnly
+     *     The readOnly
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    public void setReadOnly(Boolean readOnly) {
+<span class="nc" id="L355">        this.readOnly = readOnly;</span>
+<span class="nc" id="L356">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The secretRef
+     */
+    @JsonProperty(&quot;secretRef&quot;)
+    public LocalObjectReference getSecretRef() {
+<span class="nc" id="L366">        return secretRef;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param secretRef
+     *     The secretRef
+     */
+    @JsonProperty(&quot;secretRef&quot;)
+    public void setSecretRef(LocalObjectReference secretRef) {
+<span class="nc" id="L377">        this.secretRef = secretRef;</span>
+<span class="nc" id="L378">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The targetPortal
+     */
+    @JsonProperty(&quot;targetPortal&quot;)
+    public String getTargetPortal() {
+<span class="nc" id="L388">        return targetPortal;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param targetPortal
+     *     The targetPortal
+     */
+    @JsonProperty(&quot;targetPortal&quot;)
+    public void setTargetPortal(String targetPortal) {
+<span class="nc" id="L399">        this.targetPortal = targetPortal;</span>
+<span class="nc" id="L400">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L404">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L409">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L410">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

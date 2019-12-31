@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VersionInfo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client</a> &gt; <span class="el_source">VersionInfo.java</span></div><h1>VersionInfo.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.fabric8.kubernetes.client;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
+
+public class VersionInfo {
+  private Map&lt;String, String&gt; data;
+<span class="nc" id="L26">  private final class VERSION_KEYS {</span>
+    public static final String BUILD_DATE = &quot;buildDate&quot;;
+    public static final String GIT_COMMIT = &quot;gitCommit&quot;;
+    public static final String GIT_VERSION = &quot;gitVersion&quot;;
+    public static final String MAJOR = &quot;major&quot;;
+    public static final String MINOR = &quot;minor&quot;;
+    public static final String GIT_TREE_STATE = &quot;gitTreeState&quot;;
+    public static final String PLATFORM = &quot;platform&quot;;
+    public static final String GO_VERSION = &quot;goVersion&quot;;
+    public static final String COMPILER = &quot;compiler&quot;;
+    public static final String BUILD_DATE_FORMAT = &quot;YYYY-MM-dd'T'HH:mm:ss'Z'&quot;;
+  }
+  private Date buildDate;
+  private String gitCommit;
+  private String gitVersion;
+  private String major;
+  private String minor;
+  private String gitTreeState;
+  private String platform;
+  private String goVersion;
+  private String compiler;
+
+  public Date getBuildDate() {
+<span class="nc" id="L49">    return buildDate;</span>
+  }
+
+  public String getGitCommit() {
+<span class="nc" id="L53">    return gitCommit;</span>
+  }
+
+  public String getGitVersion() {
+<span class="nc" id="L57">    return gitVersion;</span>
+  }
+
+  public String getMajor() {
+<span class="nc" id="L61">    return major;</span>
+  }
+
+  public String getMinor() {
+<span class="nc" id="L65">    return minor;</span>
+  }
+
+  public String getGitTreeState() {
+<span class="nc" id="L69">    return gitTreeState;</span>
+  }
+
+  public String getPlatform() {
+<span class="nc" id="L73">    return platform;</span>
+  }
+
+  public String getGoVersion() {
+<span class="nc" id="L77">    return goVersion;</span>
+  }
+
+  public String getCompiler() {
+<span class="nc" id="L81">    return compiler;</span>
+  }
+
+<span class="nc" id="L84">  public VersionInfo(Map&lt;String, String&gt; jsonData) throws ParseException {</span>
+<span class="nc" id="L85">      this.data = jsonData;</span>
+<span class="nc" id="L86">      this.buildDate = new SimpleDateFormat(VERSION_KEYS.BUILD_DATE_FORMAT).parse(jsonData.get(VERSION_KEYS.BUILD_DATE));</span>
+<span class="nc" id="L87">      this.gitCommit = jsonData.get(VERSION_KEYS.GIT_COMMIT);</span>
+<span class="nc" id="L88">      this.gitVersion = jsonData.get(VERSION_KEYS.GIT_VERSION);</span>
+<span class="nc" id="L89">      this.major = jsonData.get(VERSION_KEYS.MAJOR);</span>
+<span class="nc" id="L90">      this.minor = jsonData.get(VERSION_KEYS.MINOR);</span>
+<span class="nc" id="L91">      this.gitTreeState = jsonData.get(VERSION_KEYS.GIT_TREE_STATE);</span>
+<span class="nc" id="L92">      this.platform = jsonData.get(VERSION_KEYS.PLATFORM);</span>
+<span class="nc" id="L93">      this.goVersion = jsonData.get(VERSION_KEYS.GO_VERSION);</span>
+<span class="nc" id="L94">      this.compiler = jsonData.get(VERSION_KEYS.COMPILER);</span>
+<span class="nc" id="L95">  }</span>
+
+<span class="nc" id="L97">  public Map&lt;String, String&gt; getData() { return data; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

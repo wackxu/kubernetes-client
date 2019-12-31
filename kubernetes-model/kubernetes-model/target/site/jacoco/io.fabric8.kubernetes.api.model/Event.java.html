@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Event.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">Event.java</span></div><h1>Event.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import io.fabric8.kubernetes.model.annotation.ApiGroup;
+import io.fabric8.kubernetes.model.annotation.ApiVersion;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import io.sundr.transform.annotations.VelocityTransformation;
+import io.sundr.transform.annotations.VelocityTransformations;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;action&quot;,
+    &quot;count&quot;,
+    &quot;eventTime&quot;,
+    &quot;firstTimestamp&quot;,
+    &quot;involvedObject&quot;,
+    &quot;lastTimestamp&quot;,
+    &quot;message&quot;,
+    &quot;reason&quot;,
+    &quot;related&quot;,
+    &quot;reportingComponent&quot;,
+    &quot;reportingInstance&quot;,
+    &quot;series&quot;,
+    &quot;source&quot;,
+    &quot;type&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L54">@ToString</span>
+<span class="nc bnc" id="L55" title="All 150 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+@ApiVersion(&quot;v1&quot;)
+@ApiGroup(&quot;&quot;)
+@VelocityTransformations({
+    @VelocityTransformation(value = &quot;/manifest.vm&quot;, outputPath = &quot;kubernetes.properties&quot;, gather = true)
+})
+public class Event implements HasMetadata
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;action&quot;)
+    private java.lang.String action;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L76">    @NotNull</span>
+    @JsonProperty(&quot;apiVersion&quot;)
+    private java.lang.String apiVersion = &quot;v1&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;count&quot;)
+    private Integer count;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;eventTime&quot;)
+    @Valid
+    private MicroTime eventTime;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;firstTimestamp&quot;)
+    @Valid
+    private String firstTimestamp;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;involvedObject&quot;)
+    @Valid
+    private ObjectReference involvedObject;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L111">    @NotNull</span>
+    @JsonProperty(&quot;kind&quot;)
+    private java.lang.String kind = &quot;Event&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;lastTimestamp&quot;)
+    @Valid
+    private String lastTimestamp;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;message&quot;)
+    private java.lang.String message;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    @Valid
+    @CheckObjectMeta(regexp = &quot;^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$&quot;, max = 253)
+    private ObjectMeta metadata;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;reason&quot;)
+    private java.lang.String reason;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;related&quot;)
+    @Valid
+    private ObjectReference related;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;reportingComponent&quot;)
+    private java.lang.String reportingComponent;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;reportingInstance&quot;)
+    private java.lang.String reportingInstance;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;series&quot;)
+    @Valid
+    private EventSeries series;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;source&quot;)
+    @Valid
+    private EventSource source;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;type&quot;)
+    private java.lang.String type;
+<span class="nc" id="L180">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L187">    public Event() {</span>
+<span class="nc" id="L188">    }</span>
+
+    /**
+     * 
+     * @param reason
+     * @param metadata
+     * @param involvedObject
+     * @param reportingInstance
+     * @param kind
+     * @param count
+     * @param source
+     * @param message
+     * @param type
+     * @param reportingComponent
+     * @param firstTimestamp
+     * @param apiVersion
+     * @param related
+     * @param lastTimestamp
+     * @param series
+     * @param eventTime
+     * @param action
+     */
+<span class="nc" id="L210">    public Event(java.lang.String action, java.lang.String apiVersion, Integer count, MicroTime eventTime, String firstTimestamp, ObjectReference involvedObject, java.lang.String kind, String lastTimestamp, java.lang.String message, ObjectMeta metadata, java.lang.String reason, ObjectReference related, java.lang.String reportingComponent, java.lang.String reportingInstance, EventSeries series, EventSource source, java.lang.String type) {</span>
+<span class="nc" id="L211">        this.action = action;</span>
+<span class="nc" id="L212">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L213">        this.count = count;</span>
+<span class="nc" id="L214">        this.eventTime = eventTime;</span>
+<span class="nc" id="L215">        this.firstTimestamp = firstTimestamp;</span>
+<span class="nc" id="L216">        this.involvedObject = involvedObject;</span>
+<span class="nc" id="L217">        this.kind = kind;</span>
+<span class="nc" id="L218">        this.lastTimestamp = lastTimestamp;</span>
+<span class="nc" id="L219">        this.message = message;</span>
+<span class="nc" id="L220">        this.metadata = metadata;</span>
+<span class="nc" id="L221">        this.reason = reason;</span>
+<span class="nc" id="L222">        this.related = related;</span>
+<span class="nc" id="L223">        this.reportingComponent = reportingComponent;</span>
+<span class="nc" id="L224">        this.reportingInstance = reportingInstance;</span>
+<span class="nc" id="L225">        this.series = series;</span>
+<span class="nc" id="L226">        this.source = source;</span>
+<span class="nc" id="L227">        this.type = type;</span>
+<span class="nc" id="L228">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The action
+     */
+    @JsonProperty(&quot;action&quot;)
+    public java.lang.String getAction() {
+<span class="nc" id="L238">        return action;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param action
+     *     The action
+     */
+    @JsonProperty(&quot;action&quot;)
+    public void setAction(java.lang.String action) {
+<span class="nc" id="L249">        this.action = action;</span>
+<span class="nc" id="L250">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public java.lang.String getApiVersion() {
+<span class="nc" id="L261">        return apiVersion;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param apiVersion
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public void setApiVersion(java.lang.String apiVersion) {
+<span class="nc" id="L273">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L274">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The count
+     */
+    @JsonProperty(&quot;count&quot;)
+    public Integer getCount() {
+<span class="nc" id="L284">        return count;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param count
+     *     The count
+     */
+    @JsonProperty(&quot;count&quot;)
+    public void setCount(Integer count) {
+<span class="nc" id="L295">        this.count = count;</span>
+<span class="nc" id="L296">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The eventTime
+     */
+    @JsonProperty(&quot;eventTime&quot;)
+    public MicroTime getEventTime() {
+<span class="nc" id="L306">        return eventTime;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param eventTime
+     *     The eventTime
+     */
+    @JsonProperty(&quot;eventTime&quot;)
+    public void setEventTime(MicroTime eventTime) {
+<span class="nc" id="L317">        this.eventTime = eventTime;</span>
+<span class="nc" id="L318">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The firstTimestamp
+     */
+    @JsonProperty(&quot;firstTimestamp&quot;)
+    public String getFirstTimestamp() {
+<span class="nc" id="L328">        return firstTimestamp;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param firstTimestamp
+     *     The firstTimestamp
+     */
+    @JsonProperty(&quot;firstTimestamp&quot;)
+    public void setFirstTimestamp(String firstTimestamp) {
+<span class="nc" id="L339">        this.firstTimestamp = firstTimestamp;</span>
+<span class="nc" id="L340">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The involvedObject
+     */
+    @JsonProperty(&quot;involvedObject&quot;)
+    public ObjectReference getInvolvedObject() {
+<span class="nc" id="L350">        return involvedObject;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param involvedObject
+     *     The involvedObject
+     */
+    @JsonProperty(&quot;involvedObject&quot;)
+    public void setInvolvedObject(ObjectReference involvedObject) {
+<span class="nc" id="L361">        this.involvedObject = involvedObject;</span>
+<span class="nc" id="L362">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public java.lang.String getKind() {
+<span class="nc" id="L373">        return kind;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param kind
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public void setKind(java.lang.String kind) {
+<span class="nc" id="L385">        this.kind = kind;</span>
+<span class="nc" id="L386">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The lastTimestamp
+     */
+    @JsonProperty(&quot;lastTimestamp&quot;)
+    public String getLastTimestamp() {
+<span class="nc" id="L396">        return lastTimestamp;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param lastTimestamp
+     *     The lastTimestamp
+     */
+    @JsonProperty(&quot;lastTimestamp&quot;)
+    public void setLastTimestamp(String lastTimestamp) {
+<span class="nc" id="L407">        this.lastTimestamp = lastTimestamp;</span>
+<span class="nc" id="L408">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The message
+     */
+    @JsonProperty(&quot;message&quot;)
+    public java.lang.String getMessage() {
+<span class="nc" id="L418">        return message;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param message
+     *     The message
+     */
+    @JsonProperty(&quot;message&quot;)
+    public void setMessage(java.lang.String message) {
+<span class="nc" id="L429">        this.message = message;</span>
+<span class="nc" id="L430">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public ObjectMeta getMetadata() {
+<span class="nc" id="L440">        return metadata;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param metadata
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public void setMetadata(ObjectMeta metadata) {
+<span class="nc" id="L451">        this.metadata = metadata;</span>
+<span class="nc" id="L452">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The reason
+     */
+    @JsonProperty(&quot;reason&quot;)
+    public java.lang.String getReason() {
+<span class="nc" id="L462">        return reason;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param reason
+     *     The reason
+     */
+    @JsonProperty(&quot;reason&quot;)
+    public void setReason(java.lang.String reason) {
+<span class="nc" id="L473">        this.reason = reason;</span>
+<span class="nc" id="L474">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The related
+     */
+    @JsonProperty(&quot;related&quot;)
+    public ObjectReference getRelated() {
+<span class="nc" id="L484">        return related;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param related
+     *     The related
+     */
+    @JsonProperty(&quot;related&quot;)
+    public void setRelated(ObjectReference related) {
+<span class="nc" id="L495">        this.related = related;</span>
+<span class="nc" id="L496">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The reportingComponent
+     */
+    @JsonProperty(&quot;reportingComponent&quot;)
+    public java.lang.String getReportingComponent() {
+<span class="nc" id="L506">        return reportingComponent;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param reportingComponent
+     *     The reportingComponent
+     */
+    @JsonProperty(&quot;reportingComponent&quot;)
+    public void setReportingComponent(java.lang.String reportingComponent) {
+<span class="nc" id="L517">        this.reportingComponent = reportingComponent;</span>
+<span class="nc" id="L518">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The reportingInstance
+     */
+    @JsonProperty(&quot;reportingInstance&quot;)
+    public java.lang.String getReportingInstance() {
+<span class="nc" id="L528">        return reportingInstance;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param reportingInstance
+     *     The reportingInstance
+     */
+    @JsonProperty(&quot;reportingInstance&quot;)
+    public void setReportingInstance(java.lang.String reportingInstance) {
+<span class="nc" id="L539">        this.reportingInstance = reportingInstance;</span>
+<span class="nc" id="L540">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The series
+     */
+    @JsonProperty(&quot;series&quot;)
+    public EventSeries getSeries() {
+<span class="nc" id="L550">        return series;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param series
+     *     The series
+     */
+    @JsonProperty(&quot;series&quot;)
+    public void setSeries(EventSeries series) {
+<span class="nc" id="L561">        this.series = series;</span>
+<span class="nc" id="L562">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The source
+     */
+    @JsonProperty(&quot;source&quot;)
+    public EventSource getSource() {
+<span class="nc" id="L572">        return source;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param source
+     *     The source
+     */
+    @JsonProperty(&quot;source&quot;)
+    public void setSource(EventSource source) {
+<span class="nc" id="L583">        this.source = source;</span>
+<span class="nc" id="L584">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The type
+     */
+    @JsonProperty(&quot;type&quot;)
+    public java.lang.String getType() {
+<span class="nc" id="L594">        return type;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param type
+     *     The type
+     */
+    @JsonProperty(&quot;type&quot;)
+    public void setType(java.lang.String type) {
+<span class="nc" id="L605">        this.type = type;</span>
+<span class="nc" id="L606">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L610">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L615">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L616">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

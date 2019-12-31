@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Template.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">Template.java</span></div><h1>Template.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.internal.HasMetadataComparator;
+import io.fabric8.kubernetes.model.annotation.ApiGroup;
+import io.fabric8.kubernetes.model.annotation.ApiVersion;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import io.sundr.transform.annotations.VelocityTransformation;
+import io.sundr.transform.annotations.VelocityTransformations;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+/**
+ *
+ *
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+        &quot;apiVersion&quot;,
+        &quot;kind&quot;,
+        &quot;metadata&quot;,
+        &quot;labels&quot;,
+        &quot;objects&quot;,
+        &quot;parameters&quot;
+})
+@JsonDeserialize(using = JsonDeserializer.None.class)
+<span class="nc bnc" id="L65" title="All 62 branches missed.">@EqualsAndHashCode</span>
+<span class="nc" id="L66">@ToString</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage=true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+@ApiVersion(&quot;v1&quot;)
+@ApiGroup(&quot;&quot;)
+@VelocityTransformations({
+    @VelocityTransformation(value = &quot;/manifest.vm&quot;, outputPath = &quot;openshift.properties&quot;, gather = true)
+})
+public class Template implements HasMetadata {
+
+    /**
+     * (Required)
+     */
+<span class="pc" id="L78">    @JsonProperty(&quot;apiVersion&quot;)</span>
+    @NotNull
+    private String apiVersion = &quot;v1&quot;;
+    /**
+     * (Required)
+     */
+<span class="pc" id="L84">    @JsonProperty(&quot;kind&quot;)</span>
+    @NotNull
+    private java.lang.String kind = &quot;Template&quot;;
+    /**
+     *
+     *
+     */
+    @JsonProperty(&quot;labels&quot;)
+    @Valid
+    private Map&lt;String, String&gt; labels;
+    /**
+     *
+     *
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    @Valid
+    private ObjectMeta metadata;
+    /**
+     *
+     *
+     */
+<span class="pc" id="L105">    @JsonProperty(&quot;objects&quot;)</span>
+    @NotNull
+    @Size(min = 1)
+    private List&lt;HasMetadata&gt; objects = new ArrayList&lt;HasMetadata&gt;();
+    /**
+     *
+     *
+     */
+<span class="pc" id="L113">    @JsonProperty(&quot;parameters&quot;)</span>
+    @Valid
+    private List&lt;Parameter&gt; parameters = new ArrayList&lt;Parameter&gt;();
+<span class="pc" id="L116">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, java.lang.Object&gt; additionalProperties = new HashMap&lt;java.lang.String, java.lang.Object&gt;();
+
+
+    /**
+     * No args constructor for use in serialization
+     */
+<span class="fc" id="L123">    public Template() {</span>
+<span class="fc" id="L124">    }</span>
+
+    /**
+     * @param apiVersion
+     * @param labels
+     * @param parameters
+     * @param objects
+     * @param kind
+     * @param metadata
+     */
+<span class="nc" id="L134">    public Template(String apiVersion, java.lang.String kind, Map&lt;String, String&gt; labels, ObjectMeta metadata, List&lt;HasMetadata&gt; objects, List&lt;Parameter&gt; parameters) {</span>
+<span class="nc" id="L135">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L136">        this.kind = kind;</span>
+<span class="nc" id="L137">        this.labels = labels;</span>
+<span class="nc" id="L138">        this.metadata = metadata;</span>
+<span class="nc" id="L139">        this.parameters = parameters;</span>
+<span class="nc" id="L140">        this.objects = objects;</span>
+<span class="nc" id="L141">    }</span>
+
+    /**
+     * (Required)
+     *
+     * @return The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public String getApiVersion() {
+<span class="fc" id="L150">        return apiVersion;</span>
+    }
+
+    /**
+     * (Required)
+     *
+     * @param apiVersion The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public void setApiVersion(String apiVersion) {
+<span class="fc" id="L160">        this.apiVersion = apiVersion;</span>
+<span class="fc" id="L161">    }</span>
+
+    /**
+     * (Required)
+     *
+     * @return The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public java.lang.String getKind() {
+<span class="fc" id="L170">        return kind;</span>
+    }
+
+    /**
+     * (Required)
+     *
+     * @param kind The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public void setKind(java.lang.String kind) {
+<span class="fc" id="L180">        this.kind = kind;</span>
+<span class="fc" id="L181">    }</span>
+
+    /**
+     * @return The labels
+     */
+    @JsonProperty(&quot;labels&quot;)
+    public Map&lt;String, String&gt; getLabels() {
+<span class="fc" id="L188">        return labels;</span>
+    }
+
+    /**
+     * @param labels The labels
+     */
+    @JsonProperty(&quot;labels&quot;)
+    public void setLabels(Map&lt;String, String&gt; labels) {
+<span class="fc" id="L196">        this.labels = labels;</span>
+<span class="fc" id="L197">    }</span>
+
+    /**
+     * @return The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public ObjectMeta getMetadata() {
+<span class="fc" id="L204">        return metadata;</span>
+    }
+
+    /**
+     * @param metadata The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public void setMetadata(ObjectMeta metadata) {
+<span class="fc" id="L212">        this.metadata = metadata;</span>
+<span class="fc" id="L213">    }</span>
+
+    /**
+     * @return The objects
+     */
+    @JsonProperty(&quot;objects&quot;)
+    public List&lt;HasMetadata&gt; getObjects() {
+<span class="fc" id="L220">        List&lt;HasMetadata&gt; sortedObjects = new ArrayList&lt;&gt;(objects);</span>
+<span class="fc" id="L221">        Collections.sort(sortedObjects, new HasMetadataComparator());</span>
+<span class="fc" id="L222">        return sortedObjects;</span>
+    }
+
+    public void setObjects(List&lt;HasMetadata&gt; objects) {
+<span class="fc" id="L226">        this.objects = objects;</span>
+<span class="fc" id="L227">    }</span>
+
+    /**
+     * @return The parameters
+     */
+    @JsonProperty(&quot;parameters&quot;)
+    public List&lt;Parameter&gt; getParameters() {
+<span class="fc" id="L234">        return parameters;</span>
+    }
+
+    /**
+     * @param parameters The parameters
+     */
+    @JsonProperty(&quot;parameters&quot;)
+    public void setParameters(List&lt;Parameter&gt; parameters) {
+<span class="fc" id="L242">        this.parameters = parameters;</span>
+<span class="fc" id="L243">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, java.lang.Object&gt; getAdditionalProperties() {
+<span class="nc" id="L247">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, java.lang.Object value) {
+<span class="nc" id="L252">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L253">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

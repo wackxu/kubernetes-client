@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuildOutput.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">BuildOutput.java</span></div><h1>BuildOutput.java</h1><pre class="source lang-java linenums">
+package io.fabric8.openshift.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.fabric8.kubernetes.api.model.LocalObjectReference;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;imageLabels&quot;,
+    &quot;pushSecret&quot;,
+    &quot;to&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L42">@ToString</span>
+<span class="pc bpc" id="L43" title="33 of 38 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class BuildOutput implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L52">    @JsonProperty(&quot;imageLabels&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;ImageLabel&gt; imageLabels = new ArrayList&lt;ImageLabel&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;pushSecret&quot;)
+    @Valid
+    private LocalObjectReference pushSecret;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;to&quot;)
+    @Valid
+    private ObjectReference to;
+<span class="fc" id="L70">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L77">    public BuildOutput() {</span>
+<span class="fc" id="L78">    }</span>
+
+    /**
+     * 
+     * @param to
+     * @param pushSecret
+     * @param imageLabels
+     */
+<span class="fc" id="L86">    public BuildOutput(List&lt;ImageLabel&gt; imageLabels, LocalObjectReference pushSecret, ObjectReference to) {</span>
+<span class="fc" id="L87">        this.imageLabels = imageLabels;</span>
+<span class="fc" id="L88">        this.pushSecret = pushSecret;</span>
+<span class="fc" id="L89">        this.to = to;</span>
+<span class="fc" id="L90">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The imageLabels
+     */
+    @JsonProperty(&quot;imageLabels&quot;)
+    public List&lt;ImageLabel&gt; getImageLabels() {
+<span class="fc" id="L100">        return imageLabels;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param imageLabels
+     *     The imageLabels
+     */
+    @JsonProperty(&quot;imageLabels&quot;)
+    public void setImageLabels(List&lt;ImageLabel&gt; imageLabels) {
+<span class="fc" id="L111">        this.imageLabels = imageLabels;</span>
+<span class="fc" id="L112">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The pushSecret
+     */
+    @JsonProperty(&quot;pushSecret&quot;)
+    public LocalObjectReference getPushSecret() {
+<span class="fc" id="L122">        return pushSecret;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param pushSecret
+     *     The pushSecret
+     */
+    @JsonProperty(&quot;pushSecret&quot;)
+    public void setPushSecret(LocalObjectReference pushSecret) {
+<span class="fc" id="L133">        this.pushSecret = pushSecret;</span>
+<span class="fc" id="L134">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The to
+     */
+    @JsonProperty(&quot;to&quot;)
+    public ObjectReference getTo() {
+<span class="fc" id="L144">        return to;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param to
+     *     The to
+     */
+    @JsonProperty(&quot;to&quot;)
+    public void setTo(ObjectReference to) {
+<span class="fc" id="L155">        this.to = to;</span>
+<span class="fc" id="L156">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L160">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L165">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L166">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

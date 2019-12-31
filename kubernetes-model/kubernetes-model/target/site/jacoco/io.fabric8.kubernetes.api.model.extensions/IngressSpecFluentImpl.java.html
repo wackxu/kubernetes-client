@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IngressSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.extensions</a> &gt; <span class="el_source">IngressSpecFluentImpl.java</span></div><h1>IngressSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.extensions;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class IngressSpecFluentImpl&lt;A extends IngressSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements IngressSpecFluent&lt;A&gt;{
+
+    private IngressBackendBuilder backend;
+    private List&lt;IngressRuleBuilder&gt; rules;
+    private List&lt;IngressTLSBuilder&gt; tls;
+
+<span class="nc" id="L22">    public IngressSpecFluentImpl(){</span>
+<span class="nc" id="L23">    }</span>
+<span class="nc" id="L24">    public IngressSpecFluentImpl(IngressSpec instance){</span>
+<span class="nc" id="L25">            this.withBackend(instance.getBackend()); </span>
+<span class="nc" id="L26">            this.withRules(instance.getRules()); </span>
+<span class="nc" id="L27">            this.withTls(instance.getTls()); </span>
+<span class="nc" id="L28">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildBackend instead.
+ * @return The buildable object.
+ */
+@Deprecated public IngressBackend getBackend(){
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            return this.backend!=null?this.backend.build():null;</span>
+    }
+
+    public IngressBackend buildBackend(){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            return this.backend!=null?this.backend.build():null;</span>
+    }
+
+    public A withBackend(IngressBackend backend){
+<span class="nc" id="L44">            _visitables.remove(this.backend);</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            if (backend!=null){ this.backend= new IngressBackendBuilder(backend); _visitables.add(this.backend);} return (A) this;</span>
+    }
+
+    public Boolean hasBackend(){
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            return this.backend != null;</span>
+    }
+
+    public IngressSpecFluent.BackendNested&lt;A&gt; withNewBackend(){
+<span class="nc" id="L53">            return new BackendNestedImpl();</span>
+    }
+
+    public IngressSpecFluent.BackendNested&lt;A&gt; withNewBackendLike(IngressBackend item){
+<span class="nc" id="L57">            return new BackendNestedImpl(item);</span>
+    }
+
+    public IngressSpecFluent.BackendNested&lt;A&gt; editBackend(){
+<span class="nc" id="L61">            return withNewBackendLike(getBackend());</span>
+    }
+
+    public IngressSpecFluent.BackendNested&lt;A&gt; editOrNewBackend(){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            return withNewBackendLike(getBackend() != null ? getBackend(): new IngressBackendBuilder().build());</span>
+    }
+
+    public IngressSpecFluent.BackendNested&lt;A&gt; editOrNewBackendLike(IngressBackend item){
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            return withNewBackendLike(getBackend() != null ? getBackend(): item);</span>
+    }
+
+    public A addToRules(int index,IngressRule item){
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if (this.rules == null) {this.rules = new ArrayList&lt;IngressRuleBuilder&gt;();}</span>
+<span class="nc bnc" id="L74" title="All 4 branches missed.">            IngressRuleBuilder builder = new IngressRuleBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.rules.add(index &gt;= 0 ? index : rules.size(), builder); return (A)this;</span>
+    }
+
+    public A setToRules(int index,IngressRule item){
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (this.rules == null) {this.rules = new ArrayList&lt;IngressRuleBuilder&gt;();}</span>
+<span class="nc" id="L79">            IngressRuleBuilder builder = new IngressRuleBuilder(item);</span>
+<span class="nc bnc" id="L80" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L81" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= rules.size()) { rules.add(builder); } else { rules.set(index, builder);}</span>
+<span class="nc" id="L82">             return (A)this;</span>
+    }
+
+    public A addToRules(IngressRule... items){
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            if (this.rules == null) {this.rules = new ArrayList&lt;IngressRuleBuilder&gt;();}</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">            for (IngressRule item : items) {IngressRuleBuilder builder = new IngressRuleBuilder(item);_visitables.add(builder);this.rules.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToRules(Collection&lt;IngressRule&gt; items){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (this.rules == null) {this.rules = new ArrayList&lt;IngressRuleBuilder&gt;();}</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">            for (IngressRule item : items) {IngressRuleBuilder builder = new IngressRuleBuilder(item);_visitables.add(builder);this.rules.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromRules(IngressRule... items){
+<span class="nc bnc" id="L96" title="All 4 branches missed.">            for (IngressRule item : items) {IngressRuleBuilder builder = new IngressRuleBuilder(item);_visitables.remove(builder);if (this.rules != null) {this.rules.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromRules(Collection&lt;IngressRule&gt; items){
+<span class="nc bnc" id="L100" title="All 4 branches missed.">            for (IngressRule item : items) {IngressRuleBuilder builder = new IngressRuleBuilder(item);_visitables.remove(builder);if (this.rules != null) {this.rules.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildRules instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;IngressRule&gt; getRules(){
+<span class="nc" id="L109">            return build(rules);</span>
+    }
+
+    public List&lt;IngressRule&gt; buildRules(){
+<span class="nc" id="L113">            return build(rules);</span>
+    }
+
+    public IngressRule buildRule(int index){
+<span class="nc" id="L117">            return this.rules.get(index).build();</span>
+    }
+
+    public IngressRule buildFirstRule(){
+<span class="nc" id="L121">            return this.rules.get(0).build();</span>
+    }
+
+    public IngressRule buildLastRule(){
+<span class="nc" id="L125">            return this.rules.get(rules.size() - 1).build();</span>
+    }
+
+    public IngressRule buildMatchingRule(io.fabric8.kubernetes.api.builder.Predicate&lt;IngressRuleBuilder&gt; predicate){
+<span class="nc bnc" id="L129" title="All 4 branches missed.">            for (IngressRuleBuilder item: rules) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withRules(List&lt;IngressRule&gt; rules){
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (this.rules != null) { _visitables.removeAll(this.rules);}</span>
+<span class="nc bnc" id="L134" title="All 4 branches missed.">            if (rules != null) {this.rules = new ArrayList&lt;IngressRuleBuilder&gt;(); for (IngressRule item : rules){this.addToRules(item);}} else { this.rules = new ArrayList&lt;IngressRuleBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withRules(IngressRule... rules){
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            if (this.rules != null) {this.rules.clear();}</span>
+<span class="nc bnc" id="L139" title="All 4 branches missed.">            if (rules != null) {for (IngressRule item :rules){ this.addToRules(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasRules(){
+<span class="nc bnc" id="L143" title="All 4 branches missed.">            return rules != null &amp;&amp; !rules.isEmpty();</span>
+    }
+
+    public IngressSpecFluent.RulesNested&lt;A&gt; addNewRule(){
+<span class="nc" id="L147">            return new RulesNestedImpl();</span>
+    }
+
+    public IngressSpecFluent.RulesNested&lt;A&gt; addNewRuleLike(IngressRule item){
+<span class="nc" id="L151">            return new RulesNestedImpl(-1, item);</span>
+    }
+
+    public IngressSpecFluent.RulesNested&lt;A&gt; setNewRuleLike(int index,IngressRule item){
+<span class="nc" id="L155">            return new RulesNestedImpl(index, item);</span>
+    }
+
+    public IngressSpecFluent.RulesNested&lt;A&gt; editRule(int index){
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            if (rules.size() &lt;= index) throw new RuntimeException(&quot;Can't edit rules. Index exceeds size.&quot;);</span>
+<span class="nc" id="L160">            return setNewRuleLike(index, buildRule(index));</span>
+    }
+
+    public IngressSpecFluent.RulesNested&lt;A&gt; editFirstRule(){
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            if (rules.size() == 0) throw new RuntimeException(&quot;Can't edit first rules. The list is empty.&quot;);</span>
+<span class="nc" id="L165">            return setNewRuleLike(0, buildRule(0));</span>
+    }
+
+    public IngressSpecFluent.RulesNested&lt;A&gt; editLastRule(){
+<span class="nc" id="L169">            int index = rules.size() - 1;</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last rules. The list is empty.&quot;);</span>
+<span class="nc" id="L171">            return setNewRuleLike(index, buildRule(index));</span>
+    }
+
+    public IngressSpecFluent.RulesNested&lt;A&gt; editMatchingRule(io.fabric8.kubernetes.api.builder.Predicate&lt;IngressRuleBuilder&gt; predicate){
+<span class="nc" id="L175">            int index = -1;</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">            for (int i=0;i&lt;rules.size();i++) { </span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            if (predicate.apply(rules.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L179" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching rules. No match found.&quot;);</span>
+<span class="nc" id="L180">            return setNewRuleLike(index, buildRule(index));</span>
+    }
+
+    public A addToTls(int index,IngressTLS item){
+<span class="nc bnc" id="L184" title="All 2 branches missed.">            if (this.tls == null) {this.tls = new ArrayList&lt;IngressTLSBuilder&gt;();}</span>
+<span class="nc bnc" id="L185" title="All 4 branches missed.">            IngressTLSBuilder builder = new IngressTLSBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.tls.add(index &gt;= 0 ? index : tls.size(), builder); return (A)this;</span>
+    }
+
+    public A setToTls(int index,IngressTLS item){
+<span class="nc bnc" id="L189" title="All 2 branches missed.">            if (this.tls == null) {this.tls = new ArrayList&lt;IngressTLSBuilder&gt;();}</span>
+<span class="nc" id="L190">            IngressTLSBuilder builder = new IngressTLSBuilder(item);</span>
+<span class="nc bnc" id="L191" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L192" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= tls.size()) { tls.add(builder); } else { tls.set(index, builder);}</span>
+<span class="nc" id="L193">             return (A)this;</span>
+    }
+
+    public A addToTls(IngressTLS... items){
+<span class="nc bnc" id="L197" title="All 2 branches missed.">            if (this.tls == null) {this.tls = new ArrayList&lt;IngressTLSBuilder&gt;();}</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">            for (IngressTLS item : items) {IngressTLSBuilder builder = new IngressTLSBuilder(item);_visitables.add(builder);this.tls.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToTls(Collection&lt;IngressTLS&gt; items){
+<span class="nc bnc" id="L202" title="All 2 branches missed.">            if (this.tls == null) {this.tls = new ArrayList&lt;IngressTLSBuilder&gt;();}</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">            for (IngressTLS item : items) {IngressTLSBuilder builder = new IngressTLSBuilder(item);_visitables.add(builder);this.tls.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromTls(IngressTLS... items){
+<span class="nc bnc" id="L207" title="All 4 branches missed.">            for (IngressTLS item : items) {IngressTLSBuilder builder = new IngressTLSBuilder(item);_visitables.remove(builder);if (this.tls != null) {this.tls.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromTls(Collection&lt;IngressTLS&gt; items){
+<span class="nc bnc" id="L211" title="All 4 branches missed.">            for (IngressTLS item : items) {IngressTLSBuilder builder = new IngressTLSBuilder(item);_visitables.remove(builder);if (this.tls != null) {this.tls.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTls instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;IngressTLS&gt; getTls(){
+<span class="nc" id="L220">            return build(tls);</span>
+    }
+
+    public List&lt;IngressTLS&gt; buildTls(){
+<span class="nc" id="L224">            return build(tls);</span>
+    }
+
+    public IngressTLS buildTl(int index){
+<span class="nc" id="L228">            return this.tls.get(index).build();</span>
+    }
+
+    public IngressTLS buildFirstTl(){
+<span class="nc" id="L232">            return this.tls.get(0).build();</span>
+    }
+
+    public IngressTLS buildLastTl(){
+<span class="nc" id="L236">            return this.tls.get(tls.size() - 1).build();</span>
+    }
+
+    public IngressTLS buildMatchingTl(io.fabric8.kubernetes.api.builder.Predicate&lt;IngressTLSBuilder&gt; predicate){
+<span class="nc bnc" id="L240" title="All 4 branches missed.">            for (IngressTLSBuilder item: tls) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withTls(List&lt;IngressTLS&gt; tls){
+<span class="nc bnc" id="L244" title="All 2 branches missed.">            if (this.tls != null) { _visitables.removeAll(this.tls);}</span>
+<span class="nc bnc" id="L245" title="All 4 branches missed.">            if (tls != null) {this.tls = new ArrayList&lt;IngressTLSBuilder&gt;(); for (IngressTLS item : tls){this.addToTls(item);}} else { this.tls = new ArrayList&lt;IngressTLSBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withTls(IngressTLS... tls){
+<span class="nc bnc" id="L249" title="All 2 branches missed.">            if (this.tls != null) {this.tls.clear();}</span>
+<span class="nc bnc" id="L250" title="All 4 branches missed.">            if (tls != null) {for (IngressTLS item :tls){ this.addToTls(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasTls(){
+<span class="nc bnc" id="L254" title="All 4 branches missed.">            return tls != null &amp;&amp; !tls.isEmpty();</span>
+    }
+
+    public IngressSpecFluent.TlsNested&lt;A&gt; addNewTl(){
+<span class="nc" id="L258">            return new TlsNestedImpl();</span>
+    }
+
+    public IngressSpecFluent.TlsNested&lt;A&gt; addNewTlLike(IngressTLS item){
+<span class="nc" id="L262">            return new TlsNestedImpl(-1, item);</span>
+    }
+
+    public IngressSpecFluent.TlsNested&lt;A&gt; setNewTlLike(int index,IngressTLS item){
+<span class="nc" id="L266">            return new TlsNestedImpl(index, item);</span>
+    }
+
+    public IngressSpecFluent.TlsNested&lt;A&gt; editTl(int index){
+<span class="nc bnc" id="L270" title="All 2 branches missed.">            if (tls.size() &lt;= index) throw new RuntimeException(&quot;Can't edit tls. Index exceeds size.&quot;);</span>
+<span class="nc" id="L271">            return setNewTlLike(index, buildTl(index));</span>
+    }
+
+    public IngressSpecFluent.TlsNested&lt;A&gt; editFirstTl(){
+<span class="nc bnc" id="L275" title="All 2 branches missed.">            if (tls.size() == 0) throw new RuntimeException(&quot;Can't edit first tls. The list is empty.&quot;);</span>
+<span class="nc" id="L276">            return setNewTlLike(0, buildTl(0));</span>
+    }
+
+    public IngressSpecFluent.TlsNested&lt;A&gt; editLastTl(){
+<span class="nc" id="L280">            int index = tls.size() - 1;</span>
+<span class="nc bnc" id="L281" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last tls. The list is empty.&quot;);</span>
+<span class="nc" id="L282">            return setNewTlLike(index, buildTl(index));</span>
+    }
+
+    public IngressSpecFluent.TlsNested&lt;A&gt; editMatchingTl(io.fabric8.kubernetes.api.builder.Predicate&lt;IngressTLSBuilder&gt; predicate){
+<span class="nc" id="L286">            int index = -1;</span>
+<span class="nc bnc" id="L287" title="All 2 branches missed.">            for (int i=0;i&lt;tls.size();i++) { </span>
+<span class="nc bnc" id="L288" title="All 2 branches missed.">            if (predicate.apply(tls.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L290" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching tls. No match found.&quot;);</span>
+<span class="nc" id="L291">            return setNewTlLike(index, buildTl(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L295" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L296" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L297" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L298">            IngressSpecFluentImpl that = (IngressSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L299" title="All 6 branches missed.">            if (backend != null ? !backend.equals(that.backend) :that.backend != null) return false;</span>
+<span class="nc bnc" id="L300" title="All 6 branches missed.">            if (rules != null ? !rules.equals(that.rules) :that.rules != null) return false;</span>
+<span class="nc bnc" id="L301" title="All 6 branches missed.">            if (tls != null ? !tls.equals(that.tls) :that.tls != null) return false;</span>
+<span class="nc" id="L302">            return true;</span>
+    }
+
+
+    public class BackendNestedImpl&lt;N&gt; extends IngressBackendFluentImpl&lt;IngressSpecFluent.BackendNested&lt;N&gt;&gt; implements IngressSpecFluent.BackendNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final IngressBackendBuilder builder;
+    
+<span class="nc" id="L310">            BackendNestedImpl(IngressBackend item){</span>
+<span class="nc" id="L311">                    this.builder = new IngressBackendBuilder(this, item);</span>
+<span class="nc" id="L312">            }</span>
+<span class="nc" id="L313">            BackendNestedImpl(){</span>
+<span class="nc" id="L314">                    this.builder = new IngressBackendBuilder(this);</span>
+<span class="nc" id="L315">            }</span>
+    
+    public N and(){
+<span class="nc" id="L318">            return (N) IngressSpecFluentImpl.this.withBackend(builder.build());</span>
+    }
+    public N endBackend(){
+<span class="nc" id="L321">            return and();</span>
+    }
+
+}
+    public class RulesNestedImpl&lt;N&gt; extends IngressRuleFluentImpl&lt;IngressSpecFluent.RulesNested&lt;N&gt;&gt; implements IngressSpecFluent.RulesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final IngressRuleBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L330">            RulesNestedImpl(int index,IngressRule item){</span>
+<span class="nc" id="L331">                    this.index = index;</span>
+<span class="nc" id="L332">                    this.builder = new IngressRuleBuilder(this, item);</span>
+<span class="nc" id="L333">            }</span>
+<span class="nc" id="L334">            RulesNestedImpl(){</span>
+<span class="nc" id="L335">                    this.index = -1;</span>
+<span class="nc" id="L336">                    this.builder = new IngressRuleBuilder(this);</span>
+<span class="nc" id="L337">            }</span>
+    
+    public N and(){
+<span class="nc" id="L340">            return (N) IngressSpecFluentImpl.this.setToRules(index, builder.build());</span>
+    }
+    public N endRule(){
+<span class="nc" id="L343">            return and();</span>
+    }
+
+}
+    public class TlsNestedImpl&lt;N&gt; extends IngressTLSFluentImpl&lt;IngressSpecFluent.TlsNested&lt;N&gt;&gt; implements IngressSpecFluent.TlsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final IngressTLSBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L352">            TlsNestedImpl(int index,IngressTLS item){</span>
+<span class="nc" id="L353">                    this.index = index;</span>
+<span class="nc" id="L354">                    this.builder = new IngressTLSBuilder(this, item);</span>
+<span class="nc" id="L355">            }</span>
+<span class="nc" id="L356">            TlsNestedImpl(){</span>
+<span class="nc" id="L357">                    this.index = -1;</span>
+<span class="nc" id="L358">                    this.builder = new IngressTLSBuilder(this);</span>
+<span class="nc" id="L359">            }</span>
+    
+    public N and(){
+<span class="nc" id="L362">            return (N) IngressSpecFluentImpl.this.setToTls(index, builder.build());</span>
+    }
+    public N endTl(){
+<span class="nc" id="L365">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

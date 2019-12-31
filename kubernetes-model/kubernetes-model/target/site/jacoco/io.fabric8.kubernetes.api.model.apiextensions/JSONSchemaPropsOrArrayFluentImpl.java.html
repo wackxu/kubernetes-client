@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JSONSchemaPropsOrArrayFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.apiextensions</a> &gt; <span class="el_source">JSONSchemaPropsOrArrayFluentImpl.java</span></div><h1>JSONSchemaPropsOrArrayFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.apiextensions;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class JSONSchemaPropsOrArrayFluentImpl&lt;A extends JSONSchemaPropsOrArrayFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements JSONSchemaPropsOrArrayFluent&lt;A&gt;{
+
+    private List&lt;JSONSchemaPropsBuilder&gt; jSONSchemas;
+    private JSONSchemaPropsBuilder schema;
+
+<span class="nc" id="L20">    public JSONSchemaPropsOrArrayFluentImpl(){</span>
+<span class="nc" id="L21">    }</span>
+<span class="nc" id="L22">    public JSONSchemaPropsOrArrayFluentImpl(JSONSchemaPropsOrArray instance){</span>
+<span class="nc" id="L23">            this.withJSONSchemas(instance.getJSONSchemas()); </span>
+<span class="nc" id="L24">            this.withSchema(instance.getSchema()); </span>
+<span class="nc" id="L25">    }</span>
+
+    public A addToJSONSchemas(int index,JSONSchemaProps item){
+<span class="nc bnc" id="L28" title="All 2 branches missed.">            if (this.jSONSchemas == null) {this.jSONSchemas = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();}</span>
+<span class="nc bnc" id="L29" title="All 4 branches missed.">            JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.jSONSchemas.add(index &gt;= 0 ? index : jSONSchemas.size(), builder); return (A)this;</span>
+    }
+
+    public A setToJSONSchemas(int index,JSONSchemaProps item){
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            if (this.jSONSchemas == null) {this.jSONSchemas = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();}</span>
+<span class="nc" id="L34">            JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);</span>
+<span class="nc bnc" id="L35" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L36" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= jSONSchemas.size()) { jSONSchemas.add(builder); } else { jSONSchemas.set(index, builder);}</span>
+<span class="nc" id="L37">             return (A)this;</span>
+    }
+
+    public A addToJSONSchemas(JSONSchemaProps... items){
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            if (this.jSONSchemas == null) {this.jSONSchemas = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();}</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            for (JSONSchemaProps item : items) {JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.add(builder);this.jSONSchemas.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToJSONSchemas(Collection&lt;JSONSchemaProps&gt; items){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (this.jSONSchemas == null) {this.jSONSchemas = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();}</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            for (JSONSchemaProps item : items) {JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.add(builder);this.jSONSchemas.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromJSONSchemas(JSONSchemaProps... items){
+<span class="nc bnc" id="L51" title="All 4 branches missed.">            for (JSONSchemaProps item : items) {JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.remove(builder);if (this.jSONSchemas != null) {this.jSONSchemas.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromJSONSchemas(Collection&lt;JSONSchemaProps&gt; items){
+<span class="nc bnc" id="L55" title="All 4 branches missed.">            for (JSONSchemaProps item : items) {JSONSchemaPropsBuilder builder = new JSONSchemaPropsBuilder(item);_visitables.remove(builder);if (this.jSONSchemas != null) {this.jSONSchemas.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildJSONSchemas instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;JSONSchemaProps&gt; getJSONSchemas(){
+<span class="nc" id="L64">            return build(jSONSchemas);</span>
+    }
+
+    public List&lt;JSONSchemaProps&gt; buildJSONSchemas(){
+<span class="nc" id="L68">            return build(jSONSchemas);</span>
+    }
+
+    public JSONSchemaProps buildJSONSchema(int index){
+<span class="nc" id="L72">            return this.jSONSchemas.get(index).build();</span>
+    }
+
+    public JSONSchemaProps buildFirstJSONSchema(){
+<span class="nc" id="L76">            return this.jSONSchemas.get(0).build();</span>
+    }
+
+    public JSONSchemaProps buildLastJSONSchema(){
+<span class="nc" id="L80">            return this.jSONSchemas.get(jSONSchemas.size() - 1).build();</span>
+    }
+
+    public JSONSchemaProps buildMatchingJSONSchema(io.fabric8.kubernetes.api.builder.Predicate&lt;JSONSchemaPropsBuilder&gt; predicate){
+<span class="nc bnc" id="L84" title="All 4 branches missed.">            for (JSONSchemaPropsBuilder item: jSONSchemas) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withJSONSchemas(List&lt;JSONSchemaProps&gt; jSONSchemas){
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            if (this.jSONSchemas != null) { _visitables.removeAll(this.jSONSchemas);}</span>
+<span class="nc bnc" id="L89" title="All 4 branches missed.">            if (jSONSchemas != null) {this.jSONSchemas = new ArrayList&lt;JSONSchemaPropsBuilder&gt;(); for (JSONSchemaProps item : jSONSchemas){this.addToJSONSchemas(item);}} else { this.jSONSchemas = new ArrayList&lt;JSONSchemaPropsBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withJSONSchemas(JSONSchemaProps... jSONSchemas){
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            if (this.jSONSchemas != null) {this.jSONSchemas.clear();}</span>
+<span class="nc bnc" id="L94" title="All 4 branches missed.">            if (jSONSchemas != null) {for (JSONSchemaProps item :jSONSchemas){ this.addToJSONSchemas(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasJSONSchemas(){
+<span class="nc bnc" id="L98" title="All 4 branches missed.">            return jSONSchemas != null &amp;&amp; !jSONSchemas.isEmpty();</span>
+    }
+
+    public JSONSchemaPropsOrArrayFluent.JSONSchemasNested&lt;A&gt; addNewJSONSchema(){
+<span class="nc" id="L102">            return new JSONSchemasNestedImpl();</span>
+    }
+
+    public JSONSchemaPropsOrArrayFluent.JSONSchemasNested&lt;A&gt; addNewJSONSchemaLike(JSONSchemaProps item){
+<span class="nc" id="L106">            return new JSONSchemasNestedImpl(-1, item);</span>
+    }
+
+    public JSONSchemaPropsOrArrayFluent.JSONSchemasNested&lt;A&gt; setNewJSONSchemaLike(int index,JSONSchemaProps item){
+<span class="nc" id="L110">            return new JSONSchemasNestedImpl(index, item);</span>
+    }
+
+    public JSONSchemaPropsOrArrayFluent.JSONSchemasNested&lt;A&gt; editJSONSchema(int index){
+<span class="nc bnc" id="L114" title="All 2 branches missed.">            if (jSONSchemas.size() &lt;= index) throw new RuntimeException(&quot;Can't edit jSONSchemas. Index exceeds size.&quot;);</span>
+<span class="nc" id="L115">            return setNewJSONSchemaLike(index, buildJSONSchema(index));</span>
+    }
+
+    public JSONSchemaPropsOrArrayFluent.JSONSchemasNested&lt;A&gt; editFirstJSONSchema(){
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            if (jSONSchemas.size() == 0) throw new RuntimeException(&quot;Can't edit first jSONSchemas. The list is empty.&quot;);</span>
+<span class="nc" id="L120">            return setNewJSONSchemaLike(0, buildJSONSchema(0));</span>
+    }
+
+    public JSONSchemaPropsOrArrayFluent.JSONSchemasNested&lt;A&gt; editLastJSONSchema(){
+<span class="nc" id="L124">            int index = jSONSchemas.size() - 1;</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last jSONSchemas. The list is empty.&quot;);</span>
+<span class="nc" id="L126">            return setNewJSONSchemaLike(index, buildJSONSchema(index));</span>
+    }
+
+    public JSONSchemaPropsOrArrayFluent.JSONSchemasNested&lt;A&gt; editMatchingJSONSchema(io.fabric8.kubernetes.api.builder.Predicate&lt;JSONSchemaPropsBuilder&gt; predicate){
+<span class="nc" id="L130">            int index = -1;</span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">            for (int i=0;i&lt;jSONSchemas.size();i++) { </span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            if (predicate.apply(jSONSchemas.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching jSONSchemas. No match found.&quot;);</span>
+<span class="nc" id="L135">            return setNewJSONSchemaLike(index, buildJSONSchema(index));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSchema instead.
+ * @return The buildable object.
+ */
+@Deprecated public JSONSchemaProps getSchema(){
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            return this.schema!=null?this.schema.build():null;</span>
+    }
+
+    public JSONSchemaProps buildSchema(){
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            return this.schema!=null?this.schema.build():null;</span>
+    }
+
+    public A withSchema(JSONSchemaProps schema){
+<span class="nc" id="L152">            _visitables.remove(this.schema);</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            if (schema!=null){ this.schema= new JSONSchemaPropsBuilder(schema); _visitables.add(this.schema);} return (A) this;</span>
+    }
+
+    public Boolean hasSchema(){
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            return this.schema != null;</span>
+    }
+
+    public JSONSchemaPropsOrArrayFluent.SchemaNested&lt;A&gt; withNewSchema(){
+<span class="nc" id="L161">            return new SchemaNestedImpl();</span>
+    }
+
+    public JSONSchemaPropsOrArrayFluent.SchemaNested&lt;A&gt; withNewSchemaLike(JSONSchemaProps item){
+<span class="nc" id="L165">            return new SchemaNestedImpl(item);</span>
+    }
+
+    public JSONSchemaPropsOrArrayFluent.SchemaNested&lt;A&gt; editSchema(){
+<span class="nc" id="L169">            return withNewSchemaLike(getSchema());</span>
+    }
+
+    public JSONSchemaPropsOrArrayFluent.SchemaNested&lt;A&gt; editOrNewSchema(){
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            return withNewSchemaLike(getSchema() != null ? getSchema(): new JSONSchemaPropsBuilder().build());</span>
+    }
+
+    public JSONSchemaPropsOrArrayFluent.SchemaNested&lt;A&gt; editOrNewSchemaLike(JSONSchemaProps item){
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            return withNewSchemaLike(getSchema() != null ? getSchema(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L182" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L184">            JSONSchemaPropsOrArrayFluentImpl that = (JSONSchemaPropsOrArrayFluentImpl) o;</span>
+<span class="nc bnc" id="L185" title="All 6 branches missed.">            if (jSONSchemas != null ? !jSONSchemas.equals(that.jSONSchemas) :that.jSONSchemas != null) return false;</span>
+<span class="nc bnc" id="L186" title="All 6 branches missed.">            if (schema != null ? !schema.equals(that.schema) :that.schema != null) return false;</span>
+<span class="nc" id="L187">            return true;</span>
+    }
+
+
+    public class JSONSchemasNestedImpl&lt;N&gt; extends JSONSchemaPropsFluentImpl&lt;JSONSchemaPropsOrArrayFluent.JSONSchemasNested&lt;N&gt;&gt; implements JSONSchemaPropsOrArrayFluent.JSONSchemasNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JSONSchemaPropsBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L196">            JSONSchemasNestedImpl(int index,JSONSchemaProps item){</span>
+<span class="nc" id="L197">                    this.index = index;</span>
+<span class="nc" id="L198">                    this.builder = new JSONSchemaPropsBuilder(this, item);</span>
+<span class="nc" id="L199">            }</span>
+<span class="nc" id="L200">            JSONSchemasNestedImpl(){</span>
+<span class="nc" id="L201">                    this.index = -1;</span>
+<span class="nc" id="L202">                    this.builder = new JSONSchemaPropsBuilder(this);</span>
+<span class="nc" id="L203">            }</span>
+    
+    public N and(){
+<span class="nc" id="L206">            return (N) JSONSchemaPropsOrArrayFluentImpl.this.setToJSONSchemas(index, builder.build());</span>
+    }
+    public N endJSONSchema(){
+<span class="nc" id="L209">            return and();</span>
+    }
+
+}
+    public class SchemaNestedImpl&lt;N&gt; extends JSONSchemaPropsFluentImpl&lt;JSONSchemaPropsOrArrayFluent.SchemaNested&lt;N&gt;&gt; implements JSONSchemaPropsOrArrayFluent.SchemaNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JSONSchemaPropsBuilder builder;
+    
+<span class="nc" id="L217">            SchemaNestedImpl(JSONSchemaProps item){</span>
+<span class="nc" id="L218">                    this.builder = new JSONSchemaPropsBuilder(this, item);</span>
+<span class="nc" id="L219">            }</span>
+<span class="nc" id="L220">            SchemaNestedImpl(){</span>
+<span class="nc" id="L221">                    this.builder = new JSONSchemaPropsBuilder(this);</span>
+<span class="nc" id="L222">            }</span>
+    
+    public N and(){
+<span class="nc" id="L225">            return (N) JSONSchemaPropsOrArrayFluentImpl.this.withSchema(builder.build());</span>
+    }
+    public N endSchema(){
+<span class="nc" id="L228">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

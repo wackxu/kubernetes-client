@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TokenReviewStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.authentication</a> &gt; <span class="el_source">TokenReviewStatusFluentImpl.java</span></div><h1>TokenReviewStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.authentication;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class TokenReviewStatusFluentImpl&lt;A extends TokenReviewStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements TokenReviewStatusFluent&lt;A&gt;{
+
+    private List&lt;String&gt; audiences;
+    private Boolean authenticated;
+    private String error;
+    private UserInfoBuilder user;
+
+<span class="nc" id="L24">    public TokenReviewStatusFluentImpl(){</span>
+<span class="nc" id="L25">    }</span>
+<span class="nc" id="L26">    public TokenReviewStatusFluentImpl(TokenReviewStatus instance){</span>
+<span class="nc" id="L27">            this.withAudiences(instance.getAudiences()); </span>
+<span class="nc" id="L28">            this.withAuthenticated(instance.getAuthenticated()); </span>
+<span class="nc" id="L29">            this.withError(instance.getError()); </span>
+<span class="nc" id="L30">            this.withUser(instance.getUser()); </span>
+<span class="nc" id="L31">    }</span>
+
+    public A addToAudiences(int index,String item){
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            if (this.audiences == null) {this.audiences = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L35">            this.audiences.add(index, item);</span>
+<span class="nc" id="L36">            return (A)this;</span>
+    }
+
+    public A setToAudiences(int index,String item){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            if (this.audiences == null) {this.audiences = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L41">            this.audiences.set(index, item); return (A)this;</span>
+    }
+
+    public A addToAudiences(String... items){
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            if (this.audiences == null) {this.audiences = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            for (String item : items) {this.audiences.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToAudiences(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            if (this.audiences == null) {this.audiences = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            for (String item : items) {this.audiences.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromAudiences(String... items){
+<span class="nc bnc" id="L55" title="All 4 branches missed.">            for (String item : items) {if (this.audiences!= null){ this.audiences.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAudiences(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L59" title="All 4 branches missed.">            for (String item : items) {if (this.audiences!= null){ this.audiences.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getAudiences(){
+<span class="nc" id="L63">            return this.audiences;</span>
+    }
+
+    public String getAudience(int index){
+<span class="nc" id="L67">            return this.audiences.get(index);</span>
+    }
+
+    public String getFirstAudience(){
+<span class="nc" id="L71">            return this.audiences.get(0);</span>
+    }
+
+    public String getLastAudience(){
+<span class="nc" id="L75">            return this.audiences.get(audiences.size() - 1);</span>
+    }
+
+    public String getMatchingAudience(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L79" title="All 4 branches missed.">            for (String item: audiences) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withAudiences(List&lt;String&gt; audiences){
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            if (this.audiences != null) { _visitables.removeAll(this.audiences);}</span>
+<span class="nc bnc" id="L84" title="All 4 branches missed.">            if (audiences != null) {this.audiences = new ArrayList&lt;String&gt;(); for (String item : audiences){this.addToAudiences(item);}} else { this.audiences = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withAudiences(String... audiences){
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            if (this.audiences != null) {this.audiences.clear();}</span>
+<span class="nc bnc" id="L89" title="All 4 branches missed.">            if (audiences != null) {for (String item :audiences){ this.addToAudiences(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAudiences(){
+<span class="nc bnc" id="L93" title="All 4 branches missed.">            return audiences != null &amp;&amp; !audiences.isEmpty();</span>
+    }
+
+    public Boolean isAuthenticated(){
+<span class="nc" id="L97">            return this.authenticated;</span>
+    }
+
+    public A withAuthenticated(Boolean authenticated){
+<span class="nc" id="L101">            this.authenticated=authenticated; return (A) this;</span>
+    }
+
+    public Boolean hasAuthenticated(){
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            return this.authenticated != null;</span>
+    }
+
+    public A withNewAuthenticated(String arg1){
+<span class="nc" id="L109">            return (A)withAuthenticated(new Boolean(arg1));</span>
+    }
+
+    public A withNewAuthenticated(boolean arg1){
+<span class="nc" id="L113">            return (A)withAuthenticated(new Boolean(arg1));</span>
+    }
+
+    public String getError(){
+<span class="nc" id="L117">            return this.error;</span>
+    }
+
+    public A withError(String error){
+<span class="nc" id="L121">            this.error=error; return (A) this;</span>
+    }
+
+    public Boolean hasError(){
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            return this.error != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildUser instead.
+ * @return The buildable object.
+ */
+@Deprecated public UserInfo getUser(){
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            return this.user!=null?this.user.build():null;</span>
+    }
+
+    public UserInfo buildUser(){
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            return this.user!=null?this.user.build():null;</span>
+    }
+
+    public A withUser(UserInfo user){
+<span class="nc" id="L142">            _visitables.remove(this.user);</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            if (user!=null){ this.user= new UserInfoBuilder(user); _visitables.add(this.user);} return (A) this;</span>
+    }
+
+    public Boolean hasUser(){
+<span class="nc bnc" id="L147" title="All 2 branches missed.">            return this.user != null;</span>
+    }
+
+    public TokenReviewStatusFluent.UserNested&lt;A&gt; withNewUser(){
+<span class="nc" id="L151">            return new UserNestedImpl();</span>
+    }
+
+    public TokenReviewStatusFluent.UserNested&lt;A&gt; withNewUserLike(UserInfo item){
+<span class="nc" id="L155">            return new UserNestedImpl(item);</span>
+    }
+
+    public TokenReviewStatusFluent.UserNested&lt;A&gt; editUser(){
+<span class="nc" id="L159">            return withNewUserLike(getUser());</span>
+    }
+
+    public TokenReviewStatusFluent.UserNested&lt;A&gt; editOrNewUser(){
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            return withNewUserLike(getUser() != null ? getUser(): new UserInfoBuilder().build());</span>
+    }
+
+    public TokenReviewStatusFluent.UserNested&lt;A&gt; editOrNewUserLike(UserInfo item){
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            return withNewUserLike(getUser() != null ? getUser(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L171" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L172" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L174">            TokenReviewStatusFluentImpl that = (TokenReviewStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L175" title="All 6 branches missed.">            if (audiences != null ? !audiences.equals(that.audiences) :that.audiences != null) return false;</span>
+<span class="nc bnc" id="L176" title="All 6 branches missed.">            if (authenticated != null ? !authenticated.equals(that.authenticated) :that.authenticated != null) return false;</span>
+<span class="nc bnc" id="L177" title="All 6 branches missed.">            if (error != null ? !error.equals(that.error) :that.error != null) return false;</span>
+<span class="nc bnc" id="L178" title="All 6 branches missed.">            if (user != null ? !user.equals(that.user) :that.user != null) return false;</span>
+<span class="nc" id="L179">            return true;</span>
+    }
+
+
+    public class UserNestedImpl&lt;N&gt; extends UserInfoFluentImpl&lt;TokenReviewStatusFluent.UserNested&lt;N&gt;&gt; implements TokenReviewStatusFluent.UserNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final UserInfoBuilder builder;
+    
+<span class="nc" id="L187">            UserNestedImpl(UserInfo item){</span>
+<span class="nc" id="L188">                    this.builder = new UserInfoBuilder(this, item);</span>
+<span class="nc" id="L189">            }</span>
+<span class="nc" id="L190">            UserNestedImpl(){</span>
+<span class="nc" id="L191">                    this.builder = new UserInfoBuilder(this);</span>
+<span class="nc" id="L192">            }</span>
+    
+    public N and(){
+<span class="nc" id="L195">            return (N) TokenReviewStatusFluentImpl.this.withUser(builder.build());</span>
+    }
+    public N endUser(){
+<span class="nc" id="L198">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

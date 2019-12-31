@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NetworkPolicyIngressRuleFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.networking</a> &gt; <span class="el_source">NetworkPolicyIngressRuleFluentImpl.java</span></div><h1>NetworkPolicyIngressRuleFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.networking;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class NetworkPolicyIngressRuleFluentImpl&lt;A extends NetworkPolicyIngressRuleFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements NetworkPolicyIngressRuleFluent&lt;A&gt;{
+
+    private List&lt;NetworkPolicyPeerBuilder&gt; from;
+    private List&lt;NetworkPolicyPortBuilder&gt; ports;
+
+<span class="nc" id="L21">    public NetworkPolicyIngressRuleFluentImpl(){</span>
+<span class="nc" id="L22">    }</span>
+<span class="nc" id="L23">    public NetworkPolicyIngressRuleFluentImpl(NetworkPolicyIngressRule instance){</span>
+<span class="nc" id="L24">            this.withFrom(instance.getFrom()); </span>
+<span class="nc" id="L25">            this.withPorts(instance.getPorts()); </span>
+<span class="nc" id="L26">    }</span>
+
+    public A addToFrom(int index,NetworkPolicyPeer item){
+<span class="nc bnc" id="L29" title="All 2 branches missed.">            if (this.from == null) {this.from = new ArrayList&lt;NetworkPolicyPeerBuilder&gt;();}</span>
+<span class="nc bnc" id="L30" title="All 4 branches missed.">            NetworkPolicyPeerBuilder builder = new NetworkPolicyPeerBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.from.add(index &gt;= 0 ? index : from.size(), builder); return (A)this;</span>
+    }
+
+    public A setToFrom(int index,NetworkPolicyPeer item){
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            if (this.from == null) {this.from = new ArrayList&lt;NetworkPolicyPeerBuilder&gt;();}</span>
+<span class="nc" id="L35">            NetworkPolicyPeerBuilder builder = new NetworkPolicyPeerBuilder(item);</span>
+<span class="nc bnc" id="L36" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L37" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= from.size()) { from.add(builder); } else { from.set(index, builder);}</span>
+<span class="nc" id="L38">             return (A)this;</span>
+    }
+
+    public A addToFrom(NetworkPolicyPeer... items){
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            if (this.from == null) {this.from = new ArrayList&lt;NetworkPolicyPeerBuilder&gt;();}</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            for (NetworkPolicyPeer item : items) {NetworkPolicyPeerBuilder builder = new NetworkPolicyPeerBuilder(item);_visitables.add(builder);this.from.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToFrom(Collection&lt;NetworkPolicyPeer&gt; items){
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            if (this.from == null) {this.from = new ArrayList&lt;NetworkPolicyPeerBuilder&gt;();}</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            for (NetworkPolicyPeer item : items) {NetworkPolicyPeerBuilder builder = new NetworkPolicyPeerBuilder(item);_visitables.add(builder);this.from.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromFrom(NetworkPolicyPeer... items){
+<span class="nc bnc" id="L52" title="All 4 branches missed.">            for (NetworkPolicyPeer item : items) {NetworkPolicyPeerBuilder builder = new NetworkPolicyPeerBuilder(item);_visitables.remove(builder);if (this.from != null) {this.from.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromFrom(Collection&lt;NetworkPolicyPeer&gt; items){
+<span class="nc bnc" id="L56" title="All 4 branches missed.">            for (NetworkPolicyPeer item : items) {NetworkPolicyPeerBuilder builder = new NetworkPolicyPeerBuilder(item);_visitables.remove(builder);if (this.from != null) {this.from.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildFrom instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;NetworkPolicyPeer&gt; getFrom(){
+<span class="nc" id="L65">            return build(from);</span>
+    }
+
+    public List&lt;NetworkPolicyPeer&gt; buildFrom(){
+<span class="nc" id="L69">            return build(from);</span>
+    }
+
+    public NetworkPolicyPeer buildFrom(int index){
+<span class="nc" id="L73">            return this.from.get(index).build();</span>
+    }
+
+    public NetworkPolicyPeer buildFirstFrom(){
+<span class="nc" id="L77">            return this.from.get(0).build();</span>
+    }
+
+    public NetworkPolicyPeer buildLastFrom(){
+<span class="nc" id="L81">            return this.from.get(from.size() - 1).build();</span>
+    }
+
+    public NetworkPolicyPeer buildMatchingFrom(io.fabric8.kubernetes.api.builder.Predicate&lt;NetworkPolicyPeerBuilder&gt; predicate){
+<span class="nc bnc" id="L85" title="All 4 branches missed.">            for (NetworkPolicyPeerBuilder item: from) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withFrom(List&lt;NetworkPolicyPeer&gt; from){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (this.from != null) { _visitables.removeAll(this.from);}</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">            if (from != null) {this.from = new ArrayList&lt;NetworkPolicyPeerBuilder&gt;(); for (NetworkPolicyPeer item : from){this.addToFrom(item);}} else { this.from = new ArrayList&lt;NetworkPolicyPeerBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withFrom(NetworkPolicyPeer... from){
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            if (this.from != null) {this.from.clear();}</span>
+<span class="nc bnc" id="L95" title="All 4 branches missed.">            if (from != null) {for (NetworkPolicyPeer item :from){ this.addToFrom(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasFrom(){
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            return from != null &amp;&amp; !from.isEmpty();</span>
+    }
+
+    public NetworkPolicyIngressRuleFluent.FromNested&lt;A&gt; addNewFrom(){
+<span class="nc" id="L103">            return new FromNestedImpl();</span>
+    }
+
+    public NetworkPolicyIngressRuleFluent.FromNested&lt;A&gt; addNewFromLike(NetworkPolicyPeer item){
+<span class="nc" id="L107">            return new FromNestedImpl(-1, item);</span>
+    }
+
+    public NetworkPolicyIngressRuleFluent.FromNested&lt;A&gt; setNewFromLike(int index,NetworkPolicyPeer item){
+<span class="nc" id="L111">            return new FromNestedImpl(index, item);</span>
+    }
+
+    public NetworkPolicyIngressRuleFluent.FromNested&lt;A&gt; editFrom(int index){
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            if (from.size() &lt;= index) throw new RuntimeException(&quot;Can't edit from. Index exceeds size.&quot;);</span>
+<span class="nc" id="L116">            return setNewFromLike(index, buildFrom(index));</span>
+    }
+
+    public NetworkPolicyIngressRuleFluent.FromNested&lt;A&gt; editFirstFrom(){
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            if (from.size() == 0) throw new RuntimeException(&quot;Can't edit first from. The list is empty.&quot;);</span>
+<span class="nc" id="L121">            return setNewFromLike(0, buildFrom(0));</span>
+    }
+
+    public NetworkPolicyIngressRuleFluent.FromNested&lt;A&gt; editLastFrom(){
+<span class="nc" id="L125">            int index = from.size() - 1;</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last from. The list is empty.&quot;);</span>
+<span class="nc" id="L127">            return setNewFromLike(index, buildFrom(index));</span>
+    }
+
+    public NetworkPolicyIngressRuleFluent.FromNested&lt;A&gt; editMatchingFrom(io.fabric8.kubernetes.api.builder.Predicate&lt;NetworkPolicyPeerBuilder&gt; predicate){
+<span class="nc" id="L131">            int index = -1;</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            for (int i=0;i&lt;from.size();i++) { </span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (predicate.apply(from.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching from. No match found.&quot;);</span>
+<span class="nc" id="L136">            return setNewFromLike(index, buildFrom(index));</span>
+    }
+
+    public A addToPorts(int index,NetworkPolicyPort item){
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            if (this.ports == null) {this.ports = new ArrayList&lt;NetworkPolicyPortBuilder&gt;();}</span>
+<span class="nc bnc" id="L141" title="All 4 branches missed.">            NetworkPolicyPortBuilder builder = new NetworkPolicyPortBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.ports.add(index &gt;= 0 ? index : ports.size(), builder); return (A)this;</span>
+    }
+
+    public A setToPorts(int index,NetworkPolicyPort item){
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (this.ports == null) {this.ports = new ArrayList&lt;NetworkPolicyPortBuilder&gt;();}</span>
+<span class="nc" id="L146">            NetworkPolicyPortBuilder builder = new NetworkPolicyPortBuilder(item);</span>
+<span class="nc bnc" id="L147" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L148" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= ports.size()) { ports.add(builder); } else { ports.set(index, builder);}</span>
+<span class="nc" id="L149">             return (A)this;</span>
+    }
+
+    public A addToPorts(NetworkPolicyPort... items){
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            if (this.ports == null) {this.ports = new ArrayList&lt;NetworkPolicyPortBuilder&gt;();}</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            for (NetworkPolicyPort item : items) {NetworkPolicyPortBuilder builder = new NetworkPolicyPortBuilder(item);_visitables.add(builder);this.ports.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToPorts(Collection&lt;NetworkPolicyPort&gt; items){
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            if (this.ports == null) {this.ports = new ArrayList&lt;NetworkPolicyPortBuilder&gt;();}</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            for (NetworkPolicyPort item : items) {NetworkPolicyPortBuilder builder = new NetworkPolicyPortBuilder(item);_visitables.add(builder);this.ports.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromPorts(NetworkPolicyPort... items){
+<span class="nc bnc" id="L163" title="All 4 branches missed.">            for (NetworkPolicyPort item : items) {NetworkPolicyPortBuilder builder = new NetworkPolicyPortBuilder(item);_visitables.remove(builder);if (this.ports != null) {this.ports.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromPorts(Collection&lt;NetworkPolicyPort&gt; items){
+<span class="nc bnc" id="L167" title="All 4 branches missed.">            for (NetworkPolicyPort item : items) {NetworkPolicyPortBuilder builder = new NetworkPolicyPortBuilder(item);_visitables.remove(builder);if (this.ports != null) {this.ports.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPorts instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;NetworkPolicyPort&gt; getPorts(){
+<span class="nc" id="L176">            return build(ports);</span>
+    }
+
+    public List&lt;NetworkPolicyPort&gt; buildPorts(){
+<span class="nc" id="L180">            return build(ports);</span>
+    }
+
+    public NetworkPolicyPort buildPort(int index){
+<span class="nc" id="L184">            return this.ports.get(index).build();</span>
+    }
+
+    public NetworkPolicyPort buildFirstPort(){
+<span class="nc" id="L188">            return this.ports.get(0).build();</span>
+    }
+
+    public NetworkPolicyPort buildLastPort(){
+<span class="nc" id="L192">            return this.ports.get(ports.size() - 1).build();</span>
+    }
+
+    public NetworkPolicyPort buildMatchingPort(io.fabric8.kubernetes.api.builder.Predicate&lt;NetworkPolicyPortBuilder&gt; predicate){
+<span class="nc bnc" id="L196" title="All 4 branches missed.">            for (NetworkPolicyPortBuilder item: ports) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withPorts(List&lt;NetworkPolicyPort&gt; ports){
+<span class="nc bnc" id="L200" title="All 2 branches missed.">            if (this.ports != null) { _visitables.removeAll(this.ports);}</span>
+<span class="nc bnc" id="L201" title="All 4 branches missed.">            if (ports != null) {this.ports = new ArrayList&lt;NetworkPolicyPortBuilder&gt;(); for (NetworkPolicyPort item : ports){this.addToPorts(item);}} else { this.ports = new ArrayList&lt;NetworkPolicyPortBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withPorts(NetworkPolicyPort... ports){
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            if (this.ports != null) {this.ports.clear();}</span>
+<span class="nc bnc" id="L206" title="All 4 branches missed.">            if (ports != null) {for (NetworkPolicyPort item :ports){ this.addToPorts(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasPorts(){
+<span class="nc bnc" id="L210" title="All 4 branches missed.">            return ports != null &amp;&amp; !ports.isEmpty();</span>
+    }
+
+    public NetworkPolicyIngressRuleFluent.PortsNested&lt;A&gt; addNewPort(){
+<span class="nc" id="L214">            return new PortsNestedImpl();</span>
+    }
+
+    public NetworkPolicyIngressRuleFluent.PortsNested&lt;A&gt; addNewPortLike(NetworkPolicyPort item){
+<span class="nc" id="L218">            return new PortsNestedImpl(-1, item);</span>
+    }
+
+    public NetworkPolicyIngressRuleFluent.PortsNested&lt;A&gt; setNewPortLike(int index,NetworkPolicyPort item){
+<span class="nc" id="L222">            return new PortsNestedImpl(index, item);</span>
+    }
+
+    public NetworkPolicyIngressRuleFluent.PortsNested&lt;A&gt; editPort(int index){
+<span class="nc bnc" id="L226" title="All 2 branches missed.">            if (ports.size() &lt;= index) throw new RuntimeException(&quot;Can't edit ports. Index exceeds size.&quot;);</span>
+<span class="nc" id="L227">            return setNewPortLike(index, buildPort(index));</span>
+    }
+
+    public NetworkPolicyIngressRuleFluent.PortsNested&lt;A&gt; editFirstPort(){
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            if (ports.size() == 0) throw new RuntimeException(&quot;Can't edit first ports. The list is empty.&quot;);</span>
+<span class="nc" id="L232">            return setNewPortLike(0, buildPort(0));</span>
+    }
+
+    public NetworkPolicyIngressRuleFluent.PortsNested&lt;A&gt; editLastPort(){
+<span class="nc" id="L236">            int index = ports.size() - 1;</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last ports. The list is empty.&quot;);</span>
+<span class="nc" id="L238">            return setNewPortLike(index, buildPort(index));</span>
+    }
+
+    public NetworkPolicyIngressRuleFluent.PortsNested&lt;A&gt; editMatchingPort(io.fabric8.kubernetes.api.builder.Predicate&lt;NetworkPolicyPortBuilder&gt; predicate){
+<span class="nc" id="L242">            int index = -1;</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            for (int i=0;i&lt;ports.size();i++) { </span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">            if (predicate.apply(ports.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L246" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching ports. No match found.&quot;);</span>
+<span class="nc" id="L247">            return setNewPortLike(index, buildPort(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L251" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L252" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L253" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L254">            NetworkPolicyIngressRuleFluentImpl that = (NetworkPolicyIngressRuleFluentImpl) o;</span>
+<span class="nc bnc" id="L255" title="All 6 branches missed.">            if (from != null ? !from.equals(that.from) :that.from != null) return false;</span>
+<span class="nc bnc" id="L256" title="All 6 branches missed.">            if (ports != null ? !ports.equals(that.ports) :that.ports != null) return false;</span>
+<span class="nc" id="L257">            return true;</span>
+    }
+
+
+    public class FromNestedImpl&lt;N&gt; extends NetworkPolicyPeerFluentImpl&lt;NetworkPolicyIngressRuleFluent.FromNested&lt;N&gt;&gt; implements NetworkPolicyIngressRuleFluent.FromNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NetworkPolicyPeerBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L266">            FromNestedImpl(int index,NetworkPolicyPeer item){</span>
+<span class="nc" id="L267">                    this.index = index;</span>
+<span class="nc" id="L268">                    this.builder = new NetworkPolicyPeerBuilder(this, item);</span>
+<span class="nc" id="L269">            }</span>
+<span class="nc" id="L270">            FromNestedImpl(){</span>
+<span class="nc" id="L271">                    this.index = -1;</span>
+<span class="nc" id="L272">                    this.builder = new NetworkPolicyPeerBuilder(this);</span>
+<span class="nc" id="L273">            }</span>
+    
+    public N and(){
+<span class="nc" id="L276">            return (N) NetworkPolicyIngressRuleFluentImpl.this.setToFrom(index, builder.build());</span>
+    }
+    public N endFrom(){
+<span class="nc" id="L279">            return and();</span>
+    }
+
+}
+    public class PortsNestedImpl&lt;N&gt; extends NetworkPolicyPortFluentImpl&lt;NetworkPolicyIngressRuleFluent.PortsNested&lt;N&gt;&gt; implements NetworkPolicyIngressRuleFluent.PortsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NetworkPolicyPortBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L288">            PortsNestedImpl(int index,NetworkPolicyPort item){</span>
+<span class="nc" id="L289">                    this.index = index;</span>
+<span class="nc" id="L290">                    this.builder = new NetworkPolicyPortBuilder(this, item);</span>
+<span class="nc" id="L291">            }</span>
+<span class="nc" id="L292">            PortsNestedImpl(){</span>
+<span class="nc" id="L293">                    this.index = -1;</span>
+<span class="nc" id="L294">                    this.builder = new NetworkPolicyPortBuilder(this);</span>
+<span class="nc" id="L295">            }</span>
+    
+    public N and(){
+<span class="nc" id="L298">            return (N) NetworkPolicyIngressRuleFluentImpl.this.setToPorts(index, builder.build());</span>
+    }
+    public N endPort(){
+<span class="nc" id="L301">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Info.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.version</a> &gt; <span class="el_source">Info.java</span></div><h1>Info.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.version;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;buildDate&quot;,
+    &quot;compiler&quot;,
+    &quot;gitCommit&quot;,
+    &quot;gitTreeState&quot;,
+    &quot;gitVersion&quot;,
+    &quot;goVersion&quot;,
+    &quot;major&quot;,
+    &quot;minor&quot;,
+    &quot;platform&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L43">@ToString</span>
+<span class="nc bnc" id="L44" title="All 86 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class Info implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;buildDate&quot;)
+    private String buildDate;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;compiler&quot;)
+    private String compiler;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;gitCommit&quot;)
+    private String gitCommit;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;gitTreeState&quot;)
+    private String gitTreeState;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;gitVersion&quot;)
+    private String gitVersion;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;goVersion&quot;)
+    private String goVersion;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;major&quot;)
+    private String major;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;minor&quot;)
+    private String minor;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;platform&quot;)
+    private String platform;
+<span class="nc" id="L103">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L110">    public Info() {</span>
+<span class="nc" id="L111">    }</span>
+
+    /**
+     * 
+     * @param gitVersion
+     * @param gitCommit
+     * @param major
+     * @param minor
+     * @param goVersion
+     * @param buildDate
+     * @param compiler
+     * @param gitTreeState
+     * @param platform
+     */
+<span class="nc" id="L125">    public Info(String buildDate, String compiler, String gitCommit, String gitTreeState, String gitVersion, String goVersion, String major, String minor, String platform) {</span>
+<span class="nc" id="L126">        this.buildDate = buildDate;</span>
+<span class="nc" id="L127">        this.compiler = compiler;</span>
+<span class="nc" id="L128">        this.gitCommit = gitCommit;</span>
+<span class="nc" id="L129">        this.gitTreeState = gitTreeState;</span>
+<span class="nc" id="L130">        this.gitVersion = gitVersion;</span>
+<span class="nc" id="L131">        this.goVersion = goVersion;</span>
+<span class="nc" id="L132">        this.major = major;</span>
+<span class="nc" id="L133">        this.minor = minor;</span>
+<span class="nc" id="L134">        this.platform = platform;</span>
+<span class="nc" id="L135">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The buildDate
+     */
+    @JsonProperty(&quot;buildDate&quot;)
+    public String getBuildDate() {
+<span class="nc" id="L145">        return buildDate;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param buildDate
+     *     The buildDate
+     */
+    @JsonProperty(&quot;buildDate&quot;)
+    public void setBuildDate(String buildDate) {
+<span class="nc" id="L156">        this.buildDate = buildDate;</span>
+<span class="nc" id="L157">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The compiler
+     */
+    @JsonProperty(&quot;compiler&quot;)
+    public String getCompiler() {
+<span class="nc" id="L167">        return compiler;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param compiler
+     *     The compiler
+     */
+    @JsonProperty(&quot;compiler&quot;)
+    public void setCompiler(String compiler) {
+<span class="nc" id="L178">        this.compiler = compiler;</span>
+<span class="nc" id="L179">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The gitCommit
+     */
+    @JsonProperty(&quot;gitCommit&quot;)
+    public String getGitCommit() {
+<span class="nc" id="L189">        return gitCommit;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param gitCommit
+     *     The gitCommit
+     */
+    @JsonProperty(&quot;gitCommit&quot;)
+    public void setGitCommit(String gitCommit) {
+<span class="nc" id="L200">        this.gitCommit = gitCommit;</span>
+<span class="nc" id="L201">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The gitTreeState
+     */
+    @JsonProperty(&quot;gitTreeState&quot;)
+    public String getGitTreeState() {
+<span class="nc" id="L211">        return gitTreeState;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param gitTreeState
+     *     The gitTreeState
+     */
+    @JsonProperty(&quot;gitTreeState&quot;)
+    public void setGitTreeState(String gitTreeState) {
+<span class="nc" id="L222">        this.gitTreeState = gitTreeState;</span>
+<span class="nc" id="L223">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The gitVersion
+     */
+    @JsonProperty(&quot;gitVersion&quot;)
+    public String getGitVersion() {
+<span class="nc" id="L233">        return gitVersion;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param gitVersion
+     *     The gitVersion
+     */
+    @JsonProperty(&quot;gitVersion&quot;)
+    public void setGitVersion(String gitVersion) {
+<span class="nc" id="L244">        this.gitVersion = gitVersion;</span>
+<span class="nc" id="L245">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The goVersion
+     */
+    @JsonProperty(&quot;goVersion&quot;)
+    public String getGoVersion() {
+<span class="nc" id="L255">        return goVersion;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param goVersion
+     *     The goVersion
+     */
+    @JsonProperty(&quot;goVersion&quot;)
+    public void setGoVersion(String goVersion) {
+<span class="nc" id="L266">        this.goVersion = goVersion;</span>
+<span class="nc" id="L267">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The major
+     */
+    @JsonProperty(&quot;major&quot;)
+    public String getMajor() {
+<span class="nc" id="L277">        return major;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param major
+     *     The major
+     */
+    @JsonProperty(&quot;major&quot;)
+    public void setMajor(String major) {
+<span class="nc" id="L288">        this.major = major;</span>
+<span class="nc" id="L289">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The minor
+     */
+    @JsonProperty(&quot;minor&quot;)
+    public String getMinor() {
+<span class="nc" id="L299">        return minor;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param minor
+     *     The minor
+     */
+    @JsonProperty(&quot;minor&quot;)
+    public void setMinor(String minor) {
+<span class="nc" id="L310">        this.minor = minor;</span>
+<span class="nc" id="L311">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The platform
+     */
+    @JsonProperty(&quot;platform&quot;)
+    public String getPlatform() {
+<span class="nc" id="L321">        return platform;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param platform
+     *     The platform
+     */
+    @JsonProperty(&quot;platform&quot;)
+    public void setPlatform(String platform) {
+<span class="nc" id="L332">        this.platform = platform;</span>
+<span class="nc" id="L333">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L337">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L342">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L343">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

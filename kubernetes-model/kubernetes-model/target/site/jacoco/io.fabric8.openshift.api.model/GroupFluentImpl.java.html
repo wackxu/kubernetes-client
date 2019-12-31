@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GroupFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">GroupFluentImpl.java</span></div><h1>GroupFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.ObjectMetaFluentImpl;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class GroupFluentImpl&lt;A extends GroupFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements GroupFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+    private List&lt;String&gt; users;
+
+<span class="nc" id="L28">    public GroupFluentImpl(){</span>
+<span class="nc" id="L29">    }</span>
+<span class="nc" id="L30">    public GroupFluentImpl(Group instance){</span>
+<span class="nc" id="L31">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L32">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L33">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L34">            this.withUsers(instance.getUsers()); </span>
+<span class="nc" id="L35">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L38">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L42">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L50">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L54">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L75">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public GroupFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L84">            return new MetadataNestedImpl();</span>
+    }
+
+    public GroupFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L88">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public GroupFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L92">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public GroupFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L96" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public GroupFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    public A addToUsers(int index,String item){
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            if (this.users == null) {this.users = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L105">            this.users.add(index, item);</span>
+<span class="nc" id="L106">            return (A)this;</span>
+    }
+
+    public A setToUsers(int index,String item){
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            if (this.users == null) {this.users = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L111">            this.users.set(index, item); return (A)this;</span>
+    }
+
+    public A addToUsers(String... items){
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            if (this.users == null) {this.users = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            for (String item : items) {this.users.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToUsers(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            if (this.users == null) {this.users = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            for (String item : items) {this.users.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromUsers(String... items){
+<span class="nc bnc" id="L125" title="All 4 branches missed.">            for (String item : items) {if (this.users!= null){ this.users.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromUsers(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L129" title="All 4 branches missed.">            for (String item : items) {if (this.users!= null){ this.users.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getUsers(){
+<span class="nc" id="L133">            return this.users;</span>
+    }
+
+    public String getUser(int index){
+<span class="nc" id="L137">            return this.users.get(index);</span>
+    }
+
+    public String getFirstUser(){
+<span class="nc" id="L141">            return this.users.get(0);</span>
+    }
+
+    public String getLastUser(){
+<span class="nc" id="L145">            return this.users.get(users.size() - 1);</span>
+    }
+
+    public String getMatchingUser(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L149" title="All 4 branches missed.">            for (String item: users) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withUsers(List&lt;String&gt; users){
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            if (this.users != null) { _visitables.removeAll(this.users);}</span>
+<span class="nc bnc" id="L154" title="All 4 branches missed.">            if (users != null) {this.users = new ArrayList&lt;String&gt;(); for (String item : users){this.addToUsers(item);}} else { this.users = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withUsers(String... users){
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            if (this.users != null) {this.users.clear();}</span>
+<span class="nc bnc" id="L159" title="All 4 branches missed.">            if (users != null) {for (String item :users){ this.addToUsers(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasUsers(){
+<span class="nc bnc" id="L163" title="All 4 branches missed.">            return users != null &amp;&amp; !users.isEmpty();</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L168" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L170">            GroupFluentImpl that = (GroupFluentImpl) o;</span>
+<span class="nc bnc" id="L171" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L172" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L173" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L174" title="All 6 branches missed.">            if (users != null ? !users.equals(that.users) :that.users != null) return false;</span>
+<span class="nc" id="L175">            return true;</span>
+    }
+
+
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;GroupFluent.MetadataNested&lt;N&gt;&gt; implements GroupFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L183">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L184">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L185">            }</span>
+<span class="nc" id="L186">            MetadataNestedImpl(){</span>
+<span class="nc" id="L187">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L188">            }</span>
+    
+    public N and(){
+<span class="nc" id="L191">            return (N) GroupFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L194">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LabelSelector.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">LabelSelector.java</span></div><h1>LabelSelector.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;matchExpressions&quot;,
+    &quot;matchLabels&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L38">@ToString</span>
+<span class="pc bpc" id="L39" title="26 of 30 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class LabelSelector implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L48">    @JsonProperty(&quot;matchExpressions&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;LabelSelectorRequirement&gt; matchExpressions = new ArrayList&lt;LabelSelectorRequirement&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;matchLabels&quot;)
+    @Valid
+    private Map&lt;String, String&gt; matchLabels;
+<span class="fc" id="L59">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L66">    public LabelSelector() {</span>
+<span class="fc" id="L67">    }</span>
+
+    /**
+     * 
+     * @param matchExpressions
+     * @param matchLabels
+     */
+<span class="fc" id="L74">    public LabelSelector(List&lt;LabelSelectorRequirement&gt; matchExpressions, Map&lt;String, String&gt; matchLabels) {</span>
+<span class="fc" id="L75">        this.matchExpressions = matchExpressions;</span>
+<span class="fc" id="L76">        this.matchLabels = matchLabels;</span>
+<span class="fc" id="L77">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The matchExpressions
+     */
+    @JsonProperty(&quot;matchExpressions&quot;)
+    public List&lt;LabelSelectorRequirement&gt; getMatchExpressions() {
+<span class="fc" id="L87">        return matchExpressions;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param matchExpressions
+     *     The matchExpressions
+     */
+    @JsonProperty(&quot;matchExpressions&quot;)
+    public void setMatchExpressions(List&lt;LabelSelectorRequirement&gt; matchExpressions) {
+<span class="fc" id="L98">        this.matchExpressions = matchExpressions;</span>
+<span class="fc" id="L99">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The matchLabels
+     */
+    @JsonProperty(&quot;matchLabels&quot;)
+    public Map&lt;String, String&gt; getMatchLabels() {
+<span class="fc" id="L109">        return matchLabels;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param matchLabels
+     *     The matchLabels
+     */
+    @JsonProperty(&quot;matchLabels&quot;)
+    public void setMatchLabels(Map&lt;String, String&gt; matchLabels) {
+<span class="fc" id="L120">        this.matchLabels = matchLabels;</span>
+<span class="fc" id="L121">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L125">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L130">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L131">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

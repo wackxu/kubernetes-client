@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomResourceDefinitionNamesFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.apiextensions</a> &gt; <span class="el_source">CustomResourceDefinitionNamesFluentImpl.java</span></div><h1>CustomResourceDefinitionNamesFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.apiextensions;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class CustomResourceDefinitionNamesFluentImpl&lt;A extends CustomResourceDefinitionNamesFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements CustomResourceDefinitionNamesFluent&lt;A&gt;{
+
+    private List&lt;String&gt; categories;
+    private String kind;
+    private String listKind;
+    private String plural;
+    private List&lt;String&gt; shortNames;
+    private String singular;
+
+<span class="nc" id="L24">    public CustomResourceDefinitionNamesFluentImpl(){</span>
+<span class="nc" id="L25">    }</span>
+<span class="nc" id="L26">    public CustomResourceDefinitionNamesFluentImpl(CustomResourceDefinitionNames instance){</span>
+<span class="nc" id="L27">            this.withCategories(instance.getCategories()); </span>
+<span class="nc" id="L28">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L29">            this.withListKind(instance.getListKind()); </span>
+<span class="nc" id="L30">            this.withPlural(instance.getPlural()); </span>
+<span class="nc" id="L31">            this.withShortNames(instance.getShortNames()); </span>
+<span class="nc" id="L32">            this.withSingular(instance.getSingular()); </span>
+<span class="nc" id="L33">    }</span>
+
+    public A addToCategories(int index,String item){
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            if (this.categories == null) {this.categories = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L37">            this.categories.add(index, item);</span>
+<span class="nc" id="L38">            return (A)this;</span>
+    }
+
+    public A setToCategories(int index,String item){
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            if (this.categories == null) {this.categories = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L43">            this.categories.set(index, item); return (A)this;</span>
+    }
+
+    public A addToCategories(String... items){
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            if (this.categories == null) {this.categories = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            for (String item : items) {this.categories.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToCategories(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            if (this.categories == null) {this.categories = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            for (String item : items) {this.categories.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromCategories(String... items){
+<span class="nc bnc" id="L57" title="All 4 branches missed.">            for (String item : items) {if (this.categories!= null){ this.categories.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromCategories(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L61" title="All 4 branches missed.">            for (String item : items) {if (this.categories!= null){ this.categories.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getCategories(){
+<span class="nc" id="L65">            return this.categories;</span>
+    }
+
+    public String getCategory(int index){
+<span class="nc" id="L69">            return this.categories.get(index);</span>
+    }
+
+    public String getFirstCategory(){
+<span class="nc" id="L73">            return this.categories.get(0);</span>
+    }
+
+    public String getLastCategory(){
+<span class="nc" id="L77">            return this.categories.get(categories.size() - 1);</span>
+    }
+
+    public String getMatchingCategory(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L81" title="All 4 branches missed.">            for (String item: categories) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withCategories(List&lt;String&gt; categories){
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            if (this.categories != null) { _visitables.removeAll(this.categories);}</span>
+<span class="nc bnc" id="L86" title="All 4 branches missed.">            if (categories != null) {this.categories = new ArrayList&lt;String&gt;(); for (String item : categories){this.addToCategories(item);}} else { this.categories = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withCategories(String... categories){
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            if (this.categories != null) {this.categories.clear();}</span>
+<span class="nc bnc" id="L91" title="All 4 branches missed.">            if (categories != null) {for (String item :categories){ this.addToCategories(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasCategories(){
+<span class="nc bnc" id="L95" title="All 4 branches missed.">            return categories != null &amp;&amp; !categories.isEmpty();</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L99">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L103">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    public String getListKind(){
+<span class="nc" id="L111">            return this.listKind;</span>
+    }
+
+    public A withListKind(String listKind){
+<span class="nc" id="L115">            this.listKind=listKind; return (A) this;</span>
+    }
+
+    public Boolean hasListKind(){
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            return this.listKind != null;</span>
+    }
+
+    public String getPlural(){
+<span class="nc" id="L123">            return this.plural;</span>
+    }
+
+    public A withPlural(String plural){
+<span class="nc" id="L127">            this.plural=plural; return (A) this;</span>
+    }
+
+    public Boolean hasPlural(){
+<span class="nc bnc" id="L131" title="All 2 branches missed.">            return this.plural != null;</span>
+    }
+
+    public A addToShortNames(int index,String item){
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            if (this.shortNames == null) {this.shortNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L136">            this.shortNames.add(index, item);</span>
+<span class="nc" id="L137">            return (A)this;</span>
+    }
+
+    public A setToShortNames(int index,String item){
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            if (this.shortNames == null) {this.shortNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L142">            this.shortNames.set(index, item); return (A)this;</span>
+    }
+
+    public A addToShortNames(String... items){
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            if (this.shortNames == null) {this.shortNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">            for (String item : items) {this.shortNames.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToShortNames(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (this.shortNames == null) {this.shortNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            for (String item : items) {this.shortNames.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromShortNames(String... items){
+<span class="nc bnc" id="L156" title="All 4 branches missed.">            for (String item : items) {if (this.shortNames!= null){ this.shortNames.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromShortNames(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L160" title="All 4 branches missed.">            for (String item : items) {if (this.shortNames!= null){ this.shortNames.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getShortNames(){
+<span class="nc" id="L164">            return this.shortNames;</span>
+    }
+
+    public String getShortName(int index){
+<span class="nc" id="L168">            return this.shortNames.get(index);</span>
+    }
+
+    public String getFirstShortName(){
+<span class="nc" id="L172">            return this.shortNames.get(0);</span>
+    }
+
+    public String getLastShortName(){
+<span class="nc" id="L176">            return this.shortNames.get(shortNames.size() - 1);</span>
+    }
+
+    public String getMatchingShortName(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L180" title="All 4 branches missed.">            for (String item: shortNames) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withShortNames(List&lt;String&gt; shortNames){
+<span class="nc bnc" id="L184" title="All 2 branches missed.">            if (this.shortNames != null) { _visitables.removeAll(this.shortNames);}</span>
+<span class="nc bnc" id="L185" title="All 4 branches missed.">            if (shortNames != null) {this.shortNames = new ArrayList&lt;String&gt;(); for (String item : shortNames){this.addToShortNames(item);}} else { this.shortNames = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withShortNames(String... shortNames){
+<span class="nc bnc" id="L189" title="All 2 branches missed.">            if (this.shortNames != null) {this.shortNames.clear();}</span>
+<span class="nc bnc" id="L190" title="All 4 branches missed.">            if (shortNames != null) {for (String item :shortNames){ this.addToShortNames(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasShortNames(){
+<span class="nc bnc" id="L194" title="All 4 branches missed.">            return shortNames != null &amp;&amp; !shortNames.isEmpty();</span>
+    }
+
+    public String getSingular(){
+<span class="nc" id="L198">            return this.singular;</span>
+    }
+
+    public A withSingular(String singular){
+<span class="nc" id="L202">            this.singular=singular; return (A) this;</span>
+    }
+
+    public Boolean hasSingular(){
+<span class="nc bnc" id="L206" title="All 2 branches missed.">            return this.singular != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L211" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L212" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L213">            CustomResourceDefinitionNamesFluentImpl that = (CustomResourceDefinitionNamesFluentImpl) o;</span>
+<span class="nc bnc" id="L214" title="All 6 branches missed.">            if (categories != null ? !categories.equals(that.categories) :that.categories != null) return false;</span>
+<span class="nc bnc" id="L215" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L216" title="All 6 branches missed.">            if (listKind != null ? !listKind.equals(that.listKind) :that.listKind != null) return false;</span>
+<span class="nc bnc" id="L217" title="All 6 branches missed.">            if (plural != null ? !plural.equals(that.plural) :that.plural != null) return false;</span>
+<span class="nc bnc" id="L218" title="All 6 branches missed.">            if (shortNames != null ? !shortNames.equals(that.shortNames) :that.shortNames != null) return false;</span>
+<span class="nc bnc" id="L219" title="All 6 branches missed.">            if (singular != null ? !singular.equals(that.singular) :that.singular != null) return false;</span>
+<span class="nc" id="L220">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

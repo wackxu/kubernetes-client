@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TemplateOperationsImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Openshift :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.client.dsl.internal</a> &gt; <span class="el_source">TemplateOperationsImpl.java</span></div><h1>TemplateOperationsImpl.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.openshift.client.dsl.internal;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.mifmif.common.regex.Generex;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.KubernetesList;
+import io.fabric8.kubernetes.api.model.KubernetesListBuilder;
+import io.fabric8.kubernetes.api.model.KubernetesResourceList;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.dsl.MixedOperation;
+import io.fabric8.kubernetes.client.utils.Serialization;
+import io.fabric8.kubernetes.client.utils.URLUtils;
+import io.fabric8.kubernetes.client.utils.Utils;
+import io.fabric8.openshift.api.model.DoneableTemplate;
+import io.fabric8.openshift.api.model.Parameter;
+import io.fabric8.openshift.api.model.Template;
+import io.fabric8.openshift.api.model.TemplateBuilder;
+import io.fabric8.openshift.api.model.TemplateList;
+import io.fabric8.openshift.client.OpenShiftConfig;
+import io.fabric8.openshift.client.ParameterValue;
+import io.fabric8.openshift.client.dsl.TemplateOperation;
+import io.fabric8.openshift.client.dsl.TemplateResource;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.concurrent.ExecutionException;
+
+import static io.fabric8.openshift.client.OpenShiftAPIGroups.TEMPLATE;
+
+public class TemplateOperationsImpl
+  extends OpenShiftOperation&lt;Template, TemplateList, DoneableTemplate, TemplateResource&lt;Template, KubernetesList, DoneableTemplate&gt;&gt;
+  implements TemplateOperation {
+
+<span class="nc" id="L65">  private static final Logger logger = LoggerFactory.getLogger(TemplateOperationsImpl.class);</span>
+  private static final String EXPRESSION = &quot;expression&quot;;
+<span class="nc" id="L67">  private static final TypeReference&lt;HashMap&lt;String, String&gt;&gt; MAPS_REFERENCE = new TypeReference&lt;HashMap&lt;String, String&gt;&gt;() {</span>
+  };
+  private final Map&lt;String, String&gt; parameters;
+
+  public TemplateOperationsImpl(OkHttpClient client, OpenShiftConfig config, String namespace) {
+<span class="nc" id="L72">    this(client, config, TEMPLATE, null, namespace, null, true, null, null, false, -1, new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String&gt;());</span>
+<span class="nc" id="L73">  }</span>
+
+  public TemplateOperationsImpl(OkHttpClient client, OpenShiftConfig config, String apiGroup, String apiVersion, String namespace, String name, Boolean cascading, Template item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields) {
+<span class="nc" id="L76">    this(client, config, apiGroup, apiVersion, &quot;templates&quot;, namespace, name, cascading, item, resourceVersion, reloadingFromServer, gracePeriodSeconds, labels, labelsNot, labelsIn, labelsNotIn, fields, null);</span>
+<span class="nc" id="L77">  }</span>
+
+  public TemplateOperationsImpl(OkHttpClient client, OpenShiftConfig config, String apiGroup, String apiVersion,  String namespace, String name, Boolean cascading, Template item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields, Map&lt;String, String&gt; parameters) {
+<span class="nc" id="L80">    this(client, config, apiGroup, apiVersion, &quot;templates&quot;, namespace, name, cascading, item, resourceVersion, reloadingFromServer, gracePeriodSeconds, labels, labelsNot, labelsIn, labelsNotIn, fields, parameters);</span>
+<span class="nc" id="L81">  }</span>
+
+
+  public TemplateOperationsImpl(OkHttpClient client, OpenShiftConfig config, String apiGroup, String apiVersion, String resourceT, String namespace, String name, Boolean cascading, Template item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields, Map&lt;String, String&gt; parameters) {
+<span class="nc" id="L85">    super(client, OpenShiftOperation.withApiGroup(client, apiGroup, apiVersion, config), resourceT, namespace, name, cascading, item, resourceVersion, reloadingFromServer, gracePeriodSeconds, labels, labelsNot, labelsIn, labelsNotIn, fields);</span>
+<span class="nc" id="L86">    this.parameters = parameters;</span>
+<span class="nc" id="L87">  }</span>
+
+
+  @Override
+  public KubernetesList process(File f) {
+<span class="nc" id="L92">    try (FileInputStream is = new FileInputStream(f)) {</span>
+<span class="nc" id="L93">      return process(is);</span>
+<span class="nc" id="L94">    } catch (IOException e) {</span>
+<span class="nc" id="L95">      throw KubernetesClientException.launderThrowable(forOperationType(&quot;process&quot;), e);</span>
+    }
+  }
+
+  @Override
+  public KubernetesList process(InputStream is) {
+<span class="nc" id="L101">    return process(unmarshal(is, MAPS_REFERENCE));</span>
+  }
+
+  @Override
+  public KubernetesList process(Map&lt;String, String&gt; valuesMap) {
+<span class="nc" id="L106">    Template t = get();</span>
+    try {
+<span class="nc" id="L108">      List&lt;Parameter&gt; parameters = t.getParameters();</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">      if (parameters != null) {</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">        for (Parameter p : parameters) {</span>
+<span class="nc" id="L111">          String v = valuesMap.get(p.getName());</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">          if (v != null) {</span>
+<span class="nc" id="L113">            p.setGenerate(null);</span>
+<span class="nc" id="L114">            p.setValue(v);</span>
+          }
+<span class="nc" id="L116">        }</span>
+      }
+
+<span class="nc" id="L119">      RequestBody body = RequestBody.create(JSON, JSON_MAPPER.writeValueAsString(t));</span>
+<span class="nc" id="L120">      Request.Builder requestBuilder = new Request.Builder().post(body).url(getProcessUrl());</span>
+<span class="nc" id="L121">      t = handleResponse(requestBuilder);</span>
+<span class="nc" id="L122">      KubernetesList l = new KubernetesList();</span>
+<span class="nc" id="L123">      l.setItems(t.getObjects());</span>
+<span class="nc" id="L124">      return l;</span>
+<span class="nc" id="L125">    } catch (Exception e) {</span>
+<span class="nc" id="L126">      throw KubernetesClientException.launderThrowable(forOperationType(&quot;process&quot;), e);</span>
+    }
+  }
+
+  @Override
+  public KubernetesList process(ParameterValue... values) {
+<span class="nc" id="L132">    Map&lt;String, String&gt; valuesMap = new HashMap&lt;&gt;(values.length);</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">    for (ParameterValue pv : values) {</span>
+<span class="nc" id="L134">      valuesMap.put(pv.getName(), pv.getValue());</span>
+    }
+<span class="nc" id="L136">    return process(valuesMap);</span>
+  }
+
+
+  @Override
+  public KubernetesList processLocally(File f) {
+<span class="nc" id="L142">    try (FileInputStream is = new FileInputStream(f)) {</span>
+<span class="nc" id="L143">      return processLocally(is);</span>
+<span class="nc" id="L144">    } catch (IOException e) {</span>
+<span class="nc" id="L145">      throw KubernetesClientException.launderThrowable(forOperationType(&quot;processLocally&quot;), e);</span>
+    }
+  }
+
+  @Override
+  public KubernetesList processLocally(InputStream is) {
+<span class="nc" id="L151">    return processLocally(unmarshal(is, MAPS_REFERENCE));</span>
+  }
+
+  @Override
+  public KubernetesList processLocally(ParameterValue... values) {
+<span class="nc" id="L156">    Map&lt;String, String&gt; valuesMap = new HashMap&lt;&gt;(values.length);</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">    for (ParameterValue pv : values) {</span>
+<span class="nc" id="L158">      valuesMap.put(pv.getName(), pv.getValue());</span>
+    }
+<span class="nc" id="L160">    return processLocally(valuesMap);</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Template, TemplateList, DoneableTemplate, TemplateResource&lt;Template, KubernetesList, DoneableTemplate&gt;&gt; withParameters(Map&lt;String, String&gt; parameters) {
+<span class="nc" id="L165">    return new TemplateOperationsImpl(client, OpenShiftConfig.wrap(config), getAPIGroup(), getAPIVersion(), namespace, getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(),</span>
+<span class="nc" id="L166">      getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), parameters);</span>
+  }
+
+  public KubernetesList processLocally(Map&lt;String, String&gt; valuesMap)  {
+<span class="nc bnc" id="L170" title="All 2 branches missed.">    String namespace = getItem() != null ? getItem().getMetadata().getNamespace() : getNamespace();</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">    if (namespace == null) {</span>
+<span class="nc" id="L172">      namespace = getConfig().getNamespace();</span>
+    }
+
+<span class="nc bnc" id="L175" title="All 2 branches missed.">    String name = getItem() != null ? getItem().getMetadata().getName() : getName();</span>
+
+<span class="nc" id="L177">    Template t = withParameters(valuesMap)</span>
+<span class="nc" id="L178">      .inNamespace(namespace)</span>
+<span class="nc" id="L179">      .withName(name)</span>
+<span class="nc" id="L180">      .get();</span>
+
+<span class="nc bnc" id="L182" title="All 2 branches missed.">    List&lt;Parameter&gt; parameters = t != null ? t.getParameters() : null;</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">    KubernetesList list = new KubernetesListBuilder()</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">      .withItems(t != null &amp;&amp; t.getObjects() != null ? t.getObjects() : Collections.&lt;HasMetadata&gt;emptyList())</span>
+<span class="nc" id="L185">      .build();</span>
+
+    try {
+<span class="nc" id="L188">      String json = JSON_MAPPER.writeValueAsString(list);</span>
+<span class="nc bnc" id="L189" title="All 4 branches missed.">      if (parameters != null &amp;&amp; !parameters.isEmpty()) {</span>
+        // lets make a few passes in case there's expressions in values
+<span class="nc bnc" id="L191" title="All 2 branches missed.">        for (int i = 0; i &lt; 5; i++) {</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">          for (Parameter parameter : parameters) {</span>
+<span class="nc" id="L193">            String parameterName = parameter.getName();</span>
+<span class="nc" id="L194">            String regex = &quot;${&quot; + parameterName + &quot;}&quot;;</span>
+            String parameterValue;
+<span class="nc bnc" id="L196" title="All 2 branches missed.">            if (valuesMap.containsKey(parameterName)) {</span>
+<span class="nc" id="L197">              parameterValue = valuesMap.get(parameterName);</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">            } else if (Utils.isNotNullOrEmpty(parameter.getValue())) {</span>
+<span class="nc" id="L199">              parameterValue = parameter.getValue();</span>
+<span class="nc bnc" id="L200" title="All 2 branches missed.">            } else if (EXPRESSION.equals(parameter.getGenerate())) {</span>
+<span class="nc" id="L201">              Generex generex = new Generex(parameter.getFrom());</span>
+<span class="nc" id="L202">              parameterValue = generex.random();</span>
+<span class="nc bnc" id="L203" title="All 4 branches missed.">            } else if (parameter.getRequired() == null || !parameter.getRequired()) {</span>
+<span class="nc" id="L204">              parameterValue = &quot;&quot;;</span>
+            } else {
+<span class="nc" id="L206">              throw new IllegalArgumentException(&quot;No value available for parameter name: &quot; + parameterName);</span>
+            }
+<span class="nc bnc" id="L208" title="All 2 branches missed.">            if (parameterValue == null) {</span>
+<span class="nc" id="L209">              logger.debug(&quot;Parameter {} has a null value&quot;, parameterName);</span>
+<span class="nc" id="L210">              parameterValue = &quot;&quot;;</span>
+            }
+<span class="nc" id="L212">            json = json.replace(regex, parameterValue);</span>
+<span class="nc" id="L213">          }</span>
+        }
+      }
+
+<span class="nc" id="L217">      list = JSON_MAPPER.readValue(json, KubernetesList.class);</span>
+<span class="nc" id="L218">    } catch (IOException e) {</span>
+<span class="nc" id="L219">      throw KubernetesClientException.launderThrowable(e);</span>
+<span class="nc" id="L220">    }</span>
+<span class="nc" id="L221">    return list;</span>
+  }
+
+
+  private URL getProcessUrl() throws MalformedURLException {
+<span class="nc" id="L226">    URL requestUrl = getRootUrl();</span>
+<span class="nc bnc" id="L227" title="All 2 branches missed.">    if (getNamespace() != null) {</span>
+<span class="nc" id="L228">      requestUrl = new URL(URLUtils.join(requestUrl.toString(), &quot;namespaces&quot; , getNamespace()));</span>
+    }
+<span class="nc" id="L230">    requestUrl = new URL(URLUtils.join(requestUrl.toString(), &quot;processedtemplates&quot;));</span>
+<span class="nc" id="L231">    return requestUrl;</span>
+  }
+
+  @Override
+  public TemplateResource&lt;Template, KubernetesList, DoneableTemplate&gt; load(InputStream is) {
+<span class="nc" id="L236">    String generatedName = Utils.randomString(&quot;template-&quot;, 10);</span>
+<span class="nc" id="L237">    Template template = null;</span>
+<span class="nc" id="L238">    Object item = Serialization.unmarshal(is, parameters);</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">    if (item instanceof Template) {</span>
+<span class="nc" id="L240">      template = (Template) item;</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">    } else if (item instanceof HasMetadata) {</span>
+<span class="nc" id="L242">      HasMetadata h = (HasMetadata) item;</span>
+<span class="nc" id="L243">      template = new TemplateBuilder()</span>
+<span class="nc" id="L244">        .withNewMetadata()</span>
+<span class="nc bnc" id="L245" title="All 2 branches missed.">          .withName(generatedName)</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">          .withNamespace(h != null &amp;&amp; h.getMetadata() != null ? h.getMetadata().getNamespace() : null)</span>
+<span class="nc" id="L247">        .endMetadata()</span>
+<span class="nc" id="L248">        .withObjects(h).build();</span>
+<span class="nc bnc" id="L249" title="All 2 branches missed.">    } else if (item instanceof KubernetesResourceList) {</span>
+<span class="nc" id="L250">      List&lt;HasMetadata&gt; list = ((KubernetesResourceList&lt;HasMetadata&gt;) item).getItems();</span>
+<span class="nc" id="L251">      template = new TemplateBuilder()</span>
+<span class="nc" id="L252">        .withNewMetadata()</span>
+<span class="nc" id="L253">          .withName(generatedName)</span>
+<span class="nc" id="L254">        .endMetadata()</span>
+<span class="nc" id="L255">        .withObjects(list.toArray(new HasMetadata[list.size()])).build();</span>
+<span class="nc bnc" id="L256" title="All 2 branches missed.">    } else if (item instanceof HasMetadata[]) {</span>
+<span class="nc" id="L257">      template = new TemplateBuilder()</span>
+<span class="nc" id="L258">        .withNewMetadata()</span>
+<span class="nc" id="L259">          .withName(generatedName)</span>
+<span class="nc" id="L260">        .endMetadata()</span>
+<span class="nc" id="L261">        .withObjects((HasMetadata[]) item).build();</span>
+<span class="nc bnc" id="L262" title="All 2 branches missed.">    } else if (item instanceof Collection) {</span>
+<span class="nc" id="L263">      List&lt;HasMetadata&gt; items = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">      for (Object o : (Collection) item) {</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">        if (o instanceof HasMetadata) {</span>
+<span class="nc" id="L266">          items.add((HasMetadata) o);</span>
+        }
+<span class="nc" id="L268">      }</span>
+<span class="nc" id="L269">      template = new TemplateBuilder()</span>
+<span class="nc" id="L270">        .withNewMetadata()</span>
+<span class="nc" id="L271">          .withName(generatedName)</span>
+<span class="nc" id="L272">        .endMetadata()</span>
+<span class="nc" id="L273">        .withObjects(items.toArray(new HasMetadata[items.size()])).build();</span>
+    }
+
+<span class="nc" id="L276">    return new TemplateOperationsImpl(client, OpenShiftConfig.wrap(config), apiGroupName, null, namespace, null, false, template, null, false, 0L,</span>
+      null, null, null, null, null, null);
+  }
+
+  @Override
+  public TemplateResource&lt;Template, KubernetesList, DoneableTemplate&gt; withName(String name) {
+<span class="nc bnc" id="L282" title="All 4 branches missed.">    if (name == null || name.length() == 0) {</span>
+<span class="nc" id="L283">      throw new IllegalArgumentException(&quot;Name must be provided.&quot;);</span>
+    }
+<span class="nc" id="L285">    return new TemplateOperationsImpl(client, OpenShiftConfig.wrap(config), getAPIGroup(), getAPIVersion(), namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(),</span>
+<span class="nc" id="L286">      getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), parameters);</span>
+  }
+
+  @Override
+  public OpenShiftOperation&lt;Template, TemplateList, DoneableTemplate, TemplateResource&lt;Template, KubernetesList, DoneableTemplate&gt;&gt; inNamespace(String namespace) {
+<span class="nc" id="L291">    return new TemplateOperationsImpl(client, OpenShiftConfig.wrap(config), getAPIGroup(), getAPIVersion(), namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(),</span>
+<span class="nc" id="L292">      getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), parameters);</span>
+  }
+
+  @Override
+  protected Template handleGet(URL resourceUrl) throws InterruptedException, ExecutionException, IOException {
+<span class="nc" id="L297">    return super.handleGet(resourceUrl, getType(), this.parameters);</span>
+  }
+
+  protected &lt;T&gt; T handleResponse(Request.Builder requestBuilder, Class&lt;T&gt; type) throws ExecutionException, InterruptedException, KubernetesClientException, IOException {
+<span class="nc" id="L301">    return handleResponse(requestBuilder, type, parameters);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

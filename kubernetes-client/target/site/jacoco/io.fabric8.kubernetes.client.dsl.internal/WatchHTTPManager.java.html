@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WatchHTTPManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.dsl.internal</a> &gt; <span class="el_source">WatchHTTPManager.java</span></div><h1>WatchHTTPManager.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.fabric8.kubernetes.client.dsl.internal;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.fabric8.kubernetes.api.model.KubernetesResourceList;
+import io.fabric8.kubernetes.api.model.Status;
+import io.fabric8.kubernetes.api.model.WatchEvent;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.Watch;
+import io.fabric8.kubernetes.client.Watcher;
+import io.fabric8.kubernetes.client.dsl.base.BaseOperation;
+import io.fabric8.kubernetes.client.dsl.base.OperationSupport;
+import io.fabric8.kubernetes.client.utils.Utils;
+import okhttp3.*;
+import okhttp3.logging.HttpLoggingInterceptor;
+import okio.BufferedSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
+
+import static java.net.HttpURLConnection.HTTP_GONE;
+
+public class WatchHTTPManager&lt;T extends HasMetadata, L extends KubernetesResourceList&lt;T&gt;&gt; implements
+  Watch {
+<span class="nc" id="L50">  private static final Logger logger = LoggerFactory.getLogger(WatchHTTPManager.class);</span>
+<span class="nc" id="L51">  private static final ObjectMapper mapper = new ObjectMapper();</span>
+
+  private final BaseOperation&lt;T, L, ?, ?&gt; baseOperation;
+  private final Watcher&lt;T&gt; watcher;
+<span class="nc" id="L55">  private final AtomicBoolean forceClosed = new AtomicBoolean();</span>
+  private final AtomicReference&lt;String&gt; resourceVersion;
+  private final int reconnectLimit;
+  private final int reconnectInterval;
+
+<span class="nc" id="L60">  private final AtomicBoolean reconnectPending = new AtomicBoolean(false);</span>
+  private int maxIntervalExponent;
+  private final URL requestUrl;
+<span class="nc" id="L63">  private final AtomicInteger currentReconnectAttempt = new AtomicInteger(0);</span>
+  private OkHttpClient clonedClient;
+
+<span class="nc" id="L66">  private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(new ThreadFactory() {</span>
+    @Override
+    public Thread newThread(Runnable r) {
+<span class="nc" id="L69">      Thread ret = new Thread(r, &quot;Executor for Watch &quot; + System.identityHashCode(WatchHTTPManager.this));</span>
+<span class="nc" id="L70">      ret.setDaemon(true);</span>
+<span class="nc" id="L71">      return ret;</span>
+    }
+  });
+
+  public WatchHTTPManager(final OkHttpClient client,
+                          final BaseOperation&lt;T, L, ?, ?&gt; baseOperation,
+                          final String version, final Watcher&lt;T&gt; watcher, final int reconnectInterval,
+                          final int reconnectLimit, long connectTimeout)
+    throws MalformedURLException {
+    // Default max 32x slowdown from base interval
+<span class="nc" id="L81">    this(client, baseOperation, version, watcher, reconnectInterval, reconnectLimit, connectTimeout, 5);</span>
+<span class="nc" id="L82">  }</span>
+
+  public WatchHTTPManager(final OkHttpClient client,
+                          final BaseOperation&lt;T, L, ?, ?&gt; baseOperation,
+                          final String version, final Watcher&lt;T&gt; watcher, final int reconnectInterval,
+                          final int reconnectLimit, long connectTimeout, int maxIntervalExponent)
+<span class="nc" id="L88">    throws MalformedURLException {</span>
+
+<span class="nc" id="L90">    this.resourceVersion = new AtomicReference&lt;&gt;(version); // may be a reference to null</span>
+<span class="nc" id="L91">    this.baseOperation = baseOperation;</span>
+<span class="nc" id="L92">    this.watcher = watcher;</span>
+<span class="nc" id="L93">    this.reconnectInterval = reconnectInterval;</span>
+<span class="nc" id="L94">    this.reconnectLimit = reconnectLimit;</span>
+<span class="nc" id="L95">    this.maxIntervalExponent = maxIntervalExponent;</span>
+
+<span class="nc" id="L97">    OkHttpClient clonedClient = client.newBuilder()</span>
+<span class="nc" id="L98">      .connectTimeout(connectTimeout, TimeUnit.MILLISECONDS)</span>
+<span class="nc" id="L99">      .readTimeout(0, TimeUnit.MILLISECONDS)</span>
+<span class="nc" id="L100">      .cache(null)</span>
+<span class="nc" id="L101">      .build();</span>
+
+    // If we set the HttpLoggingInterceptor's logging level to Body (as it is by default), it does
+    // not let us stream responses from the server.
+<span class="nc bnc" id="L105" title="All 2 branches missed.">    for (Interceptor i : clonedClient.networkInterceptors()) {</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">      if (i instanceof HttpLoggingInterceptor) {</span>
+<span class="nc" id="L107">        HttpLoggingInterceptor interceptor = (HttpLoggingInterceptor) i;</span>
+<span class="nc" id="L108">        interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);</span>
+      }
+<span class="nc" id="L110">    }</span>
+
+<span class="nc" id="L112">    this.clonedClient = clonedClient;</span>
+<span class="nc" id="L113">    requestUrl = baseOperation.getNamespacedUrl();</span>
+<span class="nc" id="L114">    runWatch();</span>
+<span class="nc" id="L115">  }</span>
+
+  private final void runWatch() {
+<span class="nc" id="L118">    logger.debug(&quot;Watching via HTTP GET ... {}&quot;, this);</span>
+
+<span class="nc" id="L120">    HttpUrl.Builder httpUrlBuilder = HttpUrl.get(requestUrl).newBuilder();</span>
+<span class="nc" id="L121">    String labelQueryParam = baseOperation.getLabelQueryParam();</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">    if (Utils.isNotNullOrEmpty(labelQueryParam)) {</span>
+<span class="nc" id="L123">      httpUrlBuilder.addQueryParameter(&quot;labelSelector&quot;, labelQueryParam);</span>
+    }
+
+<span class="nc" id="L126">    String fieldQueryString = baseOperation.getFieldQueryParam();</span>
+<span class="nc" id="L127">    String name = baseOperation.getName();</span>
+
+    // for API groups we can use the name in the path rather than a fieldSelector
+    // which is more likely to work well for API Groups
+<span class="nc bnc" id="L131" title="All 4 branches missed.">    if (name != null &amp;&amp; name.length() &gt; 0) {</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">      if (baseOperation.isApiGroup()) {</span>
+<span class="nc" id="L133">        httpUrlBuilder.addPathSegment(name);</span>
+      } else {
+<span class="nc bnc" id="L135" title="All 2 branches missed.">        if (fieldQueryString.length() &gt; 0) {</span>
+<span class="nc" id="L136">          fieldQueryString += &quot;,&quot;;</span>
+        }
+<span class="nc" id="L138">        fieldQueryString += &quot;metadata.name=&quot; + name;</span>
+      }
+    }
+
+<span class="nc bnc" id="L142" title="All 2 branches missed.">    if (Utils.isNotNullOrEmpty(fieldQueryString)) {</span>
+<span class="nc" id="L143">      httpUrlBuilder.addQueryParameter(&quot;fieldSelector&quot;, fieldQueryString);</span>
+    }
+
+<span class="nc bnc" id="L146" title="All 2 branches missed.">    if (this.resourceVersion.get() != null) {</span>
+<span class="nc" id="L147">      httpUrlBuilder.addQueryParameter(&quot;resourceVersion&quot;, this.resourceVersion.get());</span>
+    }
+
+<span class="nc" id="L150">    httpUrlBuilder.addQueryParameter(&quot;watch&quot;, &quot;true&quot;);</span>
+
+<span class="nc" id="L152">    String origin = requestUrl.getProtocol() + &quot;://&quot; + requestUrl.getHost();</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">    if (requestUrl.getPort() != -1) {</span>
+<span class="nc" id="L154">        origin += &quot;:&quot; + requestUrl.getPort();</span>
+    }
+
+<span class="nc" id="L157">    final Request request = new Request.Builder()</span>
+<span class="nc" id="L158">      .get()</span>
+<span class="nc" id="L159">      .url(httpUrlBuilder.build())</span>
+<span class="nc" id="L160">      .addHeader(&quot;Origin&quot;, origin)</span>
+<span class="nc" id="L161">      .build();</span>
+
+<span class="nc" id="L163">    logger.debug(&quot;watch xxx url&quot;, request);</span>
+<span class="nc" id="L164">    clonedClient.newCall(request).enqueue(new Callback() {</span>
+      @Override
+      public void onFailure(Call call, IOException e) {
+<span class="nc" id="L167">        logger.info(&quot;Watch connection failed. reason: {}&quot;, e.getMessage());</span>
+<span class="nc" id="L168">        scheduleReconnect();</span>
+<span class="nc" id="L169">      }</span>
+
+      @Override
+      public void onResponse(Call call, Response response) throws IOException {
+<span class="nc bnc" id="L173" title="All 2 branches missed.">        if (!response.isSuccessful()) {</span>
+<span class="nc" id="L174">          throw OperationSupport.requestFailure(request,</span>
+<span class="nc" id="L175">            OperationSupport.createStatus(response.code(), response.message()));</span>
+        }
+
+        try {
+<span class="nc" id="L179">          BufferedSource source = response.body().source();</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">          while (!source.exhausted()) {</span>
+<span class="nc" id="L181">            String message = source.readUtf8LineStrict();</span>
+<span class="nc" id="L182">            onMessage(message);</span>
+<span class="nc" id="L183">          }</span>
+<span class="nc" id="L184">        } catch (Exception e) {</span>
+<span class="nc" id="L185">          logger.info(&quot;Watch terminated unexpectedly. reason: {}&quot;, e.getMessage());</span>
+<span class="nc" id="L186">        }</span>
+
+        // if we get here, the source is exhausted, so, we have lost our &quot;watch&quot;.
+        // we must reconnect.
+<span class="nc bnc" id="L190" title="All 2 branches missed.">        if (response != null) {</span>
+<span class="nc" id="L191">          response.body().close();</span>
+        }
+<span class="nc" id="L193">        scheduleReconnect();</span>
+<span class="nc" id="L194">      }</span>
+    });
+<span class="nc" id="L196">  }</span>
+
+  private void scheduleReconnect() {
+<span class="nc bnc" id="L199" title="All 2 branches missed.">    if (forceClosed.get()) {</span>
+<span class="nc" id="L200">      logger.warn(&quot;Ignoring error for already closed/closing connection&quot;);</span>
+<span class="nc" id="L201">      return;</span>
+    }
+
+<span class="nc bnc" id="L204" title="All 4 branches missed.">    if (currentReconnectAttempt.get() &gt;= reconnectLimit &amp;&amp; reconnectLimit &gt;= 0) {</span>
+<span class="nc" id="L205">      watcher.onClose(new KubernetesClientException(&quot;Connection unexpectedly closed&quot;));</span>
+<span class="nc" id="L206">      return;</span>
+    }
+
+<span class="nc" id="L209">    logger.debug(&quot;Submitting reconnect task to the executor&quot;);</span>
+    // Don't submit new tasks after having called shutdown() on executor
+<span class="nc bnc" id="L211" title="All 2 branches missed.">    if(!executor.isShutdown()) {</span>
+      // make sure that whichever thread calls this method, the tasks are
+      // performed serially in the executor.
+<span class="nc" id="L214">      executor.submit(new Runnable() {</span>
+        @Override
+        public void run() {
+<span class="nc bnc" id="L217" title="All 2 branches missed.">          if (!reconnectPending.compareAndSet(false, true)) {</span>
+<span class="nc" id="L218">            logger.debug(&quot;Reconnect already scheduled&quot;);</span>
+<span class="nc" id="L219">            return;</span>
+          }
+          try {
+            // actual reconnect only after the back-off time has passed, without
+            // blocking the thread
+<span class="nc" id="L224">            logger.debug(&quot;Scheduling reconnect task&quot;);</span>
+<span class="nc" id="L225">            executor.schedule(new Runnable() {</span>
+              @Override
+              public void run() {
+                try {
+<span class="nc" id="L229">                  WatchHTTPManager.this.runWatch();</span>
+<span class="nc" id="L230">                  reconnectPending.set(false);</span>
+<span class="nc" id="L231">                } catch (Exception e) {</span>
+                  // An unexpected error occurred and we didn't even get an onFailure callback.
+<span class="nc" id="L233">                  logger.error(&quot;Exception in reconnect&quot;, e);</span>
+<span class="nc" id="L234">                  close();</span>
+<span class="nc" id="L235">                  watcher.onClose(new KubernetesClientException(&quot;Unhandled exception in reconnect attempt&quot;, e));</span>
+<span class="nc" id="L236">                }</span>
+<span class="nc" id="L237">              }</span>
+<span class="nc" id="L238">            }, nextReconnectInterval(), TimeUnit.MILLISECONDS);</span>
+<span class="nc" id="L239">          } catch (RejectedExecutionException e) {</span>
+            // This is a standard exception if we close the scheduler. We should not print it
+<span class="nc bnc" id="L241" title="All 2 branches missed.">            if (!forceClosed.get()) {</span>
+<span class="nc" id="L242">              logger.error(&quot;Exception in reconnect&quot;, e);</span>
+            }
+<span class="nc" id="L244">            reconnectPending.set(false);</span>
+<span class="nc" id="L245">          }</span>
+<span class="nc" id="L246">        }</span>
+      });
+    }
+<span class="nc" id="L249">  }</span>
+
+  public void onMessage(String messageSource) throws IOException {
+    try {
+<span class="nc" id="L253">      WatchEvent event = readWatchEvent(messageSource);</span>
+<span class="nc" id="L254">      KubernetesResource object = event.getObject();</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">      if (object instanceof HasMetadata) {</span>
+        @SuppressWarnings(&quot;unchecked&quot;)
+<span class="nc" id="L257">        T obj = (T) object;</span>
+        // Dirty cast - should always be valid though
+<span class="nc" id="L259">        String currentResourceVersion = resourceVersion.get();</span>
+<span class="nc" id="L260">        String newResourceVersion = ((HasMetadata) obj).getMetadata().getResourceVersion();</span>
+<span class="nc bnc" id="L261" title="All 4 branches missed.">        if (currentResourceVersion == null || currentResourceVersion.compareTo(newResourceVersion) &lt; 0) {</span>
+<span class="nc" id="L262">          resourceVersion.compareAndSet(currentResourceVersion, newResourceVersion);</span>
+        }
+<span class="nc" id="L264">        Watcher.Action action = Watcher.Action.valueOf(event.getType());</span>
+<span class="nc" id="L265">        watcher.eventReceived(action, obj);</span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">      } else if (object instanceof KubernetesResourceList) {</span>
+          @SuppressWarnings(&quot;unchecked&quot;)
+<span class="nc" id="L268">          KubernetesResourceList list = (KubernetesResourceList) object;</span>
+          // Dirty cast - should always be valid though
+<span class="nc" id="L270">          String currentResourceVersion = resourceVersion.get();</span>
+<span class="nc" id="L271">          String newResourceVersion = list.getMetadata().getResourceVersion();</span>
+<span class="nc bnc" id="L272" title="All 4 branches missed.">          if (currentResourceVersion == null || currentResourceVersion.compareTo(newResourceVersion) &lt; 0) {</span>
+<span class="nc" id="L273">            resourceVersion.compareAndSet(currentResourceVersion, newResourceVersion);</span>
+          }
+<span class="nc" id="L275">          Watcher.Action action = Watcher.Action.valueOf(event.getType());</span>
+<span class="nc" id="L276">          List&lt;HasMetadata&gt; items = list.getItems();</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">          if (items != null) {</span>
+<span class="nc" id="L278">            String name = baseOperation.getName();</span>
+<span class="nc bnc" id="L279" title="All 2 branches missed.">            for (HasMetadata item : items) {</span>
+<span class="nc" id="L280">              watcher.eventReceived(action, (T) item);</span>
+<span class="nc" id="L281">            }</span>
+          }
+<span class="nc bnc" id="L283" title="All 2 branches missed.">      } else if (object instanceof Status) {</span>
+<span class="nc" id="L284">        Status status = (Status) object;</span>
+        // The resource version no longer exists - this has to be handled by the caller.
+<span class="nc bnc" id="L286" title="All 2 branches missed.">        if (status.getCode() == HTTP_GONE) {</span>
+          // exception
+          // shut down executor, etc.
+<span class="nc" id="L289">          close();</span>
+<span class="nc" id="L290">          watcher.onClose(new KubernetesClientException(status));</span>
+<span class="nc" id="L291">          return;</span>
+        }
+
+<span class="nc" id="L294">        logger.error(&quot;Error received: {}&quot;, status.toString());</span>
+<span class="nc" id="L295">      } else {</span>
+<span class="nc" id="L296">        logger.error(&quot;Unknown message received: {}&quot;, messageSource);</span>
+      }
+<span class="nc" id="L298">    } catch (IOException e) {</span>
+<span class="nc" id="L299">      logger.error(&quot;Could not deserialize watch event: {}&quot;, messageSource, e);</span>
+<span class="nc" id="L300">    } catch (ClassCastException e) {</span>
+<span class="nc" id="L301">      logger.error(&quot;Received wrong type of object for watch&quot;, e);</span>
+<span class="nc" id="L302">    } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L303">      logger.error(&quot;Invalid event type&quot;, e);</span>
+<span class="nc" id="L304">    }</span>
+<span class="nc" id="L305">  }</span>
+
+  protected static WatchEvent readWatchEvent(String messageSource) throws IOException {
+<span class="nc" id="L308">    WatchEvent event = mapper.readValue(messageSource, WatchEvent.class);</span>
+<span class="nc" id="L309">    KubernetesResource object = null;</span>
+<span class="nc bnc" id="L310" title="All 2 branches missed.">    if (event != null) {</span>
+<span class="nc" id="L311">      object = event.getObject();;</span>
+    }
+    // when watching API Groups we don't get a WatchEvent resource
+    // so the object will be null
+    // so lets try parse the message as a KubernetesResource
+    // as it will probably be a list of resources like a BuildList
+<span class="nc bnc" id="L317" title="All 2 branches missed.">    if (object == null) {</span>
+<span class="nc" id="L318">      object = mapper.readValue(messageSource, KubernetesResource.class);</span>
+<span class="nc bnc" id="L319" title="All 2 branches missed.">      if (event == null) {</span>
+<span class="nc" id="L320">        event = new WatchEvent(object, &quot;MODIFIED&quot;);</span>
+      } else {
+<span class="nc" id="L322">        event.setObject(object);</span>
+      }
+    }
+<span class="nc bnc" id="L325" title="All 2 branches missed.">    if (event.getType() == null) {</span>
+<span class="nc" id="L326">      event.setType(&quot;MODIFIED&quot;);</span>
+    }
+<span class="nc" id="L328">    return event;</span>
+  }
+
+  private long nextReconnectInterval() {
+<span class="nc" id="L332">    int exponentOfTwo = currentReconnectAttempt.getAndIncrement();</span>
+<span class="nc bnc" id="L333" title="All 2 branches missed.">    if (exponentOfTwo &gt; maxIntervalExponent)</span>
+<span class="nc" id="L334">      exponentOfTwo = maxIntervalExponent;</span>
+<span class="nc" id="L335">    long ret = reconnectInterval * (1 &lt;&lt; exponentOfTwo);</span>
+<span class="nc" id="L336">    logger.debug(&quot;Current reconnect backoff is &quot; + ret + &quot; milliseconds (T&quot; + exponentOfTwo + &quot;)&quot;);</span>
+<span class="nc" id="L337">    return ret;</span>
+  }
+
+  @Override
+  public void close() {
+<span class="nc" id="L342">    logger.debug(&quot;Force closing the watch {}&quot;, this);</span>
+<span class="nc" id="L343">    forceClosed.set(true);</span>
+<span class="nc bnc" id="L344" title="All 2 branches missed.">    if (!executor.isShutdown()) {</span>
+      try {
+<span class="nc" id="L346">        executor.shutdown();</span>
+<span class="nc bnc" id="L347" title="All 2 branches missed.">        if (!executor.awaitTermination(1, TimeUnit.SECONDS)) {</span>
+<span class="nc" id="L348">          logger.warn(&quot;Executor didn't terminate in time after shutdown in close(), killing it in: {}&quot;, this);</span>
+<span class="nc" id="L349">          executor.shutdownNow();</span>
+        }
+<span class="nc" id="L351">      } catch (Throwable t) {</span>
+<span class="nc" id="L352">        throw KubernetesClientException.launderThrowable(t);</span>
+<span class="nc" id="L353">      }</span>
+    }
+<span class="nc" id="L355">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

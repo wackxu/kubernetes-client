@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuildRequestFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">BuildRequestFluentImpl.java</span></div><h1>BuildRequestFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import io.fabric8.kubernetes.api.model.EnvVar;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectReferenceFluentImpl;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.ObjectReferenceBuilder;
+import java.lang.Long;
+import java.util.Collection;
+import java.lang.Object;
+import io.fabric8.kubernetes.api.builder.Nested;
+import io.fabric8.kubernetes.api.model.EnvVarBuilder;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.ObjectMetaFluentImpl;
+import io.fabric8.kubernetes.api.model.EnvVarFluentImpl;
+
+public class BuildRequestFluentImpl&lt;A extends BuildRequestFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements BuildRequestFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private BinaryBuildSourceBuilder binary;
+    private DockerStrategyOptionsBuilder dockerStrategyOptions;
+    private List&lt;EnvVarBuilder&gt; env;
+    private ObjectReferenceBuilder from;
+    private String kind;
+    private Long lastVersion;
+    private ObjectMetaBuilder metadata;
+    private SourceRevisionBuilder revision;
+    private SourceStrategyOptionsBuilder sourceStrategyOptions;
+    private List&lt;BuildTriggerCauseBuilder&gt; triggeredBy;
+    private ObjectReferenceBuilder triggeredByImage;
+
+<span class="nc" id="L44">    public BuildRequestFluentImpl(){</span>
+<span class="nc" id="L45">    }</span>
+<span class="nc" id="L46">    public BuildRequestFluentImpl(BuildRequest instance){</span>
+<span class="nc" id="L47">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L48">            this.withBinary(instance.getBinary()); </span>
+<span class="nc" id="L49">            this.withDockerStrategyOptions(instance.getDockerStrategyOptions()); </span>
+<span class="nc" id="L50">            this.withEnv(instance.getEnv()); </span>
+<span class="nc" id="L51">            this.withFrom(instance.getFrom()); </span>
+<span class="nc" id="L52">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L53">            this.withLastVersion(instance.getLastVersion()); </span>
+<span class="nc" id="L54">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L55">            this.withRevision(instance.getRevision()); </span>
+<span class="nc" id="L56">            this.withSourceStrategyOptions(instance.getSourceStrategyOptions()); </span>
+<span class="nc" id="L57">            this.withTriggeredBy(instance.getTriggeredBy()); </span>
+<span class="nc" id="L58">            this.withTriggeredByImage(instance.getTriggeredByImage()); </span>
+<span class="nc" id="L59">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L62">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L66">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildBinary instead.
+ * @return The buildable object.
+ */
+@Deprecated public BinaryBuildSource getBinary(){
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            return this.binary!=null?this.binary.build():null;</span>
+    }
+
+    public BinaryBuildSource buildBinary(){
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            return this.binary!=null?this.binary.build():null;</span>
+    }
+
+    public A withBinary(BinaryBuildSource binary){
+<span class="nc" id="L87">            _visitables.remove(this.binary);</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            if (binary!=null){ this.binary= new BinaryBuildSourceBuilder(binary); _visitables.add(this.binary);} return (A) this;</span>
+    }
+
+    public Boolean hasBinary(){
+<span class="nc bnc" id="L92" title="All 2 branches missed.">            return this.binary != null;</span>
+    }
+
+    public A withNewBinary(String asFile){
+<span class="nc" id="L96">            return (A)withBinary(new BinaryBuildSource(asFile));</span>
+    }
+
+    public BuildRequestFluent.BinaryNested&lt;A&gt; withNewBinary(){
+<span class="nc" id="L100">            return new BinaryNestedImpl();</span>
+    }
+
+    public BuildRequestFluent.BinaryNested&lt;A&gt; withNewBinaryLike(BinaryBuildSource item){
+<span class="nc" id="L104">            return new BinaryNestedImpl(item);</span>
+    }
+
+    public BuildRequestFluent.BinaryNested&lt;A&gt; editBinary(){
+<span class="nc" id="L108">            return withNewBinaryLike(getBinary());</span>
+    }
+
+    public BuildRequestFluent.BinaryNested&lt;A&gt; editOrNewBinary(){
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            return withNewBinaryLike(getBinary() != null ? getBinary(): new BinaryBuildSourceBuilder().build());</span>
+    }
+
+    public BuildRequestFluent.BinaryNested&lt;A&gt; editOrNewBinaryLike(BinaryBuildSource item){
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            return withNewBinaryLike(getBinary() != null ? getBinary(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildDockerStrategyOptions instead.
+ * @return The buildable object.
+ */
+@Deprecated public DockerStrategyOptions getDockerStrategyOptions(){
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            return this.dockerStrategyOptions!=null?this.dockerStrategyOptions.build():null;</span>
+    }
+
+    public DockerStrategyOptions buildDockerStrategyOptions(){
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            return this.dockerStrategyOptions!=null?this.dockerStrategyOptions.build():null;</span>
+    }
+
+    public A withDockerStrategyOptions(DockerStrategyOptions dockerStrategyOptions){
+<span class="nc" id="L133">            _visitables.remove(this.dockerStrategyOptions);</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            if (dockerStrategyOptions!=null){ this.dockerStrategyOptions= new DockerStrategyOptionsBuilder(dockerStrategyOptions); _visitables.add(this.dockerStrategyOptions);} return (A) this;</span>
+    }
+
+    public Boolean hasDockerStrategyOptions(){
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            return this.dockerStrategyOptions != null;</span>
+    }
+
+    public BuildRequestFluent.DockerStrategyOptionsNested&lt;A&gt; withNewDockerStrategyOptions(){
+<span class="nc" id="L142">            return new DockerStrategyOptionsNestedImpl();</span>
+    }
+
+    public BuildRequestFluent.DockerStrategyOptionsNested&lt;A&gt; withNewDockerStrategyOptionsLike(DockerStrategyOptions item){
+<span class="nc" id="L146">            return new DockerStrategyOptionsNestedImpl(item);</span>
+    }
+
+    public BuildRequestFluent.DockerStrategyOptionsNested&lt;A&gt; editDockerStrategyOptions(){
+<span class="nc" id="L150">            return withNewDockerStrategyOptionsLike(getDockerStrategyOptions());</span>
+    }
+
+    public BuildRequestFluent.DockerStrategyOptionsNested&lt;A&gt; editOrNewDockerStrategyOptions(){
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            return withNewDockerStrategyOptionsLike(getDockerStrategyOptions() != null ? getDockerStrategyOptions(): new DockerStrategyOptionsBuilder().build());</span>
+    }
+
+    public BuildRequestFluent.DockerStrategyOptionsNested&lt;A&gt; editOrNewDockerStrategyOptionsLike(DockerStrategyOptions item){
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            return withNewDockerStrategyOptionsLike(getDockerStrategyOptions() != null ? getDockerStrategyOptions(): item);</span>
+    }
+
+    public A addToEnv(int index,EnvVar item){
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L163" title="All 4 branches missed.">            EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.env.add(index &gt;= 0 ? index : env.size(), builder); return (A)this;</span>
+    }
+
+    public A setToEnv(int index,EnvVar item){
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc" id="L168">            EnvVarBuilder builder = new EnvVarBuilder(item);</span>
+<span class="nc bnc" id="L169" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L170" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= env.size()) { env.add(builder); } else { env.set(index, builder);}</span>
+<span class="nc" id="L171">             return (A)this;</span>
+    }
+
+    public A addToEnv(EnvVar... items){
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(builder);this.env.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToEnv(Collection&lt;EnvVar&gt; items){
+<span class="nc bnc" id="L180" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(builder);this.env.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromEnv(EnvVar... items){
+<span class="nc bnc" id="L185" title="All 4 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.remove(builder);if (this.env != null) {this.env.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromEnv(Collection&lt;EnvVar&gt; items){
+<span class="nc bnc" id="L189" title="All 4 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.remove(builder);if (this.env != null) {this.env.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildEnv instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;EnvVar&gt; getEnv(){
+<span class="nc" id="L198">            return build(env);</span>
+    }
+
+    public List&lt;EnvVar&gt; buildEnv(){
+<span class="nc" id="L202">            return build(env);</span>
+    }
+
+    public EnvVar buildEnv(int index){
+<span class="nc" id="L206">            return this.env.get(index).build();</span>
+    }
+
+    public EnvVar buildFirstEnv(){
+<span class="nc" id="L210">            return this.env.get(0).build();</span>
+    }
+
+    public EnvVar buildLastEnv(){
+<span class="nc" id="L214">            return this.env.get(env.size() - 1).build();</span>
+    }
+
+    public EnvVar buildMatchingEnv(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvVarBuilder&gt; predicate){
+<span class="nc bnc" id="L218" title="All 4 branches missed.">            for (EnvVarBuilder item: env) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withEnv(List&lt;EnvVar&gt; env){
+<span class="nc bnc" id="L222" title="All 2 branches missed.">            if (this.env != null) { _visitables.removeAll(this.env);}</span>
+<span class="nc bnc" id="L223" title="All 4 branches missed.">            if (env != null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;(); for (EnvVar item : env){this.addToEnv(item);}} else { this.env = new ArrayList&lt;EnvVarBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withEnv(EnvVar... env){
+<span class="nc bnc" id="L227" title="All 2 branches missed.">            if (this.env != null) {this.env.clear();}</span>
+<span class="nc bnc" id="L228" title="All 4 branches missed.">            if (env != null) {for (EnvVar item :env){ this.addToEnv(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasEnv(){
+<span class="nc bnc" id="L232" title="All 4 branches missed.">            return env != null &amp;&amp; !env.isEmpty();</span>
+    }
+
+    public BuildRequestFluent.EnvNested&lt;A&gt; addNewEnv(){
+<span class="nc" id="L236">            return new EnvNestedImpl();</span>
+    }
+
+    public BuildRequestFluent.EnvNested&lt;A&gt; addNewEnvLike(EnvVar item){
+<span class="nc" id="L240">            return new EnvNestedImpl(-1, item);</span>
+    }
+
+    public BuildRequestFluent.EnvNested&lt;A&gt; setNewEnvLike(int index,EnvVar item){
+<span class="nc" id="L244">            return new EnvNestedImpl(index, item);</span>
+    }
+
+    public BuildRequestFluent.EnvNested&lt;A&gt; editEnv(int index){
+<span class="nc bnc" id="L248" title="All 2 branches missed.">            if (env.size() &lt;= index) throw new RuntimeException(&quot;Can't edit env. Index exceeds size.&quot;);</span>
+<span class="nc" id="L249">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    public BuildRequestFluent.EnvNested&lt;A&gt; editFirstEnv(){
+<span class="nc bnc" id="L253" title="All 2 branches missed.">            if (env.size() == 0) throw new RuntimeException(&quot;Can't edit first env. The list is empty.&quot;);</span>
+<span class="nc" id="L254">            return setNewEnvLike(0, buildEnv(0));</span>
+    }
+
+    public BuildRequestFluent.EnvNested&lt;A&gt; editLastEnv(){
+<span class="nc" id="L258">            int index = env.size() - 1;</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last env. The list is empty.&quot;);</span>
+<span class="nc" id="L260">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    public BuildRequestFluent.EnvNested&lt;A&gt; editMatchingEnv(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvVarBuilder&gt; predicate){
+<span class="nc" id="L264">            int index = -1;</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">            for (int i=0;i&lt;env.size();i++) { </span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">            if (predicate.apply(env.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L268" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching env. No match found.&quot;);</span>
+<span class="nc" id="L269">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildFrom instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getFrom(){
+<span class="nc bnc" id="L278" title="All 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public ObjectReference buildFrom(){
+<span class="nc bnc" id="L282" title="All 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public A withFrom(ObjectReference from){
+<span class="nc" id="L286">            _visitables.remove(this.from);</span>
+<span class="nc bnc" id="L287" title="All 2 branches missed.">            if (from!=null){ this.from= new ObjectReferenceBuilder(from); _visitables.add(this.from);} return (A) this;</span>
+    }
+
+    public Boolean hasFrom(){
+<span class="nc bnc" id="L291" title="All 2 branches missed.">            return this.from != null;</span>
+    }
+
+    public BuildRequestFluent.FromNested&lt;A&gt; withNewFrom(){
+<span class="nc" id="L295">            return new FromNestedImpl();</span>
+    }
+
+    public BuildRequestFluent.FromNested&lt;A&gt; withNewFromLike(ObjectReference item){
+<span class="nc" id="L299">            return new FromNestedImpl(item);</span>
+    }
+
+    public BuildRequestFluent.FromNested&lt;A&gt; editFrom(){
+<span class="nc" id="L303">            return withNewFromLike(getFrom());</span>
+    }
+
+    public BuildRequestFluent.FromNested&lt;A&gt; editOrNewFrom(){
+<span class="nc bnc" id="L307" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public BuildRequestFluent.FromNested&lt;A&gt; editOrNewFromLike(ObjectReference item){
+<span class="nc bnc" id="L311" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): item);</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L315">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L319">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L323" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    public Long getLastVersion(){
+<span class="nc" id="L327">            return this.lastVersion;</span>
+    }
+
+    public A withLastVersion(Long lastVersion){
+<span class="nc" id="L331">            this.lastVersion=lastVersion; return (A) this;</span>
+    }
+
+    public Boolean hasLastVersion(){
+<span class="nc bnc" id="L335" title="All 2 branches missed.">            return this.lastVersion != null;</span>
+    }
+
+    public A withNewLastVersion(String arg1){
+<span class="nc" id="L339">            return (A)withLastVersion(new Long(arg1));</span>
+    }
+
+    public A withNewLastVersion(long arg1){
+<span class="nc" id="L343">            return (A)withLastVersion(new Long(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L352" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L356" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L360">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L361" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L365" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public BuildRequestFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L369">            return new MetadataNestedImpl();</span>
+    }
+
+    public BuildRequestFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L373">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public BuildRequestFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L377">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public BuildRequestFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L381" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public BuildRequestFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L385" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildRevision instead.
+ * @return The buildable object.
+ */
+@Deprecated public SourceRevision getRevision(){
+<span class="nc bnc" id="L394" title="All 2 branches missed.">            return this.revision!=null?this.revision.build():null;</span>
+    }
+
+    public SourceRevision buildRevision(){
+<span class="nc bnc" id="L398" title="All 2 branches missed.">            return this.revision!=null?this.revision.build():null;</span>
+    }
+
+    public A withRevision(SourceRevision revision){
+<span class="nc" id="L402">            _visitables.remove(this.revision);</span>
+<span class="nc bnc" id="L403" title="All 2 branches missed.">            if (revision!=null){ this.revision= new SourceRevisionBuilder(revision); _visitables.add(this.revision);} return (A) this;</span>
+    }
+
+    public Boolean hasRevision(){
+<span class="nc bnc" id="L407" title="All 2 branches missed.">            return this.revision != null;</span>
+    }
+
+    public BuildRequestFluent.RevisionNested&lt;A&gt; withNewRevision(){
+<span class="nc" id="L411">            return new RevisionNestedImpl();</span>
+    }
+
+    public BuildRequestFluent.RevisionNested&lt;A&gt; withNewRevisionLike(SourceRevision item){
+<span class="nc" id="L415">            return new RevisionNestedImpl(item);</span>
+    }
+
+    public BuildRequestFluent.RevisionNested&lt;A&gt; editRevision(){
+<span class="nc" id="L419">            return withNewRevisionLike(getRevision());</span>
+    }
+
+    public BuildRequestFluent.RevisionNested&lt;A&gt; editOrNewRevision(){
+<span class="nc bnc" id="L423" title="All 2 branches missed.">            return withNewRevisionLike(getRevision() != null ? getRevision(): new SourceRevisionBuilder().build());</span>
+    }
+
+    public BuildRequestFluent.RevisionNested&lt;A&gt; editOrNewRevisionLike(SourceRevision item){
+<span class="nc bnc" id="L427" title="All 2 branches missed.">            return withNewRevisionLike(getRevision() != null ? getRevision(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSourceStrategyOptions instead.
+ * @return The buildable object.
+ */
+@Deprecated public SourceStrategyOptions getSourceStrategyOptions(){
+<span class="nc bnc" id="L436" title="All 2 branches missed.">            return this.sourceStrategyOptions!=null?this.sourceStrategyOptions.build():null;</span>
+    }
+
+    public SourceStrategyOptions buildSourceStrategyOptions(){
+<span class="nc bnc" id="L440" title="All 2 branches missed.">            return this.sourceStrategyOptions!=null?this.sourceStrategyOptions.build():null;</span>
+    }
+
+    public A withSourceStrategyOptions(SourceStrategyOptions sourceStrategyOptions){
+<span class="nc" id="L444">            _visitables.remove(this.sourceStrategyOptions);</span>
+<span class="nc bnc" id="L445" title="All 2 branches missed.">            if (sourceStrategyOptions!=null){ this.sourceStrategyOptions= new SourceStrategyOptionsBuilder(sourceStrategyOptions); _visitables.add(this.sourceStrategyOptions);} return (A) this;</span>
+    }
+
+    public Boolean hasSourceStrategyOptions(){
+<span class="nc bnc" id="L449" title="All 2 branches missed.">            return this.sourceStrategyOptions != null;</span>
+    }
+
+    public A withNewSourceStrategyOptions(Boolean incremental){
+<span class="nc" id="L453">            return (A)withSourceStrategyOptions(new SourceStrategyOptions(incremental));</span>
+    }
+
+    public BuildRequestFluent.SourceStrategyOptionsNested&lt;A&gt; withNewSourceStrategyOptions(){
+<span class="nc" id="L457">            return new SourceStrategyOptionsNestedImpl();</span>
+    }
+
+    public BuildRequestFluent.SourceStrategyOptionsNested&lt;A&gt; withNewSourceStrategyOptionsLike(SourceStrategyOptions item){
+<span class="nc" id="L461">            return new SourceStrategyOptionsNestedImpl(item);</span>
+    }
+
+    public BuildRequestFluent.SourceStrategyOptionsNested&lt;A&gt; editSourceStrategyOptions(){
+<span class="nc" id="L465">            return withNewSourceStrategyOptionsLike(getSourceStrategyOptions());</span>
+    }
+
+    public BuildRequestFluent.SourceStrategyOptionsNested&lt;A&gt; editOrNewSourceStrategyOptions(){
+<span class="nc bnc" id="L469" title="All 2 branches missed.">            return withNewSourceStrategyOptionsLike(getSourceStrategyOptions() != null ? getSourceStrategyOptions(): new SourceStrategyOptionsBuilder().build());</span>
+    }
+
+    public BuildRequestFluent.SourceStrategyOptionsNested&lt;A&gt; editOrNewSourceStrategyOptionsLike(SourceStrategyOptions item){
+<span class="nc bnc" id="L473" title="All 2 branches missed.">            return withNewSourceStrategyOptionsLike(getSourceStrategyOptions() != null ? getSourceStrategyOptions(): item);</span>
+    }
+
+    public A addToTriggeredBy(int index,BuildTriggerCause item){
+<span class="nc bnc" id="L477" title="All 2 branches missed.">            if (this.triggeredBy == null) {this.triggeredBy = new ArrayList&lt;BuildTriggerCauseBuilder&gt;();}</span>
+<span class="nc bnc" id="L478" title="All 4 branches missed.">            BuildTriggerCauseBuilder builder = new BuildTriggerCauseBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.triggeredBy.add(index &gt;= 0 ? index : triggeredBy.size(), builder); return (A)this;</span>
+    }
+
+    public A setToTriggeredBy(int index,BuildTriggerCause item){
+<span class="nc bnc" id="L482" title="All 2 branches missed.">            if (this.triggeredBy == null) {this.triggeredBy = new ArrayList&lt;BuildTriggerCauseBuilder&gt;();}</span>
+<span class="nc" id="L483">            BuildTriggerCauseBuilder builder = new BuildTriggerCauseBuilder(item);</span>
+<span class="nc bnc" id="L484" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L485" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= triggeredBy.size()) { triggeredBy.add(builder); } else { triggeredBy.set(index, builder);}</span>
+<span class="nc" id="L486">             return (A)this;</span>
+    }
+
+    public A addToTriggeredBy(BuildTriggerCause... items){
+<span class="nc bnc" id="L490" title="All 2 branches missed.">            if (this.triggeredBy == null) {this.triggeredBy = new ArrayList&lt;BuildTriggerCauseBuilder&gt;();}</span>
+<span class="nc bnc" id="L491" title="All 2 branches missed.">            for (BuildTriggerCause item : items) {BuildTriggerCauseBuilder builder = new BuildTriggerCauseBuilder(item);_visitables.add(builder);this.triggeredBy.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToTriggeredBy(Collection&lt;BuildTriggerCause&gt; items){
+<span class="nc bnc" id="L495" title="All 2 branches missed.">            if (this.triggeredBy == null) {this.triggeredBy = new ArrayList&lt;BuildTriggerCauseBuilder&gt;();}</span>
+<span class="nc bnc" id="L496" title="All 2 branches missed.">            for (BuildTriggerCause item : items) {BuildTriggerCauseBuilder builder = new BuildTriggerCauseBuilder(item);_visitables.add(builder);this.triggeredBy.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromTriggeredBy(BuildTriggerCause... items){
+<span class="nc bnc" id="L500" title="All 4 branches missed.">            for (BuildTriggerCause item : items) {BuildTriggerCauseBuilder builder = new BuildTriggerCauseBuilder(item);_visitables.remove(builder);if (this.triggeredBy != null) {this.triggeredBy.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromTriggeredBy(Collection&lt;BuildTriggerCause&gt; items){
+<span class="nc bnc" id="L504" title="All 4 branches missed.">            for (BuildTriggerCause item : items) {BuildTriggerCauseBuilder builder = new BuildTriggerCauseBuilder(item);_visitables.remove(builder);if (this.triggeredBy != null) {this.triggeredBy.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTriggeredBy instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;BuildTriggerCause&gt; getTriggeredBy(){
+<span class="nc" id="L513">            return build(triggeredBy);</span>
+    }
+
+    public List&lt;BuildTriggerCause&gt; buildTriggeredBy(){
+<span class="nc" id="L517">            return build(triggeredBy);</span>
+    }
+
+    public BuildTriggerCause buildTriggeredBy(int index){
+<span class="nc" id="L521">            return this.triggeredBy.get(index).build();</span>
+    }
+
+    public BuildTriggerCause buildFirstTriggeredBy(){
+<span class="nc" id="L525">            return this.triggeredBy.get(0).build();</span>
+    }
+
+    public BuildTriggerCause buildLastTriggeredBy(){
+<span class="nc" id="L529">            return this.triggeredBy.get(triggeredBy.size() - 1).build();</span>
+    }
+
+    public BuildTriggerCause buildMatchingTriggeredBy(io.fabric8.kubernetes.api.builder.Predicate&lt;BuildTriggerCauseBuilder&gt; predicate){
+<span class="nc bnc" id="L533" title="All 4 branches missed.">            for (BuildTriggerCauseBuilder item: triggeredBy) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withTriggeredBy(List&lt;BuildTriggerCause&gt; triggeredBy){
+<span class="nc bnc" id="L537" title="All 2 branches missed.">            if (this.triggeredBy != null) { _visitables.removeAll(this.triggeredBy);}</span>
+<span class="nc bnc" id="L538" title="All 4 branches missed.">            if (triggeredBy != null) {this.triggeredBy = new ArrayList&lt;BuildTriggerCauseBuilder&gt;(); for (BuildTriggerCause item : triggeredBy){this.addToTriggeredBy(item);}} else { this.triggeredBy = new ArrayList&lt;BuildTriggerCauseBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withTriggeredBy(BuildTriggerCause... triggeredBy){
+<span class="nc bnc" id="L542" title="All 2 branches missed.">            if (this.triggeredBy != null) {this.triggeredBy.clear();}</span>
+<span class="nc bnc" id="L543" title="All 4 branches missed.">            if (triggeredBy != null) {for (BuildTriggerCause item :triggeredBy){ this.addToTriggeredBy(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasTriggeredBy(){
+<span class="nc bnc" id="L547" title="All 4 branches missed.">            return triggeredBy != null &amp;&amp; !triggeredBy.isEmpty();</span>
+    }
+
+    public BuildRequestFluent.TriggeredByNested&lt;A&gt; addNewTriggeredBy(){
+<span class="nc" id="L551">            return new TriggeredByNestedImpl();</span>
+    }
+
+    public BuildRequestFluent.TriggeredByNested&lt;A&gt; addNewTriggeredByLike(BuildTriggerCause item){
+<span class="nc" id="L555">            return new TriggeredByNestedImpl(-1, item);</span>
+    }
+
+    public BuildRequestFluent.TriggeredByNested&lt;A&gt; setNewTriggeredByLike(int index,BuildTriggerCause item){
+<span class="nc" id="L559">            return new TriggeredByNestedImpl(index, item);</span>
+    }
+
+    public BuildRequestFluent.TriggeredByNested&lt;A&gt; editTriggeredBy(int index){
+<span class="nc bnc" id="L563" title="All 2 branches missed.">            if (triggeredBy.size() &lt;= index) throw new RuntimeException(&quot;Can't edit triggeredBy. Index exceeds size.&quot;);</span>
+<span class="nc" id="L564">            return setNewTriggeredByLike(index, buildTriggeredBy(index));</span>
+    }
+
+    public BuildRequestFluent.TriggeredByNested&lt;A&gt; editFirstTriggeredBy(){
+<span class="nc bnc" id="L568" title="All 2 branches missed.">            if (triggeredBy.size() == 0) throw new RuntimeException(&quot;Can't edit first triggeredBy. The list is empty.&quot;);</span>
+<span class="nc" id="L569">            return setNewTriggeredByLike(0, buildTriggeredBy(0));</span>
+    }
+
+    public BuildRequestFluent.TriggeredByNested&lt;A&gt; editLastTriggeredBy(){
+<span class="nc" id="L573">            int index = triggeredBy.size() - 1;</span>
+<span class="nc bnc" id="L574" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last triggeredBy. The list is empty.&quot;);</span>
+<span class="nc" id="L575">            return setNewTriggeredByLike(index, buildTriggeredBy(index));</span>
+    }
+
+    public BuildRequestFluent.TriggeredByNested&lt;A&gt; editMatchingTriggeredBy(io.fabric8.kubernetes.api.builder.Predicate&lt;BuildTriggerCauseBuilder&gt; predicate){
+<span class="nc" id="L579">            int index = -1;</span>
+<span class="nc bnc" id="L580" title="All 2 branches missed.">            for (int i=0;i&lt;triggeredBy.size();i++) { </span>
+<span class="nc bnc" id="L581" title="All 2 branches missed.">            if (predicate.apply(triggeredBy.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L583" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching triggeredBy. No match found.&quot;);</span>
+<span class="nc" id="L584">            return setNewTriggeredByLike(index, buildTriggeredBy(index));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTriggeredByImage instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getTriggeredByImage(){
+<span class="nc bnc" id="L593" title="All 2 branches missed.">            return this.triggeredByImage!=null?this.triggeredByImage.build():null;</span>
+    }
+
+    public ObjectReference buildTriggeredByImage(){
+<span class="nc bnc" id="L597" title="All 2 branches missed.">            return this.triggeredByImage!=null?this.triggeredByImage.build():null;</span>
+    }
+
+    public A withTriggeredByImage(ObjectReference triggeredByImage){
+<span class="nc" id="L601">            _visitables.remove(this.triggeredByImage);</span>
+<span class="nc bnc" id="L602" title="All 2 branches missed.">            if (triggeredByImage!=null){ this.triggeredByImage= new ObjectReferenceBuilder(triggeredByImage); _visitables.add(this.triggeredByImage);} return (A) this;</span>
+    }
+
+    public Boolean hasTriggeredByImage(){
+<span class="nc bnc" id="L606" title="All 2 branches missed.">            return this.triggeredByImage != null;</span>
+    }
+
+    public BuildRequestFluent.TriggeredByImageNested&lt;A&gt; withNewTriggeredByImage(){
+<span class="nc" id="L610">            return new TriggeredByImageNestedImpl();</span>
+    }
+
+    public BuildRequestFluent.TriggeredByImageNested&lt;A&gt; withNewTriggeredByImageLike(ObjectReference item){
+<span class="nc" id="L614">            return new TriggeredByImageNestedImpl(item);</span>
+    }
+
+    public BuildRequestFluent.TriggeredByImageNested&lt;A&gt; editTriggeredByImage(){
+<span class="nc" id="L618">            return withNewTriggeredByImageLike(getTriggeredByImage());</span>
+    }
+
+    public BuildRequestFluent.TriggeredByImageNested&lt;A&gt; editOrNewTriggeredByImage(){
+<span class="nc bnc" id="L622" title="All 2 branches missed.">            return withNewTriggeredByImageLike(getTriggeredByImage() != null ? getTriggeredByImage(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public BuildRequestFluent.TriggeredByImageNested&lt;A&gt; editOrNewTriggeredByImageLike(ObjectReference item){
+<span class="nc bnc" id="L626" title="All 2 branches missed.">            return withNewTriggeredByImageLike(getTriggeredByImage() != null ? getTriggeredByImage(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L630" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L631" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L632" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L633">            BuildRequestFluentImpl that = (BuildRequestFluentImpl) o;</span>
+<span class="nc bnc" id="L634" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L635" title="All 6 branches missed.">            if (binary != null ? !binary.equals(that.binary) :that.binary != null) return false;</span>
+<span class="nc bnc" id="L636" title="All 6 branches missed.">            if (dockerStrategyOptions != null ? !dockerStrategyOptions.equals(that.dockerStrategyOptions) :that.dockerStrategyOptions != null) return false;</span>
+<span class="nc bnc" id="L637" title="All 6 branches missed.">            if (env != null ? !env.equals(that.env) :that.env != null) return false;</span>
+<span class="nc bnc" id="L638" title="All 6 branches missed.">            if (from != null ? !from.equals(that.from) :that.from != null) return false;</span>
+<span class="nc bnc" id="L639" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L640" title="All 6 branches missed.">            if (lastVersion != null ? !lastVersion.equals(that.lastVersion) :that.lastVersion != null) return false;</span>
+<span class="nc bnc" id="L641" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L642" title="All 6 branches missed.">            if (revision != null ? !revision.equals(that.revision) :that.revision != null) return false;</span>
+<span class="nc bnc" id="L643" title="All 6 branches missed.">            if (sourceStrategyOptions != null ? !sourceStrategyOptions.equals(that.sourceStrategyOptions) :that.sourceStrategyOptions != null) return false;</span>
+<span class="nc bnc" id="L644" title="All 6 branches missed.">            if (triggeredBy != null ? !triggeredBy.equals(that.triggeredBy) :that.triggeredBy != null) return false;</span>
+<span class="nc bnc" id="L645" title="All 6 branches missed.">            if (triggeredByImage != null ? !triggeredByImage.equals(that.triggeredByImage) :that.triggeredByImage != null) return false;</span>
+<span class="nc" id="L646">            return true;</span>
+    }
+
+
+    public class BinaryNestedImpl&lt;N&gt; extends BinaryBuildSourceFluentImpl&lt;BuildRequestFluent.BinaryNested&lt;N&gt;&gt; implements BuildRequestFluent.BinaryNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BinaryBuildSourceBuilder builder;
+    
+<span class="nc" id="L654">            BinaryNestedImpl(BinaryBuildSource item){</span>
+<span class="nc" id="L655">                    this.builder = new BinaryBuildSourceBuilder(this, item);</span>
+<span class="nc" id="L656">            }</span>
+<span class="nc" id="L657">            BinaryNestedImpl(){</span>
+<span class="nc" id="L658">                    this.builder = new BinaryBuildSourceBuilder(this);</span>
+<span class="nc" id="L659">            }</span>
+    
+    public N and(){
+<span class="nc" id="L662">            return (N) BuildRequestFluentImpl.this.withBinary(builder.build());</span>
+    }
+    public N endBinary(){
+<span class="nc" id="L665">            return and();</span>
+    }
+
+}
+    public class DockerStrategyOptionsNestedImpl&lt;N&gt; extends DockerStrategyOptionsFluentImpl&lt;BuildRequestFluent.DockerStrategyOptionsNested&lt;N&gt;&gt; implements BuildRequestFluent.DockerStrategyOptionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final DockerStrategyOptionsBuilder builder;
+    
+<span class="nc" id="L673">            DockerStrategyOptionsNestedImpl(DockerStrategyOptions item){</span>
+<span class="nc" id="L674">                    this.builder = new DockerStrategyOptionsBuilder(this, item);</span>
+<span class="nc" id="L675">            }</span>
+<span class="nc" id="L676">            DockerStrategyOptionsNestedImpl(){</span>
+<span class="nc" id="L677">                    this.builder = new DockerStrategyOptionsBuilder(this);</span>
+<span class="nc" id="L678">            }</span>
+    
+    public N and(){
+<span class="nc" id="L681">            return (N) BuildRequestFluentImpl.this.withDockerStrategyOptions(builder.build());</span>
+    }
+    public N endDockerStrategyOptions(){
+<span class="nc" id="L684">            return and();</span>
+    }
+
+}
+    public class EnvNestedImpl&lt;N&gt; extends EnvVarFluentImpl&lt;BuildRequestFluent.EnvNested&lt;N&gt;&gt; implements BuildRequestFluent.EnvNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EnvVarBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L693">            EnvNestedImpl(int index,EnvVar item){</span>
+<span class="nc" id="L694">                    this.index = index;</span>
+<span class="nc" id="L695">                    this.builder = new EnvVarBuilder(this, item);</span>
+<span class="nc" id="L696">            }</span>
+<span class="nc" id="L697">            EnvNestedImpl(){</span>
+<span class="nc" id="L698">                    this.index = -1;</span>
+<span class="nc" id="L699">                    this.builder = new EnvVarBuilder(this);</span>
+<span class="nc" id="L700">            }</span>
+    
+    public N and(){
+<span class="nc" id="L703">            return (N) BuildRequestFluentImpl.this.setToEnv(index, builder.build());</span>
+    }
+    public N endEnv(){
+<span class="nc" id="L706">            return and();</span>
+    }
+
+}
+    public class FromNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;BuildRequestFluent.FromNested&lt;N&gt;&gt; implements BuildRequestFluent.FromNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L714">            FromNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L715">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L716">            }</span>
+<span class="nc" id="L717">            FromNestedImpl(){</span>
+<span class="nc" id="L718">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L719">            }</span>
+    
+    public N and(){
+<span class="nc" id="L722">            return (N) BuildRequestFluentImpl.this.withFrom(builder.build());</span>
+    }
+    public N endFrom(){
+<span class="nc" id="L725">            return and();</span>
+    }
+
+}
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;BuildRequestFluent.MetadataNested&lt;N&gt;&gt; implements BuildRequestFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L733">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L734">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L735">            }</span>
+<span class="nc" id="L736">            MetadataNestedImpl(){</span>
+<span class="nc" id="L737">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L738">            }</span>
+    
+    public N and(){
+<span class="nc" id="L741">            return (N) BuildRequestFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L744">            return and();</span>
+    }
+
+}
+    public class RevisionNestedImpl&lt;N&gt; extends SourceRevisionFluentImpl&lt;BuildRequestFluent.RevisionNested&lt;N&gt;&gt; implements BuildRequestFluent.RevisionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SourceRevisionBuilder builder;
+    
+<span class="nc" id="L752">            RevisionNestedImpl(SourceRevision item){</span>
+<span class="nc" id="L753">                    this.builder = new SourceRevisionBuilder(this, item);</span>
+<span class="nc" id="L754">            }</span>
+<span class="nc" id="L755">            RevisionNestedImpl(){</span>
+<span class="nc" id="L756">                    this.builder = new SourceRevisionBuilder(this);</span>
+<span class="nc" id="L757">            }</span>
+    
+    public N and(){
+<span class="nc" id="L760">            return (N) BuildRequestFluentImpl.this.withRevision(builder.build());</span>
+    }
+    public N endRevision(){
+<span class="nc" id="L763">            return and();</span>
+    }
+
+}
+    public class SourceStrategyOptionsNestedImpl&lt;N&gt; extends SourceStrategyOptionsFluentImpl&lt;BuildRequestFluent.SourceStrategyOptionsNested&lt;N&gt;&gt; implements BuildRequestFluent.SourceStrategyOptionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SourceStrategyOptionsBuilder builder;
+    
+<span class="nc" id="L771">            SourceStrategyOptionsNestedImpl(SourceStrategyOptions item){</span>
+<span class="nc" id="L772">                    this.builder = new SourceStrategyOptionsBuilder(this, item);</span>
+<span class="nc" id="L773">            }</span>
+<span class="nc" id="L774">            SourceStrategyOptionsNestedImpl(){</span>
+<span class="nc" id="L775">                    this.builder = new SourceStrategyOptionsBuilder(this);</span>
+<span class="nc" id="L776">            }</span>
+    
+    public N and(){
+<span class="nc" id="L779">            return (N) BuildRequestFluentImpl.this.withSourceStrategyOptions(builder.build());</span>
+    }
+    public N endSourceStrategyOptions(){
+<span class="nc" id="L782">            return and();</span>
+    }
+
+}
+    public class TriggeredByNestedImpl&lt;N&gt; extends BuildTriggerCauseFluentImpl&lt;BuildRequestFluent.TriggeredByNested&lt;N&gt;&gt; implements BuildRequestFluent.TriggeredByNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BuildTriggerCauseBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L791">            TriggeredByNestedImpl(int index,BuildTriggerCause item){</span>
+<span class="nc" id="L792">                    this.index = index;</span>
+<span class="nc" id="L793">                    this.builder = new BuildTriggerCauseBuilder(this, item);</span>
+<span class="nc" id="L794">            }</span>
+<span class="nc" id="L795">            TriggeredByNestedImpl(){</span>
+<span class="nc" id="L796">                    this.index = -1;</span>
+<span class="nc" id="L797">                    this.builder = new BuildTriggerCauseBuilder(this);</span>
+<span class="nc" id="L798">            }</span>
+    
+    public N and(){
+<span class="nc" id="L801">            return (N) BuildRequestFluentImpl.this.setToTriggeredBy(index, builder.build());</span>
+    }
+    public N endTriggeredBy(){
+<span class="nc" id="L804">            return and();</span>
+    }
+
+}
+    public class TriggeredByImageNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;BuildRequestFluent.TriggeredByImageNested&lt;N&gt;&gt; implements BuildRequestFluent.TriggeredByImageNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L812">            TriggeredByImageNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L813">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L814">            }</span>
+<span class="nc" id="L815">            TriggeredByImageNestedImpl(){</span>
+<span class="nc" id="L816">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L817">            }</span>
+    
+    public N and(){
+<span class="nc" id="L820">            return (N) BuildRequestFluentImpl.this.withTriggeredByImage(builder.build());</span>
+    }
+    public N endTriggeredByImage(){
+<span class="nc" id="L823">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

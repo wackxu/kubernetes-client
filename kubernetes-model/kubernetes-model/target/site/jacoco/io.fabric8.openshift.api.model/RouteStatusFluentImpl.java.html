@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RouteStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">RouteStatusFluentImpl.java</span></div><h1>RouteStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class RouteStatusFluentImpl&lt;A extends RouteStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements RouteStatusFluent&lt;A&gt;{
+
+    private List&lt;RouteIngressBuilder&gt; ingress;
+
+<span class="nc" id="L19">    public RouteStatusFluentImpl(){</span>
+<span class="nc" id="L20">    }</span>
+<span class="nc" id="L21">    public RouteStatusFluentImpl(RouteStatus instance){</span>
+<span class="nc" id="L22">            this.withIngress(instance.getIngress()); </span>
+<span class="nc" id="L23">    }</span>
+
+    public A addToIngress(int index,RouteIngress item){
+<span class="nc bnc" id="L26" title="All 2 branches missed.">            if (this.ingress == null) {this.ingress = new ArrayList&lt;RouteIngressBuilder&gt;();}</span>
+<span class="nc bnc" id="L27" title="All 4 branches missed.">            RouteIngressBuilder builder = new RouteIngressBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.ingress.add(index &gt;= 0 ? index : ingress.size(), builder); return (A)this;</span>
+    }
+
+    public A setToIngress(int index,RouteIngress item){
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            if (this.ingress == null) {this.ingress = new ArrayList&lt;RouteIngressBuilder&gt;();}</span>
+<span class="nc" id="L32">            RouteIngressBuilder builder = new RouteIngressBuilder(item);</span>
+<span class="nc bnc" id="L33" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L34" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= ingress.size()) { ingress.add(builder); } else { ingress.set(index, builder);}</span>
+<span class="nc" id="L35">             return (A)this;</span>
+    }
+
+    public A addToIngress(RouteIngress... items){
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            if (this.ingress == null) {this.ingress = new ArrayList&lt;RouteIngressBuilder&gt;();}</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            for (RouteIngress item : items) {RouteIngressBuilder builder = new RouteIngressBuilder(item);_visitables.add(builder);this.ingress.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToIngress(Collection&lt;RouteIngress&gt; items){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            if (this.ingress == null) {this.ingress = new ArrayList&lt;RouteIngressBuilder&gt;();}</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            for (RouteIngress item : items) {RouteIngressBuilder builder = new RouteIngressBuilder(item);_visitables.add(builder);this.ingress.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromIngress(RouteIngress... items){
+<span class="nc bnc" id="L49" title="All 4 branches missed.">            for (RouteIngress item : items) {RouteIngressBuilder builder = new RouteIngressBuilder(item);_visitables.remove(builder);if (this.ingress != null) {this.ingress.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromIngress(Collection&lt;RouteIngress&gt; items){
+<span class="nc bnc" id="L53" title="All 4 branches missed.">            for (RouteIngress item : items) {RouteIngressBuilder builder = new RouteIngressBuilder(item);_visitables.remove(builder);if (this.ingress != null) {this.ingress.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildIngress instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;RouteIngress&gt; getIngress(){
+<span class="nc" id="L62">            return build(ingress);</span>
+    }
+
+    public List&lt;RouteIngress&gt; buildIngress(){
+<span class="nc" id="L66">            return build(ingress);</span>
+    }
+
+    public RouteIngress buildIngress(int index){
+<span class="nc" id="L70">            return this.ingress.get(index).build();</span>
+    }
+
+    public RouteIngress buildFirstIngress(){
+<span class="nc" id="L74">            return this.ingress.get(0).build();</span>
+    }
+
+    public RouteIngress buildLastIngress(){
+<span class="nc" id="L78">            return this.ingress.get(ingress.size() - 1).build();</span>
+    }
+
+    public RouteIngress buildMatchingIngress(io.fabric8.kubernetes.api.builder.Predicate&lt;RouteIngressBuilder&gt; predicate){
+<span class="nc bnc" id="L82" title="All 4 branches missed.">            for (RouteIngressBuilder item: ingress) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withIngress(List&lt;RouteIngress&gt; ingress){
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            if (this.ingress != null) { _visitables.removeAll(this.ingress);}</span>
+<span class="nc bnc" id="L87" title="All 4 branches missed.">            if (ingress != null) {this.ingress = new ArrayList&lt;RouteIngressBuilder&gt;(); for (RouteIngress item : ingress){this.addToIngress(item);}} else { this.ingress = new ArrayList&lt;RouteIngressBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withIngress(RouteIngress... ingress){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (this.ingress != null) {this.ingress.clear();}</span>
+<span class="nc bnc" id="L92" title="All 4 branches missed.">            if (ingress != null) {for (RouteIngress item :ingress){ this.addToIngress(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasIngress(){
+<span class="nc bnc" id="L96" title="All 4 branches missed.">            return ingress != null &amp;&amp; !ingress.isEmpty();</span>
+    }
+
+    public RouteStatusFluent.IngressNested&lt;A&gt; addNewIngress(){
+<span class="nc" id="L100">            return new IngressNestedImpl();</span>
+    }
+
+    public RouteStatusFluent.IngressNested&lt;A&gt; addNewIngressLike(RouteIngress item){
+<span class="nc" id="L104">            return new IngressNestedImpl(-1, item);</span>
+    }
+
+    public RouteStatusFluent.IngressNested&lt;A&gt; setNewIngressLike(int index,RouteIngress item){
+<span class="nc" id="L108">            return new IngressNestedImpl(index, item);</span>
+    }
+
+    public RouteStatusFluent.IngressNested&lt;A&gt; editIngress(int index){
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            if (ingress.size() &lt;= index) throw new RuntimeException(&quot;Can't edit ingress. Index exceeds size.&quot;);</span>
+<span class="nc" id="L113">            return setNewIngressLike(index, buildIngress(index));</span>
+    }
+
+    public RouteStatusFluent.IngressNested&lt;A&gt; editFirstIngress(){
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            if (ingress.size() == 0) throw new RuntimeException(&quot;Can't edit first ingress. The list is empty.&quot;);</span>
+<span class="nc" id="L118">            return setNewIngressLike(0, buildIngress(0));</span>
+    }
+
+    public RouteStatusFluent.IngressNested&lt;A&gt; editLastIngress(){
+<span class="nc" id="L122">            int index = ingress.size() - 1;</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last ingress. The list is empty.&quot;);</span>
+<span class="nc" id="L124">            return setNewIngressLike(index, buildIngress(index));</span>
+    }
+
+    public RouteStatusFluent.IngressNested&lt;A&gt; editMatchingIngress(io.fabric8.kubernetes.api.builder.Predicate&lt;RouteIngressBuilder&gt; predicate){
+<span class="nc" id="L128">            int index = -1;</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            for (int i=0;i&lt;ingress.size();i++) { </span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            if (predicate.apply(ingress.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching ingress. No match found.&quot;);</span>
+<span class="nc" id="L133">            return setNewIngressLike(index, buildIngress(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L138" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L140">            RouteStatusFluentImpl that = (RouteStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L141" title="All 6 branches missed.">            if (ingress != null ? !ingress.equals(that.ingress) :that.ingress != null) return false;</span>
+<span class="nc" id="L142">            return true;</span>
+    }
+
+
+    public class IngressNestedImpl&lt;N&gt; extends RouteIngressFluentImpl&lt;RouteStatusFluent.IngressNested&lt;N&gt;&gt; implements RouteStatusFluent.IngressNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RouteIngressBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L151">            IngressNestedImpl(int index,RouteIngress item){</span>
+<span class="nc" id="L152">                    this.index = index;</span>
+<span class="nc" id="L153">                    this.builder = new RouteIngressBuilder(this, item);</span>
+<span class="nc" id="L154">            }</span>
+<span class="nc" id="L155">            IngressNestedImpl(){</span>
+<span class="nc" id="L156">                    this.index = -1;</span>
+<span class="nc" id="L157">                    this.builder = new RouteIngressBuilder(this);</span>
+<span class="nc" id="L158">            }</span>
+    
+    public N and(){
+<span class="nc" id="L161">            return (N) RouteStatusFluentImpl.this.setToIngress(index, builder.build());</span>
+    }
+    public N endIngress(){
+<span class="nc" id="L164">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

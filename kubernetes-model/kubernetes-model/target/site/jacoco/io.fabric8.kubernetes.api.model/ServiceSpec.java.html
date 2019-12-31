@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ServiceSpec.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ServiceSpec.java</span></div><h1>ServiceSpec.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;clusterIP&quot;,
+    &quot;externalIPs&quot;,
+    &quot;externalName&quot;,
+    &quot;externalTrafficPolicy&quot;,
+    &quot;healthCheckNodePort&quot;,
+    &quot;loadBalancerIP&quot;,
+    &quot;loadBalancerSourceRanges&quot;,
+    &quot;ports&quot;,
+    &quot;publishNotReadyAddresses&quot;,
+    &quot;selector&quot;,
+    &quot;sessionAffinity&quot;,
+    &quot;sessionAffinityConfig&quot;,
+    &quot;type&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L49">@ToString</span>
+<span class="pc bpc" id="L50" title="103 of 118 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class ServiceSpec implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;clusterIP&quot;)
+    private java.lang.String clusterIP;
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L65">    @JsonProperty(&quot;externalIPs&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;java.lang.String&gt; externalIPs = new ArrayList&lt;java.lang.String&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;externalName&quot;)
+    private java.lang.String externalName;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;externalTrafficPolicy&quot;)
+    private java.lang.String externalTrafficPolicy;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;healthCheckNodePort&quot;)
+    private Integer healthCheckNodePort;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;loadBalancerIP&quot;)
+    private java.lang.String loadBalancerIP;
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L97">    @JsonProperty(&quot;loadBalancerSourceRanges&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;java.lang.String&gt; loadBalancerSourceRanges = new ArrayList&lt;java.lang.String&gt;();
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L105">    @JsonProperty(&quot;ports&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;ServicePort&gt; ports = new ArrayList&lt;ServicePort&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;publishNotReadyAddresses&quot;)
+    private Boolean publishNotReadyAddresses;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;selector&quot;)
+    @Valid
+    private Map&lt;String, String&gt; selector;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;sessionAffinity&quot;)
+    private java.lang.String sessionAffinity;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;sessionAffinityConfig&quot;)
+    @Valid
+    private SessionAffinityConfig sessionAffinityConfig;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;type&quot;)
+    private java.lang.String type;
+<span class="fc" id="L141">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L148">    public ServiceSpec() {</span>
+<span class="fc" id="L149">    }</span>
+
+    /**
+     * 
+     * @param healthCheckNodePort
+     * @param externalIPs
+     * @param sessionAffinity
+     * @param ports
+     * @param type
+     * @param sessionAffinityConfig
+     * @param loadBalancerIP
+     * @param externalName
+     * @param loadBalancerSourceRanges
+     * @param externalTrafficPolicy
+     * @param selector
+     * @param publishNotReadyAddresses
+     * @param clusterIP
+     */
+<span class="fc" id="L167">    public ServiceSpec(java.lang.String clusterIP, List&lt;java.lang.String&gt; externalIPs, java.lang.String externalName, java.lang.String externalTrafficPolicy, Integer healthCheckNodePort, java.lang.String loadBalancerIP, List&lt;java.lang.String&gt; loadBalancerSourceRanges, List&lt;ServicePort&gt; ports, Boolean publishNotReadyAddresses, Map&lt;String, String&gt; selector, java.lang.String sessionAffinity, SessionAffinityConfig sessionAffinityConfig, java.lang.String type) {</span>
+<span class="fc" id="L168">        this.clusterIP = clusterIP;</span>
+<span class="fc" id="L169">        this.externalIPs = externalIPs;</span>
+<span class="fc" id="L170">        this.externalName = externalName;</span>
+<span class="fc" id="L171">        this.externalTrafficPolicy = externalTrafficPolicy;</span>
+<span class="fc" id="L172">        this.healthCheckNodePort = healthCheckNodePort;</span>
+<span class="fc" id="L173">        this.loadBalancerIP = loadBalancerIP;</span>
+<span class="fc" id="L174">        this.loadBalancerSourceRanges = loadBalancerSourceRanges;</span>
+<span class="fc" id="L175">        this.ports = ports;</span>
+<span class="fc" id="L176">        this.publishNotReadyAddresses = publishNotReadyAddresses;</span>
+<span class="fc" id="L177">        this.selector = selector;</span>
+<span class="fc" id="L178">        this.sessionAffinity = sessionAffinity;</span>
+<span class="fc" id="L179">        this.sessionAffinityConfig = sessionAffinityConfig;</span>
+<span class="fc" id="L180">        this.type = type;</span>
+<span class="fc" id="L181">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The clusterIP
+     */
+    @JsonProperty(&quot;clusterIP&quot;)
+    public java.lang.String getClusterIP() {
+<span class="fc" id="L191">        return clusterIP;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param clusterIP
+     *     The clusterIP
+     */
+    @JsonProperty(&quot;clusterIP&quot;)
+    public void setClusterIP(java.lang.String clusterIP) {
+<span class="fc" id="L202">        this.clusterIP = clusterIP;</span>
+<span class="fc" id="L203">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The externalIPs
+     */
+    @JsonProperty(&quot;externalIPs&quot;)
+    public List&lt;java.lang.String&gt; getExternalIPs() {
+<span class="fc" id="L213">        return externalIPs;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param externalIPs
+     *     The externalIPs
+     */
+    @JsonProperty(&quot;externalIPs&quot;)
+    public void setExternalIPs(List&lt;java.lang.String&gt; externalIPs) {
+<span class="fc" id="L224">        this.externalIPs = externalIPs;</span>
+<span class="fc" id="L225">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The externalName
+     */
+    @JsonProperty(&quot;externalName&quot;)
+    public java.lang.String getExternalName() {
+<span class="fc" id="L235">        return externalName;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param externalName
+     *     The externalName
+     */
+    @JsonProperty(&quot;externalName&quot;)
+    public void setExternalName(java.lang.String externalName) {
+<span class="fc" id="L246">        this.externalName = externalName;</span>
+<span class="fc" id="L247">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The externalTrafficPolicy
+     */
+    @JsonProperty(&quot;externalTrafficPolicy&quot;)
+    public java.lang.String getExternalTrafficPolicy() {
+<span class="fc" id="L257">        return externalTrafficPolicy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param externalTrafficPolicy
+     *     The externalTrafficPolicy
+     */
+    @JsonProperty(&quot;externalTrafficPolicy&quot;)
+    public void setExternalTrafficPolicy(java.lang.String externalTrafficPolicy) {
+<span class="fc" id="L268">        this.externalTrafficPolicy = externalTrafficPolicy;</span>
+<span class="fc" id="L269">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The healthCheckNodePort
+     */
+    @JsonProperty(&quot;healthCheckNodePort&quot;)
+    public Integer getHealthCheckNodePort() {
+<span class="fc" id="L279">        return healthCheckNodePort;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param healthCheckNodePort
+     *     The healthCheckNodePort
+     */
+    @JsonProperty(&quot;healthCheckNodePort&quot;)
+    public void setHealthCheckNodePort(Integer healthCheckNodePort) {
+<span class="fc" id="L290">        this.healthCheckNodePort = healthCheckNodePort;</span>
+<span class="fc" id="L291">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The loadBalancerIP
+     */
+    @JsonProperty(&quot;loadBalancerIP&quot;)
+    public java.lang.String getLoadBalancerIP() {
+<span class="fc" id="L301">        return loadBalancerIP;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param loadBalancerIP
+     *     The loadBalancerIP
+     */
+    @JsonProperty(&quot;loadBalancerIP&quot;)
+    public void setLoadBalancerIP(java.lang.String loadBalancerIP) {
+<span class="fc" id="L312">        this.loadBalancerIP = loadBalancerIP;</span>
+<span class="fc" id="L313">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The loadBalancerSourceRanges
+     */
+    @JsonProperty(&quot;loadBalancerSourceRanges&quot;)
+    public List&lt;java.lang.String&gt; getLoadBalancerSourceRanges() {
+<span class="fc" id="L323">        return loadBalancerSourceRanges;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param loadBalancerSourceRanges
+     *     The loadBalancerSourceRanges
+     */
+    @JsonProperty(&quot;loadBalancerSourceRanges&quot;)
+    public void setLoadBalancerSourceRanges(List&lt;java.lang.String&gt; loadBalancerSourceRanges) {
+<span class="fc" id="L334">        this.loadBalancerSourceRanges = loadBalancerSourceRanges;</span>
+<span class="fc" id="L335">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The ports
+     */
+    @JsonProperty(&quot;ports&quot;)
+    public List&lt;ServicePort&gt; getPorts() {
+<span class="fc" id="L345">        return ports;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param ports
+     *     The ports
+     */
+    @JsonProperty(&quot;ports&quot;)
+    public void setPorts(List&lt;ServicePort&gt; ports) {
+<span class="fc" id="L356">        this.ports = ports;</span>
+<span class="fc" id="L357">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The publishNotReadyAddresses
+     */
+    @JsonProperty(&quot;publishNotReadyAddresses&quot;)
+    public Boolean getPublishNotReadyAddresses() {
+<span class="fc" id="L367">        return publishNotReadyAddresses;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param publishNotReadyAddresses
+     *     The publishNotReadyAddresses
+     */
+    @JsonProperty(&quot;publishNotReadyAddresses&quot;)
+    public void setPublishNotReadyAddresses(Boolean publishNotReadyAddresses) {
+<span class="fc" id="L378">        this.publishNotReadyAddresses = publishNotReadyAddresses;</span>
+<span class="fc" id="L379">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The selector
+     */
+    @JsonProperty(&quot;selector&quot;)
+    public Map&lt;String, String&gt; getSelector() {
+<span class="fc" id="L389">        return selector;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param selector
+     *     The selector
+     */
+    @JsonProperty(&quot;selector&quot;)
+    public void setSelector(Map&lt;String, String&gt; selector) {
+<span class="fc" id="L400">        this.selector = selector;</span>
+<span class="fc" id="L401">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The sessionAffinity
+     */
+    @JsonProperty(&quot;sessionAffinity&quot;)
+    public java.lang.String getSessionAffinity() {
+<span class="fc" id="L411">        return sessionAffinity;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param sessionAffinity
+     *     The sessionAffinity
+     */
+    @JsonProperty(&quot;sessionAffinity&quot;)
+    public void setSessionAffinity(java.lang.String sessionAffinity) {
+<span class="fc" id="L422">        this.sessionAffinity = sessionAffinity;</span>
+<span class="fc" id="L423">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The sessionAffinityConfig
+     */
+    @JsonProperty(&quot;sessionAffinityConfig&quot;)
+    public SessionAffinityConfig getSessionAffinityConfig() {
+<span class="fc" id="L433">        return sessionAffinityConfig;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param sessionAffinityConfig
+     *     The sessionAffinityConfig
+     */
+    @JsonProperty(&quot;sessionAffinityConfig&quot;)
+    public void setSessionAffinityConfig(SessionAffinityConfig sessionAffinityConfig) {
+<span class="fc" id="L444">        this.sessionAffinityConfig = sessionAffinityConfig;</span>
+<span class="fc" id="L445">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The type
+     */
+    @JsonProperty(&quot;type&quot;)
+    public java.lang.String getType() {
+<span class="fc" id="L455">        return type;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param type
+     *     The type
+     */
+    @JsonProperty(&quot;type&quot;)
+    public void setType(java.lang.String type) {
+<span class="fc" id="L466">        this.type = type;</span>
+<span class="fc" id="L467">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L471">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="fc" id="L476">        this.additionalProperties.put(name, value);</span>
+<span class="fc" id="L477">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

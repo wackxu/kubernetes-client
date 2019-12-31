@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeploymentConfigStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">DeploymentConfigStatus.java</span></div><h1>DeploymentConfigStatus.java</h1><pre class="source lang-java linenums">
+package io.fabric8.openshift.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;availableReplicas&quot;,
+    &quot;conditions&quot;,
+    &quot;details&quot;,
+    &quot;latestVersion&quot;,
+    &quot;observedGeneration&quot;,
+    &quot;readyReplicas&quot;,
+    &quot;replicas&quot;,
+    &quot;unavailableReplicas&quot;,
+    &quot;updatedReplicas&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L46">@ToString</span>
+<span class="nc bnc" id="L47" title="All 86 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class DeploymentConfigStatus implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;availableReplicas&quot;)
+    private Integer availableReplicas;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L62">    @JsonProperty(&quot;conditions&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;DeploymentCondition&gt; conditions = new ArrayList&lt;DeploymentCondition&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;details&quot;)
+    @Valid
+    private DeploymentDetails details;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;latestVersion&quot;)
+    private Long latestVersion;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;observedGeneration&quot;)
+    private Long observedGeneration;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;readyReplicas&quot;)
+    private Integer readyReplicas;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;replicas&quot;)
+    private Integer replicas;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;unavailableReplicas&quot;)
+    private Integer unavailableReplicas;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;updatedReplicas&quot;)
+    private Integer updatedReplicas;
+<span class="nc" id="L109">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L116">    public DeploymentConfigStatus() {</span>
+<span class="nc" id="L117">    }</span>
+
+    /**
+     * 
+     * @param unavailableReplicas
+     * @param latestVersion
+     * @param replicas
+     * @param readyReplicas
+     * @param details
+     * @param conditions
+     * @param updatedReplicas
+     * @param availableReplicas
+     * @param observedGeneration
+     */
+<span class="nc" id="L131">    public DeploymentConfigStatus(Integer availableReplicas, List&lt;DeploymentCondition&gt; conditions, DeploymentDetails details, Long latestVersion, Long observedGeneration, Integer readyReplicas, Integer replicas, Integer unavailableReplicas, Integer updatedReplicas) {</span>
+<span class="nc" id="L132">        this.availableReplicas = availableReplicas;</span>
+<span class="nc" id="L133">        this.conditions = conditions;</span>
+<span class="nc" id="L134">        this.details = details;</span>
+<span class="nc" id="L135">        this.latestVersion = latestVersion;</span>
+<span class="nc" id="L136">        this.observedGeneration = observedGeneration;</span>
+<span class="nc" id="L137">        this.readyReplicas = readyReplicas;</span>
+<span class="nc" id="L138">        this.replicas = replicas;</span>
+<span class="nc" id="L139">        this.unavailableReplicas = unavailableReplicas;</span>
+<span class="nc" id="L140">        this.updatedReplicas = updatedReplicas;</span>
+<span class="nc" id="L141">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The availableReplicas
+     */
+    @JsonProperty(&quot;availableReplicas&quot;)
+    public Integer getAvailableReplicas() {
+<span class="nc" id="L151">        return availableReplicas;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param availableReplicas
+     *     The availableReplicas
+     */
+    @JsonProperty(&quot;availableReplicas&quot;)
+    public void setAvailableReplicas(Integer availableReplicas) {
+<span class="nc" id="L162">        this.availableReplicas = availableReplicas;</span>
+<span class="nc" id="L163">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The conditions
+     */
+    @JsonProperty(&quot;conditions&quot;)
+    public List&lt;DeploymentCondition&gt; getConditions() {
+<span class="nc" id="L173">        return conditions;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param conditions
+     *     The conditions
+     */
+    @JsonProperty(&quot;conditions&quot;)
+    public void setConditions(List&lt;DeploymentCondition&gt; conditions) {
+<span class="nc" id="L184">        this.conditions = conditions;</span>
+<span class="nc" id="L185">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The details
+     */
+    @JsonProperty(&quot;details&quot;)
+    public DeploymentDetails getDetails() {
+<span class="nc" id="L195">        return details;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param details
+     *     The details
+     */
+    @JsonProperty(&quot;details&quot;)
+    public void setDetails(DeploymentDetails details) {
+<span class="nc" id="L206">        this.details = details;</span>
+<span class="nc" id="L207">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The latestVersion
+     */
+    @JsonProperty(&quot;latestVersion&quot;)
+    public Long getLatestVersion() {
+<span class="nc" id="L217">        return latestVersion;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param latestVersion
+     *     The latestVersion
+     */
+    @JsonProperty(&quot;latestVersion&quot;)
+    public void setLatestVersion(Long latestVersion) {
+<span class="nc" id="L228">        this.latestVersion = latestVersion;</span>
+<span class="nc" id="L229">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The observedGeneration
+     */
+    @JsonProperty(&quot;observedGeneration&quot;)
+    public Long getObservedGeneration() {
+<span class="nc" id="L239">        return observedGeneration;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param observedGeneration
+     *     The observedGeneration
+     */
+    @JsonProperty(&quot;observedGeneration&quot;)
+    public void setObservedGeneration(Long observedGeneration) {
+<span class="nc" id="L250">        this.observedGeneration = observedGeneration;</span>
+<span class="nc" id="L251">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The readyReplicas
+     */
+    @JsonProperty(&quot;readyReplicas&quot;)
+    public Integer getReadyReplicas() {
+<span class="nc" id="L261">        return readyReplicas;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param readyReplicas
+     *     The readyReplicas
+     */
+    @JsonProperty(&quot;readyReplicas&quot;)
+    public void setReadyReplicas(Integer readyReplicas) {
+<span class="nc" id="L272">        this.readyReplicas = readyReplicas;</span>
+<span class="nc" id="L273">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The replicas
+     */
+    @JsonProperty(&quot;replicas&quot;)
+    public Integer getReplicas() {
+<span class="nc" id="L283">        return replicas;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param replicas
+     *     The replicas
+     */
+    @JsonProperty(&quot;replicas&quot;)
+    public void setReplicas(Integer replicas) {
+<span class="nc" id="L294">        this.replicas = replicas;</span>
+<span class="nc" id="L295">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The unavailableReplicas
+     */
+    @JsonProperty(&quot;unavailableReplicas&quot;)
+    public Integer getUnavailableReplicas() {
+<span class="nc" id="L305">        return unavailableReplicas;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param unavailableReplicas
+     *     The unavailableReplicas
+     */
+    @JsonProperty(&quot;unavailableReplicas&quot;)
+    public void setUnavailableReplicas(Integer unavailableReplicas) {
+<span class="nc" id="L316">        this.unavailableReplicas = unavailableReplicas;</span>
+<span class="nc" id="L317">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The updatedReplicas
+     */
+    @JsonProperty(&quot;updatedReplicas&quot;)
+    public Integer getUpdatedReplicas() {
+<span class="nc" id="L327">        return updatedReplicas;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param updatedReplicas
+     *     The updatedReplicas
+     */
+    @JsonProperty(&quot;updatedReplicas&quot;)
+    public void setUpdatedReplicas(Integer updatedReplicas) {
+<span class="nc" id="L338">        this.updatedReplicas = updatedReplicas;</span>
+<span class="nc" id="L339">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L343">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L348">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L349">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>URLFromIngressImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client</a> &gt; <span class="el_source">URLFromIngressImpl.java</span></div><h1>URLFromIngressImpl.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.fabric8.kubernetes.client;
+
+import io.fabric8.kubernetes.api.model.Service;
+import io.fabric8.kubernetes.api.model.ServicePort;
+import io.fabric8.kubernetes.api.model.extensions.*;
+import io.fabric8.kubernetes.client.utils.URLFromServiceUtil;
+
+<span class="nc" id="L24">public class URLFromIngressImpl implements ServiceToURLProvider {</span>
+
+  @Override
+  public String getURL(Service service, String portName, String namespace, KubernetesClient client) {
+<span class="nc" id="L28">    ServicePort port = URLFromServiceUtil.getServicePortByName(service, portName);</span>
+<span class="nc" id="L29">    String serviceName = service.getMetadata().getName();</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">    if(port == null) {</span>
+<span class="nc" id="L31">      throw new RuntimeException(&quot;Couldn't find port: &quot; + portName + &quot; for service &quot; + service.getMetadata().getName());</span>
+    }
+
+<span class="nc" id="L34">    IngressList ingresses = client.extensions().ingresses().inNamespace(namespace).list();</span>
+<span class="nc bnc" id="L35" title="All 4 branches missed.">    if(ingresses != null &amp;&amp; !ingresses.getItems().isEmpty()) {</span>
+<span class="nc" id="L36">      return URLFromServiceUtil.getURLFromIngressList(ingresses.getItems(), namespace, serviceName, port);</span>
+    }
+<span class="nc" id="L38">    return null;</span>
+  }
+
+  @Override
+  public int getPriority() {
+<span class="nc" id="L43">    return ServiceToUrlImplPriority.FIRST.getValue();</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

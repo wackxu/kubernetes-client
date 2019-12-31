@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthInfo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">AuthInfo.java</span></div><h1>AuthInfo.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;as&quot;,
+    &quot;as-groups&quot;,
+    &quot;as-user-extra&quot;,
+    &quot;auth-provider&quot;,
+    &quot;client-certificate&quot;,
+    &quot;client-certificate-data&quot;,
+    &quot;client-key&quot;,
+    &quot;client-key-data&quot;,
+    &quot;exec&quot;,
+    &quot;extensions&quot;,
+    &quot;password&quot;,
+    &quot;token&quot;,
+    &quot;tokenFile&quot;,
+    &quot;username&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L50">@ToString</span>
+<span class="nc bnc" id="L51" title="All 126 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class AuthInfo implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;as&quot;)
+    private java.lang.String as;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L66">    @JsonProperty(&quot;as-groups&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;java.lang.String&gt; asGroups = new ArrayList&lt;java.lang.String&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;as-user-extra&quot;)
+    @Valid
+    private Map&lt;String, ArrayList&lt;String&gt;&gt; asUserExtra;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;auth-provider&quot;)
+    @Valid
+    private AuthProviderConfig authProvider;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;client-certificate&quot;)
+    private java.lang.String clientCertificate;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;client-certificate-data&quot;)
+    private java.lang.String clientCertificateData;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;client-key&quot;)
+    private java.lang.String clientKey;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;client-key-data&quot;)
+    private java.lang.String clientKeyData;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;exec&quot;)
+    @Valid
+    private ExecConfig exec;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L119">    @JsonProperty(&quot;extensions&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;NamedExtension&gt; extensions = new ArrayList&lt;NamedExtension&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;password&quot;)
+    private java.lang.String password;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;token&quot;)
+    private java.lang.String token;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;tokenFile&quot;)
+    private java.lang.String tokenFile;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;username&quot;)
+    private java.lang.String username;
+<span class="nc" id="L147">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L154">    public AuthInfo() {</span>
+<span class="nc" id="L155">    }</span>
+
+    /**
+     * 
+     * @param clientCertificate
+     * @param asGroups
+     * @param token
+     * @param authProvider
+     * @param as
+     * @param extensions
+     * @param password
+     * @param clientKeyData
+     * @param clientKey
+     * @param asUserExtra
+     * @param clientCertificateData
+     * @param tokenFile
+     * @param exec
+     * @param username
+     */
+<span class="nc" id="L174">    public AuthInfo(java.lang.String as, List&lt;java.lang.String&gt; asGroups, Map&lt;String, ArrayList&lt;String&gt;&gt; asUserExtra, AuthProviderConfig authProvider, java.lang.String clientCertificate, java.lang.String clientCertificateData, java.lang.String clientKey, java.lang.String clientKeyData, ExecConfig exec, List&lt;NamedExtension&gt; extensions, java.lang.String password, java.lang.String token, java.lang.String tokenFile, java.lang.String username) {</span>
+<span class="nc" id="L175">        this.as = as;</span>
+<span class="nc" id="L176">        this.asGroups = asGroups;</span>
+<span class="nc" id="L177">        this.asUserExtra = asUserExtra;</span>
+<span class="nc" id="L178">        this.authProvider = authProvider;</span>
+<span class="nc" id="L179">        this.clientCertificate = clientCertificate;</span>
+<span class="nc" id="L180">        this.clientCertificateData = clientCertificateData;</span>
+<span class="nc" id="L181">        this.clientKey = clientKey;</span>
+<span class="nc" id="L182">        this.clientKeyData = clientKeyData;</span>
+<span class="nc" id="L183">        this.exec = exec;</span>
+<span class="nc" id="L184">        this.extensions = extensions;</span>
+<span class="nc" id="L185">        this.password = password;</span>
+<span class="nc" id="L186">        this.token = token;</span>
+<span class="nc" id="L187">        this.tokenFile = tokenFile;</span>
+<span class="nc" id="L188">        this.username = username;</span>
+<span class="nc" id="L189">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The as
+     */
+    @JsonProperty(&quot;as&quot;)
+    public java.lang.String getAs() {
+<span class="nc" id="L199">        return as;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param as
+     *     The as
+     */
+    @JsonProperty(&quot;as&quot;)
+    public void setAs(java.lang.String as) {
+<span class="nc" id="L210">        this.as = as;</span>
+<span class="nc" id="L211">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The asGroups
+     */
+    @JsonProperty(&quot;as-groups&quot;)
+    public List&lt;java.lang.String&gt; getAsGroups() {
+<span class="nc" id="L221">        return asGroups;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param asGroups
+     *     The as-groups
+     */
+    @JsonProperty(&quot;as-groups&quot;)
+    public void setAsGroups(List&lt;java.lang.String&gt; asGroups) {
+<span class="nc" id="L232">        this.asGroups = asGroups;</span>
+<span class="nc" id="L233">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The asUserExtra
+     */
+    @JsonProperty(&quot;as-user-extra&quot;)
+    public Map&lt;String, ArrayList&lt;String&gt;&gt; getAsUserExtra() {
+<span class="nc" id="L243">        return asUserExtra;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param asUserExtra
+     *     The as-user-extra
+     */
+    @JsonProperty(&quot;as-user-extra&quot;)
+    public void setAsUserExtra(Map&lt;String, ArrayList&lt;String&gt;&gt; asUserExtra) {
+<span class="nc" id="L254">        this.asUserExtra = asUserExtra;</span>
+<span class="nc" id="L255">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The authProvider
+     */
+    @JsonProperty(&quot;auth-provider&quot;)
+    public AuthProviderConfig getAuthProvider() {
+<span class="nc" id="L265">        return authProvider;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param authProvider
+     *     The auth-provider
+     */
+    @JsonProperty(&quot;auth-provider&quot;)
+    public void setAuthProvider(AuthProviderConfig authProvider) {
+<span class="nc" id="L276">        this.authProvider = authProvider;</span>
+<span class="nc" id="L277">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The clientCertificate
+     */
+    @JsonProperty(&quot;client-certificate&quot;)
+    public java.lang.String getClientCertificate() {
+<span class="nc" id="L287">        return clientCertificate;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param clientCertificate
+     *     The client-certificate
+     */
+    @JsonProperty(&quot;client-certificate&quot;)
+    public void setClientCertificate(java.lang.String clientCertificate) {
+<span class="nc" id="L298">        this.clientCertificate = clientCertificate;</span>
+<span class="nc" id="L299">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The clientCertificateData
+     */
+    @JsonProperty(&quot;client-certificate-data&quot;)
+    public java.lang.String getClientCertificateData() {
+<span class="nc" id="L309">        return clientCertificateData;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param clientCertificateData
+     *     The client-certificate-data
+     */
+    @JsonProperty(&quot;client-certificate-data&quot;)
+    public void setClientCertificateData(java.lang.String clientCertificateData) {
+<span class="nc" id="L320">        this.clientCertificateData = clientCertificateData;</span>
+<span class="nc" id="L321">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The clientKey
+     */
+    @JsonProperty(&quot;client-key&quot;)
+    public java.lang.String getClientKey() {
+<span class="nc" id="L331">        return clientKey;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param clientKey
+     *     The client-key
+     */
+    @JsonProperty(&quot;client-key&quot;)
+    public void setClientKey(java.lang.String clientKey) {
+<span class="nc" id="L342">        this.clientKey = clientKey;</span>
+<span class="nc" id="L343">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The clientKeyData
+     */
+    @JsonProperty(&quot;client-key-data&quot;)
+    public java.lang.String getClientKeyData() {
+<span class="nc" id="L353">        return clientKeyData;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param clientKeyData
+     *     The client-key-data
+     */
+    @JsonProperty(&quot;client-key-data&quot;)
+    public void setClientKeyData(java.lang.String clientKeyData) {
+<span class="nc" id="L364">        this.clientKeyData = clientKeyData;</span>
+<span class="nc" id="L365">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The exec
+     */
+    @JsonProperty(&quot;exec&quot;)
+    public ExecConfig getExec() {
+<span class="nc" id="L375">        return exec;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param exec
+     *     The exec
+     */
+    @JsonProperty(&quot;exec&quot;)
+    public void setExec(ExecConfig exec) {
+<span class="nc" id="L386">        this.exec = exec;</span>
+<span class="nc" id="L387">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The extensions
+     */
+    @JsonProperty(&quot;extensions&quot;)
+    public List&lt;NamedExtension&gt; getExtensions() {
+<span class="nc" id="L397">        return extensions;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param extensions
+     *     The extensions
+     */
+    @JsonProperty(&quot;extensions&quot;)
+    public void setExtensions(List&lt;NamedExtension&gt; extensions) {
+<span class="nc" id="L408">        this.extensions = extensions;</span>
+<span class="nc" id="L409">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The password
+     */
+    @JsonProperty(&quot;password&quot;)
+    public java.lang.String getPassword() {
+<span class="nc" id="L419">        return password;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param password
+     *     The password
+     */
+    @JsonProperty(&quot;password&quot;)
+    public void setPassword(java.lang.String password) {
+<span class="nc" id="L430">        this.password = password;</span>
+<span class="nc" id="L431">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The token
+     */
+    @JsonProperty(&quot;token&quot;)
+    public java.lang.String getToken() {
+<span class="nc" id="L441">        return token;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param token
+     *     The token
+     */
+    @JsonProperty(&quot;token&quot;)
+    public void setToken(java.lang.String token) {
+<span class="nc" id="L452">        this.token = token;</span>
+<span class="nc" id="L453">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The tokenFile
+     */
+    @JsonProperty(&quot;tokenFile&quot;)
+    public java.lang.String getTokenFile() {
+<span class="nc" id="L463">        return tokenFile;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param tokenFile
+     *     The tokenFile
+     */
+    @JsonProperty(&quot;tokenFile&quot;)
+    public void setTokenFile(java.lang.String tokenFile) {
+<span class="nc" id="L474">        this.tokenFile = tokenFile;</span>
+<span class="nc" id="L475">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The username
+     */
+    @JsonProperty(&quot;username&quot;)
+    public java.lang.String getUsername() {
+<span class="nc" id="L485">        return username;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param username
+     *     The username
+     */
+    @JsonProperty(&quot;username&quot;)
+    public void setUsername(java.lang.String username) {
+<span class="nc" id="L496">        this.username = username;</span>
+<span class="nc" id="L497">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L501">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L506">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L507">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

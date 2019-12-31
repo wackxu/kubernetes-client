@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OpenShiftOAuthInterceptor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Openshift :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.client.internal</a> &gt; <span class="el_source">OpenShiftOAuthInterceptor.java</span></div><h1>OpenShiftOAuthInterceptor.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.fabric8.openshift.client.internal;
+
+import okhttp3.Credentials;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.utils.URLUtils;
+import io.fabric8.kubernetes.client.utils.Utils;
+import io.fabric8.openshift.client.OpenShiftConfig;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.concurrent.atomic.AtomicReference;
+
+public class OpenShiftOAuthInterceptor implements Interceptor {
+
+    private static final String AUTHORIZATION = &quot;Authorization&quot;;
+    private static final String LOCATION = &quot;Location&quot;;
+    private static final String AUTHORIZE_PATH = &quot;oauth/authorize?response_type=token&amp;client_id=openshift-challenging-client&quot;;
+
+    private static final String BEFORE_TOKEN = &quot;access_token=&quot;;
+    private static final String AFTER_TOKEN = &quot;&amp;expires&quot;;
+
+    private final OkHttpClient client;
+    private final OpenShiftConfig config;
+<span class="fc" id="L45">    private final AtomicReference&lt;String&gt; oauthToken = new AtomicReference&lt;&gt;();</span>
+
+<span class="fc" id="L47">    public OpenShiftOAuthInterceptor(OkHttpClient client, OpenShiftConfig config) {</span>
+<span class="fc" id="L48">        this.client = client;</span>
+<span class="fc" id="L49">        this.config = config;</span>
+<span class="fc" id="L50">    }</span>
+
+    @Override
+    public Response intercept(Chain chain) throws IOException {
+<span class="nc" id="L54">        Request request = chain.request();</span>
+
+        //Build new request
+<span class="nc" id="L57">        Request.Builder builder = request.newBuilder();</span>
+<span class="nc" id="L58">        String token = null;</span>
+
+<span class="nc bnc" id="L60" title="All 4 branches missed.">        if (Utils.isNotNullOrEmpty(oauthToken.get()) &amp;&amp; Utils.isNullOrEmpty(request.header(AUTHORIZATION))) {</span>
+<span class="nc" id="L61">          token = oauthToken.get();</span>
+<span class="nc bnc" id="L62" title="All 4 branches missed.">        } else if (Utils.isNotNullOrEmpty(config.getUsername()) &amp;&amp; Utils.isNotNullOrEmpty(config.getPassword())) {</span>
+<span class="nc" id="L63">          token = acquireNewToken();</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        } else if (Utils.isNotNullOrEmpty(config.getOauthToken())) {</span>
+<span class="nc" id="L65">          token = config.getOauthToken();</span>
+<span class="nc" id="L66">          oauthToken.set(token);</span>
+        }
+
+        // avoid overwriting basic auth token with stale bearer token
+<span class="nc bnc" id="L70" title="All 4 branches missed.">        if (Utils.isNotNullOrEmpty(token) &amp;&amp; Utils.isNullOrEmpty(request.header(AUTHORIZATION))) {</span>
+<span class="nc" id="L71">            setAuthHeader(builder, token);</span>
+        }
+
+<span class="nc" id="L74">        request = builder.build();</span>
+<span class="nc" id="L75">        Response response = chain.proceed(request);</span>
+
+        //If response is Forbidden or Unauthorized, try to obtain a token via authorize() or via config.
+<span class="nc bnc" id="L78" title="All 4 branches missed.">        if (response.code() != 401 &amp;&amp; response.code() != 403) {</span>
+<span class="nc" id="L79">          return response;</span>
+<span class="nc bnc" id="L80" title="All 4 branches missed.">        } else if (Utils.isNotNullOrEmpty(config.getUsername()) &amp;&amp; Utils.isNotNullOrEmpty(config.getPassword())) {</span>
+<span class="nc" id="L81">          token = acquireNewToken();</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        } else if (Utils.isNotNullOrEmpty(config.getOauthToken())) {</span>
+<span class="nc" id="L83">          token = config.getOauthToken();</span>
+<span class="nc" id="L84">          oauthToken.set(token);</span>
+        }
+
+
+      //If token was obtain, then retry request using the obtained token.
+<span class="nc bnc" id="L89" title="All 2 branches missed.">      if (Utils.isNotNullOrEmpty(token)) {</span>
+        // Close the previous response to prevent leaked connections.
+<span class="nc" id="L91">        response.body().close();</span>
+
+<span class="nc" id="L93">        setAuthHeader(builder, token);</span>
+<span class="nc" id="L94">        request = builder.build();</span>
+<span class="nc" id="L95">        return chain.proceed(request); //repeat request with new token</span>
+      } else {
+<span class="nc" id="L97">        return response;</span>
+      }
+    }
+
+    private void setAuthHeader(Request.Builder builder, String token) {
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        if (token != null) {</span>
+<span class="nc" id="L103">            builder.header(AUTHORIZATION, String.format(&quot;Bearer %s&quot;, token));</span>
+        }
+<span class="nc" id="L105">    }</span>
+
+    private String acquireNewToken() throws IOException {
+<span class="nc" id="L108">      synchronized (client) {</span>
+        // current token (if exists) is broken, don't resend
+<span class="nc" id="L110">        oauthToken.set(null);</span>
+<span class="nc" id="L111">        String token = authorize();</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">        if (token != null) {</span>
+<span class="nc" id="L113">          oauthToken.set(token);</span>
+        }
+<span class="nc" id="L115">      }</span>
+<span class="nc" id="L116">      return oauthToken.get();</span>
+    }
+
+    private  String authorize() throws IOException {
+<span class="nc" id="L120">        OkHttpClient.Builder builder = client.newBuilder();</span>
+<span class="nc" id="L121">        builder.interceptors().remove(this);</span>
+<span class="nc" id="L122">        OkHttpClient clone = builder.build();</span>
+
+<span class="nc" id="L124">        String credential = Credentials.basic(config.getUsername(), new String(config.getPassword()));</span>
+<span class="nc" id="L125">        URL url = new URL(URLUtils.join(config.getMasterUrl(), AUTHORIZE_PATH));</span>
+<span class="nc" id="L126">        Response response = clone.newCall(new Request.Builder().get().url(url).header(AUTHORIZATION, credential).build()).execute();</span>
+
+<span class="nc" id="L128">        response.body().close();</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">        response = response.priorResponse() != null ? response.priorResponse() : response;</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">        response = response.networkResponse() != null ? response.networkResponse() : response;</span>
+<span class="nc" id="L131">        String token = response.header(LOCATION);</span>
+<span class="nc bnc" id="L132" title="All 4 branches missed.">        if (token == null || token.isEmpty()) {</span>
+<span class="nc" id="L133">          throw new IOException(&quot;Unexpected response(&quot; + response.code() + &quot; &quot; + response.message() + &quot;), to the authorization request. Missing header:[&quot; + LOCATION + &quot;]!&quot;);</span>
+        }
+<span class="nc" id="L135">        token = token.substring(token.indexOf(BEFORE_TOKEN) + BEFORE_TOKEN.length());</span>
+<span class="nc" id="L136">        token = token.substring(0, token.indexOf(AFTER_TOKEN));</span>
+<span class="nc" id="L137">        return token;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

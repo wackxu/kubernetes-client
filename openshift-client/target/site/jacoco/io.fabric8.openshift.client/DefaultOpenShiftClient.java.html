@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultOpenShiftClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Openshift :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.client</a> &gt; <span class="el_source">DefaultOpenShiftClient.java</span></div><h1>DefaultOpenShiftClient.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.openshift.client;
+
+import io.fabric8.kubernetes.api.model.*;
+import io.fabric8.kubernetes.api.model.DoneableComponentStatus;
+import io.fabric8.kubernetes.api.model.DoneableConfigMap;
+import io.fabric8.kubernetes.api.model.DoneableEndpoints;
+import io.fabric8.kubernetes.api.model.DoneableEvent;
+import io.fabric8.kubernetes.api.model.DoneableLimitRange;
+import io.fabric8.kubernetes.api.model.DoneableNamespace;
+import io.fabric8.kubernetes.api.model.DoneableNode;
+import io.fabric8.kubernetes.api.model.DoneablePersistentVolume;
+import io.fabric8.kubernetes.api.model.DoneablePersistentVolumeClaim;
+import io.fabric8.kubernetes.api.model.DoneablePod;
+import io.fabric8.kubernetes.api.model.DoneableReplicationController;
+import io.fabric8.kubernetes.api.model.DoneableResourceQuota;
+import io.fabric8.kubernetes.api.model.DoneableServiceAccount;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinition;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinitionList;
+import io.fabric8.kubernetes.api.model.apiextensions.DoneableCustomResourceDefinition;
+import io.fabric8.kubernetes.client.*;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.dsl.*;
+import io.fabric8.kubernetes.client.dsl.internal.*;
+import io.fabric8.kubernetes.client.utils.BackwardsCompatibilityInterceptor;
+import io.fabric8.kubernetes.client.utils.ImpersonatorInterceptor;
+import io.fabric8.kubernetes.client.utils.Serialization;
+import io.fabric8.openshift.api.model.*;
+import io.fabric8.openshift.api.model.DoneableBuild;
+import io.fabric8.openshift.api.model.DoneableBuildConfig;
+import io.fabric8.openshift.api.model.DoneableDeploymentConfig;
+import io.fabric8.openshift.api.model.DoneableGroup;
+import io.fabric8.openshift.api.model.DoneableImageStream;
+import io.fabric8.openshift.api.model.DoneableImageStreamTag;
+import io.fabric8.openshift.api.model.DoneableOAuthAccessToken;
+import io.fabric8.openshift.api.model.DoneableOAuthAuthorizeToken;
+import io.fabric8.openshift.api.model.DoneableOAuthClient;
+import io.fabric8.openshift.api.model.DoneableOpenshiftClusterRoleBinding;
+import io.fabric8.openshift.api.model.DoneableOpenshiftRole;
+import io.fabric8.openshift.api.model.DoneableOpenshiftRoleBinding;
+import io.fabric8.openshift.api.model.DoneableRoute;
+import io.fabric8.openshift.api.model.DoneableSecurityContextConstraints;
+import io.fabric8.openshift.api.model.DoneableTemplate;
+import io.fabric8.openshift.api.model.DoneableUser;
+import io.fabric8.openshift.client.dsl.*;
+import io.fabric8.openshift.client.dsl.internal.*;
+import io.fabric8.openshift.client.internal.OpenShiftOAuthInterceptor;
+import okhttp3.Authenticator;
+import okhttp3.OkHttpClient;
+
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
+
+public class DefaultOpenShiftClient extends BaseClient implements NamespacedOpenShiftClient {
+
+  private URL openShiftUrl;
+  private NamespacedKubernetesClient delegate;
+
+  public DefaultOpenShiftClient() throws KubernetesClientException {
+<span class="fc" id="L78">    this(new OpenShiftConfigBuilder().build());</span>
+<span class="fc" id="L79">  }</span>
+
+  public DefaultOpenShiftClient(String masterUrl) throws KubernetesClientException {
+<span class="nc" id="L82">    this(new OpenShiftConfigBuilder().withMasterUrl(masterUrl).build());</span>
+<span class="nc" id="L83">  }</span>
+
+  public DefaultOpenShiftClient(final Config config) throws KubernetesClientException {
+<span class="nc" id="L86">    this(new OpenShiftConfig(config));</span>
+<span class="nc" id="L87">  }</span>
+
+  public DefaultOpenShiftClient(final OpenShiftConfig config) throws KubernetesClientException {
+<span class="fc" id="L90">    super(config);</span>
+    try {
+<span class="fc" id="L92">      this.httpClient = clientWithOpenShiftOAuthInterceptor(this.httpClient);</span>
+<span class="fc" id="L93">      this.delegate = new DefaultKubernetesClient(this.httpClient, config);</span>
+<span class="fc" id="L94">      this.openShiftUrl = new URL(config.getOpenShiftUrl());</span>
+<span class="nc" id="L95">    } catch (MalformedURLException e) {</span>
+<span class="nc" id="L96">      throw new KubernetesClientException(&quot;Could not create client&quot;, e);</span>
+<span class="fc" id="L97">    }</span>
+<span class="fc" id="L98">  }</span>
+
+  public DefaultOpenShiftClient(OkHttpClient httpClient, OpenShiftConfig config) throws KubernetesClientException {
+<span class="nc" id="L101">    super(httpClient, config);</span>
+    try {
+<span class="nc" id="L103">      this.httpClient = clientWithOpenShiftOAuthInterceptor(httpClient);</span>
+<span class="nc" id="L104">      this.delegate = new DefaultKubernetesClient(this.httpClient, config);</span>
+<span class="nc" id="L105">      this.openShiftUrl = new URL(config.getOpenShiftUrl());</span>
+<span class="nc" id="L106">    } catch (MalformedURLException e) {</span>
+<span class="nc" id="L107">      throw new KubernetesClientException(&quot;Could not create client&quot;, e);</span>
+<span class="nc" id="L108">    }</span>
+<span class="nc" id="L109">  }</span>
+
+  public static DefaultOpenShiftClient fromConfig(String config) {
+<span class="fc" id="L112">    return new DefaultOpenShiftClient(Serialization.unmarshal(config, OpenShiftConfig.class));</span>
+  }
+
+  public static DefaultOpenShiftClient fromConfig(InputStream is) {
+<span class="nc" id="L116">    return new DefaultOpenShiftClient(Serialization.unmarshal(is, OpenShiftConfig.class));</span>
+  }
+
+  private OkHttpClient clientWithOpenShiftOAuthInterceptor(OkHttpClient httpClient) {
+<span class="fc" id="L120">    httpClient = httpClient.newBuilder().authenticator(Authenticator.NONE).build();</span>
+<span class="fc" id="L121">    OkHttpClient.Builder builder = httpClient.newBuilder();</span>
+<span class="fc" id="L122">    builder.interceptors().clear();</span>
+<span class="fc" id="L123">    return builder.addInterceptor(new OpenShiftOAuthInterceptor(httpClient, OpenShiftConfig.wrap(getConfiguration())))</span>
+<span class="fc" id="L124">      .addInterceptor(new ImpersonatorInterceptor(getConfiguration()))</span>
+<span class="fc" id="L125">      .addInterceptor(new BackwardsCompatibilityInterceptor())</span>
+<span class="fc" id="L126">      .build();</span>
+  }
+
+  @Override
+  public URL getOpenshiftUrl() {
+<span class="nc" id="L131">    return openShiftUrl;</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ComponentStatus, ComponentStatusList, DoneableComponentStatus, Resource&lt;ComponentStatus, DoneableComponentStatus&gt;&gt; componentstatuses() {
+<span class="nc" id="L136">    return new ComponentStatusOperationsImpl(httpClient, getConfiguration(), null);</span>
+  }
+
+  @Override
+  public ParameterNamespaceListVisitFromServerGetDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; load(InputStream is) {
+<span class="nc" id="L141">    return delegate.load(is);</span>
+  }
+
+  @Override
+  public NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resource(HasMetadata item) {
+<span class="nc" id="L146">    return delegate.resource(item);</span>
+  }
+
+  @Override
+  public NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resource(String s) {
+<span class="nc" id="L151">    return delegate.resource(s);</span>
+  }
+
+  @Override
+  public NamespaceListVisitFromServerGetDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resourceList(KubernetesResourceList is) {
+<span class="nc" id="L156">    return delegate.resourceList(is);</span>
+  }
+
+  @Override
+  public NamespaceListVisitFromServerGetDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resourceList(HasMetadata... items) {
+<span class="nc" id="L161">    return delegate.resourceList(items);</span>
+  }
+
+  @Override
+  public NamespaceListVisitFromServerGetDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resourceList(Collection&lt;HasMetadata&gt; items) {
+<span class="nc" id="L166">    return delegate.resourceList(items);</span>
+  }
+
+  @Override
+  public ParameterNamespaceListVisitFromServerGetDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resourceList(String s) {
+<span class="nc" id="L171">    return delegate.resourceList(s);</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Endpoints, EndpointsList, DoneableEndpoints, Resource&lt;Endpoints, DoneableEndpoints&gt;&gt; endpoints() {
+<span class="nc" id="L176">    return delegate.endpoints();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Event, EventList, DoneableEvent, Resource&lt;Event, DoneableEvent&gt;&gt; events() {
+<span class="nc" id="L181">    return delegate.events();</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;Namespace, NamespaceList, DoneableNamespace, Resource&lt;Namespace, DoneableNamespace&gt;&gt; namespaces() {
+<span class="nc" id="L186">    return delegate.namespaces();</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;Node, NodeList, DoneableNode, Resource&lt;Node, DoneableNode&gt;&gt; nodes() {
+<span class="nc" id="L191">    return delegate.nodes();</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;PersistentVolume, PersistentVolumeList, DoneablePersistentVolume, Resource&lt;PersistentVolume, DoneablePersistentVolume&gt;&gt; persistentVolumes() {
+<span class="nc" id="L196">    return delegate.persistentVolumes();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;PersistentVolumeClaim, PersistentVolumeClaimList, DoneablePersistentVolumeClaim, Resource&lt;PersistentVolumeClaim, DoneablePersistentVolumeClaim&gt;&gt; persistentVolumeClaims() {
+<span class="nc" id="L201">    return delegate.persistentVolumeClaims();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Pod, PodList, DoneablePod, PodResource&lt;Pod, DoneablePod&gt;&gt; pods() {
+<span class="nc" id="L206">    return delegate.pods();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ReplicationController, ReplicationControllerList, DoneableReplicationController, RollableScalableResource&lt;ReplicationController, DoneableReplicationController&gt;&gt; replicationControllers() {
+<span class="nc" id="L211">    return delegate.replicationControllers();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ResourceQuota, ResourceQuotaList, DoneableResourceQuota, Resource&lt;ResourceQuota, DoneableResourceQuota&gt;&gt; resourceQuotas() {
+<span class="nc" id="L216">    return delegate.resourceQuotas();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Secret, SecretList, DoneableSecret, Resource&lt;Secret, DoneableSecret&gt;&gt; secrets() {
+<span class="nc" id="L221">    return delegate.secrets();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Service, ServiceList, DoneableService, ServiceResource&lt;Service, DoneableService&gt;&gt; services() {
+<span class="nc" id="L226">    return delegate.services();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ServiceAccount, ServiceAccountList, DoneableServiceAccount, Resource&lt;ServiceAccount, DoneableServiceAccount&gt;&gt; serviceAccounts() {
+<span class="nc" id="L231">    return delegate.serviceAccounts();</span>
+  }
+
+  @Override
+  public KubernetesListMixedOperation lists() {
+<span class="nc" id="L236">    return delegate.lists();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ConfigMap, ConfigMapList, DoneableConfigMap, Resource&lt;ConfigMap, DoneableConfigMap&gt;&gt; configMaps() {
+<span class="nc" id="L241">    return delegate.configMaps();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;LimitRange, LimitRangeList, DoneableLimitRange, Resource&lt;LimitRange, DoneableLimitRange&gt;&gt; limitRanges() {
+<span class="nc" id="L246">    return delegate.limitRanges();</span>
+  }
+
+  @Override
+  public &lt;T extends HasMetadata, L extends KubernetesResourceList, D extends Doneable&lt;T&gt;&gt; MixedOperation&lt;T, L, D, Resource&lt;T, D&gt;&gt; customResources(CustomResourceDefinition crd, Class&lt;T&gt; resourceType, Class&lt;L&gt; listClass, Class&lt;D&gt; doneClass) {
+<span class="nc" id="L251">    return new CustomResourceOperationsImpl&lt;T,L,D&gt;(httpClient, getConfiguration(), crd, resourceType, listClass, doneClass);</span>
+  }
+
+  @Override
+  public &lt;T extends HasMetadata, L extends KubernetesResourceList, D extends Doneable&lt;T&gt;&gt; MixedOperation&lt;T, L, D, Resource&lt;T, D&gt;&gt; customResource(CustomResourceDefinition crd, Class&lt;T&gt; resourceType, Class&lt;L&gt; listClass, Class&lt;D&gt; doneClass) {
+<span class="nc" id="L256">    return customResources(crd, resourceType, listClass, doneClass);</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;CustomResourceDefinition, CustomResourceDefinitionList, DoneableCustomResourceDefinition, Resource&lt;CustomResourceDefinition, DoneableCustomResourceDefinition&gt;&gt; customResourceDefinitions() {
+<span class="nc" id="L261">    return new CustomResourceDefinitionOperationsImpl(httpClient, getConfiguration());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Build, BuildList, DoneableBuild, BuildResource&lt;Build, DoneableBuild, String, LogWatch&gt;&gt; builds() {
+<span class="nc" id="L266">    return new BuildOperationsImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()), getNamespace());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;BuildConfig, BuildConfigList, DoneableBuildConfig, BuildConfigResource&lt;BuildConfig, DoneableBuildConfig, Void, Build&gt;&gt; buildConfigs() {
+<span class="nc" id="L271">    return new BuildConfigOperationsImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()), getNamespace());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;DeploymentConfig, DeploymentConfigList, DoneableDeploymentConfig, DeployableScalableResource&lt;DeploymentConfig, DoneableDeploymentConfig&gt;&gt; deploymentConfigs() {
+<span class="nc" id="L276">    return new DeploymentConfigOperationsImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()), getNamespace());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Group, GroupList, DoneableGroup, Resource&lt;Group, DoneableGroup&gt;&gt; groups() {
+<span class="nc" id="L281">    return new GroupOperationsImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()), getNamespace());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ImageStream, ImageStreamList, DoneableImageStream, Resource&lt;ImageStream, DoneableImageStream&gt;&gt; imageStreams() {
+<span class="nc" id="L286">    return new ImageStreamOperationsImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()), getNamespace());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ImageStreamTag, ImageStreamTagList, DoneableImageStreamTag, Resource&lt;ImageStreamTag, DoneableImageStreamTag&gt;&gt; imageStreamTags() {
+<span class="nc" id="L291">    return new ImageStreamTagOperationsImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()), getNamespace());</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;OAuthAccessToken, OAuthAccessTokenList, DoneableOAuthAccessToken, Resource&lt;OAuthAccessToken, DoneableOAuthAccessToken&gt;&gt; oAuthAccessTokens() {
+<span class="nc" id="L296">    return new OAuthAccessTokenOperationsImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()));</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;OAuthAuthorizeToken, OAuthAuthorizeTokenList, DoneableOAuthAuthorizeToken, Resource&lt;OAuthAuthorizeToken, DoneableOAuthAuthorizeToken&gt;&gt; oAuthAuthorizeTokens() {
+<span class="nc" id="L301">    return new OAuthAuthorizeTokenOperationsImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()));</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;OAuthClient, OAuthClientList, DoneableOAuthClient, Resource&lt;OAuthClient, DoneableOAuthClient&gt;&gt; oAuthClients() {
+<span class="nc" id="L306">    return new OAuthClientOperationsImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()));</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;Project, ProjectList, DoneableProject, Resource&lt;Project, DoneableProject&gt;&gt; projects() {
+<span class="nc" id="L311">    return new ProjectOperationsImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()));</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;SecurityContextConstraints, SecurityContextConstraintsList, DoneableSecurityContextConstraints, Resource&lt;SecurityContextConstraints, DoneableSecurityContextConstraints&gt;&gt; securityContextConstraints() {
+<span class="nc" id="L316">    return new SecurityContextConstraintsOperationsImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()));</span>
+  }
+
+  @Override
+  public ProjectRequestOperation projectrequests() {
+<span class="nc" id="L321">    return new ProjectRequestsOperationImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()));</span>
+  }
+
+  @Override
+  public MixedOperation&lt;OpenshiftRole, OpenshiftRoleList, DoneableOpenshiftRole, Resource&lt;OpenshiftRole, DoneableOpenshiftRole&gt;&gt; roles() {
+<span class="nc" id="L326">    return new OpenshiftRoleOperationsImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()), getNamespace());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;OpenshiftRoleBinding, OpenshiftRoleBindingList, DoneableOpenshiftRoleBinding, Resource&lt;OpenshiftRoleBinding, DoneableOpenshiftRoleBinding&gt;&gt; roleBindings() {
+<span class="nc" id="L331">    return new OpenshiftRoleBindingOperationsImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()), getNamespace());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Route, RouteList, DoneableRoute, Resource&lt;Route, DoneableRoute&gt;&gt; routes() {
+<span class="nc" id="L336">    return new RouteOperationsImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()), getNamespace());</span>
+  }
+
+  @Override
+  public ParameterMixedOperation&lt;Template, TemplateList, DoneableTemplate, TemplateResource&lt;Template, KubernetesList, DoneableTemplate&gt;&gt; templates() {
+<span class="nc" id="L341">    return new TemplateOperationsImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()), getNamespace());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;User, UserList, DoneableUser, Resource&lt;User, DoneableUser&gt;&gt; users() {
+<span class="nc" id="L346">    return new UserOperationsImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()), getNamespace());</span>
+  }
+
+  @Override
+  public SubjectAccessReviewOperation&lt;CreateableSubjectAccessReview, CreateableLocalSubjectAccessReview&gt; subjectAccessReviews() {
+<span class="nc" id="L351">    return new SubjectAccessReviewOperationImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()), null, getNamespace());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;OpenshiftClusterRoleBinding, OpenshiftClusterRoleBindingList, DoneableOpenshiftClusterRoleBinding, Resource&lt;OpenshiftClusterRoleBinding, DoneableOpenshiftClusterRoleBinding&gt;&gt; clusterRoleBindings() {
+<span class="nc" id="L356">    return new OpenshiftClusterRoleBindingOperationsImpl(httpClient, OpenShiftConfig.wrap(getConfiguration()), getNamespace());</span>
+  }
+
+  @Override
+  public NamespacedOpenShiftClient inNamespace(String namespace) {
+<span class="nc" id="L361">    OpenShiftConfig updated = new OpenShiftConfigBuilder(new OpenShiftConfig(getConfiguration()))</span>
+<span class="nc" id="L362">      .withOpenShiftUrl(openShiftUrl.toString())</span>
+<span class="nc" id="L363">      .withNamespace(namespace)</span>
+<span class="nc" id="L364">      .build();</span>
+<span class="nc" id="L365">    return new DefaultOpenShiftClient(httpClient, updated);</span>
+  }
+
+  @Override
+  public NamespacedOpenShiftClient inAnyNamespace() {
+<span class="nc" id="L370">    return inNamespace(null);</span>
+  }
+
+  @Override
+  public ExtensionsAPIGroupClient extensions() {
+<span class="nc" id="L375">    return adapt(ExtensionsAPIGroupClient.class);</span>
+  }
+
+  @Override
+  public VersionInfo getVersion() {
+<span class="nc" id="L380">    return new ClusterOperationsImpl(httpClient, getConfiguration(), &quot;version/openshift&quot;).fetchVersion();</span>
+  }
+
+  @Override
+  public AppsAPIGroupDSL apps() {
+<span class="nc" id="L385">    return adapt(AppsAPIGroupClient.class);</span>
+  }
+
+  @Override
+  public AutoscalingAPIGroupDSL autoscaling() {
+<span class="nc" id="L390">    return adapt(AutoscalingAPIGroupClient.class);</span>
+  }
+
+  @Override
+<span class="nc" id="L394">  public NetworkAPIGroupDSL network() { return adapt(NetworkAPIGroupClient.class); }</span>
+
+  @Override
+<span class="nc" id="L397">  public StorageAPIGroupDSL storage() { return adapt(StorageAPIGroupClient.class); }</span>
+
+  @Override
+<span class="nc" id="L400">  public SettingsAPIGroupDSL settings() { return adapt(SettingsAPIGroupClient.class); }</span>
+
+  @Override
+<span class="nc" id="L403">  public BatchAPIGroupDSL batch() { return adapt(BatchAPIGroupClient.class); }</span>
+
+  @Override
+<span class="nc" id="L406">  public PolicyAPIGroupDSL policy() { return adapt(PolicyAPIGroupClient.class); }</span>
+
+  @Override
+<span class="nc" id="L409">  public RbacAPIGroupDSL rbac() { return adapt(RbacAPIGroupClient.class); }</span>
+
+  @Override
+<span class="nc" id="L412">  public SchedulingAPIGroupDSL scheduling() { return adapt(SchedulingAPIGroupClient.class); }</span>
+
+  @Override
+  public FunctionCallable&lt;NamespacedOpenShiftClient&gt; withRequestConfig(RequestConfig requestConfig) {
+<span class="nc" id="L416">    return new WithRequestCallable&lt;NamespacedOpenShiftClient&gt;(this, requestConfig);</span>
+  }
+
+  @Override
+  public User currentUser() {
+<span class="nc" id="L421">    return users().withName(&quot;~&quot;).get();</span>
+  }
+
+  @Override
+  public boolean supportsOpenShiftAPIGroup(String apiGroup) {
+<span class="nc" id="L426">    String apiGroupPath = &quot;/apis/&quot; + apiGroup;</span>
+<span class="nc" id="L427">    RootPaths rootPaths = rootPaths();</span>
+<span class="nc bnc" id="L428" title="All 2 branches missed.">    if (rootPaths != null) {</span>
+<span class="nc" id="L429">      List&lt;String&gt; paths = rootPaths.getPaths();</span>
+<span class="nc bnc" id="L430" title="All 2 branches missed.">      if (paths != null) {</span>
+<span class="nc bnc" id="L431" title="All 2 branches missed.">        for (String path : paths) {</span>
+<span class="nc bnc" id="L432" title="All 6 branches missed.">          if (Objects.equals(&quot;/oapi&quot;, path) || Objects.equals(&quot;oapi&quot;, path) || Objects.equals(apiGroupPath, path)) {</span>
+<span class="nc" id="L433">            return true;</span>
+          }
+<span class="nc" id="L435">        }</span>
+      }
+    }
+<span class="nc" id="L438">    return false;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

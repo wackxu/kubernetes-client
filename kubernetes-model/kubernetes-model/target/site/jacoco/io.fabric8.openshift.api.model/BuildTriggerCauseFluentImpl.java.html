@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuildTriggerCauseFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">BuildTriggerCauseFluentImpl.java</span></div><h1>BuildTriggerCauseFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.lang.Object;
+
+public class BuildTriggerCauseFluentImpl&lt;A extends BuildTriggerCauseFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements BuildTriggerCauseFluent&lt;A&gt;{
+
+    private BitbucketWebHookCauseBuilder bitbucketWebHook;
+    private GenericWebHookCauseBuilder genericWebHook;
+    private GitHubWebHookCauseBuilder githubWebHook;
+    private GitLabWebHookCauseBuilder gitlabWebHook;
+    private ImageChangeCauseBuilder imageChangeBuild;
+    private String message;
+
+<span class="nc" id="L21">    public BuildTriggerCauseFluentImpl(){</span>
+<span class="nc" id="L22">    }</span>
+<span class="nc" id="L23">    public BuildTriggerCauseFluentImpl(BuildTriggerCause instance){</span>
+<span class="nc" id="L24">            this.withBitbucketWebHook(instance.getBitbucketWebHook()); </span>
+<span class="nc" id="L25">            this.withGenericWebHook(instance.getGenericWebHook()); </span>
+<span class="nc" id="L26">            this.withGithubWebHook(instance.getGithubWebHook()); </span>
+<span class="nc" id="L27">            this.withGitlabWebHook(instance.getGitlabWebHook()); </span>
+<span class="nc" id="L28">            this.withImageChangeBuild(instance.getImageChangeBuild()); </span>
+<span class="nc" id="L29">            this.withMessage(instance.getMessage()); </span>
+<span class="nc" id="L30">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildBitbucketWebHook instead.
+ * @return The buildable object.
+ */
+@Deprecated public BitbucketWebHookCause getBitbucketWebHook(){
+<span class="nc bnc" id="L38" title="All 2 branches missed.">            return this.bitbucketWebHook!=null?this.bitbucketWebHook.build():null;</span>
+    }
+
+    public BitbucketWebHookCause buildBitbucketWebHook(){
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            return this.bitbucketWebHook!=null?this.bitbucketWebHook.build():null;</span>
+    }
+
+    public A withBitbucketWebHook(BitbucketWebHookCause bitbucketWebHook){
+<span class="nc" id="L46">            _visitables.remove(this.bitbucketWebHook);</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            if (bitbucketWebHook!=null){ this.bitbucketWebHook= new BitbucketWebHookCauseBuilder(bitbucketWebHook); _visitables.add(this.bitbucketWebHook);} return (A) this;</span>
+    }
+
+    public Boolean hasBitbucketWebHook(){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            return this.bitbucketWebHook != null;</span>
+    }
+
+    public BuildTriggerCauseFluent.BitbucketWebHookNested&lt;A&gt; withNewBitbucketWebHook(){
+<span class="nc" id="L55">            return new BitbucketWebHookNestedImpl();</span>
+    }
+
+    public BuildTriggerCauseFluent.BitbucketWebHookNested&lt;A&gt; withNewBitbucketWebHookLike(BitbucketWebHookCause item){
+<span class="nc" id="L59">            return new BitbucketWebHookNestedImpl(item);</span>
+    }
+
+    public BuildTriggerCauseFluent.BitbucketWebHookNested&lt;A&gt; editBitbucketWebHook(){
+<span class="nc" id="L63">            return withNewBitbucketWebHookLike(getBitbucketWebHook());</span>
+    }
+
+    public BuildTriggerCauseFluent.BitbucketWebHookNested&lt;A&gt; editOrNewBitbucketWebHook(){
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            return withNewBitbucketWebHookLike(getBitbucketWebHook() != null ? getBitbucketWebHook(): new BitbucketWebHookCauseBuilder().build());</span>
+    }
+
+    public BuildTriggerCauseFluent.BitbucketWebHookNested&lt;A&gt; editOrNewBitbucketWebHookLike(BitbucketWebHookCause item){
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            return withNewBitbucketWebHookLike(getBitbucketWebHook() != null ? getBitbucketWebHook(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildGenericWebHook instead.
+ * @return The buildable object.
+ */
+@Deprecated public GenericWebHookCause getGenericWebHook(){
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            return this.genericWebHook!=null?this.genericWebHook.build():null;</span>
+    }
+
+    public GenericWebHookCause buildGenericWebHook(){
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            return this.genericWebHook!=null?this.genericWebHook.build():null;</span>
+    }
+
+    public A withGenericWebHook(GenericWebHookCause genericWebHook){
+<span class="nc" id="L88">            _visitables.remove(this.genericWebHook);</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (genericWebHook!=null){ this.genericWebHook= new GenericWebHookCauseBuilder(genericWebHook); _visitables.add(this.genericWebHook);} return (A) this;</span>
+    }
+
+    public Boolean hasGenericWebHook(){
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            return this.genericWebHook != null;</span>
+    }
+
+    public BuildTriggerCauseFluent.GenericWebHookNested&lt;A&gt; withNewGenericWebHook(){
+<span class="nc" id="L97">            return new GenericWebHookNestedImpl();</span>
+    }
+
+    public BuildTriggerCauseFluent.GenericWebHookNested&lt;A&gt; withNewGenericWebHookLike(GenericWebHookCause item){
+<span class="nc" id="L101">            return new GenericWebHookNestedImpl(item);</span>
+    }
+
+    public BuildTriggerCauseFluent.GenericWebHookNested&lt;A&gt; editGenericWebHook(){
+<span class="nc" id="L105">            return withNewGenericWebHookLike(getGenericWebHook());</span>
+    }
+
+    public BuildTriggerCauseFluent.GenericWebHookNested&lt;A&gt; editOrNewGenericWebHook(){
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            return withNewGenericWebHookLike(getGenericWebHook() != null ? getGenericWebHook(): new GenericWebHookCauseBuilder().build());</span>
+    }
+
+    public BuildTriggerCauseFluent.GenericWebHookNested&lt;A&gt; editOrNewGenericWebHookLike(GenericWebHookCause item){
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            return withNewGenericWebHookLike(getGenericWebHook() != null ? getGenericWebHook(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildGithubWebHook instead.
+ * @return The buildable object.
+ */
+@Deprecated public GitHubWebHookCause getGithubWebHook(){
+<span class="nc bnc" id="L122" title="All 2 branches missed.">            return this.githubWebHook!=null?this.githubWebHook.build():null;</span>
+    }
+
+    public GitHubWebHookCause buildGithubWebHook(){
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            return this.githubWebHook!=null?this.githubWebHook.build():null;</span>
+    }
+
+    public A withGithubWebHook(GitHubWebHookCause githubWebHook){
+<span class="nc" id="L130">            _visitables.remove(this.githubWebHook);</span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">            if (githubWebHook!=null){ this.githubWebHook= new GitHubWebHookCauseBuilder(githubWebHook); _visitables.add(this.githubWebHook);} return (A) this;</span>
+    }
+
+    public Boolean hasGithubWebHook(){
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            return this.githubWebHook != null;</span>
+    }
+
+    public BuildTriggerCauseFluent.GithubWebHookNested&lt;A&gt; withNewGithubWebHook(){
+<span class="nc" id="L139">            return new GithubWebHookNestedImpl();</span>
+    }
+
+    public BuildTriggerCauseFluent.GithubWebHookNested&lt;A&gt; withNewGithubWebHookLike(GitHubWebHookCause item){
+<span class="nc" id="L143">            return new GithubWebHookNestedImpl(item);</span>
+    }
+
+    public BuildTriggerCauseFluent.GithubWebHookNested&lt;A&gt; editGithubWebHook(){
+<span class="nc" id="L147">            return withNewGithubWebHookLike(getGithubWebHook());</span>
+    }
+
+    public BuildTriggerCauseFluent.GithubWebHookNested&lt;A&gt; editOrNewGithubWebHook(){
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            return withNewGithubWebHookLike(getGithubWebHook() != null ? getGithubWebHook(): new GitHubWebHookCauseBuilder().build());</span>
+    }
+
+    public BuildTriggerCauseFluent.GithubWebHookNested&lt;A&gt; editOrNewGithubWebHookLike(GitHubWebHookCause item){
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            return withNewGithubWebHookLike(getGithubWebHook() != null ? getGithubWebHook(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildGitlabWebHook instead.
+ * @return The buildable object.
+ */
+@Deprecated public GitLabWebHookCause getGitlabWebHook(){
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            return this.gitlabWebHook!=null?this.gitlabWebHook.build():null;</span>
+    }
+
+    public GitLabWebHookCause buildGitlabWebHook(){
+<span class="nc bnc" id="L168" title="All 2 branches missed.">            return this.gitlabWebHook!=null?this.gitlabWebHook.build():null;</span>
+    }
+
+    public A withGitlabWebHook(GitLabWebHookCause gitlabWebHook){
+<span class="nc" id="L172">            _visitables.remove(this.gitlabWebHook);</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            if (gitlabWebHook!=null){ this.gitlabWebHook= new GitLabWebHookCauseBuilder(gitlabWebHook); _visitables.add(this.gitlabWebHook);} return (A) this;</span>
+    }
+
+    public Boolean hasGitlabWebHook(){
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            return this.gitlabWebHook != null;</span>
+    }
+
+    public BuildTriggerCauseFluent.GitlabWebHookNested&lt;A&gt; withNewGitlabWebHook(){
+<span class="nc" id="L181">            return new GitlabWebHookNestedImpl();</span>
+    }
+
+    public BuildTriggerCauseFluent.GitlabWebHookNested&lt;A&gt; withNewGitlabWebHookLike(GitLabWebHookCause item){
+<span class="nc" id="L185">            return new GitlabWebHookNestedImpl(item);</span>
+    }
+
+    public BuildTriggerCauseFluent.GitlabWebHookNested&lt;A&gt; editGitlabWebHook(){
+<span class="nc" id="L189">            return withNewGitlabWebHookLike(getGitlabWebHook());</span>
+    }
+
+    public BuildTriggerCauseFluent.GitlabWebHookNested&lt;A&gt; editOrNewGitlabWebHook(){
+<span class="nc bnc" id="L193" title="All 2 branches missed.">            return withNewGitlabWebHookLike(getGitlabWebHook() != null ? getGitlabWebHook(): new GitLabWebHookCauseBuilder().build());</span>
+    }
+
+    public BuildTriggerCauseFluent.GitlabWebHookNested&lt;A&gt; editOrNewGitlabWebHookLike(GitLabWebHookCause item){
+<span class="nc bnc" id="L197" title="All 2 branches missed.">            return withNewGitlabWebHookLike(getGitlabWebHook() != null ? getGitlabWebHook(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildImageChangeBuild instead.
+ * @return The buildable object.
+ */
+@Deprecated public ImageChangeCause getImageChangeBuild(){
+<span class="nc bnc" id="L206" title="All 2 branches missed.">            return this.imageChangeBuild!=null?this.imageChangeBuild.build():null;</span>
+    }
+
+    public ImageChangeCause buildImageChangeBuild(){
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            return this.imageChangeBuild!=null?this.imageChangeBuild.build():null;</span>
+    }
+
+    public A withImageChangeBuild(ImageChangeCause imageChangeBuild){
+<span class="nc" id="L214">            _visitables.remove(this.imageChangeBuild);</span>
+<span class="nc bnc" id="L215" title="All 2 branches missed.">            if (imageChangeBuild!=null){ this.imageChangeBuild= new ImageChangeCauseBuilder(imageChangeBuild); _visitables.add(this.imageChangeBuild);} return (A) this;</span>
+    }
+
+    public Boolean hasImageChangeBuild(){
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            return this.imageChangeBuild != null;</span>
+    }
+
+    public BuildTriggerCauseFluent.ImageChangeBuildNested&lt;A&gt; withNewImageChangeBuild(){
+<span class="nc" id="L223">            return new ImageChangeBuildNestedImpl();</span>
+    }
+
+    public BuildTriggerCauseFluent.ImageChangeBuildNested&lt;A&gt; withNewImageChangeBuildLike(ImageChangeCause item){
+<span class="nc" id="L227">            return new ImageChangeBuildNestedImpl(item);</span>
+    }
+
+    public BuildTriggerCauseFluent.ImageChangeBuildNested&lt;A&gt; editImageChangeBuild(){
+<span class="nc" id="L231">            return withNewImageChangeBuildLike(getImageChangeBuild());</span>
+    }
+
+    public BuildTriggerCauseFluent.ImageChangeBuildNested&lt;A&gt; editOrNewImageChangeBuild(){
+<span class="nc bnc" id="L235" title="All 2 branches missed.">            return withNewImageChangeBuildLike(getImageChangeBuild() != null ? getImageChangeBuild(): new ImageChangeCauseBuilder().build());</span>
+    }
+
+    public BuildTriggerCauseFluent.ImageChangeBuildNested&lt;A&gt; editOrNewImageChangeBuildLike(ImageChangeCause item){
+<span class="nc bnc" id="L239" title="All 2 branches missed.">            return withNewImageChangeBuildLike(getImageChangeBuild() != null ? getImageChangeBuild(): item);</span>
+    }
+
+    public String getMessage(){
+<span class="nc" id="L243">            return this.message;</span>
+    }
+
+    public A withMessage(String message){
+<span class="nc" id="L247">            this.message=message; return (A) this;</span>
+    }
+
+    public Boolean hasMessage(){
+<span class="nc bnc" id="L251" title="All 2 branches missed.">            return this.message != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L255" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L256" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L257" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L258">            BuildTriggerCauseFluentImpl that = (BuildTriggerCauseFluentImpl) o;</span>
+<span class="nc bnc" id="L259" title="All 6 branches missed.">            if (bitbucketWebHook != null ? !bitbucketWebHook.equals(that.bitbucketWebHook) :that.bitbucketWebHook != null) return false;</span>
+<span class="nc bnc" id="L260" title="All 6 branches missed.">            if (genericWebHook != null ? !genericWebHook.equals(that.genericWebHook) :that.genericWebHook != null) return false;</span>
+<span class="nc bnc" id="L261" title="All 6 branches missed.">            if (githubWebHook != null ? !githubWebHook.equals(that.githubWebHook) :that.githubWebHook != null) return false;</span>
+<span class="nc bnc" id="L262" title="All 6 branches missed.">            if (gitlabWebHook != null ? !gitlabWebHook.equals(that.gitlabWebHook) :that.gitlabWebHook != null) return false;</span>
+<span class="nc bnc" id="L263" title="All 6 branches missed.">            if (imageChangeBuild != null ? !imageChangeBuild.equals(that.imageChangeBuild) :that.imageChangeBuild != null) return false;</span>
+<span class="nc bnc" id="L264" title="All 6 branches missed.">            if (message != null ? !message.equals(that.message) :that.message != null) return false;</span>
+<span class="nc" id="L265">            return true;</span>
+    }
+
+
+    public class BitbucketWebHookNestedImpl&lt;N&gt; extends BitbucketWebHookCauseFluentImpl&lt;BuildTriggerCauseFluent.BitbucketWebHookNested&lt;N&gt;&gt; implements BuildTriggerCauseFluent.BitbucketWebHookNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BitbucketWebHookCauseBuilder builder;
+    
+<span class="nc" id="L273">            BitbucketWebHookNestedImpl(BitbucketWebHookCause item){</span>
+<span class="nc" id="L274">                    this.builder = new BitbucketWebHookCauseBuilder(this, item);</span>
+<span class="nc" id="L275">            }</span>
+<span class="nc" id="L276">            BitbucketWebHookNestedImpl(){</span>
+<span class="nc" id="L277">                    this.builder = new BitbucketWebHookCauseBuilder(this);</span>
+<span class="nc" id="L278">            }</span>
+    
+    public N and(){
+<span class="nc" id="L281">            return (N) BuildTriggerCauseFluentImpl.this.withBitbucketWebHook(builder.build());</span>
+    }
+    public N endBitbucketWebHook(){
+<span class="nc" id="L284">            return and();</span>
+    }
+
+}
+    public class GenericWebHookNestedImpl&lt;N&gt; extends GenericWebHookCauseFluentImpl&lt;BuildTriggerCauseFluent.GenericWebHookNested&lt;N&gt;&gt; implements BuildTriggerCauseFluent.GenericWebHookNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final GenericWebHookCauseBuilder builder;
+    
+<span class="nc" id="L292">            GenericWebHookNestedImpl(GenericWebHookCause item){</span>
+<span class="nc" id="L293">                    this.builder = new GenericWebHookCauseBuilder(this, item);</span>
+<span class="nc" id="L294">            }</span>
+<span class="nc" id="L295">            GenericWebHookNestedImpl(){</span>
+<span class="nc" id="L296">                    this.builder = new GenericWebHookCauseBuilder(this);</span>
+<span class="nc" id="L297">            }</span>
+    
+    public N and(){
+<span class="nc" id="L300">            return (N) BuildTriggerCauseFluentImpl.this.withGenericWebHook(builder.build());</span>
+    }
+    public N endGenericWebHook(){
+<span class="nc" id="L303">            return and();</span>
+    }
+
+}
+    public class GithubWebHookNestedImpl&lt;N&gt; extends GitHubWebHookCauseFluentImpl&lt;BuildTriggerCauseFluent.GithubWebHookNested&lt;N&gt;&gt; implements BuildTriggerCauseFluent.GithubWebHookNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final GitHubWebHookCauseBuilder builder;
+    
+<span class="nc" id="L311">            GithubWebHookNestedImpl(GitHubWebHookCause item){</span>
+<span class="nc" id="L312">                    this.builder = new GitHubWebHookCauseBuilder(this, item);</span>
+<span class="nc" id="L313">            }</span>
+<span class="nc" id="L314">            GithubWebHookNestedImpl(){</span>
+<span class="nc" id="L315">                    this.builder = new GitHubWebHookCauseBuilder(this);</span>
+<span class="nc" id="L316">            }</span>
+    
+    public N and(){
+<span class="nc" id="L319">            return (N) BuildTriggerCauseFluentImpl.this.withGithubWebHook(builder.build());</span>
+    }
+    public N endGithubWebHook(){
+<span class="nc" id="L322">            return and();</span>
+    }
+
+}
+    public class GitlabWebHookNestedImpl&lt;N&gt; extends GitLabWebHookCauseFluentImpl&lt;BuildTriggerCauseFluent.GitlabWebHookNested&lt;N&gt;&gt; implements BuildTriggerCauseFluent.GitlabWebHookNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final GitLabWebHookCauseBuilder builder;
+    
+<span class="nc" id="L330">            GitlabWebHookNestedImpl(GitLabWebHookCause item){</span>
+<span class="nc" id="L331">                    this.builder = new GitLabWebHookCauseBuilder(this, item);</span>
+<span class="nc" id="L332">            }</span>
+<span class="nc" id="L333">            GitlabWebHookNestedImpl(){</span>
+<span class="nc" id="L334">                    this.builder = new GitLabWebHookCauseBuilder(this);</span>
+<span class="nc" id="L335">            }</span>
+    
+    public N and(){
+<span class="nc" id="L338">            return (N) BuildTriggerCauseFluentImpl.this.withGitlabWebHook(builder.build());</span>
+    }
+    public N endGitlabWebHook(){
+<span class="nc" id="L341">            return and();</span>
+    }
+
+}
+    public class ImageChangeBuildNestedImpl&lt;N&gt; extends ImageChangeCauseFluentImpl&lt;BuildTriggerCauseFluent.ImageChangeBuildNested&lt;N&gt;&gt; implements BuildTriggerCauseFluent.ImageChangeBuildNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageChangeCauseBuilder builder;
+    
+<span class="nc" id="L349">            ImageChangeBuildNestedImpl(ImageChangeCause item){</span>
+<span class="nc" id="L350">                    this.builder = new ImageChangeCauseBuilder(this, item);</span>
+<span class="nc" id="L351">            }</span>
+<span class="nc" id="L352">            ImageChangeBuildNestedImpl(){</span>
+<span class="nc" id="L353">                    this.builder = new ImageChangeCauseBuilder(this);</span>
+<span class="nc" id="L354">            }</span>
+    
+    public N and(){
+<span class="nc" id="L357">            return (N) BuildTriggerCauseFluentImpl.this.withImageChangeBuild(builder.build());</span>
+    }
+    public N endImageChangeBuild(){
+<span class="nc" id="L360">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

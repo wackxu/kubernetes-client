@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TypedVisitor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.builder</a> &gt; <span class="el_source">TypedVisitor.java</span></div><h1>TypedVisitor.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.builder;
+
+import java.lang.reflect.Array;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
+import java.util.ArrayList;
+import java.lang.Class;
+import java.util.List;
+import java.lang.reflect.GenericArrayType;
+import java.util.Map;
+import java.util.LinkedHashMap;
+
+<span class="nc" id="L14">public abstract class TypedVisitor&lt;V&gt; implements io.fabric8.kubernetes.api.builder.Visitor&lt;V&gt;{</span>
+
+
+
+    public Class&lt;V&gt; getType(){
+<span class="nc" id="L19">            return (Class&lt;V&gt;) getTypeArguments(TypedVisitor.class, getClass()).get(0);</span>
+    }
+
+    private static Class getClass(Type type){
+<span class="nc bnc" id="L23" title="All 2 branches missed.">            if (type instanceof Class) {</span>
+<span class="nc" id="L24">    return (Class) type;</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">} else if (type instanceof ParameterizedType) {</span>
+<span class="nc" id="L26">    return getClass(((ParameterizedType) type).getRawType());</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">} else if (type instanceof GenericArrayType) {</span>
+<span class="nc" id="L28">    Type componentType = ((GenericArrayType) type).getGenericComponentType();</span>
+<span class="nc" id="L29">    Class&lt;?&gt; componentClass = getClass(componentType);</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">    if (componentClass != null) {</span>
+<span class="nc" id="L31">        return Array.newInstance(componentClass, 0).getClass();</span>
+    } else {
+<span class="nc" id="L33">        return null;</span>
+    }
+} else {
+<span class="nc" id="L36">    return null;</span>
+}
+    }
+
+    static &lt;T&gt;List&lt;Class&gt; getTypeArguments(Class baseClass,Class childClass){
+<span class="nc" id="L41">            Map&lt;Type, Type&gt; resolvedTypes = new LinkedHashMap&lt;Type, Type&gt;();</span>
+<span class="nc" id="L42">            Type type = childClass;</span>
+            // start walking up the inheritance hierarchy until we hit baseClass
+<span class="nc bnc" id="L44" title="All 2 branches missed.">while (!getClass(type).equals(baseClass)) {</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">    if (type instanceof Class) {</span>
+        // there is no useful information for us in raw types, so just keep going.
+<span class="nc" id="L47">        type = ((Class) type).getGenericSuperclass();</span>
+    } else {
+<span class="nc" id="L49">        ParameterizedType parameterizedType = (ParameterizedType) type;</span>
+<span class="nc" id="L50">        Class&lt;?&gt; rawType = (Class) parameterizedType.getRawType();</span>
+<span class="nc" id="L51">        Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();</span>
+<span class="nc" id="L52">        TypeVariable&lt;?&gt;[] typeParameters = rawType.getTypeParameters();</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        for (int i = 0; i &lt; actualTypeArguments.length; i++) {</span>
+<span class="nc" id="L54">            resolvedTypes.put(typeParameters[i], actualTypeArguments[i]);</span>
+        }
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (!rawType.equals(baseClass)) {</span>
+<span class="nc" id="L57">            type = rawType.getGenericSuperclass();</span>
+        }
+<span class="nc" id="L59">    }</span>
+}
+            // finally, for each actual type argument provided to baseClass, determine (if possible)
+// the raw class for that type argument.
+Type[] actualTypeArguments;
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            if (type instanceof Class) {</span>
+<span class="nc" id="L65">    actualTypeArguments = ((Class) type).getTypeParameters();</span>
+} else {
+<span class="nc" id="L67">    actualTypeArguments = ((ParameterizedType) type).getActualTypeArguments();</span>
+}
+<span class="nc" id="L69">            List&lt;Class&gt; typeArgumentsAsClasses = new ArrayList&lt;Class&gt;();</span>
+            // resolve types by chasing down type variables.
+<span class="nc bnc" id="L71" title="All 2 branches missed.">for (Type baseType : actualTypeArguments) {</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">    while (resolvedTypes.containsKey(baseType)) {</span>
+<span class="nc" id="L73">        baseType = resolvedTypes.get(baseType);</span>
+    }
+<span class="nc" id="L75">    typeArgumentsAsClasses.add(getClass(baseType));</span>
+}
+<span class="nc" id="L77">            return typeArgumentsAsClasses;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExternalMetricStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ExternalMetricStatusFluentImpl.java</span></div><h1>ExternalMetricStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import java.lang.String;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import java.lang.Boolean;
+import java.lang.Override;
+import com.fasterxml.jackson.core.JsonParser;
+import javax.validation.Valid;
+import java.lang.Object;
+
+public class ExternalMetricStatusFluentImpl&lt;A extends ExternalMetricStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ExternalMetricStatusFluent&lt;A&gt;{
+
+    private QuantityBuilder currentAverageValue;
+    private QuantityBuilder currentValue;
+    private String metricName;
+    private LabelSelectorBuilder metricSelector;
+
+<span class="nc" id="L26">    public ExternalMetricStatusFluentImpl(){</span>
+<span class="nc" id="L27">    }</span>
+<span class="nc" id="L28">    public ExternalMetricStatusFluentImpl(ExternalMetricStatus instance){</span>
+<span class="nc" id="L29">            this.withCurrentAverageValue(instance.getCurrentAverageValue()); </span>
+<span class="nc" id="L30">            this.withCurrentValue(instance.getCurrentValue()); </span>
+<span class="nc" id="L31">            this.withMetricName(instance.getMetricName()); </span>
+<span class="nc" id="L32">            this.withMetricSelector(instance.getMetricSelector()); </span>
+<span class="nc" id="L33">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildCurrentAverageValue instead.
+ * @return The buildable object.
+ */
+@Deprecated public Quantity getCurrentAverageValue(){
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            return this.currentAverageValue!=null?this.currentAverageValue.build():null;</span>
+    }
+
+    public Quantity buildCurrentAverageValue(){
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            return this.currentAverageValue!=null?this.currentAverageValue.build():null;</span>
+    }
+
+    public A withCurrentAverageValue(Quantity currentAverageValue){
+<span class="nc" id="L49">            _visitables.remove(this.currentAverageValue);</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            if (currentAverageValue!=null){ this.currentAverageValue= new QuantityBuilder(currentAverageValue); _visitables.add(this.currentAverageValue);} return (A) this;</span>
+    }
+
+    public Boolean hasCurrentAverageValue(){
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            return this.currentAverageValue != null;</span>
+    }
+
+    public A withNewCurrentAverageValue(String amount,String format){
+<span class="nc" id="L58">            return (A)withCurrentAverageValue(new Quantity(amount, format));</span>
+    }
+
+    public A withNewCurrentAverageValue(String amount){
+<span class="nc" id="L62">            return (A)withCurrentAverageValue(new Quantity(amount));</span>
+    }
+
+    public ExternalMetricStatusFluent.CurrentAverageValueNested&lt;A&gt; withNewCurrentAverageValue(){
+<span class="nc" id="L66">            return new CurrentAverageValueNestedImpl();</span>
+    }
+
+    public ExternalMetricStatusFluent.CurrentAverageValueNested&lt;A&gt; withNewCurrentAverageValueLike(Quantity item){
+<span class="nc" id="L70">            return new CurrentAverageValueNestedImpl(item);</span>
+    }
+
+    public ExternalMetricStatusFluent.CurrentAverageValueNested&lt;A&gt; editCurrentAverageValue(){
+<span class="nc" id="L74">            return withNewCurrentAverageValueLike(getCurrentAverageValue());</span>
+    }
+
+    public ExternalMetricStatusFluent.CurrentAverageValueNested&lt;A&gt; editOrNewCurrentAverageValue(){
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            return withNewCurrentAverageValueLike(getCurrentAverageValue() != null ? getCurrentAverageValue(): new QuantityBuilder().build());</span>
+    }
+
+    public ExternalMetricStatusFluent.CurrentAverageValueNested&lt;A&gt; editOrNewCurrentAverageValueLike(Quantity item){
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            return withNewCurrentAverageValueLike(getCurrentAverageValue() != null ? getCurrentAverageValue(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildCurrentValue instead.
+ * @return The buildable object.
+ */
+@Deprecated public Quantity getCurrentValue(){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            return this.currentValue!=null?this.currentValue.build():null;</span>
+    }
+
+    public Quantity buildCurrentValue(){
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            return this.currentValue!=null?this.currentValue.build():null;</span>
+    }
+
+    public A withCurrentValue(Quantity currentValue){
+<span class="nc" id="L99">            _visitables.remove(this.currentValue);</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            if (currentValue!=null){ this.currentValue= new QuantityBuilder(currentValue); _visitables.add(this.currentValue);} return (A) this;</span>
+    }
+
+    public Boolean hasCurrentValue(){
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            return this.currentValue != null;</span>
+    }
+
+    public A withNewCurrentValue(String amount,String format){
+<span class="nc" id="L108">            return (A)withCurrentValue(new Quantity(amount, format));</span>
+    }
+
+    public A withNewCurrentValue(String amount){
+<span class="nc" id="L112">            return (A)withCurrentValue(new Quantity(amount));</span>
+    }
+
+    public ExternalMetricStatusFluent.CurrentValueNested&lt;A&gt; withNewCurrentValue(){
+<span class="nc" id="L116">            return new CurrentValueNestedImpl();</span>
+    }
+
+    public ExternalMetricStatusFluent.CurrentValueNested&lt;A&gt; withNewCurrentValueLike(Quantity item){
+<span class="nc" id="L120">            return new CurrentValueNestedImpl(item);</span>
+    }
+
+    public ExternalMetricStatusFluent.CurrentValueNested&lt;A&gt; editCurrentValue(){
+<span class="nc" id="L124">            return withNewCurrentValueLike(getCurrentValue());</span>
+    }
+
+    public ExternalMetricStatusFluent.CurrentValueNested&lt;A&gt; editOrNewCurrentValue(){
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            return withNewCurrentValueLike(getCurrentValue() != null ? getCurrentValue(): new QuantityBuilder().build());</span>
+    }
+
+    public ExternalMetricStatusFluent.CurrentValueNested&lt;A&gt; editOrNewCurrentValueLike(Quantity item){
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            return withNewCurrentValueLike(getCurrentValue() != null ? getCurrentValue(): item);</span>
+    }
+
+    public String getMetricName(){
+<span class="nc" id="L136">            return this.metricName;</span>
+    }
+
+    public A withMetricName(String metricName){
+<span class="nc" id="L140">            this.metricName=metricName; return (A) this;</span>
+    }
+
+    public Boolean hasMetricName(){
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            return this.metricName != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetricSelector instead.
+ * @return The buildable object.
+ */
+@Deprecated public LabelSelector getMetricSelector(){
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            return this.metricSelector!=null?this.metricSelector.build():null;</span>
+    }
+
+    public LabelSelector buildMetricSelector(){
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            return this.metricSelector!=null?this.metricSelector.build():null;</span>
+    }
+
+    public A withMetricSelector(LabelSelector metricSelector){
+<span class="nc" id="L161">            _visitables.remove(this.metricSelector);</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (metricSelector!=null){ this.metricSelector= new LabelSelectorBuilder(metricSelector); _visitables.add(this.metricSelector);} return (A) this;</span>
+    }
+
+    public Boolean hasMetricSelector(){
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            return this.metricSelector != null;</span>
+    }
+
+    public ExternalMetricStatusFluent.MetricSelectorNested&lt;A&gt; withNewMetricSelector(){
+<span class="nc" id="L170">            return new MetricSelectorNestedImpl();</span>
+    }
+
+    public ExternalMetricStatusFluent.MetricSelectorNested&lt;A&gt; withNewMetricSelectorLike(LabelSelector item){
+<span class="nc" id="L174">            return new MetricSelectorNestedImpl(item);</span>
+    }
+
+    public ExternalMetricStatusFluent.MetricSelectorNested&lt;A&gt; editMetricSelector(){
+<span class="nc" id="L178">            return withNewMetricSelectorLike(getMetricSelector());</span>
+    }
+
+    public ExternalMetricStatusFluent.MetricSelectorNested&lt;A&gt; editOrNewMetricSelector(){
+<span class="nc bnc" id="L182" title="All 2 branches missed.">            return withNewMetricSelectorLike(getMetricSelector() != null ? getMetricSelector(): new LabelSelectorBuilder().build());</span>
+    }
+
+    public ExternalMetricStatusFluent.MetricSelectorNested&lt;A&gt; editOrNewMetricSelectorLike(LabelSelector item){
+<span class="nc bnc" id="L186" title="All 2 branches missed.">            return withNewMetricSelectorLike(getMetricSelector() != null ? getMetricSelector(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L190" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L191" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L193">            ExternalMetricStatusFluentImpl that = (ExternalMetricStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L194" title="All 6 branches missed.">            if (currentAverageValue != null ? !currentAverageValue.equals(that.currentAverageValue) :that.currentAverageValue != null) return false;</span>
+<span class="nc bnc" id="L195" title="All 6 branches missed.">            if (currentValue != null ? !currentValue.equals(that.currentValue) :that.currentValue != null) return false;</span>
+<span class="nc bnc" id="L196" title="All 6 branches missed.">            if (metricName != null ? !metricName.equals(that.metricName) :that.metricName != null) return false;</span>
+<span class="nc bnc" id="L197" title="All 6 branches missed.">            if (metricSelector != null ? !metricSelector.equals(that.metricSelector) :that.metricSelector != null) return false;</span>
+<span class="nc" id="L198">            return true;</span>
+    }
+
+
+    public class CurrentAverageValueNestedImpl&lt;N&gt; extends QuantityFluentImpl&lt;ExternalMetricStatusFluent.CurrentAverageValueNested&lt;N&gt;&gt; implements ExternalMetricStatusFluent.CurrentAverageValueNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final QuantityBuilder builder;
+    
+<span class="nc" id="L206">            CurrentAverageValueNestedImpl(Quantity item){</span>
+<span class="nc" id="L207">                    this.builder = new QuantityBuilder(this, item);</span>
+<span class="nc" id="L208">            }</span>
+<span class="nc" id="L209">            CurrentAverageValueNestedImpl(){</span>
+<span class="nc" id="L210">                    this.builder = new QuantityBuilder(this);</span>
+<span class="nc" id="L211">            }</span>
+    
+    public N and(){
+<span class="nc" id="L214">            return (N) ExternalMetricStatusFluentImpl.this.withCurrentAverageValue(builder.build());</span>
+    }
+    public N endCurrentAverageValue(){
+<span class="nc" id="L217">            return and();</span>
+    }
+
+}
+    public class CurrentValueNestedImpl&lt;N&gt; extends QuantityFluentImpl&lt;ExternalMetricStatusFluent.CurrentValueNested&lt;N&gt;&gt; implements ExternalMetricStatusFluent.CurrentValueNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final QuantityBuilder builder;
+    
+<span class="nc" id="L225">            CurrentValueNestedImpl(Quantity item){</span>
+<span class="nc" id="L226">                    this.builder = new QuantityBuilder(this, item);</span>
+<span class="nc" id="L227">            }</span>
+<span class="nc" id="L228">            CurrentValueNestedImpl(){</span>
+<span class="nc" id="L229">                    this.builder = new QuantityBuilder(this);</span>
+<span class="nc" id="L230">            }</span>
+    
+    public N and(){
+<span class="nc" id="L233">            return (N) ExternalMetricStatusFluentImpl.this.withCurrentValue(builder.build());</span>
+    }
+    public N endCurrentValue(){
+<span class="nc" id="L236">            return and();</span>
+    }
+
+}
+    public class MetricSelectorNestedImpl&lt;N&gt; extends LabelSelectorFluentImpl&lt;ExternalMetricStatusFluent.MetricSelectorNested&lt;N&gt;&gt; implements ExternalMetricStatusFluent.MetricSelectorNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LabelSelectorBuilder builder;
+    
+<span class="nc" id="L244">            MetricSelectorNestedImpl(LabelSelector item){</span>
+<span class="nc" id="L245">                    this.builder = new LabelSelectorBuilder(this, item);</span>
+<span class="nc" id="L246">            }</span>
+<span class="nc" id="L247">            MetricSelectorNestedImpl(){</span>
+<span class="nc" id="L248">                    this.builder = new LabelSelectorBuilder(this);</span>
+<span class="nc" id="L249">            }</span>
+    
+    public N and(){
+<span class="nc" id="L252">            return (N) ExternalMetricStatusFluentImpl.this.withMetricSelector(builder.build());</span>
+    }
+    public N endMetricSelector(){
+<span class="nc" id="L255">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

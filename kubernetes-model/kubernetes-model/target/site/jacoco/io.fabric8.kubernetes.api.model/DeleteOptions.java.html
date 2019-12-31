@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeleteOptions.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">DeleteOptions.java</span></div><h1>DeleteOptions.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;dryRun&quot;,
+    &quot;gracePeriodSeconds&quot;,
+    &quot;orphanDependents&quot;,
+    &quot;preconditions&quot;,
+    &quot;propagationPolicy&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L42">@ToString</span>
+<span class="nc bnc" id="L43" title="All 70 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class DeleteOptions implements KubernetesResource
+{
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L53">    @NotNull</span>
+    @JsonProperty(&quot;apiVersion&quot;)
+    private String apiVersion = &quot;v1&quot;;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L60">    @JsonProperty(&quot;dryRun&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;String&gt; dryRun = new ArrayList&lt;String&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;gracePeriodSeconds&quot;)
+    private Long gracePeriodSeconds;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L75">    @NotNull</span>
+    @JsonProperty(&quot;kind&quot;)
+    private String kind = &quot;DeleteOptions&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;orphanDependents&quot;)
+    private Boolean orphanDependents;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;preconditions&quot;)
+    @Valid
+    private Preconditions preconditions;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;propagationPolicy&quot;)
+    private String propagationPolicy;
+<span class="nc" id="L97">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L104">    public DeleteOptions() {</span>
+<span class="nc" id="L105">    }</span>
+
+    /**
+     * 
+     * @param orphanDependents
+     * @param apiVersion
+     * @param dryRun
+     * @param kind
+     * @param preconditions
+     * @param gracePeriodSeconds
+     * @param propagationPolicy
+     */
+<span class="nc" id="L117">    public DeleteOptions(String apiVersion, List&lt;String&gt; dryRun, Long gracePeriodSeconds, String kind, Boolean orphanDependents, Preconditions preconditions, String propagationPolicy) {</span>
+<span class="nc" id="L118">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L119">        this.dryRun = dryRun;</span>
+<span class="nc" id="L120">        this.gracePeriodSeconds = gracePeriodSeconds;</span>
+<span class="nc" id="L121">        this.kind = kind;</span>
+<span class="nc" id="L122">        this.orphanDependents = orphanDependents;</span>
+<span class="nc" id="L123">        this.preconditions = preconditions;</span>
+<span class="nc" id="L124">        this.propagationPolicy = propagationPolicy;</span>
+<span class="nc" id="L125">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public String getApiVersion() {
+<span class="nc" id="L136">        return apiVersion;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param apiVersion
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public void setApiVersion(String apiVersion) {
+<span class="nc" id="L148">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L149">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The dryRun
+     */
+    @JsonProperty(&quot;dryRun&quot;)
+    public List&lt;String&gt; getDryRun() {
+<span class="nc" id="L159">        return dryRun;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param dryRun
+     *     The dryRun
+     */
+    @JsonProperty(&quot;dryRun&quot;)
+    public void setDryRun(List&lt;String&gt; dryRun) {
+<span class="nc" id="L170">        this.dryRun = dryRun;</span>
+<span class="nc" id="L171">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The gracePeriodSeconds
+     */
+    @JsonProperty(&quot;gracePeriodSeconds&quot;)
+    public Long getGracePeriodSeconds() {
+<span class="nc" id="L181">        return gracePeriodSeconds;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param gracePeriodSeconds
+     *     The gracePeriodSeconds
+     */
+    @JsonProperty(&quot;gracePeriodSeconds&quot;)
+    public void setGracePeriodSeconds(Long gracePeriodSeconds) {
+<span class="nc" id="L192">        this.gracePeriodSeconds = gracePeriodSeconds;</span>
+<span class="nc" id="L193">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public String getKind() {
+<span class="nc" id="L204">        return kind;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param kind
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public void setKind(String kind) {
+<span class="nc" id="L216">        this.kind = kind;</span>
+<span class="nc" id="L217">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The orphanDependents
+     */
+    @JsonProperty(&quot;orphanDependents&quot;)
+    public Boolean getOrphanDependents() {
+<span class="nc" id="L227">        return orphanDependents;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param orphanDependents
+     *     The orphanDependents
+     */
+    @JsonProperty(&quot;orphanDependents&quot;)
+    public void setOrphanDependents(Boolean orphanDependents) {
+<span class="nc" id="L238">        this.orphanDependents = orphanDependents;</span>
+<span class="nc" id="L239">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The preconditions
+     */
+    @JsonProperty(&quot;preconditions&quot;)
+    public Preconditions getPreconditions() {
+<span class="nc" id="L249">        return preconditions;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param preconditions
+     *     The preconditions
+     */
+    @JsonProperty(&quot;preconditions&quot;)
+    public void setPreconditions(Preconditions preconditions) {
+<span class="nc" id="L260">        this.preconditions = preconditions;</span>
+<span class="nc" id="L261">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The propagationPolicy
+     */
+    @JsonProperty(&quot;propagationPolicy&quot;)
+    public String getPropagationPolicy() {
+<span class="nc" id="L271">        return propagationPolicy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param propagationPolicy
+     *     The propagationPolicy
+     */
+    @JsonProperty(&quot;propagationPolicy&quot;)
+    public void setPropagationPolicy(String propagationPolicy) {
+<span class="nc" id="L282">        this.propagationPolicy = propagationPolicy;</span>
+<span class="nc" id="L283">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L287">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L292">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L293">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

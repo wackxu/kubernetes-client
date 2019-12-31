@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OAuthAuthorizeToken.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">OAuthAuthorizeToken.java</span></div><h1>OAuthAuthorizeToken.java</h1><pre class="source lang-java linenums">
+package io.fabric8.openshift.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import io.fabric8.kubernetes.model.annotation.ApiGroup;
+import io.fabric8.kubernetes.model.annotation.ApiVersion;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import io.sundr.transform.annotations.VelocityTransformation;
+import io.sundr.transform.annotations.VelocityTransformations;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;clientName&quot;,
+    &quot;codeChallenge&quot;,
+    &quot;codeChallengeMethod&quot;,
+    &quot;expiresIn&quot;,
+    &quot;redirectURI&quot;,
+    &quot;scopes&quot;,
+    &quot;state&quot;,
+    &quot;userName&quot;,
+    &quot;userUID&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L53">@ToString</span>
+<span class="nc bnc" id="L54" title="All 110 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+@ApiVersion(&quot;v1&quot;)
+@ApiGroup(&quot;oauth.openshift.io&quot;)
+@VelocityTransformations({
+    @VelocityTransformation(value = &quot;/manifest.vm&quot;, outputPath = &quot;openshift.properties&quot;, gather = true)
+})
+public class OAuthAuthorizeToken implements HasMetadata
+{
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L69">    @NotNull</span>
+    @JsonProperty(&quot;apiVersion&quot;)
+    private String apiVersion = &quot;oauth.openshift.io/v1&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;clientName&quot;)
+    private String clientName;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;codeChallenge&quot;)
+    private String codeChallenge;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;codeChallengeMethod&quot;)
+    private String codeChallengeMethod;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;expiresIn&quot;)
+    private Long expiresIn;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L101">    @NotNull</span>
+    @JsonProperty(&quot;kind&quot;)
+    private String kind = &quot;OAuthAuthorizeToken&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    @Valid
+    @CheckObjectMeta(minimal = true)
+    private ObjectMeta metadata;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;redirectURI&quot;)
+    private String redirectURI;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L122">    @JsonProperty(&quot;scopes&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;String&gt; scopes = new ArrayList&lt;String&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;state&quot;)
+    private String state;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;userName&quot;)
+    private String userName;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;userUID&quot;)
+    private String userUID;
+<span class="nc" id="L144">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L151">    public OAuthAuthorizeToken() {</span>
+<span class="nc" id="L152">    }</span>
+
+    /**
+     * 
+     * @param expiresIn
+     * @param redirectURI
+     * @param metadata
+     * @param apiVersion
+     * @param clientName
+     * @param kind
+     * @param codeChallenge
+     * @param codeChallengeMethod
+     * @param scopes
+     * @param state
+     * @param userName
+     * @param userUID
+     */
+<span class="nc" id="L169">    public OAuthAuthorizeToken(String apiVersion, String clientName, String codeChallenge, String codeChallengeMethod, Long expiresIn, String kind, ObjectMeta metadata, String redirectURI, List&lt;String&gt; scopes, String state, String userName, String userUID) {</span>
+<span class="nc" id="L170">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L171">        this.clientName = clientName;</span>
+<span class="nc" id="L172">        this.codeChallenge = codeChallenge;</span>
+<span class="nc" id="L173">        this.codeChallengeMethod = codeChallengeMethod;</span>
+<span class="nc" id="L174">        this.expiresIn = expiresIn;</span>
+<span class="nc" id="L175">        this.kind = kind;</span>
+<span class="nc" id="L176">        this.metadata = metadata;</span>
+<span class="nc" id="L177">        this.redirectURI = redirectURI;</span>
+<span class="nc" id="L178">        this.scopes = scopes;</span>
+<span class="nc" id="L179">        this.state = state;</span>
+<span class="nc" id="L180">        this.userName = userName;</span>
+<span class="nc" id="L181">        this.userUID = userUID;</span>
+<span class="nc" id="L182">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public String getApiVersion() {
+<span class="nc" id="L193">        return apiVersion;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param apiVersion
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public void setApiVersion(String apiVersion) {
+<span class="nc" id="L205">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L206">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The clientName
+     */
+    @JsonProperty(&quot;clientName&quot;)
+    public String getClientName() {
+<span class="nc" id="L216">        return clientName;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param clientName
+     *     The clientName
+     */
+    @JsonProperty(&quot;clientName&quot;)
+    public void setClientName(String clientName) {
+<span class="nc" id="L227">        this.clientName = clientName;</span>
+<span class="nc" id="L228">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The codeChallenge
+     */
+    @JsonProperty(&quot;codeChallenge&quot;)
+    public String getCodeChallenge() {
+<span class="nc" id="L238">        return codeChallenge;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param codeChallenge
+     *     The codeChallenge
+     */
+    @JsonProperty(&quot;codeChallenge&quot;)
+    public void setCodeChallenge(String codeChallenge) {
+<span class="nc" id="L249">        this.codeChallenge = codeChallenge;</span>
+<span class="nc" id="L250">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The codeChallengeMethod
+     */
+    @JsonProperty(&quot;codeChallengeMethod&quot;)
+    public String getCodeChallengeMethod() {
+<span class="nc" id="L260">        return codeChallengeMethod;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param codeChallengeMethod
+     *     The codeChallengeMethod
+     */
+    @JsonProperty(&quot;codeChallengeMethod&quot;)
+    public void setCodeChallengeMethod(String codeChallengeMethod) {
+<span class="nc" id="L271">        this.codeChallengeMethod = codeChallengeMethod;</span>
+<span class="nc" id="L272">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The expiresIn
+     */
+    @JsonProperty(&quot;expiresIn&quot;)
+    public Long getExpiresIn() {
+<span class="nc" id="L282">        return expiresIn;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param expiresIn
+     *     The expiresIn
+     */
+    @JsonProperty(&quot;expiresIn&quot;)
+    public void setExpiresIn(Long expiresIn) {
+<span class="nc" id="L293">        this.expiresIn = expiresIn;</span>
+<span class="nc" id="L294">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public String getKind() {
+<span class="nc" id="L305">        return kind;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param kind
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public void setKind(String kind) {
+<span class="nc" id="L317">        this.kind = kind;</span>
+<span class="nc" id="L318">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public ObjectMeta getMetadata() {
+<span class="nc" id="L328">        return metadata;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param metadata
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public void setMetadata(ObjectMeta metadata) {
+<span class="nc" id="L339">        this.metadata = metadata;</span>
+<span class="nc" id="L340">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The redirectURI
+     */
+    @JsonProperty(&quot;redirectURI&quot;)
+    public String getRedirectURI() {
+<span class="nc" id="L350">        return redirectURI;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param redirectURI
+     *     The redirectURI
+     */
+    @JsonProperty(&quot;redirectURI&quot;)
+    public void setRedirectURI(String redirectURI) {
+<span class="nc" id="L361">        this.redirectURI = redirectURI;</span>
+<span class="nc" id="L362">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The scopes
+     */
+    @JsonProperty(&quot;scopes&quot;)
+    public List&lt;String&gt; getScopes() {
+<span class="nc" id="L372">        return scopes;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param scopes
+     *     The scopes
+     */
+    @JsonProperty(&quot;scopes&quot;)
+    public void setScopes(List&lt;String&gt; scopes) {
+<span class="nc" id="L383">        this.scopes = scopes;</span>
+<span class="nc" id="L384">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The state
+     */
+    @JsonProperty(&quot;state&quot;)
+    public String getState() {
+<span class="nc" id="L394">        return state;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param state
+     *     The state
+     */
+    @JsonProperty(&quot;state&quot;)
+    public void setState(String state) {
+<span class="nc" id="L405">        this.state = state;</span>
+<span class="nc" id="L406">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The userName
+     */
+    @JsonProperty(&quot;userName&quot;)
+    public String getUserName() {
+<span class="nc" id="L416">        return userName;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param userName
+     *     The userName
+     */
+    @JsonProperty(&quot;userName&quot;)
+    public void setUserName(String userName) {
+<span class="nc" id="L427">        this.userName = userName;</span>
+<span class="nc" id="L428">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The userUID
+     */
+    @JsonProperty(&quot;userUID&quot;)
+    public String getUserUID() {
+<span class="nc" id="L438">        return userUID;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param userUID
+     *     The userUID
+     */
+    @JsonProperty(&quot;userUID&quot;)
+    public void setUserUID(String userUID) {
+<span class="nc" id="L449">        this.userUID = userUID;</span>
+<span class="nc" id="L450">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L454">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L459">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L460">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

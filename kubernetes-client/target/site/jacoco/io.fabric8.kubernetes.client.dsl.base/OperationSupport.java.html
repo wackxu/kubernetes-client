@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OperationSupport.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.dsl.base</a> &gt; <span class="el_source">OperationSupport.java</span></div><h1>OperationSupport.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.dsl.base;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import io.fabric8.kubernetes.client.internal.VersionUsageUtils;
+import io.fabric8.kubernetes.client.utils.Serialization;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import io.fabric8.kubernetes.api.model.DeleteOptions;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.Status;
+import io.fabric8.kubernetes.api.model.StatusBuilder;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.utils.URLUtils;
+import io.fabric8.kubernetes.client.utils.Utils;
+import io.fabric8.zjsonpatch.JsonDiff;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Collections;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+
+import static io.fabric8.kubernetes.client.internal.PatchUtils.patchMapper;
+
+public class OperationSupport {
+
+
+<span class="fc" id="L54">  public static final MediaType JSON = MediaType.parse(&quot;application/json&quot;);</span>
+<span class="fc" id="L55">  public static final MediaType JSON_PATCH = MediaType.parse(&quot;application/json-patch+json&quot;);</span>
+<span class="fc" id="L56">  protected static final ObjectMapper JSON_MAPPER = Serialization.jsonMapper();</span>
+<span class="fc" id="L57">  protected static final ObjectMapper YAML_MAPPER = Serialization.yamlMapper();</span>
+  private static final String CLIENT_STATUS_FLAG = &quot;CLIENT_STATUS_FLAG&quot;;
+
+  protected final OkHttpClient client;
+  protected final Config config;
+  protected final String resourceT;
+  protected final String namespace;
+  protected final String name;
+  protected final String apiGroupName;
+  protected final String apiGroupVersion;
+
+  public OperationSupport() {
+<span class="fc" id="L69">    this(null, null, null, null, null, null, null);</span>
+<span class="fc" id="L70">  }</span>
+
+  public OperationSupport(OkHttpClient client, ConfigAndApiGroupsInfo configAndApiGroupsInfo, String resourceT, String namespace, String name) {
+<span class="nc" id="L73">    this(client, configAndApiGroupsInfo.getConfig(), configAndApiGroupsInfo.getApiGroupName(), configAndApiGroupsInfo.getApiGroupVersion(), resourceT, namespace ,name);</span>
+<span class="nc" id="L74">  }</span>
+
+<span class="fc" id="L76">  public OperationSupport(OkHttpClient client, Config config, String apiGroupName, String apiGroupVersion, String resourceT, String namespace, String name) {</span>
+<span class="fc" id="L77">    this.client = client;</span>
+<span class="fc" id="L78">    this.config = config;</span>
+<span class="fc" id="L79">    this.resourceT = resourceT;</span>
+<span class="fc" id="L80">    this.namespace = namespace;</span>
+<span class="fc" id="L81">    this.name = name;</span>
+<span class="fc" id="L82">    this.apiGroupName = apiGroupName;</span>
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">    if (apiGroupVersion != null) {</span>
+<span class="nc" id="L84">      this.apiGroupVersion = apiGroupVersion;</span>
+<span class="pc bpc" id="L85" title="1 of 2 branches missed.">    } else if (config != null) {</span>
+<span class="nc" id="L86">      this.apiGroupVersion = config.getApiVersion();</span>
+    } else {
+<span class="fc" id="L88">      this.apiGroupVersion = &quot;v1&quot;;</span>
+    }
+<span class="fc" id="L90">  }</span>
+
+  public String getAPIGroup() {
+<span class="nc" id="L93">    return apiGroupName;</span>
+  }
+
+  public String getAPIVersion() {
+<span class="nc" id="L97">    return apiGroupVersion;</span>
+  }
+
+  public String getResourceT() {
+<span class="nc" id="L101">    return resourceT;</span>
+  }
+
+  public String getNamespace() {
+<span class="nc" id="L105">    return namespace;</span>
+  }
+
+  public String getName() {
+<span class="nc" id="L109">    return name;</span>
+  }
+
+  public boolean isResourceNamespaced() {
+<span class="nc" id="L113">    return true;</span>
+  }
+
+  public URL getRootUrl() {
+    try {
+<span class="nc bnc" id="L118" title="All 2 branches missed.">      if (!Utils.isNullOrEmpty(apiGroupName)) {</span>
+<span class="nc" id="L119">        return new URL(URLUtils.join(config.getMasterUrl().toString(), &quot;apis&quot;, apiGroupName, apiGroupVersion));</span>
+      }
+<span class="nc" id="L121">      return new URL(URLUtils.join(config.getMasterUrl().toString(), &quot;api&quot;, apiGroupVersion));</span>
+<span class="nc" id="L122">    } catch (MalformedURLException e) {</span>
+<span class="nc" id="L123">      throw KubernetesClientException.launderThrowable(e);</span>
+    }
+  }
+
+  public URL getNamespacedUrl(String namespace) throws MalformedURLException {
+<span class="nc" id="L128">    URL requestUrl = getRootUrl();</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">    if (!isResourceNamespaced()) {</span>
+      //if resource is not namespaced don't even bother to check the namespace.
+<span class="nc bnc" id="L131" title="All 2 branches missed.">    } else if (Utils.isNotNullOrEmpty(namespace)) {</span>
+<span class="nc" id="L132">      requestUrl = new URL(URLUtils.join(requestUrl.toString(), &quot;namespaces&quot;, namespace));</span>
+    }
+<span class="nc" id="L134">    requestUrl = new URL(URLUtils.join(requestUrl.toString(), resourceT));</span>
+<span class="nc" id="L135">    return requestUrl;</span>
+  }
+
+  public URL getNamespacedUrl() throws MalformedURLException {
+<span class="nc" id="L139">    return getNamespacedUrl(getNamespace());</span>
+  }
+
+  public &lt;T&gt; URL getNamespacedUrl(T item) throws MalformedURLException {
+<span class="nc" id="L143">    return getNamespacedUrl(checkNamespace(item));</span>
+  }
+
+  public URL getResourceUrl(String namespace, String name) throws MalformedURLException {
+<span class="nc bnc" id="L147" title="All 2 branches missed.">    if (name == null) {</span>
+<span class="nc" id="L148">      return getNamespacedUrl(namespace);</span>
+    }
+<span class="nc" id="L150">    return new URL(URLUtils.join(getNamespacedUrl(namespace).toString(), name));</span>
+  }
+
+  public URL getResourceUrl() throws MalformedURLException {
+<span class="nc bnc" id="L154" title="All 2 branches missed.">    if (name == null) {</span>
+<span class="nc" id="L155">      return getNamespacedUrl();</span>
+    }
+<span class="nc" id="L157">    return new URL(URLUtils.join(getNamespacedUrl().toString(), name));</span>
+  }
+
+  protected &lt;T&gt; String checkNamespace(T item) {
+<span class="nc" id="L161">    String operationNs = getNamespace();</span>
+<span class="nc bnc" id="L162" title="All 4 branches missed.">    String itemNs = (item instanceof HasMetadata &amp;&amp; ((HasMetadata)item).getMetadata() != null) ? ((HasMetadata) item).getMetadata().getNamespace() : null;</span>
+<span class="nc bnc" id="L163" title="All 4 branches missed.">    if (Utils.isNullOrEmpty(operationNs) &amp;&amp; Utils.isNullOrEmpty(itemNs)) {</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">      if (!isResourceNamespaced()) {</span>
+<span class="nc" id="L165">        return null;</span>
+      } else {
+<span class="nc" id="L167">        throw new KubernetesClientException(&quot;Namespace not specified. But operation requires namespace.&quot;);</span>
+      }
+<span class="nc bnc" id="L169" title="All 2 branches missed.">    } else if (Utils.isNullOrEmpty(itemNs)) {</span>
+<span class="nc" id="L170">      return operationNs;</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">    } else if (Utils.isNullOrEmpty(operationNs)) {</span>
+<span class="nc" id="L172">      return itemNs;</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">    } else if (itemNs.equals(operationNs)) {</span>
+<span class="nc" id="L174">      return itemNs;</span>
+    }
+<span class="nc" id="L176">    throw new KubernetesClientException(&quot;Namespace mismatch. Item namespace:&quot; + itemNs + &quot;. Operation namespace:&quot; + operationNs + &quot;.&quot;);</span>
+  }
+
+  protected &lt;T&gt; String checkName(T item) {
+<span class="nc" id="L180">    String operationName = getName();</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">    String itemName = item instanceof HasMetadata ? ((HasMetadata) item).getMetadata().getName() : null;</span>
+<span class="nc bnc" id="L182" title="All 4 branches missed.">    if (Utils.isNullOrEmpty(operationName) &amp;&amp; Utils.isNullOrEmpty(itemName)) {</span>
+<span class="nc" id="L183">      return null;</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">    } else if (Utils.isNullOrEmpty(itemName)) {</span>
+<span class="nc" id="L185">      return operationName;</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">    } else if (Utils.isNullOrEmpty(operationName)) {</span>
+<span class="nc" id="L187">      return itemName;</span>
+<span class="nc bnc" id="L188" title="All 2 branches missed.">    } else if (itemName.equals(operationName)) {</span>
+<span class="nc" id="L189">      return itemName;</span>
+    }
+<span class="nc" id="L191">    throw new KubernetesClientException(&quot;Name mismatch. Item name:&quot; + itemName + &quot;. Operation name:&quot; + operationName + &quot;.&quot;);</span>
+  }
+
+
+  protected &lt;T&gt; void handleDelete(T resource, long gracePeriodSeconds, boolean cascading) throws ExecutionException, InterruptedException, KubernetesClientException, IOException {
+<span class="nc" id="L196">    handleDelete(getResourceUrl(checkNamespace(resource), checkName(resource)), gracePeriodSeconds, cascading);</span>
+<span class="nc" id="L197">  }</span>
+
+  protected void handleDelete(URL requestUrl, long gracePeriodSeconds, boolean cascading) throws ExecutionException, InterruptedException, KubernetesClientException, IOException {
+<span class="nc" id="L200">    RequestBody requestBody = null;</span>
+<span class="nc" id="L201">    DeleteOptions deleteOptions = new DeleteOptions();</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">    deleteOptions.setOrphanDependents(!cascading);</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">    if (gracePeriodSeconds &gt;= 0) {</span>
+<span class="nc" id="L204">      deleteOptions.setGracePeriodSeconds(gracePeriodSeconds);</span>
+    }
+<span class="nc" id="L206">    requestBody = RequestBody.create(JSON, JSON_MAPPER.writeValueAsString(deleteOptions));</span>
+
+<span class="nc" id="L208">    Request.Builder requestBuilder = new Request.Builder().delete(requestBody).url(requestUrl);</span>
+<span class="nc" id="L209">    handleResponse(requestBuilder, null, Collections.&lt;String, String&gt;emptyMap());</span>
+<span class="nc" id="L210">  }</span>
+
+  /**
+   * Create a resource.
+   * @param resource
+   * @param outputType
+   * @param &lt;T&gt;
+   * @param &lt;I&gt;
+   * @return
+   * @throws ExecutionException
+   * @throws InterruptedException
+   * @throws KubernetesClientException
+     * @throws IOException
+     */
+  protected &lt;T, I&gt; T handleCreate(I resource, Class&lt;T&gt; outputType) throws ExecutionException, InterruptedException, KubernetesClientException, IOException {
+<span class="nc" id="L225">    RequestBody body = RequestBody.create(JSON, JSON_MAPPER.writeValueAsString(resource));</span>
+<span class="nc" id="L226">    Request.Builder requestBuilder = new Request.Builder().post(body).url(getNamespacedUrl(checkNamespace(resource)));</span>
+<span class="nc" id="L227">    return handleResponse(requestBuilder, outputType, Collections.&lt;String, String&gt;emptyMap());</span>
+  }
+
+
+  /**
+   * Replace a resource.
+   * @param updated
+   * @param type
+   * @param &lt;T&gt;
+   * @return
+   * @throws ExecutionException
+   * @throws InterruptedException
+   * @throws KubernetesClientException
+   * @throws IOException
+   */
+  protected &lt;T&gt; T handleReplace(T updated, Class&lt;T&gt; type) throws ExecutionException, InterruptedException, KubernetesClientException, IOException {
+<span class="nc" id="L243">    return handleReplace(updated, type, Collections.&lt;String, String&gt;emptyMap());</span>
+  }
+
+  /**
+   * Replace a resource, optionally performing placeholder substitution to the response.
+   * @param updated
+   * @param type
+   * @param parameters
+   * @param &lt;T&gt;
+   * @return
+   * @throws ExecutionException
+   * @throws InterruptedException
+   * @throws KubernetesClientException
+     * @throws IOException
+     */
+  protected &lt;T&gt; T handleReplace(T updated, Class&lt;T&gt; type, Map&lt;String, String&gt; parameters) throws ExecutionException, InterruptedException, KubernetesClientException, IOException {
+<span class="nc" id="L259">    RequestBody body = RequestBody.create(JSON, JSON_MAPPER.writeValueAsString(updated));</span>
+<span class="nc" id="L260">    Request.Builder requestBuilder = new Request.Builder().put(body).url(getResourceUrl(checkNamespace(updated), checkName(updated)));</span>
+<span class="nc" id="L261">    return handleResponse(requestBuilder, type, parameters);</span>
+  }
+
+  /**
+   * Send an http patch and handle the response.
+   * @param current
+   * @param updated
+   * @param type
+   * @param &lt;T&gt;
+   * @return
+   * @throws ExecutionException
+   * @throws InterruptedException
+   * @throws KubernetesClientException
+     * @throws IOException
+     */
+  protected &lt;T&gt; T handlePatch(T current, T updated, Class&lt;T&gt; type) throws ExecutionException, InterruptedException, KubernetesClientException, IOException {
+<span class="nc" id="L277">    JsonNode diff = JsonDiff.asJson(patchMapper().valueToTree(current), patchMapper().valueToTree(updated));</span>
+<span class="nc" id="L278">    RequestBody body = RequestBody.create(JSON_PATCH, JSON_MAPPER.writeValueAsString(diff));</span>
+<span class="nc" id="L279">    Request.Builder requestBuilder = new Request.Builder().patch(body).url(getResourceUrl(checkNamespace(updated), checkName(updated)));</span>
+<span class="nc" id="L280">    return handleResponse(requestBuilder, type, Collections.&lt;String, String&gt;emptyMap());</span>
+  }
+
+
+  /**
+   * Send an http get.
+   * @param resourceUrl
+   * @param type
+   * @param &lt;T&gt;
+   * @return
+   * @throws ExecutionException
+   * @throws InterruptedException
+   * @throws KubernetesClientException
+   * @throws IOException
+   */
+  protected &lt;T&gt; T handleGet(URL resourceUrl, Class&lt;T&gt; type) throws ExecutionException, InterruptedException, KubernetesClientException, IOException {
+<span class="nc" id="L296">    return handleGet(resourceUrl, type, Collections.&lt;String, String&gt;emptyMap());</span>
+  }
+
+  /**
+   * Send an http, optionally performing placeholder substitution to the response.
+   * @param resourceUrl
+   * @param type
+   * @param parameters
+   * @param &lt;T&gt;
+   * @return
+   * @throws ExecutionException
+   * @throws InterruptedException
+   * @throws KubernetesClientException
+     * @throws IOException
+     */
+  protected &lt;T&gt; T handleGet(URL resourceUrl, Class&lt;T&gt; type, Map&lt;String, String&gt; parameters) throws ExecutionException, InterruptedException, KubernetesClientException, IOException {
+<span class="nc" id="L312">    Request.Builder requestBuilder = new Request.Builder().get().url(resourceUrl);</span>
+<span class="nc" id="L313">    return handleResponse(requestBuilder, type, parameters);</span>
+  }
+
+  /**
+   * Send an http request and handle the response.
+   * @param requestBuilder
+   * @param type
+   * @param &lt;T&gt;
+   * @return
+   * @throws ExecutionException
+   * @throws InterruptedException
+   * @throws KubernetesClientException
+   * @throws IOException
+   */
+  protected &lt;T&gt; T handleResponse(Request.Builder requestBuilder, Class&lt;T&gt; type) throws ExecutionException, InterruptedException, KubernetesClientException, IOException {
+<span class="nc" id="L328">    return handleResponse(requestBuilder, type, Collections.&lt;String, String&gt;emptyMap());</span>
+  }
+
+  /**
+   * Send an http request and handle the response, optionally performing placeholder substitution to the response.
+   * @param requestBuilder
+   * @param type
+   * @param parameters
+   * @param &lt;T&gt;
+   * @return
+   * @throws ExecutionException
+   * @throws InterruptedException
+   * @throws KubernetesClientException
+   * @throws IOException
+   */
+  protected &lt;T&gt; T handleResponse(Request.Builder requestBuilder, Class&lt;T&gt; type, Map&lt;String, String&gt; parameters) throws ExecutionException, InterruptedException, KubernetesClientException, IOException {
+<span class="nc" id="L344">    return handleResponse(client, requestBuilder, type, parameters);</span>
+  }
+
+  /**
+   * Send an http request and handle the response.
+   * @param client
+   * @param requestBuilder
+   * @param type
+   * @param &lt;T&gt;
+   * @return
+   * @throws ExecutionException
+   * @throws InterruptedException
+   * @throws KubernetesClientException
+   * @throws IOException
+   */
+  protected &lt;T&gt; T handleResponse(OkHttpClient client, Request.Builder requestBuilder, Class&lt;T&gt; type) throws ExecutionException, InterruptedException, KubernetesClientException, IOException {
+<span class="nc" id="L360">    return handleResponse(client, requestBuilder, type, Collections.&lt;String, String&gt;emptyMap());</span>
+  }
+
+  /**
+   * Send an http request and handle the response, optionally performing placeholder substitution to the response.
+   * @param client
+   * @param requestBuilder
+   * @param type
+   * @param parameters
+   * @param &lt;T&gt;
+   * @return
+   * @throws ExecutionException
+   * @throws InterruptedException
+   * @throws KubernetesClientException
+   * @throws IOException
+   */
+  protected &lt;T&gt; T handleResponse(OkHttpClient client, Request.Builder requestBuilder, Class&lt;T&gt; type, Map&lt;String, String&gt; parameters) throws ExecutionException, InterruptedException, KubernetesClientException, IOException {
+<span class="nc" id="L377">    VersionUsageUtils.log(this.resourceT, this.apiGroupVersion);</span>
+<span class="nc" id="L378">    Request request = requestBuilder.build();</span>
+<span class="nc" id="L379">    Response response = client.newCall(request).execute();</span>
+<span class="nc" id="L380">    try (ResponseBody body = response.body()) {</span>
+<span class="nc" id="L381">      assertResponseCode(request, response);</span>
+<span class="nc bnc" id="L382" title="All 2 branches missed.">      if (type != null) {</span>
+<span class="nc" id="L383">        try (InputStream bodyInputStream = body.byteStream()) {</span>
+<span class="nc" id="L384">          return Serialization.unmarshal(bodyInputStream, type, parameters);</span>
+        }
+      } else {
+<span class="nc" id="L387">        return null;</span>
+      }
+<span class="nc" id="L389">    } catch (Exception e) {</span>
+<span class="nc bnc" id="L390" title="All 2 branches missed.">      if (e instanceof KubernetesClientException) {</span>
+<span class="nc" id="L391">        throw e;</span>
+      }
+<span class="nc" id="L393">      throw requestException(request, e);</span>
+    } finally {
+<span class="nc bnc" id="L395" title="All 4 branches missed.">      if(response != null &amp;&amp; response.body() != null) {</span>
+<span class="nc" id="L396">        response.body().close();</span>
+      }
+    }
+  }
+
+  /**
+   * Checks if the response status code is the expected and throws the appropriate KubernetesClientException if not.
+   *
+   * @param request            The {#link Request} object.
+   * @param response           The {@link Response} object.
+   * @throws KubernetesClientException When the response code is not the expected.
+   */
+  protected void assertResponseCode(Request request, Response response) {
+<span class="nc" id="L409">    int statusCode = response.code();</span>
+<span class="nc" id="L410">    String customMessage = config.getErrorMessages().get(statusCode);</span>
+
+<span class="nc bnc" id="L412" title="All 2 branches missed.">    if (response.isSuccessful()) {</span>
+<span class="nc" id="L413">      return;</span>
+<span class="nc bnc" id="L414" title="All 2 branches missed.">    } else if (customMessage != null) {</span>
+<span class="nc" id="L415">      throw requestFailure(request, createStatus(statusCode, combineMessages(customMessage, createStatus(response))));</span>
+    } else {
+<span class="nc" id="L417">      throw requestFailure(request, createStatus(response));</span>
+    }
+  }
+
+  private String combineMessages(String customMessage, Status defaultStatus) {
+<span class="nc bnc" id="L422" title="All 2 branches missed.">    if (defaultStatus != null) {</span>
+<span class="nc" id="L423">      String message = defaultStatus.getMessage();</span>
+<span class="nc bnc" id="L424" title="All 4 branches missed.">      if (message != null &amp;&amp; message.length() &gt; 0) {</span>
+<span class="nc" id="L425">        return customMessage + &quot; &quot; + message;</span>
+      }
+    }
+<span class="nc" id="L428">    return customMessage;</span>
+  }
+
+
+  public static Status createStatus(Response response) {
+<span class="nc" id="L433">    String statusMessage = &quot;&quot;;</span>
+<span class="nc bnc" id="L434" title="All 2 branches missed.">    ResponseBody body = response != null ? response.body() : null;</span>
+<span class="nc bnc" id="L435" title="All 2 branches missed.">    int statusCode = response != null ? response.code() : 0;</span>
+    try {
+<span class="nc bnc" id="L437" title="All 2 branches missed.">      if (response == null) {</span>
+<span class="nc" id="L438">        statusMessage = &quot;No response&quot;;</span>
+<span class="nc bnc" id="L439" title="All 2 branches missed.">      } else if (body != null) {</span>
+<span class="nc" id="L440">        statusMessage = body.string();</span>
+<span class="nc bnc" id="L441" title="All 2 branches missed.">      } else if (response.message() != null) {</span>
+<span class="nc" id="L442">        statusMessage = response.message();</span>
+      }
+<span class="nc" id="L444">      Status status = JSON_MAPPER.readValue(statusMessage, Status.class);</span>
+<span class="nc bnc" id="L445" title="All 2 branches missed.">      if (status.getCode() == null) {</span>
+<span class="nc" id="L446">        status = new StatusBuilder(status).withCode(statusCode).build();</span>
+      }
+<span class="nc" id="L448">      return status;</span>
+<span class="nc" id="L449">    } catch (JsonParseException e) {</span>
+<span class="nc" id="L450">      return createStatus(statusCode, statusMessage);</span>
+<span class="nc" id="L451">    } catch (IOException e) {</span>
+<span class="nc" id="L452">      return createStatus(statusCode, statusMessage);</span>
+    }
+  }
+
+  public static Status createStatus(int statusCode, String message) {
+<span class="nc" id="L457">    Status status = new StatusBuilder()</span>
+<span class="nc" id="L458">            .withCode(statusCode)</span>
+<span class="nc" id="L459">            .withMessage(message)</span>
+<span class="nc" id="L460">            .build();</span>
+<span class="nc" id="L461">    status.getAdditionalProperties().put(CLIENT_STATUS_FLAG, &quot;true&quot;);</span>
+<span class="nc" id="L462">    return status;</span>
+  }
+
+  public static KubernetesClientException requestFailure(Request request, Status status) {
+<span class="nc" id="L466">    StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L467">    sb.append(&quot;Failure executing: &quot;).append(request.method())</span>
+<span class="nc" id="L468">      .append(&quot; at: &quot;).append(request.url().toString()).append(&quot;.&quot;);</span>
+
+<span class="nc bnc" id="L470" title="All 4 branches missed.">    if (status.getMessage() != null &amp;&amp; !status.getMessage().isEmpty()) {</span>
+<span class="nc" id="L471">      sb.append(&quot; Message: &quot;).append(status.getMessage()).append(&quot;.&quot;);</span>
+    }
+
+<span class="nc bnc" id="L474" title="All 4 branches missed.">    if (status != null &amp;&amp; !status.getAdditionalProperties().containsKey(CLIENT_STATUS_FLAG)) {</span>
+<span class="nc" id="L475">      sb.append(&quot; Received status: &quot;).append(status).append(&quot;.&quot;);</span>
+    }
+
+<span class="nc" id="L478">    return new KubernetesClientException(sb.toString(), status.getCode(), status);</span>
+  }
+
+  public static KubernetesClientException requestException(Request request, Exception e) {
+<span class="nc" id="L482">    StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L483">    sb.append(&quot;Error executing: &quot;).append(request.method())</span>
+<span class="nc" id="L484">      .append(&quot; at: &quot;).append(request.url().toString())</span>
+<span class="nc" id="L485">      .append(&quot;. Cause: &quot;).append(e.getMessage());</span>
+
+<span class="nc" id="L487">    return new KubernetesClientException(sb.toString(), e);</span>
+  }
+
+  protected static &lt;T&gt; T unmarshal(InputStream is) throws KubernetesClientException {
+<span class="nc" id="L491">    return Serialization.unmarshal(is);</span>
+  }
+
+  protected static &lt;T&gt; T unmarshal(InputStream is, final Class&lt;T&gt; type) throws KubernetesClientException {
+<span class="fc" id="L495">    return Serialization.unmarshal(is, type);</span>
+  }
+
+  protected static &lt;T&gt; T unmarshal(InputStream is, TypeReference&lt;T&gt; type) throws KubernetesClientException {
+<span class="nc" id="L499">   return Serialization.unmarshal(is, type);</span>
+  }
+
+  public Config getConfig() {
+<span class="nc" id="L503">    return config;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

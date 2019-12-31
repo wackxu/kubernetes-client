@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StatusDetailsFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">StatusDetailsFluentImpl.java</span></div><h1>StatusDetailsFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Integer;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class StatusDetailsFluentImpl&lt;A extends StatusDetailsFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements StatusDetailsFluent&lt;A&gt;{
+
+    private List&lt;StatusCauseBuilder&gt; causes;
+    private String group;
+    private String kind;
+    private String name;
+    private Integer retryAfterSeconds;
+    private String uid;
+
+<span class="nc" id="L27">    public StatusDetailsFluentImpl(){</span>
+<span class="nc" id="L28">    }</span>
+<span class="nc" id="L29">    public StatusDetailsFluentImpl(StatusDetails instance){</span>
+<span class="nc" id="L30">            this.withCauses(instance.getCauses()); </span>
+<span class="nc" id="L31">            this.withGroup(instance.getGroup()); </span>
+<span class="nc" id="L32">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L33">            this.withName(instance.getName()); </span>
+<span class="nc" id="L34">            this.withRetryAfterSeconds(instance.getRetryAfterSeconds()); </span>
+<span class="nc" id="L35">            this.withUid(instance.getUid()); </span>
+<span class="nc" id="L36">    }</span>
+
+    public A addToCauses(int index,StatusCause item){
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            if (this.causes == null) {this.causes = new ArrayList&lt;StatusCauseBuilder&gt;();}</span>
+<span class="nc bnc" id="L40" title="All 4 branches missed.">            StatusCauseBuilder builder = new StatusCauseBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.causes.add(index &gt;= 0 ? index : causes.size(), builder); return (A)this;</span>
+    }
+
+    public A setToCauses(int index,StatusCause item){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            if (this.causes == null) {this.causes = new ArrayList&lt;StatusCauseBuilder&gt;();}</span>
+<span class="nc" id="L45">            StatusCauseBuilder builder = new StatusCauseBuilder(item);</span>
+<span class="nc bnc" id="L46" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L47" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= causes.size()) { causes.add(builder); } else { causes.set(index, builder);}</span>
+<span class="nc" id="L48">             return (A)this;</span>
+    }
+
+    public A addToCauses(StatusCause... items){
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            if (this.causes == null) {this.causes = new ArrayList&lt;StatusCauseBuilder&gt;();}</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            for (StatusCause item : items) {StatusCauseBuilder builder = new StatusCauseBuilder(item);_visitables.add(builder);this.causes.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToCauses(Collection&lt;StatusCause&gt; items){
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            if (this.causes == null) {this.causes = new ArrayList&lt;StatusCauseBuilder&gt;();}</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            for (StatusCause item : items) {StatusCauseBuilder builder = new StatusCauseBuilder(item);_visitables.add(builder);this.causes.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromCauses(StatusCause... items){
+<span class="nc bnc" id="L62" title="All 4 branches missed.">            for (StatusCause item : items) {StatusCauseBuilder builder = new StatusCauseBuilder(item);_visitables.remove(builder);if (this.causes != null) {this.causes.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromCauses(Collection&lt;StatusCause&gt; items){
+<span class="nc bnc" id="L66" title="All 4 branches missed.">            for (StatusCause item : items) {StatusCauseBuilder builder = new StatusCauseBuilder(item);_visitables.remove(builder);if (this.causes != null) {this.causes.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildCauses instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;StatusCause&gt; getCauses(){
+<span class="nc" id="L75">            return build(causes);</span>
+    }
+
+    public List&lt;StatusCause&gt; buildCauses(){
+<span class="nc" id="L79">            return build(causes);</span>
+    }
+
+    public StatusCause buildCause(int index){
+<span class="nc" id="L83">            return this.causes.get(index).build();</span>
+    }
+
+    public StatusCause buildFirstCause(){
+<span class="nc" id="L87">            return this.causes.get(0).build();</span>
+    }
+
+    public StatusCause buildLastCause(){
+<span class="nc" id="L91">            return this.causes.get(causes.size() - 1).build();</span>
+    }
+
+    public StatusCause buildMatchingCause(io.fabric8.kubernetes.api.builder.Predicate&lt;StatusCauseBuilder&gt; predicate){
+<span class="nc bnc" id="L95" title="All 4 branches missed.">            for (StatusCauseBuilder item: causes) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withCauses(List&lt;StatusCause&gt; causes){
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            if (this.causes != null) { _visitables.removeAll(this.causes);}</span>
+<span class="nc bnc" id="L100" title="All 4 branches missed.">            if (causes != null) {this.causes = new ArrayList&lt;StatusCauseBuilder&gt;(); for (StatusCause item : causes){this.addToCauses(item);}} else { this.causes = new ArrayList&lt;StatusCauseBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withCauses(StatusCause... causes){
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            if (this.causes != null) {this.causes.clear();}</span>
+<span class="nc bnc" id="L105" title="All 4 branches missed.">            if (causes != null) {for (StatusCause item :causes){ this.addToCauses(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasCauses(){
+<span class="nc bnc" id="L109" title="All 4 branches missed.">            return causes != null &amp;&amp; !causes.isEmpty();</span>
+    }
+
+    public A addNewCause(String field,String message,String reason){
+<span class="nc" id="L113">            return (A)addToCauses(new StatusCause(field, message, reason));</span>
+    }
+
+    public StatusDetailsFluent.CausesNested&lt;A&gt; addNewCause(){
+<span class="nc" id="L117">            return new CausesNestedImpl();</span>
+    }
+
+    public StatusDetailsFluent.CausesNested&lt;A&gt; addNewCauseLike(StatusCause item){
+<span class="nc" id="L121">            return new CausesNestedImpl(-1, item);</span>
+    }
+
+    public StatusDetailsFluent.CausesNested&lt;A&gt; setNewCauseLike(int index,StatusCause item){
+<span class="nc" id="L125">            return new CausesNestedImpl(index, item);</span>
+    }
+
+    public StatusDetailsFluent.CausesNested&lt;A&gt; editCause(int index){
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            if (causes.size() &lt;= index) throw new RuntimeException(&quot;Can't edit causes. Index exceeds size.&quot;);</span>
+<span class="nc" id="L130">            return setNewCauseLike(index, buildCause(index));</span>
+    }
+
+    public StatusDetailsFluent.CausesNested&lt;A&gt; editFirstCause(){
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            if (causes.size() == 0) throw new RuntimeException(&quot;Can't edit first causes. The list is empty.&quot;);</span>
+<span class="nc" id="L135">            return setNewCauseLike(0, buildCause(0));</span>
+    }
+
+    public StatusDetailsFluent.CausesNested&lt;A&gt; editLastCause(){
+<span class="nc" id="L139">            int index = causes.size() - 1;</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last causes. The list is empty.&quot;);</span>
+<span class="nc" id="L141">            return setNewCauseLike(index, buildCause(index));</span>
+    }
+
+    public StatusDetailsFluent.CausesNested&lt;A&gt; editMatchingCause(io.fabric8.kubernetes.api.builder.Predicate&lt;StatusCauseBuilder&gt; predicate){
+<span class="nc" id="L145">            int index = -1;</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            for (int i=0;i&lt;causes.size();i++) { </span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">            if (predicate.apply(causes.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching causes. No match found.&quot;);</span>
+<span class="nc" id="L150">            return setNewCauseLike(index, buildCause(index));</span>
+    }
+
+    public String getGroup(){
+<span class="nc" id="L154">            return this.group;</span>
+    }
+
+    public A withGroup(String group){
+<span class="nc" id="L158">            this.group=group; return (A) this;</span>
+    }
+
+    public Boolean hasGroup(){
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            return this.group != null;</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L166">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L170">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L174" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    public String getName(){
+<span class="nc" id="L178">            return this.name;</span>
+    }
+
+    public A withName(String name){
+<span class="nc" id="L182">            this.name=name; return (A) this;</span>
+    }
+
+    public Boolean hasName(){
+<span class="nc bnc" id="L186" title="All 2 branches missed.">            return this.name != null;</span>
+    }
+
+    public Integer getRetryAfterSeconds(){
+<span class="nc" id="L190">            return this.retryAfterSeconds;</span>
+    }
+
+    public A withRetryAfterSeconds(Integer retryAfterSeconds){
+<span class="nc" id="L194">            this.retryAfterSeconds=retryAfterSeconds; return (A) this;</span>
+    }
+
+    public Boolean hasRetryAfterSeconds(){
+<span class="nc bnc" id="L198" title="All 2 branches missed.">            return this.retryAfterSeconds != null;</span>
+    }
+
+    public String getUid(){
+<span class="nc" id="L202">            return this.uid;</span>
+    }
+
+    public A withUid(String uid){
+<span class="nc" id="L206">            this.uid=uid; return (A) this;</span>
+    }
+
+    public Boolean hasUid(){
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            return this.uid != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L214" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L215" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L216" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L217">            StatusDetailsFluentImpl that = (StatusDetailsFluentImpl) o;</span>
+<span class="nc bnc" id="L218" title="All 6 branches missed.">            if (causes != null ? !causes.equals(that.causes) :that.causes != null) return false;</span>
+<span class="nc bnc" id="L219" title="All 6 branches missed.">            if (group != null ? !group.equals(that.group) :that.group != null) return false;</span>
+<span class="nc bnc" id="L220" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L221" title="All 6 branches missed.">            if (name != null ? !name.equals(that.name) :that.name != null) return false;</span>
+<span class="nc bnc" id="L222" title="All 6 branches missed.">            if (retryAfterSeconds != null ? !retryAfterSeconds.equals(that.retryAfterSeconds) :that.retryAfterSeconds != null) return false;</span>
+<span class="nc bnc" id="L223" title="All 6 branches missed.">            if (uid != null ? !uid.equals(that.uid) :that.uid != null) return false;</span>
+<span class="nc" id="L224">            return true;</span>
+    }
+
+
+    public class CausesNestedImpl&lt;N&gt; extends StatusCauseFluentImpl&lt;StatusDetailsFluent.CausesNested&lt;N&gt;&gt; implements StatusDetailsFluent.CausesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final StatusCauseBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L233">            CausesNestedImpl(int index,StatusCause item){</span>
+<span class="nc" id="L234">                    this.index = index;</span>
+<span class="nc" id="L235">                    this.builder = new StatusCauseBuilder(this, item);</span>
+<span class="nc" id="L236">            }</span>
+<span class="nc" id="L237">            CausesNestedImpl(){</span>
+<span class="nc" id="L238">                    this.index = -1;</span>
+<span class="nc" id="L239">                    this.builder = new StatusCauseBuilder(this);</span>
+<span class="nc" id="L240">            }</span>
+    
+    public N and(){
+<span class="nc" id="L243">            return (N) StatusDetailsFluentImpl.this.setToCauses(index, builder.build());</span>
+    }
+    public N endCause(){
+<span class="nc" id="L246">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

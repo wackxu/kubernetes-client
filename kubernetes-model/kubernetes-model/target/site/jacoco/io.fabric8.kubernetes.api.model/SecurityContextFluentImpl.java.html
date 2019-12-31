@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SecurityContextFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">SecurityContextFluentImpl.java</span></div><h1>SecurityContextFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Long;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class SecurityContextFluentImpl&lt;A extends SecurityContextFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements SecurityContextFluent&lt;A&gt;{
+
+    private Boolean allowPrivilegeEscalation;
+    private CapabilitiesBuilder capabilities;
+    private Boolean privileged;
+    private String procMount;
+    private Boolean readOnlyRootFilesystem;
+    private Long runAsGroup;
+    private Boolean runAsNonRoot;
+    private Long runAsUser;
+    private SELinuxOptionsBuilder seLinuxOptions;
+
+<span class="nc" id="L25">    public SecurityContextFluentImpl(){</span>
+<span class="nc" id="L26">    }</span>
+<span class="nc" id="L27">    public SecurityContextFluentImpl(SecurityContext instance){</span>
+<span class="nc" id="L28">            this.withAllowPrivilegeEscalation(instance.getAllowPrivilegeEscalation()); </span>
+<span class="nc" id="L29">            this.withCapabilities(instance.getCapabilities()); </span>
+<span class="nc" id="L30">            this.withPrivileged(instance.getPrivileged()); </span>
+<span class="nc" id="L31">            this.withProcMount(instance.getProcMount()); </span>
+<span class="nc" id="L32">            this.withReadOnlyRootFilesystem(instance.getReadOnlyRootFilesystem()); </span>
+<span class="nc" id="L33">            this.withRunAsGroup(instance.getRunAsGroup()); </span>
+<span class="nc" id="L34">            this.withRunAsNonRoot(instance.getRunAsNonRoot()); </span>
+<span class="nc" id="L35">            this.withRunAsUser(instance.getRunAsUser()); </span>
+<span class="nc" id="L36">            this.withSeLinuxOptions(instance.getSeLinuxOptions()); </span>
+<span class="nc" id="L37">    }</span>
+
+    public Boolean isAllowPrivilegeEscalation(){
+<span class="nc" id="L40">            return this.allowPrivilegeEscalation;</span>
+    }
+
+    public A withAllowPrivilegeEscalation(Boolean allowPrivilegeEscalation){
+<span class="nc" id="L44">            this.allowPrivilegeEscalation=allowPrivilegeEscalation; return (A) this;</span>
+    }
+
+    public Boolean hasAllowPrivilegeEscalation(){
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            return this.allowPrivilegeEscalation != null;</span>
+    }
+
+    public A withNewAllowPrivilegeEscalation(String arg1){
+<span class="nc" id="L52">            return (A)withAllowPrivilegeEscalation(new Boolean(arg1));</span>
+    }
+
+    public A withNewAllowPrivilegeEscalation(boolean arg1){
+<span class="nc" id="L56">            return (A)withAllowPrivilegeEscalation(new Boolean(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildCapabilities instead.
+ * @return The buildable object.
+ */
+@Deprecated public Capabilities getCapabilities(){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            return this.capabilities!=null?this.capabilities.build():null;</span>
+    }
+
+    public Capabilities buildCapabilities(){
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            return this.capabilities!=null?this.capabilities.build():null;</span>
+    }
+
+    public A withCapabilities(Capabilities capabilities){
+<span class="nc" id="L73">            _visitables.remove(this.capabilities);</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            if (capabilities!=null){ this.capabilities= new CapabilitiesBuilder(capabilities); _visitables.add(this.capabilities);} return (A) this;</span>
+    }
+
+    public Boolean hasCapabilities(){
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            return this.capabilities != null;</span>
+    }
+
+    public SecurityContextFluent.CapabilitiesNested&lt;A&gt; withNewCapabilities(){
+<span class="nc" id="L82">            return new CapabilitiesNestedImpl();</span>
+    }
+
+    public SecurityContextFluent.CapabilitiesNested&lt;A&gt; withNewCapabilitiesLike(Capabilities item){
+<span class="nc" id="L86">            return new CapabilitiesNestedImpl(item);</span>
+    }
+
+    public SecurityContextFluent.CapabilitiesNested&lt;A&gt; editCapabilities(){
+<span class="nc" id="L90">            return withNewCapabilitiesLike(getCapabilities());</span>
+    }
+
+    public SecurityContextFluent.CapabilitiesNested&lt;A&gt; editOrNewCapabilities(){
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            return withNewCapabilitiesLike(getCapabilities() != null ? getCapabilities(): new CapabilitiesBuilder().build());</span>
+    }
+
+    public SecurityContextFluent.CapabilitiesNested&lt;A&gt; editOrNewCapabilitiesLike(Capabilities item){
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            return withNewCapabilitiesLike(getCapabilities() != null ? getCapabilities(): item);</span>
+    }
+
+    public Boolean isPrivileged(){
+<span class="nc" id="L102">            return this.privileged;</span>
+    }
+
+    public A withPrivileged(Boolean privileged){
+<span class="nc" id="L106">            this.privileged=privileged; return (A) this;</span>
+    }
+
+    public Boolean hasPrivileged(){
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            return this.privileged != null;</span>
+    }
+
+    public A withNewPrivileged(String arg1){
+<span class="nc" id="L114">            return (A)withPrivileged(new Boolean(arg1));</span>
+    }
+
+    public A withNewPrivileged(boolean arg1){
+<span class="nc" id="L118">            return (A)withPrivileged(new Boolean(arg1));</span>
+    }
+
+    public String getProcMount(){
+<span class="nc" id="L122">            return this.procMount;</span>
+    }
+
+    public A withProcMount(String procMount){
+<span class="nc" id="L126">            this.procMount=procMount; return (A) this;</span>
+    }
+
+    public Boolean hasProcMount(){
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            return this.procMount != null;</span>
+    }
+
+    public Boolean isReadOnlyRootFilesystem(){
+<span class="nc" id="L134">            return this.readOnlyRootFilesystem;</span>
+    }
+
+    public A withReadOnlyRootFilesystem(Boolean readOnlyRootFilesystem){
+<span class="nc" id="L138">            this.readOnlyRootFilesystem=readOnlyRootFilesystem; return (A) this;</span>
+    }
+
+    public Boolean hasReadOnlyRootFilesystem(){
+<span class="nc bnc" id="L142" title="All 2 branches missed.">            return this.readOnlyRootFilesystem != null;</span>
+    }
+
+    public A withNewReadOnlyRootFilesystem(String arg1){
+<span class="nc" id="L146">            return (A)withReadOnlyRootFilesystem(new Boolean(arg1));</span>
+    }
+
+    public A withNewReadOnlyRootFilesystem(boolean arg1){
+<span class="nc" id="L150">            return (A)withReadOnlyRootFilesystem(new Boolean(arg1));</span>
+    }
+
+    public Long getRunAsGroup(){
+<span class="nc" id="L154">            return this.runAsGroup;</span>
+    }
+
+    public A withRunAsGroup(Long runAsGroup){
+<span class="nc" id="L158">            this.runAsGroup=runAsGroup; return (A) this;</span>
+    }
+
+    public Boolean hasRunAsGroup(){
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            return this.runAsGroup != null;</span>
+    }
+
+    public A withNewRunAsGroup(String arg1){
+<span class="nc" id="L166">            return (A)withRunAsGroup(new Long(arg1));</span>
+    }
+
+    public A withNewRunAsGroup(long arg1){
+<span class="nc" id="L170">            return (A)withRunAsGroup(new Long(arg1));</span>
+    }
+
+    public Boolean isRunAsNonRoot(){
+<span class="nc" id="L174">            return this.runAsNonRoot;</span>
+    }
+
+    public A withRunAsNonRoot(Boolean runAsNonRoot){
+<span class="nc" id="L178">            this.runAsNonRoot=runAsNonRoot; return (A) this;</span>
+    }
+
+    public Boolean hasRunAsNonRoot(){
+<span class="nc bnc" id="L182" title="All 2 branches missed.">            return this.runAsNonRoot != null;</span>
+    }
+
+    public A withNewRunAsNonRoot(String arg1){
+<span class="nc" id="L186">            return (A)withRunAsNonRoot(new Boolean(arg1));</span>
+    }
+
+    public A withNewRunAsNonRoot(boolean arg1){
+<span class="nc" id="L190">            return (A)withRunAsNonRoot(new Boolean(arg1));</span>
+    }
+
+    public Long getRunAsUser(){
+<span class="nc" id="L194">            return this.runAsUser;</span>
+    }
+
+    public A withRunAsUser(Long runAsUser){
+<span class="nc" id="L198">            this.runAsUser=runAsUser; return (A) this;</span>
+    }
+
+    public Boolean hasRunAsUser(){
+<span class="nc bnc" id="L202" title="All 2 branches missed.">            return this.runAsUser != null;</span>
+    }
+
+    public A withNewRunAsUser(String arg1){
+<span class="nc" id="L206">            return (A)withRunAsUser(new Long(arg1));</span>
+    }
+
+    public A withNewRunAsUser(long arg1){
+<span class="nc" id="L210">            return (A)withRunAsUser(new Long(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSeLinuxOptions instead.
+ * @return The buildable object.
+ */
+@Deprecated public SELinuxOptions getSeLinuxOptions(){
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            return this.seLinuxOptions!=null?this.seLinuxOptions.build():null;</span>
+    }
+
+    public SELinuxOptions buildSeLinuxOptions(){
+<span class="nc bnc" id="L223" title="All 2 branches missed.">            return this.seLinuxOptions!=null?this.seLinuxOptions.build():null;</span>
+    }
+
+    public A withSeLinuxOptions(SELinuxOptions seLinuxOptions){
+<span class="nc" id="L227">            _visitables.remove(this.seLinuxOptions);</span>
+<span class="nc bnc" id="L228" title="All 2 branches missed.">            if (seLinuxOptions!=null){ this.seLinuxOptions= new SELinuxOptionsBuilder(seLinuxOptions); _visitables.add(this.seLinuxOptions);} return (A) this;</span>
+    }
+
+    public Boolean hasSeLinuxOptions(){
+<span class="nc bnc" id="L232" title="All 2 branches missed.">            return this.seLinuxOptions != null;</span>
+    }
+
+    public A withNewSeLinuxOptions(String level,String role,String type,String user){
+<span class="nc" id="L236">            return (A)withSeLinuxOptions(new SELinuxOptions(level, role, type, user));</span>
+    }
+
+    public SecurityContextFluent.SeLinuxOptionsNested&lt;A&gt; withNewSeLinuxOptions(){
+<span class="nc" id="L240">            return new SeLinuxOptionsNestedImpl();</span>
+    }
+
+    public SecurityContextFluent.SeLinuxOptionsNested&lt;A&gt; withNewSeLinuxOptionsLike(SELinuxOptions item){
+<span class="nc" id="L244">            return new SeLinuxOptionsNestedImpl(item);</span>
+    }
+
+    public SecurityContextFluent.SeLinuxOptionsNested&lt;A&gt; editSeLinuxOptions(){
+<span class="nc" id="L248">            return withNewSeLinuxOptionsLike(getSeLinuxOptions());</span>
+    }
+
+    public SecurityContextFluent.SeLinuxOptionsNested&lt;A&gt; editOrNewSeLinuxOptions(){
+<span class="nc bnc" id="L252" title="All 2 branches missed.">            return withNewSeLinuxOptionsLike(getSeLinuxOptions() != null ? getSeLinuxOptions(): new SELinuxOptionsBuilder().build());</span>
+    }
+
+    public SecurityContextFluent.SeLinuxOptionsNested&lt;A&gt; editOrNewSeLinuxOptionsLike(SELinuxOptions item){
+<span class="nc bnc" id="L256" title="All 2 branches missed.">            return withNewSeLinuxOptionsLike(getSeLinuxOptions() != null ? getSeLinuxOptions(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L260" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L261" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L262" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L263">            SecurityContextFluentImpl that = (SecurityContextFluentImpl) o;</span>
+<span class="nc bnc" id="L264" title="All 6 branches missed.">            if (allowPrivilegeEscalation != null ? !allowPrivilegeEscalation.equals(that.allowPrivilegeEscalation) :that.allowPrivilegeEscalation != null) return false;</span>
+<span class="nc bnc" id="L265" title="All 6 branches missed.">            if (capabilities != null ? !capabilities.equals(that.capabilities) :that.capabilities != null) return false;</span>
+<span class="nc bnc" id="L266" title="All 6 branches missed.">            if (privileged != null ? !privileged.equals(that.privileged) :that.privileged != null) return false;</span>
+<span class="nc bnc" id="L267" title="All 6 branches missed.">            if (procMount != null ? !procMount.equals(that.procMount) :that.procMount != null) return false;</span>
+<span class="nc bnc" id="L268" title="All 6 branches missed.">            if (readOnlyRootFilesystem != null ? !readOnlyRootFilesystem.equals(that.readOnlyRootFilesystem) :that.readOnlyRootFilesystem != null) return false;</span>
+<span class="nc bnc" id="L269" title="All 6 branches missed.">            if (runAsGroup != null ? !runAsGroup.equals(that.runAsGroup) :that.runAsGroup != null) return false;</span>
+<span class="nc bnc" id="L270" title="All 6 branches missed.">            if (runAsNonRoot != null ? !runAsNonRoot.equals(that.runAsNonRoot) :that.runAsNonRoot != null) return false;</span>
+<span class="nc bnc" id="L271" title="All 6 branches missed.">            if (runAsUser != null ? !runAsUser.equals(that.runAsUser) :that.runAsUser != null) return false;</span>
+<span class="nc bnc" id="L272" title="All 6 branches missed.">            if (seLinuxOptions != null ? !seLinuxOptions.equals(that.seLinuxOptions) :that.seLinuxOptions != null) return false;</span>
+<span class="nc" id="L273">            return true;</span>
+    }
+
+
+    public class CapabilitiesNestedImpl&lt;N&gt; extends CapabilitiesFluentImpl&lt;SecurityContextFluent.CapabilitiesNested&lt;N&gt;&gt; implements SecurityContextFluent.CapabilitiesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CapabilitiesBuilder builder;
+    
+<span class="nc" id="L281">            CapabilitiesNestedImpl(Capabilities item){</span>
+<span class="nc" id="L282">                    this.builder = new CapabilitiesBuilder(this, item);</span>
+<span class="nc" id="L283">            }</span>
+<span class="nc" id="L284">            CapabilitiesNestedImpl(){</span>
+<span class="nc" id="L285">                    this.builder = new CapabilitiesBuilder(this);</span>
+<span class="nc" id="L286">            }</span>
+    
+    public N and(){
+<span class="nc" id="L289">            return (N) SecurityContextFluentImpl.this.withCapabilities(builder.build());</span>
+    }
+    public N endCapabilities(){
+<span class="nc" id="L292">            return and();</span>
+    }
+
+}
+    public class SeLinuxOptionsNestedImpl&lt;N&gt; extends SELinuxOptionsFluentImpl&lt;SecurityContextFluent.SeLinuxOptionsNested&lt;N&gt;&gt; implements SecurityContextFluent.SeLinuxOptionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SELinuxOptionsBuilder builder;
+    
+<span class="nc" id="L300">            SeLinuxOptionsNestedImpl(SELinuxOptions item){</span>
+<span class="nc" id="L301">                    this.builder = new SELinuxOptionsBuilder(this, item);</span>
+<span class="nc" id="L302">            }</span>
+<span class="nc" id="L303">            SeLinuxOptionsNestedImpl(){</span>
+<span class="nc" id="L304">                    this.builder = new SELinuxOptionsBuilder(this);</span>
+<span class="nc" id="L305">            }</span>
+    
+    public N and(){
+<span class="nc" id="L308">            return (N) SecurityContextFluentImpl.this.withSeLinuxOptions(builder.build());</span>
+    }
+    public N endSeLinuxOptions(){
+<span class="nc" id="L311">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

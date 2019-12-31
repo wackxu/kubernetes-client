@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ResourceQuota.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ResourceQuota.java</span></div><h1>ResourceQuota.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import io.fabric8.kubernetes.model.annotation.ApiGroup;
+import io.fabric8.kubernetes.model.annotation.ApiVersion;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import io.sundr.transform.annotations.VelocityTransformation;
+import io.sundr.transform.annotations.VelocityTransformations;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;spec&quot;,
+    &quot;status&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L42">@ToString</span>
+<span class="nc bnc" id="L43" title="All 54 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+@ApiVersion(&quot;v1&quot;)
+@ApiGroup(&quot;&quot;)
+@VelocityTransformations({
+    @VelocityTransformation(value = &quot;/manifest.vm&quot;, outputPath = &quot;kubernetes.properties&quot;, gather = true)
+})
+public class ResourceQuota implements HasMetadata
+{
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L58">    @NotNull</span>
+    @JsonProperty(&quot;apiVersion&quot;)
+    private String apiVersion = &quot;v1&quot;;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L66">    @NotNull</span>
+    @JsonProperty(&quot;kind&quot;)
+    private String kind = &quot;ResourceQuota&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    @Valid
+    @CheckObjectMeta(regexp = &quot;^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$&quot;, max = 253)
+    private ObjectMeta metadata;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;spec&quot;)
+    @Valid
+    private ResourceQuotaSpec spec;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;status&quot;)
+    @Valid
+    private ResourceQuotaStatus status;
+<span class="nc" id="L91">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L98">    public ResourceQuota() {</span>
+<span class="nc" id="L99">    }</span>
+
+    /**
+     * 
+     * @param metadata
+     * @param apiVersion
+     * @param kind
+     * @param spec
+     * @param status
+     */
+<span class="nc" id="L109">    public ResourceQuota(String apiVersion, String kind, ObjectMeta metadata, ResourceQuotaSpec spec, ResourceQuotaStatus status) {</span>
+<span class="nc" id="L110">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L111">        this.kind = kind;</span>
+<span class="nc" id="L112">        this.metadata = metadata;</span>
+<span class="nc" id="L113">        this.spec = spec;</span>
+<span class="nc" id="L114">        this.status = status;</span>
+<span class="nc" id="L115">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public String getApiVersion() {
+<span class="nc" id="L126">        return apiVersion;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param apiVersion
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public void setApiVersion(String apiVersion) {
+<span class="nc" id="L138">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L139">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public String getKind() {
+<span class="nc" id="L150">        return kind;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param kind
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public void setKind(String kind) {
+<span class="nc" id="L162">        this.kind = kind;</span>
+<span class="nc" id="L163">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public ObjectMeta getMetadata() {
+<span class="nc" id="L173">        return metadata;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param metadata
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public void setMetadata(ObjectMeta metadata) {
+<span class="nc" id="L184">        this.metadata = metadata;</span>
+<span class="nc" id="L185">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The spec
+     */
+    @JsonProperty(&quot;spec&quot;)
+    public ResourceQuotaSpec getSpec() {
+<span class="nc" id="L195">        return spec;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param spec
+     *     The spec
+     */
+    @JsonProperty(&quot;spec&quot;)
+    public void setSpec(ResourceQuotaSpec spec) {
+<span class="nc" id="L206">        this.spec = spec;</span>
+<span class="nc" id="L207">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The status
+     */
+    @JsonProperty(&quot;status&quot;)
+    public ResourceQuotaStatus getStatus() {
+<span class="nc" id="L217">        return status;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param status
+     *     The status
+     */
+    @JsonProperty(&quot;status&quot;)
+    public void setStatus(ResourceQuotaStatus status) {
+<span class="nc" id="L228">        this.status = status;</span>
+<span class="nc" id="L229">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L233">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L238">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L239">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContainerStateTerminated.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ContainerStateTerminated.java</span></div><h1>ContainerStateTerminated.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;containerID&quot;,
+    &quot;exitCode&quot;,
+    &quot;finishedAt&quot;,
+    &quot;message&quot;,
+    &quot;reason&quot;,
+    &quot;signal&quot;,
+    &quot;startedAt&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L41">@ToString</span>
+<span class="nc bnc" id="L42" title="All 70 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class ContainerStateTerminated implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;containerID&quot;)
+    private java.lang.String containerID;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;exitCode&quot;)
+    private Integer exitCode;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;finishedAt&quot;)
+    @Valid
+    private String finishedAt;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;message&quot;)
+    private java.lang.String message;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;reason&quot;)
+    private java.lang.String reason;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;signal&quot;)
+    private Integer signal;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;startedAt&quot;)
+    @Valid
+    private String startedAt;
+<span class="nc" id="L91">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L98">    public ContainerStateTerminated() {</span>
+<span class="nc" id="L99">    }</span>
+
+    /**
+     * 
+     * @param reason
+     * @param exitCode
+     * @param startedAt
+     * @param containerID
+     * @param message
+     * @param signal
+     * @param finishedAt
+     */
+<span class="nc" id="L111">    public ContainerStateTerminated(java.lang.String containerID, Integer exitCode, String finishedAt, java.lang.String message, java.lang.String reason, Integer signal, String startedAt) {</span>
+<span class="nc" id="L112">        this.containerID = containerID;</span>
+<span class="nc" id="L113">        this.exitCode = exitCode;</span>
+<span class="nc" id="L114">        this.finishedAt = finishedAt;</span>
+<span class="nc" id="L115">        this.message = message;</span>
+<span class="nc" id="L116">        this.reason = reason;</span>
+<span class="nc" id="L117">        this.signal = signal;</span>
+<span class="nc" id="L118">        this.startedAt = startedAt;</span>
+<span class="nc" id="L119">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The containerID
+     */
+    @JsonProperty(&quot;containerID&quot;)
+    public java.lang.String getContainerID() {
+<span class="nc" id="L129">        return containerID;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param containerID
+     *     The containerID
+     */
+    @JsonProperty(&quot;containerID&quot;)
+    public void setContainerID(java.lang.String containerID) {
+<span class="nc" id="L140">        this.containerID = containerID;</span>
+<span class="nc" id="L141">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The exitCode
+     */
+    @JsonProperty(&quot;exitCode&quot;)
+    public Integer getExitCode() {
+<span class="nc" id="L151">        return exitCode;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param exitCode
+     *     The exitCode
+     */
+    @JsonProperty(&quot;exitCode&quot;)
+    public void setExitCode(Integer exitCode) {
+<span class="nc" id="L162">        this.exitCode = exitCode;</span>
+<span class="nc" id="L163">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The finishedAt
+     */
+    @JsonProperty(&quot;finishedAt&quot;)
+    public String getFinishedAt() {
+<span class="nc" id="L173">        return finishedAt;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param finishedAt
+     *     The finishedAt
+     */
+    @JsonProperty(&quot;finishedAt&quot;)
+    public void setFinishedAt(String finishedAt) {
+<span class="nc" id="L184">        this.finishedAt = finishedAt;</span>
+<span class="nc" id="L185">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The message
+     */
+    @JsonProperty(&quot;message&quot;)
+    public java.lang.String getMessage() {
+<span class="nc" id="L195">        return message;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param message
+     *     The message
+     */
+    @JsonProperty(&quot;message&quot;)
+    public void setMessage(java.lang.String message) {
+<span class="nc" id="L206">        this.message = message;</span>
+<span class="nc" id="L207">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The reason
+     */
+    @JsonProperty(&quot;reason&quot;)
+    public java.lang.String getReason() {
+<span class="nc" id="L217">        return reason;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param reason
+     *     The reason
+     */
+    @JsonProperty(&quot;reason&quot;)
+    public void setReason(java.lang.String reason) {
+<span class="nc" id="L228">        this.reason = reason;</span>
+<span class="nc" id="L229">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The signal
+     */
+    @JsonProperty(&quot;signal&quot;)
+    public Integer getSignal() {
+<span class="nc" id="L239">        return signal;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param signal
+     *     The signal
+     */
+    @JsonProperty(&quot;signal&quot;)
+    public void setSignal(Integer signal) {
+<span class="nc" id="L250">        this.signal = signal;</span>
+<span class="nc" id="L251">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The startedAt
+     */
+    @JsonProperty(&quot;startedAt&quot;)
+    public String getStartedAt() {
+<span class="nc" id="L261">        return startedAt;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param startedAt
+     *     The startedAt
+     */
+    @JsonProperty(&quot;startedAt&quot;)
+    public void setStartedAt(String startedAt) {
+<span class="nc" id="L272">        this.startedAt = startedAt;</span>
+<span class="nc" id="L273">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L277">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L282">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L283">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

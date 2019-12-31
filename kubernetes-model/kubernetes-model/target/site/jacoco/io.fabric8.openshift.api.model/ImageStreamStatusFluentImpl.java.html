@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImageStreamStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">ImageStreamStatusFluentImpl.java</span></div><h1>ImageStreamStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class ImageStreamStatusFluentImpl&lt;A extends ImageStreamStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ImageStreamStatusFluent&lt;A&gt;{
+
+    private String dockerImageRepository;
+    private String publicDockerImageRepository;
+    private List&lt;NamedTagEventListBuilder&gt; tags;
+
+<span class="nc" id="L23">    public ImageStreamStatusFluentImpl(){</span>
+<span class="nc" id="L24">    }</span>
+<span class="nc" id="L25">    public ImageStreamStatusFluentImpl(ImageStreamStatus instance){</span>
+<span class="nc" id="L26">            this.withDockerImageRepository(instance.getDockerImageRepository()); </span>
+<span class="nc" id="L27">            this.withPublicDockerImageRepository(instance.getPublicDockerImageRepository()); </span>
+<span class="nc" id="L28">            this.withTags(instance.getTags()); </span>
+<span class="nc" id="L29">    }</span>
+
+    public String getDockerImageRepository(){
+<span class="nc" id="L32">            return this.dockerImageRepository;</span>
+    }
+
+    public A withDockerImageRepository(String dockerImageRepository){
+<span class="nc" id="L36">            this.dockerImageRepository=dockerImageRepository; return (A) this;</span>
+    }
+
+    public Boolean hasDockerImageRepository(){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            return this.dockerImageRepository != null;</span>
+    }
+
+    public String getPublicDockerImageRepository(){
+<span class="nc" id="L44">            return this.publicDockerImageRepository;</span>
+    }
+
+    public A withPublicDockerImageRepository(String publicDockerImageRepository){
+<span class="nc" id="L48">            this.publicDockerImageRepository=publicDockerImageRepository; return (A) this;</span>
+    }
+
+    public Boolean hasPublicDockerImageRepository(){
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            return this.publicDockerImageRepository != null;</span>
+    }
+
+    public A addToTags(int index,NamedTagEventList item){
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            if (this.tags == null) {this.tags = new ArrayList&lt;NamedTagEventListBuilder&gt;();}</span>
+<span class="nc bnc" id="L57" title="All 4 branches missed.">            NamedTagEventListBuilder builder = new NamedTagEventListBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.tags.add(index &gt;= 0 ? index : tags.size(), builder); return (A)this;</span>
+    }
+
+    public A setToTags(int index,NamedTagEventList item){
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            if (this.tags == null) {this.tags = new ArrayList&lt;NamedTagEventListBuilder&gt;();}</span>
+<span class="nc" id="L62">            NamedTagEventListBuilder builder = new NamedTagEventListBuilder(item);</span>
+<span class="nc bnc" id="L63" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L64" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= tags.size()) { tags.add(builder); } else { tags.set(index, builder);}</span>
+<span class="nc" id="L65">             return (A)this;</span>
+    }
+
+    public A addToTags(NamedTagEventList... items){
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if (this.tags == null) {this.tags = new ArrayList&lt;NamedTagEventListBuilder&gt;();}</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            for (NamedTagEventList item : items) {NamedTagEventListBuilder builder = new NamedTagEventListBuilder(item);_visitables.add(builder);this.tags.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToTags(Collection&lt;NamedTagEventList&gt; items){
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            if (this.tags == null) {this.tags = new ArrayList&lt;NamedTagEventListBuilder&gt;();}</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            for (NamedTagEventList item : items) {NamedTagEventListBuilder builder = new NamedTagEventListBuilder(item);_visitables.add(builder);this.tags.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromTags(NamedTagEventList... items){
+<span class="nc bnc" id="L79" title="All 4 branches missed.">            for (NamedTagEventList item : items) {NamedTagEventListBuilder builder = new NamedTagEventListBuilder(item);_visitables.remove(builder);if (this.tags != null) {this.tags.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromTags(Collection&lt;NamedTagEventList&gt; items){
+<span class="nc bnc" id="L83" title="All 4 branches missed.">            for (NamedTagEventList item : items) {NamedTagEventListBuilder builder = new NamedTagEventListBuilder(item);_visitables.remove(builder);if (this.tags != null) {this.tags.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTags instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;NamedTagEventList&gt; getTags(){
+<span class="nc" id="L92">            return build(tags);</span>
+    }
+
+    public List&lt;NamedTagEventList&gt; buildTags(){
+<span class="nc" id="L96">            return build(tags);</span>
+    }
+
+    public NamedTagEventList buildTag(int index){
+<span class="nc" id="L100">            return this.tags.get(index).build();</span>
+    }
+
+    public NamedTagEventList buildFirstTag(){
+<span class="nc" id="L104">            return this.tags.get(0).build();</span>
+    }
+
+    public NamedTagEventList buildLastTag(){
+<span class="nc" id="L108">            return this.tags.get(tags.size() - 1).build();</span>
+    }
+
+    public NamedTagEventList buildMatchingTag(io.fabric8.kubernetes.api.builder.Predicate&lt;NamedTagEventListBuilder&gt; predicate){
+<span class="nc bnc" id="L112" title="All 4 branches missed.">            for (NamedTagEventListBuilder item: tags) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withTags(List&lt;NamedTagEventList&gt; tags){
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            if (this.tags != null) { _visitables.removeAll(this.tags);}</span>
+<span class="nc bnc" id="L117" title="All 4 branches missed.">            if (tags != null) {this.tags = new ArrayList&lt;NamedTagEventListBuilder&gt;(); for (NamedTagEventList item : tags){this.addToTags(item);}} else { this.tags = new ArrayList&lt;NamedTagEventListBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withTags(NamedTagEventList... tags){
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            if (this.tags != null) {this.tags.clear();}</span>
+<span class="nc bnc" id="L122" title="All 4 branches missed.">            if (tags != null) {for (NamedTagEventList item :tags){ this.addToTags(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasTags(){
+<span class="nc bnc" id="L126" title="All 4 branches missed.">            return tags != null &amp;&amp; !tags.isEmpty();</span>
+    }
+
+    public ImageStreamStatusFluent.TagsNested&lt;A&gt; addNewTag(){
+<span class="nc" id="L130">            return new TagsNestedImpl();</span>
+    }
+
+    public ImageStreamStatusFluent.TagsNested&lt;A&gt; addNewTagLike(NamedTagEventList item){
+<span class="nc" id="L134">            return new TagsNestedImpl(-1, item);</span>
+    }
+
+    public ImageStreamStatusFluent.TagsNested&lt;A&gt; setNewTagLike(int index,NamedTagEventList item){
+<span class="nc" id="L138">            return new TagsNestedImpl(index, item);</span>
+    }
+
+    public ImageStreamStatusFluent.TagsNested&lt;A&gt; editTag(int index){
+<span class="nc bnc" id="L142" title="All 2 branches missed.">            if (tags.size() &lt;= index) throw new RuntimeException(&quot;Can't edit tags. Index exceeds size.&quot;);</span>
+<span class="nc" id="L143">            return setNewTagLike(index, buildTag(index));</span>
+    }
+
+    public ImageStreamStatusFluent.TagsNested&lt;A&gt; editFirstTag(){
+<span class="nc bnc" id="L147" title="All 2 branches missed.">            if (tags.size() == 0) throw new RuntimeException(&quot;Can't edit first tags. The list is empty.&quot;);</span>
+<span class="nc" id="L148">            return setNewTagLike(0, buildTag(0));</span>
+    }
+
+    public ImageStreamStatusFluent.TagsNested&lt;A&gt; editLastTag(){
+<span class="nc" id="L152">            int index = tags.size() - 1;</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last tags. The list is empty.&quot;);</span>
+<span class="nc" id="L154">            return setNewTagLike(index, buildTag(index));</span>
+    }
+
+    public ImageStreamStatusFluent.TagsNested&lt;A&gt; editMatchingTag(io.fabric8.kubernetes.api.builder.Predicate&lt;NamedTagEventListBuilder&gt; predicate){
+<span class="nc" id="L158">            int index = -1;</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            for (int i=0;i&lt;tags.size();i++) { </span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">            if (predicate.apply(tags.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching tags. No match found.&quot;);</span>
+<span class="nc" id="L163">            return setNewTagLike(index, buildTag(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L168" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L170">            ImageStreamStatusFluentImpl that = (ImageStreamStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L171" title="All 6 branches missed.">            if (dockerImageRepository != null ? !dockerImageRepository.equals(that.dockerImageRepository) :that.dockerImageRepository != null) return false;</span>
+<span class="nc bnc" id="L172" title="All 6 branches missed.">            if (publicDockerImageRepository != null ? !publicDockerImageRepository.equals(that.publicDockerImageRepository) :that.publicDockerImageRepository != null) return false;</span>
+<span class="nc bnc" id="L173" title="All 6 branches missed.">            if (tags != null ? !tags.equals(that.tags) :that.tags != null) return false;</span>
+<span class="nc" id="L174">            return true;</span>
+    }
+
+
+    public class TagsNestedImpl&lt;N&gt; extends NamedTagEventListFluentImpl&lt;ImageStreamStatusFluent.TagsNested&lt;N&gt;&gt; implements ImageStreamStatusFluent.TagsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NamedTagEventListBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L183">            TagsNestedImpl(int index,NamedTagEventList item){</span>
+<span class="nc" id="L184">                    this.index = index;</span>
+<span class="nc" id="L185">                    this.builder = new NamedTagEventListBuilder(this, item);</span>
+<span class="nc" id="L186">            }</span>
+<span class="nc" id="L187">            TagsNestedImpl(){</span>
+<span class="nc" id="L188">                    this.index = -1;</span>
+<span class="nc" id="L189">                    this.builder = new NamedTagEventListBuilder(this);</span>
+<span class="nc" id="L190">            }</span>
+    
+    public N and(){
+<span class="nc" id="L193">            return (N) ImageStreamStatusFluentImpl.this.setToTags(index, builder.build());</span>
+    }
+    public N endTag(){
+<span class="nc" id="L196">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContainerStateFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ContainerStateFluentImpl.java</span></div><h1>ContainerStateFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.lang.Object;
+
+public class ContainerStateFluentImpl&lt;A extends ContainerStateFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ContainerStateFluent&lt;A&gt;{
+
+    private ContainerStateRunningBuilder running;
+    private ContainerStateTerminatedBuilder terminated;
+    private ContainerStateWaitingBuilder waiting;
+
+<span class="nc" id="L18">    public ContainerStateFluentImpl(){</span>
+<span class="nc" id="L19">    }</span>
+<span class="nc" id="L20">    public ContainerStateFluentImpl(ContainerState instance){</span>
+<span class="nc" id="L21">            this.withRunning(instance.getRunning()); </span>
+<span class="nc" id="L22">            this.withTerminated(instance.getTerminated()); </span>
+<span class="nc" id="L23">            this.withWaiting(instance.getWaiting()); </span>
+<span class="nc" id="L24">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildRunning instead.
+ * @return The buildable object.
+ */
+@Deprecated public ContainerStateRunning getRunning(){
+<span class="nc bnc" id="L32" title="All 2 branches missed.">            return this.running!=null?this.running.build():null;</span>
+    }
+
+    public ContainerStateRunning buildRunning(){
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            return this.running!=null?this.running.build():null;</span>
+    }
+
+    public A withRunning(ContainerStateRunning running){
+<span class="nc" id="L40">            _visitables.remove(this.running);</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            if (running!=null){ this.running= new ContainerStateRunningBuilder(running); _visitables.add(this.running);} return (A) this;</span>
+    }
+
+    public Boolean hasRunning(){
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            return this.running != null;</span>
+    }
+
+    public A withNewRunning(String startedAt){
+<span class="nc" id="L49">            return (A)withRunning(new ContainerStateRunning(startedAt));</span>
+    }
+
+    public ContainerStateFluent.RunningNested&lt;A&gt; withNewRunning(){
+<span class="nc" id="L53">            return new RunningNestedImpl();</span>
+    }
+
+    public ContainerStateFluent.RunningNested&lt;A&gt; withNewRunningLike(ContainerStateRunning item){
+<span class="nc" id="L57">            return new RunningNestedImpl(item);</span>
+    }
+
+    public ContainerStateFluent.RunningNested&lt;A&gt; editRunning(){
+<span class="nc" id="L61">            return withNewRunningLike(getRunning());</span>
+    }
+
+    public ContainerStateFluent.RunningNested&lt;A&gt; editOrNewRunning(){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            return withNewRunningLike(getRunning() != null ? getRunning(): new ContainerStateRunningBuilder().build());</span>
+    }
+
+    public ContainerStateFluent.RunningNested&lt;A&gt; editOrNewRunningLike(ContainerStateRunning item){
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            return withNewRunningLike(getRunning() != null ? getRunning(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTerminated instead.
+ * @return The buildable object.
+ */
+@Deprecated public ContainerStateTerminated getTerminated(){
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            return this.terminated!=null?this.terminated.build():null;</span>
+    }
+
+    public ContainerStateTerminated buildTerminated(){
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            return this.terminated!=null?this.terminated.build():null;</span>
+    }
+
+    public A withTerminated(ContainerStateTerminated terminated){
+<span class="nc" id="L86">            _visitables.remove(this.terminated);</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">            if (terminated!=null){ this.terminated= new ContainerStateTerminatedBuilder(terminated); _visitables.add(this.terminated);} return (A) this;</span>
+    }
+
+    public Boolean hasTerminated(){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            return this.terminated != null;</span>
+    }
+
+    public ContainerStateFluent.TerminatedNested&lt;A&gt; withNewTerminated(){
+<span class="nc" id="L95">            return new TerminatedNestedImpl();</span>
+    }
+
+    public ContainerStateFluent.TerminatedNested&lt;A&gt; withNewTerminatedLike(ContainerStateTerminated item){
+<span class="nc" id="L99">            return new TerminatedNestedImpl(item);</span>
+    }
+
+    public ContainerStateFluent.TerminatedNested&lt;A&gt; editTerminated(){
+<span class="nc" id="L103">            return withNewTerminatedLike(getTerminated());</span>
+    }
+
+    public ContainerStateFluent.TerminatedNested&lt;A&gt; editOrNewTerminated(){
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            return withNewTerminatedLike(getTerminated() != null ? getTerminated(): new ContainerStateTerminatedBuilder().build());</span>
+    }
+
+    public ContainerStateFluent.TerminatedNested&lt;A&gt; editOrNewTerminatedLike(ContainerStateTerminated item){
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            return withNewTerminatedLike(getTerminated() != null ? getTerminated(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildWaiting instead.
+ * @return The buildable object.
+ */
+@Deprecated public ContainerStateWaiting getWaiting(){
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            return this.waiting!=null?this.waiting.build():null;</span>
+    }
+
+    public ContainerStateWaiting buildWaiting(){
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            return this.waiting!=null?this.waiting.build():null;</span>
+    }
+
+    public A withWaiting(ContainerStateWaiting waiting){
+<span class="nc" id="L128">            _visitables.remove(this.waiting);</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            if (waiting!=null){ this.waiting= new ContainerStateWaitingBuilder(waiting); _visitables.add(this.waiting);} return (A) this;</span>
+    }
+
+    public Boolean hasWaiting(){
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            return this.waiting != null;</span>
+    }
+
+    public A withNewWaiting(String message,String reason){
+<span class="nc" id="L137">            return (A)withWaiting(new ContainerStateWaiting(message, reason));</span>
+    }
+
+    public ContainerStateFluent.WaitingNested&lt;A&gt; withNewWaiting(){
+<span class="nc" id="L141">            return new WaitingNestedImpl();</span>
+    }
+
+    public ContainerStateFluent.WaitingNested&lt;A&gt; withNewWaitingLike(ContainerStateWaiting item){
+<span class="nc" id="L145">            return new WaitingNestedImpl(item);</span>
+    }
+
+    public ContainerStateFluent.WaitingNested&lt;A&gt; editWaiting(){
+<span class="nc" id="L149">            return withNewWaitingLike(getWaiting());</span>
+    }
+
+    public ContainerStateFluent.WaitingNested&lt;A&gt; editOrNewWaiting(){
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            return withNewWaitingLike(getWaiting() != null ? getWaiting(): new ContainerStateWaitingBuilder().build());</span>
+    }
+
+    public ContainerStateFluent.WaitingNested&lt;A&gt; editOrNewWaitingLike(ContainerStateWaiting item){
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            return withNewWaitingLike(getWaiting() != null ? getWaiting(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L162" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L164">            ContainerStateFluentImpl that = (ContainerStateFluentImpl) o;</span>
+<span class="nc bnc" id="L165" title="All 6 branches missed.">            if (running != null ? !running.equals(that.running) :that.running != null) return false;</span>
+<span class="nc bnc" id="L166" title="All 6 branches missed.">            if (terminated != null ? !terminated.equals(that.terminated) :that.terminated != null) return false;</span>
+<span class="nc bnc" id="L167" title="All 6 branches missed.">            if (waiting != null ? !waiting.equals(that.waiting) :that.waiting != null) return false;</span>
+<span class="nc" id="L168">            return true;</span>
+    }
+
+
+    public class RunningNestedImpl&lt;N&gt; extends ContainerStateRunningFluentImpl&lt;ContainerStateFluent.RunningNested&lt;N&gt;&gt; implements ContainerStateFluent.RunningNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ContainerStateRunningBuilder builder;
+    
+<span class="nc" id="L176">            RunningNestedImpl(ContainerStateRunning item){</span>
+<span class="nc" id="L177">                    this.builder = new ContainerStateRunningBuilder(this, item);</span>
+<span class="nc" id="L178">            }</span>
+<span class="nc" id="L179">            RunningNestedImpl(){</span>
+<span class="nc" id="L180">                    this.builder = new ContainerStateRunningBuilder(this);</span>
+<span class="nc" id="L181">            }</span>
+    
+    public N and(){
+<span class="nc" id="L184">            return (N) ContainerStateFluentImpl.this.withRunning(builder.build());</span>
+    }
+    public N endRunning(){
+<span class="nc" id="L187">            return and();</span>
+    }
+
+}
+    public class TerminatedNestedImpl&lt;N&gt; extends ContainerStateTerminatedFluentImpl&lt;ContainerStateFluent.TerminatedNested&lt;N&gt;&gt; implements ContainerStateFluent.TerminatedNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ContainerStateTerminatedBuilder builder;
+    
+<span class="nc" id="L195">            TerminatedNestedImpl(ContainerStateTerminated item){</span>
+<span class="nc" id="L196">                    this.builder = new ContainerStateTerminatedBuilder(this, item);</span>
+<span class="nc" id="L197">            }</span>
+<span class="nc" id="L198">            TerminatedNestedImpl(){</span>
+<span class="nc" id="L199">                    this.builder = new ContainerStateTerminatedBuilder(this);</span>
+<span class="nc" id="L200">            }</span>
+    
+    public N and(){
+<span class="nc" id="L203">            return (N) ContainerStateFluentImpl.this.withTerminated(builder.build());</span>
+    }
+    public N endTerminated(){
+<span class="nc" id="L206">            return and();</span>
+    }
+
+}
+    public class WaitingNestedImpl&lt;N&gt; extends ContainerStateWaitingFluentImpl&lt;ContainerStateFluent.WaitingNested&lt;N&gt;&gt; implements ContainerStateFluent.WaitingNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ContainerStateWaitingBuilder builder;
+    
+<span class="nc" id="L214">            WaitingNestedImpl(ContainerStateWaiting item){</span>
+<span class="nc" id="L215">                    this.builder = new ContainerStateWaitingBuilder(this, item);</span>
+<span class="nc" id="L216">            }</span>
+<span class="nc" id="L217">            WaitingNestedImpl(){</span>
+<span class="nc" id="L218">                    this.builder = new ContainerStateWaitingBuilder(this);</span>
+<span class="nc" id="L219">            }</span>
+    
+    public N and(){
+<span class="nc" id="L222">            return (N) ContainerStateFluentImpl.this.withWaiting(builder.build());</span>
+    }
+    public N endWaiting(){
+<span class="nc" id="L225">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContainerStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ContainerStatus.java</span></div><h1>ContainerStatus.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;containerID&quot;,
+    &quot;image&quot;,
+    &quot;imageID&quot;,
+    &quot;lastState&quot;,
+    &quot;name&quot;,
+    &quot;ready&quot;,
+    &quot;restartCount&quot;,
+    &quot;state&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L44">@ToString</span>
+<span class="nc bnc" id="L45" title="All 78 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class ContainerStatus implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;containerID&quot;)
+    private String containerID;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;image&quot;)
+    private String image;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;imageID&quot;)
+    private String imageID;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;lastState&quot;)
+    @Valid
+    private ContainerState lastState;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;name&quot;)
+    @Pattern(regexp = &quot;^[a-z0-9]([-a-z0-9]*[a-z0-9])?$&quot;)
+    @Size(max = 63)
+    private String name;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ready&quot;)
+    private Boolean ready;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;restartCount&quot;)
+    private Integer restartCount;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;state&quot;)
+    @Valid
+    private ContainerState state;
+<span class="nc" id="L102">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L109">    public ContainerStatus() {</span>
+<span class="nc" id="L110">    }</span>
+
+    /**
+     * 
+     * @param image
+     * @param imageID
+     * @param restartCount
+     * @param ready
+     * @param name
+     * @param state
+     * @param containerID
+     * @param lastState
+     */
+<span class="nc" id="L123">    public ContainerStatus(String containerID, String image, String imageID, ContainerState lastState, String name, Boolean ready, Integer restartCount, ContainerState state) {</span>
+<span class="nc" id="L124">        this.containerID = containerID;</span>
+<span class="nc" id="L125">        this.image = image;</span>
+<span class="nc" id="L126">        this.imageID = imageID;</span>
+<span class="nc" id="L127">        this.lastState = lastState;</span>
+<span class="nc" id="L128">        this.name = name;</span>
+<span class="nc" id="L129">        this.ready = ready;</span>
+<span class="nc" id="L130">        this.restartCount = restartCount;</span>
+<span class="nc" id="L131">        this.state = state;</span>
+<span class="nc" id="L132">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The containerID
+     */
+    @JsonProperty(&quot;containerID&quot;)
+    public String getContainerID() {
+<span class="nc" id="L142">        return containerID;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param containerID
+     *     The containerID
+     */
+    @JsonProperty(&quot;containerID&quot;)
+    public void setContainerID(String containerID) {
+<span class="nc" id="L153">        this.containerID = containerID;</span>
+<span class="nc" id="L154">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The image
+     */
+    @JsonProperty(&quot;image&quot;)
+    public String getImage() {
+<span class="nc" id="L164">        return image;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param image
+     *     The image
+     */
+    @JsonProperty(&quot;image&quot;)
+    public void setImage(String image) {
+<span class="nc" id="L175">        this.image = image;</span>
+<span class="nc" id="L176">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The imageID
+     */
+    @JsonProperty(&quot;imageID&quot;)
+    public String getImageID() {
+<span class="nc" id="L186">        return imageID;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param imageID
+     *     The imageID
+     */
+    @JsonProperty(&quot;imageID&quot;)
+    public void setImageID(String imageID) {
+<span class="nc" id="L197">        this.imageID = imageID;</span>
+<span class="nc" id="L198">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The lastState
+     */
+    @JsonProperty(&quot;lastState&quot;)
+    public ContainerState getLastState() {
+<span class="nc" id="L208">        return lastState;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param lastState
+     *     The lastState
+     */
+    @JsonProperty(&quot;lastState&quot;)
+    public void setLastState(ContainerState lastState) {
+<span class="nc" id="L219">        this.lastState = lastState;</span>
+<span class="nc" id="L220">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The name
+     */
+    @JsonProperty(&quot;name&quot;)
+    public String getName() {
+<span class="nc" id="L230">        return name;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param name
+     *     The name
+     */
+    @JsonProperty(&quot;name&quot;)
+    public void setName(String name) {
+<span class="nc" id="L241">        this.name = name;</span>
+<span class="nc" id="L242">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The ready
+     */
+    @JsonProperty(&quot;ready&quot;)
+    public Boolean getReady() {
+<span class="nc" id="L252">        return ready;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param ready
+     *     The ready
+     */
+    @JsonProperty(&quot;ready&quot;)
+    public void setReady(Boolean ready) {
+<span class="nc" id="L263">        this.ready = ready;</span>
+<span class="nc" id="L264">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The restartCount
+     */
+    @JsonProperty(&quot;restartCount&quot;)
+    public Integer getRestartCount() {
+<span class="nc" id="L274">        return restartCount;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param restartCount
+     *     The restartCount
+     */
+    @JsonProperty(&quot;restartCount&quot;)
+    public void setRestartCount(Integer restartCount) {
+<span class="nc" id="L285">        this.restartCount = restartCount;</span>
+<span class="nc" id="L286">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The state
+     */
+    @JsonProperty(&quot;state&quot;)
+    public ContainerState getState() {
+<span class="nc" id="L296">        return state;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param state
+     *     The state
+     */
+    @JsonProperty(&quot;state&quot;)
+    public void setState(ContainerState state) {
+<span class="nc" id="L307">        this.state = state;</span>
+<span class="nc" id="L308">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L312">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L317">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L318">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

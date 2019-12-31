@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HTTPIngressRuleValueFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.extensions</a> &gt; <span class="el_source">HTTPIngressRuleValueFluentImpl.java</span></div><h1>HTTPIngressRuleValueFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.extensions;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class HTTPIngressRuleValueFluentImpl&lt;A extends HTTPIngressRuleValueFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements HTTPIngressRuleValueFluent&lt;A&gt;{
+
+    private List&lt;HTTPIngressPathBuilder&gt; paths;
+
+<span class="nc" id="L19">    public HTTPIngressRuleValueFluentImpl(){</span>
+<span class="nc" id="L20">    }</span>
+<span class="nc" id="L21">    public HTTPIngressRuleValueFluentImpl(HTTPIngressRuleValue instance){</span>
+<span class="nc" id="L22">            this.withPaths(instance.getPaths()); </span>
+<span class="nc" id="L23">    }</span>
+
+    public A addToPaths(int index,HTTPIngressPath item){
+<span class="nc bnc" id="L26" title="All 2 branches missed.">            if (this.paths == null) {this.paths = new ArrayList&lt;HTTPIngressPathBuilder&gt;();}</span>
+<span class="nc bnc" id="L27" title="All 4 branches missed.">            HTTPIngressPathBuilder builder = new HTTPIngressPathBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.paths.add(index &gt;= 0 ? index : paths.size(), builder); return (A)this;</span>
+    }
+
+    public A setToPaths(int index,HTTPIngressPath item){
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            if (this.paths == null) {this.paths = new ArrayList&lt;HTTPIngressPathBuilder&gt;();}</span>
+<span class="nc" id="L32">            HTTPIngressPathBuilder builder = new HTTPIngressPathBuilder(item);</span>
+<span class="nc bnc" id="L33" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L34" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= paths.size()) { paths.add(builder); } else { paths.set(index, builder);}</span>
+<span class="nc" id="L35">             return (A)this;</span>
+    }
+
+    public A addToPaths(HTTPIngressPath... items){
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            if (this.paths == null) {this.paths = new ArrayList&lt;HTTPIngressPathBuilder&gt;();}</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            for (HTTPIngressPath item : items) {HTTPIngressPathBuilder builder = new HTTPIngressPathBuilder(item);_visitables.add(builder);this.paths.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToPaths(Collection&lt;HTTPIngressPath&gt; items){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            if (this.paths == null) {this.paths = new ArrayList&lt;HTTPIngressPathBuilder&gt;();}</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            for (HTTPIngressPath item : items) {HTTPIngressPathBuilder builder = new HTTPIngressPathBuilder(item);_visitables.add(builder);this.paths.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromPaths(HTTPIngressPath... items){
+<span class="nc bnc" id="L49" title="All 4 branches missed.">            for (HTTPIngressPath item : items) {HTTPIngressPathBuilder builder = new HTTPIngressPathBuilder(item);_visitables.remove(builder);if (this.paths != null) {this.paths.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromPaths(Collection&lt;HTTPIngressPath&gt; items){
+<span class="nc bnc" id="L53" title="All 4 branches missed.">            for (HTTPIngressPath item : items) {HTTPIngressPathBuilder builder = new HTTPIngressPathBuilder(item);_visitables.remove(builder);if (this.paths != null) {this.paths.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPaths instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;HTTPIngressPath&gt; getPaths(){
+<span class="nc" id="L62">            return build(paths);</span>
+    }
+
+    public List&lt;HTTPIngressPath&gt; buildPaths(){
+<span class="nc" id="L66">            return build(paths);</span>
+    }
+
+    public HTTPIngressPath buildPath(int index){
+<span class="nc" id="L70">            return this.paths.get(index).build();</span>
+    }
+
+    public HTTPIngressPath buildFirstPath(){
+<span class="nc" id="L74">            return this.paths.get(0).build();</span>
+    }
+
+    public HTTPIngressPath buildLastPath(){
+<span class="nc" id="L78">            return this.paths.get(paths.size() - 1).build();</span>
+    }
+
+    public HTTPIngressPath buildMatchingPath(io.fabric8.kubernetes.api.builder.Predicate&lt;HTTPIngressPathBuilder&gt; predicate){
+<span class="nc bnc" id="L82" title="All 4 branches missed.">            for (HTTPIngressPathBuilder item: paths) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withPaths(List&lt;HTTPIngressPath&gt; paths){
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            if (this.paths != null) { _visitables.removeAll(this.paths);}</span>
+<span class="nc bnc" id="L87" title="All 4 branches missed.">            if (paths != null) {this.paths = new ArrayList&lt;HTTPIngressPathBuilder&gt;(); for (HTTPIngressPath item : paths){this.addToPaths(item);}} else { this.paths = new ArrayList&lt;HTTPIngressPathBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withPaths(HTTPIngressPath... paths){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (this.paths != null) {this.paths.clear();}</span>
+<span class="nc bnc" id="L92" title="All 4 branches missed.">            if (paths != null) {for (HTTPIngressPath item :paths){ this.addToPaths(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasPaths(){
+<span class="nc bnc" id="L96" title="All 4 branches missed.">            return paths != null &amp;&amp; !paths.isEmpty();</span>
+    }
+
+    public HTTPIngressRuleValueFluent.PathsNested&lt;A&gt; addNewPath(){
+<span class="nc" id="L100">            return new PathsNestedImpl();</span>
+    }
+
+    public HTTPIngressRuleValueFluent.PathsNested&lt;A&gt; addNewPathLike(HTTPIngressPath item){
+<span class="nc" id="L104">            return new PathsNestedImpl(-1, item);</span>
+    }
+
+    public HTTPIngressRuleValueFluent.PathsNested&lt;A&gt; setNewPathLike(int index,HTTPIngressPath item){
+<span class="nc" id="L108">            return new PathsNestedImpl(index, item);</span>
+    }
+
+    public HTTPIngressRuleValueFluent.PathsNested&lt;A&gt; editPath(int index){
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            if (paths.size() &lt;= index) throw new RuntimeException(&quot;Can't edit paths. Index exceeds size.&quot;);</span>
+<span class="nc" id="L113">            return setNewPathLike(index, buildPath(index));</span>
+    }
+
+    public HTTPIngressRuleValueFluent.PathsNested&lt;A&gt; editFirstPath(){
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            if (paths.size() == 0) throw new RuntimeException(&quot;Can't edit first paths. The list is empty.&quot;);</span>
+<span class="nc" id="L118">            return setNewPathLike(0, buildPath(0));</span>
+    }
+
+    public HTTPIngressRuleValueFluent.PathsNested&lt;A&gt; editLastPath(){
+<span class="nc" id="L122">            int index = paths.size() - 1;</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last paths. The list is empty.&quot;);</span>
+<span class="nc" id="L124">            return setNewPathLike(index, buildPath(index));</span>
+    }
+
+    public HTTPIngressRuleValueFluent.PathsNested&lt;A&gt; editMatchingPath(io.fabric8.kubernetes.api.builder.Predicate&lt;HTTPIngressPathBuilder&gt; predicate){
+<span class="nc" id="L128">            int index = -1;</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            for (int i=0;i&lt;paths.size();i++) { </span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            if (predicate.apply(paths.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching paths. No match found.&quot;);</span>
+<span class="nc" id="L133">            return setNewPathLike(index, buildPath(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L138" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L140">            HTTPIngressRuleValueFluentImpl that = (HTTPIngressRuleValueFluentImpl) o;</span>
+<span class="nc bnc" id="L141" title="All 6 branches missed.">            if (paths != null ? !paths.equals(that.paths) :that.paths != null) return false;</span>
+<span class="nc" id="L142">            return true;</span>
+    }
+
+
+    public class PathsNestedImpl&lt;N&gt; extends HTTPIngressPathFluentImpl&lt;HTTPIngressRuleValueFluent.PathsNested&lt;N&gt;&gt; implements HTTPIngressRuleValueFluent.PathsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final HTTPIngressPathBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L151">            PathsNestedImpl(int index,HTTPIngressPath item){</span>
+<span class="nc" id="L152">                    this.index = index;</span>
+<span class="nc" id="L153">                    this.builder = new HTTPIngressPathBuilder(this, item);</span>
+<span class="nc" id="L154">            }</span>
+<span class="nc" id="L155">            PathsNestedImpl(){</span>
+<span class="nc" id="L156">                    this.index = -1;</span>
+<span class="nc" id="L157">                    this.builder = new HTTPIngressPathBuilder(this);</span>
+<span class="nc" id="L158">            }</span>
+    
+    public N and(){
+<span class="nc" id="L161">            return (N) HTTPIngressRuleValueFluentImpl.this.setToPaths(index, builder.build());</span>
+    }
+    public N endPath(){
+<span class="nc" id="L164">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

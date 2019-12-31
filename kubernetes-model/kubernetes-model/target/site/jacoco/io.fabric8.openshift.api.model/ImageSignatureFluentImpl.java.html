@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImageSignatureFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">ImageSignatureFluentImpl.java</span></div><h1>ImageSignatureFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.util.LinkedHashMap;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.ObjectMetaFluentImpl;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.Map;
+
+public class ImageSignatureFluentImpl&lt;A extends ImageSignatureFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ImageSignatureFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private List&lt;SignatureConditionBuilder&gt; conditions;
+    private String content;
+    private String created;
+    private String imageIdentity;
+    private SignatureIssuerBuilder issuedBy;
+    private SignatureSubjectBuilder issuedTo;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+    private Map&lt;String,String&gt; signedClaims;
+    private String type;
+
+<span class="nc" id="L38">    public ImageSignatureFluentImpl(){</span>
+<span class="nc" id="L39">    }</span>
+<span class="nc" id="L40">    public ImageSignatureFluentImpl(ImageSignature instance){</span>
+<span class="nc" id="L41">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L42">            this.withConditions(instance.getConditions()); </span>
+<span class="nc" id="L43">            this.withContent(instance.getContent()); </span>
+<span class="nc" id="L44">            this.withCreated(instance.getCreated()); </span>
+<span class="nc" id="L45">            this.withImageIdentity(instance.getImageIdentity()); </span>
+<span class="nc" id="L46">            this.withIssuedBy(instance.getIssuedBy()); </span>
+<span class="nc" id="L47">            this.withIssuedTo(instance.getIssuedTo()); </span>
+<span class="nc" id="L48">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L49">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L50">            this.withSignedClaims(instance.getSignedClaims()); </span>
+<span class="nc" id="L51">            this.withType(instance.getType()); </span>
+<span class="nc" id="L52">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L55">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L59">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public A addToConditions(int index,SignatureCondition item){
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;SignatureConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L68" title="All 4 branches missed.">            SignatureConditionBuilder builder = new SignatureConditionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.conditions.add(index &gt;= 0 ? index : conditions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToConditions(int index,SignatureCondition item){
+<span class="nc bnc" id="L72" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;SignatureConditionBuilder&gt;();}</span>
+<span class="nc" id="L73">            SignatureConditionBuilder builder = new SignatureConditionBuilder(item);</span>
+<span class="nc bnc" id="L74" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L75" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= conditions.size()) { conditions.add(builder); } else { conditions.set(index, builder);}</span>
+<span class="nc" id="L76">             return (A)this;</span>
+    }
+
+    public A addToConditions(SignatureCondition... items){
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;SignatureConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            for (SignatureCondition item : items) {SignatureConditionBuilder builder = new SignatureConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToConditions(Collection&lt;SignatureCondition&gt; items){
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;SignatureConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            for (SignatureCondition item : items) {SignatureConditionBuilder builder = new SignatureConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromConditions(SignatureCondition... items){
+<span class="nc bnc" id="L90" title="All 4 branches missed.">            for (SignatureCondition item : items) {SignatureConditionBuilder builder = new SignatureConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromConditions(Collection&lt;SignatureCondition&gt; items){
+<span class="nc bnc" id="L94" title="All 4 branches missed.">            for (SignatureCondition item : items) {SignatureConditionBuilder builder = new SignatureConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildConditions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;SignatureCondition&gt; getConditions(){
+<span class="nc" id="L103">            return build(conditions);</span>
+    }
+
+    public List&lt;SignatureCondition&gt; buildConditions(){
+<span class="nc" id="L107">            return build(conditions);</span>
+    }
+
+    public SignatureCondition buildCondition(int index){
+<span class="nc" id="L111">            return this.conditions.get(index).build();</span>
+    }
+
+    public SignatureCondition buildFirstCondition(){
+<span class="nc" id="L115">            return this.conditions.get(0).build();</span>
+    }
+
+    public SignatureCondition buildLastCondition(){
+<span class="nc" id="L119">            return this.conditions.get(conditions.size() - 1).build();</span>
+    }
+
+    public SignatureCondition buildMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;SignatureConditionBuilder&gt; predicate){
+<span class="nc bnc" id="L123" title="All 4 branches missed.">            for (SignatureConditionBuilder item: conditions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withConditions(List&lt;SignatureCondition&gt; conditions){
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            if (this.conditions != null) { _visitables.removeAll(this.conditions);}</span>
+<span class="nc bnc" id="L128" title="All 4 branches missed.">            if (conditions != null) {this.conditions = new ArrayList&lt;SignatureConditionBuilder&gt;(); for (SignatureCondition item : conditions){this.addToConditions(item);}} else { this.conditions = new ArrayList&lt;SignatureConditionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withConditions(SignatureCondition... conditions){
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            if (this.conditions != null) {this.conditions.clear();}</span>
+<span class="nc bnc" id="L133" title="All 4 branches missed.">            if (conditions != null) {for (SignatureCondition item :conditions){ this.addToConditions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasConditions(){
+<span class="nc bnc" id="L137" title="All 4 branches missed.">            return conditions != null &amp;&amp; !conditions.isEmpty();</span>
+    }
+
+    public ImageSignatureFluent.ConditionsNested&lt;A&gt; addNewCondition(){
+<span class="nc" id="L141">            return new ConditionsNestedImpl();</span>
+    }
+
+    public ImageSignatureFluent.ConditionsNested&lt;A&gt; addNewConditionLike(SignatureCondition item){
+<span class="nc" id="L145">            return new ConditionsNestedImpl(-1, item);</span>
+    }
+
+    public ImageSignatureFluent.ConditionsNested&lt;A&gt; setNewConditionLike(int index,SignatureCondition item){
+<span class="nc" id="L149">            return new ConditionsNestedImpl(index, item);</span>
+    }
+
+    public ImageSignatureFluent.ConditionsNested&lt;A&gt; editCondition(int index){
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            if (conditions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit conditions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L154">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public ImageSignatureFluent.ConditionsNested&lt;A&gt; editFirstCondition(){
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            if (conditions.size() == 0) throw new RuntimeException(&quot;Can't edit first conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L159">            return setNewConditionLike(0, buildCondition(0));</span>
+    }
+
+    public ImageSignatureFluent.ConditionsNested&lt;A&gt; editLastCondition(){
+<span class="nc" id="L163">            int index = conditions.size() - 1;</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L165">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public ImageSignatureFluent.ConditionsNested&lt;A&gt; editMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;SignatureConditionBuilder&gt; predicate){
+<span class="nc" id="L169">            int index = -1;</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">            for (int i=0;i&lt;conditions.size();i++) { </span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">            if (predicate.apply(conditions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching conditions. No match found.&quot;);</span>
+<span class="nc" id="L174">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public String getContent(){
+<span class="nc" id="L178">            return this.content;</span>
+    }
+
+    public A withContent(String content){
+<span class="nc" id="L182">            this.content=content; return (A) this;</span>
+    }
+
+    public Boolean hasContent(){
+<span class="nc bnc" id="L186" title="All 2 branches missed.">            return this.content != null;</span>
+    }
+
+    public String getCreated(){
+<span class="nc" id="L190">            return this.created;</span>
+    }
+
+    public A withCreated(String created){
+<span class="nc" id="L194">            this.created=created; return (A) this;</span>
+    }
+
+    public Boolean hasCreated(){
+<span class="nc bnc" id="L198" title="All 2 branches missed.">            return this.created != null;</span>
+    }
+
+    public String getImageIdentity(){
+<span class="nc" id="L202">            return this.imageIdentity;</span>
+    }
+
+    public A withImageIdentity(String imageIdentity){
+<span class="nc" id="L206">            this.imageIdentity=imageIdentity; return (A) this;</span>
+    }
+
+    public Boolean hasImageIdentity(){
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            return this.imageIdentity != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildIssuedBy instead.
+ * @return The buildable object.
+ */
+@Deprecated public SignatureIssuer getIssuedBy(){
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            return this.issuedBy!=null?this.issuedBy.build():null;</span>
+    }
+
+    public SignatureIssuer buildIssuedBy(){
+<span class="nc bnc" id="L223" title="All 2 branches missed.">            return this.issuedBy!=null?this.issuedBy.build():null;</span>
+    }
+
+    public A withIssuedBy(SignatureIssuer issuedBy){
+<span class="nc" id="L227">            _visitables.remove(this.issuedBy);</span>
+<span class="nc bnc" id="L228" title="All 2 branches missed.">            if (issuedBy!=null){ this.issuedBy= new SignatureIssuerBuilder(issuedBy); _visitables.add(this.issuedBy);} return (A) this;</span>
+    }
+
+    public Boolean hasIssuedBy(){
+<span class="nc bnc" id="L232" title="All 2 branches missed.">            return this.issuedBy != null;</span>
+    }
+
+    public A withNewIssuedBy(String commonName,String organization){
+<span class="nc" id="L236">            return (A)withIssuedBy(new SignatureIssuer(commonName, organization));</span>
+    }
+
+    public ImageSignatureFluent.IssuedByNested&lt;A&gt; withNewIssuedBy(){
+<span class="nc" id="L240">            return new IssuedByNestedImpl();</span>
+    }
+
+    public ImageSignatureFluent.IssuedByNested&lt;A&gt; withNewIssuedByLike(SignatureIssuer item){
+<span class="nc" id="L244">            return new IssuedByNestedImpl(item);</span>
+    }
+
+    public ImageSignatureFluent.IssuedByNested&lt;A&gt; editIssuedBy(){
+<span class="nc" id="L248">            return withNewIssuedByLike(getIssuedBy());</span>
+    }
+
+    public ImageSignatureFluent.IssuedByNested&lt;A&gt; editOrNewIssuedBy(){
+<span class="nc bnc" id="L252" title="All 2 branches missed.">            return withNewIssuedByLike(getIssuedBy() != null ? getIssuedBy(): new SignatureIssuerBuilder().build());</span>
+    }
+
+    public ImageSignatureFluent.IssuedByNested&lt;A&gt; editOrNewIssuedByLike(SignatureIssuer item){
+<span class="nc bnc" id="L256" title="All 2 branches missed.">            return withNewIssuedByLike(getIssuedBy() != null ? getIssuedBy(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildIssuedTo instead.
+ * @return The buildable object.
+ */
+@Deprecated public SignatureSubject getIssuedTo(){
+<span class="nc bnc" id="L265" title="All 2 branches missed.">            return this.issuedTo!=null?this.issuedTo.build():null;</span>
+    }
+
+    public SignatureSubject buildIssuedTo(){
+<span class="nc bnc" id="L269" title="All 2 branches missed.">            return this.issuedTo!=null?this.issuedTo.build():null;</span>
+    }
+
+    public A withIssuedTo(SignatureSubject issuedTo){
+<span class="nc" id="L273">            _visitables.remove(this.issuedTo);</span>
+<span class="nc bnc" id="L274" title="All 2 branches missed.">            if (issuedTo!=null){ this.issuedTo= new SignatureSubjectBuilder(issuedTo); _visitables.add(this.issuedTo);} return (A) this;</span>
+    }
+
+    public Boolean hasIssuedTo(){
+<span class="nc bnc" id="L278" title="All 2 branches missed.">            return this.issuedTo != null;</span>
+    }
+
+    public A withNewIssuedTo(String commonName,String organization,String publicKeyID){
+<span class="nc" id="L282">            return (A)withIssuedTo(new SignatureSubject(commonName, organization, publicKeyID));</span>
+    }
+
+    public ImageSignatureFluent.IssuedToNested&lt;A&gt; withNewIssuedTo(){
+<span class="nc" id="L286">            return new IssuedToNestedImpl();</span>
+    }
+
+    public ImageSignatureFluent.IssuedToNested&lt;A&gt; withNewIssuedToLike(SignatureSubject item){
+<span class="nc" id="L290">            return new IssuedToNestedImpl(item);</span>
+    }
+
+    public ImageSignatureFluent.IssuedToNested&lt;A&gt; editIssuedTo(){
+<span class="nc" id="L294">            return withNewIssuedToLike(getIssuedTo());</span>
+    }
+
+    public ImageSignatureFluent.IssuedToNested&lt;A&gt; editOrNewIssuedTo(){
+<span class="nc bnc" id="L298" title="All 2 branches missed.">            return withNewIssuedToLike(getIssuedTo() != null ? getIssuedTo(): new SignatureSubjectBuilder().build());</span>
+    }
+
+    public ImageSignatureFluent.IssuedToNested&lt;A&gt; editOrNewIssuedToLike(SignatureSubject item){
+<span class="nc bnc" id="L302" title="All 2 branches missed.">            return withNewIssuedToLike(getIssuedTo() != null ? getIssuedTo(): item);</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L306">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L310">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L314" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L323" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L327" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L331">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L332" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L336" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public ImageSignatureFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L340">            return new MetadataNestedImpl();</span>
+    }
+
+    public ImageSignatureFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L344">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public ImageSignatureFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L348">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public ImageSignatureFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L352" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public ImageSignatureFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L356" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    public A addToSignedClaims(String key,String value){
+<span class="nc bnc" id="L360" title="All 6 branches missed.">            if(this.signedClaims == null &amp;&amp; key != null &amp;&amp; value != null) { this.signedClaims = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L361" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.signedClaims.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToSignedClaims(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L365" title="All 4 branches missed.">            if(this.signedClaims == null &amp;&amp; map != null) { this.signedClaims = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L366" title="All 2 branches missed.">            if(map != null) { this.signedClaims.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromSignedClaims(String key){
+<span class="nc bnc" id="L370" title="All 2 branches missed.">            if(this.signedClaims == null) { return (A) this; }</span>
+<span class="nc bnc" id="L371" title="All 4 branches missed.">            if(key != null &amp;&amp; this.signedClaims != null) {this.signedClaims.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromSignedClaims(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L375" title="All 2 branches missed.">            if(this.signedClaims == null) { return (A) this; }</span>
+<span class="nc bnc" id="L376" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.signedClaims != null){this.signedClaims.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getSignedClaims(){
+<span class="nc" id="L380">            return this.signedClaims;</span>
+    }
+
+    public A withSignedClaims(Map&lt;String,String&gt; signedClaims){
+<span class="nc bnc" id="L384" title="All 2 branches missed.">            if (signedClaims == null) { this.signedClaims =  new LinkedHashMap&lt;String,String&gt;();} else {this.signedClaims = new LinkedHashMap&lt;String,String&gt;(signedClaims);} return (A) this;</span>
+    }
+
+    public Boolean hasSignedClaims(){
+<span class="nc bnc" id="L388" title="All 2 branches missed.">            return this.signedClaims != null;</span>
+    }
+
+    public String getType(){
+<span class="nc" id="L392">            return this.type;</span>
+    }
+
+    public A withType(String type){
+<span class="nc" id="L396">            this.type=type; return (A) this;</span>
+    }
+
+    public Boolean hasType(){
+<span class="nc bnc" id="L400" title="All 2 branches missed.">            return this.type != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L404" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L405" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L406" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L407">            ImageSignatureFluentImpl that = (ImageSignatureFluentImpl) o;</span>
+<span class="nc bnc" id="L408" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L409" title="All 6 branches missed.">            if (conditions != null ? !conditions.equals(that.conditions) :that.conditions != null) return false;</span>
+<span class="nc bnc" id="L410" title="All 6 branches missed.">            if (content != null ? !content.equals(that.content) :that.content != null) return false;</span>
+<span class="nc bnc" id="L411" title="All 6 branches missed.">            if (created != null ? !created.equals(that.created) :that.created != null) return false;</span>
+<span class="nc bnc" id="L412" title="All 6 branches missed.">            if (imageIdentity != null ? !imageIdentity.equals(that.imageIdentity) :that.imageIdentity != null) return false;</span>
+<span class="nc bnc" id="L413" title="All 6 branches missed.">            if (issuedBy != null ? !issuedBy.equals(that.issuedBy) :that.issuedBy != null) return false;</span>
+<span class="nc bnc" id="L414" title="All 6 branches missed.">            if (issuedTo != null ? !issuedTo.equals(that.issuedTo) :that.issuedTo != null) return false;</span>
+<span class="nc bnc" id="L415" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L416" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L417" title="All 6 branches missed.">            if (signedClaims != null ? !signedClaims.equals(that.signedClaims) :that.signedClaims != null) return false;</span>
+<span class="nc bnc" id="L418" title="All 6 branches missed.">            if (type != null ? !type.equals(that.type) :that.type != null) return false;</span>
+<span class="nc" id="L419">            return true;</span>
+    }
+
+
+    public class ConditionsNestedImpl&lt;N&gt; extends SignatureConditionFluentImpl&lt;ImageSignatureFluent.ConditionsNested&lt;N&gt;&gt; implements ImageSignatureFluent.ConditionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SignatureConditionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L428">            ConditionsNestedImpl(int index,SignatureCondition item){</span>
+<span class="nc" id="L429">                    this.index = index;</span>
+<span class="nc" id="L430">                    this.builder = new SignatureConditionBuilder(this, item);</span>
+<span class="nc" id="L431">            }</span>
+<span class="nc" id="L432">            ConditionsNestedImpl(){</span>
+<span class="nc" id="L433">                    this.index = -1;</span>
+<span class="nc" id="L434">                    this.builder = new SignatureConditionBuilder(this);</span>
+<span class="nc" id="L435">            }</span>
+    
+    public N and(){
+<span class="nc" id="L438">            return (N) ImageSignatureFluentImpl.this.setToConditions(index, builder.build());</span>
+    }
+    public N endCondition(){
+<span class="nc" id="L441">            return and();</span>
+    }
+
+}
+    public class IssuedByNestedImpl&lt;N&gt; extends SignatureIssuerFluentImpl&lt;ImageSignatureFluent.IssuedByNested&lt;N&gt;&gt; implements ImageSignatureFluent.IssuedByNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SignatureIssuerBuilder builder;
+    
+<span class="nc" id="L449">            IssuedByNestedImpl(SignatureIssuer item){</span>
+<span class="nc" id="L450">                    this.builder = new SignatureIssuerBuilder(this, item);</span>
+<span class="nc" id="L451">            }</span>
+<span class="nc" id="L452">            IssuedByNestedImpl(){</span>
+<span class="nc" id="L453">                    this.builder = new SignatureIssuerBuilder(this);</span>
+<span class="nc" id="L454">            }</span>
+    
+    public N and(){
+<span class="nc" id="L457">            return (N) ImageSignatureFluentImpl.this.withIssuedBy(builder.build());</span>
+    }
+    public N endIssuedBy(){
+<span class="nc" id="L460">            return and();</span>
+    }
+
+}
+    public class IssuedToNestedImpl&lt;N&gt; extends SignatureSubjectFluentImpl&lt;ImageSignatureFluent.IssuedToNested&lt;N&gt;&gt; implements ImageSignatureFluent.IssuedToNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SignatureSubjectBuilder builder;
+    
+<span class="nc" id="L468">            IssuedToNestedImpl(SignatureSubject item){</span>
+<span class="nc" id="L469">                    this.builder = new SignatureSubjectBuilder(this, item);</span>
+<span class="nc" id="L470">            }</span>
+<span class="nc" id="L471">            IssuedToNestedImpl(){</span>
+<span class="nc" id="L472">                    this.builder = new SignatureSubjectBuilder(this);</span>
+<span class="nc" id="L473">            }</span>
+    
+    public N and(){
+<span class="nc" id="L476">            return (N) ImageSignatureFluentImpl.this.withIssuedTo(builder.build());</span>
+    }
+    public N endIssuedTo(){
+<span class="nc" id="L479">            return and();</span>
+    }
+
+}
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;ImageSignatureFluent.MetadataNested&lt;N&gt;&gt; implements ImageSignatureFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L487">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L488">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L489">            }</span>
+<span class="nc" id="L490">            MetadataNestedImpl(){</span>
+<span class="nc" id="L491">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L492">            }</span>
+    
+    public N and(){
+<span class="nc" id="L495">            return (N) ImageSignatureFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L498">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

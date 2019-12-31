@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PKCS1Util.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.internal</a> &gt; <span class="el_source">PKCS1Util.java</span></div><h1>PKCS1Util.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.internal;
+
+import java.io.*;
+import java.math.BigInteger;
+import java.security.spec.RSAPrivateCrtKeySpec;
+
+/**
+ * This code is inspired and taken over from net.auth.core:oauth
+ * (albeit in a highly stripped variation):
+ * &lt;p/&gt;
+ * Source is from http://oauth.googlecode.com/svn/code/java/ which is licensed
+ * under the APL (http://oauth.googlecode.com/svn/code/java/LICENSE.txt)
+ * &lt;p/&gt;
+ * All credits go to the original author (zhang)
+ *
+ * @author roland
+ * @since 30/09/15
+ */
+class PKCS1Util {
+
+  private PKCS1Util() {
+  }
+
+  public static RSAPrivateCrtKeySpec decodePKCS1(byte[] keyBytes) throws IOException {
+<span class="fc" id="L40">    DerParser parser = new DerParser(keyBytes);</span>
+<span class="fc" id="L41">    Asn1Object sequence = parser.read();</span>
+<span class="fc" id="L42">    sequence.validateSequence();</span>
+<span class="fc" id="L43">    parser = new DerParser(sequence.getValue());</span>
+<span class="fc" id="L44">    parser.read();</span>
+
+<span class="fc" id="L46">    return new RSAPrivateCrtKeySpec(next(parser), next(parser),</span>
+<span class="fc" id="L47">      next(parser), next(parser),</span>
+<span class="fc" id="L48">      next(parser), next(parser),</span>
+<span class="fc" id="L49">      next(parser), next(parser));</span>
+  }
+
+  // ==========================================================================================
+
+  private static BigInteger next(DerParser parser) throws IOException {
+<span class="fc" id="L55">    return parser.read().getInteger();</span>
+  }
+
+  static class DerParser {
+
+    private InputStream in;
+
+<span class="fc" id="L62">    DerParser(byte[] bytes) throws IOException {</span>
+<span class="fc" id="L63">      this.in = new ByteArrayInputStream(bytes);</span>
+<span class="fc" id="L64">    }</span>
+
+    Asn1Object read() throws IOException {
+<span class="fc" id="L67">      int tag = in.read();</span>
+
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">      if (tag == -1) {</span>
+<span class="nc" id="L70">        throw new IOException(&quot;Invalid DER: stream too short, missing tag&quot;);</span>
+      }
+
+<span class="fc" id="L73">      int length = getLength();</span>
+<span class="fc" id="L74">      byte[] value = new byte[length];</span>
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">      if (in.read(value) &lt; length) {</span>
+<span class="nc" id="L76">        throw new IOException(&quot;Invalid DER: stream too short, missing value&quot;);</span>
+      }
+
+<span class="fc" id="L79">      return new Asn1Object(tag, value);</span>
+    }
+
+    private int getLength() throws IOException {
+<span class="fc" id="L83">      int i = in.read();</span>
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">      if (i == -1) {</span>
+<span class="nc" id="L85">        throw new IOException(&quot;Invalid DER: length missing&quot;);</span>
+      }
+
+<span class="fc bfc" id="L88" title="All 2 branches covered.">      if ((i &amp; ~0x7F) == 0) {</span>
+<span class="fc" id="L89">        return i;</span>
+      }
+
+<span class="fc" id="L92">      int num = i &amp; 0x7F;</span>
+<span class="pc bpc" id="L93" title="2 of 4 branches missed.">      if (i &gt;= 0xFF || num &gt; 4) {</span>
+<span class="nc" id="L94">        throw new IOException(&quot;Invalid DER: length field too big (&quot;</span>
+          + i + &quot;)&quot;);
+      }
+
+<span class="fc" id="L98">      byte[] bytes = new byte[num];</span>
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">      if (in.read(bytes) &lt; num) {</span>
+<span class="nc" id="L100">        throw new IOException(&quot;Invalid DER: length too short&quot;);</span>
+      }
+
+<span class="fc" id="L103">      return new BigInteger(1, bytes).intValue();</span>
+    }
+  }
+
+  static class Asn1Object {
+
+    private final int type;
+    private final byte[] value;
+    private final int tag;
+
+<span class="fc" id="L113">    public Asn1Object(int tag, byte[] value) {</span>
+<span class="fc" id="L114">      this.tag = tag;</span>
+<span class="fc" id="L115">      this.type = tag &amp; 0x1F;</span>
+<span class="fc" id="L116">      this.value = value;</span>
+<span class="fc" id="L117">    }</span>
+
+    public byte[] getValue() {
+<span class="fc" id="L120">      return value;</span>
+    }
+
+    BigInteger getInteger() throws IOException {
+<span class="pc bpc" id="L124" title="1 of 2 branches missed.">      if (type != 0x02) {</span>
+<span class="nc" id="L125">        throw new IOException(&quot;Invalid DER: object is not integer&quot;); //$NON-NLS-1$</span>
+      }
+<span class="fc" id="L127">      return new BigInteger(value);</span>
+    }
+
+    void validateSequence() throws IOException {
+<span class="pc bpc" id="L131" title="1 of 2 branches missed.">      if (type != 0x10) {</span>
+<span class="nc" id="L132">        throw new IOException(&quot;Invalid DER: not a sequence&quot;);</span>
+      }
+<span class="pc bpc" id="L134" title="1 of 2 branches missed.">      if ((tag &amp; 0x20) != 0x20) {</span>
+<span class="nc" id="L135">        throw new IOException(&quot;Invalid DER: can't parse primitive entity&quot;);</span>
+      }
+<span class="fc" id="L137">    }</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

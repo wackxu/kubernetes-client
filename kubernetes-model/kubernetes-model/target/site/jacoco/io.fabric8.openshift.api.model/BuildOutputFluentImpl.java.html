@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuildOutputFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">BuildOutputFluentImpl.java</span></div><h1>BuildOutputFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import io.fabric8.kubernetes.api.model.LocalObjectReferenceFluentImpl;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectReferenceFluentImpl;
+import io.fabric8.kubernetes.api.model.LocalObjectReferenceBuilder;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.ObjectReferenceBuilder;
+import io.fabric8.kubernetes.api.model.LocalObjectReference;
+import java.util.Collection;
+import java.lang.Object;
+
+public class BuildOutputFluentImpl&lt;A extends BuildOutputFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements BuildOutputFluent&lt;A&gt;{
+
+    private List&lt;ImageLabelBuilder&gt; imageLabels;
+    private LocalObjectReferenceBuilder pushSecret;
+    private ObjectReferenceBuilder to;
+
+<span class="fc" id="L29">    public BuildOutputFluentImpl(){</span>
+<span class="fc" id="L30">    }</span>
+<span class="nc" id="L31">    public BuildOutputFluentImpl(BuildOutput instance){</span>
+<span class="nc" id="L32">            this.withImageLabels(instance.getImageLabels()); </span>
+<span class="nc" id="L33">            this.withPushSecret(instance.getPushSecret()); </span>
+<span class="nc" id="L34">            this.withTo(instance.getTo()); </span>
+<span class="nc" id="L35">    }</span>
+
+    public A addToImageLabels(int index,ImageLabel item){
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">            if (this.imageLabels == null) {this.imageLabels = new ArrayList&lt;ImageLabelBuilder&gt;();}</span>
+<span class="pc bpc" id="L39" title="2 of 4 branches missed.">            ImageLabelBuilder builder = new ImageLabelBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.imageLabels.add(index &gt;= 0 ? index : imageLabels.size(), builder); return (A)this;</span>
+    }
+
+    public A setToImageLabels(int index,ImageLabel item){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            if (this.imageLabels == null) {this.imageLabels = new ArrayList&lt;ImageLabelBuilder&gt;();}</span>
+<span class="nc" id="L44">            ImageLabelBuilder builder = new ImageLabelBuilder(item);</span>
+<span class="nc bnc" id="L45" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L46" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= imageLabels.size()) { imageLabels.add(builder); } else { imageLabels.set(index, builder);}</span>
+<span class="nc" id="L47">             return (A)this;</span>
+    }
+
+    public A addToImageLabels(ImageLabel... items){
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">            if (this.imageLabels == null) {this.imageLabels = new ArrayList&lt;ImageLabelBuilder&gt;();}</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">            for (ImageLabel item : items) {ImageLabelBuilder builder = new ImageLabelBuilder(item);_visitables.add(builder);this.imageLabels.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToImageLabels(Collection&lt;ImageLabel&gt; items){
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            if (this.imageLabels == null) {this.imageLabels = new ArrayList&lt;ImageLabelBuilder&gt;();}</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            for (ImageLabel item : items) {ImageLabelBuilder builder = new ImageLabelBuilder(item);_visitables.add(builder);this.imageLabels.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromImageLabels(ImageLabel... items){
+<span class="nc bnc" id="L61" title="All 4 branches missed.">            for (ImageLabel item : items) {ImageLabelBuilder builder = new ImageLabelBuilder(item);_visitables.remove(builder);if (this.imageLabels != null) {this.imageLabels.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromImageLabels(Collection&lt;ImageLabel&gt; items){
+<span class="nc bnc" id="L65" title="All 4 branches missed.">            for (ImageLabel item : items) {ImageLabelBuilder builder = new ImageLabelBuilder(item);_visitables.remove(builder);if (this.imageLabels != null) {this.imageLabels.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildImageLabels instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;ImageLabel&gt; getImageLabels(){
+<span class="fc" id="L74">            return build(imageLabels);</span>
+    }
+
+    public List&lt;ImageLabel&gt; buildImageLabels(){
+<span class="nc" id="L78">            return build(imageLabels);</span>
+    }
+
+    public ImageLabel buildImageLabel(int index){
+<span class="nc" id="L82">            return this.imageLabels.get(index).build();</span>
+    }
+
+    public ImageLabel buildFirstImageLabel(){
+<span class="nc" id="L86">            return this.imageLabels.get(0).build();</span>
+    }
+
+    public ImageLabel buildLastImageLabel(){
+<span class="nc" id="L90">            return this.imageLabels.get(imageLabels.size() - 1).build();</span>
+    }
+
+    public ImageLabel buildMatchingImageLabel(io.fabric8.kubernetes.api.builder.Predicate&lt;ImageLabelBuilder&gt; predicate){
+<span class="nc bnc" id="L94" title="All 4 branches missed.">            for (ImageLabelBuilder item: imageLabels) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withImageLabels(List&lt;ImageLabel&gt; imageLabels){
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">            if (this.imageLabels != null) { _visitables.removeAll(this.imageLabels);}</span>
+<span class="pc bpc" id="L99" title="1 of 4 branches missed.">            if (imageLabels != null) {this.imageLabels = new ArrayList&lt;ImageLabelBuilder&gt;(); for (ImageLabel item : imageLabels){this.addToImageLabels(item);}} else { this.imageLabels = new ArrayList&lt;ImageLabelBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withImageLabels(ImageLabel... imageLabels){
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            if (this.imageLabels != null) {this.imageLabels.clear();}</span>
+<span class="nc bnc" id="L104" title="All 4 branches missed.">            if (imageLabels != null) {for (ImageLabel item :imageLabels){ this.addToImageLabels(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasImageLabels(){
+<span class="nc bnc" id="L108" title="All 4 branches missed.">            return imageLabels != null &amp;&amp; !imageLabels.isEmpty();</span>
+    }
+
+    public A addNewImageLabel(String name,String value){
+<span class="nc" id="L112">            return (A)addToImageLabels(new ImageLabel(name, value));</span>
+    }
+
+    public BuildOutputFluent.ImageLabelsNested&lt;A&gt; addNewImageLabel(){
+<span class="nc" id="L116">            return new ImageLabelsNestedImpl();</span>
+    }
+
+    public BuildOutputFluent.ImageLabelsNested&lt;A&gt; addNewImageLabelLike(ImageLabel item){
+<span class="nc" id="L120">            return new ImageLabelsNestedImpl(-1, item);</span>
+    }
+
+    public BuildOutputFluent.ImageLabelsNested&lt;A&gt; setNewImageLabelLike(int index,ImageLabel item){
+<span class="nc" id="L124">            return new ImageLabelsNestedImpl(index, item);</span>
+    }
+
+    public BuildOutputFluent.ImageLabelsNested&lt;A&gt; editImageLabel(int index){
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            if (imageLabels.size() &lt;= index) throw new RuntimeException(&quot;Can't edit imageLabels. Index exceeds size.&quot;);</span>
+<span class="nc" id="L129">            return setNewImageLabelLike(index, buildImageLabel(index));</span>
+    }
+
+    public BuildOutputFluent.ImageLabelsNested&lt;A&gt; editFirstImageLabel(){
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (imageLabels.size() == 0) throw new RuntimeException(&quot;Can't edit first imageLabels. The list is empty.&quot;);</span>
+<span class="nc" id="L134">            return setNewImageLabelLike(0, buildImageLabel(0));</span>
+    }
+
+    public BuildOutputFluent.ImageLabelsNested&lt;A&gt; editLastImageLabel(){
+<span class="nc" id="L138">            int index = imageLabels.size() - 1;</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last imageLabels. The list is empty.&quot;);</span>
+<span class="nc" id="L140">            return setNewImageLabelLike(index, buildImageLabel(index));</span>
+    }
+
+    public BuildOutputFluent.ImageLabelsNested&lt;A&gt; editMatchingImageLabel(io.fabric8.kubernetes.api.builder.Predicate&lt;ImageLabelBuilder&gt; predicate){
+<span class="nc" id="L144">            int index = -1;</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            for (int i=0;i&lt;imageLabels.size();i++) { </span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            if (predicate.apply(imageLabels.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching imageLabels. No match found.&quot;);</span>
+<span class="nc" id="L149">            return setNewImageLabelLike(index, buildImageLabel(index));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPushSecret instead.
+ * @return The buildable object.
+ */
+@Deprecated public LocalObjectReference getPushSecret(){
+<span class="pc bpc" id="L158" title="1 of 2 branches missed.">            return this.pushSecret!=null?this.pushSecret.build():null;</span>
+    }
+
+    public LocalObjectReference buildPushSecret(){
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            return this.pushSecret!=null?this.pushSecret.build():null;</span>
+    }
+
+    public A withPushSecret(LocalObjectReference pushSecret){
+<span class="fc" id="L166">            _visitables.remove(this.pushSecret);</span>
+<span class="fc bfc" id="L167" title="All 2 branches covered.">            if (pushSecret!=null){ this.pushSecret= new LocalObjectReferenceBuilder(pushSecret); _visitables.add(this.pushSecret);} return (A) this;</span>
+    }
+
+    public Boolean hasPushSecret(){
+<span class="nc bnc" id="L171" title="All 2 branches missed.">            return this.pushSecret != null;</span>
+    }
+
+    public A withNewPushSecret(String name){
+<span class="nc" id="L175">            return (A)withPushSecret(new LocalObjectReference(name));</span>
+    }
+
+    public BuildOutputFluent.PushSecretNested&lt;A&gt; withNewPushSecret(){
+<span class="nc" id="L179">            return new PushSecretNestedImpl();</span>
+    }
+
+    public BuildOutputFluent.PushSecretNested&lt;A&gt; withNewPushSecretLike(LocalObjectReference item){
+<span class="nc" id="L183">            return new PushSecretNestedImpl(item);</span>
+    }
+
+    public BuildOutputFluent.PushSecretNested&lt;A&gt; editPushSecret(){
+<span class="nc" id="L187">            return withNewPushSecretLike(getPushSecret());</span>
+    }
+
+    public BuildOutputFluent.PushSecretNested&lt;A&gt; editOrNewPushSecret(){
+<span class="nc bnc" id="L191" title="All 2 branches missed.">            return withNewPushSecretLike(getPushSecret() != null ? getPushSecret(): new LocalObjectReferenceBuilder().build());</span>
+    }
+
+    public BuildOutputFluent.PushSecretNested&lt;A&gt; editOrNewPushSecretLike(LocalObjectReference item){
+<span class="nc bnc" id="L195" title="All 2 branches missed.">            return withNewPushSecretLike(getPushSecret() != null ? getPushSecret(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTo instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getTo(){
+<span class="pc bpc" id="L204" title="1 of 2 branches missed.">            return this.to!=null?this.to.build():null;</span>
+    }
+
+    public ObjectReference buildTo(){
+<span class="nc bnc" id="L208" title="All 2 branches missed.">            return this.to!=null?this.to.build():null;</span>
+    }
+
+    public A withTo(ObjectReference to){
+<span class="fc" id="L212">            _visitables.remove(this.to);</span>
+<span class="fc bfc" id="L213" title="All 2 branches covered.">            if (to!=null){ this.to= new ObjectReferenceBuilder(to); _visitables.add(this.to);} return (A) this;</span>
+    }
+
+    public Boolean hasTo(){
+<span class="nc bnc" id="L217" title="All 2 branches missed.">            return this.to != null;</span>
+    }
+
+    public BuildOutputFluent.ToNested&lt;A&gt; withNewTo(){
+<span class="nc" id="L221">            return new ToNestedImpl();</span>
+    }
+
+    public BuildOutputFluent.ToNested&lt;A&gt; withNewToLike(ObjectReference item){
+<span class="nc" id="L225">            return new ToNestedImpl(item);</span>
+    }
+
+    public BuildOutputFluent.ToNested&lt;A&gt; editTo(){
+<span class="nc" id="L229">            return withNewToLike(getTo());</span>
+    }
+
+    public BuildOutputFluent.ToNested&lt;A&gt; editOrNewTo(){
+<span class="nc bnc" id="L233" title="All 2 branches missed.">            return withNewToLike(getTo() != null ? getTo(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public BuildOutputFluent.ToNested&lt;A&gt; editOrNewToLike(ObjectReference item){
+<span class="nc bnc" id="L237" title="All 2 branches missed.">            return withNewToLike(getTo() != null ? getTo(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L241" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L242" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L244">            BuildOutputFluentImpl that = (BuildOutputFluentImpl) o;</span>
+<span class="nc bnc" id="L245" title="All 6 branches missed.">            if (imageLabels != null ? !imageLabels.equals(that.imageLabels) :that.imageLabels != null) return false;</span>
+<span class="nc bnc" id="L246" title="All 6 branches missed.">            if (pushSecret != null ? !pushSecret.equals(that.pushSecret) :that.pushSecret != null) return false;</span>
+<span class="nc bnc" id="L247" title="All 6 branches missed.">            if (to != null ? !to.equals(that.to) :that.to != null) return false;</span>
+<span class="nc" id="L248">            return true;</span>
+    }
+
+
+    public class ImageLabelsNestedImpl&lt;N&gt; extends ImageLabelFluentImpl&lt;BuildOutputFluent.ImageLabelsNested&lt;N&gt;&gt; implements BuildOutputFluent.ImageLabelsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageLabelBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L257">            ImageLabelsNestedImpl(int index,ImageLabel item){</span>
+<span class="nc" id="L258">                    this.index = index;</span>
+<span class="nc" id="L259">                    this.builder = new ImageLabelBuilder(this, item);</span>
+<span class="nc" id="L260">            }</span>
+<span class="nc" id="L261">            ImageLabelsNestedImpl(){</span>
+<span class="nc" id="L262">                    this.index = -1;</span>
+<span class="nc" id="L263">                    this.builder = new ImageLabelBuilder(this);</span>
+<span class="nc" id="L264">            }</span>
+    
+    public N and(){
+<span class="nc" id="L267">            return (N) BuildOutputFluentImpl.this.setToImageLabels(index, builder.build());</span>
+    }
+    public N endImageLabel(){
+<span class="nc" id="L270">            return and();</span>
+    }
+
+}
+    public class PushSecretNestedImpl&lt;N&gt; extends LocalObjectReferenceFluentImpl&lt;BuildOutputFluent.PushSecretNested&lt;N&gt;&gt; implements BuildOutputFluent.PushSecretNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LocalObjectReferenceBuilder builder;
+    
+<span class="nc" id="L278">            PushSecretNestedImpl(LocalObjectReference item){</span>
+<span class="nc" id="L279">                    this.builder = new LocalObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L280">            }</span>
+<span class="nc" id="L281">            PushSecretNestedImpl(){</span>
+<span class="nc" id="L282">                    this.builder = new LocalObjectReferenceBuilder(this);</span>
+<span class="nc" id="L283">            }</span>
+    
+    public N and(){
+<span class="nc" id="L286">            return (N) BuildOutputFluentImpl.this.withPushSecret(builder.build());</span>
+    }
+    public N endPushSecret(){
+<span class="nc" id="L289">            return and();</span>
+    }
+
+}
+    public class ToNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;BuildOutputFluent.ToNested&lt;N&gt;&gt; implements BuildOutputFluent.ToNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L297">            ToNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L298">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L299">            }</span>
+<span class="nc" id="L300">            ToNestedImpl(){</span>
+<span class="nc" id="L301">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L302">            }</span>
+    
+    public N and(){
+<span class="nc" id="L305">            return (N) BuildOutputFluentImpl.this.withTo(builder.build());</span>
+    }
+    public N endTo(){
+<span class="nc" id="L308">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CinderPersistentVolumeSource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">CinderPersistentVolumeSource.java</span></div><h1>CinderPersistentVolumeSource.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;fsType&quot;,
+    &quot;readOnly&quot;,
+    &quot;secretRef&quot;,
+    &quot;volumeID&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L38">@ToString</span>
+<span class="nc bnc" id="L39" title="All 46 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class CinderPersistentVolumeSource implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    private String fsType;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    private Boolean readOnly;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;secretRef&quot;)
+    @Valid
+    private SecretReference secretRef;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;volumeID&quot;)
+    private String volumeID;
+<span class="nc" id="L69">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L76">    public CinderPersistentVolumeSource() {</span>
+<span class="nc" id="L77">    }</span>
+
+    /**
+     * 
+     * @param secretRef
+     * @param volumeID
+     * @param readOnly
+     * @param fsType
+     */
+<span class="nc" id="L86">    public CinderPersistentVolumeSource(String fsType, Boolean readOnly, SecretReference secretRef, String volumeID) {</span>
+<span class="nc" id="L87">        this.fsType = fsType;</span>
+<span class="nc" id="L88">        this.readOnly = readOnly;</span>
+<span class="nc" id="L89">        this.secretRef = secretRef;</span>
+<span class="nc" id="L90">        this.volumeID = volumeID;</span>
+<span class="nc" id="L91">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The fsType
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    public String getFsType() {
+<span class="nc" id="L101">        return fsType;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param fsType
+     *     The fsType
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    public void setFsType(String fsType) {
+<span class="nc" id="L112">        this.fsType = fsType;</span>
+<span class="nc" id="L113">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The readOnly
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    public Boolean getReadOnly() {
+<span class="nc" id="L123">        return readOnly;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param readOnly
+     *     The readOnly
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    public void setReadOnly(Boolean readOnly) {
+<span class="nc" id="L134">        this.readOnly = readOnly;</span>
+<span class="nc" id="L135">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The secretRef
+     */
+    @JsonProperty(&quot;secretRef&quot;)
+    public SecretReference getSecretRef() {
+<span class="nc" id="L145">        return secretRef;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param secretRef
+     *     The secretRef
+     */
+    @JsonProperty(&quot;secretRef&quot;)
+    public void setSecretRef(SecretReference secretRef) {
+<span class="nc" id="L156">        this.secretRef = secretRef;</span>
+<span class="nc" id="L157">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The volumeID
+     */
+    @JsonProperty(&quot;volumeID&quot;)
+    public String getVolumeID() {
+<span class="nc" id="L167">        return volumeID;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param volumeID
+     *     The volumeID
+     */
+    @JsonProperty(&quot;volumeID&quot;)
+    public void setVolumeID(String volumeID) {
+<span class="nc" id="L178">        this.volumeID = volumeID;</span>
+<span class="nc" id="L179">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L183">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L188">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L189">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

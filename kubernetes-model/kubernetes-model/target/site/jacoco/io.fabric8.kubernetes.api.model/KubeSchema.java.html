@@ -1,0 +1,5222 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>KubeSchema.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">KubeSchema.java</span></div><h1>KubeSchema.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.admission.AdmissionRequest;
+import io.fabric8.kubernetes.api.model.admission.AdmissionResponse;
+import io.fabric8.kubernetes.api.model.admission.AdmissionReview;
+import io.fabric8.kubernetes.api.model.admissionregistration.MutatingWebhookConfiguration;
+import io.fabric8.kubernetes.api.model.admissionregistration.MutatingWebhookConfigurationList;
+import io.fabric8.kubernetes.api.model.admissionregistration.Rule;
+import io.fabric8.kubernetes.api.model.admissionregistration.RuleWithOperations;
+import io.fabric8.kubernetes.api.model.admissionregistration.ValidatingWebhookConfiguration;
+import io.fabric8.kubernetes.api.model.admissionregistration.ValidatingWebhookConfigurationList;
+import io.fabric8.kubernetes.api.model.admissionregistration.Webhook;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinition;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinitionCondition;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinitionList;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinitionNames;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinitionSpec;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinitionStatus;
+import io.fabric8.kubernetes.api.model.apiextensions.JSONSchemaPropsOrStringArray;
+import io.fabric8.kubernetes.api.model.apps.DaemonSet;
+import io.fabric8.kubernetes.api.model.apps.DaemonSetList;
+import io.fabric8.kubernetes.api.model.apps.Deployment;
+import io.fabric8.kubernetes.api.model.apps.DeploymentList;
+import io.fabric8.kubernetes.api.model.apps.ReplicaSet;
+import io.fabric8.kubernetes.api.model.apps.ReplicaSetList;
+import io.fabric8.kubernetes.api.model.apps.StatefulSet;
+import io.fabric8.kubernetes.api.model.apps.StatefulSetList;
+import io.fabric8.kubernetes.api.model.authentication.TokenReview;
+import io.fabric8.kubernetes.api.model.batch.CronJob;
+import io.fabric8.kubernetes.api.model.batch.CronJobList;
+import io.fabric8.kubernetes.api.model.batch.Job;
+import io.fabric8.kubernetes.api.model.batch.JobList;
+import io.fabric8.kubernetes.api.model.certificates.CertificateSigningRequest;
+import io.fabric8.kubernetes.api.model.certificates.CertificateSigningRequestCondition;
+import io.fabric8.kubernetes.api.model.certificates.CertificateSigningRequestList;
+import io.fabric8.kubernetes.api.model.certificates.CertificateSigningRequestSpec;
+import io.fabric8.kubernetes.api.model.certificates.CertificateSigningRequestStatus;
+import io.fabric8.kubernetes.api.model.events.Event;
+import io.fabric8.kubernetes.api.model.events.EventSeries;
+import io.fabric8.kubernetes.api.model.extensions.DeploymentRollback;
+import io.fabric8.kubernetes.api.model.extensions.Ingress;
+import io.fabric8.kubernetes.api.model.extensions.IngressList;
+import io.fabric8.kubernetes.api.model.extensions.PodSecurityPolicy;
+import io.fabric8.kubernetes.api.model.extensions.PodSecurityPolicyList;
+import io.fabric8.kubernetes.api.model.extensions.Scale;
+import io.fabric8.kubernetes.api.model.networking.NetworkPolicy;
+import io.fabric8.kubernetes.api.model.networking.NetworkPolicyList;
+import io.fabric8.kubernetes.api.model.policy.PodDisruptionBudget;
+import io.fabric8.kubernetes.api.model.policy.PodDisruptionBudgetList;
+import io.fabric8.kubernetes.api.model.rbac.AggregationRule;
+import io.fabric8.kubernetes.api.model.rbac.ClusterRole;
+import io.fabric8.kubernetes.api.model.rbac.ClusterRoleBinding;
+import io.fabric8.kubernetes.api.model.rbac.ClusterRoleBindingList;
+import io.fabric8.kubernetes.api.model.rbac.ClusterRoleList;
+import io.fabric8.kubernetes.api.model.rbac.Role;
+import io.fabric8.kubernetes.api.model.rbac.RoleBinding;
+import io.fabric8.kubernetes.api.model.rbac.RoleBindingList;
+import io.fabric8.kubernetes.api.model.rbac.RoleList;
+import io.fabric8.kubernetes.api.model.scheduling.PriorityClass;
+import io.fabric8.kubernetes.api.model.scheduling.PriorityClassList;
+import io.fabric8.kubernetes.api.model.settings.PodPreset;
+import io.fabric8.kubernetes.api.model.settings.PodPresetList;
+import io.fabric8.kubernetes.api.model.settings.PodPresetSpec;
+import io.fabric8.kubernetes.api.model.storage.StorageClass;
+import io.fabric8.kubernetes.api.model.storage.StorageClassList;
+import io.fabric8.kubernetes.api.model.version.Info;
+import io.fabric8.openshift.api.model.BuildConfigList;
+import io.fabric8.openshift.api.model.BuildList;
+import io.fabric8.openshift.api.model.BuildRequest;
+import io.fabric8.openshift.api.model.DeploymentConfig;
+import io.fabric8.openshift.api.model.DeploymentConfigList;
+import io.fabric8.openshift.api.model.Group;
+import io.fabric8.openshift.api.model.GroupList;
+import io.fabric8.openshift.api.model.Identity;
+import io.fabric8.openshift.api.model.IdentityList;
+import io.fabric8.openshift.api.model.ImageList;
+import io.fabric8.openshift.api.model.ImageStreamImport;
+import io.fabric8.openshift.api.model.ImageStreamList;
+import io.fabric8.openshift.api.model.ImageStreamTagList;
+import io.fabric8.openshift.api.model.NetNamespace;
+import io.fabric8.openshift.api.model.NetNamespaceList;
+import io.fabric8.openshift.api.model.OAuthAccessToken;
+import io.fabric8.openshift.api.model.OAuthAccessTokenList;
+import io.fabric8.openshift.api.model.OAuthAuthorizeToken;
+import io.fabric8.openshift.api.model.OAuthAuthorizeTokenList;
+import io.fabric8.openshift.api.model.OAuthClient;
+import io.fabric8.openshift.api.model.OAuthClientAuthorization;
+import io.fabric8.openshift.api.model.OAuthClientAuthorizationList;
+import io.fabric8.openshift.api.model.OAuthClientList;
+import io.fabric8.openshift.api.model.OpenshiftClusterRole;
+import io.fabric8.openshift.api.model.OpenshiftClusterRoleBinding;
+import io.fabric8.openshift.api.model.OpenshiftClusterRoleBindingList;
+import io.fabric8.openshift.api.model.OpenshiftRole;
+import io.fabric8.openshift.api.model.OpenshiftRoleBinding;
+import io.fabric8.openshift.api.model.OpenshiftRoleBindingList;
+import io.fabric8.openshift.api.model.OpenshiftRoleBindingRestriction;
+import io.fabric8.openshift.api.model.OpenshiftRoleList;
+import io.fabric8.openshift.api.model.Project;
+import io.fabric8.openshift.api.model.ProjectList;
+import io.fabric8.openshift.api.model.ProjectRequest;
+import io.fabric8.openshift.api.model.Route;
+import io.fabric8.openshift.api.model.RouteList;
+import io.fabric8.openshift.api.model.SecurityContextConstraints;
+import io.fabric8.openshift.api.model.SecurityContextConstraintsList;
+import io.fabric8.openshift.api.model.SubjectAccessReviewResponse;
+import io.fabric8.openshift.api.model.TagEvent;
+import io.fabric8.openshift.api.model.Template;
+import io.fabric8.openshift.api.model.TemplateList;
+import io.fabric8.openshift.api.model.User;
+import io.fabric8.openshift.api.model.UserList;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;AdmissionRequest&quot;,
+    &quot;AdmissionResponse&quot;,
+    &quot;AdmissionReview&quot;,
+    &quot;AdmissionWebhook&quot;,
+    &quot;AggregationRule&quot;,
+    &quot;BaseKubernetesList&quot;,
+    &quot;Binding&quot;,
+    &quot;BuildConfigList&quot;,
+    &quot;BuildList&quot;,
+    &quot;BuildRequest&quot;,
+    &quot;CertificateSigningRequest&quot;,
+    &quot;CertificateSigningRequestCondition&quot;,
+    &quot;CertificateSigningRequestList&quot;,
+    &quot;CertificateSigningRequestSpec&quot;,
+    &quot;CertificateSigningRequestStatus&quot;,
+    &quot;ClusterRole&quot;,
+    &quot;ClusterRoleBinding&quot;,
+    &quot;ClusterRoleBindingList&quot;,
+    &quot;ClusterRoleList&quot;,
+    &quot;ComponentStatusList&quot;,
+    &quot;Config&quot;,
+    &quot;ConfigMap&quot;,
+    &quot;ConfigMapList&quot;,
+    &quot;ContainerStatus&quot;,
+    &quot;CronJob&quot;,
+    &quot;CronJobList&quot;,
+    &quot;CustomResourceDefinition&quot;,
+    &quot;CustomResourceDefinitionCondition&quot;,
+    &quot;CustomResourceDefinitionList&quot;,
+    &quot;CustomResourceDefinitionNames&quot;,
+    &quot;CustomResourceDefinitionSpec&quot;,
+    &quot;CustomResourceDefinitionStatus&quot;,
+    &quot;DaemonSet&quot;,
+    &quot;DaemonSetList&quot;,
+    &quot;DeleteOptions&quot;,
+    &quot;Deployment&quot;,
+    &quot;DeploymentConfig&quot;,
+    &quot;DeploymentConfigList&quot;,
+    &quot;DeploymentList&quot;,
+    &quot;DeploymentRollback&quot;,
+    &quot;Endpoints&quot;,
+    &quot;EndpointsList&quot;,
+    &quot;EnvVar&quot;,
+    &quot;Event&quot;,
+    &quot;EventList&quot;,
+    &quot;EventSeries&quot;,
+    &quot;EventSeriesState&quot;,
+    &quot;Group&quot;,
+    &quot;GroupList&quot;,
+    &quot;HorizontalPodAutoscaler&quot;,
+    &quot;HorizontalPodAutoscalerList&quot;,
+    &quot;Identity&quot;,
+    &quot;IdentityList&quot;,
+    &quot;ImageList&quot;,
+    &quot;ImageStreamImport&quot;,
+    &quot;ImageStreamList&quot;,
+    &quot;ImageStreamTagList&quot;,
+    &quot;Info&quot;,
+    &quot;Ingress&quot;,
+    &quot;IngressList&quot;,
+    &quot;Initializer&quot;,
+    &quot;Initializers&quot;,
+    &quot;JSONSchemaPropsorStringArray&quot;,
+    &quot;Job&quot;,
+    &quot;JobList&quot;,
+    &quot;K8sLocalSubjectAccessReview&quot;,
+    &quot;K8sSubjectAccessReview&quot;,
+    &quot;LimitRangeList&quot;,
+    &quot;LocalSubjectAccessReview&quot;,
+    &quot;MutatingWebhookConfiguration&quot;,
+    &quot;MutatingWebhookConfigurationList&quot;,
+    &quot;Namespace&quot;,
+    &quot;NamespaceList&quot;,
+    &quot;NetNameSpace&quot;,
+    &quot;NetNameSpaceList&quot;,
+    &quot;NetworkPolicy&quot;,
+    &quot;NetworkPolicyList&quot;,
+    &quot;Node&quot;,
+    &quot;NodeList&quot;,
+    &quot;OAuthAccessToken&quot;,
+    &quot;OAuthAccessTokenList&quot;,
+    &quot;OAuthAuthorizeToken&quot;,
+    &quot;OAuthAuthorizeTokenList&quot;,
+    &quot;OAuthClient&quot;,
+    &quot;OAuthClientAuthorization&quot;,
+    &quot;OAuthClientAuthorizationList&quot;,
+    &quot;OAuthClientList&quot;,
+    &quot;ObjectMeta&quot;,
+    &quot;OpenshiftClusterRole&quot;,
+    &quot;OpenshiftClusterRoleBinding&quot;,
+    &quot;OpenshiftClusterRoleBindingList&quot;,
+    &quot;OpenshiftRole&quot;,
+    &quot;OpenshiftRoleBinding&quot;,
+    &quot;OpenshiftRoleBindingList&quot;,
+    &quot;OpenshiftRoleBindingRestriction&quot;,
+    &quot;OpenshiftRoleList&quot;,
+    &quot;Operation&quot;,
+    &quot;Patch&quot;,
+    &quot;PatchType&quot;,
+    &quot;PersistentVolume&quot;,
+    &quot;PersistentVolumeClaim&quot;,
+    &quot;PersistentVolumeClaimList&quot;,
+    &quot;PersistentVolumeList&quot;,
+    &quot;PodDisruptionBudget&quot;,
+    &quot;PodDisruptionBudgetList&quot;,
+    &quot;PodList&quot;,
+    &quot;PodPreset&quot;,
+    &quot;PodPresetList&quot;,
+    &quot;PodPresetSpec&quot;,
+    &quot;PodSecurityPolicy&quot;,
+    &quot;PodSecurityPolicyList&quot;,
+    &quot;PodTemplateList&quot;,
+    &quot;PriorityClass&quot;,
+    &quot;PriorityClassList&quot;,
+    &quot;Project&quot;,
+    &quot;ProjectList&quot;,
+    &quot;ProjectRequest&quot;,
+    &quot;Quantity&quot;,
+    &quot;ReplicaSet&quot;,
+    &quot;ReplicaSetList&quot;,
+    &quot;ReplicationControllerList&quot;,
+    &quot;ResourceQuota&quot;,
+    &quot;ResourceQuotaList&quot;,
+    &quot;Role&quot;,
+    &quot;RoleBinding&quot;,
+    &quot;RoleBindingList&quot;,
+    &quot;RoleList&quot;,
+    &quot;RootPaths&quot;,
+    &quot;Route&quot;,
+    &quot;RouteList&quot;,
+    &quot;Rule&quot;,
+    &quot;RuleWithOperations&quot;,
+    &quot;Scale&quot;,
+    &quot;Secret&quot;,
+    &quot;SecretList&quot;,
+    &quot;SecurityContextConstraints&quot;,
+    &quot;SecurityContextConstraintsList&quot;,
+    &quot;ServiceAccount&quot;,
+    &quot;ServiceAccountList&quot;,
+    &quot;ServiceList&quot;,
+    &quot;StatefulSet&quot;,
+    &quot;StatefulSetList&quot;,
+    &quot;Status&quot;,
+    &quot;StorageClass&quot;,
+    &quot;StorageClassList&quot;,
+    &quot;SubjectAccessReview&quot;,
+    &quot;SubjectAccessReviewResponse&quot;,
+    &quot;TagEvent&quot;,
+    &quot;Template&quot;,
+    &quot;TemplateList&quot;,
+    &quot;TokenReview&quot;,
+    &quot;Toleration&quot;,
+    &quot;TypeMeta&quot;,
+    &quot;User&quot;,
+    &quot;UserList&quot;,
+    &quot;ValidatingWebhookConfiguration&quot;,
+    &quot;ValidatingWebhookConfigurationList&quot;,
+    &quot;WatchEvent&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L295">@ToString</span>
+<span class="nc bnc" id="L296" title="All 1278 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class KubeSchema {
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;AdmissionRequest&quot;)
+    @Valid
+    private AdmissionRequest admissionRequest;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;AdmissionResponse&quot;)
+    @Valid
+    private AdmissionResponse admissionResponse;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;AdmissionReview&quot;)
+    @Valid
+    private AdmissionReview admissionReview;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;AdmissionWebhook&quot;)
+    @Valid
+    private Webhook admissionWebhook;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;AggregationRule&quot;)
+    @Valid
+    private AggregationRule aggregationRule;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;BaseKubernetesList&quot;)
+    @Valid
+    private BaseKubernetesList baseKubernetesList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Binding&quot;)
+    @Valid
+    private Binding binding;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;BuildConfigList&quot;)
+    @Valid
+    private BuildConfigList buildConfigList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;BuildList&quot;)
+    @Valid
+    private BuildList buildList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;BuildRequest&quot;)
+    @Valid
+    private BuildRequest buildRequest;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;CertificateSigningRequest&quot;)
+    @Valid
+    private CertificateSigningRequest certificateSigningRequest;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;CertificateSigningRequestCondition&quot;)
+    @Valid
+    private CertificateSigningRequestCondition certificateSigningRequestCondition;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;CertificateSigningRequestList&quot;)
+    @Valid
+    private CertificateSigningRequestList certificateSigningRequestList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;CertificateSigningRequestSpec&quot;)
+    @Valid
+    private CertificateSigningRequestSpec certificateSigningRequestSpec;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;CertificateSigningRequestStatus&quot;)
+    @Valid
+    private CertificateSigningRequestStatus certificateSigningRequestStatus;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ClusterRole&quot;)
+    @Valid
+    private ClusterRole clusterRole;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ClusterRoleBinding&quot;)
+    @Valid
+    private ClusterRoleBinding clusterRoleBinding;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ClusterRoleBindingList&quot;)
+    @Valid
+    private ClusterRoleBindingList clusterRoleBindingList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ClusterRoleList&quot;)
+    @Valid
+    private ClusterRoleList clusterRoleList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ComponentStatusList&quot;)
+    @Valid
+    private ComponentStatusList componentStatusList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Config&quot;)
+    @Valid
+    private Config config;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ConfigMap&quot;)
+    @Valid
+    private ConfigMap configMap;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ConfigMapList&quot;)
+    @Valid
+    private ConfigMapList configMapList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ContainerStatus&quot;)
+    @Valid
+    private ContainerStatus containerStatus;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;CronJob&quot;)
+    @Valid
+    private CronJob cronJob;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;CronJobList&quot;)
+    @Valid
+    private CronJobList cronJobList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;CustomResourceDefinition&quot;)
+    @Valid
+    private CustomResourceDefinition customResourceDefinition;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;CustomResourceDefinitionCondition&quot;)
+    @Valid
+    private CustomResourceDefinitionCondition customResourceDefinitionCondition;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;CustomResourceDefinitionList&quot;)
+    @Valid
+    private CustomResourceDefinitionList customResourceDefinitionList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;CustomResourceDefinitionNames&quot;)
+    @Valid
+    private CustomResourceDefinitionNames customResourceDefinitionNames;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;CustomResourceDefinitionSpec&quot;)
+    @Valid
+    private CustomResourceDefinitionSpec customResourceDefinitionSpec;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;CustomResourceDefinitionStatus&quot;)
+    @Valid
+    private CustomResourceDefinitionStatus customResourceDefinitionStatus;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;DaemonSet&quot;)
+    @Valid
+    private DaemonSet daemonSet;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;DaemonSetList&quot;)
+    @Valid
+    private DaemonSetList daemonSetList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;DeleteOptions&quot;)
+    @Valid
+    private DeleteOptions deleteOptions;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Deployment&quot;)
+    @Valid
+    private Deployment deployment;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;DeploymentConfig&quot;)
+    @Valid
+    private DeploymentConfig deploymentConfig;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;DeploymentConfigList&quot;)
+    @Valid
+    private DeploymentConfigList deploymentConfigList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;DeploymentList&quot;)
+    @Valid
+    private DeploymentList deploymentList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;DeploymentRollback&quot;)
+    @Valid
+    private DeploymentRollback deploymentRollback;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Endpoints&quot;)
+    @Valid
+    private Endpoints endpoints;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;EndpointsList&quot;)
+    @Valid
+    private EndpointsList endpointsList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;EnvVar&quot;)
+    @Valid
+    private EnvVar envVar;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Event&quot;)
+    @Valid
+    private Event event;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;EventList&quot;)
+    @Valid
+    private EventList eventList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;EventSeries&quot;)
+    @Valid
+    private EventSeries eventSeries;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;EventSeriesState&quot;)
+    private String eventSeriesState;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Group&quot;)
+    @Valid
+    private Group group;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;GroupList&quot;)
+    @Valid
+    private GroupList groupList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;HorizontalPodAutoscaler&quot;)
+    @Valid
+    private HorizontalPodAutoscaler horizontalPodAutoscaler;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;HorizontalPodAutoscalerList&quot;)
+    @Valid
+    private HorizontalPodAutoscalerList horizontalPodAutoscalerList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Identity&quot;)
+    @Valid
+    private Identity identity;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;IdentityList&quot;)
+    @Valid
+    private IdentityList identityList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ImageList&quot;)
+    @Valid
+    private ImageList imageList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ImageStreamImport&quot;)
+    @Valid
+    private ImageStreamImport imageStreamImport;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ImageStreamList&quot;)
+    @Valid
+    private ImageStreamList imageStreamList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ImageStreamTagList&quot;)
+    @Valid
+    private ImageStreamTagList imageStreamTagList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Info&quot;)
+    @Valid
+    private Info info;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Ingress&quot;)
+    @Valid
+    private Ingress ingress;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;IngressList&quot;)
+    @Valid
+    private IngressList ingressList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Initializer&quot;)
+    @Valid
+    private Initializer initializer;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Initializers&quot;)
+    @Valid
+    private Initializers initializers;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;JSONSchemaPropsorStringArray&quot;)
+    @Valid
+    private JSONSchemaPropsOrStringArray jSONSchemaPropsorStringArray;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Job&quot;)
+    @Valid
+    private Job job;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;JobList&quot;)
+    @Valid
+    private JobList jobList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;K8sLocalSubjectAccessReview&quot;)
+    @Valid
+    private io.fabric8.kubernetes.api.model.authorization.LocalSubjectAccessReview k8sLocalSubjectAccessReview;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;K8sSubjectAccessReview&quot;)
+    @Valid
+    private io.fabric8.kubernetes.api.model.authorization.SubjectAccessReview k8sSubjectAccessReview;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;LimitRangeList&quot;)
+    @Valid
+    private LimitRangeList limitRangeList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;LocalSubjectAccessReview&quot;)
+    @Valid
+    private io.fabric8.openshift.api.model.LocalSubjectAccessReview localSubjectAccessReview;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;MutatingWebhookConfiguration&quot;)
+    @Valid
+    private MutatingWebhookConfiguration mutatingWebhookConfiguration;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;MutatingWebhookConfigurationList&quot;)
+    @Valid
+    private MutatingWebhookConfigurationList mutatingWebhookConfigurationList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Namespace&quot;)
+    @Valid
+    private Namespace namespace;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;NamespaceList&quot;)
+    @Valid
+    private NamespaceList namespaceList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;NetNameSpace&quot;)
+    @Valid
+    private NetNamespace netNameSpace;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;NetNameSpaceList&quot;)
+    @Valid
+    private NetNamespaceList netNameSpaceList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;NetworkPolicy&quot;)
+    @Valid
+    private NetworkPolicy networkPolicy;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;NetworkPolicyList&quot;)
+    @Valid
+    private NetworkPolicyList networkPolicyList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Node&quot;)
+    @Valid
+    private Node node;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;NodeList&quot;)
+    @Valid
+    private NodeList nodeList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;OAuthAccessToken&quot;)
+    @Valid
+    private OAuthAccessToken oAuthAccessToken;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;OAuthAccessTokenList&quot;)
+    @Valid
+    private OAuthAccessTokenList oAuthAccessTokenList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;OAuthAuthorizeToken&quot;)
+    @Valid
+    private OAuthAuthorizeToken oAuthAuthorizeToken;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;OAuthAuthorizeTokenList&quot;)
+    @Valid
+    private OAuthAuthorizeTokenList oAuthAuthorizeTokenList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;OAuthClient&quot;)
+    @Valid
+    private OAuthClient oAuthClient;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;OAuthClientAuthorization&quot;)
+    @Valid
+    private OAuthClientAuthorization oAuthClientAuthorization;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;OAuthClientAuthorizationList&quot;)
+    @Valid
+    private OAuthClientAuthorizationList oAuthClientAuthorizationList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;OAuthClientList&quot;)
+    @Valid
+    private OAuthClientList oAuthClientList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ObjectMeta&quot;)
+    @Valid
+    private ObjectMeta objectMeta;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;OpenshiftClusterRole&quot;)
+    @Valid
+    private OpenshiftClusterRole openshiftClusterRole;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;OpenshiftClusterRoleBinding&quot;)
+    @Valid
+    private OpenshiftClusterRoleBinding openshiftClusterRoleBinding;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;OpenshiftClusterRoleBindingList&quot;)
+    @Valid
+    private OpenshiftClusterRoleBindingList openshiftClusterRoleBindingList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;OpenshiftRole&quot;)
+    @Valid
+    private OpenshiftRole openshiftRole;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;OpenshiftRoleBinding&quot;)
+    @Valid
+    private OpenshiftRoleBinding openshiftRoleBinding;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;OpenshiftRoleBindingList&quot;)
+    @Valid
+    private OpenshiftRoleBindingList openshiftRoleBindingList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;OpenshiftRoleBindingRestriction&quot;)
+    @Valid
+    private OpenshiftRoleBindingRestriction openshiftRoleBindingRestriction;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;OpenshiftRoleList&quot;)
+    @Valid
+    private OpenshiftRoleList openshiftRoleList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Operation&quot;)
+    private String operation;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Patch&quot;)
+    @Valid
+    private Patch patch;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;PatchType&quot;)
+    private String patchType;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;PersistentVolume&quot;)
+    @Valid
+    private PersistentVolume persistentVolume;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;PersistentVolumeClaim&quot;)
+    @Valid
+    private PersistentVolumeClaim persistentVolumeClaim;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;PersistentVolumeClaimList&quot;)
+    @Valid
+    private PersistentVolumeClaimList persistentVolumeClaimList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;PersistentVolumeList&quot;)
+    @Valid
+    private PersistentVolumeList persistentVolumeList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;PodDisruptionBudget&quot;)
+    @Valid
+    private PodDisruptionBudget podDisruptionBudget;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;PodDisruptionBudgetList&quot;)
+    @Valid
+    private PodDisruptionBudgetList podDisruptionBudgetList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;PodList&quot;)
+    @Valid
+    private PodList podList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;PodPreset&quot;)
+    @Valid
+    private PodPreset podPreset;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;PodPresetList&quot;)
+    @Valid
+    private PodPresetList podPresetList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;PodPresetSpec&quot;)
+    @Valid
+    private PodPresetSpec podPresetSpec;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;PodSecurityPolicy&quot;)
+    @Valid
+    private PodSecurityPolicy podSecurityPolicy;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;PodSecurityPolicyList&quot;)
+    @Valid
+    private PodSecurityPolicyList podSecurityPolicyList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;PodTemplateList&quot;)
+    @Valid
+    private PodTemplateList podTemplateList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;PriorityClass&quot;)
+    @Valid
+    private PriorityClass priorityClass;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;PriorityClassList&quot;)
+    @Valid
+    private PriorityClassList priorityClassList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Project&quot;)
+    @Valid
+    private Project project;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ProjectList&quot;)
+    @Valid
+    private ProjectList projectList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ProjectRequest&quot;)
+    @Valid
+    private ProjectRequest projectRequest;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Quantity&quot;)
+    @Valid
+    private Quantity quantity;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ReplicaSet&quot;)
+    @Valid
+    private ReplicaSet replicaSet;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ReplicaSetList&quot;)
+    @Valid
+    private ReplicaSetList replicaSetList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ReplicationControllerList&quot;)
+    @Valid
+    private ReplicationControllerList replicationControllerList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ResourceQuota&quot;)
+    @Valid
+    private ResourceQuota resourceQuota;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ResourceQuotaList&quot;)
+    @Valid
+    private ResourceQuotaList resourceQuotaList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Role&quot;)
+    @Valid
+    private Role role;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;RoleBinding&quot;)
+    @Valid
+    private RoleBinding roleBinding;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;RoleBindingList&quot;)
+    @Valid
+    private RoleBindingList roleBindingList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;RoleList&quot;)
+    @Valid
+    private RoleList roleList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;RootPaths&quot;)
+    @Valid
+    private RootPaths rootPaths;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Route&quot;)
+    @Valid
+    private Route route;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;RouteList&quot;)
+    @Valid
+    private RouteList routeList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Rule&quot;)
+    @Valid
+    private Rule rule;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;RuleWithOperations&quot;)
+    @Valid
+    private RuleWithOperations ruleWithOperations;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Scale&quot;)
+    @Valid
+    private Scale scale;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Secret&quot;)
+    @Valid
+    private Secret secret;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;SecretList&quot;)
+    @Valid
+    private SecretList secretList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;SecurityContextConstraints&quot;)
+    @Valid
+    private SecurityContextConstraints securityContextConstraints;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;SecurityContextConstraintsList&quot;)
+    @Valid
+    private SecurityContextConstraintsList securityContextConstraintsList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ServiceAccount&quot;)
+    @Valid
+    private ServiceAccount serviceAccount;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ServiceAccountList&quot;)
+    @Valid
+    private ServiceAccountList serviceAccountList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ServiceList&quot;)
+    @Valid
+    private ServiceList serviceList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;StatefulSet&quot;)
+    @Valid
+    private StatefulSet statefulSet;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;StatefulSetList&quot;)
+    @Valid
+    private StatefulSetList statefulSetList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Status&quot;)
+    @Valid
+    private Status status;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;StorageClass&quot;)
+    @Valid
+    private StorageClass storageClass;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;StorageClassList&quot;)
+    @Valid
+    private StorageClassList storageClassList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;SubjectAccessReview&quot;)
+    @Valid
+    private io.fabric8.openshift.api.model.SubjectAccessReview subjectAccessReview;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;SubjectAccessReviewResponse&quot;)
+    @Valid
+    private SubjectAccessReviewResponse subjectAccessReviewResponse;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;TagEvent&quot;)
+    @Valid
+    private TagEvent tagEvent;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Template&quot;)
+    @Valid
+    private Template template;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;TemplateList&quot;)
+    @Valid
+    private TemplateList templateList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;TokenReview&quot;)
+    @Valid
+    private TokenReview tokenReview;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;Toleration&quot;)
+    @Valid
+    private Toleration toleration;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;TypeMeta&quot;)
+    @Valid
+    private TypeMeta typeMeta;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;User&quot;)
+    @Valid
+    private User user;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;UserList&quot;)
+    @Valid
+    private UserList userList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ValidatingWebhookConfiguration&quot;)
+    @Valid
+    private ValidatingWebhookConfiguration validatingWebhookConfiguration;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ValidatingWebhookConfigurationList&quot;)
+    @Valid
+    private ValidatingWebhookConfigurationList validatingWebhookConfigurationList;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;WatchEvent&quot;)
+    @Valid
+    private WatchEvent watchEvent;
+<span class="nc" id="L1403">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L1410">    public KubeSchema() {</span>
+<span class="nc" id="L1411">    }</span>
+
+    /**
+     * 
+     * @param aggregationRule
+     * @param roleBinding
+     * @param binding
+     * @param certificateSigningRequestSpec
+     * @param customResourceDefinitionSpec
+     * @param daemonSet
+     * @param daemonSetList
+     * @param openshiftClusterRole
+     * @param patch
+     * @param securityContextConstraintsList
+     * @param oAuthClientAuthorizationList
+     * @param serviceAccountList
+     * @param userList
+     * @param openshiftClusterRoleBindingList
+     * @param secretList
+     * @param podDisruptionBudget
+     * @param clusterRoleBindingList
+     * @param podPresetSpec
+     * @param deleteOptions
+     * @param priorityClassList
+     * @param ruleWithOperations
+     * @param networkPolicy
+     * @param groupList
+     * @param toleration
+     * @param tagEvent
+     * @param projectRequest
+     * @param roleList
+     * @param nodeList
+     * @param customResourceDefinitionList
+     * @param node
+     * @param customResourceDefinitionNames
+     * @param route
+     * @param customResourceDefinitionCondition
+     * @param validatingWebhookConfiguration
+     * @param k8sSubjectAccessReview
+     * @param netNameSpace
+     * @param netNameSpaceList
+     * @param tokenReview
+     * @param imageList
+     * @param eventSeries
+     * @param mutatingWebhookConfiguration
+     * @param persistentVolumeClaimList
+     * @param status
+     * @param template
+     * @param buildRequest
+     * @param role
+     * @param admissionWebhook
+     * @param ingressList
+     * @param baseKubernetesList
+     * @param statefulSetList
+     * @param subjectAccessReviewResponse
+     * @param podList
+     * @param secret
+     * @param openshiftRoleBindingList
+     * @param storageClass
+     * @param identity
+     * @param oAuthAccessTokenList
+     * @param buildList
+     * @param rootPaths
+     * @param event
+     * @param containerStatus
+     * @param horizontalPodAutoscalerList
+     * @param replicaSetList
+     * @param deployment
+     * @param oAuthClientList
+     * @param endpoints
+     * @param oAuthAuthorizeTokenList
+     * @param clusterRole
+     * @param envVar
+     * @param storageClassList
+     * @param admissionResponse
+     * @param clusterRoleList
+     * @param initializer
+     * @param openshiftRoleBindingRestriction
+     * @param objectMeta
+     * @param componentStatusList
+     * @param oAuthClient
+     * @param config
+     * @param operation
+     * @param podPresetList
+     * @param routeList
+     * @param securityContextConstraints
+     * @param deploymentRollback
+     * @param configMapList
+     * @param openshiftRole
+     * @param admissionRequest
+     * @param eventList
+     * @param validatingWebhookConfigurationList
+     * @param project
+     * @param k8sLocalSubjectAccessReview
+     * @param namespaceList
+     * @param deploymentConfig
+     * @param customResourceDefinition
+     * @param persistentVolume
+     * @param resourceQuota
+     * @param watchEvent
+     * @param openshiftClusterRoleBinding
+     * @param certificateSigningRequestStatus
+     * @param cronJobList
+     * @param group
+     * @param info
+     * @param projectList
+     * @param oAuthAccessToken
+     * @param imageStreamImport
+     * @param imageStreamList
+     * @param limitRangeList
+     * @param deploymentList
+     * @param eventSeriesState
+     * @param oAuthClientAuthorization
+     * @param imageStreamTagList
+     * @param priorityClass
+     * @param replicaSet
+     * @param openshiftRoleList
+     * @param cronJob
+     * @param buildConfigList
+     * @param ingress
+     * @param configMap
+     * @param identityList
+     * @param subjectAccessReview
+     * @param job
+     * @param jobList
+     * @param openshiftRoleBinding
+     * @param podSecurityPolicy
+     * @param admissionReview
+     * @param podDisruptionBudgetList
+     * @param patchType
+     * @param replicationControllerList
+     * @param rule
+     * @param scale
+     * @param roleBindingList
+     * @param certificateSigningRequest
+     * @param oAuthAuthorizeToken
+     * @param persistentVolumeList
+     * @param mutatingWebhookConfigurationList
+     * @param localSubjectAccessReview
+     * @param endpointsList
+     * @param quantity
+     * @param networkPolicyList
+     * @param templateList
+     * @param serviceAccount
+     * @param horizontalPodAutoscaler
+     * @param jSONSchemaPropsorStringArray
+     * @param certificateSigningRequestList
+     * @param resourceQuotaList
+     * @param podTemplateList
+     * @param deploymentConfigList
+     * @param typeMeta
+     * @param initializers
+     * @param statefulSet
+     * @param namespace
+     * @param serviceList
+     * @param customResourceDefinitionStatus
+     * @param clusterRoleBinding
+     * @param persistentVolumeClaim
+     * @param certificateSigningRequestCondition
+     * @param podSecurityPolicyList
+     * @param user
+     * @param podPreset
+     */
+<span class="nc" id="L1574">    public KubeSchema(AdmissionRequest admissionRequest, AdmissionResponse admissionResponse, AdmissionReview admissionReview, Webhook admissionWebhook, AggregationRule aggregationRule, BaseKubernetesList baseKubernetesList, Binding binding, BuildConfigList buildConfigList, BuildList buildList, BuildRequest buildRequest, CertificateSigningRequest certificateSigningRequest, CertificateSigningRequestCondition certificateSigningRequestCondition, CertificateSigningRequestList certificateSigningRequestList, CertificateSigningRequestSpec certificateSigningRequestSpec, CertificateSigningRequestStatus certificateSigningRequestStatus, ClusterRole clusterRole, ClusterRoleBinding clusterRoleBinding, ClusterRoleBindingList clusterRoleBindingList, ClusterRoleList clusterRoleList, ComponentStatusList componentStatusList, Config config, ConfigMap configMap, ConfigMapList configMapList, ContainerStatus containerStatus, CronJob cronJob, CronJobList cronJobList, CustomResourceDefinition customResourceDefinition, CustomResourceDefinitionCondition customResourceDefinitionCondition, CustomResourceDefinitionList customResourceDefinitionList, CustomResourceDefinitionNames customResourceDefinitionNames, CustomResourceDefinitionSpec customResourceDefinitionSpec, CustomResourceDefinitionStatus customResourceDefinitionStatus, DaemonSet daemonSet, DaemonSetList daemonSetList, DeleteOptions deleteOptions, Deployment deployment, DeploymentConfig deploymentConfig, DeploymentConfigList deploymentConfigList, DeploymentList deploymentList, DeploymentRollback deploymentRollback, Endpoints endpoints, EndpointsList endpointsList, EnvVar envVar, Event event, EventList eventList, EventSeries eventSeries, String eventSeriesState, Group group, GroupList groupList, HorizontalPodAutoscaler horizontalPodAutoscaler, HorizontalPodAutoscalerList horizontalPodAutoscalerList, Identity identity, IdentityList identityList, ImageList imageList, ImageStreamImport imageStreamImport, ImageStreamList imageStreamList, ImageStreamTagList imageStreamTagList, Info info, Ingress ingress, IngressList ingressList, Initializer initializer, Initializers initializers, JSONSchemaPropsOrStringArray jSONSchemaPropsorStringArray, Job job, JobList jobList, io.fabric8.kubernetes.api.model.authorization.LocalSubjectAccessReview k8sLocalSubjectAccessReview, io.fabric8.kubernetes.api.model.authorization.SubjectAccessReview k8sSubjectAccessReview, LimitRangeList limitRangeList, io.fabric8.openshift.api.model.LocalSubjectAccessReview localSubjectAccessReview, MutatingWebhookConfiguration mutatingWebhookConfiguration, MutatingWebhookConfigurationList mutatingWebhookConfigurationList, Namespace namespace, NamespaceList namespaceList, NetNamespace netNameSpace, NetNamespaceList netNameSpaceList, NetworkPolicy networkPolicy, NetworkPolicyList networkPolicyList, Node node, NodeList nodeList, OAuthAccessToken oAuthAccessToken, OAuthAccessTokenList oAuthAccessTokenList, OAuthAuthorizeToken oAuthAuthorizeToken, OAuthAuthorizeTokenList oAuthAuthorizeTokenList, OAuthClient oAuthClient, OAuthClientAuthorization oAuthClientAuthorization, OAuthClientAuthorizationList oAuthClientAuthorizationList, OAuthClientList oAuthClientList, ObjectMeta objectMeta, OpenshiftClusterRole openshiftClusterRole, OpenshiftClusterRoleBinding openshiftClusterRoleBinding, OpenshiftClusterRoleBindingList openshiftClusterRoleBindingList, OpenshiftRole openshiftRole, OpenshiftRoleBinding openshiftRoleBinding, OpenshiftRoleBindingList openshiftRoleBindingList, OpenshiftRoleBindingRestriction openshiftRoleBindingRestriction, OpenshiftRoleList openshiftRoleList, String operation, Patch patch, String patchType, PersistentVolume persistentVolume, PersistentVolumeClaim persistentVolumeClaim, PersistentVolumeClaimList persistentVolumeClaimList, PersistentVolumeList persistentVolumeList, PodDisruptionBudget podDisruptionBudget, PodDisruptionBudgetList podDisruptionBudgetList, PodList podList, PodPreset podPreset, PodPresetList podPresetList, PodPresetSpec podPresetSpec, PodSecurityPolicy podSecurityPolicy, PodSecurityPolicyList podSecurityPolicyList, PodTemplateList podTemplateList, PriorityClass priorityClass, PriorityClassList priorityClassList, Project project, ProjectList projectList, ProjectRequest projectRequest, Quantity quantity, ReplicaSet replicaSet, ReplicaSetList replicaSetList, ReplicationControllerList replicationControllerList, ResourceQuota resourceQuota, ResourceQuotaList resourceQuotaList, Role role, RoleBinding roleBinding, RoleBindingList roleBindingList, RoleList roleList, RootPaths rootPaths, Route route, RouteList routeList, Rule rule, RuleWithOperations ruleWithOperations, Scale scale, Secret secret, SecretList secretList, SecurityContextConstraints securityContextConstraints, SecurityContextConstraintsList securityContextConstraintsList, ServiceAccount serviceAccount, ServiceAccountList serviceAccountList, ServiceList serviceList, StatefulSet statefulSet, StatefulSetList statefulSetList, Status status, StorageClass storageClass, StorageClassList storageClassList, io.fabric8.openshift.api.model.SubjectAccessReview subjectAccessReview, SubjectAccessReviewResponse subjectAccessReviewResponse, TagEvent tagEvent, Template template, TemplateList templateList, TokenReview tokenReview, Toleration toleration, TypeMeta typeMeta, User user, UserList userList, ValidatingWebhookConfiguration validatingWebhookConfiguration, ValidatingWebhookConfigurationList validatingWebhookConfigurationList, WatchEvent watchEvent) {</span>
+<span class="nc" id="L1575">        this.admissionRequest = admissionRequest;</span>
+<span class="nc" id="L1576">        this.admissionResponse = admissionResponse;</span>
+<span class="nc" id="L1577">        this.admissionReview = admissionReview;</span>
+<span class="nc" id="L1578">        this.admissionWebhook = admissionWebhook;</span>
+<span class="nc" id="L1579">        this.aggregationRule = aggregationRule;</span>
+<span class="nc" id="L1580">        this.baseKubernetesList = baseKubernetesList;</span>
+<span class="nc" id="L1581">        this.binding = binding;</span>
+<span class="nc" id="L1582">        this.buildConfigList = buildConfigList;</span>
+<span class="nc" id="L1583">        this.buildList = buildList;</span>
+<span class="nc" id="L1584">        this.buildRequest = buildRequest;</span>
+<span class="nc" id="L1585">        this.certificateSigningRequest = certificateSigningRequest;</span>
+<span class="nc" id="L1586">        this.certificateSigningRequestCondition = certificateSigningRequestCondition;</span>
+<span class="nc" id="L1587">        this.certificateSigningRequestList = certificateSigningRequestList;</span>
+<span class="nc" id="L1588">        this.certificateSigningRequestSpec = certificateSigningRequestSpec;</span>
+<span class="nc" id="L1589">        this.certificateSigningRequestStatus = certificateSigningRequestStatus;</span>
+<span class="nc" id="L1590">        this.clusterRole = clusterRole;</span>
+<span class="nc" id="L1591">        this.clusterRoleBinding = clusterRoleBinding;</span>
+<span class="nc" id="L1592">        this.clusterRoleBindingList = clusterRoleBindingList;</span>
+<span class="nc" id="L1593">        this.clusterRoleList = clusterRoleList;</span>
+<span class="nc" id="L1594">        this.componentStatusList = componentStatusList;</span>
+<span class="nc" id="L1595">        this.config = config;</span>
+<span class="nc" id="L1596">        this.configMap = configMap;</span>
+<span class="nc" id="L1597">        this.configMapList = configMapList;</span>
+<span class="nc" id="L1598">        this.containerStatus = containerStatus;</span>
+<span class="nc" id="L1599">        this.cronJob = cronJob;</span>
+<span class="nc" id="L1600">        this.cronJobList = cronJobList;</span>
+<span class="nc" id="L1601">        this.customResourceDefinition = customResourceDefinition;</span>
+<span class="nc" id="L1602">        this.customResourceDefinitionCondition = customResourceDefinitionCondition;</span>
+<span class="nc" id="L1603">        this.customResourceDefinitionList = customResourceDefinitionList;</span>
+<span class="nc" id="L1604">        this.customResourceDefinitionNames = customResourceDefinitionNames;</span>
+<span class="nc" id="L1605">        this.customResourceDefinitionSpec = customResourceDefinitionSpec;</span>
+<span class="nc" id="L1606">        this.customResourceDefinitionStatus = customResourceDefinitionStatus;</span>
+<span class="nc" id="L1607">        this.daemonSet = daemonSet;</span>
+<span class="nc" id="L1608">        this.daemonSetList = daemonSetList;</span>
+<span class="nc" id="L1609">        this.deleteOptions = deleteOptions;</span>
+<span class="nc" id="L1610">        this.deployment = deployment;</span>
+<span class="nc" id="L1611">        this.deploymentConfig = deploymentConfig;</span>
+<span class="nc" id="L1612">        this.deploymentConfigList = deploymentConfigList;</span>
+<span class="nc" id="L1613">        this.deploymentList = deploymentList;</span>
+<span class="nc" id="L1614">        this.deploymentRollback = deploymentRollback;</span>
+<span class="nc" id="L1615">        this.endpoints = endpoints;</span>
+<span class="nc" id="L1616">        this.endpointsList = endpointsList;</span>
+<span class="nc" id="L1617">        this.envVar = envVar;</span>
+<span class="nc" id="L1618">        this.event = event;</span>
+<span class="nc" id="L1619">        this.eventList = eventList;</span>
+<span class="nc" id="L1620">        this.eventSeries = eventSeries;</span>
+<span class="nc" id="L1621">        this.eventSeriesState = eventSeriesState;</span>
+<span class="nc" id="L1622">        this.group = group;</span>
+<span class="nc" id="L1623">        this.groupList = groupList;</span>
+<span class="nc" id="L1624">        this.horizontalPodAutoscaler = horizontalPodAutoscaler;</span>
+<span class="nc" id="L1625">        this.horizontalPodAutoscalerList = horizontalPodAutoscalerList;</span>
+<span class="nc" id="L1626">        this.identity = identity;</span>
+<span class="nc" id="L1627">        this.identityList = identityList;</span>
+<span class="nc" id="L1628">        this.imageList = imageList;</span>
+<span class="nc" id="L1629">        this.imageStreamImport = imageStreamImport;</span>
+<span class="nc" id="L1630">        this.imageStreamList = imageStreamList;</span>
+<span class="nc" id="L1631">        this.imageStreamTagList = imageStreamTagList;</span>
+<span class="nc" id="L1632">        this.info = info;</span>
+<span class="nc" id="L1633">        this.ingress = ingress;</span>
+<span class="nc" id="L1634">        this.ingressList = ingressList;</span>
+<span class="nc" id="L1635">        this.initializer = initializer;</span>
+<span class="nc" id="L1636">        this.initializers = initializers;</span>
+<span class="nc" id="L1637">        this.jSONSchemaPropsorStringArray = jSONSchemaPropsorStringArray;</span>
+<span class="nc" id="L1638">        this.job = job;</span>
+<span class="nc" id="L1639">        this.jobList = jobList;</span>
+<span class="nc" id="L1640">        this.k8sLocalSubjectAccessReview = k8sLocalSubjectAccessReview;</span>
+<span class="nc" id="L1641">        this.k8sSubjectAccessReview = k8sSubjectAccessReview;</span>
+<span class="nc" id="L1642">        this.limitRangeList = limitRangeList;</span>
+<span class="nc" id="L1643">        this.localSubjectAccessReview = localSubjectAccessReview;</span>
+<span class="nc" id="L1644">        this.mutatingWebhookConfiguration = mutatingWebhookConfiguration;</span>
+<span class="nc" id="L1645">        this.mutatingWebhookConfigurationList = mutatingWebhookConfigurationList;</span>
+<span class="nc" id="L1646">        this.namespace = namespace;</span>
+<span class="nc" id="L1647">        this.namespaceList = namespaceList;</span>
+<span class="nc" id="L1648">        this.netNameSpace = netNameSpace;</span>
+<span class="nc" id="L1649">        this.netNameSpaceList = netNameSpaceList;</span>
+<span class="nc" id="L1650">        this.networkPolicy = networkPolicy;</span>
+<span class="nc" id="L1651">        this.networkPolicyList = networkPolicyList;</span>
+<span class="nc" id="L1652">        this.node = node;</span>
+<span class="nc" id="L1653">        this.nodeList = nodeList;</span>
+<span class="nc" id="L1654">        this.oAuthAccessToken = oAuthAccessToken;</span>
+<span class="nc" id="L1655">        this.oAuthAccessTokenList = oAuthAccessTokenList;</span>
+<span class="nc" id="L1656">        this.oAuthAuthorizeToken = oAuthAuthorizeToken;</span>
+<span class="nc" id="L1657">        this.oAuthAuthorizeTokenList = oAuthAuthorizeTokenList;</span>
+<span class="nc" id="L1658">        this.oAuthClient = oAuthClient;</span>
+<span class="nc" id="L1659">        this.oAuthClientAuthorization = oAuthClientAuthorization;</span>
+<span class="nc" id="L1660">        this.oAuthClientAuthorizationList = oAuthClientAuthorizationList;</span>
+<span class="nc" id="L1661">        this.oAuthClientList = oAuthClientList;</span>
+<span class="nc" id="L1662">        this.objectMeta = objectMeta;</span>
+<span class="nc" id="L1663">        this.openshiftClusterRole = openshiftClusterRole;</span>
+<span class="nc" id="L1664">        this.openshiftClusterRoleBinding = openshiftClusterRoleBinding;</span>
+<span class="nc" id="L1665">        this.openshiftClusterRoleBindingList = openshiftClusterRoleBindingList;</span>
+<span class="nc" id="L1666">        this.openshiftRole = openshiftRole;</span>
+<span class="nc" id="L1667">        this.openshiftRoleBinding = openshiftRoleBinding;</span>
+<span class="nc" id="L1668">        this.openshiftRoleBindingList = openshiftRoleBindingList;</span>
+<span class="nc" id="L1669">        this.openshiftRoleBindingRestriction = openshiftRoleBindingRestriction;</span>
+<span class="nc" id="L1670">        this.openshiftRoleList = openshiftRoleList;</span>
+<span class="nc" id="L1671">        this.operation = operation;</span>
+<span class="nc" id="L1672">        this.patch = patch;</span>
+<span class="nc" id="L1673">        this.patchType = patchType;</span>
+<span class="nc" id="L1674">        this.persistentVolume = persistentVolume;</span>
+<span class="nc" id="L1675">        this.persistentVolumeClaim = persistentVolumeClaim;</span>
+<span class="nc" id="L1676">        this.persistentVolumeClaimList = persistentVolumeClaimList;</span>
+<span class="nc" id="L1677">        this.persistentVolumeList = persistentVolumeList;</span>
+<span class="nc" id="L1678">        this.podDisruptionBudget = podDisruptionBudget;</span>
+<span class="nc" id="L1679">        this.podDisruptionBudgetList = podDisruptionBudgetList;</span>
+<span class="nc" id="L1680">        this.podList = podList;</span>
+<span class="nc" id="L1681">        this.podPreset = podPreset;</span>
+<span class="nc" id="L1682">        this.podPresetList = podPresetList;</span>
+<span class="nc" id="L1683">        this.podPresetSpec = podPresetSpec;</span>
+<span class="nc" id="L1684">        this.podSecurityPolicy = podSecurityPolicy;</span>
+<span class="nc" id="L1685">        this.podSecurityPolicyList = podSecurityPolicyList;</span>
+<span class="nc" id="L1686">        this.podTemplateList = podTemplateList;</span>
+<span class="nc" id="L1687">        this.priorityClass = priorityClass;</span>
+<span class="nc" id="L1688">        this.priorityClassList = priorityClassList;</span>
+<span class="nc" id="L1689">        this.project = project;</span>
+<span class="nc" id="L1690">        this.projectList = projectList;</span>
+<span class="nc" id="L1691">        this.projectRequest = projectRequest;</span>
+<span class="nc" id="L1692">        this.quantity = quantity;</span>
+<span class="nc" id="L1693">        this.replicaSet = replicaSet;</span>
+<span class="nc" id="L1694">        this.replicaSetList = replicaSetList;</span>
+<span class="nc" id="L1695">        this.replicationControllerList = replicationControllerList;</span>
+<span class="nc" id="L1696">        this.resourceQuota = resourceQuota;</span>
+<span class="nc" id="L1697">        this.resourceQuotaList = resourceQuotaList;</span>
+<span class="nc" id="L1698">        this.role = role;</span>
+<span class="nc" id="L1699">        this.roleBinding = roleBinding;</span>
+<span class="nc" id="L1700">        this.roleBindingList = roleBindingList;</span>
+<span class="nc" id="L1701">        this.roleList = roleList;</span>
+<span class="nc" id="L1702">        this.rootPaths = rootPaths;</span>
+<span class="nc" id="L1703">        this.route = route;</span>
+<span class="nc" id="L1704">        this.routeList = routeList;</span>
+<span class="nc" id="L1705">        this.rule = rule;</span>
+<span class="nc" id="L1706">        this.ruleWithOperations = ruleWithOperations;</span>
+<span class="nc" id="L1707">        this.scale = scale;</span>
+<span class="nc" id="L1708">        this.secret = secret;</span>
+<span class="nc" id="L1709">        this.secretList = secretList;</span>
+<span class="nc" id="L1710">        this.securityContextConstraints = securityContextConstraints;</span>
+<span class="nc" id="L1711">        this.securityContextConstraintsList = securityContextConstraintsList;</span>
+<span class="nc" id="L1712">        this.serviceAccount = serviceAccount;</span>
+<span class="nc" id="L1713">        this.serviceAccountList = serviceAccountList;</span>
+<span class="nc" id="L1714">        this.serviceList = serviceList;</span>
+<span class="nc" id="L1715">        this.statefulSet = statefulSet;</span>
+<span class="nc" id="L1716">        this.statefulSetList = statefulSetList;</span>
+<span class="nc" id="L1717">        this.status = status;</span>
+<span class="nc" id="L1718">        this.storageClass = storageClass;</span>
+<span class="nc" id="L1719">        this.storageClassList = storageClassList;</span>
+<span class="nc" id="L1720">        this.subjectAccessReview = subjectAccessReview;</span>
+<span class="nc" id="L1721">        this.subjectAccessReviewResponse = subjectAccessReviewResponse;</span>
+<span class="nc" id="L1722">        this.tagEvent = tagEvent;</span>
+<span class="nc" id="L1723">        this.template = template;</span>
+<span class="nc" id="L1724">        this.templateList = templateList;</span>
+<span class="nc" id="L1725">        this.tokenReview = tokenReview;</span>
+<span class="nc" id="L1726">        this.toleration = toleration;</span>
+<span class="nc" id="L1727">        this.typeMeta = typeMeta;</span>
+<span class="nc" id="L1728">        this.user = user;</span>
+<span class="nc" id="L1729">        this.userList = userList;</span>
+<span class="nc" id="L1730">        this.validatingWebhookConfiguration = validatingWebhookConfiguration;</span>
+<span class="nc" id="L1731">        this.validatingWebhookConfigurationList = validatingWebhookConfigurationList;</span>
+<span class="nc" id="L1732">        this.watchEvent = watchEvent;</span>
+<span class="nc" id="L1733">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The admissionRequest
+     */
+    @JsonProperty(&quot;AdmissionRequest&quot;)
+    public AdmissionRequest getAdmissionRequest() {
+<span class="nc" id="L1743">        return admissionRequest;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param admissionRequest
+     *     The AdmissionRequest
+     */
+    @JsonProperty(&quot;AdmissionRequest&quot;)
+    public void setAdmissionRequest(AdmissionRequest admissionRequest) {
+<span class="nc" id="L1754">        this.admissionRequest = admissionRequest;</span>
+<span class="nc" id="L1755">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The admissionResponse
+     */
+    @JsonProperty(&quot;AdmissionResponse&quot;)
+    public AdmissionResponse getAdmissionResponse() {
+<span class="nc" id="L1765">        return admissionResponse;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param admissionResponse
+     *     The AdmissionResponse
+     */
+    @JsonProperty(&quot;AdmissionResponse&quot;)
+    public void setAdmissionResponse(AdmissionResponse admissionResponse) {
+<span class="nc" id="L1776">        this.admissionResponse = admissionResponse;</span>
+<span class="nc" id="L1777">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The admissionReview
+     */
+    @JsonProperty(&quot;AdmissionReview&quot;)
+    public AdmissionReview getAdmissionReview() {
+<span class="nc" id="L1787">        return admissionReview;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param admissionReview
+     *     The AdmissionReview
+     */
+    @JsonProperty(&quot;AdmissionReview&quot;)
+    public void setAdmissionReview(AdmissionReview admissionReview) {
+<span class="nc" id="L1798">        this.admissionReview = admissionReview;</span>
+<span class="nc" id="L1799">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The admissionWebhook
+     */
+    @JsonProperty(&quot;AdmissionWebhook&quot;)
+    public Webhook getAdmissionWebhook() {
+<span class="nc" id="L1809">        return admissionWebhook;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param admissionWebhook
+     *     The AdmissionWebhook
+     */
+    @JsonProperty(&quot;AdmissionWebhook&quot;)
+    public void setAdmissionWebhook(Webhook admissionWebhook) {
+<span class="nc" id="L1820">        this.admissionWebhook = admissionWebhook;</span>
+<span class="nc" id="L1821">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The aggregationRule
+     */
+    @JsonProperty(&quot;AggregationRule&quot;)
+    public AggregationRule getAggregationRule() {
+<span class="nc" id="L1831">        return aggregationRule;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param aggregationRule
+     *     The AggregationRule
+     */
+    @JsonProperty(&quot;AggregationRule&quot;)
+    public void setAggregationRule(AggregationRule aggregationRule) {
+<span class="nc" id="L1842">        this.aggregationRule = aggregationRule;</span>
+<span class="nc" id="L1843">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The baseKubernetesList
+     */
+    @JsonProperty(&quot;BaseKubernetesList&quot;)
+    public BaseKubernetesList getBaseKubernetesList() {
+<span class="nc" id="L1853">        return baseKubernetesList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param baseKubernetesList
+     *     The BaseKubernetesList
+     */
+    @JsonProperty(&quot;BaseKubernetesList&quot;)
+    public void setBaseKubernetesList(BaseKubernetesList baseKubernetesList) {
+<span class="nc" id="L1864">        this.baseKubernetesList = baseKubernetesList;</span>
+<span class="nc" id="L1865">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The binding
+     */
+    @JsonProperty(&quot;Binding&quot;)
+    public Binding getBinding() {
+<span class="nc" id="L1875">        return binding;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param binding
+     *     The Binding
+     */
+    @JsonProperty(&quot;Binding&quot;)
+    public void setBinding(Binding binding) {
+<span class="nc" id="L1886">        this.binding = binding;</span>
+<span class="nc" id="L1887">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The buildConfigList
+     */
+    @JsonProperty(&quot;BuildConfigList&quot;)
+    public BuildConfigList getBuildConfigList() {
+<span class="nc" id="L1897">        return buildConfigList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param buildConfigList
+     *     The BuildConfigList
+     */
+    @JsonProperty(&quot;BuildConfigList&quot;)
+    public void setBuildConfigList(BuildConfigList buildConfigList) {
+<span class="nc" id="L1908">        this.buildConfigList = buildConfigList;</span>
+<span class="nc" id="L1909">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The buildList
+     */
+    @JsonProperty(&quot;BuildList&quot;)
+    public BuildList getBuildList() {
+<span class="nc" id="L1919">        return buildList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param buildList
+     *     The BuildList
+     */
+    @JsonProperty(&quot;BuildList&quot;)
+    public void setBuildList(BuildList buildList) {
+<span class="nc" id="L1930">        this.buildList = buildList;</span>
+<span class="nc" id="L1931">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The buildRequest
+     */
+    @JsonProperty(&quot;BuildRequest&quot;)
+    public BuildRequest getBuildRequest() {
+<span class="nc" id="L1941">        return buildRequest;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param buildRequest
+     *     The BuildRequest
+     */
+    @JsonProperty(&quot;BuildRequest&quot;)
+    public void setBuildRequest(BuildRequest buildRequest) {
+<span class="nc" id="L1952">        this.buildRequest = buildRequest;</span>
+<span class="nc" id="L1953">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The certificateSigningRequest
+     */
+    @JsonProperty(&quot;CertificateSigningRequest&quot;)
+    public CertificateSigningRequest getCertificateSigningRequest() {
+<span class="nc" id="L1963">        return certificateSigningRequest;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param certificateSigningRequest
+     *     The CertificateSigningRequest
+     */
+    @JsonProperty(&quot;CertificateSigningRequest&quot;)
+    public void setCertificateSigningRequest(CertificateSigningRequest certificateSigningRequest) {
+<span class="nc" id="L1974">        this.certificateSigningRequest = certificateSigningRequest;</span>
+<span class="nc" id="L1975">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The certificateSigningRequestCondition
+     */
+    @JsonProperty(&quot;CertificateSigningRequestCondition&quot;)
+    public CertificateSigningRequestCondition getCertificateSigningRequestCondition() {
+<span class="nc" id="L1985">        return certificateSigningRequestCondition;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param certificateSigningRequestCondition
+     *     The CertificateSigningRequestCondition
+     */
+    @JsonProperty(&quot;CertificateSigningRequestCondition&quot;)
+    public void setCertificateSigningRequestCondition(CertificateSigningRequestCondition certificateSigningRequestCondition) {
+<span class="nc" id="L1996">        this.certificateSigningRequestCondition = certificateSigningRequestCondition;</span>
+<span class="nc" id="L1997">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The certificateSigningRequestList
+     */
+    @JsonProperty(&quot;CertificateSigningRequestList&quot;)
+    public CertificateSigningRequestList getCertificateSigningRequestList() {
+<span class="nc" id="L2007">        return certificateSigningRequestList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param certificateSigningRequestList
+     *     The CertificateSigningRequestList
+     */
+    @JsonProperty(&quot;CertificateSigningRequestList&quot;)
+    public void setCertificateSigningRequestList(CertificateSigningRequestList certificateSigningRequestList) {
+<span class="nc" id="L2018">        this.certificateSigningRequestList = certificateSigningRequestList;</span>
+<span class="nc" id="L2019">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The certificateSigningRequestSpec
+     */
+    @JsonProperty(&quot;CertificateSigningRequestSpec&quot;)
+    public CertificateSigningRequestSpec getCertificateSigningRequestSpec() {
+<span class="nc" id="L2029">        return certificateSigningRequestSpec;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param certificateSigningRequestSpec
+     *     The CertificateSigningRequestSpec
+     */
+    @JsonProperty(&quot;CertificateSigningRequestSpec&quot;)
+    public void setCertificateSigningRequestSpec(CertificateSigningRequestSpec certificateSigningRequestSpec) {
+<span class="nc" id="L2040">        this.certificateSigningRequestSpec = certificateSigningRequestSpec;</span>
+<span class="nc" id="L2041">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The certificateSigningRequestStatus
+     */
+    @JsonProperty(&quot;CertificateSigningRequestStatus&quot;)
+    public CertificateSigningRequestStatus getCertificateSigningRequestStatus() {
+<span class="nc" id="L2051">        return certificateSigningRequestStatus;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param certificateSigningRequestStatus
+     *     The CertificateSigningRequestStatus
+     */
+    @JsonProperty(&quot;CertificateSigningRequestStatus&quot;)
+    public void setCertificateSigningRequestStatus(CertificateSigningRequestStatus certificateSigningRequestStatus) {
+<span class="nc" id="L2062">        this.certificateSigningRequestStatus = certificateSigningRequestStatus;</span>
+<span class="nc" id="L2063">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The clusterRole
+     */
+    @JsonProperty(&quot;ClusterRole&quot;)
+    public ClusterRole getClusterRole() {
+<span class="nc" id="L2073">        return clusterRole;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param clusterRole
+     *     The ClusterRole
+     */
+    @JsonProperty(&quot;ClusterRole&quot;)
+    public void setClusterRole(ClusterRole clusterRole) {
+<span class="nc" id="L2084">        this.clusterRole = clusterRole;</span>
+<span class="nc" id="L2085">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The clusterRoleBinding
+     */
+    @JsonProperty(&quot;ClusterRoleBinding&quot;)
+    public ClusterRoleBinding getClusterRoleBinding() {
+<span class="nc" id="L2095">        return clusterRoleBinding;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param clusterRoleBinding
+     *     The ClusterRoleBinding
+     */
+    @JsonProperty(&quot;ClusterRoleBinding&quot;)
+    public void setClusterRoleBinding(ClusterRoleBinding clusterRoleBinding) {
+<span class="nc" id="L2106">        this.clusterRoleBinding = clusterRoleBinding;</span>
+<span class="nc" id="L2107">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The clusterRoleBindingList
+     */
+    @JsonProperty(&quot;ClusterRoleBindingList&quot;)
+    public ClusterRoleBindingList getClusterRoleBindingList() {
+<span class="nc" id="L2117">        return clusterRoleBindingList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param clusterRoleBindingList
+     *     The ClusterRoleBindingList
+     */
+    @JsonProperty(&quot;ClusterRoleBindingList&quot;)
+    public void setClusterRoleBindingList(ClusterRoleBindingList clusterRoleBindingList) {
+<span class="nc" id="L2128">        this.clusterRoleBindingList = clusterRoleBindingList;</span>
+<span class="nc" id="L2129">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The clusterRoleList
+     */
+    @JsonProperty(&quot;ClusterRoleList&quot;)
+    public ClusterRoleList getClusterRoleList() {
+<span class="nc" id="L2139">        return clusterRoleList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param clusterRoleList
+     *     The ClusterRoleList
+     */
+    @JsonProperty(&quot;ClusterRoleList&quot;)
+    public void setClusterRoleList(ClusterRoleList clusterRoleList) {
+<span class="nc" id="L2150">        this.clusterRoleList = clusterRoleList;</span>
+<span class="nc" id="L2151">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The componentStatusList
+     */
+    @JsonProperty(&quot;ComponentStatusList&quot;)
+    public ComponentStatusList getComponentStatusList() {
+<span class="nc" id="L2161">        return componentStatusList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param componentStatusList
+     *     The ComponentStatusList
+     */
+    @JsonProperty(&quot;ComponentStatusList&quot;)
+    public void setComponentStatusList(ComponentStatusList componentStatusList) {
+<span class="nc" id="L2172">        this.componentStatusList = componentStatusList;</span>
+<span class="nc" id="L2173">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The config
+     */
+    @JsonProperty(&quot;Config&quot;)
+    public Config getConfig() {
+<span class="nc" id="L2183">        return config;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param config
+     *     The Config
+     */
+    @JsonProperty(&quot;Config&quot;)
+    public void setConfig(Config config) {
+<span class="nc" id="L2194">        this.config = config;</span>
+<span class="nc" id="L2195">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The configMap
+     */
+    @JsonProperty(&quot;ConfigMap&quot;)
+    public ConfigMap getConfigMap() {
+<span class="nc" id="L2205">        return configMap;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param configMap
+     *     The ConfigMap
+     */
+    @JsonProperty(&quot;ConfigMap&quot;)
+    public void setConfigMap(ConfigMap configMap) {
+<span class="nc" id="L2216">        this.configMap = configMap;</span>
+<span class="nc" id="L2217">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The configMapList
+     */
+    @JsonProperty(&quot;ConfigMapList&quot;)
+    public ConfigMapList getConfigMapList() {
+<span class="nc" id="L2227">        return configMapList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param configMapList
+     *     The ConfigMapList
+     */
+    @JsonProperty(&quot;ConfigMapList&quot;)
+    public void setConfigMapList(ConfigMapList configMapList) {
+<span class="nc" id="L2238">        this.configMapList = configMapList;</span>
+<span class="nc" id="L2239">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The containerStatus
+     */
+    @JsonProperty(&quot;ContainerStatus&quot;)
+    public ContainerStatus getContainerStatus() {
+<span class="nc" id="L2249">        return containerStatus;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param containerStatus
+     *     The ContainerStatus
+     */
+    @JsonProperty(&quot;ContainerStatus&quot;)
+    public void setContainerStatus(ContainerStatus containerStatus) {
+<span class="nc" id="L2260">        this.containerStatus = containerStatus;</span>
+<span class="nc" id="L2261">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The cronJob
+     */
+    @JsonProperty(&quot;CronJob&quot;)
+    public CronJob getCronJob() {
+<span class="nc" id="L2271">        return cronJob;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param cronJob
+     *     The CronJob
+     */
+    @JsonProperty(&quot;CronJob&quot;)
+    public void setCronJob(CronJob cronJob) {
+<span class="nc" id="L2282">        this.cronJob = cronJob;</span>
+<span class="nc" id="L2283">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The cronJobList
+     */
+    @JsonProperty(&quot;CronJobList&quot;)
+    public CronJobList getCronJobList() {
+<span class="nc" id="L2293">        return cronJobList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param cronJobList
+     *     The CronJobList
+     */
+    @JsonProperty(&quot;CronJobList&quot;)
+    public void setCronJobList(CronJobList cronJobList) {
+<span class="nc" id="L2304">        this.cronJobList = cronJobList;</span>
+<span class="nc" id="L2305">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The customResourceDefinition
+     */
+    @JsonProperty(&quot;CustomResourceDefinition&quot;)
+    public CustomResourceDefinition getCustomResourceDefinition() {
+<span class="nc" id="L2315">        return customResourceDefinition;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param customResourceDefinition
+     *     The CustomResourceDefinition
+     */
+    @JsonProperty(&quot;CustomResourceDefinition&quot;)
+    public void setCustomResourceDefinition(CustomResourceDefinition customResourceDefinition) {
+<span class="nc" id="L2326">        this.customResourceDefinition = customResourceDefinition;</span>
+<span class="nc" id="L2327">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The customResourceDefinitionCondition
+     */
+    @JsonProperty(&quot;CustomResourceDefinitionCondition&quot;)
+    public CustomResourceDefinitionCondition getCustomResourceDefinitionCondition() {
+<span class="nc" id="L2337">        return customResourceDefinitionCondition;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param customResourceDefinitionCondition
+     *     The CustomResourceDefinitionCondition
+     */
+    @JsonProperty(&quot;CustomResourceDefinitionCondition&quot;)
+    public void setCustomResourceDefinitionCondition(CustomResourceDefinitionCondition customResourceDefinitionCondition) {
+<span class="nc" id="L2348">        this.customResourceDefinitionCondition = customResourceDefinitionCondition;</span>
+<span class="nc" id="L2349">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The customResourceDefinitionList
+     */
+    @JsonProperty(&quot;CustomResourceDefinitionList&quot;)
+    public CustomResourceDefinitionList getCustomResourceDefinitionList() {
+<span class="nc" id="L2359">        return customResourceDefinitionList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param customResourceDefinitionList
+     *     The CustomResourceDefinitionList
+     */
+    @JsonProperty(&quot;CustomResourceDefinitionList&quot;)
+    public void setCustomResourceDefinitionList(CustomResourceDefinitionList customResourceDefinitionList) {
+<span class="nc" id="L2370">        this.customResourceDefinitionList = customResourceDefinitionList;</span>
+<span class="nc" id="L2371">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The customResourceDefinitionNames
+     */
+    @JsonProperty(&quot;CustomResourceDefinitionNames&quot;)
+    public CustomResourceDefinitionNames getCustomResourceDefinitionNames() {
+<span class="nc" id="L2381">        return customResourceDefinitionNames;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param customResourceDefinitionNames
+     *     The CustomResourceDefinitionNames
+     */
+    @JsonProperty(&quot;CustomResourceDefinitionNames&quot;)
+    public void setCustomResourceDefinitionNames(CustomResourceDefinitionNames customResourceDefinitionNames) {
+<span class="nc" id="L2392">        this.customResourceDefinitionNames = customResourceDefinitionNames;</span>
+<span class="nc" id="L2393">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The customResourceDefinitionSpec
+     */
+    @JsonProperty(&quot;CustomResourceDefinitionSpec&quot;)
+    public CustomResourceDefinitionSpec getCustomResourceDefinitionSpec() {
+<span class="nc" id="L2403">        return customResourceDefinitionSpec;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param customResourceDefinitionSpec
+     *     The CustomResourceDefinitionSpec
+     */
+    @JsonProperty(&quot;CustomResourceDefinitionSpec&quot;)
+    public void setCustomResourceDefinitionSpec(CustomResourceDefinitionSpec customResourceDefinitionSpec) {
+<span class="nc" id="L2414">        this.customResourceDefinitionSpec = customResourceDefinitionSpec;</span>
+<span class="nc" id="L2415">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The customResourceDefinitionStatus
+     */
+    @JsonProperty(&quot;CustomResourceDefinitionStatus&quot;)
+    public CustomResourceDefinitionStatus getCustomResourceDefinitionStatus() {
+<span class="nc" id="L2425">        return customResourceDefinitionStatus;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param customResourceDefinitionStatus
+     *     The CustomResourceDefinitionStatus
+     */
+    @JsonProperty(&quot;CustomResourceDefinitionStatus&quot;)
+    public void setCustomResourceDefinitionStatus(CustomResourceDefinitionStatus customResourceDefinitionStatus) {
+<span class="nc" id="L2436">        this.customResourceDefinitionStatus = customResourceDefinitionStatus;</span>
+<span class="nc" id="L2437">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The daemonSet
+     */
+    @JsonProperty(&quot;DaemonSet&quot;)
+    public DaemonSet getDaemonSet() {
+<span class="nc" id="L2447">        return daemonSet;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param daemonSet
+     *     The DaemonSet
+     */
+    @JsonProperty(&quot;DaemonSet&quot;)
+    public void setDaemonSet(DaemonSet daemonSet) {
+<span class="nc" id="L2458">        this.daemonSet = daemonSet;</span>
+<span class="nc" id="L2459">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The daemonSetList
+     */
+    @JsonProperty(&quot;DaemonSetList&quot;)
+    public DaemonSetList getDaemonSetList() {
+<span class="nc" id="L2469">        return daemonSetList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param daemonSetList
+     *     The DaemonSetList
+     */
+    @JsonProperty(&quot;DaemonSetList&quot;)
+    public void setDaemonSetList(DaemonSetList daemonSetList) {
+<span class="nc" id="L2480">        this.daemonSetList = daemonSetList;</span>
+<span class="nc" id="L2481">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The deleteOptions
+     */
+    @JsonProperty(&quot;DeleteOptions&quot;)
+    public DeleteOptions getDeleteOptions() {
+<span class="nc" id="L2491">        return deleteOptions;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param deleteOptions
+     *     The DeleteOptions
+     */
+    @JsonProperty(&quot;DeleteOptions&quot;)
+    public void setDeleteOptions(DeleteOptions deleteOptions) {
+<span class="nc" id="L2502">        this.deleteOptions = deleteOptions;</span>
+<span class="nc" id="L2503">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The deployment
+     */
+    @JsonProperty(&quot;Deployment&quot;)
+    public Deployment getDeployment() {
+<span class="nc" id="L2513">        return deployment;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param deployment
+     *     The Deployment
+     */
+    @JsonProperty(&quot;Deployment&quot;)
+    public void setDeployment(Deployment deployment) {
+<span class="nc" id="L2524">        this.deployment = deployment;</span>
+<span class="nc" id="L2525">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The deploymentConfig
+     */
+    @JsonProperty(&quot;DeploymentConfig&quot;)
+    public DeploymentConfig getDeploymentConfig() {
+<span class="nc" id="L2535">        return deploymentConfig;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param deploymentConfig
+     *     The DeploymentConfig
+     */
+    @JsonProperty(&quot;DeploymentConfig&quot;)
+    public void setDeploymentConfig(DeploymentConfig deploymentConfig) {
+<span class="nc" id="L2546">        this.deploymentConfig = deploymentConfig;</span>
+<span class="nc" id="L2547">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The deploymentConfigList
+     */
+    @JsonProperty(&quot;DeploymentConfigList&quot;)
+    public DeploymentConfigList getDeploymentConfigList() {
+<span class="nc" id="L2557">        return deploymentConfigList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param deploymentConfigList
+     *     The DeploymentConfigList
+     */
+    @JsonProperty(&quot;DeploymentConfigList&quot;)
+    public void setDeploymentConfigList(DeploymentConfigList deploymentConfigList) {
+<span class="nc" id="L2568">        this.deploymentConfigList = deploymentConfigList;</span>
+<span class="nc" id="L2569">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The deploymentList
+     */
+    @JsonProperty(&quot;DeploymentList&quot;)
+    public DeploymentList getDeploymentList() {
+<span class="nc" id="L2579">        return deploymentList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param deploymentList
+     *     The DeploymentList
+     */
+    @JsonProperty(&quot;DeploymentList&quot;)
+    public void setDeploymentList(DeploymentList deploymentList) {
+<span class="nc" id="L2590">        this.deploymentList = deploymentList;</span>
+<span class="nc" id="L2591">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The deploymentRollback
+     */
+    @JsonProperty(&quot;DeploymentRollback&quot;)
+    public DeploymentRollback getDeploymentRollback() {
+<span class="nc" id="L2601">        return deploymentRollback;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param deploymentRollback
+     *     The DeploymentRollback
+     */
+    @JsonProperty(&quot;DeploymentRollback&quot;)
+    public void setDeploymentRollback(DeploymentRollback deploymentRollback) {
+<span class="nc" id="L2612">        this.deploymentRollback = deploymentRollback;</span>
+<span class="nc" id="L2613">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The endpoints
+     */
+    @JsonProperty(&quot;Endpoints&quot;)
+    public Endpoints getEndpoints() {
+<span class="nc" id="L2623">        return endpoints;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param endpoints
+     *     The Endpoints
+     */
+    @JsonProperty(&quot;Endpoints&quot;)
+    public void setEndpoints(Endpoints endpoints) {
+<span class="nc" id="L2634">        this.endpoints = endpoints;</span>
+<span class="nc" id="L2635">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The endpointsList
+     */
+    @JsonProperty(&quot;EndpointsList&quot;)
+    public EndpointsList getEndpointsList() {
+<span class="nc" id="L2645">        return endpointsList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param endpointsList
+     *     The EndpointsList
+     */
+    @JsonProperty(&quot;EndpointsList&quot;)
+    public void setEndpointsList(EndpointsList endpointsList) {
+<span class="nc" id="L2656">        this.endpointsList = endpointsList;</span>
+<span class="nc" id="L2657">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The envVar
+     */
+    @JsonProperty(&quot;EnvVar&quot;)
+    public EnvVar getEnvVar() {
+<span class="nc" id="L2667">        return envVar;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param envVar
+     *     The EnvVar
+     */
+    @JsonProperty(&quot;EnvVar&quot;)
+    public void setEnvVar(EnvVar envVar) {
+<span class="nc" id="L2678">        this.envVar = envVar;</span>
+<span class="nc" id="L2679">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The event
+     */
+    @JsonProperty(&quot;Event&quot;)
+    public Event getEvent() {
+<span class="nc" id="L2689">        return event;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param event
+     *     The Event
+     */
+    @JsonProperty(&quot;Event&quot;)
+    public void setEvent(Event event) {
+<span class="nc" id="L2700">        this.event = event;</span>
+<span class="nc" id="L2701">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The eventList
+     */
+    @JsonProperty(&quot;EventList&quot;)
+    public EventList getEventList() {
+<span class="nc" id="L2711">        return eventList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param eventList
+     *     The EventList
+     */
+    @JsonProperty(&quot;EventList&quot;)
+    public void setEventList(EventList eventList) {
+<span class="nc" id="L2722">        this.eventList = eventList;</span>
+<span class="nc" id="L2723">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The eventSeries
+     */
+    @JsonProperty(&quot;EventSeries&quot;)
+    public EventSeries getEventSeries() {
+<span class="nc" id="L2733">        return eventSeries;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param eventSeries
+     *     The EventSeries
+     */
+    @JsonProperty(&quot;EventSeries&quot;)
+    public void setEventSeries(EventSeries eventSeries) {
+<span class="nc" id="L2744">        this.eventSeries = eventSeries;</span>
+<span class="nc" id="L2745">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The eventSeriesState
+     */
+    @JsonProperty(&quot;EventSeriesState&quot;)
+    public String getEventSeriesState() {
+<span class="nc" id="L2755">        return eventSeriesState;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param eventSeriesState
+     *     The EventSeriesState
+     */
+    @JsonProperty(&quot;EventSeriesState&quot;)
+    public void setEventSeriesState(String eventSeriesState) {
+<span class="nc" id="L2766">        this.eventSeriesState = eventSeriesState;</span>
+<span class="nc" id="L2767">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The group
+     */
+    @JsonProperty(&quot;Group&quot;)
+    public Group getGroup() {
+<span class="nc" id="L2777">        return group;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param group
+     *     The Group
+     */
+    @JsonProperty(&quot;Group&quot;)
+    public void setGroup(Group group) {
+<span class="nc" id="L2788">        this.group = group;</span>
+<span class="nc" id="L2789">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The groupList
+     */
+    @JsonProperty(&quot;GroupList&quot;)
+    public GroupList getGroupList() {
+<span class="nc" id="L2799">        return groupList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param groupList
+     *     The GroupList
+     */
+    @JsonProperty(&quot;GroupList&quot;)
+    public void setGroupList(GroupList groupList) {
+<span class="nc" id="L2810">        this.groupList = groupList;</span>
+<span class="nc" id="L2811">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The horizontalPodAutoscaler
+     */
+    @JsonProperty(&quot;HorizontalPodAutoscaler&quot;)
+    public HorizontalPodAutoscaler getHorizontalPodAutoscaler() {
+<span class="nc" id="L2821">        return horizontalPodAutoscaler;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param horizontalPodAutoscaler
+     *     The HorizontalPodAutoscaler
+     */
+    @JsonProperty(&quot;HorizontalPodAutoscaler&quot;)
+    public void setHorizontalPodAutoscaler(HorizontalPodAutoscaler horizontalPodAutoscaler) {
+<span class="nc" id="L2832">        this.horizontalPodAutoscaler = horizontalPodAutoscaler;</span>
+<span class="nc" id="L2833">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The horizontalPodAutoscalerList
+     */
+    @JsonProperty(&quot;HorizontalPodAutoscalerList&quot;)
+    public HorizontalPodAutoscalerList getHorizontalPodAutoscalerList() {
+<span class="nc" id="L2843">        return horizontalPodAutoscalerList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param horizontalPodAutoscalerList
+     *     The HorizontalPodAutoscalerList
+     */
+    @JsonProperty(&quot;HorizontalPodAutoscalerList&quot;)
+    public void setHorizontalPodAutoscalerList(HorizontalPodAutoscalerList horizontalPodAutoscalerList) {
+<span class="nc" id="L2854">        this.horizontalPodAutoscalerList = horizontalPodAutoscalerList;</span>
+<span class="nc" id="L2855">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The identity
+     */
+    @JsonProperty(&quot;Identity&quot;)
+    public Identity getIdentity() {
+<span class="nc" id="L2865">        return identity;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param identity
+     *     The Identity
+     */
+    @JsonProperty(&quot;Identity&quot;)
+    public void setIdentity(Identity identity) {
+<span class="nc" id="L2876">        this.identity = identity;</span>
+<span class="nc" id="L2877">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The identityList
+     */
+    @JsonProperty(&quot;IdentityList&quot;)
+    public IdentityList getIdentityList() {
+<span class="nc" id="L2887">        return identityList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param identityList
+     *     The IdentityList
+     */
+    @JsonProperty(&quot;IdentityList&quot;)
+    public void setIdentityList(IdentityList identityList) {
+<span class="nc" id="L2898">        this.identityList = identityList;</span>
+<span class="nc" id="L2899">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The imageList
+     */
+    @JsonProperty(&quot;ImageList&quot;)
+    public ImageList getImageList() {
+<span class="nc" id="L2909">        return imageList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param imageList
+     *     The ImageList
+     */
+    @JsonProperty(&quot;ImageList&quot;)
+    public void setImageList(ImageList imageList) {
+<span class="nc" id="L2920">        this.imageList = imageList;</span>
+<span class="nc" id="L2921">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The imageStreamImport
+     */
+    @JsonProperty(&quot;ImageStreamImport&quot;)
+    public ImageStreamImport getImageStreamImport() {
+<span class="nc" id="L2931">        return imageStreamImport;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param imageStreamImport
+     *     The ImageStreamImport
+     */
+    @JsonProperty(&quot;ImageStreamImport&quot;)
+    public void setImageStreamImport(ImageStreamImport imageStreamImport) {
+<span class="nc" id="L2942">        this.imageStreamImport = imageStreamImport;</span>
+<span class="nc" id="L2943">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The imageStreamList
+     */
+    @JsonProperty(&quot;ImageStreamList&quot;)
+    public ImageStreamList getImageStreamList() {
+<span class="nc" id="L2953">        return imageStreamList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param imageStreamList
+     *     The ImageStreamList
+     */
+    @JsonProperty(&quot;ImageStreamList&quot;)
+    public void setImageStreamList(ImageStreamList imageStreamList) {
+<span class="nc" id="L2964">        this.imageStreamList = imageStreamList;</span>
+<span class="nc" id="L2965">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The imageStreamTagList
+     */
+    @JsonProperty(&quot;ImageStreamTagList&quot;)
+    public ImageStreamTagList getImageStreamTagList() {
+<span class="nc" id="L2975">        return imageStreamTagList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param imageStreamTagList
+     *     The ImageStreamTagList
+     */
+    @JsonProperty(&quot;ImageStreamTagList&quot;)
+    public void setImageStreamTagList(ImageStreamTagList imageStreamTagList) {
+<span class="nc" id="L2986">        this.imageStreamTagList = imageStreamTagList;</span>
+<span class="nc" id="L2987">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The info
+     */
+    @JsonProperty(&quot;Info&quot;)
+    public Info getInfo() {
+<span class="nc" id="L2997">        return info;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param info
+     *     The Info
+     */
+    @JsonProperty(&quot;Info&quot;)
+    public void setInfo(Info info) {
+<span class="nc" id="L3008">        this.info = info;</span>
+<span class="nc" id="L3009">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The ingress
+     */
+    @JsonProperty(&quot;Ingress&quot;)
+    public Ingress getIngress() {
+<span class="nc" id="L3019">        return ingress;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param ingress
+     *     The Ingress
+     */
+    @JsonProperty(&quot;Ingress&quot;)
+    public void setIngress(Ingress ingress) {
+<span class="nc" id="L3030">        this.ingress = ingress;</span>
+<span class="nc" id="L3031">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The ingressList
+     */
+    @JsonProperty(&quot;IngressList&quot;)
+    public IngressList getIngressList() {
+<span class="nc" id="L3041">        return ingressList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param ingressList
+     *     The IngressList
+     */
+    @JsonProperty(&quot;IngressList&quot;)
+    public void setIngressList(IngressList ingressList) {
+<span class="nc" id="L3052">        this.ingressList = ingressList;</span>
+<span class="nc" id="L3053">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The initializer
+     */
+    @JsonProperty(&quot;Initializer&quot;)
+    public Initializer getInitializer() {
+<span class="nc" id="L3063">        return initializer;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param initializer
+     *     The Initializer
+     */
+    @JsonProperty(&quot;Initializer&quot;)
+    public void setInitializer(Initializer initializer) {
+<span class="nc" id="L3074">        this.initializer = initializer;</span>
+<span class="nc" id="L3075">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The initializers
+     */
+    @JsonProperty(&quot;Initializers&quot;)
+    public Initializers getInitializers() {
+<span class="nc" id="L3085">        return initializers;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param initializers
+     *     The Initializers
+     */
+    @JsonProperty(&quot;Initializers&quot;)
+    public void setInitializers(Initializers initializers) {
+<span class="nc" id="L3096">        this.initializers = initializers;</span>
+<span class="nc" id="L3097">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The jSONSchemaPropsorStringArray
+     */
+    @JsonProperty(&quot;JSONSchemaPropsorStringArray&quot;)
+    public JSONSchemaPropsOrStringArray getJSONSchemaPropsorStringArray() {
+<span class="nc" id="L3107">        return jSONSchemaPropsorStringArray;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param jSONSchemaPropsorStringArray
+     *     The JSONSchemaPropsorStringArray
+     */
+    @JsonProperty(&quot;JSONSchemaPropsorStringArray&quot;)
+    public void setJSONSchemaPropsorStringArray(JSONSchemaPropsOrStringArray jSONSchemaPropsorStringArray) {
+<span class="nc" id="L3118">        this.jSONSchemaPropsorStringArray = jSONSchemaPropsorStringArray;</span>
+<span class="nc" id="L3119">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The job
+     */
+    @JsonProperty(&quot;Job&quot;)
+    public Job getJob() {
+<span class="nc" id="L3129">        return job;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param job
+     *     The Job
+     */
+    @JsonProperty(&quot;Job&quot;)
+    public void setJob(Job job) {
+<span class="nc" id="L3140">        this.job = job;</span>
+<span class="nc" id="L3141">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The jobList
+     */
+    @JsonProperty(&quot;JobList&quot;)
+    public JobList getJobList() {
+<span class="nc" id="L3151">        return jobList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param jobList
+     *     The JobList
+     */
+    @JsonProperty(&quot;JobList&quot;)
+    public void setJobList(JobList jobList) {
+<span class="nc" id="L3162">        this.jobList = jobList;</span>
+<span class="nc" id="L3163">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The k8sLocalSubjectAccessReview
+     */
+    @JsonProperty(&quot;K8sLocalSubjectAccessReview&quot;)
+    public io.fabric8.kubernetes.api.model.authorization.LocalSubjectAccessReview getK8sLocalSubjectAccessReview() {
+<span class="nc" id="L3173">        return k8sLocalSubjectAccessReview;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param k8sLocalSubjectAccessReview
+     *     The K8sLocalSubjectAccessReview
+     */
+    @JsonProperty(&quot;K8sLocalSubjectAccessReview&quot;)
+    public void setK8sLocalSubjectAccessReview(io.fabric8.kubernetes.api.model.authorization.LocalSubjectAccessReview k8sLocalSubjectAccessReview) {
+<span class="nc" id="L3184">        this.k8sLocalSubjectAccessReview = k8sLocalSubjectAccessReview;</span>
+<span class="nc" id="L3185">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The k8sSubjectAccessReview
+     */
+    @JsonProperty(&quot;K8sSubjectAccessReview&quot;)
+    public io.fabric8.kubernetes.api.model.authorization.SubjectAccessReview getK8sSubjectAccessReview() {
+<span class="nc" id="L3195">        return k8sSubjectAccessReview;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param k8sSubjectAccessReview
+     *     The K8sSubjectAccessReview
+     */
+    @JsonProperty(&quot;K8sSubjectAccessReview&quot;)
+    public void setK8sSubjectAccessReview(io.fabric8.kubernetes.api.model.authorization.SubjectAccessReview k8sSubjectAccessReview) {
+<span class="nc" id="L3206">        this.k8sSubjectAccessReview = k8sSubjectAccessReview;</span>
+<span class="nc" id="L3207">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The limitRangeList
+     */
+    @JsonProperty(&quot;LimitRangeList&quot;)
+    public LimitRangeList getLimitRangeList() {
+<span class="nc" id="L3217">        return limitRangeList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param limitRangeList
+     *     The LimitRangeList
+     */
+    @JsonProperty(&quot;LimitRangeList&quot;)
+    public void setLimitRangeList(LimitRangeList limitRangeList) {
+<span class="nc" id="L3228">        this.limitRangeList = limitRangeList;</span>
+<span class="nc" id="L3229">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The localSubjectAccessReview
+     */
+    @JsonProperty(&quot;LocalSubjectAccessReview&quot;)
+    public io.fabric8.openshift.api.model.LocalSubjectAccessReview getLocalSubjectAccessReview() {
+<span class="nc" id="L3239">        return localSubjectAccessReview;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param localSubjectAccessReview
+     *     The LocalSubjectAccessReview
+     */
+    @JsonProperty(&quot;LocalSubjectAccessReview&quot;)
+    public void setLocalSubjectAccessReview(io.fabric8.openshift.api.model.LocalSubjectAccessReview localSubjectAccessReview) {
+<span class="nc" id="L3250">        this.localSubjectAccessReview = localSubjectAccessReview;</span>
+<span class="nc" id="L3251">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The mutatingWebhookConfiguration
+     */
+    @JsonProperty(&quot;MutatingWebhookConfiguration&quot;)
+    public MutatingWebhookConfiguration getMutatingWebhookConfiguration() {
+<span class="nc" id="L3261">        return mutatingWebhookConfiguration;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param mutatingWebhookConfiguration
+     *     The MutatingWebhookConfiguration
+     */
+    @JsonProperty(&quot;MutatingWebhookConfiguration&quot;)
+    public void setMutatingWebhookConfiguration(MutatingWebhookConfiguration mutatingWebhookConfiguration) {
+<span class="nc" id="L3272">        this.mutatingWebhookConfiguration = mutatingWebhookConfiguration;</span>
+<span class="nc" id="L3273">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The mutatingWebhookConfigurationList
+     */
+    @JsonProperty(&quot;MutatingWebhookConfigurationList&quot;)
+    public MutatingWebhookConfigurationList getMutatingWebhookConfigurationList() {
+<span class="nc" id="L3283">        return mutatingWebhookConfigurationList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param mutatingWebhookConfigurationList
+     *     The MutatingWebhookConfigurationList
+     */
+    @JsonProperty(&quot;MutatingWebhookConfigurationList&quot;)
+    public void setMutatingWebhookConfigurationList(MutatingWebhookConfigurationList mutatingWebhookConfigurationList) {
+<span class="nc" id="L3294">        this.mutatingWebhookConfigurationList = mutatingWebhookConfigurationList;</span>
+<span class="nc" id="L3295">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The namespace
+     */
+    @JsonProperty(&quot;Namespace&quot;)
+    public Namespace getNamespace() {
+<span class="nc" id="L3305">        return namespace;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param namespace
+     *     The Namespace
+     */
+    @JsonProperty(&quot;Namespace&quot;)
+    public void setNamespace(Namespace namespace) {
+<span class="nc" id="L3316">        this.namespace = namespace;</span>
+<span class="nc" id="L3317">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The namespaceList
+     */
+    @JsonProperty(&quot;NamespaceList&quot;)
+    public NamespaceList getNamespaceList() {
+<span class="nc" id="L3327">        return namespaceList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param namespaceList
+     *     The NamespaceList
+     */
+    @JsonProperty(&quot;NamespaceList&quot;)
+    public void setNamespaceList(NamespaceList namespaceList) {
+<span class="nc" id="L3338">        this.namespaceList = namespaceList;</span>
+<span class="nc" id="L3339">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The netNameSpace
+     */
+    @JsonProperty(&quot;NetNameSpace&quot;)
+    public NetNamespace getNetNameSpace() {
+<span class="nc" id="L3349">        return netNameSpace;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param netNameSpace
+     *     The NetNameSpace
+     */
+    @JsonProperty(&quot;NetNameSpace&quot;)
+    public void setNetNameSpace(NetNamespace netNameSpace) {
+<span class="nc" id="L3360">        this.netNameSpace = netNameSpace;</span>
+<span class="nc" id="L3361">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The netNameSpaceList
+     */
+    @JsonProperty(&quot;NetNameSpaceList&quot;)
+    public NetNamespaceList getNetNameSpaceList() {
+<span class="nc" id="L3371">        return netNameSpaceList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param netNameSpaceList
+     *     The NetNameSpaceList
+     */
+    @JsonProperty(&quot;NetNameSpaceList&quot;)
+    public void setNetNameSpaceList(NetNamespaceList netNameSpaceList) {
+<span class="nc" id="L3382">        this.netNameSpaceList = netNameSpaceList;</span>
+<span class="nc" id="L3383">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The networkPolicy
+     */
+    @JsonProperty(&quot;NetworkPolicy&quot;)
+    public NetworkPolicy getNetworkPolicy() {
+<span class="nc" id="L3393">        return networkPolicy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param networkPolicy
+     *     The NetworkPolicy
+     */
+    @JsonProperty(&quot;NetworkPolicy&quot;)
+    public void setNetworkPolicy(NetworkPolicy networkPolicy) {
+<span class="nc" id="L3404">        this.networkPolicy = networkPolicy;</span>
+<span class="nc" id="L3405">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The networkPolicyList
+     */
+    @JsonProperty(&quot;NetworkPolicyList&quot;)
+    public NetworkPolicyList getNetworkPolicyList() {
+<span class="nc" id="L3415">        return networkPolicyList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param networkPolicyList
+     *     The NetworkPolicyList
+     */
+    @JsonProperty(&quot;NetworkPolicyList&quot;)
+    public void setNetworkPolicyList(NetworkPolicyList networkPolicyList) {
+<span class="nc" id="L3426">        this.networkPolicyList = networkPolicyList;</span>
+<span class="nc" id="L3427">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The node
+     */
+    @JsonProperty(&quot;Node&quot;)
+    public Node getNode() {
+<span class="nc" id="L3437">        return node;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param node
+     *     The Node
+     */
+    @JsonProperty(&quot;Node&quot;)
+    public void setNode(Node node) {
+<span class="nc" id="L3448">        this.node = node;</span>
+<span class="nc" id="L3449">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The nodeList
+     */
+    @JsonProperty(&quot;NodeList&quot;)
+    public NodeList getNodeList() {
+<span class="nc" id="L3459">        return nodeList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param nodeList
+     *     The NodeList
+     */
+    @JsonProperty(&quot;NodeList&quot;)
+    public void setNodeList(NodeList nodeList) {
+<span class="nc" id="L3470">        this.nodeList = nodeList;</span>
+<span class="nc" id="L3471">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The oAuthAccessToken
+     */
+    @JsonProperty(&quot;OAuthAccessToken&quot;)
+    public OAuthAccessToken getOAuthAccessToken() {
+<span class="nc" id="L3481">        return oAuthAccessToken;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param oAuthAccessToken
+     *     The OAuthAccessToken
+     */
+    @JsonProperty(&quot;OAuthAccessToken&quot;)
+    public void setOAuthAccessToken(OAuthAccessToken oAuthAccessToken) {
+<span class="nc" id="L3492">        this.oAuthAccessToken = oAuthAccessToken;</span>
+<span class="nc" id="L3493">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The oAuthAccessTokenList
+     */
+    @JsonProperty(&quot;OAuthAccessTokenList&quot;)
+    public OAuthAccessTokenList getOAuthAccessTokenList() {
+<span class="nc" id="L3503">        return oAuthAccessTokenList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param oAuthAccessTokenList
+     *     The OAuthAccessTokenList
+     */
+    @JsonProperty(&quot;OAuthAccessTokenList&quot;)
+    public void setOAuthAccessTokenList(OAuthAccessTokenList oAuthAccessTokenList) {
+<span class="nc" id="L3514">        this.oAuthAccessTokenList = oAuthAccessTokenList;</span>
+<span class="nc" id="L3515">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The oAuthAuthorizeToken
+     */
+    @JsonProperty(&quot;OAuthAuthorizeToken&quot;)
+    public OAuthAuthorizeToken getOAuthAuthorizeToken() {
+<span class="nc" id="L3525">        return oAuthAuthorizeToken;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param oAuthAuthorizeToken
+     *     The OAuthAuthorizeToken
+     */
+    @JsonProperty(&quot;OAuthAuthorizeToken&quot;)
+    public void setOAuthAuthorizeToken(OAuthAuthorizeToken oAuthAuthorizeToken) {
+<span class="nc" id="L3536">        this.oAuthAuthorizeToken = oAuthAuthorizeToken;</span>
+<span class="nc" id="L3537">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The oAuthAuthorizeTokenList
+     */
+    @JsonProperty(&quot;OAuthAuthorizeTokenList&quot;)
+    public OAuthAuthorizeTokenList getOAuthAuthorizeTokenList() {
+<span class="nc" id="L3547">        return oAuthAuthorizeTokenList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param oAuthAuthorizeTokenList
+     *     The OAuthAuthorizeTokenList
+     */
+    @JsonProperty(&quot;OAuthAuthorizeTokenList&quot;)
+    public void setOAuthAuthorizeTokenList(OAuthAuthorizeTokenList oAuthAuthorizeTokenList) {
+<span class="nc" id="L3558">        this.oAuthAuthorizeTokenList = oAuthAuthorizeTokenList;</span>
+<span class="nc" id="L3559">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The oAuthClient
+     */
+    @JsonProperty(&quot;OAuthClient&quot;)
+    public OAuthClient getOAuthClient() {
+<span class="nc" id="L3569">        return oAuthClient;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param oAuthClient
+     *     The OAuthClient
+     */
+    @JsonProperty(&quot;OAuthClient&quot;)
+    public void setOAuthClient(OAuthClient oAuthClient) {
+<span class="nc" id="L3580">        this.oAuthClient = oAuthClient;</span>
+<span class="nc" id="L3581">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The oAuthClientAuthorization
+     */
+    @JsonProperty(&quot;OAuthClientAuthorization&quot;)
+    public OAuthClientAuthorization getOAuthClientAuthorization() {
+<span class="nc" id="L3591">        return oAuthClientAuthorization;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param oAuthClientAuthorization
+     *     The OAuthClientAuthorization
+     */
+    @JsonProperty(&quot;OAuthClientAuthorization&quot;)
+    public void setOAuthClientAuthorization(OAuthClientAuthorization oAuthClientAuthorization) {
+<span class="nc" id="L3602">        this.oAuthClientAuthorization = oAuthClientAuthorization;</span>
+<span class="nc" id="L3603">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The oAuthClientAuthorizationList
+     */
+    @JsonProperty(&quot;OAuthClientAuthorizationList&quot;)
+    public OAuthClientAuthorizationList getOAuthClientAuthorizationList() {
+<span class="nc" id="L3613">        return oAuthClientAuthorizationList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param oAuthClientAuthorizationList
+     *     The OAuthClientAuthorizationList
+     */
+    @JsonProperty(&quot;OAuthClientAuthorizationList&quot;)
+    public void setOAuthClientAuthorizationList(OAuthClientAuthorizationList oAuthClientAuthorizationList) {
+<span class="nc" id="L3624">        this.oAuthClientAuthorizationList = oAuthClientAuthorizationList;</span>
+<span class="nc" id="L3625">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The oAuthClientList
+     */
+    @JsonProperty(&quot;OAuthClientList&quot;)
+    public OAuthClientList getOAuthClientList() {
+<span class="nc" id="L3635">        return oAuthClientList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param oAuthClientList
+     *     The OAuthClientList
+     */
+    @JsonProperty(&quot;OAuthClientList&quot;)
+    public void setOAuthClientList(OAuthClientList oAuthClientList) {
+<span class="nc" id="L3646">        this.oAuthClientList = oAuthClientList;</span>
+<span class="nc" id="L3647">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The objectMeta
+     */
+    @JsonProperty(&quot;ObjectMeta&quot;)
+    public ObjectMeta getObjectMeta() {
+<span class="nc" id="L3657">        return objectMeta;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param objectMeta
+     *     The ObjectMeta
+     */
+    @JsonProperty(&quot;ObjectMeta&quot;)
+    public void setObjectMeta(ObjectMeta objectMeta) {
+<span class="nc" id="L3668">        this.objectMeta = objectMeta;</span>
+<span class="nc" id="L3669">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The openshiftClusterRole
+     */
+    @JsonProperty(&quot;OpenshiftClusterRole&quot;)
+    public OpenshiftClusterRole getOpenshiftClusterRole() {
+<span class="nc" id="L3679">        return openshiftClusterRole;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param openshiftClusterRole
+     *     The OpenshiftClusterRole
+     */
+    @JsonProperty(&quot;OpenshiftClusterRole&quot;)
+    public void setOpenshiftClusterRole(OpenshiftClusterRole openshiftClusterRole) {
+<span class="nc" id="L3690">        this.openshiftClusterRole = openshiftClusterRole;</span>
+<span class="nc" id="L3691">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The openshiftClusterRoleBinding
+     */
+    @JsonProperty(&quot;OpenshiftClusterRoleBinding&quot;)
+    public OpenshiftClusterRoleBinding getOpenshiftClusterRoleBinding() {
+<span class="nc" id="L3701">        return openshiftClusterRoleBinding;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param openshiftClusterRoleBinding
+     *     The OpenshiftClusterRoleBinding
+     */
+    @JsonProperty(&quot;OpenshiftClusterRoleBinding&quot;)
+    public void setOpenshiftClusterRoleBinding(OpenshiftClusterRoleBinding openshiftClusterRoleBinding) {
+<span class="nc" id="L3712">        this.openshiftClusterRoleBinding = openshiftClusterRoleBinding;</span>
+<span class="nc" id="L3713">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The openshiftClusterRoleBindingList
+     */
+    @JsonProperty(&quot;OpenshiftClusterRoleBindingList&quot;)
+    public OpenshiftClusterRoleBindingList getOpenshiftClusterRoleBindingList() {
+<span class="nc" id="L3723">        return openshiftClusterRoleBindingList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param openshiftClusterRoleBindingList
+     *     The OpenshiftClusterRoleBindingList
+     */
+    @JsonProperty(&quot;OpenshiftClusterRoleBindingList&quot;)
+    public void setOpenshiftClusterRoleBindingList(OpenshiftClusterRoleBindingList openshiftClusterRoleBindingList) {
+<span class="nc" id="L3734">        this.openshiftClusterRoleBindingList = openshiftClusterRoleBindingList;</span>
+<span class="nc" id="L3735">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The openshiftRole
+     */
+    @JsonProperty(&quot;OpenshiftRole&quot;)
+    public OpenshiftRole getOpenshiftRole() {
+<span class="nc" id="L3745">        return openshiftRole;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param openshiftRole
+     *     The OpenshiftRole
+     */
+    @JsonProperty(&quot;OpenshiftRole&quot;)
+    public void setOpenshiftRole(OpenshiftRole openshiftRole) {
+<span class="nc" id="L3756">        this.openshiftRole = openshiftRole;</span>
+<span class="nc" id="L3757">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The openshiftRoleBinding
+     */
+    @JsonProperty(&quot;OpenshiftRoleBinding&quot;)
+    public OpenshiftRoleBinding getOpenshiftRoleBinding() {
+<span class="nc" id="L3767">        return openshiftRoleBinding;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param openshiftRoleBinding
+     *     The OpenshiftRoleBinding
+     */
+    @JsonProperty(&quot;OpenshiftRoleBinding&quot;)
+    public void setOpenshiftRoleBinding(OpenshiftRoleBinding openshiftRoleBinding) {
+<span class="nc" id="L3778">        this.openshiftRoleBinding = openshiftRoleBinding;</span>
+<span class="nc" id="L3779">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The openshiftRoleBindingList
+     */
+    @JsonProperty(&quot;OpenshiftRoleBindingList&quot;)
+    public OpenshiftRoleBindingList getOpenshiftRoleBindingList() {
+<span class="nc" id="L3789">        return openshiftRoleBindingList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param openshiftRoleBindingList
+     *     The OpenshiftRoleBindingList
+     */
+    @JsonProperty(&quot;OpenshiftRoleBindingList&quot;)
+    public void setOpenshiftRoleBindingList(OpenshiftRoleBindingList openshiftRoleBindingList) {
+<span class="nc" id="L3800">        this.openshiftRoleBindingList = openshiftRoleBindingList;</span>
+<span class="nc" id="L3801">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The openshiftRoleBindingRestriction
+     */
+    @JsonProperty(&quot;OpenshiftRoleBindingRestriction&quot;)
+    public OpenshiftRoleBindingRestriction getOpenshiftRoleBindingRestriction() {
+<span class="nc" id="L3811">        return openshiftRoleBindingRestriction;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param openshiftRoleBindingRestriction
+     *     The OpenshiftRoleBindingRestriction
+     */
+    @JsonProperty(&quot;OpenshiftRoleBindingRestriction&quot;)
+    public void setOpenshiftRoleBindingRestriction(OpenshiftRoleBindingRestriction openshiftRoleBindingRestriction) {
+<span class="nc" id="L3822">        this.openshiftRoleBindingRestriction = openshiftRoleBindingRestriction;</span>
+<span class="nc" id="L3823">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The openshiftRoleList
+     */
+    @JsonProperty(&quot;OpenshiftRoleList&quot;)
+    public OpenshiftRoleList getOpenshiftRoleList() {
+<span class="nc" id="L3833">        return openshiftRoleList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param openshiftRoleList
+     *     The OpenshiftRoleList
+     */
+    @JsonProperty(&quot;OpenshiftRoleList&quot;)
+    public void setOpenshiftRoleList(OpenshiftRoleList openshiftRoleList) {
+<span class="nc" id="L3844">        this.openshiftRoleList = openshiftRoleList;</span>
+<span class="nc" id="L3845">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The operation
+     */
+    @JsonProperty(&quot;Operation&quot;)
+    public String getOperation() {
+<span class="nc" id="L3855">        return operation;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param operation
+     *     The Operation
+     */
+    @JsonProperty(&quot;Operation&quot;)
+    public void setOperation(String operation) {
+<span class="nc" id="L3866">        this.operation = operation;</span>
+<span class="nc" id="L3867">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The patch
+     */
+    @JsonProperty(&quot;Patch&quot;)
+    public Patch getPatch() {
+<span class="nc" id="L3877">        return patch;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param patch
+     *     The Patch
+     */
+    @JsonProperty(&quot;Patch&quot;)
+    public void setPatch(Patch patch) {
+<span class="nc" id="L3888">        this.patch = patch;</span>
+<span class="nc" id="L3889">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The patchType
+     */
+    @JsonProperty(&quot;PatchType&quot;)
+    public String getPatchType() {
+<span class="nc" id="L3899">        return patchType;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param patchType
+     *     The PatchType
+     */
+    @JsonProperty(&quot;PatchType&quot;)
+    public void setPatchType(String patchType) {
+<span class="nc" id="L3910">        this.patchType = patchType;</span>
+<span class="nc" id="L3911">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The persistentVolume
+     */
+    @JsonProperty(&quot;PersistentVolume&quot;)
+    public PersistentVolume getPersistentVolume() {
+<span class="nc" id="L3921">        return persistentVolume;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param persistentVolume
+     *     The PersistentVolume
+     */
+    @JsonProperty(&quot;PersistentVolume&quot;)
+    public void setPersistentVolume(PersistentVolume persistentVolume) {
+<span class="nc" id="L3932">        this.persistentVolume = persistentVolume;</span>
+<span class="nc" id="L3933">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The persistentVolumeClaim
+     */
+    @JsonProperty(&quot;PersistentVolumeClaim&quot;)
+    public PersistentVolumeClaim getPersistentVolumeClaim() {
+<span class="nc" id="L3943">        return persistentVolumeClaim;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param persistentVolumeClaim
+     *     The PersistentVolumeClaim
+     */
+    @JsonProperty(&quot;PersistentVolumeClaim&quot;)
+    public void setPersistentVolumeClaim(PersistentVolumeClaim persistentVolumeClaim) {
+<span class="nc" id="L3954">        this.persistentVolumeClaim = persistentVolumeClaim;</span>
+<span class="nc" id="L3955">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The persistentVolumeClaimList
+     */
+    @JsonProperty(&quot;PersistentVolumeClaimList&quot;)
+    public PersistentVolumeClaimList getPersistentVolumeClaimList() {
+<span class="nc" id="L3965">        return persistentVolumeClaimList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param persistentVolumeClaimList
+     *     The PersistentVolumeClaimList
+     */
+    @JsonProperty(&quot;PersistentVolumeClaimList&quot;)
+    public void setPersistentVolumeClaimList(PersistentVolumeClaimList persistentVolumeClaimList) {
+<span class="nc" id="L3976">        this.persistentVolumeClaimList = persistentVolumeClaimList;</span>
+<span class="nc" id="L3977">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The persistentVolumeList
+     */
+    @JsonProperty(&quot;PersistentVolumeList&quot;)
+    public PersistentVolumeList getPersistentVolumeList() {
+<span class="nc" id="L3987">        return persistentVolumeList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param persistentVolumeList
+     *     The PersistentVolumeList
+     */
+    @JsonProperty(&quot;PersistentVolumeList&quot;)
+    public void setPersistentVolumeList(PersistentVolumeList persistentVolumeList) {
+<span class="nc" id="L3998">        this.persistentVolumeList = persistentVolumeList;</span>
+<span class="nc" id="L3999">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The podDisruptionBudget
+     */
+    @JsonProperty(&quot;PodDisruptionBudget&quot;)
+    public PodDisruptionBudget getPodDisruptionBudget() {
+<span class="nc" id="L4009">        return podDisruptionBudget;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param podDisruptionBudget
+     *     The PodDisruptionBudget
+     */
+    @JsonProperty(&quot;PodDisruptionBudget&quot;)
+    public void setPodDisruptionBudget(PodDisruptionBudget podDisruptionBudget) {
+<span class="nc" id="L4020">        this.podDisruptionBudget = podDisruptionBudget;</span>
+<span class="nc" id="L4021">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The podDisruptionBudgetList
+     */
+    @JsonProperty(&quot;PodDisruptionBudgetList&quot;)
+    public PodDisruptionBudgetList getPodDisruptionBudgetList() {
+<span class="nc" id="L4031">        return podDisruptionBudgetList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param podDisruptionBudgetList
+     *     The PodDisruptionBudgetList
+     */
+    @JsonProperty(&quot;PodDisruptionBudgetList&quot;)
+    public void setPodDisruptionBudgetList(PodDisruptionBudgetList podDisruptionBudgetList) {
+<span class="nc" id="L4042">        this.podDisruptionBudgetList = podDisruptionBudgetList;</span>
+<span class="nc" id="L4043">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The podList
+     */
+    @JsonProperty(&quot;PodList&quot;)
+    public PodList getPodList() {
+<span class="nc" id="L4053">        return podList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param podList
+     *     The PodList
+     */
+    @JsonProperty(&quot;PodList&quot;)
+    public void setPodList(PodList podList) {
+<span class="nc" id="L4064">        this.podList = podList;</span>
+<span class="nc" id="L4065">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The podPreset
+     */
+    @JsonProperty(&quot;PodPreset&quot;)
+    public PodPreset getPodPreset() {
+<span class="nc" id="L4075">        return podPreset;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param podPreset
+     *     The PodPreset
+     */
+    @JsonProperty(&quot;PodPreset&quot;)
+    public void setPodPreset(PodPreset podPreset) {
+<span class="nc" id="L4086">        this.podPreset = podPreset;</span>
+<span class="nc" id="L4087">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The podPresetList
+     */
+    @JsonProperty(&quot;PodPresetList&quot;)
+    public PodPresetList getPodPresetList() {
+<span class="nc" id="L4097">        return podPresetList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param podPresetList
+     *     The PodPresetList
+     */
+    @JsonProperty(&quot;PodPresetList&quot;)
+    public void setPodPresetList(PodPresetList podPresetList) {
+<span class="nc" id="L4108">        this.podPresetList = podPresetList;</span>
+<span class="nc" id="L4109">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The podPresetSpec
+     */
+    @JsonProperty(&quot;PodPresetSpec&quot;)
+    public PodPresetSpec getPodPresetSpec() {
+<span class="nc" id="L4119">        return podPresetSpec;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param podPresetSpec
+     *     The PodPresetSpec
+     */
+    @JsonProperty(&quot;PodPresetSpec&quot;)
+    public void setPodPresetSpec(PodPresetSpec podPresetSpec) {
+<span class="nc" id="L4130">        this.podPresetSpec = podPresetSpec;</span>
+<span class="nc" id="L4131">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The podSecurityPolicy
+     */
+    @JsonProperty(&quot;PodSecurityPolicy&quot;)
+    public PodSecurityPolicy getPodSecurityPolicy() {
+<span class="nc" id="L4141">        return podSecurityPolicy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param podSecurityPolicy
+     *     The PodSecurityPolicy
+     */
+    @JsonProperty(&quot;PodSecurityPolicy&quot;)
+    public void setPodSecurityPolicy(PodSecurityPolicy podSecurityPolicy) {
+<span class="nc" id="L4152">        this.podSecurityPolicy = podSecurityPolicy;</span>
+<span class="nc" id="L4153">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The podSecurityPolicyList
+     */
+    @JsonProperty(&quot;PodSecurityPolicyList&quot;)
+    public PodSecurityPolicyList getPodSecurityPolicyList() {
+<span class="nc" id="L4163">        return podSecurityPolicyList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param podSecurityPolicyList
+     *     The PodSecurityPolicyList
+     */
+    @JsonProperty(&quot;PodSecurityPolicyList&quot;)
+    public void setPodSecurityPolicyList(PodSecurityPolicyList podSecurityPolicyList) {
+<span class="nc" id="L4174">        this.podSecurityPolicyList = podSecurityPolicyList;</span>
+<span class="nc" id="L4175">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The podTemplateList
+     */
+    @JsonProperty(&quot;PodTemplateList&quot;)
+    public PodTemplateList getPodTemplateList() {
+<span class="nc" id="L4185">        return podTemplateList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param podTemplateList
+     *     The PodTemplateList
+     */
+    @JsonProperty(&quot;PodTemplateList&quot;)
+    public void setPodTemplateList(PodTemplateList podTemplateList) {
+<span class="nc" id="L4196">        this.podTemplateList = podTemplateList;</span>
+<span class="nc" id="L4197">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The priorityClass
+     */
+    @JsonProperty(&quot;PriorityClass&quot;)
+    public PriorityClass getPriorityClass() {
+<span class="nc" id="L4207">        return priorityClass;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param priorityClass
+     *     The PriorityClass
+     */
+    @JsonProperty(&quot;PriorityClass&quot;)
+    public void setPriorityClass(PriorityClass priorityClass) {
+<span class="nc" id="L4218">        this.priorityClass = priorityClass;</span>
+<span class="nc" id="L4219">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The priorityClassList
+     */
+    @JsonProperty(&quot;PriorityClassList&quot;)
+    public PriorityClassList getPriorityClassList() {
+<span class="nc" id="L4229">        return priorityClassList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param priorityClassList
+     *     The PriorityClassList
+     */
+    @JsonProperty(&quot;PriorityClassList&quot;)
+    public void setPriorityClassList(PriorityClassList priorityClassList) {
+<span class="nc" id="L4240">        this.priorityClassList = priorityClassList;</span>
+<span class="nc" id="L4241">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The project
+     */
+    @JsonProperty(&quot;Project&quot;)
+    public Project getProject() {
+<span class="nc" id="L4251">        return project;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param project
+     *     The Project
+     */
+    @JsonProperty(&quot;Project&quot;)
+    public void setProject(Project project) {
+<span class="nc" id="L4262">        this.project = project;</span>
+<span class="nc" id="L4263">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The projectList
+     */
+    @JsonProperty(&quot;ProjectList&quot;)
+    public ProjectList getProjectList() {
+<span class="nc" id="L4273">        return projectList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param projectList
+     *     The ProjectList
+     */
+    @JsonProperty(&quot;ProjectList&quot;)
+    public void setProjectList(ProjectList projectList) {
+<span class="nc" id="L4284">        this.projectList = projectList;</span>
+<span class="nc" id="L4285">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The projectRequest
+     */
+    @JsonProperty(&quot;ProjectRequest&quot;)
+    public ProjectRequest getProjectRequest() {
+<span class="nc" id="L4295">        return projectRequest;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param projectRequest
+     *     The ProjectRequest
+     */
+    @JsonProperty(&quot;ProjectRequest&quot;)
+    public void setProjectRequest(ProjectRequest projectRequest) {
+<span class="nc" id="L4306">        this.projectRequest = projectRequest;</span>
+<span class="nc" id="L4307">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The quantity
+     */
+    @JsonProperty(&quot;Quantity&quot;)
+    public Quantity getQuantity() {
+<span class="nc" id="L4317">        return quantity;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param quantity
+     *     The Quantity
+     */
+    @JsonProperty(&quot;Quantity&quot;)
+    public void setQuantity(Quantity quantity) {
+<span class="nc" id="L4328">        this.quantity = quantity;</span>
+<span class="nc" id="L4329">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The replicaSet
+     */
+    @JsonProperty(&quot;ReplicaSet&quot;)
+    public ReplicaSet getReplicaSet() {
+<span class="nc" id="L4339">        return replicaSet;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param replicaSet
+     *     The ReplicaSet
+     */
+    @JsonProperty(&quot;ReplicaSet&quot;)
+    public void setReplicaSet(ReplicaSet replicaSet) {
+<span class="nc" id="L4350">        this.replicaSet = replicaSet;</span>
+<span class="nc" id="L4351">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The replicaSetList
+     */
+    @JsonProperty(&quot;ReplicaSetList&quot;)
+    public ReplicaSetList getReplicaSetList() {
+<span class="nc" id="L4361">        return replicaSetList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param replicaSetList
+     *     The ReplicaSetList
+     */
+    @JsonProperty(&quot;ReplicaSetList&quot;)
+    public void setReplicaSetList(ReplicaSetList replicaSetList) {
+<span class="nc" id="L4372">        this.replicaSetList = replicaSetList;</span>
+<span class="nc" id="L4373">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The replicationControllerList
+     */
+    @JsonProperty(&quot;ReplicationControllerList&quot;)
+    public ReplicationControllerList getReplicationControllerList() {
+<span class="nc" id="L4383">        return replicationControllerList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param replicationControllerList
+     *     The ReplicationControllerList
+     */
+    @JsonProperty(&quot;ReplicationControllerList&quot;)
+    public void setReplicationControllerList(ReplicationControllerList replicationControllerList) {
+<span class="nc" id="L4394">        this.replicationControllerList = replicationControllerList;</span>
+<span class="nc" id="L4395">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The resourceQuota
+     */
+    @JsonProperty(&quot;ResourceQuota&quot;)
+    public ResourceQuota getResourceQuota() {
+<span class="nc" id="L4405">        return resourceQuota;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param resourceQuota
+     *     The ResourceQuota
+     */
+    @JsonProperty(&quot;ResourceQuota&quot;)
+    public void setResourceQuota(ResourceQuota resourceQuota) {
+<span class="nc" id="L4416">        this.resourceQuota = resourceQuota;</span>
+<span class="nc" id="L4417">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The resourceQuotaList
+     */
+    @JsonProperty(&quot;ResourceQuotaList&quot;)
+    public ResourceQuotaList getResourceQuotaList() {
+<span class="nc" id="L4427">        return resourceQuotaList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param resourceQuotaList
+     *     The ResourceQuotaList
+     */
+    @JsonProperty(&quot;ResourceQuotaList&quot;)
+    public void setResourceQuotaList(ResourceQuotaList resourceQuotaList) {
+<span class="nc" id="L4438">        this.resourceQuotaList = resourceQuotaList;</span>
+<span class="nc" id="L4439">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The role
+     */
+    @JsonProperty(&quot;Role&quot;)
+    public Role getRole() {
+<span class="nc" id="L4449">        return role;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param role
+     *     The Role
+     */
+    @JsonProperty(&quot;Role&quot;)
+    public void setRole(Role role) {
+<span class="nc" id="L4460">        this.role = role;</span>
+<span class="nc" id="L4461">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The roleBinding
+     */
+    @JsonProperty(&quot;RoleBinding&quot;)
+    public RoleBinding getRoleBinding() {
+<span class="nc" id="L4471">        return roleBinding;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param roleBinding
+     *     The RoleBinding
+     */
+    @JsonProperty(&quot;RoleBinding&quot;)
+    public void setRoleBinding(RoleBinding roleBinding) {
+<span class="nc" id="L4482">        this.roleBinding = roleBinding;</span>
+<span class="nc" id="L4483">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The roleBindingList
+     */
+    @JsonProperty(&quot;RoleBindingList&quot;)
+    public RoleBindingList getRoleBindingList() {
+<span class="nc" id="L4493">        return roleBindingList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param roleBindingList
+     *     The RoleBindingList
+     */
+    @JsonProperty(&quot;RoleBindingList&quot;)
+    public void setRoleBindingList(RoleBindingList roleBindingList) {
+<span class="nc" id="L4504">        this.roleBindingList = roleBindingList;</span>
+<span class="nc" id="L4505">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The roleList
+     */
+    @JsonProperty(&quot;RoleList&quot;)
+    public RoleList getRoleList() {
+<span class="nc" id="L4515">        return roleList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param roleList
+     *     The RoleList
+     */
+    @JsonProperty(&quot;RoleList&quot;)
+    public void setRoleList(RoleList roleList) {
+<span class="nc" id="L4526">        this.roleList = roleList;</span>
+<span class="nc" id="L4527">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The rootPaths
+     */
+    @JsonProperty(&quot;RootPaths&quot;)
+    public RootPaths getRootPaths() {
+<span class="nc" id="L4537">        return rootPaths;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param rootPaths
+     *     The RootPaths
+     */
+    @JsonProperty(&quot;RootPaths&quot;)
+    public void setRootPaths(RootPaths rootPaths) {
+<span class="nc" id="L4548">        this.rootPaths = rootPaths;</span>
+<span class="nc" id="L4549">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The route
+     */
+    @JsonProperty(&quot;Route&quot;)
+    public Route getRoute() {
+<span class="nc" id="L4559">        return route;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param route
+     *     The Route
+     */
+    @JsonProperty(&quot;Route&quot;)
+    public void setRoute(Route route) {
+<span class="nc" id="L4570">        this.route = route;</span>
+<span class="nc" id="L4571">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The routeList
+     */
+    @JsonProperty(&quot;RouteList&quot;)
+    public RouteList getRouteList() {
+<span class="nc" id="L4581">        return routeList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param routeList
+     *     The RouteList
+     */
+    @JsonProperty(&quot;RouteList&quot;)
+    public void setRouteList(RouteList routeList) {
+<span class="nc" id="L4592">        this.routeList = routeList;</span>
+<span class="nc" id="L4593">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The rule
+     */
+    @JsonProperty(&quot;Rule&quot;)
+    public Rule getRule() {
+<span class="nc" id="L4603">        return rule;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param rule
+     *     The Rule
+     */
+    @JsonProperty(&quot;Rule&quot;)
+    public void setRule(Rule rule) {
+<span class="nc" id="L4614">        this.rule = rule;</span>
+<span class="nc" id="L4615">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The ruleWithOperations
+     */
+    @JsonProperty(&quot;RuleWithOperations&quot;)
+    public RuleWithOperations getRuleWithOperations() {
+<span class="nc" id="L4625">        return ruleWithOperations;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param ruleWithOperations
+     *     The RuleWithOperations
+     */
+    @JsonProperty(&quot;RuleWithOperations&quot;)
+    public void setRuleWithOperations(RuleWithOperations ruleWithOperations) {
+<span class="nc" id="L4636">        this.ruleWithOperations = ruleWithOperations;</span>
+<span class="nc" id="L4637">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The scale
+     */
+    @JsonProperty(&quot;Scale&quot;)
+    public Scale getScale() {
+<span class="nc" id="L4647">        return scale;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param scale
+     *     The Scale
+     */
+    @JsonProperty(&quot;Scale&quot;)
+    public void setScale(Scale scale) {
+<span class="nc" id="L4658">        this.scale = scale;</span>
+<span class="nc" id="L4659">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The secret
+     */
+    @JsonProperty(&quot;Secret&quot;)
+    public Secret getSecret() {
+<span class="nc" id="L4669">        return secret;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param secret
+     *     The Secret
+     */
+    @JsonProperty(&quot;Secret&quot;)
+    public void setSecret(Secret secret) {
+<span class="nc" id="L4680">        this.secret = secret;</span>
+<span class="nc" id="L4681">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The secretList
+     */
+    @JsonProperty(&quot;SecretList&quot;)
+    public SecretList getSecretList() {
+<span class="nc" id="L4691">        return secretList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param secretList
+     *     The SecretList
+     */
+    @JsonProperty(&quot;SecretList&quot;)
+    public void setSecretList(SecretList secretList) {
+<span class="nc" id="L4702">        this.secretList = secretList;</span>
+<span class="nc" id="L4703">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The securityContextConstraints
+     */
+    @JsonProperty(&quot;SecurityContextConstraints&quot;)
+    public SecurityContextConstraints getSecurityContextConstraints() {
+<span class="nc" id="L4713">        return securityContextConstraints;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param securityContextConstraints
+     *     The SecurityContextConstraints
+     */
+    @JsonProperty(&quot;SecurityContextConstraints&quot;)
+    public void setSecurityContextConstraints(SecurityContextConstraints securityContextConstraints) {
+<span class="nc" id="L4724">        this.securityContextConstraints = securityContextConstraints;</span>
+<span class="nc" id="L4725">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The securityContextConstraintsList
+     */
+    @JsonProperty(&quot;SecurityContextConstraintsList&quot;)
+    public SecurityContextConstraintsList getSecurityContextConstraintsList() {
+<span class="nc" id="L4735">        return securityContextConstraintsList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param securityContextConstraintsList
+     *     The SecurityContextConstraintsList
+     */
+    @JsonProperty(&quot;SecurityContextConstraintsList&quot;)
+    public void setSecurityContextConstraintsList(SecurityContextConstraintsList securityContextConstraintsList) {
+<span class="nc" id="L4746">        this.securityContextConstraintsList = securityContextConstraintsList;</span>
+<span class="nc" id="L4747">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The serviceAccount
+     */
+    @JsonProperty(&quot;ServiceAccount&quot;)
+    public ServiceAccount getServiceAccount() {
+<span class="nc" id="L4757">        return serviceAccount;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param serviceAccount
+     *     The ServiceAccount
+     */
+    @JsonProperty(&quot;ServiceAccount&quot;)
+    public void setServiceAccount(ServiceAccount serviceAccount) {
+<span class="nc" id="L4768">        this.serviceAccount = serviceAccount;</span>
+<span class="nc" id="L4769">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The serviceAccountList
+     */
+    @JsonProperty(&quot;ServiceAccountList&quot;)
+    public ServiceAccountList getServiceAccountList() {
+<span class="nc" id="L4779">        return serviceAccountList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param serviceAccountList
+     *     The ServiceAccountList
+     */
+    @JsonProperty(&quot;ServiceAccountList&quot;)
+    public void setServiceAccountList(ServiceAccountList serviceAccountList) {
+<span class="nc" id="L4790">        this.serviceAccountList = serviceAccountList;</span>
+<span class="nc" id="L4791">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The serviceList
+     */
+    @JsonProperty(&quot;ServiceList&quot;)
+    public ServiceList getServiceList() {
+<span class="nc" id="L4801">        return serviceList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param serviceList
+     *     The ServiceList
+     */
+    @JsonProperty(&quot;ServiceList&quot;)
+    public void setServiceList(ServiceList serviceList) {
+<span class="nc" id="L4812">        this.serviceList = serviceList;</span>
+<span class="nc" id="L4813">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The statefulSet
+     */
+    @JsonProperty(&quot;StatefulSet&quot;)
+    public StatefulSet getStatefulSet() {
+<span class="nc" id="L4823">        return statefulSet;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param statefulSet
+     *     The StatefulSet
+     */
+    @JsonProperty(&quot;StatefulSet&quot;)
+    public void setStatefulSet(StatefulSet statefulSet) {
+<span class="nc" id="L4834">        this.statefulSet = statefulSet;</span>
+<span class="nc" id="L4835">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The statefulSetList
+     */
+    @JsonProperty(&quot;StatefulSetList&quot;)
+    public StatefulSetList getStatefulSetList() {
+<span class="nc" id="L4845">        return statefulSetList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param statefulSetList
+     *     The StatefulSetList
+     */
+    @JsonProperty(&quot;StatefulSetList&quot;)
+    public void setStatefulSetList(StatefulSetList statefulSetList) {
+<span class="nc" id="L4856">        this.statefulSetList = statefulSetList;</span>
+<span class="nc" id="L4857">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The status
+     */
+    @JsonProperty(&quot;Status&quot;)
+    public Status getStatus() {
+<span class="nc" id="L4867">        return status;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param status
+     *     The Status
+     */
+    @JsonProperty(&quot;Status&quot;)
+    public void setStatus(Status status) {
+<span class="nc" id="L4878">        this.status = status;</span>
+<span class="nc" id="L4879">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The storageClass
+     */
+    @JsonProperty(&quot;StorageClass&quot;)
+    public StorageClass getStorageClass() {
+<span class="nc" id="L4889">        return storageClass;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param storageClass
+     *     The StorageClass
+     */
+    @JsonProperty(&quot;StorageClass&quot;)
+    public void setStorageClass(StorageClass storageClass) {
+<span class="nc" id="L4900">        this.storageClass = storageClass;</span>
+<span class="nc" id="L4901">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The storageClassList
+     */
+    @JsonProperty(&quot;StorageClassList&quot;)
+    public StorageClassList getStorageClassList() {
+<span class="nc" id="L4911">        return storageClassList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param storageClassList
+     *     The StorageClassList
+     */
+    @JsonProperty(&quot;StorageClassList&quot;)
+    public void setStorageClassList(StorageClassList storageClassList) {
+<span class="nc" id="L4922">        this.storageClassList = storageClassList;</span>
+<span class="nc" id="L4923">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The subjectAccessReview
+     */
+    @JsonProperty(&quot;SubjectAccessReview&quot;)
+    public io.fabric8.openshift.api.model.SubjectAccessReview getSubjectAccessReview() {
+<span class="nc" id="L4933">        return subjectAccessReview;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param subjectAccessReview
+     *     The SubjectAccessReview
+     */
+    @JsonProperty(&quot;SubjectAccessReview&quot;)
+    public void setSubjectAccessReview(io.fabric8.openshift.api.model.SubjectAccessReview subjectAccessReview) {
+<span class="nc" id="L4944">        this.subjectAccessReview = subjectAccessReview;</span>
+<span class="nc" id="L4945">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The subjectAccessReviewResponse
+     */
+    @JsonProperty(&quot;SubjectAccessReviewResponse&quot;)
+    public SubjectAccessReviewResponse getSubjectAccessReviewResponse() {
+<span class="nc" id="L4955">        return subjectAccessReviewResponse;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param subjectAccessReviewResponse
+     *     The SubjectAccessReviewResponse
+     */
+    @JsonProperty(&quot;SubjectAccessReviewResponse&quot;)
+    public void setSubjectAccessReviewResponse(SubjectAccessReviewResponse subjectAccessReviewResponse) {
+<span class="nc" id="L4966">        this.subjectAccessReviewResponse = subjectAccessReviewResponse;</span>
+<span class="nc" id="L4967">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The tagEvent
+     */
+    @JsonProperty(&quot;TagEvent&quot;)
+    public TagEvent getTagEvent() {
+<span class="nc" id="L4977">        return tagEvent;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param tagEvent
+     *     The TagEvent
+     */
+    @JsonProperty(&quot;TagEvent&quot;)
+    public void setTagEvent(TagEvent tagEvent) {
+<span class="nc" id="L4988">        this.tagEvent = tagEvent;</span>
+<span class="nc" id="L4989">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The template
+     */
+    @JsonProperty(&quot;Template&quot;)
+    public Template getTemplate() {
+<span class="nc" id="L4999">        return template;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param template
+     *     The Template
+     */
+    @JsonProperty(&quot;Template&quot;)
+    public void setTemplate(Template template) {
+<span class="nc" id="L5010">        this.template = template;</span>
+<span class="nc" id="L5011">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The templateList
+     */
+    @JsonProperty(&quot;TemplateList&quot;)
+    public TemplateList getTemplateList() {
+<span class="nc" id="L5021">        return templateList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param templateList
+     *     The TemplateList
+     */
+    @JsonProperty(&quot;TemplateList&quot;)
+    public void setTemplateList(TemplateList templateList) {
+<span class="nc" id="L5032">        this.templateList = templateList;</span>
+<span class="nc" id="L5033">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The tokenReview
+     */
+    @JsonProperty(&quot;TokenReview&quot;)
+    public TokenReview getTokenReview() {
+<span class="nc" id="L5043">        return tokenReview;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param tokenReview
+     *     The TokenReview
+     */
+    @JsonProperty(&quot;TokenReview&quot;)
+    public void setTokenReview(TokenReview tokenReview) {
+<span class="nc" id="L5054">        this.tokenReview = tokenReview;</span>
+<span class="nc" id="L5055">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The toleration
+     */
+    @JsonProperty(&quot;Toleration&quot;)
+    public Toleration getToleration() {
+<span class="nc" id="L5065">        return toleration;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param toleration
+     *     The Toleration
+     */
+    @JsonProperty(&quot;Toleration&quot;)
+    public void setToleration(Toleration toleration) {
+<span class="nc" id="L5076">        this.toleration = toleration;</span>
+<span class="nc" id="L5077">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The typeMeta
+     */
+    @JsonProperty(&quot;TypeMeta&quot;)
+    public TypeMeta getTypeMeta() {
+<span class="nc" id="L5087">        return typeMeta;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param typeMeta
+     *     The TypeMeta
+     */
+    @JsonProperty(&quot;TypeMeta&quot;)
+    public void setTypeMeta(TypeMeta typeMeta) {
+<span class="nc" id="L5098">        this.typeMeta = typeMeta;</span>
+<span class="nc" id="L5099">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The user
+     */
+    @JsonProperty(&quot;User&quot;)
+    public User getUser() {
+<span class="nc" id="L5109">        return user;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param user
+     *     The User
+     */
+    @JsonProperty(&quot;User&quot;)
+    public void setUser(User user) {
+<span class="nc" id="L5120">        this.user = user;</span>
+<span class="nc" id="L5121">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The userList
+     */
+    @JsonProperty(&quot;UserList&quot;)
+    public UserList getUserList() {
+<span class="nc" id="L5131">        return userList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param userList
+     *     The UserList
+     */
+    @JsonProperty(&quot;UserList&quot;)
+    public void setUserList(UserList userList) {
+<span class="nc" id="L5142">        this.userList = userList;</span>
+<span class="nc" id="L5143">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The validatingWebhookConfiguration
+     */
+    @JsonProperty(&quot;ValidatingWebhookConfiguration&quot;)
+    public ValidatingWebhookConfiguration getValidatingWebhookConfiguration() {
+<span class="nc" id="L5153">        return validatingWebhookConfiguration;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param validatingWebhookConfiguration
+     *     The ValidatingWebhookConfiguration
+     */
+    @JsonProperty(&quot;ValidatingWebhookConfiguration&quot;)
+    public void setValidatingWebhookConfiguration(ValidatingWebhookConfiguration validatingWebhookConfiguration) {
+<span class="nc" id="L5164">        this.validatingWebhookConfiguration = validatingWebhookConfiguration;</span>
+<span class="nc" id="L5165">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The validatingWebhookConfigurationList
+     */
+    @JsonProperty(&quot;ValidatingWebhookConfigurationList&quot;)
+    public ValidatingWebhookConfigurationList getValidatingWebhookConfigurationList() {
+<span class="nc" id="L5175">        return validatingWebhookConfigurationList;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param validatingWebhookConfigurationList
+     *     The ValidatingWebhookConfigurationList
+     */
+    @JsonProperty(&quot;ValidatingWebhookConfigurationList&quot;)
+    public void setValidatingWebhookConfigurationList(ValidatingWebhookConfigurationList validatingWebhookConfigurationList) {
+<span class="nc" id="L5186">        this.validatingWebhookConfigurationList = validatingWebhookConfigurationList;</span>
+<span class="nc" id="L5187">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The watchEvent
+     */
+    @JsonProperty(&quot;WatchEvent&quot;)
+    public WatchEvent getWatchEvent() {
+<span class="nc" id="L5197">        return watchEvent;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param watchEvent
+     *     The WatchEvent
+     */
+    @JsonProperty(&quot;WatchEvent&quot;)
+    public void setWatchEvent(WatchEvent watchEvent) {
+<span class="nc" id="L5208">        this.watchEvent = watchEvent;</span>
+<span class="nc" id="L5209">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L5213">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L5218">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L5219">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

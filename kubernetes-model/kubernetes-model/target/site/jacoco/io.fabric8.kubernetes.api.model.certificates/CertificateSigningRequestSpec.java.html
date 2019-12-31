@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CertificateSigningRequestSpec.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.certificates</a> &gt; <span class="el_source">CertificateSigningRequestSpec.java</span></div><h1>CertificateSigningRequestSpec.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.certificates;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;extra&quot;,
+    &quot;groups&quot;,
+    &quot;request&quot;,
+    &quot;uid&quot;,
+    &quot;usages&quot;,
+    &quot;username&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L43">@ToString</span>
+<span class="nc bnc" id="L44" title="All 62 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class CertificateSigningRequestSpec implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;extra&quot;)
+    @Valid
+    private Map&lt;String, ArrayList&lt;String&gt;&gt; extra;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L60">    @JsonProperty(&quot;groups&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;java.lang.String&gt; groups = new ArrayList&lt;java.lang.String&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;request&quot;)
+    private java.lang.String request;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;uid&quot;)
+    private java.lang.String uid;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L80">    @JsonProperty(&quot;usages&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;java.lang.String&gt; usages = new ArrayList&lt;java.lang.String&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;username&quot;)
+    private java.lang.String username;
+<span class="nc" id="L90">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L97">    public CertificateSigningRequestSpec() {</span>
+<span class="nc" id="L98">    }</span>
+
+    /**
+     * 
+     * @param request
+     * @param uid
+     * @param extra
+     * @param groups
+     * @param usages
+     * @param username
+     */
+<span class="nc" id="L109">    public CertificateSigningRequestSpec(Map&lt;String, ArrayList&lt;String&gt;&gt; extra, List&lt;java.lang.String&gt; groups, java.lang.String request, java.lang.String uid, List&lt;java.lang.String&gt; usages, java.lang.String username) {</span>
+<span class="nc" id="L110">        this.extra = extra;</span>
+<span class="nc" id="L111">        this.groups = groups;</span>
+<span class="nc" id="L112">        this.request = request;</span>
+<span class="nc" id="L113">        this.uid = uid;</span>
+<span class="nc" id="L114">        this.usages = usages;</span>
+<span class="nc" id="L115">        this.username = username;</span>
+<span class="nc" id="L116">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The extra
+     */
+    @JsonProperty(&quot;extra&quot;)
+    public Map&lt;String, ArrayList&lt;String&gt;&gt; getExtra() {
+<span class="nc" id="L126">        return extra;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param extra
+     *     The extra
+     */
+    @JsonProperty(&quot;extra&quot;)
+    public void setExtra(Map&lt;String, ArrayList&lt;String&gt;&gt; extra) {
+<span class="nc" id="L137">        this.extra = extra;</span>
+<span class="nc" id="L138">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The groups
+     */
+    @JsonProperty(&quot;groups&quot;)
+    public List&lt;java.lang.String&gt; getGroups() {
+<span class="nc" id="L148">        return groups;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param groups
+     *     The groups
+     */
+    @JsonProperty(&quot;groups&quot;)
+    public void setGroups(List&lt;java.lang.String&gt; groups) {
+<span class="nc" id="L159">        this.groups = groups;</span>
+<span class="nc" id="L160">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The request
+     */
+    @JsonProperty(&quot;request&quot;)
+    public java.lang.String getRequest() {
+<span class="nc" id="L170">        return request;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param request
+     *     The request
+     */
+    @JsonProperty(&quot;request&quot;)
+    public void setRequest(java.lang.String request) {
+<span class="nc" id="L181">        this.request = request;</span>
+<span class="nc" id="L182">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The uid
+     */
+    @JsonProperty(&quot;uid&quot;)
+    public java.lang.String getUid() {
+<span class="nc" id="L192">        return uid;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param uid
+     *     The uid
+     */
+    @JsonProperty(&quot;uid&quot;)
+    public void setUid(java.lang.String uid) {
+<span class="nc" id="L203">        this.uid = uid;</span>
+<span class="nc" id="L204">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The usages
+     */
+    @JsonProperty(&quot;usages&quot;)
+    public List&lt;java.lang.String&gt; getUsages() {
+<span class="nc" id="L214">        return usages;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param usages
+     *     The usages
+     */
+    @JsonProperty(&quot;usages&quot;)
+    public void setUsages(List&lt;java.lang.String&gt; usages) {
+<span class="nc" id="L225">        this.usages = usages;</span>
+<span class="nc" id="L226">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The username
+     */
+    @JsonProperty(&quot;username&quot;)
+    public java.lang.String getUsername() {
+<span class="nc" id="L236">        return username;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param username
+     *     The username
+     */
+    @JsonProperty(&quot;username&quot;)
+    public void setUsername(java.lang.String username) {
+<span class="nc" id="L247">        this.username = username;</span>
+<span class="nc" id="L248">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L252">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L257">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L258">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

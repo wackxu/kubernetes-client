@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StatefulSetUpdateStrategyFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.apps</a> &gt; <span class="el_source">StatefulSetUpdateStrategyFluentImpl.java</span></div><h1>StatefulSetUpdateStrategyFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.apps;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Integer;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class StatefulSetUpdateStrategyFluentImpl&lt;A extends StatefulSetUpdateStrategyFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements StatefulSetUpdateStrategyFluent&lt;A&gt;{
+
+    private RollingUpdateStatefulSetStrategyBuilder rollingUpdate;
+    private String type;
+
+<span class="nc" id="L18">    public StatefulSetUpdateStrategyFluentImpl(){</span>
+<span class="nc" id="L19">    }</span>
+<span class="nc" id="L20">    public StatefulSetUpdateStrategyFluentImpl(StatefulSetUpdateStrategy instance){</span>
+<span class="nc" id="L21">            this.withRollingUpdate(instance.getRollingUpdate()); </span>
+<span class="nc" id="L22">            this.withType(instance.getType()); </span>
+<span class="nc" id="L23">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildRollingUpdate instead.
+ * @return The buildable object.
+ */
+@Deprecated public RollingUpdateStatefulSetStrategy getRollingUpdate(){
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            return this.rollingUpdate!=null?this.rollingUpdate.build():null;</span>
+    }
+
+    public RollingUpdateStatefulSetStrategy buildRollingUpdate(){
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            return this.rollingUpdate!=null?this.rollingUpdate.build():null;</span>
+    }
+
+    public A withRollingUpdate(RollingUpdateStatefulSetStrategy rollingUpdate){
+<span class="nc" id="L39">            _visitables.remove(this.rollingUpdate);</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            if (rollingUpdate!=null){ this.rollingUpdate= new RollingUpdateStatefulSetStrategyBuilder(rollingUpdate); _visitables.add(this.rollingUpdate);} return (A) this;</span>
+    }
+
+    public Boolean hasRollingUpdate(){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            return this.rollingUpdate != null;</span>
+    }
+
+    public A withNewRollingUpdate(Integer partition){
+<span class="nc" id="L48">            return (A)withRollingUpdate(new RollingUpdateStatefulSetStrategy(partition));</span>
+    }
+
+    public StatefulSetUpdateStrategyFluent.RollingUpdateNested&lt;A&gt; withNewRollingUpdate(){
+<span class="nc" id="L52">            return new RollingUpdateNestedImpl();</span>
+    }
+
+    public StatefulSetUpdateStrategyFluent.RollingUpdateNested&lt;A&gt; withNewRollingUpdateLike(RollingUpdateStatefulSetStrategy item){
+<span class="nc" id="L56">            return new RollingUpdateNestedImpl(item);</span>
+    }
+
+    public StatefulSetUpdateStrategyFluent.RollingUpdateNested&lt;A&gt; editRollingUpdate(){
+<span class="nc" id="L60">            return withNewRollingUpdateLike(getRollingUpdate());</span>
+    }
+
+    public StatefulSetUpdateStrategyFluent.RollingUpdateNested&lt;A&gt; editOrNewRollingUpdate(){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            return withNewRollingUpdateLike(getRollingUpdate() != null ? getRollingUpdate(): new RollingUpdateStatefulSetStrategyBuilder().build());</span>
+    }
+
+    public StatefulSetUpdateStrategyFluent.RollingUpdateNested&lt;A&gt; editOrNewRollingUpdateLike(RollingUpdateStatefulSetStrategy item){
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            return withNewRollingUpdateLike(getRollingUpdate() != null ? getRollingUpdate(): item);</span>
+    }
+
+    public String getType(){
+<span class="nc" id="L72">            return this.type;</span>
+    }
+
+    public A withType(String type){
+<span class="nc" id="L76">            this.type=type; return (A) this;</span>
+    }
+
+    public Boolean hasType(){
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            return this.type != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L85" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L87">            StatefulSetUpdateStrategyFluentImpl that = (StatefulSetUpdateStrategyFluentImpl) o;</span>
+<span class="nc bnc" id="L88" title="All 6 branches missed.">            if (rollingUpdate != null ? !rollingUpdate.equals(that.rollingUpdate) :that.rollingUpdate != null) return false;</span>
+<span class="nc bnc" id="L89" title="All 6 branches missed.">            if (type != null ? !type.equals(that.type) :that.type != null) return false;</span>
+<span class="nc" id="L90">            return true;</span>
+    }
+
+
+    public class RollingUpdateNestedImpl&lt;N&gt; extends RollingUpdateStatefulSetStrategyFluentImpl&lt;StatefulSetUpdateStrategyFluent.RollingUpdateNested&lt;N&gt;&gt; implements StatefulSetUpdateStrategyFluent.RollingUpdateNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RollingUpdateStatefulSetStrategyBuilder builder;
+    
+<span class="nc" id="L98">            RollingUpdateNestedImpl(RollingUpdateStatefulSetStrategy item){</span>
+<span class="nc" id="L99">                    this.builder = new RollingUpdateStatefulSetStrategyBuilder(this, item);</span>
+<span class="nc" id="L100">            }</span>
+<span class="nc" id="L101">            RollingUpdateNestedImpl(){</span>
+<span class="nc" id="L102">                    this.builder = new RollingUpdateStatefulSetStrategyBuilder(this);</span>
+<span class="nc" id="L103">            }</span>
+    
+    public N and(){
+<span class="nc" id="L106">            return (N) StatefulSetUpdateStrategyFluentImpl.this.withRollingUpdate(builder.build());</span>
+    }
+    public N endRollingUpdate(){
+<span class="nc" id="L109">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

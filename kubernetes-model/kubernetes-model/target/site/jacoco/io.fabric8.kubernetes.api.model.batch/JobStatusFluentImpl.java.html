@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JobStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.batch</a> &gt; <span class="el_source">JobStatusFluentImpl.java</span></div><h1>JobStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.batch;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Integer;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class JobStatusFluentImpl&lt;A extends JobStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements JobStatusFluent&lt;A&gt;{
+
+    private Integer active;
+    private String completionTime;
+    private List&lt;JobConditionBuilder&gt; conditions;
+    private Integer failed;
+    private String startTime;
+    private Integer succeeded;
+
+<span class="nc" id="L27">    public JobStatusFluentImpl(){</span>
+<span class="nc" id="L28">    }</span>
+<span class="nc" id="L29">    public JobStatusFluentImpl(JobStatus instance){</span>
+<span class="nc" id="L30">            this.withActive(instance.getActive()); </span>
+<span class="nc" id="L31">            this.withCompletionTime(instance.getCompletionTime()); </span>
+<span class="nc" id="L32">            this.withConditions(instance.getConditions()); </span>
+<span class="nc" id="L33">            this.withFailed(instance.getFailed()); </span>
+<span class="nc" id="L34">            this.withStartTime(instance.getStartTime()); </span>
+<span class="nc" id="L35">            this.withSucceeded(instance.getSucceeded()); </span>
+<span class="nc" id="L36">    }</span>
+
+    public Integer getActive(){
+<span class="nc" id="L39">            return this.active;</span>
+    }
+
+    public A withActive(Integer active){
+<span class="nc" id="L43">            this.active=active; return (A) this;</span>
+    }
+
+    public Boolean hasActive(){
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            return this.active != null;</span>
+    }
+
+    public String getCompletionTime(){
+<span class="nc" id="L51">            return this.completionTime;</span>
+    }
+
+    public A withCompletionTime(String completionTime){
+<span class="nc" id="L55">            this.completionTime=completionTime; return (A) this;</span>
+    }
+
+    public Boolean hasCompletionTime(){
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            return this.completionTime != null;</span>
+    }
+
+    public A addToConditions(int index,JobCondition item){
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;JobConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L64" title="All 4 branches missed.">            JobConditionBuilder builder = new JobConditionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.conditions.add(index &gt;= 0 ? index : conditions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToConditions(int index,JobCondition item){
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;JobConditionBuilder&gt;();}</span>
+<span class="nc" id="L69">            JobConditionBuilder builder = new JobConditionBuilder(item);</span>
+<span class="nc bnc" id="L70" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L71" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= conditions.size()) { conditions.add(builder); } else { conditions.set(index, builder);}</span>
+<span class="nc" id="L72">             return (A)this;</span>
+    }
+
+    public A addToConditions(JobCondition... items){
+<span class="nc bnc" id="L76" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;JobConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            for (JobCondition item : items) {JobConditionBuilder builder = new JobConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToConditions(Collection&lt;JobCondition&gt; items){
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;JobConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            for (JobCondition item : items) {JobConditionBuilder builder = new JobConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromConditions(JobCondition... items){
+<span class="nc bnc" id="L86" title="All 4 branches missed.">            for (JobCondition item : items) {JobConditionBuilder builder = new JobConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromConditions(Collection&lt;JobCondition&gt; items){
+<span class="nc bnc" id="L90" title="All 4 branches missed.">            for (JobCondition item : items) {JobConditionBuilder builder = new JobConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildConditions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;JobCondition&gt; getConditions(){
+<span class="nc" id="L99">            return build(conditions);</span>
+    }
+
+    public List&lt;JobCondition&gt; buildConditions(){
+<span class="nc" id="L103">            return build(conditions);</span>
+    }
+
+    public JobCondition buildCondition(int index){
+<span class="nc" id="L107">            return this.conditions.get(index).build();</span>
+    }
+
+    public JobCondition buildFirstCondition(){
+<span class="nc" id="L111">            return this.conditions.get(0).build();</span>
+    }
+
+    public JobCondition buildLastCondition(){
+<span class="nc" id="L115">            return this.conditions.get(conditions.size() - 1).build();</span>
+    }
+
+    public JobCondition buildMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;JobConditionBuilder&gt; predicate){
+<span class="nc bnc" id="L119" title="All 4 branches missed.">            for (JobConditionBuilder item: conditions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withConditions(List&lt;JobCondition&gt; conditions){
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            if (this.conditions != null) { _visitables.removeAll(this.conditions);}</span>
+<span class="nc bnc" id="L124" title="All 4 branches missed.">            if (conditions != null) {this.conditions = new ArrayList&lt;JobConditionBuilder&gt;(); for (JobCondition item : conditions){this.addToConditions(item);}} else { this.conditions = new ArrayList&lt;JobConditionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withConditions(JobCondition... conditions){
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            if (this.conditions != null) {this.conditions.clear();}</span>
+<span class="nc bnc" id="L129" title="All 4 branches missed.">            if (conditions != null) {for (JobCondition item :conditions){ this.addToConditions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasConditions(){
+<span class="nc bnc" id="L133" title="All 4 branches missed.">            return conditions != null &amp;&amp; !conditions.isEmpty();</span>
+    }
+
+    public JobStatusFluent.ConditionsNested&lt;A&gt; addNewCondition(){
+<span class="nc" id="L137">            return new ConditionsNestedImpl();</span>
+    }
+
+    public JobStatusFluent.ConditionsNested&lt;A&gt; addNewConditionLike(JobCondition item){
+<span class="nc" id="L141">            return new ConditionsNestedImpl(-1, item);</span>
+    }
+
+    public JobStatusFluent.ConditionsNested&lt;A&gt; setNewConditionLike(int index,JobCondition item){
+<span class="nc" id="L145">            return new ConditionsNestedImpl(index, item);</span>
+    }
+
+    public JobStatusFluent.ConditionsNested&lt;A&gt; editCondition(int index){
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (conditions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit conditions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L150">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public JobStatusFluent.ConditionsNested&lt;A&gt; editFirstCondition(){
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            if (conditions.size() == 0) throw new RuntimeException(&quot;Can't edit first conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L155">            return setNewConditionLike(0, buildCondition(0));</span>
+    }
+
+    public JobStatusFluent.ConditionsNested&lt;A&gt; editLastCondition(){
+<span class="nc" id="L159">            int index = conditions.size() - 1;</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L161">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public JobStatusFluent.ConditionsNested&lt;A&gt; editMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;JobConditionBuilder&gt; predicate){
+<span class="nc" id="L165">            int index = -1;</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            for (int i=0;i&lt;conditions.size();i++) { </span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (predicate.apply(conditions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L169" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching conditions. No match found.&quot;);</span>
+<span class="nc" id="L170">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public Integer getFailed(){
+<span class="nc" id="L174">            return this.failed;</span>
+    }
+
+    public A withFailed(Integer failed){
+<span class="nc" id="L178">            this.failed=failed; return (A) this;</span>
+    }
+
+    public Boolean hasFailed(){
+<span class="nc bnc" id="L182" title="All 2 branches missed.">            return this.failed != null;</span>
+    }
+
+    public String getStartTime(){
+<span class="nc" id="L186">            return this.startTime;</span>
+    }
+
+    public A withStartTime(String startTime){
+<span class="nc" id="L190">            this.startTime=startTime; return (A) this;</span>
+    }
+
+    public Boolean hasStartTime(){
+<span class="nc bnc" id="L194" title="All 2 branches missed.">            return this.startTime != null;</span>
+    }
+
+    public Integer getSucceeded(){
+<span class="nc" id="L198">            return this.succeeded;</span>
+    }
+
+    public A withSucceeded(Integer succeeded){
+<span class="nc" id="L202">            this.succeeded=succeeded; return (A) this;</span>
+    }
+
+    public Boolean hasSucceeded(){
+<span class="nc bnc" id="L206" title="All 2 branches missed.">            return this.succeeded != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L211" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L212" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L213">            JobStatusFluentImpl that = (JobStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L214" title="All 6 branches missed.">            if (active != null ? !active.equals(that.active) :that.active != null) return false;</span>
+<span class="nc bnc" id="L215" title="All 6 branches missed.">            if (completionTime != null ? !completionTime.equals(that.completionTime) :that.completionTime != null) return false;</span>
+<span class="nc bnc" id="L216" title="All 6 branches missed.">            if (conditions != null ? !conditions.equals(that.conditions) :that.conditions != null) return false;</span>
+<span class="nc bnc" id="L217" title="All 6 branches missed.">            if (failed != null ? !failed.equals(that.failed) :that.failed != null) return false;</span>
+<span class="nc bnc" id="L218" title="All 6 branches missed.">            if (startTime != null ? !startTime.equals(that.startTime) :that.startTime != null) return false;</span>
+<span class="nc bnc" id="L219" title="All 6 branches missed.">            if (succeeded != null ? !succeeded.equals(that.succeeded) :that.succeeded != null) return false;</span>
+<span class="nc" id="L220">            return true;</span>
+    }
+
+
+    public class ConditionsNestedImpl&lt;N&gt; extends JobConditionFluentImpl&lt;JobStatusFluent.ConditionsNested&lt;N&gt;&gt; implements JobStatusFluent.ConditionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JobConditionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L229">            ConditionsNestedImpl(int index,JobCondition item){</span>
+<span class="nc" id="L230">                    this.index = index;</span>
+<span class="nc" id="L231">                    this.builder = new JobConditionBuilder(this, item);</span>
+<span class="nc" id="L232">            }</span>
+<span class="nc" id="L233">            ConditionsNestedImpl(){</span>
+<span class="nc" id="L234">                    this.index = -1;</span>
+<span class="nc" id="L235">                    this.builder = new JobConditionBuilder(this);</span>
+<span class="nc" id="L236">            }</span>
+    
+    public N and(){
+<span class="nc" id="L239">            return (N) JobStatusFluentImpl.this.setToConditions(index, builder.build());</span>
+    }
+    public N endCondition(){
+<span class="nc" id="L242">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

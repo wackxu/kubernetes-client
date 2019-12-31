@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ServiceSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ServiceSpecFluentImpl.java</span></div><h1>ServiceSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.util.LinkedHashMap;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import java.lang.Integer;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.Map;
+
+public class ServiceSpecFluentImpl&lt;A extends ServiceSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ServiceSpecFluent&lt;A&gt;{
+
+    private String clusterIP;
+    private List&lt;String&gt; externalIPs;
+    private String externalName;
+    private String externalTrafficPolicy;
+    private Integer healthCheckNodePort;
+    private String loadBalancerIP;
+    private List&lt;String&gt; loadBalancerSourceRanges;
+    private List&lt;ServicePortBuilder&gt; ports;
+    private Boolean publishNotReadyAddresses;
+    private Map&lt;String,String&gt; selector;
+    private String sessionAffinity;
+    private SessionAffinityConfigBuilder sessionAffinityConfig;
+    private String type;
+
+<span class="fc" id="L36">    public ServiceSpecFluentImpl(){</span>
+<span class="fc" id="L37">    }</span>
+<span class="nc" id="L38">    public ServiceSpecFluentImpl(ServiceSpec instance){</span>
+<span class="nc" id="L39">            this.withClusterIP(instance.getClusterIP()); </span>
+<span class="nc" id="L40">            this.withExternalIPs(instance.getExternalIPs()); </span>
+<span class="nc" id="L41">            this.withExternalName(instance.getExternalName()); </span>
+<span class="nc" id="L42">            this.withExternalTrafficPolicy(instance.getExternalTrafficPolicy()); </span>
+<span class="nc" id="L43">            this.withHealthCheckNodePort(instance.getHealthCheckNodePort()); </span>
+<span class="nc" id="L44">            this.withLoadBalancerIP(instance.getLoadBalancerIP()); </span>
+<span class="nc" id="L45">            this.withLoadBalancerSourceRanges(instance.getLoadBalancerSourceRanges()); </span>
+<span class="nc" id="L46">            this.withPorts(instance.getPorts()); </span>
+<span class="nc" id="L47">            this.withPublishNotReadyAddresses(instance.getPublishNotReadyAddresses()); </span>
+<span class="nc" id="L48">            this.withSelector(instance.getSelector()); </span>
+<span class="nc" id="L49">            this.withSessionAffinity(instance.getSessionAffinity()); </span>
+<span class="nc" id="L50">            this.withSessionAffinityConfig(instance.getSessionAffinityConfig()); </span>
+<span class="nc" id="L51">            this.withType(instance.getType()); </span>
+<span class="nc" id="L52">    }</span>
+
+    public String getClusterIP(){
+<span class="fc" id="L55">            return this.clusterIP;</span>
+    }
+
+    public A withClusterIP(String clusterIP){
+<span class="fc" id="L59">            this.clusterIP=clusterIP; return (A) this;</span>
+    }
+
+    public Boolean hasClusterIP(){
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            return this.clusterIP != null;</span>
+    }
+
+    public A addToExternalIPs(int index,String item){
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">            if (this.externalIPs == null) {this.externalIPs = new ArrayList&lt;String&gt;();}</span>
+<span class="fc" id="L68">            this.externalIPs.add(index, item);</span>
+<span class="fc" id="L69">            return (A)this;</span>
+    }
+
+    public A setToExternalIPs(int index,String item){
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if (this.externalIPs == null) {this.externalIPs = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L74">            this.externalIPs.set(index, item); return (A)this;</span>
+    }
+
+    public A addToExternalIPs(String... items){
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">            if (this.externalIPs == null) {this.externalIPs = new ArrayList&lt;String&gt;();}</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">            for (String item : items) {this.externalIPs.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToExternalIPs(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            if (this.externalIPs == null) {this.externalIPs = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            for (String item : items) {this.externalIPs.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromExternalIPs(String... items){
+<span class="nc bnc" id="L88" title="All 4 branches missed.">            for (String item : items) {if (this.externalIPs!= null){ this.externalIPs.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromExternalIPs(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L92" title="All 4 branches missed.">            for (String item : items) {if (this.externalIPs!= null){ this.externalIPs.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getExternalIPs(){
+<span class="fc" id="L96">            return this.externalIPs;</span>
+    }
+
+    public String getExternalIP(int index){
+<span class="nc" id="L100">            return this.externalIPs.get(index);</span>
+    }
+
+    public String getFirstExternalIP(){
+<span class="nc" id="L104">            return this.externalIPs.get(0);</span>
+    }
+
+    public String getLastExternalIP(){
+<span class="nc" id="L108">            return this.externalIPs.get(externalIPs.size() - 1);</span>
+    }
+
+    public String getMatchingExternalIP(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L112" title="All 4 branches missed.">            for (String item: externalIPs) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withExternalIPs(List&lt;String&gt; externalIPs){
+<span class="pc bpc" id="L116" title="1 of 2 branches missed.">            if (this.externalIPs != null) { _visitables.removeAll(this.externalIPs);}</span>
+<span class="pc bpc" id="L117" title="1 of 4 branches missed.">            if (externalIPs != null) {this.externalIPs = new ArrayList&lt;String&gt;(); for (String item : externalIPs){this.addToExternalIPs(item);}} else { this.externalIPs = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withExternalIPs(String... externalIPs){
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            if (this.externalIPs != null) {this.externalIPs.clear();}</span>
+<span class="nc bnc" id="L122" title="All 4 branches missed.">            if (externalIPs != null) {for (String item :externalIPs){ this.addToExternalIPs(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasExternalIPs(){
+<span class="nc bnc" id="L126" title="All 4 branches missed.">            return externalIPs != null &amp;&amp; !externalIPs.isEmpty();</span>
+    }
+
+    public String getExternalName(){
+<span class="fc" id="L130">            return this.externalName;</span>
+    }
+
+    public A withExternalName(String externalName){
+<span class="fc" id="L134">            this.externalName=externalName; return (A) this;</span>
+    }
+
+    public Boolean hasExternalName(){
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            return this.externalName != null;</span>
+    }
+
+    public String getExternalTrafficPolicy(){
+<span class="fc" id="L142">            return this.externalTrafficPolicy;</span>
+    }
+
+    public A withExternalTrafficPolicy(String externalTrafficPolicy){
+<span class="fc" id="L146">            this.externalTrafficPolicy=externalTrafficPolicy; return (A) this;</span>
+    }
+
+    public Boolean hasExternalTrafficPolicy(){
+<span class="nc bnc" id="L150" title="All 2 branches missed.">            return this.externalTrafficPolicy != null;</span>
+    }
+
+    public Integer getHealthCheckNodePort(){
+<span class="fc" id="L154">            return this.healthCheckNodePort;</span>
+    }
+
+    public A withHealthCheckNodePort(Integer healthCheckNodePort){
+<span class="fc" id="L158">            this.healthCheckNodePort=healthCheckNodePort; return (A) this;</span>
+    }
+
+    public Boolean hasHealthCheckNodePort(){
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            return this.healthCheckNodePort != null;</span>
+    }
+
+    public String getLoadBalancerIP(){
+<span class="fc" id="L166">            return this.loadBalancerIP;</span>
+    }
+
+    public A withLoadBalancerIP(String loadBalancerIP){
+<span class="fc" id="L170">            this.loadBalancerIP=loadBalancerIP; return (A) this;</span>
+    }
+
+    public Boolean hasLoadBalancerIP(){
+<span class="nc bnc" id="L174" title="All 2 branches missed.">            return this.loadBalancerIP != null;</span>
+    }
+
+    public A addToLoadBalancerSourceRanges(int index,String item){
+<span class="pc bpc" id="L178" title="1 of 2 branches missed.">            if (this.loadBalancerSourceRanges == null) {this.loadBalancerSourceRanges = new ArrayList&lt;String&gt;();}</span>
+<span class="fc" id="L179">            this.loadBalancerSourceRanges.add(index, item);</span>
+<span class="fc" id="L180">            return (A)this;</span>
+    }
+
+    public A setToLoadBalancerSourceRanges(int index,String item){
+<span class="nc bnc" id="L184" title="All 2 branches missed.">            if (this.loadBalancerSourceRanges == null) {this.loadBalancerSourceRanges = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L185">            this.loadBalancerSourceRanges.set(index, item); return (A)this;</span>
+    }
+
+    public A addToLoadBalancerSourceRanges(String... items){
+<span class="pc bpc" id="L189" title="1 of 2 branches missed.">            if (this.loadBalancerSourceRanges == null) {this.loadBalancerSourceRanges = new ArrayList&lt;String&gt;();}</span>
+<span class="fc bfc" id="L190" title="All 2 branches covered.">            for (String item : items) {this.loadBalancerSourceRanges.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToLoadBalancerSourceRanges(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L194" title="All 2 branches missed.">            if (this.loadBalancerSourceRanges == null) {this.loadBalancerSourceRanges = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">            for (String item : items) {this.loadBalancerSourceRanges.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromLoadBalancerSourceRanges(String... items){
+<span class="nc bnc" id="L199" title="All 4 branches missed.">            for (String item : items) {if (this.loadBalancerSourceRanges!= null){ this.loadBalancerSourceRanges.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromLoadBalancerSourceRanges(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L203" title="All 4 branches missed.">            for (String item : items) {if (this.loadBalancerSourceRanges!= null){ this.loadBalancerSourceRanges.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getLoadBalancerSourceRanges(){
+<span class="fc" id="L207">            return this.loadBalancerSourceRanges;</span>
+    }
+
+    public String getLoadBalancerSourceRange(int index){
+<span class="nc" id="L211">            return this.loadBalancerSourceRanges.get(index);</span>
+    }
+
+    public String getFirstLoadBalancerSourceRange(){
+<span class="nc" id="L215">            return this.loadBalancerSourceRanges.get(0);</span>
+    }
+
+    public String getLastLoadBalancerSourceRange(){
+<span class="nc" id="L219">            return this.loadBalancerSourceRanges.get(loadBalancerSourceRanges.size() - 1);</span>
+    }
+
+    public String getMatchingLoadBalancerSourceRange(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L223" title="All 4 branches missed.">            for (String item: loadBalancerSourceRanges) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withLoadBalancerSourceRanges(List&lt;String&gt; loadBalancerSourceRanges){
+<span class="pc bpc" id="L227" title="1 of 2 branches missed.">            if (this.loadBalancerSourceRanges != null) { _visitables.removeAll(this.loadBalancerSourceRanges);}</span>
+<span class="pc bpc" id="L228" title="1 of 4 branches missed.">            if (loadBalancerSourceRanges != null) {this.loadBalancerSourceRanges = new ArrayList&lt;String&gt;(); for (String item : loadBalancerSourceRanges){this.addToLoadBalancerSourceRanges(item);}} else { this.loadBalancerSourceRanges = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withLoadBalancerSourceRanges(String... loadBalancerSourceRanges){
+<span class="nc bnc" id="L232" title="All 2 branches missed.">            if (this.loadBalancerSourceRanges != null) {this.loadBalancerSourceRanges.clear();}</span>
+<span class="nc bnc" id="L233" title="All 4 branches missed.">            if (loadBalancerSourceRanges != null) {for (String item :loadBalancerSourceRanges){ this.addToLoadBalancerSourceRanges(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasLoadBalancerSourceRanges(){
+<span class="nc bnc" id="L237" title="All 4 branches missed.">            return loadBalancerSourceRanges != null &amp;&amp; !loadBalancerSourceRanges.isEmpty();</span>
+    }
+
+    public A addToPorts(int index,ServicePort item){
+<span class="pc bpc" id="L241" title="1 of 2 branches missed.">            if (this.ports == null) {this.ports = new ArrayList&lt;ServicePortBuilder&gt;();}</span>
+<span class="pc bpc" id="L242" title="2 of 4 branches missed.">            ServicePortBuilder builder = new ServicePortBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.ports.add(index &gt;= 0 ? index : ports.size(), builder); return (A)this;</span>
+    }
+
+    public A setToPorts(int index,ServicePort item){
+<span class="nc bnc" id="L246" title="All 2 branches missed.">            if (this.ports == null) {this.ports = new ArrayList&lt;ServicePortBuilder&gt;();}</span>
+<span class="nc" id="L247">            ServicePortBuilder builder = new ServicePortBuilder(item);</span>
+<span class="nc bnc" id="L248" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L249" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= ports.size()) { ports.add(builder); } else { ports.set(index, builder);}</span>
+<span class="nc" id="L250">             return (A)this;</span>
+    }
+
+    public A addToPorts(ServicePort... items){
+<span class="pc bpc" id="L254" title="1 of 2 branches missed.">            if (this.ports == null) {this.ports = new ArrayList&lt;ServicePortBuilder&gt;();}</span>
+<span class="fc bfc" id="L255" title="All 2 branches covered.">            for (ServicePort item : items) {ServicePortBuilder builder = new ServicePortBuilder(item);_visitables.add(builder);this.ports.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToPorts(Collection&lt;ServicePort&gt; items){
+<span class="nc bnc" id="L259" title="All 2 branches missed.">            if (this.ports == null) {this.ports = new ArrayList&lt;ServicePortBuilder&gt;();}</span>
+<span class="nc bnc" id="L260" title="All 2 branches missed.">            for (ServicePort item : items) {ServicePortBuilder builder = new ServicePortBuilder(item);_visitables.add(builder);this.ports.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromPorts(ServicePort... items){
+<span class="nc bnc" id="L264" title="All 4 branches missed.">            for (ServicePort item : items) {ServicePortBuilder builder = new ServicePortBuilder(item);_visitables.remove(builder);if (this.ports != null) {this.ports.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromPorts(Collection&lt;ServicePort&gt; items){
+<span class="nc bnc" id="L268" title="All 4 branches missed.">            for (ServicePort item : items) {ServicePortBuilder builder = new ServicePortBuilder(item);_visitables.remove(builder);if (this.ports != null) {this.ports.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPorts instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;ServicePort&gt; getPorts(){
+<span class="fc" id="L277">            return build(ports);</span>
+    }
+
+    public List&lt;ServicePort&gt; buildPorts(){
+<span class="nc" id="L281">            return build(ports);</span>
+    }
+
+    public ServicePort buildPort(int index){
+<span class="nc" id="L285">            return this.ports.get(index).build();</span>
+    }
+
+    public ServicePort buildFirstPort(){
+<span class="nc" id="L289">            return this.ports.get(0).build();</span>
+    }
+
+    public ServicePort buildLastPort(){
+<span class="nc" id="L293">            return this.ports.get(ports.size() - 1).build();</span>
+    }
+
+    public ServicePort buildMatchingPort(io.fabric8.kubernetes.api.builder.Predicate&lt;ServicePortBuilder&gt; predicate){
+<span class="nc bnc" id="L297" title="All 4 branches missed.">            for (ServicePortBuilder item: ports) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withPorts(List&lt;ServicePort&gt; ports){
+<span class="pc bpc" id="L301" title="1 of 2 branches missed.">            if (this.ports != null) { _visitables.removeAll(this.ports);}</span>
+<span class="pc bpc" id="L302" title="1 of 4 branches missed.">            if (ports != null) {this.ports = new ArrayList&lt;ServicePortBuilder&gt;(); for (ServicePort item : ports){this.addToPorts(item);}} else { this.ports = new ArrayList&lt;ServicePortBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withPorts(ServicePort... ports){
+<span class="nc bnc" id="L306" title="All 2 branches missed.">            if (this.ports != null) {this.ports.clear();}</span>
+<span class="nc bnc" id="L307" title="All 4 branches missed.">            if (ports != null) {for (ServicePort item :ports){ this.addToPorts(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasPorts(){
+<span class="nc bnc" id="L311" title="All 4 branches missed.">            return ports != null &amp;&amp; !ports.isEmpty();</span>
+    }
+
+    public ServiceSpecFluent.PortsNested&lt;A&gt; addNewPort(){
+<span class="nc" id="L315">            return new PortsNestedImpl();</span>
+    }
+
+    public ServiceSpecFluent.PortsNested&lt;A&gt; addNewPortLike(ServicePort item){
+<span class="nc" id="L319">            return new PortsNestedImpl(-1, item);</span>
+    }
+
+    public ServiceSpecFluent.PortsNested&lt;A&gt; setNewPortLike(int index,ServicePort item){
+<span class="nc" id="L323">            return new PortsNestedImpl(index, item);</span>
+    }
+
+    public ServiceSpecFluent.PortsNested&lt;A&gt; editPort(int index){
+<span class="nc bnc" id="L327" title="All 2 branches missed.">            if (ports.size() &lt;= index) throw new RuntimeException(&quot;Can't edit ports. Index exceeds size.&quot;);</span>
+<span class="nc" id="L328">            return setNewPortLike(index, buildPort(index));</span>
+    }
+
+    public ServiceSpecFluent.PortsNested&lt;A&gt; editFirstPort(){
+<span class="nc bnc" id="L332" title="All 2 branches missed.">            if (ports.size() == 0) throw new RuntimeException(&quot;Can't edit first ports. The list is empty.&quot;);</span>
+<span class="nc" id="L333">            return setNewPortLike(0, buildPort(0));</span>
+    }
+
+    public ServiceSpecFluent.PortsNested&lt;A&gt; editLastPort(){
+<span class="nc" id="L337">            int index = ports.size() - 1;</span>
+<span class="nc bnc" id="L338" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last ports. The list is empty.&quot;);</span>
+<span class="nc" id="L339">            return setNewPortLike(index, buildPort(index));</span>
+    }
+
+    public ServiceSpecFluent.PortsNested&lt;A&gt; editMatchingPort(io.fabric8.kubernetes.api.builder.Predicate&lt;ServicePortBuilder&gt; predicate){
+<span class="nc" id="L343">            int index = -1;</span>
+<span class="nc bnc" id="L344" title="All 2 branches missed.">            for (int i=0;i&lt;ports.size();i++) { </span>
+<span class="nc bnc" id="L345" title="All 2 branches missed.">            if (predicate.apply(ports.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L347" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching ports. No match found.&quot;);</span>
+<span class="nc" id="L348">            return setNewPortLike(index, buildPort(index));</span>
+    }
+
+    public Boolean isPublishNotReadyAddresses(){
+<span class="fc" id="L352">            return this.publishNotReadyAddresses;</span>
+    }
+
+    public A withPublishNotReadyAddresses(Boolean publishNotReadyAddresses){
+<span class="fc" id="L356">            this.publishNotReadyAddresses=publishNotReadyAddresses; return (A) this;</span>
+    }
+
+    public Boolean hasPublishNotReadyAddresses(){
+<span class="nc bnc" id="L360" title="All 2 branches missed.">            return this.publishNotReadyAddresses != null;</span>
+    }
+
+    public A withNewPublishNotReadyAddresses(String arg1){
+<span class="nc" id="L364">            return (A)withPublishNotReadyAddresses(new Boolean(arg1));</span>
+    }
+
+    public A withNewPublishNotReadyAddresses(boolean arg1){
+<span class="nc" id="L368">            return (A)withPublishNotReadyAddresses(new Boolean(arg1));</span>
+    }
+
+    public A addToSelector(String key,String value){
+<span class="pc bpc" id="L372" title="5 of 6 branches missed.">            if(this.selector == null &amp;&amp; key != null &amp;&amp; value != null) { this.selector = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="pc bpc" id="L373" title="2 of 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.selector.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToSelector(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L377" title="All 4 branches missed.">            if(this.selector == null &amp;&amp; map != null) { this.selector = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L378" title="All 2 branches missed.">            if(map != null) { this.selector.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromSelector(String key){
+<span class="nc bnc" id="L382" title="All 2 branches missed.">            if(this.selector == null) { return (A) this; }</span>
+<span class="nc bnc" id="L383" title="All 4 branches missed.">            if(key != null &amp;&amp; this.selector != null) {this.selector.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromSelector(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L387" title="All 2 branches missed.">            if(this.selector == null) { return (A) this; }</span>
+<span class="nc bnc" id="L388" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.selector != null){this.selector.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getSelector(){
+<span class="fc" id="L392">            return this.selector;</span>
+    }
+
+    public A withSelector(Map&lt;String,String&gt; selector){
+<span class="fc bfc" id="L396" title="All 2 branches covered.">            if (selector == null) { this.selector =  new LinkedHashMap&lt;String,String&gt;();} else {this.selector = new LinkedHashMap&lt;String,String&gt;(selector);} return (A) this;</span>
+    }
+
+    public Boolean hasSelector(){
+<span class="nc bnc" id="L400" title="All 2 branches missed.">            return this.selector != null;</span>
+    }
+
+    public String getSessionAffinity(){
+<span class="fc" id="L404">            return this.sessionAffinity;</span>
+    }
+
+    public A withSessionAffinity(String sessionAffinity){
+<span class="fc" id="L408">            this.sessionAffinity=sessionAffinity; return (A) this;</span>
+    }
+
+    public Boolean hasSessionAffinity(){
+<span class="nc bnc" id="L412" title="All 2 branches missed.">            return this.sessionAffinity != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSessionAffinityConfig instead.
+ * @return The buildable object.
+ */
+@Deprecated public SessionAffinityConfig getSessionAffinityConfig(){
+<span class="pc bpc" id="L421" title="1 of 2 branches missed.">            return this.sessionAffinityConfig!=null?this.sessionAffinityConfig.build():null;</span>
+    }
+
+    public SessionAffinityConfig buildSessionAffinityConfig(){
+<span class="nc bnc" id="L425" title="All 2 branches missed.">            return this.sessionAffinityConfig!=null?this.sessionAffinityConfig.build():null;</span>
+    }
+
+    public A withSessionAffinityConfig(SessionAffinityConfig sessionAffinityConfig){
+<span class="fc" id="L429">            _visitables.remove(this.sessionAffinityConfig);</span>
+<span class="pc bpc" id="L430" title="1 of 2 branches missed.">            if (sessionAffinityConfig!=null){ this.sessionAffinityConfig= new SessionAffinityConfigBuilder(sessionAffinityConfig); _visitables.add(this.sessionAffinityConfig);} return (A) this;</span>
+    }
+
+    public Boolean hasSessionAffinityConfig(){
+<span class="nc bnc" id="L434" title="All 2 branches missed.">            return this.sessionAffinityConfig != null;</span>
+    }
+
+    public ServiceSpecFluent.SessionAffinityConfigNested&lt;A&gt; withNewSessionAffinityConfig(){
+<span class="nc" id="L438">            return new SessionAffinityConfigNestedImpl();</span>
+    }
+
+    public ServiceSpecFluent.SessionAffinityConfigNested&lt;A&gt; withNewSessionAffinityConfigLike(SessionAffinityConfig item){
+<span class="nc" id="L442">            return new SessionAffinityConfigNestedImpl(item);</span>
+    }
+
+    public ServiceSpecFluent.SessionAffinityConfigNested&lt;A&gt; editSessionAffinityConfig(){
+<span class="nc" id="L446">            return withNewSessionAffinityConfigLike(getSessionAffinityConfig());</span>
+    }
+
+    public ServiceSpecFluent.SessionAffinityConfigNested&lt;A&gt; editOrNewSessionAffinityConfig(){
+<span class="nc bnc" id="L450" title="All 2 branches missed.">            return withNewSessionAffinityConfigLike(getSessionAffinityConfig() != null ? getSessionAffinityConfig(): new SessionAffinityConfigBuilder().build());</span>
+    }
+
+    public ServiceSpecFluent.SessionAffinityConfigNested&lt;A&gt; editOrNewSessionAffinityConfigLike(SessionAffinityConfig item){
+<span class="nc bnc" id="L454" title="All 2 branches missed.">            return withNewSessionAffinityConfigLike(getSessionAffinityConfig() != null ? getSessionAffinityConfig(): item);</span>
+    }
+
+    public String getType(){
+<span class="fc" id="L458">            return this.type;</span>
+    }
+
+    public A withType(String type){
+<span class="fc" id="L462">            this.type=type; return (A) this;</span>
+    }
+
+    public Boolean hasType(){
+<span class="nc bnc" id="L466" title="All 2 branches missed.">            return this.type != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L470" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L471" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L472" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L473">            ServiceSpecFluentImpl that = (ServiceSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L474" title="All 6 branches missed.">            if (clusterIP != null ? !clusterIP.equals(that.clusterIP) :that.clusterIP != null) return false;</span>
+<span class="nc bnc" id="L475" title="All 6 branches missed.">            if (externalIPs != null ? !externalIPs.equals(that.externalIPs) :that.externalIPs != null) return false;</span>
+<span class="nc bnc" id="L476" title="All 6 branches missed.">            if (externalName != null ? !externalName.equals(that.externalName) :that.externalName != null) return false;</span>
+<span class="nc bnc" id="L477" title="All 6 branches missed.">            if (externalTrafficPolicy != null ? !externalTrafficPolicy.equals(that.externalTrafficPolicy) :that.externalTrafficPolicy != null) return false;</span>
+<span class="nc bnc" id="L478" title="All 6 branches missed.">            if (healthCheckNodePort != null ? !healthCheckNodePort.equals(that.healthCheckNodePort) :that.healthCheckNodePort != null) return false;</span>
+<span class="nc bnc" id="L479" title="All 6 branches missed.">            if (loadBalancerIP != null ? !loadBalancerIP.equals(that.loadBalancerIP) :that.loadBalancerIP != null) return false;</span>
+<span class="nc bnc" id="L480" title="All 6 branches missed.">            if (loadBalancerSourceRanges != null ? !loadBalancerSourceRanges.equals(that.loadBalancerSourceRanges) :that.loadBalancerSourceRanges != null) return false;</span>
+<span class="nc bnc" id="L481" title="All 6 branches missed.">            if (ports != null ? !ports.equals(that.ports) :that.ports != null) return false;</span>
+<span class="nc bnc" id="L482" title="All 6 branches missed.">            if (publishNotReadyAddresses != null ? !publishNotReadyAddresses.equals(that.publishNotReadyAddresses) :that.publishNotReadyAddresses != null) return false;</span>
+<span class="nc bnc" id="L483" title="All 6 branches missed.">            if (selector != null ? !selector.equals(that.selector) :that.selector != null) return false;</span>
+<span class="nc bnc" id="L484" title="All 6 branches missed.">            if (sessionAffinity != null ? !sessionAffinity.equals(that.sessionAffinity) :that.sessionAffinity != null) return false;</span>
+<span class="nc bnc" id="L485" title="All 6 branches missed.">            if (sessionAffinityConfig != null ? !sessionAffinityConfig.equals(that.sessionAffinityConfig) :that.sessionAffinityConfig != null) return false;</span>
+<span class="nc bnc" id="L486" title="All 6 branches missed.">            if (type != null ? !type.equals(that.type) :that.type != null) return false;</span>
+<span class="nc" id="L487">            return true;</span>
+    }
+
+
+    public class PortsNestedImpl&lt;N&gt; extends ServicePortFluentImpl&lt;ServiceSpecFluent.PortsNested&lt;N&gt;&gt; implements ServiceSpecFluent.PortsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ServicePortBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L496">            PortsNestedImpl(int index,ServicePort item){</span>
+<span class="nc" id="L497">                    this.index = index;</span>
+<span class="nc" id="L498">                    this.builder = new ServicePortBuilder(this, item);</span>
+<span class="nc" id="L499">            }</span>
+<span class="nc" id="L500">            PortsNestedImpl(){</span>
+<span class="nc" id="L501">                    this.index = -1;</span>
+<span class="nc" id="L502">                    this.builder = new ServicePortBuilder(this);</span>
+<span class="nc" id="L503">            }</span>
+    
+    public N and(){
+<span class="nc" id="L506">            return (N) ServiceSpecFluentImpl.this.setToPorts(index, builder.build());</span>
+    }
+    public N endPort(){
+<span class="nc" id="L509">            return and();</span>
+    }
+
+}
+    public class SessionAffinityConfigNestedImpl&lt;N&gt; extends SessionAffinityConfigFluentImpl&lt;ServiceSpecFluent.SessionAffinityConfigNested&lt;N&gt;&gt; implements ServiceSpecFluent.SessionAffinityConfigNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SessionAffinityConfigBuilder builder;
+    
+<span class="nc" id="L517">            SessionAffinityConfigNestedImpl(SessionAffinityConfig item){</span>
+<span class="nc" id="L518">                    this.builder = new SessionAffinityConfigBuilder(this, item);</span>
+<span class="nc" id="L519">            }</span>
+<span class="nc" id="L520">            SessionAffinityConfigNestedImpl(){</span>
+<span class="nc" id="L521">                    this.builder = new SessionAffinityConfigBuilder(this);</span>
+<span class="nc" id="L522">            }</span>
+    
+    public N and(){
+<span class="nc" id="L525">            return (N) ServiceSpecFluentImpl.this.withSessionAffinityConfig(builder.build());</span>
+    }
+    public N endSessionAffinityConfig(){
+<span class="nc" id="L528">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

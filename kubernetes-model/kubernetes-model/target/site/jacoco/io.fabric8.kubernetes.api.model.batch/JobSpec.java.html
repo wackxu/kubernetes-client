@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JobSpec.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.batch</a> &gt; <span class="el_source">JobSpec.java</span></div><h1>JobSpec.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.batch;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.fabric8.kubernetes.api.model.LabelSelector;
+import io.fabric8.kubernetes.api.model.PodTemplateSpec;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;activeDeadlineSeconds&quot;,
+    &quot;backoffLimit&quot;,
+    &quot;completions&quot;,
+    &quot;manualSelector&quot;,
+    &quot;parallelism&quot;,
+    &quot;selector&quot;,
+    &quot;template&quot;,
+    &quot;ttlSecondsAfterFinished&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L45">@ToString</span>
+<span class="nc bnc" id="L46" title="All 78 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class JobSpec implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;activeDeadlineSeconds&quot;)
+    private Long activeDeadlineSeconds;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;backoffLimit&quot;)
+    private Integer backoffLimit;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;completions&quot;)
+    private Integer completions;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;manualSelector&quot;)
+    private Boolean manualSelector;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;parallelism&quot;)
+    private Integer parallelism;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;selector&quot;)
+    @Valid
+    private LabelSelector selector;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;template&quot;)
+    @Valid
+    private PodTemplateSpec template;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ttlSecondsAfterFinished&quot;)
+    private Integer ttlSecondsAfterFinished;
+<span class="nc" id="L101">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L108">    public JobSpec() {</span>
+<span class="nc" id="L109">    }</span>
+
+    /**
+     * 
+     * @param template
+     * @param backoffLimit
+     * @param manualSelector
+     * @param parallelism
+     * @param completions
+     * @param selector
+     * @param activeDeadlineSeconds
+     * @param ttlSecondsAfterFinished
+     */
+<span class="nc" id="L122">    public JobSpec(Long activeDeadlineSeconds, Integer backoffLimit, Integer completions, Boolean manualSelector, Integer parallelism, LabelSelector selector, PodTemplateSpec template, Integer ttlSecondsAfterFinished) {</span>
+<span class="nc" id="L123">        this.activeDeadlineSeconds = activeDeadlineSeconds;</span>
+<span class="nc" id="L124">        this.backoffLimit = backoffLimit;</span>
+<span class="nc" id="L125">        this.completions = completions;</span>
+<span class="nc" id="L126">        this.manualSelector = manualSelector;</span>
+<span class="nc" id="L127">        this.parallelism = parallelism;</span>
+<span class="nc" id="L128">        this.selector = selector;</span>
+<span class="nc" id="L129">        this.template = template;</span>
+<span class="nc" id="L130">        this.ttlSecondsAfterFinished = ttlSecondsAfterFinished;</span>
+<span class="nc" id="L131">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The activeDeadlineSeconds
+     */
+    @JsonProperty(&quot;activeDeadlineSeconds&quot;)
+    public Long getActiveDeadlineSeconds() {
+<span class="nc" id="L141">        return activeDeadlineSeconds;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param activeDeadlineSeconds
+     *     The activeDeadlineSeconds
+     */
+    @JsonProperty(&quot;activeDeadlineSeconds&quot;)
+    public void setActiveDeadlineSeconds(Long activeDeadlineSeconds) {
+<span class="nc" id="L152">        this.activeDeadlineSeconds = activeDeadlineSeconds;</span>
+<span class="nc" id="L153">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The backoffLimit
+     */
+    @JsonProperty(&quot;backoffLimit&quot;)
+    public Integer getBackoffLimit() {
+<span class="nc" id="L163">        return backoffLimit;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param backoffLimit
+     *     The backoffLimit
+     */
+    @JsonProperty(&quot;backoffLimit&quot;)
+    public void setBackoffLimit(Integer backoffLimit) {
+<span class="nc" id="L174">        this.backoffLimit = backoffLimit;</span>
+<span class="nc" id="L175">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The completions
+     */
+    @JsonProperty(&quot;completions&quot;)
+    public Integer getCompletions() {
+<span class="nc" id="L185">        return completions;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param completions
+     *     The completions
+     */
+    @JsonProperty(&quot;completions&quot;)
+    public void setCompletions(Integer completions) {
+<span class="nc" id="L196">        this.completions = completions;</span>
+<span class="nc" id="L197">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The manualSelector
+     */
+    @JsonProperty(&quot;manualSelector&quot;)
+    public Boolean getManualSelector() {
+<span class="nc" id="L207">        return manualSelector;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param manualSelector
+     *     The manualSelector
+     */
+    @JsonProperty(&quot;manualSelector&quot;)
+    public void setManualSelector(Boolean manualSelector) {
+<span class="nc" id="L218">        this.manualSelector = manualSelector;</span>
+<span class="nc" id="L219">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The parallelism
+     */
+    @JsonProperty(&quot;parallelism&quot;)
+    public Integer getParallelism() {
+<span class="nc" id="L229">        return parallelism;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param parallelism
+     *     The parallelism
+     */
+    @JsonProperty(&quot;parallelism&quot;)
+    public void setParallelism(Integer parallelism) {
+<span class="nc" id="L240">        this.parallelism = parallelism;</span>
+<span class="nc" id="L241">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The selector
+     */
+    @JsonProperty(&quot;selector&quot;)
+    public LabelSelector getSelector() {
+<span class="nc" id="L251">        return selector;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param selector
+     *     The selector
+     */
+    @JsonProperty(&quot;selector&quot;)
+    public void setSelector(LabelSelector selector) {
+<span class="nc" id="L262">        this.selector = selector;</span>
+<span class="nc" id="L263">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The template
+     */
+    @JsonProperty(&quot;template&quot;)
+    public PodTemplateSpec getTemplate() {
+<span class="nc" id="L273">        return template;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param template
+     *     The template
+     */
+    @JsonProperty(&quot;template&quot;)
+    public void setTemplate(PodTemplateSpec template) {
+<span class="nc" id="L284">        this.template = template;</span>
+<span class="nc" id="L285">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The ttlSecondsAfterFinished
+     */
+    @JsonProperty(&quot;ttlSecondsAfterFinished&quot;)
+    public Integer getTtlSecondsAfterFinished() {
+<span class="nc" id="L295">        return ttlSecondsAfterFinished;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param ttlSecondsAfterFinished
+     *     The ttlSecondsAfterFinished
+     */
+    @JsonProperty(&quot;ttlSecondsAfterFinished&quot;)
+    public void setTtlSecondsAfterFinished(Integer ttlSecondsAfterFinished) {
+<span class="nc" id="L306">        this.ttlSecondsAfterFinished = ttlSecondsAfterFinished;</span>
+<span class="nc" id="L307">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L311">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L316">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L317">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

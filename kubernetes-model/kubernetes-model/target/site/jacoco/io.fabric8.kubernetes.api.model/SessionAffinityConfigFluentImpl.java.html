@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SessionAffinityConfigFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">SessionAffinityConfigFluentImpl.java</span></div><h1>SessionAffinityConfigFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.Integer;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class SessionAffinityConfigFluentImpl&lt;A extends SessionAffinityConfigFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements SessionAffinityConfigFluent&lt;A&gt;{
+
+    private ClientIPConfigBuilder clientIP;
+
+<span class="nc" id="L16">    public SessionAffinityConfigFluentImpl(){</span>
+<span class="nc" id="L17">    }</span>
+<span class="nc" id="L18">    public SessionAffinityConfigFluentImpl(SessionAffinityConfig instance){</span>
+<span class="nc" id="L19">            this.withClientIP(instance.getClientIP()); </span>
+<span class="nc" id="L20">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildClientIP instead.
+ * @return The buildable object.
+ */
+@Deprecated public ClientIPConfig getClientIP(){
+<span class="nc bnc" id="L28" title="All 2 branches missed.">            return this.clientIP!=null?this.clientIP.build():null;</span>
+    }
+
+    public ClientIPConfig buildClientIP(){
+<span class="nc bnc" id="L32" title="All 2 branches missed.">            return this.clientIP!=null?this.clientIP.build():null;</span>
+    }
+
+    public A withClientIP(ClientIPConfig clientIP){
+<span class="nc" id="L36">            _visitables.remove(this.clientIP);</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            if (clientIP!=null){ this.clientIP= new ClientIPConfigBuilder(clientIP); _visitables.add(this.clientIP);} return (A) this;</span>
+    }
+
+    public Boolean hasClientIP(){
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            return this.clientIP != null;</span>
+    }
+
+    public A withNewClientIP(Integer timeoutSeconds){
+<span class="nc" id="L45">            return (A)withClientIP(new ClientIPConfig(timeoutSeconds));</span>
+    }
+
+    public SessionAffinityConfigFluent.ClientIPNested&lt;A&gt; withNewClientIP(){
+<span class="nc" id="L49">            return new ClientIPNestedImpl();</span>
+    }
+
+    public SessionAffinityConfigFluent.ClientIPNested&lt;A&gt; withNewClientIPLike(ClientIPConfig item){
+<span class="nc" id="L53">            return new ClientIPNestedImpl(item);</span>
+    }
+
+    public SessionAffinityConfigFluent.ClientIPNested&lt;A&gt; editClientIP(){
+<span class="nc" id="L57">            return withNewClientIPLike(getClientIP());</span>
+    }
+
+    public SessionAffinityConfigFluent.ClientIPNested&lt;A&gt; editOrNewClientIP(){
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            return withNewClientIPLike(getClientIP() != null ? getClientIP(): new ClientIPConfigBuilder().build());</span>
+    }
+
+    public SessionAffinityConfigFluent.ClientIPNested&lt;A&gt; editOrNewClientIPLike(ClientIPConfig item){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            return withNewClientIPLike(getClientIP() != null ? getClientIP(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L70" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L72">            SessionAffinityConfigFluentImpl that = (SessionAffinityConfigFluentImpl) o;</span>
+<span class="nc bnc" id="L73" title="All 6 branches missed.">            if (clientIP != null ? !clientIP.equals(that.clientIP) :that.clientIP != null) return false;</span>
+<span class="nc" id="L74">            return true;</span>
+    }
+
+
+    public class ClientIPNestedImpl&lt;N&gt; extends ClientIPConfigFluentImpl&lt;SessionAffinityConfigFluent.ClientIPNested&lt;N&gt;&gt; implements SessionAffinityConfigFluent.ClientIPNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ClientIPConfigBuilder builder;
+    
+<span class="nc" id="L82">            ClientIPNestedImpl(ClientIPConfig item){</span>
+<span class="nc" id="L83">                    this.builder = new ClientIPConfigBuilder(this, item);</span>
+<span class="nc" id="L84">            }</span>
+<span class="nc" id="L85">            ClientIPNestedImpl(){</span>
+<span class="nc" id="L86">                    this.builder = new ClientIPConfigBuilder(this);</span>
+<span class="nc" id="L87">            }</span>
+    
+    public N and(){
+<span class="nc" id="L90">            return (N) SessionAffinityConfigFluentImpl.this.withClientIP(builder.build());</span>
+    }
+    public N endClientIP(){
+<span class="nc" id="L93">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

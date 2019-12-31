@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExternalMetricSourceFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ExternalMetricSourceFluentImpl.java</span></div><h1>ExternalMetricSourceFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import java.lang.String;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import java.lang.Boolean;
+import java.lang.Override;
+import com.fasterxml.jackson.core.JsonParser;
+import javax.validation.Valid;
+import java.lang.Object;
+
+public class ExternalMetricSourceFluentImpl&lt;A extends ExternalMetricSourceFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ExternalMetricSourceFluent&lt;A&gt;{
+
+    private String metricName;
+    private LabelSelectorBuilder metricSelector;
+    private QuantityBuilder targetAverageValue;
+    private QuantityBuilder targetValue;
+
+<span class="nc" id="L26">    public ExternalMetricSourceFluentImpl(){</span>
+<span class="nc" id="L27">    }</span>
+<span class="nc" id="L28">    public ExternalMetricSourceFluentImpl(ExternalMetricSource instance){</span>
+<span class="nc" id="L29">            this.withMetricName(instance.getMetricName()); </span>
+<span class="nc" id="L30">            this.withMetricSelector(instance.getMetricSelector()); </span>
+<span class="nc" id="L31">            this.withTargetAverageValue(instance.getTargetAverageValue()); </span>
+<span class="nc" id="L32">            this.withTargetValue(instance.getTargetValue()); </span>
+<span class="nc" id="L33">    }</span>
+
+    public String getMetricName(){
+<span class="nc" id="L36">            return this.metricName;</span>
+    }
+
+    public A withMetricName(String metricName){
+<span class="nc" id="L40">            this.metricName=metricName; return (A) this;</span>
+    }
+
+    public Boolean hasMetricName(){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            return this.metricName != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetricSelector instead.
+ * @return The buildable object.
+ */
+@Deprecated public LabelSelector getMetricSelector(){
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            return this.metricSelector!=null?this.metricSelector.build():null;</span>
+    }
+
+    public LabelSelector buildMetricSelector(){
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            return this.metricSelector!=null?this.metricSelector.build():null;</span>
+    }
+
+    public A withMetricSelector(LabelSelector metricSelector){
+<span class="nc" id="L61">            _visitables.remove(this.metricSelector);</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            if (metricSelector!=null){ this.metricSelector= new LabelSelectorBuilder(metricSelector); _visitables.add(this.metricSelector);} return (A) this;</span>
+    }
+
+    public Boolean hasMetricSelector(){
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            return this.metricSelector != null;</span>
+    }
+
+    public ExternalMetricSourceFluent.MetricSelectorNested&lt;A&gt; withNewMetricSelector(){
+<span class="nc" id="L70">            return new MetricSelectorNestedImpl();</span>
+    }
+
+    public ExternalMetricSourceFluent.MetricSelectorNested&lt;A&gt; withNewMetricSelectorLike(LabelSelector item){
+<span class="nc" id="L74">            return new MetricSelectorNestedImpl(item);</span>
+    }
+
+    public ExternalMetricSourceFluent.MetricSelectorNested&lt;A&gt; editMetricSelector(){
+<span class="nc" id="L78">            return withNewMetricSelectorLike(getMetricSelector());</span>
+    }
+
+    public ExternalMetricSourceFluent.MetricSelectorNested&lt;A&gt; editOrNewMetricSelector(){
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            return withNewMetricSelectorLike(getMetricSelector() != null ? getMetricSelector(): new LabelSelectorBuilder().build());</span>
+    }
+
+    public ExternalMetricSourceFluent.MetricSelectorNested&lt;A&gt; editOrNewMetricSelectorLike(LabelSelector item){
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            return withNewMetricSelectorLike(getMetricSelector() != null ? getMetricSelector(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTargetAverageValue instead.
+ * @return The buildable object.
+ */
+@Deprecated public Quantity getTargetAverageValue(){
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            return this.targetAverageValue!=null?this.targetAverageValue.build():null;</span>
+    }
+
+    public Quantity buildTargetAverageValue(){
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            return this.targetAverageValue!=null?this.targetAverageValue.build():null;</span>
+    }
+
+    public A withTargetAverageValue(Quantity targetAverageValue){
+<span class="nc" id="L103">            _visitables.remove(this.targetAverageValue);</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            if (targetAverageValue!=null){ this.targetAverageValue= new QuantityBuilder(targetAverageValue); _visitables.add(this.targetAverageValue);} return (A) this;</span>
+    }
+
+    public Boolean hasTargetAverageValue(){
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            return this.targetAverageValue != null;</span>
+    }
+
+    public A withNewTargetAverageValue(String amount,String format){
+<span class="nc" id="L112">            return (A)withTargetAverageValue(new Quantity(amount, format));</span>
+    }
+
+    public A withNewTargetAverageValue(String amount){
+<span class="nc" id="L116">            return (A)withTargetAverageValue(new Quantity(amount));</span>
+    }
+
+    public ExternalMetricSourceFluent.TargetAverageValueNested&lt;A&gt; withNewTargetAverageValue(){
+<span class="nc" id="L120">            return new TargetAverageValueNestedImpl();</span>
+    }
+
+    public ExternalMetricSourceFluent.TargetAverageValueNested&lt;A&gt; withNewTargetAverageValueLike(Quantity item){
+<span class="nc" id="L124">            return new TargetAverageValueNestedImpl(item);</span>
+    }
+
+    public ExternalMetricSourceFluent.TargetAverageValueNested&lt;A&gt; editTargetAverageValue(){
+<span class="nc" id="L128">            return withNewTargetAverageValueLike(getTargetAverageValue());</span>
+    }
+
+    public ExternalMetricSourceFluent.TargetAverageValueNested&lt;A&gt; editOrNewTargetAverageValue(){
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            return withNewTargetAverageValueLike(getTargetAverageValue() != null ? getTargetAverageValue(): new QuantityBuilder().build());</span>
+    }
+
+    public ExternalMetricSourceFluent.TargetAverageValueNested&lt;A&gt; editOrNewTargetAverageValueLike(Quantity item){
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            return withNewTargetAverageValueLike(getTargetAverageValue() != null ? getTargetAverageValue(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTargetValue instead.
+ * @return The buildable object.
+ */
+@Deprecated public Quantity getTargetValue(){
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            return this.targetValue!=null?this.targetValue.build():null;</span>
+    }
+
+    public Quantity buildTargetValue(){
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            return this.targetValue!=null?this.targetValue.build():null;</span>
+    }
+
+    public A withTargetValue(Quantity targetValue){
+<span class="nc" id="L153">            _visitables.remove(this.targetValue);</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            if (targetValue!=null){ this.targetValue= new QuantityBuilder(targetValue); _visitables.add(this.targetValue);} return (A) this;</span>
+    }
+
+    public Boolean hasTargetValue(){
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            return this.targetValue != null;</span>
+    }
+
+    public A withNewTargetValue(String amount,String format){
+<span class="nc" id="L162">            return (A)withTargetValue(new Quantity(amount, format));</span>
+    }
+
+    public A withNewTargetValue(String amount){
+<span class="nc" id="L166">            return (A)withTargetValue(new Quantity(amount));</span>
+    }
+
+    public ExternalMetricSourceFluent.TargetValueNested&lt;A&gt; withNewTargetValue(){
+<span class="nc" id="L170">            return new TargetValueNestedImpl();</span>
+    }
+
+    public ExternalMetricSourceFluent.TargetValueNested&lt;A&gt; withNewTargetValueLike(Quantity item){
+<span class="nc" id="L174">            return new TargetValueNestedImpl(item);</span>
+    }
+
+    public ExternalMetricSourceFluent.TargetValueNested&lt;A&gt; editTargetValue(){
+<span class="nc" id="L178">            return withNewTargetValueLike(getTargetValue());</span>
+    }
+
+    public ExternalMetricSourceFluent.TargetValueNested&lt;A&gt; editOrNewTargetValue(){
+<span class="nc bnc" id="L182" title="All 2 branches missed.">            return withNewTargetValueLike(getTargetValue() != null ? getTargetValue(): new QuantityBuilder().build());</span>
+    }
+
+    public ExternalMetricSourceFluent.TargetValueNested&lt;A&gt; editOrNewTargetValueLike(Quantity item){
+<span class="nc bnc" id="L186" title="All 2 branches missed.">            return withNewTargetValueLike(getTargetValue() != null ? getTargetValue(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L190" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L191" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L193">            ExternalMetricSourceFluentImpl that = (ExternalMetricSourceFluentImpl) o;</span>
+<span class="nc bnc" id="L194" title="All 6 branches missed.">            if (metricName != null ? !metricName.equals(that.metricName) :that.metricName != null) return false;</span>
+<span class="nc bnc" id="L195" title="All 6 branches missed.">            if (metricSelector != null ? !metricSelector.equals(that.metricSelector) :that.metricSelector != null) return false;</span>
+<span class="nc bnc" id="L196" title="All 6 branches missed.">            if (targetAverageValue != null ? !targetAverageValue.equals(that.targetAverageValue) :that.targetAverageValue != null) return false;</span>
+<span class="nc bnc" id="L197" title="All 6 branches missed.">            if (targetValue != null ? !targetValue.equals(that.targetValue) :that.targetValue != null) return false;</span>
+<span class="nc" id="L198">            return true;</span>
+    }
+
+
+    public class MetricSelectorNestedImpl&lt;N&gt; extends LabelSelectorFluentImpl&lt;ExternalMetricSourceFluent.MetricSelectorNested&lt;N&gt;&gt; implements ExternalMetricSourceFluent.MetricSelectorNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LabelSelectorBuilder builder;
+    
+<span class="nc" id="L206">            MetricSelectorNestedImpl(LabelSelector item){</span>
+<span class="nc" id="L207">                    this.builder = new LabelSelectorBuilder(this, item);</span>
+<span class="nc" id="L208">            }</span>
+<span class="nc" id="L209">            MetricSelectorNestedImpl(){</span>
+<span class="nc" id="L210">                    this.builder = new LabelSelectorBuilder(this);</span>
+<span class="nc" id="L211">            }</span>
+    
+    public N and(){
+<span class="nc" id="L214">            return (N) ExternalMetricSourceFluentImpl.this.withMetricSelector(builder.build());</span>
+    }
+    public N endMetricSelector(){
+<span class="nc" id="L217">            return and();</span>
+    }
+
+}
+    public class TargetAverageValueNestedImpl&lt;N&gt; extends QuantityFluentImpl&lt;ExternalMetricSourceFluent.TargetAverageValueNested&lt;N&gt;&gt; implements ExternalMetricSourceFluent.TargetAverageValueNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final QuantityBuilder builder;
+    
+<span class="nc" id="L225">            TargetAverageValueNestedImpl(Quantity item){</span>
+<span class="nc" id="L226">                    this.builder = new QuantityBuilder(this, item);</span>
+<span class="nc" id="L227">            }</span>
+<span class="nc" id="L228">            TargetAverageValueNestedImpl(){</span>
+<span class="nc" id="L229">                    this.builder = new QuantityBuilder(this);</span>
+<span class="nc" id="L230">            }</span>
+    
+    public N and(){
+<span class="nc" id="L233">            return (N) ExternalMetricSourceFluentImpl.this.withTargetAverageValue(builder.build());</span>
+    }
+    public N endTargetAverageValue(){
+<span class="nc" id="L236">            return and();</span>
+    }
+
+}
+    public class TargetValueNestedImpl&lt;N&gt; extends QuantityFluentImpl&lt;ExternalMetricSourceFluent.TargetValueNested&lt;N&gt;&gt; implements ExternalMetricSourceFluent.TargetValueNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final QuantityBuilder builder;
+    
+<span class="nc" id="L244">            TargetValueNestedImpl(Quantity item){</span>
+<span class="nc" id="L245">                    this.builder = new QuantityBuilder(this, item);</span>
+<span class="nc" id="L246">            }</span>
+<span class="nc" id="L247">            TargetValueNestedImpl(){</span>
+<span class="nc" id="L248">                    this.builder = new QuantityBuilder(this);</span>
+<span class="nc" id="L249">            }</span>
+    
+    public N and(){
+<span class="nc" id="L252">            return (N) ExternalMetricSourceFluentImpl.this.withTargetValue(builder.build());</span>
+    }
+    public N endTargetValue(){
+<span class="nc" id="L255">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ServiceOperationsImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.dsl.internal</a> &gt; <span class="el_source">ServiceOperationsImpl.java</span></div><h1>ServiceOperationsImpl.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.dsl.internal;
+
+import io.fabric8.kubernetes.api.model.DoneableService;
+import io.fabric8.kubernetes.api.model.Service;
+import io.fabric8.kubernetes.api.model.ServiceBuilder;
+import io.fabric8.kubernetes.api.model.ServiceList;
+import io.fabric8.kubernetes.api.model.*;
+import io.fabric8.kubernetes.api.model.DoneableService;
+import io.fabric8.kubernetes.api.model.ServiceBuilder;
+import io.fabric8.kubernetes.client.*;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.dsl.ServiceResource;
+import io.fabric8.kubernetes.client.dsl.base.HasMetadataOperation;
+import io.fabric8.kubernetes.client.utils.URLUtils;
+import okhttp3.OkHttpClient;
+
+
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+
+public class ServiceOperationsImpl extends HasMetadataOperation&lt;Service, ServiceList, DoneableService, ServiceResource&lt;Service, DoneableService&gt;&gt; implements ServiceResource&lt;Service, DoneableService&gt; {
+
+  public ServiceOperationsImpl(OkHttpClient client, Config config, String namespace) {
+<span class="nc" id="L39">    this(client, config, null, null, namespace, null, true, null, null, false, -1, new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String&gt;());</span>
+<span class="nc" id="L40">  }</span>
+
+  public ServiceOperationsImpl(OkHttpClient client, Config config, String apiGroup, String apiVersion, String namespace, String name, Boolean cascading, Service item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields) {
+<span class="nc" id="L43">    super(client, config, apiGroup, apiVersion, &quot;services&quot;, namespace, name, cascading, item, resourceVersion, reloadingFromServer, gracePeriodSeconds, labels, labelsNot, labelsIn, labelsNotIn, fields);</span>
+<span class="nc" id="L44">  }</span>
+
+  @Override
+  public Service replace(Service item) {
+      try {
+<span class="nc" id="L49">        Service old = getMandatory();</span>
+<span class="nc" id="L50">        return super.replace(new ServiceBuilder(item)</span>
+<span class="nc" id="L51">          .editSpec()</span>
+<span class="nc" id="L52">          .withClusterIP(old.getSpec().getClusterIP())</span>
+<span class="nc" id="L53">          .endSpec()</span>
+<span class="nc" id="L54">          .build());</span>
+<span class="nc" id="L55">      } catch (Exception e) {</span>
+<span class="nc" id="L56">        throw KubernetesClientException.launderThrowable(forOperationType(&quot;replace&quot;), e);</span>
+      }
+  }
+
+  @Override
+  public Service patch(Service item) {
+      try {
+<span class="nc" id="L63">        Service old = getMandatory();</span>
+<span class="nc" id="L64">        return super.patch(new ServiceBuilder(item)</span>
+<span class="nc" id="L65">          .editSpec()</span>
+<span class="nc" id="L66">          .withClusterIP(old.getSpec().getClusterIP())</span>
+<span class="nc" id="L67">          .endSpec()</span>
+<span class="nc" id="L68">          .build());</span>
+<span class="nc" id="L69">      } catch (Exception e) {</span>
+<span class="nc" id="L70">        throw KubernetesClientException.launderThrowable(forOperationType(&quot;patch&quot;), e);</span>
+      }
+  }
+
+  @Override
+  public Service waitUntilReady(long amount, TimeUnit timeUnit) throws InterruptedException {
+<span class="nc" id="L76">    long started = System.currentTimeMillis();</span>
+<span class="nc" id="L77">    super.waitUntilReady(amount, timeUnit);</span>
+<span class="nc" id="L78">    long alreadySpent = System.currentTimeMillis() - started;</span>
+
+    // if awaiting existence took very long, let's give at least 10 seconds to awaiting readiness
+<span class="nc" id="L81">    long remaining = Math.max(10_000, timeUnit.toMillis(amount) - alreadySpent);</span>
+
+<span class="nc" id="L83">    EndpointsOperationsImpl endpointsOperation = new EndpointsOperationsImpl(client, config, apiGroupVersion, getNamespace(), getName(), isCascading(), null, null, isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields());</span>
+<span class="nc" id="L84">    endpointsOperation.waitUntilReady(remaining, TimeUnit.MILLISECONDS);</span>
+
+<span class="nc" id="L86">    return get();</span>
+  }
+
+  public String getURL(String portName) {
+<span class="nc" id="L90">    String clusterIP =  getMandatory().getSpec().getClusterIP();</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">    if(&quot;None&quot;.equals(clusterIP)) {</span>
+<span class="nc" id="L92">      throw new IllegalStateException(&quot;Service: &quot; + getMandatory().getMetadata().getName() + &quot; in namespace &quot; +</span>
+        namespace + &quot; is head-less. Search for endpoints instead&quot;);
+    }
+<span class="nc" id="L95">    return getUrlHelper(portName);</span>
+  }
+
+  private String getUrlHelper(String portName) {
+<span class="nc" id="L99">    ServiceLoader&lt;ServiceToURLProvider&gt; urlProvider = ServiceLoader.load(ServiceToURLProvider.class, Thread.currentThread().getContextClassLoader());</span>
+<span class="nc" id="L100">    Iterator&lt;ServiceToURLProvider&gt; iterator = urlProvider.iterator();</span>
+<span class="nc" id="L101">    List&lt;ServiceToURLProvider&gt; servicesList = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L103" title="All 2 branches missed.">    while(iterator.hasNext()) {</span>
+<span class="nc" id="L104">      servicesList.add(iterator.next());</span>
+    }
+
+    // Sort all loaded implementations according to priority
+<span class="nc" id="L108">    Collections.sort(servicesList, new ServiceToUrlSortComparator());</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">    for(ServiceToURLProvider serviceToURLProvider : servicesList) {</span>
+<span class="nc" id="L110">      String url = serviceToURLProvider.getURL(getMandatory(), portName, namespace, new DefaultKubernetesClient(client, getConfig()));</span>
+<span class="nc bnc" id="L111" title="All 4 branches missed.">      if(url != null &amp;&amp; URLUtils.isValidURL(url)) {</span>
+<span class="nc" id="L112">        return url;</span>
+      }
+<span class="nc" id="L114">    }</span>
+
+<span class="nc" id="L116">    return null;</span>
+  }
+
+<span class="nc" id="L119">  public class ServiceToUrlSortComparator implements Comparator&lt;ServiceToURLProvider&gt; {</span>
+    public int compare(ServiceToURLProvider first, ServiceToURLProvider second) {
+<span class="nc" id="L121">      return first.getPriority() - second.getPriority();</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

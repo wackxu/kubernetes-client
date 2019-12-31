@@ -1,0 +1,1191 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JSONSchemaProps.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.apiextensions</a> &gt; <span class="el_source">JSONSchemaProps.java</span></div><h1>JSONSchemaProps.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.apiextensions;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;$ref&quot;,
+    &quot;$schema&quot;,
+    &quot;additionalItems&quot;,
+    &quot;additionalProperties&quot;,
+    &quot;allOf&quot;,
+    &quot;anyOf&quot;,
+    &quot;default&quot;,
+    &quot;definitions&quot;,
+    &quot;dependencies&quot;,
+    &quot;description&quot;,
+    &quot;enum&quot;,
+    &quot;example&quot;,
+    &quot;exclusiveMaximum&quot;,
+    &quot;exclusiveMinimum&quot;,
+    &quot;externalDocs&quot;,
+    &quot;format&quot;,
+    &quot;id&quot;,
+    &quot;items&quot;,
+    &quot;maxItems&quot;,
+    &quot;maxLength&quot;,
+    &quot;maxProperties&quot;,
+    &quot;maximum&quot;,
+    &quot;minItems&quot;,
+    &quot;minLength&quot;,
+    &quot;minProperties&quot;,
+    &quot;minimum&quot;,
+    &quot;multipleOf&quot;,
+    &quot;not&quot;,
+    &quot;oneOf&quot;,
+    &quot;pattern&quot;,
+    &quot;patternProperties&quot;,
+    &quot;properties&quot;,
+    &quot;required&quot;,
+    &quot;title&quot;,
+    &quot;type&quot;,
+    &quot;uniqueItems&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L69">@ToString</span>
+<span class="nc bnc" id="L70" title="All 278 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class JSONSchemaProps implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;$ref&quot;)
+    private java.lang.String $ref;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;$schema&quot;)
+    private java.lang.String $schema;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;additionalItems&quot;)
+    @Valid
+    private JSONSchemaPropsOrBool additionalItems;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;additionalProperties&quot;)
+    @Valid
+    private JSONSchemaPropsOrBool additionalProperties;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L105">    @JsonProperty(&quot;allOf&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;JSONSchemaProps&gt; allOf = new ArrayList&lt;JSONSchemaProps&gt;();
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L113">    @JsonProperty(&quot;anyOf&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;JSONSchemaProps&gt; anyOf = new ArrayList&lt;JSONSchemaProps&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;default&quot;)
+    @Valid
+    private JSON _default;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;definitions&quot;)
+    @Valid
+    private Map&lt;String, io.fabric8.kubernetes.api.model.apiextensions.JSONSchemaProps&gt; definitions;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;dependencies&quot;)
+    @Valid
+    private Map&lt;String, JSONSchemaPropsOrStringArray&gt; dependencies;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;description&quot;)
+    private java.lang.String description;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L148">    @JsonProperty(&quot;enum&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;JSON&gt; _enum = new ArrayList&lt;JSON&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;example&quot;)
+    @Valid
+    private JSON example;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;exclusiveMaximum&quot;)
+    private Boolean exclusiveMaximum;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;exclusiveMinimum&quot;)
+    private Boolean exclusiveMinimum;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;externalDocs&quot;)
+    @Valid
+    private ExternalDocumentation externalDocs;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;format&quot;)
+    private java.lang.String format;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;id&quot;)
+    private java.lang.String id;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;items&quot;)
+    @Valid
+    private JSONSchemaPropsOrArray items;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;maxItems&quot;)
+    private Long maxItems;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;maxLength&quot;)
+    private Long maxLength;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;maxProperties&quot;)
+    private Long maxProperties;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;maximum&quot;)
+    private Double maximum;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;minItems&quot;)
+    private Long minItems;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;minLength&quot;)
+    private Long minLength;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;minProperties&quot;)
+    private Long minProperties;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;minimum&quot;)
+    private Double minimum;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;multipleOf&quot;)
+    private Double multipleOf;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;not&quot;)
+    @Valid
+    private JSONSchemaProps not;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L262">    @JsonProperty(&quot;oneOf&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;JSONSchemaProps&gt; oneOf = new ArrayList&lt;JSONSchemaProps&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;pattern&quot;)
+    private java.lang.String pattern;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;patternProperties&quot;)
+    @Valid
+    private Map&lt;String, io.fabric8.kubernetes.api.model.apiextensions.JSONSchemaProps&gt; patternProperties;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;properties&quot;)
+    @Valid
+    private Map&lt;String, io.fabric8.kubernetes.api.model.apiextensions.JSONSchemaProps&gt; properties;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L290">    @JsonProperty(&quot;required&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;java.lang.String&gt; required = new ArrayList&lt;java.lang.String&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;title&quot;)
+    private java.lang.String title;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;type&quot;)
+    private java.lang.String type;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;uniqueItems&quot;)
+    private Boolean uniqueItems;
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L317">    public JSONSchemaProps() {</span>
+<span class="nc" id="L318">    }</span>
+
+    /**
+     * 
+     * @param $schema
+     * @param minLength
+     * @param pattern
+     * @param description
+     * @param _enum
+     * @param title
+     * @param type
+     * @param required
+     * @param example
+     * @param exclusiveMaximum
+     * @param patternProperties
+     * @param allOf
+     * @param not
+     * @param oneOf
+     * @param additionalItems
+     * @param id
+     * @param maxProperties
+     * @param exclusiveMinimum
+     * @param definitions
+     * @param multipleOf
+     * @param _default
+     * @param maxItems
+     * @param format
+     * @param anyOf
+     * @param dependencies
+     * @param minProperties
+     * @param minItems
+     * @param uniqueItems
+     * @param maximum
+     * @param additionalProperties
+     * @param externalDocs
+     * @param $ref
+     * @param items
+     * @param minimum
+     * @param maxLength
+     * @param properties
+     */
+<span class="nc" id="L359">    public JSONSchemaProps(java.lang.String $ref, java.lang.String $schema, JSONSchemaPropsOrBool additionalItems, JSONSchemaPropsOrBool additionalProperties, List&lt;JSONSchemaProps&gt; allOf, List&lt;JSONSchemaProps&gt; anyOf, JSON _default, Map&lt;String, io.fabric8.kubernetes.api.model.apiextensions.JSONSchemaProps&gt; definitions, Map&lt;String, JSONSchemaPropsOrStringArray&gt; dependencies, java.lang.String description, List&lt;JSON&gt; _enum, JSON example, Boolean exclusiveMaximum, Boolean exclusiveMinimum, ExternalDocumentation externalDocs, java.lang.String format, java.lang.String id, JSONSchemaPropsOrArray items, Long maxItems, Long maxLength, Long maxProperties, Double maximum, Long minItems, Long minLength, Long minProperties, Double minimum, Double multipleOf, JSONSchemaProps not, List&lt;JSONSchemaProps&gt; oneOf, java.lang.String pattern, Map&lt;String, io.fabric8.kubernetes.api.model.apiextensions.JSONSchemaProps&gt; patternProperties, Map&lt;String, io.fabric8.kubernetes.api.model.apiextensions.JSONSchemaProps&gt; properties, List&lt;java.lang.String&gt; required, java.lang.String title, java.lang.String type, Boolean uniqueItems) {</span>
+<span class="nc" id="L360">        this.$ref = $ref;</span>
+<span class="nc" id="L361">        this.$schema = $schema;</span>
+<span class="nc" id="L362">        this.additionalItems = additionalItems;</span>
+<span class="nc" id="L363">        this.additionalProperties = additionalProperties;</span>
+<span class="nc" id="L364">        this.allOf = allOf;</span>
+<span class="nc" id="L365">        this.anyOf = anyOf;</span>
+<span class="nc" id="L366">        this._default = _default;</span>
+<span class="nc" id="L367">        this.definitions = definitions;</span>
+<span class="nc" id="L368">        this.dependencies = dependencies;</span>
+<span class="nc" id="L369">        this.description = description;</span>
+<span class="nc" id="L370">        this._enum = _enum;</span>
+<span class="nc" id="L371">        this.example = example;</span>
+<span class="nc" id="L372">        this.exclusiveMaximum = exclusiveMaximum;</span>
+<span class="nc" id="L373">        this.exclusiveMinimum = exclusiveMinimum;</span>
+<span class="nc" id="L374">        this.externalDocs = externalDocs;</span>
+<span class="nc" id="L375">        this.format = format;</span>
+<span class="nc" id="L376">        this.id = id;</span>
+<span class="nc" id="L377">        this.items = items;</span>
+<span class="nc" id="L378">        this.maxItems = maxItems;</span>
+<span class="nc" id="L379">        this.maxLength = maxLength;</span>
+<span class="nc" id="L380">        this.maxProperties = maxProperties;</span>
+<span class="nc" id="L381">        this.maximum = maximum;</span>
+<span class="nc" id="L382">        this.minItems = minItems;</span>
+<span class="nc" id="L383">        this.minLength = minLength;</span>
+<span class="nc" id="L384">        this.minProperties = minProperties;</span>
+<span class="nc" id="L385">        this.minimum = minimum;</span>
+<span class="nc" id="L386">        this.multipleOf = multipleOf;</span>
+<span class="nc" id="L387">        this.not = not;</span>
+<span class="nc" id="L388">        this.oneOf = oneOf;</span>
+<span class="nc" id="L389">        this.pattern = pattern;</span>
+<span class="nc" id="L390">        this.patternProperties = patternProperties;</span>
+<span class="nc" id="L391">        this.properties = properties;</span>
+<span class="nc" id="L392">        this.required = required;</span>
+<span class="nc" id="L393">        this.title = title;</span>
+<span class="nc" id="L394">        this.type = type;</span>
+<span class="nc" id="L395">        this.uniqueItems = uniqueItems;</span>
+<span class="nc" id="L396">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The $ref
+     */
+    @JsonProperty(&quot;$ref&quot;)
+    public java.lang.String get$ref() {
+<span class="nc" id="L406">        return $ref;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param $ref
+     *     The $ref
+     */
+    @JsonProperty(&quot;$ref&quot;)
+    public void set$ref(java.lang.String $ref) {
+<span class="nc" id="L417">        this.$ref = $ref;</span>
+<span class="nc" id="L418">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The $schema
+     */
+    @JsonProperty(&quot;$schema&quot;)
+    public java.lang.String get$schema() {
+<span class="nc" id="L428">        return $schema;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param $schema
+     *     The $schema
+     */
+    @JsonProperty(&quot;$schema&quot;)
+    public void set$schema(java.lang.String $schema) {
+<span class="nc" id="L439">        this.$schema = $schema;</span>
+<span class="nc" id="L440">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The additionalItems
+     */
+    @JsonProperty(&quot;additionalItems&quot;)
+    public JSONSchemaPropsOrBool getAdditionalItems() {
+<span class="nc" id="L450">        return additionalItems;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param additionalItems
+     *     The additionalItems
+     */
+    @JsonProperty(&quot;additionalItems&quot;)
+    public void setAdditionalItems(JSONSchemaPropsOrBool additionalItems) {
+<span class="nc" id="L461">        this.additionalItems = additionalItems;</span>
+<span class="nc" id="L462">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The additionalProperties
+     */
+    @JsonProperty(&quot;additionalProperties&quot;)
+    public JSONSchemaPropsOrBool getAdditionalProperties() {
+<span class="nc" id="L472">        return additionalProperties;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param additionalProperties
+     *     The additionalProperties
+     */
+    @JsonProperty(&quot;additionalProperties&quot;)
+    public void setAdditionalProperties(JSONSchemaPropsOrBool additionalProperties) {
+<span class="nc" id="L483">        this.additionalProperties = additionalProperties;</span>
+<span class="nc" id="L484">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The allOf
+     */
+    @JsonProperty(&quot;allOf&quot;)
+    public List&lt;JSONSchemaProps&gt; getAllOf() {
+<span class="nc" id="L494">        return allOf;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param allOf
+     *     The allOf
+     */
+    @JsonProperty(&quot;allOf&quot;)
+    public void setAllOf(List&lt;JSONSchemaProps&gt; allOf) {
+<span class="nc" id="L505">        this.allOf = allOf;</span>
+<span class="nc" id="L506">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The anyOf
+     */
+    @JsonProperty(&quot;anyOf&quot;)
+    public List&lt;JSONSchemaProps&gt; getAnyOf() {
+<span class="nc" id="L516">        return anyOf;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param anyOf
+     *     The anyOf
+     */
+    @JsonProperty(&quot;anyOf&quot;)
+    public void setAnyOf(List&lt;JSONSchemaProps&gt; anyOf) {
+<span class="nc" id="L527">        this.anyOf = anyOf;</span>
+<span class="nc" id="L528">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The _default
+     */
+    @JsonProperty(&quot;default&quot;)
+    public JSON getDefault() {
+<span class="nc" id="L538">        return _default;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param _default
+     *     The default
+     */
+    @JsonProperty(&quot;default&quot;)
+    public void setDefault(JSON _default) {
+<span class="nc" id="L549">        this._default = _default;</span>
+<span class="nc" id="L550">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The definitions
+     */
+    @JsonProperty(&quot;definitions&quot;)
+    public Map&lt;String, io.fabric8.kubernetes.api.model.apiextensions.JSONSchemaProps&gt; getDefinitions() {
+<span class="nc" id="L560">        return definitions;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param definitions
+     *     The definitions
+     */
+    @JsonProperty(&quot;definitions&quot;)
+    public void setDefinitions(Map&lt;String, io.fabric8.kubernetes.api.model.apiextensions.JSONSchemaProps&gt; definitions) {
+<span class="nc" id="L571">        this.definitions = definitions;</span>
+<span class="nc" id="L572">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The dependencies
+     */
+    @JsonProperty(&quot;dependencies&quot;)
+    public Map&lt;String, JSONSchemaPropsOrStringArray&gt; getDependencies() {
+<span class="nc" id="L582">        return dependencies;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param dependencies
+     *     The dependencies
+     */
+    @JsonProperty(&quot;dependencies&quot;)
+    public void setDependencies(Map&lt;String, JSONSchemaPropsOrStringArray&gt; dependencies) {
+<span class="nc" id="L593">        this.dependencies = dependencies;</span>
+<span class="nc" id="L594">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The description
+     */
+    @JsonProperty(&quot;description&quot;)
+    public java.lang.String getDescription() {
+<span class="nc" id="L604">        return description;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param description
+     *     The description
+     */
+    @JsonProperty(&quot;description&quot;)
+    public void setDescription(java.lang.String description) {
+<span class="nc" id="L615">        this.description = description;</span>
+<span class="nc" id="L616">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The _enum
+     */
+    @JsonProperty(&quot;enum&quot;)
+    public List&lt;JSON&gt; getEnum() {
+<span class="nc" id="L626">        return _enum;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param _enum
+     *     The enum
+     */
+    @JsonProperty(&quot;enum&quot;)
+    public void setEnum(List&lt;JSON&gt; _enum) {
+<span class="nc" id="L637">        this._enum = _enum;</span>
+<span class="nc" id="L638">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The example
+     */
+    @JsonProperty(&quot;example&quot;)
+    public JSON getExample() {
+<span class="nc" id="L648">        return example;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param example
+     *     The example
+     */
+    @JsonProperty(&quot;example&quot;)
+    public void setExample(JSON example) {
+<span class="nc" id="L659">        this.example = example;</span>
+<span class="nc" id="L660">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The exclusiveMaximum
+     */
+    @JsonProperty(&quot;exclusiveMaximum&quot;)
+    public Boolean getExclusiveMaximum() {
+<span class="nc" id="L670">        return exclusiveMaximum;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param exclusiveMaximum
+     *     The exclusiveMaximum
+     */
+    @JsonProperty(&quot;exclusiveMaximum&quot;)
+    public void setExclusiveMaximum(Boolean exclusiveMaximum) {
+<span class="nc" id="L681">        this.exclusiveMaximum = exclusiveMaximum;</span>
+<span class="nc" id="L682">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The exclusiveMinimum
+     */
+    @JsonProperty(&quot;exclusiveMinimum&quot;)
+    public Boolean getExclusiveMinimum() {
+<span class="nc" id="L692">        return exclusiveMinimum;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param exclusiveMinimum
+     *     The exclusiveMinimum
+     */
+    @JsonProperty(&quot;exclusiveMinimum&quot;)
+    public void setExclusiveMinimum(Boolean exclusiveMinimum) {
+<span class="nc" id="L703">        this.exclusiveMinimum = exclusiveMinimum;</span>
+<span class="nc" id="L704">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The externalDocs
+     */
+    @JsonProperty(&quot;externalDocs&quot;)
+    public ExternalDocumentation getExternalDocs() {
+<span class="nc" id="L714">        return externalDocs;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param externalDocs
+     *     The externalDocs
+     */
+    @JsonProperty(&quot;externalDocs&quot;)
+    public void setExternalDocs(ExternalDocumentation externalDocs) {
+<span class="nc" id="L725">        this.externalDocs = externalDocs;</span>
+<span class="nc" id="L726">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The format
+     */
+    @JsonProperty(&quot;format&quot;)
+    public java.lang.String getFormat() {
+<span class="nc" id="L736">        return format;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param format
+     *     The format
+     */
+    @JsonProperty(&quot;format&quot;)
+    public void setFormat(java.lang.String format) {
+<span class="nc" id="L747">        this.format = format;</span>
+<span class="nc" id="L748">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The id
+     */
+    @JsonProperty(&quot;id&quot;)
+    public java.lang.String getId() {
+<span class="nc" id="L758">        return id;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param id
+     *     The id
+     */
+    @JsonProperty(&quot;id&quot;)
+    public void setId(java.lang.String id) {
+<span class="nc" id="L769">        this.id = id;</span>
+<span class="nc" id="L770">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The items
+     */
+    @JsonProperty(&quot;items&quot;)
+    public JSONSchemaPropsOrArray getItems() {
+<span class="nc" id="L780">        return items;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param items
+     *     The items
+     */
+    @JsonProperty(&quot;items&quot;)
+    public void setItems(JSONSchemaPropsOrArray items) {
+<span class="nc" id="L791">        this.items = items;</span>
+<span class="nc" id="L792">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The maxItems
+     */
+    @JsonProperty(&quot;maxItems&quot;)
+    public Long getMaxItems() {
+<span class="nc" id="L802">        return maxItems;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param maxItems
+     *     The maxItems
+     */
+    @JsonProperty(&quot;maxItems&quot;)
+    public void setMaxItems(Long maxItems) {
+<span class="nc" id="L813">        this.maxItems = maxItems;</span>
+<span class="nc" id="L814">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The maxLength
+     */
+    @JsonProperty(&quot;maxLength&quot;)
+    public Long getMaxLength() {
+<span class="nc" id="L824">        return maxLength;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param maxLength
+     *     The maxLength
+     */
+    @JsonProperty(&quot;maxLength&quot;)
+    public void setMaxLength(Long maxLength) {
+<span class="nc" id="L835">        this.maxLength = maxLength;</span>
+<span class="nc" id="L836">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The maxProperties
+     */
+    @JsonProperty(&quot;maxProperties&quot;)
+    public Long getMaxProperties() {
+<span class="nc" id="L846">        return maxProperties;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param maxProperties
+     *     The maxProperties
+     */
+    @JsonProperty(&quot;maxProperties&quot;)
+    public void setMaxProperties(Long maxProperties) {
+<span class="nc" id="L857">        this.maxProperties = maxProperties;</span>
+<span class="nc" id="L858">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The maximum
+     */
+    @JsonProperty(&quot;maximum&quot;)
+    public Double getMaximum() {
+<span class="nc" id="L868">        return maximum;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param maximum
+     *     The maximum
+     */
+    @JsonProperty(&quot;maximum&quot;)
+    public void setMaximum(Double maximum) {
+<span class="nc" id="L879">        this.maximum = maximum;</span>
+<span class="nc" id="L880">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The minItems
+     */
+    @JsonProperty(&quot;minItems&quot;)
+    public Long getMinItems() {
+<span class="nc" id="L890">        return minItems;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param minItems
+     *     The minItems
+     */
+    @JsonProperty(&quot;minItems&quot;)
+    public void setMinItems(Long minItems) {
+<span class="nc" id="L901">        this.minItems = minItems;</span>
+<span class="nc" id="L902">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The minLength
+     */
+    @JsonProperty(&quot;minLength&quot;)
+    public Long getMinLength() {
+<span class="nc" id="L912">        return minLength;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param minLength
+     *     The minLength
+     */
+    @JsonProperty(&quot;minLength&quot;)
+    public void setMinLength(Long minLength) {
+<span class="nc" id="L923">        this.minLength = minLength;</span>
+<span class="nc" id="L924">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The minProperties
+     */
+    @JsonProperty(&quot;minProperties&quot;)
+    public Long getMinProperties() {
+<span class="nc" id="L934">        return minProperties;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param minProperties
+     *     The minProperties
+     */
+    @JsonProperty(&quot;minProperties&quot;)
+    public void setMinProperties(Long minProperties) {
+<span class="nc" id="L945">        this.minProperties = minProperties;</span>
+<span class="nc" id="L946">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The minimum
+     */
+    @JsonProperty(&quot;minimum&quot;)
+    public Double getMinimum() {
+<span class="nc" id="L956">        return minimum;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param minimum
+     *     The minimum
+     */
+    @JsonProperty(&quot;minimum&quot;)
+    public void setMinimum(Double minimum) {
+<span class="nc" id="L967">        this.minimum = minimum;</span>
+<span class="nc" id="L968">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The multipleOf
+     */
+    @JsonProperty(&quot;multipleOf&quot;)
+    public Double getMultipleOf() {
+<span class="nc" id="L978">        return multipleOf;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param multipleOf
+     *     The multipleOf
+     */
+    @JsonProperty(&quot;multipleOf&quot;)
+    public void setMultipleOf(Double multipleOf) {
+<span class="nc" id="L989">        this.multipleOf = multipleOf;</span>
+<span class="nc" id="L990">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The not
+     */
+    @JsonProperty(&quot;not&quot;)
+    public JSONSchemaProps getNot() {
+<span class="nc" id="L1000">        return not;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param not
+     *     The not
+     */
+    @JsonProperty(&quot;not&quot;)
+    public void setNot(JSONSchemaProps not) {
+<span class="nc" id="L1011">        this.not = not;</span>
+<span class="nc" id="L1012">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The oneOf
+     */
+    @JsonProperty(&quot;oneOf&quot;)
+    public List&lt;JSONSchemaProps&gt; getOneOf() {
+<span class="nc" id="L1022">        return oneOf;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param oneOf
+     *     The oneOf
+     */
+    @JsonProperty(&quot;oneOf&quot;)
+    public void setOneOf(List&lt;JSONSchemaProps&gt; oneOf) {
+<span class="nc" id="L1033">        this.oneOf = oneOf;</span>
+<span class="nc" id="L1034">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The pattern
+     */
+    @JsonProperty(&quot;pattern&quot;)
+    public java.lang.String getPattern() {
+<span class="nc" id="L1044">        return pattern;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param pattern
+     *     The pattern
+     */
+    @JsonProperty(&quot;pattern&quot;)
+    public void setPattern(java.lang.String pattern) {
+<span class="nc" id="L1055">        this.pattern = pattern;</span>
+<span class="nc" id="L1056">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The patternProperties
+     */
+    @JsonProperty(&quot;patternProperties&quot;)
+    public Map&lt;String, io.fabric8.kubernetes.api.model.apiextensions.JSONSchemaProps&gt; getPatternProperties() {
+<span class="nc" id="L1066">        return patternProperties;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param patternProperties
+     *     The patternProperties
+     */
+    @JsonProperty(&quot;patternProperties&quot;)
+    public void setPatternProperties(Map&lt;String, io.fabric8.kubernetes.api.model.apiextensions.JSONSchemaProps&gt; patternProperties) {
+<span class="nc" id="L1077">        this.patternProperties = patternProperties;</span>
+<span class="nc" id="L1078">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The properties
+     */
+    @JsonProperty(&quot;properties&quot;)
+    public Map&lt;String, io.fabric8.kubernetes.api.model.apiextensions.JSONSchemaProps&gt; getProperties() {
+<span class="nc" id="L1088">        return properties;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param properties
+     *     The properties
+     */
+    @JsonProperty(&quot;properties&quot;)
+    public void setProperties(Map&lt;String, io.fabric8.kubernetes.api.model.apiextensions.JSONSchemaProps&gt; properties) {
+<span class="nc" id="L1099">        this.properties = properties;</span>
+<span class="nc" id="L1100">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The required
+     */
+    @JsonProperty(&quot;required&quot;)
+    public List&lt;java.lang.String&gt; getRequired() {
+<span class="nc" id="L1110">        return required;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param required
+     *     The required
+     */
+    @JsonProperty(&quot;required&quot;)
+    public void setRequired(List&lt;java.lang.String&gt; required) {
+<span class="nc" id="L1121">        this.required = required;</span>
+<span class="nc" id="L1122">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The title
+     */
+    @JsonProperty(&quot;title&quot;)
+    public java.lang.String getTitle() {
+<span class="nc" id="L1132">        return title;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param title
+     *     The title
+     */
+    @JsonProperty(&quot;title&quot;)
+    public void setTitle(java.lang.String title) {
+<span class="nc" id="L1143">        this.title = title;</span>
+<span class="nc" id="L1144">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The type
+     */
+    @JsonProperty(&quot;type&quot;)
+    public java.lang.String getType() {
+<span class="nc" id="L1154">        return type;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param type
+     *     The type
+     */
+    @JsonProperty(&quot;type&quot;)
+    public void setType(java.lang.String type) {
+<span class="nc" id="L1165">        this.type = type;</span>
+<span class="nc" id="L1166">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The uniqueItems
+     */
+    @JsonProperty(&quot;uniqueItems&quot;)
+    public Boolean getUniqueItems() {
+<span class="nc" id="L1176">        return uniqueItems;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param uniqueItems
+     *     The uniqueItems
+     */
+    @JsonProperty(&quot;uniqueItems&quot;)
+    public void setUniqueItems(Boolean uniqueItems) {
+<span class="nc" id="L1187">        this.uniqueItems = uniqueItems;</span>
+<span class="nc" id="L1188">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

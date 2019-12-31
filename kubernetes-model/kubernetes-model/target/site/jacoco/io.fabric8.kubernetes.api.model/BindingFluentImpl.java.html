@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BindingFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">BindingFluentImpl.java</span></div><h1>BindingFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class BindingFluentImpl&lt;A extends BindingFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements BindingFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+    private ObjectReferenceBuilder target;
+
+<span class="nc" id="L21">    public BindingFluentImpl(){</span>
+<span class="nc" id="L22">    }</span>
+<span class="nc" id="L23">    public BindingFluentImpl(Binding instance){</span>
+<span class="nc" id="L24">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L25">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L26">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L27">            this.withTarget(instance.getTarget()); </span>
+<span class="nc" id="L28">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L31">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L35">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L43">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L47">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L68">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public BindingFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L77">            return new MetadataNestedImpl();</span>
+    }
+
+    public BindingFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L81">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public BindingFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L85">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public BindingFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public BindingFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTarget instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getTarget(){
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            return this.target!=null?this.target.build():null;</span>
+    }
+
+    public ObjectReference buildTarget(){
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            return this.target!=null?this.target.build():null;</span>
+    }
+
+    public A withTarget(ObjectReference target){
+<span class="nc" id="L110">            _visitables.remove(this.target);</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            if (target!=null){ this.target= new ObjectReferenceBuilder(target); _visitables.add(this.target);} return (A) this;</span>
+    }
+
+    public Boolean hasTarget(){
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            return this.target != null;</span>
+    }
+
+    public BindingFluent.TargetNested&lt;A&gt; withNewTarget(){
+<span class="nc" id="L119">            return new TargetNestedImpl();</span>
+    }
+
+    public BindingFluent.TargetNested&lt;A&gt; withNewTargetLike(ObjectReference item){
+<span class="nc" id="L123">            return new TargetNestedImpl(item);</span>
+    }
+
+    public BindingFluent.TargetNested&lt;A&gt; editTarget(){
+<span class="nc" id="L127">            return withNewTargetLike(getTarget());</span>
+    }
+
+    public BindingFluent.TargetNested&lt;A&gt; editOrNewTarget(){
+<span class="nc bnc" id="L131" title="All 2 branches missed.">            return withNewTargetLike(getTarget() != null ? getTarget(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public BindingFluent.TargetNested&lt;A&gt; editOrNewTargetLike(ObjectReference item){
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            return withNewTargetLike(getTarget() != null ? getTarget(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L140" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L142">            BindingFluentImpl that = (BindingFluentImpl) o;</span>
+<span class="nc bnc" id="L143" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L144" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L145" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L146" title="All 6 branches missed.">            if (target != null ? !target.equals(that.target) :that.target != null) return false;</span>
+<span class="nc" id="L147">            return true;</span>
+    }
+
+
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;BindingFluent.MetadataNested&lt;N&gt;&gt; implements BindingFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L155">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L156">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L157">            }</span>
+<span class="nc" id="L158">            MetadataNestedImpl(){</span>
+<span class="nc" id="L159">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L160">            }</span>
+    
+    public N and(){
+<span class="nc" id="L163">            return (N) BindingFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L166">            return and();</span>
+    }
+
+}
+    public class TargetNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;BindingFluent.TargetNested&lt;N&gt;&gt; implements BindingFluent.TargetNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L174">            TargetNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L175">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L176">            }</span>
+<span class="nc" id="L177">            TargetNestedImpl(){</span>
+<span class="nc" id="L178">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L179">            }</span>
+    
+    public N and(){
+<span class="nc" id="L182">            return (N) BindingFluentImpl.this.withTarget(builder.build());</span>
+    }
+    public N endTarget(){
+<span class="nc" id="L185">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

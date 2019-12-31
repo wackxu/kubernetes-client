@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>KubernetesResourceUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.utils</a> &gt; <span class="el_source">KubernetesResourceUtil.java</span></div><h1>KubernetesResourceUtil.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.fabric8.kubernetes.client.utils;
+
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.KubernetesList;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.regex.Pattern;
+
+<span class="nc" id="L28">public class KubernetesResourceUtil {</span>
+
+<span class="fc" id="L30">  public static final Pattern KUBERNETES_DNS1123_LABEL_REGEX = Pattern.compile(&quot;[a-z0-9]([-a-z0-9]*[a-z0-9])?&quot;);</span>
+
+  public static final int KUBERNETES_DNS1123_LABEL_MAX_LENGTH = 63;
+
+  /**
+   * Returns the resource version for the entity or null if it does not have one
+   */
+  public static String getResourceVersion(HasMetadata entity) {
+<span class="nc bnc" id="L38" title="All 2 branches missed.">    if (entity != null) {</span>
+<span class="nc" id="L39">      ObjectMeta metadata = entity.getMetadata();</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">      if (metadata != null) {</span>
+<span class="nc" id="L41">        String resourceVersion = metadata.getResourceVersion();</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (!Utils.isNullOrEmpty(resourceVersion)) {</span>
+<span class="nc" id="L43">          return resourceVersion;</span>
+        }
+      }
+    }
+<span class="nc" id="L47">    return null;</span>
+  }
+
+  /**
+   * Returns the kind of the entity
+   */
+  public static String getKind(HasMetadata entity) {
+<span class="nc bnc" id="L54" title="All 2 branches missed.">    if (entity != null) {</span>
+      // TODO use reflection to find the kind?
+<span class="nc bnc" id="L56" title="All 2 branches missed.">      if (entity instanceof KubernetesList) {</span>
+<span class="nc" id="L57">        return &quot;List&quot;;</span>
+      } else {
+<span class="nc" id="L59">        return entity.getClass().getSimpleName();</span>
+      }
+    } else {
+<span class="nc" id="L62">      return null;</span>
+    }
+  }
+
+  /**
+   * Returns Qualified name for the specified Kubernetes Resource
+   *
+   * @param entity Kubernetes resource
+   * @return
+   */
+  public static String getQualifiedName(HasMetadata entity) {
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">    if (entity != null) {</span>
+<span class="fc" id="L74">      return &quot;&quot; + getNamespace(entity) + &quot;/&quot; + getName(entity);</span>
+    } else {
+<span class="nc" id="L76">      return null;</span>
+    }
+  }
+
+  /**
+   * Returns name of the resource from it's Metadata
+   *
+   * @param entity Kubernetes resource
+   * @return
+   */
+  public static String getName(HasMetadata entity) {
+<span class="pc bpc" id="L87" title="1 of 2 branches missed.">    if (entity != null) {</span>
+<span class="fc" id="L88">      return getName(entity.getMetadata());</span>
+    } else {
+<span class="nc" id="L90">      return null;</span>
+    }
+  }
+
+  /**
+   * Returns true if this entity has a valid non blank resourceVersion in its metadata
+   */
+  public static boolean hasResourceVersion(HasMetadata entity) {
+<span class="nc bnc" id="L98" title="All 2 branches missed.">    return getResourceVersion(entity) != null;</span>
+  }
+
+  /**
+   * Returns name of the resource from it's Metadata
+   *
+   * @param entity MetaData of kubernetes resource
+   * @return
+   */
+  public static String getName(ObjectMeta entity) {
+<span class="pc bpc" id="L108" title="1 of 2 branches missed.">    if (entity != null) {</span>
+<span class="fc" id="L109">      return Utils.coalesce(entity.getName(),</span>
+<span class="fc" id="L110">        getAdditionalPropertyText(entity.getAdditionalProperties(), &quot;id&quot;),</span>
+<span class="fc" id="L111">        entity.getUid());</span>
+    } else {
+<span class="nc" id="L113">      return null;</span>
+    }
+  }
+
+  /**
+   * Used to get additional properties from Object's metadata
+   *
+   * @param additionalProperties
+   * @param name
+   * @return
+   */
+  protected static String getAdditionalPropertyText(Map&lt;String, Object&gt; additionalProperties, String name) {
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">    if (additionalProperties != null) {</span>
+<span class="fc" id="L126">      Object value = additionalProperties.get(name);</span>
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">      if (value != null) {</span>
+<span class="nc" id="L128">        return value.toString();</span>
+      }
+    }
+<span class="fc" id="L131">    return null;</span>
+  }
+
+  /**
+   * Null safe get operation for getting namespace from Kubernetes Resource's MetaData
+   *
+   * @param entity Kubernetes Resource
+   * @return
+   */
+  public static String getNamespace(ObjectMeta entity) {
+<span class="pc bpc" id="L141" title="1 of 2 branches missed.">    if (entity != null) {</span>
+<span class="fc" id="L142">      return entity.getNamespace();</span>
+    } else {
+<span class="nc" id="L144">      return null;</span>
+    }
+  }
+
+  /**
+   * Getting namespace from Kubernetes Resource
+   *
+   * @param entity Kubernetes Resource
+   * @return
+   */
+  public static String getNamespace(HasMetadata entity) {
+<span class="pc bpc" id="L155" title="1 of 2 branches missed.">    if (entity != null) {</span>
+<span class="fc" id="L156">      return getNamespace(entity.getMetadata());</span>
+    } else {
+<span class="nc" id="L158">      return null;</span>
+    }
+  }
+
+  /**
+   * Null safe get for fetching annotations from MetaData of Kubernetes Resource
+   *
+   * @param entity Kubernetes resource
+   * @return
+   */
+  public static Map&lt;String, String&gt; getOrCreateAnnotations(HasMetadata entity) {
+<span class="fc" id="L169">    ObjectMeta metadata = getOrCreateMetadata(entity);</span>
+<span class="fc" id="L170">    Map&lt;String, String&gt; answer = metadata.getAnnotations();</span>
+<span class="pc bpc" id="L171" title="1 of 2 branches missed.">    if (answer == null) {</span>
+      // use linked so the annotations can be in the FIFO order
+<span class="nc" id="L173">      answer = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L174">      metadata.setAnnotations(answer);</span>
+    }
+<span class="fc" id="L176">    return answer;</span>
+  }
+
+  /**
+   * Returns an identifier from the given string that can be used as resource name.
+   *
+   * @Param String which needs to be sanitized
+   * @return
+   */
+  public static String sanitizeName(String name) {
+<span class="pc bpc" id="L186" title="1 of 2 branches missed.">    if(name != null) {</span>
+<span class="fc" id="L187">      return name.replaceAll(&quot;[^A-Za-z0-9]+&quot;, &quot;-&quot;);</span>
+    }
+<span class="nc" id="L189">    return null;</span>
+  }
+
+  /**
+   * Null safe get method for getting Labels of a Kubernetes Resource
+   *
+   * @param entity Kubernetes Resource
+   * @return
+   */
+  public static Map&lt;String, String&gt; getOrCreateLabels(HasMetadata entity) {
+<span class="fc" id="L199">    ObjectMeta metadata = getOrCreateMetadata(entity);</span>
+<span class="fc" id="L200">    Map&lt;String, String&gt; answer = metadata.getLabels();</span>
+<span class="pc bpc" id="L201" title="1 of 2 branches missed.">    if (answer == null) {</span>
+      // use linked so the annotations can be in the FIFO order
+<span class="nc" id="L203">      answer = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L204">      metadata.setLabels(answer);</span>
+    }
+<span class="fc" id="L206">    return answer;</span>
+  }
+
+  /**
+   * Returns the labels of the given metadata object or an empty map if the metadata or labels are null
+   */
+  @SuppressWarnings(&quot;unchecked&quot;)
+  public static Map&lt;String, String&gt; getLabels(ObjectMeta metadata) {
+<span class="nc bnc" id="L214" title="All 2 branches missed.">    if (metadata != null) {</span>
+<span class="nc" id="L215">      Map&lt;String, String&gt; labels = metadata.getLabels();</span>
+<span class="nc bnc" id="L216" title="All 2 branches missed.">      if (labels != null) {</span>
+<span class="nc" id="L217">        return labels;</span>
+      }
+    }
+<span class="nc" id="L220">    return Collections.EMPTY_MAP;</span>
+  }
+
+  /**
+   * Null safe operation for getting Metadata of a Kubernetes resource
+   *
+   * @param entity Kubernetes Resource
+   * @return
+   */
+  public static ObjectMeta getOrCreateMetadata(HasMetadata entity) {
+<span class="fc" id="L230">    ObjectMeta metadata = entity.getMetadata();</span>
+<span class="pc bpc" id="L231" title="1 of 2 branches missed.">    if (metadata == null) {</span>
+<span class="nc" id="L232">      metadata = new ObjectMeta();</span>
+<span class="nc" id="L233">      entity.setMetadata(metadata);</span>
+    }
+<span class="fc" id="L235">    return metadata;</span>
+  }
+
+  /**
+   * Validates name of Kubernetes Resource name, label or annotation based on Kubernetes regex
+   *
+   * @param name Name of resource/label/annotation
+   * @return
+   */
+  public static boolean isValidName(String name) {
+<span class="pc bpc" id="L245" title="1 of 2 branches missed.">    return Utils.isNotNullOrEmpty(name) &amp;&amp;</span>
+<span class="pc bpc" id="L246" title="1 of 2 branches missed.">      name.length() &lt; KUBERNETES_DNS1123_LABEL_MAX_LENGTH &amp;&amp;</span>
+<span class="fc bfc" id="L247" title="All 2 branches covered.">      KUBERNETES_DNS1123_LABEL_REGEX.matcher(name).matches();</span>
+  }
+
+
+  /**
+   * Validates labels/annotations of Kubernetes resources
+   *
+   * @param map Label/Annotation of resource
+   * @return
+   */
+  public static boolean isValidLabelOrAnnotation(Map&lt;String, String&gt; map) {
+<span class="fc bfc" id="L258" title="All 2 branches covered.">    for(Map.Entry&lt;String, String&gt; entry : map.entrySet()) {</span>
+<span class="pc bpc" id="L259" title="1 of 4 branches missed.">      if(!(isValidName(entry.getKey()) &amp;&amp; isValidName(entry.getValue()))) {</span>
+<span class="fc" id="L260">        return false;</span>
+      }
+<span class="fc" id="L262">    }</span>
+<span class="fc" id="L263">    return true;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

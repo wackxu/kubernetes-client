@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuildConfigSpec.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">BuildConfigSpec.java</span></div><h1>BuildConfigSpec.java</h1><pre class="source lang-java linenums">
+package io.fabric8.openshift.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.fabric8.kubernetes.api.model.ResourceRequirements;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;completionDeadlineSeconds&quot;,
+    &quot;failedBuildsHistoryLimit&quot;,
+    &quot;nodeSelector&quot;,
+    &quot;output&quot;,
+    &quot;postCommit&quot;,
+    &quot;resources&quot;,
+    &quot;revision&quot;,
+    &quot;runPolicy&quot;,
+    &quot;serviceAccount&quot;,
+    &quot;source&quot;,
+    &quot;strategy&quot;,
+    &quot;successfulBuildsHistoryLimit&quot;,
+    &quot;triggers&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L51">@ToString</span>
+<span class="pc bpc" id="L52" title="103 of 118 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class BuildConfigSpec implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;completionDeadlineSeconds&quot;)
+    private Long completionDeadlineSeconds;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;failedBuildsHistoryLimit&quot;)
+    private Integer failedBuildsHistoryLimit;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;nodeSelector&quot;)
+    @Valid
+    private Map&lt;String, String&gt; nodeSelector;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;output&quot;)
+    @Valid
+    private BuildOutput output;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;postCommit&quot;)
+    @Valid
+    private BuildPostCommitSpec postCommit;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;resources&quot;)
+    @Valid
+    private ResourceRequirements resources;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;revision&quot;)
+    @Valid
+    private SourceRevision revision;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;runPolicy&quot;)
+    private java.lang.String runPolicy;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;serviceAccount&quot;)
+    private java.lang.String serviceAccount;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;source&quot;)
+    @Valid
+    private BuildSource source;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;strategy&quot;)
+    @Valid
+    private BuildStrategy strategy;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;successfulBuildsHistoryLimit&quot;)
+    private Integer successfulBuildsHistoryLimit;
+    /**
+     * 
+     * 
+     */
+<span class="fc" id="L140">    @JsonProperty(&quot;triggers&quot;)</span>
+    @Valid
+    private List&lt;BuildTriggerPolicy&gt; triggers = new ArrayList&lt;BuildTriggerPolicy&gt;();
+<span class="fc" id="L143">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L150">    public BuildConfigSpec() {</span>
+<span class="fc" id="L151">    }</span>
+
+    /**
+     * 
+     * @param completionDeadlineSeconds
+     * @param resources
+     * @param serviceAccount
+     * @param source
+     * @param triggers
+     * @param nodeSelector
+     * @param revision
+     * @param output
+     * @param successfulBuildsHistoryLimit
+     * @param failedBuildsHistoryLimit
+     * @param postCommit
+     * @param strategy
+     * @param runPolicy
+     */
+<span class="fc" id="L169">    public BuildConfigSpec(Long completionDeadlineSeconds, Integer failedBuildsHistoryLimit, Map&lt;String, String&gt; nodeSelector, BuildOutput output, BuildPostCommitSpec postCommit, ResourceRequirements resources, SourceRevision revision, java.lang.String runPolicy, java.lang.String serviceAccount, BuildSource source, BuildStrategy strategy, Integer successfulBuildsHistoryLimit, List&lt;BuildTriggerPolicy&gt; triggers) {</span>
+<span class="fc" id="L170">        this.completionDeadlineSeconds = completionDeadlineSeconds;</span>
+<span class="fc" id="L171">        this.failedBuildsHistoryLimit = failedBuildsHistoryLimit;</span>
+<span class="fc" id="L172">        this.nodeSelector = nodeSelector;</span>
+<span class="fc" id="L173">        this.output = output;</span>
+<span class="fc" id="L174">        this.postCommit = postCommit;</span>
+<span class="fc" id="L175">        this.resources = resources;</span>
+<span class="fc" id="L176">        this.revision = revision;</span>
+<span class="fc" id="L177">        this.runPolicy = runPolicy;</span>
+<span class="fc" id="L178">        this.serviceAccount = serviceAccount;</span>
+<span class="fc" id="L179">        this.source = source;</span>
+<span class="fc" id="L180">        this.strategy = strategy;</span>
+<span class="fc" id="L181">        this.successfulBuildsHistoryLimit = successfulBuildsHistoryLimit;</span>
+<span class="fc" id="L182">        this.triggers = triggers;</span>
+<span class="fc" id="L183">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The completionDeadlineSeconds
+     */
+    @JsonProperty(&quot;completionDeadlineSeconds&quot;)
+    public Long getCompletionDeadlineSeconds() {
+<span class="fc" id="L193">        return completionDeadlineSeconds;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param completionDeadlineSeconds
+     *     The completionDeadlineSeconds
+     */
+    @JsonProperty(&quot;completionDeadlineSeconds&quot;)
+    public void setCompletionDeadlineSeconds(Long completionDeadlineSeconds) {
+<span class="fc" id="L204">        this.completionDeadlineSeconds = completionDeadlineSeconds;</span>
+<span class="fc" id="L205">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The failedBuildsHistoryLimit
+     */
+    @JsonProperty(&quot;failedBuildsHistoryLimit&quot;)
+    public Integer getFailedBuildsHistoryLimit() {
+<span class="fc" id="L215">        return failedBuildsHistoryLimit;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param failedBuildsHistoryLimit
+     *     The failedBuildsHistoryLimit
+     */
+    @JsonProperty(&quot;failedBuildsHistoryLimit&quot;)
+    public void setFailedBuildsHistoryLimit(Integer failedBuildsHistoryLimit) {
+<span class="fc" id="L226">        this.failedBuildsHistoryLimit = failedBuildsHistoryLimit;</span>
+<span class="fc" id="L227">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The nodeSelector
+     */
+    @JsonProperty(&quot;nodeSelector&quot;)
+    public Map&lt;String, String&gt; getNodeSelector() {
+<span class="fc" id="L237">        return nodeSelector;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param nodeSelector
+     *     The nodeSelector
+     */
+    @JsonProperty(&quot;nodeSelector&quot;)
+    public void setNodeSelector(Map&lt;String, String&gt; nodeSelector) {
+<span class="fc" id="L248">        this.nodeSelector = nodeSelector;</span>
+<span class="fc" id="L249">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The output
+     */
+    @JsonProperty(&quot;output&quot;)
+    public BuildOutput getOutput() {
+<span class="fc" id="L259">        return output;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param output
+     *     The output
+     */
+    @JsonProperty(&quot;output&quot;)
+    public void setOutput(BuildOutput output) {
+<span class="fc" id="L270">        this.output = output;</span>
+<span class="fc" id="L271">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The postCommit
+     */
+    @JsonProperty(&quot;postCommit&quot;)
+    public BuildPostCommitSpec getPostCommit() {
+<span class="fc" id="L281">        return postCommit;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param postCommit
+     *     The postCommit
+     */
+    @JsonProperty(&quot;postCommit&quot;)
+    public void setPostCommit(BuildPostCommitSpec postCommit) {
+<span class="fc" id="L292">        this.postCommit = postCommit;</span>
+<span class="fc" id="L293">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The resources
+     */
+    @JsonProperty(&quot;resources&quot;)
+    public ResourceRequirements getResources() {
+<span class="fc" id="L303">        return resources;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param resources
+     *     The resources
+     */
+    @JsonProperty(&quot;resources&quot;)
+    public void setResources(ResourceRequirements resources) {
+<span class="fc" id="L314">        this.resources = resources;</span>
+<span class="fc" id="L315">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The revision
+     */
+    @JsonProperty(&quot;revision&quot;)
+    public SourceRevision getRevision() {
+<span class="fc" id="L325">        return revision;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param revision
+     *     The revision
+     */
+    @JsonProperty(&quot;revision&quot;)
+    public void setRevision(SourceRevision revision) {
+<span class="fc" id="L336">        this.revision = revision;</span>
+<span class="fc" id="L337">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The runPolicy
+     */
+    @JsonProperty(&quot;runPolicy&quot;)
+    public java.lang.String getRunPolicy() {
+<span class="fc" id="L347">        return runPolicy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param runPolicy
+     *     The runPolicy
+     */
+    @JsonProperty(&quot;runPolicy&quot;)
+    public void setRunPolicy(java.lang.String runPolicy) {
+<span class="fc" id="L358">        this.runPolicy = runPolicy;</span>
+<span class="fc" id="L359">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The serviceAccount
+     */
+    @JsonProperty(&quot;serviceAccount&quot;)
+    public java.lang.String getServiceAccount() {
+<span class="fc" id="L369">        return serviceAccount;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param serviceAccount
+     *     The serviceAccount
+     */
+    @JsonProperty(&quot;serviceAccount&quot;)
+    public void setServiceAccount(java.lang.String serviceAccount) {
+<span class="fc" id="L380">        this.serviceAccount = serviceAccount;</span>
+<span class="fc" id="L381">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The source
+     */
+    @JsonProperty(&quot;source&quot;)
+    public BuildSource getSource() {
+<span class="fc" id="L391">        return source;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param source
+     *     The source
+     */
+    @JsonProperty(&quot;source&quot;)
+    public void setSource(BuildSource source) {
+<span class="fc" id="L402">        this.source = source;</span>
+<span class="fc" id="L403">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The strategy
+     */
+    @JsonProperty(&quot;strategy&quot;)
+    public BuildStrategy getStrategy() {
+<span class="fc" id="L413">        return strategy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param strategy
+     *     The strategy
+     */
+    @JsonProperty(&quot;strategy&quot;)
+    public void setStrategy(BuildStrategy strategy) {
+<span class="fc" id="L424">        this.strategy = strategy;</span>
+<span class="fc" id="L425">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The successfulBuildsHistoryLimit
+     */
+    @JsonProperty(&quot;successfulBuildsHistoryLimit&quot;)
+    public Integer getSuccessfulBuildsHistoryLimit() {
+<span class="fc" id="L435">        return successfulBuildsHistoryLimit;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param successfulBuildsHistoryLimit
+     *     The successfulBuildsHistoryLimit
+     */
+    @JsonProperty(&quot;successfulBuildsHistoryLimit&quot;)
+    public void setSuccessfulBuildsHistoryLimit(Integer successfulBuildsHistoryLimit) {
+<span class="fc" id="L446">        this.successfulBuildsHistoryLimit = successfulBuildsHistoryLimit;</span>
+<span class="fc" id="L447">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The triggers
+     */
+    @JsonProperty(&quot;triggers&quot;)
+    public List&lt;BuildTriggerPolicy&gt; getTriggers() {
+<span class="fc" id="L457">        return triggers;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param triggers
+     *     The triggers
+     */
+    @JsonProperty(&quot;triggers&quot;)
+    public void setTriggers(List&lt;BuildTriggerPolicy&gt; triggers) {
+<span class="fc" id="L468">        this.triggers = triggers;</span>
+<span class="fc" id="L469">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L473">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L478">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L479">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

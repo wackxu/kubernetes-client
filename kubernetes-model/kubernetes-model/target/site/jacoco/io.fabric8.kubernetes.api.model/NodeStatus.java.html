@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NodeStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">NodeStatus.java</span></div><h1>NodeStatus.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;addresses&quot;,
+    &quot;allocatable&quot;,
+    &quot;capacity&quot;,
+    &quot;conditions&quot;,
+    &quot;config&quot;,
+    &quot;daemonEndpoints&quot;,
+    &quot;images&quot;,
+    &quot;nodeInfo&quot;,
+    &quot;phase&quot;,
+    &quot;volumesAttached&quot;,
+    &quot;volumesInUse&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L47">@ToString</span>
+<span class="nc bnc" id="L48" title="All 102 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class NodeStatus implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L57">    @JsonProperty(&quot;addresses&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;NodeAddress&gt; addresses = new ArrayList&lt;NodeAddress&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;allocatable&quot;)
+    @Valid
+    private Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; allocatable;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;capacity&quot;)
+    @Valid
+    private Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; capacity;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L79">    @JsonProperty(&quot;conditions&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;NodeCondition&gt; conditions = new ArrayList&lt;NodeCondition&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;config&quot;)
+    @Valid
+    private NodeConfigStatus config;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;daemonEndpoints&quot;)
+    @Valid
+    private NodeDaemonEndpoints daemonEndpoints;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L101">    @JsonProperty(&quot;images&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;ContainerImage&gt; images = new ArrayList&lt;ContainerImage&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;nodeInfo&quot;)
+    @Valid
+    private NodeSystemInfo nodeInfo;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;phase&quot;)
+    private java.lang.String phase;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L122">    @JsonProperty(&quot;volumesAttached&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;AttachedVolume&gt; volumesAttached = new ArrayList&lt;AttachedVolume&gt;();
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L130">    @JsonProperty(&quot;volumesInUse&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;java.lang.String&gt; volumesInUse = new ArrayList&lt;java.lang.String&gt;();
+<span class="nc" id="L134">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L141">    public NodeStatus() {</span>
+<span class="nc" id="L142">    }</span>
+
+    /**
+     * 
+     * @param daemonEndpoints
+     * @param phase
+     * @param allocatable
+     * @param volumesInUse
+     * @param addresses
+     * @param images
+     * @param nodeInfo
+     * @param conditions
+     * @param config
+     * @param volumesAttached
+     * @param capacity
+     */
+<span class="nc" id="L158">    public NodeStatus(List&lt;NodeAddress&gt; addresses, Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; allocatable, Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; capacity, List&lt;NodeCondition&gt; conditions, NodeConfigStatus config, NodeDaemonEndpoints daemonEndpoints, List&lt;ContainerImage&gt; images, NodeSystemInfo nodeInfo, java.lang.String phase, List&lt;AttachedVolume&gt; volumesAttached, List&lt;java.lang.String&gt; volumesInUse) {</span>
+<span class="nc" id="L159">        this.addresses = addresses;</span>
+<span class="nc" id="L160">        this.allocatable = allocatable;</span>
+<span class="nc" id="L161">        this.capacity = capacity;</span>
+<span class="nc" id="L162">        this.conditions = conditions;</span>
+<span class="nc" id="L163">        this.config = config;</span>
+<span class="nc" id="L164">        this.daemonEndpoints = daemonEndpoints;</span>
+<span class="nc" id="L165">        this.images = images;</span>
+<span class="nc" id="L166">        this.nodeInfo = nodeInfo;</span>
+<span class="nc" id="L167">        this.phase = phase;</span>
+<span class="nc" id="L168">        this.volumesAttached = volumesAttached;</span>
+<span class="nc" id="L169">        this.volumesInUse = volumesInUse;</span>
+<span class="nc" id="L170">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The addresses
+     */
+    @JsonProperty(&quot;addresses&quot;)
+    public List&lt;NodeAddress&gt; getAddresses() {
+<span class="nc" id="L180">        return addresses;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param addresses
+     *     The addresses
+     */
+    @JsonProperty(&quot;addresses&quot;)
+    public void setAddresses(List&lt;NodeAddress&gt; addresses) {
+<span class="nc" id="L191">        this.addresses = addresses;</span>
+<span class="nc" id="L192">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The allocatable
+     */
+    @JsonProperty(&quot;allocatable&quot;)
+    public Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; getAllocatable() {
+<span class="nc" id="L202">        return allocatable;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param allocatable
+     *     The allocatable
+     */
+    @JsonProperty(&quot;allocatable&quot;)
+    public void setAllocatable(Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; allocatable) {
+<span class="nc" id="L213">        this.allocatable = allocatable;</span>
+<span class="nc" id="L214">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The capacity
+     */
+    @JsonProperty(&quot;capacity&quot;)
+    public Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; getCapacity() {
+<span class="nc" id="L224">        return capacity;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param capacity
+     *     The capacity
+     */
+    @JsonProperty(&quot;capacity&quot;)
+    public void setCapacity(Map&lt;String, io.fabric8.kubernetes.api.model.Quantity&gt; capacity) {
+<span class="nc" id="L235">        this.capacity = capacity;</span>
+<span class="nc" id="L236">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The conditions
+     */
+    @JsonProperty(&quot;conditions&quot;)
+    public List&lt;NodeCondition&gt; getConditions() {
+<span class="nc" id="L246">        return conditions;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param conditions
+     *     The conditions
+     */
+    @JsonProperty(&quot;conditions&quot;)
+    public void setConditions(List&lt;NodeCondition&gt; conditions) {
+<span class="nc" id="L257">        this.conditions = conditions;</span>
+<span class="nc" id="L258">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The config
+     */
+    @JsonProperty(&quot;config&quot;)
+    public NodeConfigStatus getConfig() {
+<span class="nc" id="L268">        return config;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param config
+     *     The config
+     */
+    @JsonProperty(&quot;config&quot;)
+    public void setConfig(NodeConfigStatus config) {
+<span class="nc" id="L279">        this.config = config;</span>
+<span class="nc" id="L280">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The daemonEndpoints
+     */
+    @JsonProperty(&quot;daemonEndpoints&quot;)
+    public NodeDaemonEndpoints getDaemonEndpoints() {
+<span class="nc" id="L290">        return daemonEndpoints;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param daemonEndpoints
+     *     The daemonEndpoints
+     */
+    @JsonProperty(&quot;daemonEndpoints&quot;)
+    public void setDaemonEndpoints(NodeDaemonEndpoints daemonEndpoints) {
+<span class="nc" id="L301">        this.daemonEndpoints = daemonEndpoints;</span>
+<span class="nc" id="L302">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The images
+     */
+    @JsonProperty(&quot;images&quot;)
+    public List&lt;ContainerImage&gt; getImages() {
+<span class="nc" id="L312">        return images;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param images
+     *     The images
+     */
+    @JsonProperty(&quot;images&quot;)
+    public void setImages(List&lt;ContainerImage&gt; images) {
+<span class="nc" id="L323">        this.images = images;</span>
+<span class="nc" id="L324">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The nodeInfo
+     */
+    @JsonProperty(&quot;nodeInfo&quot;)
+    public NodeSystemInfo getNodeInfo() {
+<span class="nc" id="L334">        return nodeInfo;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param nodeInfo
+     *     The nodeInfo
+     */
+    @JsonProperty(&quot;nodeInfo&quot;)
+    public void setNodeInfo(NodeSystemInfo nodeInfo) {
+<span class="nc" id="L345">        this.nodeInfo = nodeInfo;</span>
+<span class="nc" id="L346">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The phase
+     */
+    @JsonProperty(&quot;phase&quot;)
+    public java.lang.String getPhase() {
+<span class="nc" id="L356">        return phase;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param phase
+     *     The phase
+     */
+    @JsonProperty(&quot;phase&quot;)
+    public void setPhase(java.lang.String phase) {
+<span class="nc" id="L367">        this.phase = phase;</span>
+<span class="nc" id="L368">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The volumesAttached
+     */
+    @JsonProperty(&quot;volumesAttached&quot;)
+    public List&lt;AttachedVolume&gt; getVolumesAttached() {
+<span class="nc" id="L378">        return volumesAttached;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param volumesAttached
+     *     The volumesAttached
+     */
+    @JsonProperty(&quot;volumesAttached&quot;)
+    public void setVolumesAttached(List&lt;AttachedVolume&gt; volumesAttached) {
+<span class="nc" id="L389">        this.volumesAttached = volumesAttached;</span>
+<span class="nc" id="L390">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The volumesInUse
+     */
+    @JsonProperty(&quot;volumesInUse&quot;)
+    public List&lt;java.lang.String&gt; getVolumesInUse() {
+<span class="nc" id="L400">        return volumesInUse;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param volumesInUse
+     *     The volumesInUse
+     */
+    @JsonProperty(&quot;volumesInUse&quot;)
+    public void setVolumesInUse(List&lt;java.lang.String&gt; volumesInUse) {
+<span class="nc" id="L411">        this.volumesInUse = volumesInUse;</span>
+<span class="nc" id="L412">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L416">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L421">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L422">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultKubernetesClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client</a> &gt; <span class="el_source">DefaultKubernetesClient.java</span></div><h1>DefaultKubernetesClient.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client;
+
+import io.fabric8.kubernetes.api.builder.Visitor;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.KubernetesListBuilder;
+import io.fabric8.kubernetes.api.model.KubernetesResourceList;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinition;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinitionList;
+import io.fabric8.kubernetes.api.model.apiextensions.DoneableCustomResourceDefinition;
+import io.fabric8.kubernetes.api.model.ConfigMap;
+import io.fabric8.kubernetes.api.model.ConfigMapList;
+import io.fabric8.kubernetes.api.model.DoneableConfigMap;
+import io.fabric8.kubernetes.api.model.ComponentStatus;
+import io.fabric8.kubernetes.api.model.ComponentStatusList;
+import io.fabric8.kubernetes.api.model.DoneableComponentStatus;
+import io.fabric8.kubernetes.api.model.Endpoints;
+import io.fabric8.kubernetes.api.model.EndpointsList;
+import io.fabric8.kubernetes.api.model.DoneableEndpoints;
+import io.fabric8.kubernetes.api.model.Event;
+import io.fabric8.kubernetes.api.model.EventList;
+import io.fabric8.kubernetes.api.model.DoneableEvent;
+import io.fabric8.kubernetes.api.model.LimitRange;
+import io.fabric8.kubernetes.api.model.LimitRangeList;
+import io.fabric8.kubernetes.api.model.DoneableLimitRange;
+import io.fabric8.kubernetes.api.model.Namespace;
+import io.fabric8.kubernetes.api.model.NamespaceList;
+import io.fabric8.kubernetes.api.model.DoneableNamespace;
+import io.fabric8.kubernetes.api.model.Node;
+import io.fabric8.kubernetes.api.model.NodeList;
+import io.fabric8.kubernetes.api.model.DoneableNode;
+import io.fabric8.kubernetes.api.model.PersistentVolume;
+import io.fabric8.kubernetes.api.model.PersistentVolumeList;
+import io.fabric8.kubernetes.api.model.DoneablePersistentVolume;
+import io.fabric8.kubernetes.api.model.PersistentVolumeClaim;
+import io.fabric8.kubernetes.api.model.PersistentVolumeClaimList;
+import io.fabric8.kubernetes.api.model.DoneablePersistentVolumeClaim;
+import io.fabric8.kubernetes.api.model.Pod;
+import io.fabric8.kubernetes.api.model.PodList;
+import io.fabric8.kubernetes.api.model.DoneablePod;
+import io.fabric8.kubernetes.api.model.ReplicationController;
+import io.fabric8.kubernetes.api.model.ReplicationControllerList;
+import io.fabric8.kubernetes.api.model.DoneableReplicationController;
+import io.fabric8.kubernetes.api.model.ResourceQuota;
+import io.fabric8.kubernetes.api.model.ResourceQuotaList;
+import io.fabric8.kubernetes.api.model.DoneableResourceQuota;
+import io.fabric8.kubernetes.api.model.Secret;
+import io.fabric8.kubernetes.api.model.SecretList;
+import io.fabric8.kubernetes.api.model.DoneableSecret;
+import io.fabric8.kubernetes.api.model.Service;
+import io.fabric8.kubernetes.api.model.ServiceList;
+import io.fabric8.kubernetes.api.model.DoneableService;
+import io.fabric8.kubernetes.api.model.ServiceAccount;
+import io.fabric8.kubernetes.api.model.ServiceAccountList;
+import io.fabric8.kubernetes.api.model.DoneableServiceAccount;
+import io.fabric8.kubernetes.client.dsl.*;
+import io.fabric8.kubernetes.client.dsl.internal.*;
+import io.fabric8.kubernetes.client.utils.Serialization;
+import okhttp3.OkHttpClient;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class DefaultKubernetesClient extends BaseClient implements NamespacedKubernetesClient {
+
+  public DefaultKubernetesClient() throws KubernetesClientException {
+<span class="fc" id="L83">    super();</span>
+<span class="fc" id="L84">  }</span>
+
+  public DefaultKubernetesClient(String masterUrl) throws KubernetesClientException {
+<span class="nc" id="L87">    super(masterUrl);</span>
+<span class="nc" id="L88">  }</span>
+
+  public DefaultKubernetesClient(Config config) throws KubernetesClientException {
+<span class="fc" id="L91">    super(config);</span>
+<span class="fc" id="L92">  }</span>
+
+
+  public DefaultKubernetesClient(OkHttpClient httpClient, Config config) throws KubernetesClientException {
+<span class="nc" id="L96">    super(httpClient, config);</span>
+<span class="nc" id="L97">  }</span>
+
+  public static DefaultKubernetesClient fromConfig(String config) {
+<span class="fc" id="L100">    return new DefaultKubernetesClient(Serialization.unmarshal(config, Config.class));</span>
+  }
+
+  public static DefaultKubernetesClient fromConfig(InputStream is) {
+<span class="fc" id="L104">    return new DefaultKubernetesClient(Serialization.unmarshal(is, Config.class));</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ComponentStatus, ComponentStatusList, DoneableComponentStatus, Resource&lt;ComponentStatus, DoneableComponentStatus&gt;&gt; componentstatuses() {
+<span class="nc" id="L109">    return new ComponentStatusOperationsImpl(httpClient, getConfiguration(), null);</span>
+  }
+
+  @Override
+  public ParameterNamespaceListVisitFromServerGetDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; load(InputStream is) {
+<span class="nc" id="L114">    return new NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableListImpl(httpClient, getConfiguration(), getNamespace(), null, false, false, new ArrayList&lt;Visitor&gt;(), is, null, false) {</span>
+    };
+  }
+
+  @Override
+  public NamespaceListVisitFromServerGetDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resourceList(KubernetesResourceList item) {
+<span class="nc" id="L120">    return new NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableListImpl(httpClient, getConfiguration(), getNamespace(), null, false, false, new ArrayList&lt;Visitor&gt;(), item, null, null, -1, false) {</span>
+    };
+  }
+
+  @Override
+  public NamespaceListVisitFromServerGetDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resourceList(HasMetadata... items) {
+<span class="nc" id="L126">    return resourceList(new KubernetesListBuilder().withItems(items).build());</span>
+  }
+
+  @Override
+  public NamespaceListVisitFromServerGetDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resourceList(Collection&lt;HasMetadata&gt; items) {
+<span class="nc" id="L131">    return resourceList(new KubernetesListBuilder().withItems(new ArrayList&lt;HasMetadata&gt;(items)).build());</span>
+  }
+
+  @Override
+  public ParameterNamespaceListVisitFromServerGetDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resourceList(String s) {
+<span class="nc" id="L136">    return new NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableListImpl(httpClient, getConfiguration(), getNamespace(), null, false, false, new ArrayList&lt;Visitor&gt;(), s, null, null, -1, false) {</span>
+    };
+  }
+
+
+  @Override
+  public NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resource(HasMetadata item) {
+<span class="nc" id="L143">    return new NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableImpl(httpClient, getConfiguration(), getNamespace(), null, false, false, new ArrayList&lt;Visitor&gt;(), item, -1, false) {</span>
+    };
+  }
+
+  @Override
+  public NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resource(String s) {
+<span class="nc" id="L149">    return new NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableImpl(httpClient, getConfiguration(), getNamespace(), null, false, false, new ArrayList&lt;Visitor&gt;(), s, -1, false) {</span>
+    };
+  }
+
+  @Override
+  public MixedOperation&lt;Endpoints, EndpointsList, DoneableEndpoints, Resource&lt;Endpoints, DoneableEndpoints&gt;&gt; endpoints() {
+<span class="nc" id="L155">    return new EndpointsOperationsImpl(httpClient, getConfiguration(), getNamespace());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Event, EventList, DoneableEvent, Resource&lt;Event, DoneableEvent&gt;&gt; events() {
+<span class="nc" id="L160">    return new EventOperationsImpl(httpClient, getConfiguration(), getNamespace());</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;Namespace, NamespaceList, DoneableNamespace, Resource&lt;Namespace, DoneableNamespace&gt;&gt; namespaces() {
+<span class="nc" id="L165">    return new NamespaceOperationsImpl(httpClient, getConfiguration());</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;Node, NodeList, DoneableNode, Resource&lt;Node, DoneableNode&gt;&gt; nodes() {
+<span class="nc" id="L170">    return new NodeOperationsImpl(httpClient, getConfiguration());</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;PersistentVolume, PersistentVolumeList, DoneablePersistentVolume, Resource&lt;PersistentVolume, DoneablePersistentVolume&gt;&gt; persistentVolumes() {
+<span class="nc" id="L175">    return new PersistentVolumeOperationsImpl(httpClient, getConfiguration());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;PersistentVolumeClaim, PersistentVolumeClaimList, DoneablePersistentVolumeClaim, Resource&lt;PersistentVolumeClaim, DoneablePersistentVolumeClaim&gt;&gt; persistentVolumeClaims() {
+<span class="nc" id="L180">    return new PersistentVolumeClaimOperationsImpl(httpClient, getConfiguration(), getNamespace());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Pod, PodList, DoneablePod, PodResource&lt;Pod, DoneablePod&gt;&gt; pods() {
+<span class="nc" id="L185">    return new PodOperationsImpl(httpClient, getConfiguration(), getNamespace());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ReplicationController, ReplicationControllerList, DoneableReplicationController, RollableScalableResource&lt;ReplicationController, DoneableReplicationController&gt;&gt; replicationControllers() {
+<span class="nc" id="L190">    return new ReplicationControllerOperationsImpl(httpClient, getConfiguration(), getNamespace());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ResourceQuota, ResourceQuotaList, DoneableResourceQuota, Resource&lt;ResourceQuota, DoneableResourceQuota&gt;&gt; resourceQuotas() {
+<span class="nc" id="L195">    return new ResourceQuotaOperationsImpl(httpClient, getConfiguration(), getNamespace());</span>
+  }
+
+  @Override
+  public SchedulingAPIGroupDSL scheduling() {
+<span class="nc" id="L200">    return adapt(SchedulingAPIGroupClient.class);</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Secret, SecretList, DoneableSecret, Resource&lt;Secret, DoneableSecret&gt;&gt; secrets() {
+<span class="nc" id="L205">    return new SecretOperationsImpl(httpClient, getConfiguration(), getNamespace());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Service, ServiceList, DoneableService, ServiceResource&lt;Service, DoneableService&gt;&gt; services() {
+<span class="nc" id="L210">    return new ServiceOperationsImpl(httpClient, getConfiguration(), getNamespace());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ServiceAccount, ServiceAccountList, DoneableServiceAccount, Resource&lt;ServiceAccount, DoneableServiceAccount&gt;&gt; serviceAccounts() {
+<span class="nc" id="L215">    return new ServiceAccountOperationsImpl(httpClient, getConfiguration(), getNamespace());</span>
+  }
+
+  @Override
+  public KubernetesListMixedOperation lists() {
+<span class="nc" id="L220">    return new KubernetesListOperationsImpl(httpClient, getConfiguration(), getNamespace());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ConfigMap, ConfigMapList, DoneableConfigMap, Resource&lt;ConfigMap, DoneableConfigMap&gt;&gt; configMaps() {
+<span class="nc" id="L225">    return new ConfigMapOperationsImpl(httpClient, getConfiguration(), getNamespace());</span>
+  }
+
+  @Override
+  public MixedOperation&lt;LimitRange, LimitRangeList, DoneableLimitRange, Resource&lt;LimitRange, DoneableLimitRange&gt;&gt; limitRanges() {
+<span class="nc" id="L230">    return new LimitRangeOperationsImpl(httpClient, getConfiguration(), getNamespace());</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;CustomResourceDefinition, CustomResourceDefinitionList, DoneableCustomResourceDefinition, Resource&lt;CustomResourceDefinition, DoneableCustomResourceDefinition&gt;&gt; customResourceDefinitions() {
+<span class="nc" id="L235">    return new CustomResourceDefinitionOperationsImpl(httpClient, getConfiguration());</span>
+  }
+
+  @Override
+  public &lt;T extends HasMetadata, L extends KubernetesResourceList, D extends Doneable&lt;T&gt;&gt; MixedOperation&lt;T, L, D, Resource&lt;T, D&gt;&gt; customResources(CustomResourceDefinition crd, Class&lt;T&gt; resourceType, Class&lt;L&gt; listClass, Class&lt;D&gt; doneClass) {
+<span class="nc" id="L240">    return new CustomResourceOperationsImpl&lt;T,L,D&gt;(httpClient, getConfiguration(), crd, resourceType, listClass, doneClass);</span>
+  }
+
+  @Override
+  public &lt;T extends HasMetadata, L extends KubernetesResourceList, D extends Doneable&lt;T&gt;&gt; MixedOperation&lt;T, L, D, Resource&lt;T, D&gt;&gt; customResource(CustomResourceDefinition crd, Class&lt;T&gt; resourceType, Class&lt;L&gt; listClass, Class&lt;D&gt; doneClass) {
+<span class="nc" id="L245">    return customResources(crd, resourceType, listClass, doneClass);</span>
+  }
+
+  @Override
+  public NamespacedKubernetesClient inNamespace(String namespace)
+  {
+<span class="nc" id="L251">    Config updated = new ConfigBuilder(getConfiguration()).withNamespace(namespace).build();</span>
+<span class="nc" id="L252">    return new DefaultKubernetesClient(httpClient, updated);</span>
+  }
+
+  @Override
+  public NamespacedKubernetesClient inAnyNamespace() {
+<span class="nc" id="L257">    return inNamespace(null);</span>
+  }
+
+
+  @Override
+  public FunctionCallable&lt;NamespacedKubernetesClient&gt; withRequestConfig(RequestConfig requestConfig) {
+<span class="nc" id="L263">    return new WithRequestCallable&lt;NamespacedKubernetesClient&gt;(this, requestConfig);</span>
+  }
+
+  @Override
+  public ExtensionsAPIGroupDSL extensions() {
+<span class="nc" id="L268">    return adapt(ExtensionsAPIGroupClient.class);</span>
+  }
+
+  @Override
+  public VersionInfo getVersion() {
+<span class="nc" id="L273">    return new ClusterOperationsImpl(httpClient, getConfiguration(), &quot;version&quot;).fetchVersion();</span>
+  }
+
+  @Override
+  public AppsAPIGroupDSL apps() {
+<span class="nc" id="L278">    return adapt(AppsAPIGroupClient.class);</span>
+  }
+
+  @Override
+  public AutoscalingAPIGroupDSL autoscaling() {
+<span class="nc" id="L283">    return adapt(AutoscalingAPIGroupClient.class);</span>
+  }
+
+  @Override
+<span class="nc" id="L287">  public NetworkAPIGroupDSL network() { return adapt(NetworkAPIGroupClient.class); }</span>
+
+  @Override
+<span class="nc" id="L290">  public StorageAPIGroupDSL storage() { return adapt(StorageAPIGroupClient.class); }</span>
+
+  @Override
+<span class="nc" id="L293">  public BatchAPIGroupDSL batch() { return adapt(BatchAPIGroupClient.class); }</span>
+
+  @Override
+<span class="nc" id="L296">  public PolicyAPIGroupDSL policy() { return adapt(PolicyAPIGroupClient.class); }</span>
+
+  @Override
+<span class="nc" id="L299">  public RbacAPIGroupDSL rbac() { return adapt(RbacAPIGroupClient.class); }</span>
+
+  @Override
+<span class="nc" id="L302">  public SettingsAPIGroupDSL settings() { return adapt(SettingsAPIGroupClient.class); }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

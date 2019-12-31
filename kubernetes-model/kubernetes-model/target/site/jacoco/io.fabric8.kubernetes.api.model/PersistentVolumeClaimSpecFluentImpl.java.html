@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PersistentVolumeClaimSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">PersistentVolumeClaimSpecFluentImpl.java</span></div><h1>PersistentVolumeClaimSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class PersistentVolumeClaimSpecFluentImpl&lt;A extends PersistentVolumeClaimSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements PersistentVolumeClaimSpecFluent&lt;A&gt;{
+
+    private List&lt;String&gt; accessModes;
+    private TypedLocalObjectReferenceBuilder dataSource;
+    private ResourceRequirementsBuilder resources;
+    private LabelSelectorBuilder selector;
+    private String storageClassName;
+    private String volumeMode;
+    private String volumeName;
+
+<span class="nc" id="L27">    public PersistentVolumeClaimSpecFluentImpl(){</span>
+<span class="nc" id="L28">    }</span>
+<span class="nc" id="L29">    public PersistentVolumeClaimSpecFluentImpl(PersistentVolumeClaimSpec instance){</span>
+<span class="nc" id="L30">            this.withAccessModes(instance.getAccessModes()); </span>
+<span class="nc" id="L31">            this.withDataSource(instance.getDataSource()); </span>
+<span class="nc" id="L32">            this.withResources(instance.getResources()); </span>
+<span class="nc" id="L33">            this.withSelector(instance.getSelector()); </span>
+<span class="nc" id="L34">            this.withStorageClassName(instance.getStorageClassName()); </span>
+<span class="nc" id="L35">            this.withVolumeMode(instance.getVolumeMode()); </span>
+<span class="nc" id="L36">            this.withVolumeName(instance.getVolumeName()); </span>
+<span class="nc" id="L37">    }</span>
+
+    public A addToAccessModes(int index,String item){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            if (this.accessModes == null) {this.accessModes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L41">            this.accessModes.add(index, item);</span>
+<span class="nc" id="L42">            return (A)this;</span>
+    }
+
+    public A setToAccessModes(int index,String item){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (this.accessModes == null) {this.accessModes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L47">            this.accessModes.set(index, item); return (A)this;</span>
+    }
+
+    public A addToAccessModes(String... items){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            if (this.accessModes == null) {this.accessModes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            for (String item : items) {this.accessModes.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToAccessModes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            if (this.accessModes == null) {this.accessModes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            for (String item : items) {this.accessModes.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromAccessModes(String... items){
+<span class="nc bnc" id="L61" title="All 4 branches missed.">            for (String item : items) {if (this.accessModes!= null){ this.accessModes.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAccessModes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L65" title="All 4 branches missed.">            for (String item : items) {if (this.accessModes!= null){ this.accessModes.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getAccessModes(){
+<span class="nc" id="L69">            return this.accessModes;</span>
+    }
+
+    public String getAccessMode(int index){
+<span class="nc" id="L73">            return this.accessModes.get(index);</span>
+    }
+
+    public String getFirstAccessMode(){
+<span class="nc" id="L77">            return this.accessModes.get(0);</span>
+    }
+
+    public String getLastAccessMode(){
+<span class="nc" id="L81">            return this.accessModes.get(accessModes.size() - 1);</span>
+    }
+
+    public String getMatchingAccessMode(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L85" title="All 4 branches missed.">            for (String item: accessModes) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withAccessModes(List&lt;String&gt; accessModes){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (this.accessModes != null) { _visitables.removeAll(this.accessModes);}</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">            if (accessModes != null) {this.accessModes = new ArrayList&lt;String&gt;(); for (String item : accessModes){this.addToAccessModes(item);}} else { this.accessModes = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withAccessModes(String... accessModes){
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            if (this.accessModes != null) {this.accessModes.clear();}</span>
+<span class="nc bnc" id="L95" title="All 4 branches missed.">            if (accessModes != null) {for (String item :accessModes){ this.addToAccessModes(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAccessModes(){
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            return accessModes != null &amp;&amp; !accessModes.isEmpty();</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildDataSource instead.
+ * @return The buildable object.
+ */
+@Deprecated public TypedLocalObjectReference getDataSource(){
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            return this.dataSource!=null?this.dataSource.build():null;</span>
+    }
+
+    public TypedLocalObjectReference buildDataSource(){
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            return this.dataSource!=null?this.dataSource.build():null;</span>
+    }
+
+    public A withDataSource(TypedLocalObjectReference dataSource){
+<span class="nc" id="L116">            _visitables.remove(this.dataSource);</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            if (dataSource!=null){ this.dataSource= new TypedLocalObjectReferenceBuilder(dataSource); _visitables.add(this.dataSource);} return (A) this;</span>
+    }
+
+    public Boolean hasDataSource(){
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            return this.dataSource != null;</span>
+    }
+
+    public A withNewDataSource(String apiGroup,String kind,String name){
+<span class="nc" id="L125">            return (A)withDataSource(new TypedLocalObjectReference(apiGroup, kind, name));</span>
+    }
+
+    public PersistentVolumeClaimSpecFluent.DataSourceNested&lt;A&gt; withNewDataSource(){
+<span class="nc" id="L129">            return new DataSourceNestedImpl();</span>
+    }
+
+    public PersistentVolumeClaimSpecFluent.DataSourceNested&lt;A&gt; withNewDataSourceLike(TypedLocalObjectReference item){
+<span class="nc" id="L133">            return new DataSourceNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeClaimSpecFluent.DataSourceNested&lt;A&gt; editDataSource(){
+<span class="nc" id="L137">            return withNewDataSourceLike(getDataSource());</span>
+    }
+
+    public PersistentVolumeClaimSpecFluent.DataSourceNested&lt;A&gt; editOrNewDataSource(){
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            return withNewDataSourceLike(getDataSource() != null ? getDataSource(): new TypedLocalObjectReferenceBuilder().build());</span>
+    }
+
+    public PersistentVolumeClaimSpecFluent.DataSourceNested&lt;A&gt; editOrNewDataSourceLike(TypedLocalObjectReference item){
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            return withNewDataSourceLike(getDataSource() != null ? getDataSource(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildResources instead.
+ * @return The buildable object.
+ */
+@Deprecated public ResourceRequirements getResources(){
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            return this.resources!=null?this.resources.build():null;</span>
+    }
+
+    public ResourceRequirements buildResources(){
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            return this.resources!=null?this.resources.build():null;</span>
+    }
+
+    public A withResources(ResourceRequirements resources){
+<span class="nc" id="L162">            _visitables.remove(this.resources);</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            if (resources!=null){ this.resources= new ResourceRequirementsBuilder(resources); _visitables.add(this.resources);} return (A) this;</span>
+    }
+
+    public Boolean hasResources(){
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            return this.resources != null;</span>
+    }
+
+    public PersistentVolumeClaimSpecFluent.ResourcesNested&lt;A&gt; withNewResources(){
+<span class="nc" id="L171">            return new ResourcesNestedImpl();</span>
+    }
+
+    public PersistentVolumeClaimSpecFluent.ResourcesNested&lt;A&gt; withNewResourcesLike(ResourceRequirements item){
+<span class="nc" id="L175">            return new ResourcesNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeClaimSpecFluent.ResourcesNested&lt;A&gt; editResources(){
+<span class="nc" id="L179">            return withNewResourcesLike(getResources());</span>
+    }
+
+    public PersistentVolumeClaimSpecFluent.ResourcesNested&lt;A&gt; editOrNewResources(){
+<span class="nc bnc" id="L183" title="All 2 branches missed.">            return withNewResourcesLike(getResources() != null ? getResources(): new ResourceRequirementsBuilder().build());</span>
+    }
+
+    public PersistentVolumeClaimSpecFluent.ResourcesNested&lt;A&gt; editOrNewResourcesLike(ResourceRequirements item){
+<span class="nc bnc" id="L187" title="All 2 branches missed.">            return withNewResourcesLike(getResources() != null ? getResources(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSelector instead.
+ * @return The buildable object.
+ */
+@Deprecated public LabelSelector getSelector(){
+<span class="nc bnc" id="L196" title="All 2 branches missed.">            return this.selector!=null?this.selector.build():null;</span>
+    }
+
+    public LabelSelector buildSelector(){
+<span class="nc bnc" id="L200" title="All 2 branches missed.">            return this.selector!=null?this.selector.build():null;</span>
+    }
+
+    public A withSelector(LabelSelector selector){
+<span class="nc" id="L204">            _visitables.remove(this.selector);</span>
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            if (selector!=null){ this.selector= new LabelSelectorBuilder(selector); _visitables.add(this.selector);} return (A) this;</span>
+    }
+
+    public Boolean hasSelector(){
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            return this.selector != null;</span>
+    }
+
+    public PersistentVolumeClaimSpecFluent.SelectorNested&lt;A&gt; withNewSelector(){
+<span class="nc" id="L213">            return new SelectorNestedImpl();</span>
+    }
+
+    public PersistentVolumeClaimSpecFluent.SelectorNested&lt;A&gt; withNewSelectorLike(LabelSelector item){
+<span class="nc" id="L217">            return new SelectorNestedImpl(item);</span>
+    }
+
+    public PersistentVolumeClaimSpecFluent.SelectorNested&lt;A&gt; editSelector(){
+<span class="nc" id="L221">            return withNewSelectorLike(getSelector());</span>
+    }
+
+    public PersistentVolumeClaimSpecFluent.SelectorNested&lt;A&gt; editOrNewSelector(){
+<span class="nc bnc" id="L225" title="All 2 branches missed.">            return withNewSelectorLike(getSelector() != null ? getSelector(): new LabelSelectorBuilder().build());</span>
+    }
+
+    public PersistentVolumeClaimSpecFluent.SelectorNested&lt;A&gt; editOrNewSelectorLike(LabelSelector item){
+<span class="nc bnc" id="L229" title="All 2 branches missed.">            return withNewSelectorLike(getSelector() != null ? getSelector(): item);</span>
+    }
+
+    public String getStorageClassName(){
+<span class="nc" id="L233">            return this.storageClassName;</span>
+    }
+
+    public A withStorageClassName(String storageClassName){
+<span class="nc" id="L237">            this.storageClassName=storageClassName; return (A) this;</span>
+    }
+
+    public Boolean hasStorageClassName(){
+<span class="nc bnc" id="L241" title="All 2 branches missed.">            return this.storageClassName != null;</span>
+    }
+
+    public String getVolumeMode(){
+<span class="nc" id="L245">            return this.volumeMode;</span>
+    }
+
+    public A withVolumeMode(String volumeMode){
+<span class="nc" id="L249">            this.volumeMode=volumeMode; return (A) this;</span>
+    }
+
+    public Boolean hasVolumeMode(){
+<span class="nc bnc" id="L253" title="All 2 branches missed.">            return this.volumeMode != null;</span>
+    }
+
+    public String getVolumeName(){
+<span class="nc" id="L257">            return this.volumeName;</span>
+    }
+
+    public A withVolumeName(String volumeName){
+<span class="nc" id="L261">            this.volumeName=volumeName; return (A) this;</span>
+    }
+
+    public Boolean hasVolumeName(){
+<span class="nc bnc" id="L265" title="All 2 branches missed.">            return this.volumeName != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L269" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L270" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L271" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L272">            PersistentVolumeClaimSpecFluentImpl that = (PersistentVolumeClaimSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L273" title="All 6 branches missed.">            if (accessModes != null ? !accessModes.equals(that.accessModes) :that.accessModes != null) return false;</span>
+<span class="nc bnc" id="L274" title="All 6 branches missed.">            if (dataSource != null ? !dataSource.equals(that.dataSource) :that.dataSource != null) return false;</span>
+<span class="nc bnc" id="L275" title="All 6 branches missed.">            if (resources != null ? !resources.equals(that.resources) :that.resources != null) return false;</span>
+<span class="nc bnc" id="L276" title="All 6 branches missed.">            if (selector != null ? !selector.equals(that.selector) :that.selector != null) return false;</span>
+<span class="nc bnc" id="L277" title="All 6 branches missed.">            if (storageClassName != null ? !storageClassName.equals(that.storageClassName) :that.storageClassName != null) return false;</span>
+<span class="nc bnc" id="L278" title="All 6 branches missed.">            if (volumeMode != null ? !volumeMode.equals(that.volumeMode) :that.volumeMode != null) return false;</span>
+<span class="nc bnc" id="L279" title="All 6 branches missed.">            if (volumeName != null ? !volumeName.equals(that.volumeName) :that.volumeName != null) return false;</span>
+<span class="nc" id="L280">            return true;</span>
+    }
+
+
+    public class DataSourceNestedImpl&lt;N&gt; extends TypedLocalObjectReferenceFluentImpl&lt;PersistentVolumeClaimSpecFluent.DataSourceNested&lt;N&gt;&gt; implements PersistentVolumeClaimSpecFluent.DataSourceNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TypedLocalObjectReferenceBuilder builder;
+    
+<span class="nc" id="L288">            DataSourceNestedImpl(TypedLocalObjectReference item){</span>
+<span class="nc" id="L289">                    this.builder = new TypedLocalObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L290">            }</span>
+<span class="nc" id="L291">            DataSourceNestedImpl(){</span>
+<span class="nc" id="L292">                    this.builder = new TypedLocalObjectReferenceBuilder(this);</span>
+<span class="nc" id="L293">            }</span>
+    
+    public N and(){
+<span class="nc" id="L296">            return (N) PersistentVolumeClaimSpecFluentImpl.this.withDataSource(builder.build());</span>
+    }
+    public N endDataSource(){
+<span class="nc" id="L299">            return and();</span>
+    }
+
+}
+    public class ResourcesNestedImpl&lt;N&gt; extends ResourceRequirementsFluentImpl&lt;PersistentVolumeClaimSpecFluent.ResourcesNested&lt;N&gt;&gt; implements PersistentVolumeClaimSpecFluent.ResourcesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ResourceRequirementsBuilder builder;
+    
+<span class="nc" id="L307">            ResourcesNestedImpl(ResourceRequirements item){</span>
+<span class="nc" id="L308">                    this.builder = new ResourceRequirementsBuilder(this, item);</span>
+<span class="nc" id="L309">            }</span>
+<span class="nc" id="L310">            ResourcesNestedImpl(){</span>
+<span class="nc" id="L311">                    this.builder = new ResourceRequirementsBuilder(this);</span>
+<span class="nc" id="L312">            }</span>
+    
+    public N and(){
+<span class="nc" id="L315">            return (N) PersistentVolumeClaimSpecFluentImpl.this.withResources(builder.build());</span>
+    }
+    public N endResources(){
+<span class="nc" id="L318">            return and();</span>
+    }
+
+}
+    public class SelectorNestedImpl&lt;N&gt; extends LabelSelectorFluentImpl&lt;PersistentVolumeClaimSpecFluent.SelectorNested&lt;N&gt;&gt; implements PersistentVolumeClaimSpecFluent.SelectorNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LabelSelectorBuilder builder;
+    
+<span class="nc" id="L326">            SelectorNestedImpl(LabelSelector item){</span>
+<span class="nc" id="L327">                    this.builder = new LabelSelectorBuilder(this, item);</span>
+<span class="nc" id="L328">            }</span>
+<span class="nc" id="L329">            SelectorNestedImpl(){</span>
+<span class="nc" id="L330">                    this.builder = new LabelSelectorBuilder(this);</span>
+<span class="nc" id="L331">            }</span>
+    
+    public N and(){
+<span class="nc" id="L334">            return (N) PersistentVolumeClaimSpecFluentImpl.this.withSelector(builder.build());</span>
+    }
+    public N endSelector(){
+<span class="nc" id="L337">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

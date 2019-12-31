@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TagReference.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">TagReference.java</span></div><h1>TagReference.java</h1><pre class="source lang-java linenums">
+package io.fabric8.openshift.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;annotations&quot;,
+    &quot;from&quot;,
+    &quot;generation&quot;,
+    &quot;importPolicy&quot;,
+    &quot;name&quot;,
+    &quot;reference&quot;,
+    &quot;referencePolicy&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L43">@ToString</span>
+<span class="pc bpc" id="L44" title="61 of 70 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class TagReference implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;annotations&quot;)
+    @Valid
+    private Map&lt;String, String&gt; annotations;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;from&quot;)
+    @Valid
+    private ObjectReference from;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;generation&quot;)
+    private Long generation;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;importPolicy&quot;)
+    @Valid
+    private TagImportPolicy importPolicy;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;name&quot;)
+    private java.lang.String name;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;reference&quot;)
+    private Boolean reference;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;referencePolicy&quot;)
+    @Valid
+    private TagReferencePolicy referencePolicy;
+<span class="fc" id="L95">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L102">    public TagReference() {</span>
+<span class="fc" id="L103">    }</span>
+
+    /**
+     * 
+     * @param generation
+     * @param reference
+     * @param importPolicy
+     * @param name
+     * @param referencePolicy
+     * @param annotations
+     * @param from
+     */
+<span class="fc" id="L115">    public TagReference(Map&lt;String, String&gt; annotations, ObjectReference from, Long generation, TagImportPolicy importPolicy, java.lang.String name, Boolean reference, TagReferencePolicy referencePolicy) {</span>
+<span class="fc" id="L116">        this.annotations = annotations;</span>
+<span class="fc" id="L117">        this.from = from;</span>
+<span class="fc" id="L118">        this.generation = generation;</span>
+<span class="fc" id="L119">        this.importPolicy = importPolicy;</span>
+<span class="fc" id="L120">        this.name = name;</span>
+<span class="fc" id="L121">        this.reference = reference;</span>
+<span class="fc" id="L122">        this.referencePolicy = referencePolicy;</span>
+<span class="fc" id="L123">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The annotations
+     */
+    @JsonProperty(&quot;annotations&quot;)
+    public Map&lt;String, String&gt; getAnnotations() {
+<span class="fc" id="L133">        return annotations;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param annotations
+     *     The annotations
+     */
+    @JsonProperty(&quot;annotations&quot;)
+    public void setAnnotations(Map&lt;String, String&gt; annotations) {
+<span class="fc" id="L144">        this.annotations = annotations;</span>
+<span class="fc" id="L145">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The from
+     */
+    @JsonProperty(&quot;from&quot;)
+    public ObjectReference getFrom() {
+<span class="fc" id="L155">        return from;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param from
+     *     The from
+     */
+    @JsonProperty(&quot;from&quot;)
+    public void setFrom(ObjectReference from) {
+<span class="fc" id="L166">        this.from = from;</span>
+<span class="fc" id="L167">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The generation
+     */
+    @JsonProperty(&quot;generation&quot;)
+    public Long getGeneration() {
+<span class="fc" id="L177">        return generation;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param generation
+     *     The generation
+     */
+    @JsonProperty(&quot;generation&quot;)
+    public void setGeneration(Long generation) {
+<span class="fc" id="L188">        this.generation = generation;</span>
+<span class="fc" id="L189">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The importPolicy
+     */
+    @JsonProperty(&quot;importPolicy&quot;)
+    public TagImportPolicy getImportPolicy() {
+<span class="fc" id="L199">        return importPolicy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param importPolicy
+     *     The importPolicy
+     */
+    @JsonProperty(&quot;importPolicy&quot;)
+    public void setImportPolicy(TagImportPolicy importPolicy) {
+<span class="fc" id="L210">        this.importPolicy = importPolicy;</span>
+<span class="fc" id="L211">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The name
+     */
+    @JsonProperty(&quot;name&quot;)
+    public java.lang.String getName() {
+<span class="fc" id="L221">        return name;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param name
+     *     The name
+     */
+    @JsonProperty(&quot;name&quot;)
+    public void setName(java.lang.String name) {
+<span class="fc" id="L232">        this.name = name;</span>
+<span class="fc" id="L233">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The reference
+     */
+    @JsonProperty(&quot;reference&quot;)
+    public Boolean getReference() {
+<span class="fc" id="L243">        return reference;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param reference
+     *     The reference
+     */
+    @JsonProperty(&quot;reference&quot;)
+    public void setReference(Boolean reference) {
+<span class="nc" id="L254">        this.reference = reference;</span>
+<span class="nc" id="L255">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The referencePolicy
+     */
+    @JsonProperty(&quot;referencePolicy&quot;)
+    public TagReferencePolicy getReferencePolicy() {
+<span class="fc" id="L265">        return referencePolicy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param referencePolicy
+     *     The referencePolicy
+     */
+    @JsonProperty(&quot;referencePolicy&quot;)
+    public void setReferencePolicy(TagReferencePolicy referencePolicy) {
+<span class="fc" id="L276">        this.referencePolicy = referencePolicy;</span>
+<span class="fc" id="L277">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L281">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L286">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L287">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

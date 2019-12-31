@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeploymentConfigOperationsImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Openshift :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.client.dsl.internal</a> &gt; <span class="el_source">DeploymentConfigOperationsImpl.java</span></div><h1>DeploymentConfigOperationsImpl.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.openshift.client.dsl.internal;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.TreeMap;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
+
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.dsl.Reaper;
+import io.fabric8.kubernetes.client.dsl.internal.ReplicationControllerOperationsImpl;
+import io.fabric8.kubernetes.client.utils.Utils;
+import io.fabric8.openshift.api.model.DeploymentConfig;
+import io.fabric8.openshift.api.model.DeploymentConfigList;
+import io.fabric8.openshift.api.model.DoneableDeploymentConfig;
+import io.fabric8.openshift.client.OpenShiftConfig;
+import io.fabric8.openshift.client.dsl.DeployableScalableResource;
+import okhttp3.OkHttpClient;
+
+import static io.fabric8.openshift.client.OpenShiftAPIGroups.APPS;
+
+public class DeploymentConfigOperationsImpl extends OpenShiftOperation&lt;DeploymentConfig, DeploymentConfigList, DoneableDeploymentConfig,
+  DeployableScalableResource&lt;DeploymentConfig, DoneableDeploymentConfig&gt;&gt; implements DeployableScalableResource&lt;DeploymentConfig, DoneableDeploymentConfig&gt; {
+
+<span class="nc" id="L50">  private static final Logger LOG = LoggerFactory.getLogger(DeploymentConfigOperationsImpl.class);</span>
+  private static final String DEPLOYMENT_CONFIG_REF = &quot;openshift.io/deployment-config.name&quot;;
+
+
+  public DeploymentConfigOperationsImpl(OkHttpClient client, OpenShiftConfig config, String namespace) {
+<span class="nc" id="L55">    this(client, config, APPS, null, namespace, null, true, null, null, false, -1, new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String&gt;());</span>
+<span class="nc" id="L56">  }</span>
+
+  public DeploymentConfigOperationsImpl(OkHttpClient client, OpenShiftConfig config, String apiGroup, String apiVersion, String namespace, String name, Boolean cascading, DeploymentConfig item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields) {
+<span class="nc" id="L59">    super(client, OpenShiftOperation.withApiGroup(client, apiGroup, apiVersion, config), &quot;deploymentconfigs&quot;, namespace, name, cascading, item, resourceVersion, reloadingFromServer, gracePeriodSeconds, labels, labelsNot, labelsIn, labelsNotIn, fields);</span>
+<span class="nc" id="L60">    reaper = new DeploymentConfigReaper(this, client);</span>
+<span class="nc" id="L61">  }</span>
+
+  @Override
+  public DoneableDeploymentConfig edit() {
+<span class="nc bnc" id="L65" title="All 2 branches missed.">    if (isCascading()) {</span>
+<span class="nc" id="L66">      return cascading(false).edit();</span>
+    }
+<span class="nc" id="L68">    return super.edit();</span>
+  }
+
+  @Override
+  public DeploymentConfig replace(DeploymentConfig item) {
+<span class="nc bnc" id="L73" title="All 2 branches missed.">    if (isCascading()) {</span>
+<span class="nc" id="L74">      return cascading(false).replace(item);</span>
+    }
+<span class="nc" id="L76">    return super.replace(item);</span>
+  }
+
+  @Override
+  public DeploymentConfig patch(DeploymentConfig item) {
+<span class="nc bnc" id="L81" title="All 2 branches missed.">    if (isCascading()) {</span>
+<span class="nc" id="L82">      return cascading(false).patch(item);</span>
+    }
+<span class="nc" id="L84">    return super.patch(item);</span>
+  }
+
+  @Override
+  public DeploymentConfig deployLatest() {
+<span class="nc" id="L89">    return deployLatest(false);</span>
+  }
+
+  @Override
+  public DeploymentConfig deployLatest(boolean wait) {
+<span class="nc" id="L94">    Long currentVersion = getMandatory().getStatus().getLatestVersion();</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">    if(currentVersion == null){</span>
+<span class="nc" id="L96">      currentVersion = 1L;</span>
+    }
+<span class="nc" id="L98">    DeploymentConfig deployment = cascading(false).edit().editStatus().withLatestVersion(++currentVersion).endStatus().done();</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">    if (wait) {</span>
+<span class="nc" id="L100">      waitUntilDeploymentConfigIsScaled(deployment.getSpec().getReplicas());</span>
+<span class="nc" id="L101">      deployment = getMandatory();</span>
+    }
+<span class="nc" id="L103">    return deployment;</span>
+  }
+
+  private static class DeploymentConfigReaper implements Reaper {
+
+    private final DeploymentConfigOperationsImpl operation;
+    private final OkHttpClient client;
+
+<span class="nc" id="L111">    public DeploymentConfigReaper(DeploymentConfigOperationsImpl operation, OkHttpClient client) {</span>
+<span class="nc" id="L112">      this.operation = operation;</span>
+<span class="nc" id="L113">      this.client = client;</span>
+<span class="nc" id="L114">    }</span>
+
+    @Override
+    public boolean reap() {
+<span class="nc" id="L118">      DeploymentConfig deployment = operation.cascading(false).edit().editSpec().withReplicas(0).endSpec().done();</span>
+
+      //TODO: These checks shouldn't be used as they are not realistic. We just use them to support mock/crud tests. Need to find a cleaner way to do so.
+<span class="nc bnc" id="L121" title="All 2 branches missed.">      if (deployment.getStatus() != null) {</span>
+<span class="nc" id="L122">        waitForObservedGeneration(deployment.getStatus().getObservedGeneration());</span>
+      }
+
+      //We are deleting the DC before reaping the replication controller, because the RC's won't go otherwise.
+<span class="nc" id="L126">      Boolean reaped = operation.cascading(false).delete();</span>
+
+      // Waiting for the DC to be completely deleted before removing the replication controller (error in Openshift 3.9)
+<span class="nc" id="L129">      waitForDeletion();</span>
+
+<span class="nc" id="L131">      Map&lt;String, String&gt; selector = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L132">      selector.put(DEPLOYMENT_CONFIG_REF, deployment.getMetadata().getName());</span>
+<span class="nc bnc" id="L133" title="All 4 branches missed.">      if (selector != null &amp;&amp; !selector.isEmpty()) {</span>
+<span class="nc" id="L134">        Boolean deleted = new ReplicationControllerOperationsImpl(client, operation.getConfig(), operation.getNamespace())</span>
+<span class="nc" id="L135">          .withLabels(selector)</span>
+<span class="nc" id="L136">          .delete();</span>
+      }
+
+<span class="nc" id="L139">      return reaped;</span>
+    }
+
+    private void waitForObservedGeneration(final long observedGeneration) {
+<span class="nc" id="L143">      final CountDownLatch countDownLatch = new CountDownLatch(1);</span>
+
+<span class="nc" id="L145">      final Runnable deploymentPoller = new Runnable() {</span>
+        public void run() {
+<span class="nc" id="L147">          DeploymentConfig deployment = operation.getMandatory();</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">          if (observedGeneration &lt;= deployment.getStatus().getObservedGeneration()) {</span>
+<span class="nc" id="L149">            countDownLatch.countDown();</span>
+          }
+<span class="nc" id="L151">        }</span>
+      };
+
+<span class="nc" id="L154">      ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();</span>
+<span class="nc" id="L155">      ScheduledFuture poller = executor.scheduleWithFixedDelay(deploymentPoller, 0, 10, TimeUnit.MILLISECONDS);</span>
+      try {
+<span class="nc" id="L157">        countDownLatch.await(1, TimeUnit.MINUTES);</span>
+<span class="nc" id="L158">        executor.shutdown();</span>
+<span class="nc" id="L159">      } catch (InterruptedException e) {</span>
+<span class="nc" id="L160">        poller.cancel(true);</span>
+<span class="nc" id="L161">        executor.shutdown();</span>
+<span class="nc" id="L162">        throw KubernetesClientException.launderThrowable(e);</span>
+<span class="nc" id="L163">      }</span>
+<span class="nc" id="L164">    }</span>
+
+    private void waitForDeletion() {
+<span class="nc" id="L167">      final CountDownLatch countDownLatch = new CountDownLatch(1);</span>
+
+<span class="nc" id="L169">      final Runnable deploymentPoller = new Runnable() {</span>
+        public void run() {
+<span class="nc" id="L171">          DeploymentConfig deployment = operation.get();</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">          if (deployment == null) {</span>
+<span class="nc" id="L173">            countDownLatch.countDown();</span>
+          }
+<span class="nc" id="L175">        }</span>
+      };
+
+<span class="nc" id="L178">      ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();</span>
+<span class="nc" id="L179">      ScheduledFuture poller = executor.scheduleWithFixedDelay(deploymentPoller, 0, 10, TimeUnit.MILLISECONDS);</span>
+      try {
+<span class="nc" id="L181">        countDownLatch.await(1, TimeUnit.MINUTES);</span>
+<span class="nc" id="L182">        executor.shutdown();</span>
+<span class="nc" id="L183">      } catch (InterruptedException e) {</span>
+<span class="nc" id="L184">        poller.cancel(true);</span>
+<span class="nc" id="L185">        executor.shutdown();</span>
+<span class="nc" id="L186">        throw KubernetesClientException.launderThrowable(e);</span>
+<span class="nc" id="L187">      }</span>
+<span class="nc" id="L188">    }</span>
+
+  }
+
+  @Override
+  public DeploymentConfig scale(int count) {
+<span class="nc" id="L194">    return scale(count, false);</span>
+  }
+
+  @Override
+  public DeploymentConfig scale(int count, boolean wait) {
+<span class="nc" id="L199">    DeploymentConfig deployment = cascading(false).edit().editSpec().withReplicas(count).endSpec().done();</span>
+<span class="nc bnc" id="L200" title="All 2 branches missed.">    if (wait) {</span>
+<span class="nc" id="L201">      waitUntilDeploymentConfigIsScaled(count);</span>
+<span class="nc" id="L202">      deployment = getMandatory();</span>
+    }
+<span class="nc" id="L204">    return deployment;</span>
+  }
+
+  /**
+   * Lets wait until there are enough Ready pods of the given Deployment
+   */
+  private void waitUntilDeploymentConfigIsScaled(final int count) {
+<span class="nc" id="L211">    final BlockingQueue&lt;Object&gt; queue = new ArrayBlockingQueue&lt;Object&gt;(1);</span>
+<span class="nc" id="L212">    final AtomicReference&lt;Integer&gt; replicasRef = new AtomicReference&lt;&gt;(0);</span>
+
+<span class="nc" id="L214">    final String name = checkName(getItem());</span>
+<span class="nc" id="L215">    final String namespace = checkNamespace(getItem());</span>
+
+<span class="nc" id="L217">    final Runnable deploymentPoller = new Runnable() {</span>
+      public void run() {
+        try {
+<span class="nc" id="L220">          DeploymentConfig deploymentConfig = get();</span>
+          //If the rs is gone, we shouldn't wait.
+<span class="nc bnc" id="L222" title="All 2 branches missed.">          if (deploymentConfig == null) {</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">            if (count == 0) {</span>
+<span class="nc" id="L224">              queue.put(true);</span>
+<span class="nc" id="L225">              return;</span>
+            } else {
+<span class="nc" id="L227">              queue.put(new IllegalStateException(&quot;Can't wait for DeploymentConfig: &quot; + checkName(getItem()) + &quot; in namespace: &quot; + checkName(getItem()) + &quot; to scale. Resource is no longer available.&quot;));</span>
+<span class="nc" id="L228">              return;</span>
+            }
+          }
+<span class="nc" id="L231">          replicasRef.set(deploymentConfig.getStatus().getReplicas());</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">          int currentReplicas = deploymentConfig.getStatus().getReplicas() != null ? deploymentConfig.getStatus().getReplicas() : 0;</span>
+<span class="nc bnc" id="L233" title="All 4 branches missed.">          if (deploymentConfig.getStatus().getObservedGeneration() &gt;= deploymentConfig.getMetadata().getGeneration() &amp;&amp; Objects.equals(deploymentConfig.getSpec().getReplicas(), currentReplicas)) {</span>
+<span class="nc" id="L234">            queue.put(true);</span>
+          } else {
+<span class="nc" id="L236">            LOG.debug(&quot;Only {}/{} pods scheduled for DeploymentConfig: {} in namespace: {} seconds so waiting...&quot;,</span>
+<span class="nc" id="L237">              deploymentConfig.getStatus().getReplicas(), deploymentConfig.getSpec().getReplicas(), deploymentConfig.getMetadata().getName(), namespace);</span>
+          }
+<span class="nc" id="L239">        } catch (Throwable t) {</span>
+<span class="nc" id="L240">          LOG.error(&quot;Error while waiting for Deployment to be scaled.&quot;, t);</span>
+<span class="nc" id="L241">        }</span>
+<span class="nc" id="L242">      }</span>
+    };
+
+<span class="nc" id="L245">      ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();</span>
+<span class="nc" id="L246">      ScheduledFuture poller = executor.scheduleWithFixedDelay(deploymentPoller, 0, POLL_INTERVAL_MS, TimeUnit.MILLISECONDS);</span>
+      try {
+<span class="nc bnc" id="L248" title="All 2 branches missed.">        if (Utils.waitUntilReady(queue, getConfig().getScaleTimeout(), TimeUnit.MILLISECONDS)) {</span>
+<span class="nc" id="L249">          LOG.debug(&quot;{}/{} pod(s) ready for DeploymentConfig: {} in namespace: {}.&quot;,</span>
+<span class="nc" id="L250">            replicasRef.get(), count, name, namespace);</span>
+        } else {
+<span class="nc" id="L252">          LOG.error(&quot;{}/{} pod(s) ready for DeploymentConfig: {} in namespace: {}  after waiting for {} seconds so giving up&quot;,</span>
+<span class="nc" id="L253">            replicasRef.get(), count, name, namespace, TimeUnit.MILLISECONDS.toSeconds(getConfig().getScaleTimeout()));</span>
+        }
+      } finally {
+<span class="nc" id="L256">        poller.cancel(true);</span>
+<span class="nc" id="L257">        executor.shutdown();</span>
+      }
+<span class="nc" id="L259">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeploymentRollbackFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.extensions</a> &gt; <span class="el_source">DeploymentRollbackFluentImpl.java</span></div><h1>DeploymentRollbackFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.extensions;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import java.util.LinkedHashMap;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Long;
+import java.lang.Object;
+import java.lang.Boolean;
+import java.util.Map;
+
+public class DeploymentRollbackFluentImpl&lt;A extends DeploymentRollbackFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements DeploymentRollbackFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private String kind;
+    private String name;
+    private RollbackConfigBuilder rollbackTo;
+    private Map&lt;String,String&gt; updatedAnnotations;
+
+<span class="nc" id="L24">    public DeploymentRollbackFluentImpl(){</span>
+<span class="nc" id="L25">    }</span>
+<span class="nc" id="L26">    public DeploymentRollbackFluentImpl(DeploymentRollback instance){</span>
+<span class="nc" id="L27">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L28">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L29">            this.withName(instance.getName()); </span>
+<span class="nc" id="L30">            this.withRollbackTo(instance.getRollbackTo()); </span>
+<span class="nc" id="L31">            this.withUpdatedAnnotations(instance.getUpdatedAnnotations()); </span>
+<span class="nc" id="L32">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L35">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L39">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L47">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L51">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    public String getName(){
+<span class="nc" id="L59">            return this.name;</span>
+    }
+
+    public A withName(String name){
+<span class="nc" id="L63">            this.name=name; return (A) this;</span>
+    }
+
+    public Boolean hasName(){
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            return this.name != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildRollbackTo instead.
+ * @return The buildable object.
+ */
+@Deprecated public RollbackConfig getRollbackTo(){
+<span class="nc bnc" id="L76" title="All 2 branches missed.">            return this.rollbackTo!=null?this.rollbackTo.build():null;</span>
+    }
+
+    public RollbackConfig buildRollbackTo(){
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            return this.rollbackTo!=null?this.rollbackTo.build():null;</span>
+    }
+
+    public A withRollbackTo(RollbackConfig rollbackTo){
+<span class="nc" id="L84">            _visitables.remove(this.rollbackTo);</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            if (rollbackTo!=null){ this.rollbackTo= new RollbackConfigBuilder(rollbackTo); _visitables.add(this.rollbackTo);} return (A) this;</span>
+    }
+
+    public Boolean hasRollbackTo(){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            return this.rollbackTo != null;</span>
+    }
+
+    public A withNewRollbackTo(Long revision){
+<span class="nc" id="L93">            return (A)withRollbackTo(new RollbackConfig(revision));</span>
+    }
+
+    public DeploymentRollbackFluent.RollbackToNested&lt;A&gt; withNewRollbackTo(){
+<span class="nc" id="L97">            return new RollbackToNestedImpl();</span>
+    }
+
+    public DeploymentRollbackFluent.RollbackToNested&lt;A&gt; withNewRollbackToLike(RollbackConfig item){
+<span class="nc" id="L101">            return new RollbackToNestedImpl(item);</span>
+    }
+
+    public DeploymentRollbackFluent.RollbackToNested&lt;A&gt; editRollbackTo(){
+<span class="nc" id="L105">            return withNewRollbackToLike(getRollbackTo());</span>
+    }
+
+    public DeploymentRollbackFluent.RollbackToNested&lt;A&gt; editOrNewRollbackTo(){
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            return withNewRollbackToLike(getRollbackTo() != null ? getRollbackTo(): new RollbackConfigBuilder().build());</span>
+    }
+
+    public DeploymentRollbackFluent.RollbackToNested&lt;A&gt; editOrNewRollbackToLike(RollbackConfig item){
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            return withNewRollbackToLike(getRollbackTo() != null ? getRollbackTo(): item);</span>
+    }
+
+    public A addToUpdatedAnnotations(String key,String value){
+<span class="nc bnc" id="L117" title="All 6 branches missed.">            if(this.updatedAnnotations == null &amp;&amp; key != null &amp;&amp; value != null) { this.updatedAnnotations = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L118" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.updatedAnnotations.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToUpdatedAnnotations(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L122" title="All 4 branches missed.">            if(this.updatedAnnotations == null &amp;&amp; map != null) { this.updatedAnnotations = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            if(map != null) { this.updatedAnnotations.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromUpdatedAnnotations(String key){
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            if(this.updatedAnnotations == null) { return (A) this; }</span>
+<span class="nc bnc" id="L128" title="All 4 branches missed.">            if(key != null &amp;&amp; this.updatedAnnotations != null) {this.updatedAnnotations.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromUpdatedAnnotations(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            if(this.updatedAnnotations == null) { return (A) this; }</span>
+<span class="nc bnc" id="L133" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.updatedAnnotations != null){this.updatedAnnotations.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getUpdatedAnnotations(){
+<span class="nc" id="L137">            return this.updatedAnnotations;</span>
+    }
+
+    public A withUpdatedAnnotations(Map&lt;String,String&gt; updatedAnnotations){
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            if (updatedAnnotations == null) { this.updatedAnnotations =  new LinkedHashMap&lt;String,String&gt;();} else {this.updatedAnnotations = new LinkedHashMap&lt;String,String&gt;(updatedAnnotations);} return (A) this;</span>
+    }
+
+    public Boolean hasUpdatedAnnotations(){
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            return this.updatedAnnotations != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L150" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L152">            DeploymentRollbackFluentImpl that = (DeploymentRollbackFluentImpl) o;</span>
+<span class="nc bnc" id="L153" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L154" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L155" title="All 6 branches missed.">            if (name != null ? !name.equals(that.name) :that.name != null) return false;</span>
+<span class="nc bnc" id="L156" title="All 6 branches missed.">            if (rollbackTo != null ? !rollbackTo.equals(that.rollbackTo) :that.rollbackTo != null) return false;</span>
+<span class="nc bnc" id="L157" title="All 6 branches missed.">            if (updatedAnnotations != null ? !updatedAnnotations.equals(that.updatedAnnotations) :that.updatedAnnotations != null) return false;</span>
+<span class="nc" id="L158">            return true;</span>
+    }
+
+
+    public class RollbackToNestedImpl&lt;N&gt; extends RollbackConfigFluentImpl&lt;DeploymentRollbackFluent.RollbackToNested&lt;N&gt;&gt; implements DeploymentRollbackFluent.RollbackToNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RollbackConfigBuilder builder;
+    
+<span class="nc" id="L166">            RollbackToNestedImpl(RollbackConfig item){</span>
+<span class="nc" id="L167">                    this.builder = new RollbackConfigBuilder(this, item);</span>
+<span class="nc" id="L168">            }</span>
+<span class="nc" id="L169">            RollbackToNestedImpl(){</span>
+<span class="nc" id="L170">                    this.builder = new RollbackConfigBuilder(this);</span>
+<span class="nc" id="L171">            }</span>
+    
+    public N and(){
+<span class="nc" id="L174">            return (N) DeploymentRollbackFluentImpl.this.withRollbackTo(builder.build());</span>
+    }
+    public N endRollbackTo(){
+<span class="nc" id="L177">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

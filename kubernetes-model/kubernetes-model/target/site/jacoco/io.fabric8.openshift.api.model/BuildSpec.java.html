@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuildSpec.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">BuildSpec.java</span></div><h1>BuildSpec.java</h1><pre class="source lang-java linenums">
+package io.fabric8.openshift.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.fabric8.kubernetes.api.model.ResourceRequirements;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;completionDeadlineSeconds&quot;,
+    &quot;nodeSelector&quot;,
+    &quot;output&quot;,
+    &quot;postCommit&quot;,
+    &quot;resources&quot;,
+    &quot;revision&quot;,
+    &quot;serviceAccount&quot;,
+    &quot;source&quot;,
+    &quot;strategy&quot;,
+    &quot;triggeredBy&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L48">@ToString</span>
+<span class="nc bnc" id="L49" title="All 94 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class BuildSpec implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;completionDeadlineSeconds&quot;)
+    private Long completionDeadlineSeconds;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;nodeSelector&quot;)
+    @Valid
+    private Map&lt;String, String&gt; nodeSelector;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;output&quot;)
+    @Valid
+    private BuildOutput output;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;postCommit&quot;)
+    @Valid
+    private BuildPostCommitSpec postCommit;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;resources&quot;)
+    @Valid
+    private ResourceRequirements resources;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;revision&quot;)
+    @Valid
+    private SourceRevision revision;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;serviceAccount&quot;)
+    private java.lang.String serviceAccount;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;source&quot;)
+    @Valid
+    private BuildSource source;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;strategy&quot;)
+    @Valid
+    private BuildStrategy strategy;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L119">    @JsonProperty(&quot;triggeredBy&quot;)</span>
+    @Valid
+    private List&lt;BuildTriggerCause&gt; triggeredBy = new ArrayList&lt;BuildTriggerCause&gt;();
+<span class="nc" id="L122">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L129">    public BuildSpec() {</span>
+<span class="nc" id="L130">    }</span>
+
+    /**
+     * 
+     * @param output
+     * @param completionDeadlineSeconds
+     * @param resources
+     * @param serviceAccount
+     * @param source
+     * @param postCommit
+     * @param strategy
+     * @param nodeSelector
+     * @param revision
+     * @param triggeredBy
+     */
+<span class="nc" id="L145">    public BuildSpec(Long completionDeadlineSeconds, Map&lt;String, String&gt; nodeSelector, BuildOutput output, BuildPostCommitSpec postCommit, ResourceRequirements resources, SourceRevision revision, java.lang.String serviceAccount, BuildSource source, BuildStrategy strategy, List&lt;BuildTriggerCause&gt; triggeredBy) {</span>
+<span class="nc" id="L146">        this.completionDeadlineSeconds = completionDeadlineSeconds;</span>
+<span class="nc" id="L147">        this.nodeSelector = nodeSelector;</span>
+<span class="nc" id="L148">        this.output = output;</span>
+<span class="nc" id="L149">        this.postCommit = postCommit;</span>
+<span class="nc" id="L150">        this.resources = resources;</span>
+<span class="nc" id="L151">        this.revision = revision;</span>
+<span class="nc" id="L152">        this.serviceAccount = serviceAccount;</span>
+<span class="nc" id="L153">        this.source = source;</span>
+<span class="nc" id="L154">        this.strategy = strategy;</span>
+<span class="nc" id="L155">        this.triggeredBy = triggeredBy;</span>
+<span class="nc" id="L156">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The completionDeadlineSeconds
+     */
+    @JsonProperty(&quot;completionDeadlineSeconds&quot;)
+    public Long getCompletionDeadlineSeconds() {
+<span class="nc" id="L166">        return completionDeadlineSeconds;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param completionDeadlineSeconds
+     *     The completionDeadlineSeconds
+     */
+    @JsonProperty(&quot;completionDeadlineSeconds&quot;)
+    public void setCompletionDeadlineSeconds(Long completionDeadlineSeconds) {
+<span class="nc" id="L177">        this.completionDeadlineSeconds = completionDeadlineSeconds;</span>
+<span class="nc" id="L178">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The nodeSelector
+     */
+    @JsonProperty(&quot;nodeSelector&quot;)
+    public Map&lt;String, String&gt; getNodeSelector() {
+<span class="nc" id="L188">        return nodeSelector;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param nodeSelector
+     *     The nodeSelector
+     */
+    @JsonProperty(&quot;nodeSelector&quot;)
+    public void setNodeSelector(Map&lt;String, String&gt; nodeSelector) {
+<span class="nc" id="L199">        this.nodeSelector = nodeSelector;</span>
+<span class="nc" id="L200">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The output
+     */
+    @JsonProperty(&quot;output&quot;)
+    public BuildOutput getOutput() {
+<span class="nc" id="L210">        return output;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param output
+     *     The output
+     */
+    @JsonProperty(&quot;output&quot;)
+    public void setOutput(BuildOutput output) {
+<span class="nc" id="L221">        this.output = output;</span>
+<span class="nc" id="L222">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The postCommit
+     */
+    @JsonProperty(&quot;postCommit&quot;)
+    public BuildPostCommitSpec getPostCommit() {
+<span class="nc" id="L232">        return postCommit;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param postCommit
+     *     The postCommit
+     */
+    @JsonProperty(&quot;postCommit&quot;)
+    public void setPostCommit(BuildPostCommitSpec postCommit) {
+<span class="nc" id="L243">        this.postCommit = postCommit;</span>
+<span class="nc" id="L244">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The resources
+     */
+    @JsonProperty(&quot;resources&quot;)
+    public ResourceRequirements getResources() {
+<span class="nc" id="L254">        return resources;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param resources
+     *     The resources
+     */
+    @JsonProperty(&quot;resources&quot;)
+    public void setResources(ResourceRequirements resources) {
+<span class="nc" id="L265">        this.resources = resources;</span>
+<span class="nc" id="L266">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The revision
+     */
+    @JsonProperty(&quot;revision&quot;)
+    public SourceRevision getRevision() {
+<span class="nc" id="L276">        return revision;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param revision
+     *     The revision
+     */
+    @JsonProperty(&quot;revision&quot;)
+    public void setRevision(SourceRevision revision) {
+<span class="nc" id="L287">        this.revision = revision;</span>
+<span class="nc" id="L288">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The serviceAccount
+     */
+    @JsonProperty(&quot;serviceAccount&quot;)
+    public java.lang.String getServiceAccount() {
+<span class="nc" id="L298">        return serviceAccount;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param serviceAccount
+     *     The serviceAccount
+     */
+    @JsonProperty(&quot;serviceAccount&quot;)
+    public void setServiceAccount(java.lang.String serviceAccount) {
+<span class="nc" id="L309">        this.serviceAccount = serviceAccount;</span>
+<span class="nc" id="L310">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The source
+     */
+    @JsonProperty(&quot;source&quot;)
+    public BuildSource getSource() {
+<span class="nc" id="L320">        return source;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param source
+     *     The source
+     */
+    @JsonProperty(&quot;source&quot;)
+    public void setSource(BuildSource source) {
+<span class="nc" id="L331">        this.source = source;</span>
+<span class="nc" id="L332">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The strategy
+     */
+    @JsonProperty(&quot;strategy&quot;)
+    public BuildStrategy getStrategy() {
+<span class="nc" id="L342">        return strategy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param strategy
+     *     The strategy
+     */
+    @JsonProperty(&quot;strategy&quot;)
+    public void setStrategy(BuildStrategy strategy) {
+<span class="nc" id="L353">        this.strategy = strategy;</span>
+<span class="nc" id="L354">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The triggeredBy
+     */
+    @JsonProperty(&quot;triggeredBy&quot;)
+    public List&lt;BuildTriggerCause&gt; getTriggeredBy() {
+<span class="nc" id="L364">        return triggeredBy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param triggeredBy
+     *     The triggeredBy
+     */
+    @JsonProperty(&quot;triggeredBy&quot;)
+    public void setTriggeredBy(List&lt;BuildTriggerCause&gt; triggeredBy) {
+<span class="nc" id="L375">        this.triggeredBy = triggeredBy;</span>
+<span class="nc" id="L376">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L380">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L385">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L386">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

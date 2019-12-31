@@ -149,12 +149,18 @@ public class WatchHTTPManager<T extends HasMetadata, L extends KubernetesResourc
 
     httpUrlBuilder.addQueryParameter("watch", "true");
 
+    String origin = requestUrl.getProtocol() + "://" + requestUrl.getHost();
+    if (requestUrl.getPort() != -1) {
+        origin += ":" + requestUrl.getPort();
+    }
+
     final Request request = new Request.Builder()
       .get()
       .url(httpUrlBuilder.build())
-      .addHeader("Origin", requestUrl.getProtocol() + "://" + requestUrl.getHost() + ":" + requestUrl.getPort())
+      .addHeader("Origin", origin)
       .build();
 
+    logger.debug("watch xxx url", request);
     clonedClient.newCall(request).enqueue(new Callback() {
       @Override
       public void onFailure(Call call, IOException e) {

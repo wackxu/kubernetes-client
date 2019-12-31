@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImageChangeTriggerFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">ImageChangeTriggerFluentImpl.java</span></div><h1>ImageChangeTriggerFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import io.fabric8.kubernetes.api.model.ObjectReferenceFluentImpl;
+import java.lang.String;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.ObjectReferenceBuilder;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class ImageChangeTriggerFluentImpl&lt;A extends ImageChangeTriggerFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ImageChangeTriggerFluent&lt;A&gt;{
+
+    private ObjectReferenceBuilder from;
+    private String lastTriggeredImageID;
+    private Boolean paused;
+
+<span class="fc" id="L21">    public ImageChangeTriggerFluentImpl(){</span>
+<span class="fc" id="L22">    }</span>
+<span class="nc" id="L23">    public ImageChangeTriggerFluentImpl(ImageChangeTrigger instance){</span>
+<span class="nc" id="L24">            this.withFrom(instance.getFrom()); </span>
+<span class="nc" id="L25">            this.withLastTriggeredImageID(instance.getLastTriggeredImageID()); </span>
+<span class="nc" id="L26">            this.withPaused(instance.getPaused()); </span>
+<span class="nc" id="L27">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildFrom instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getFrom(){
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public ObjectReference buildFrom(){
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public A withFrom(ObjectReference from){
+<span class="fc" id="L43">            _visitables.remove(this.from);</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            if (from!=null){ this.from= new ObjectReferenceBuilder(from); _visitables.add(this.from);} return (A) this;</span>
+    }
+
+    public Boolean hasFrom(){
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            return this.from != null;</span>
+    }
+
+    public ImageChangeTriggerFluent.FromNested&lt;A&gt; withNewFrom(){
+<span class="nc" id="L52">            return new FromNestedImpl();</span>
+    }
+
+    public ImageChangeTriggerFluent.FromNested&lt;A&gt; withNewFromLike(ObjectReference item){
+<span class="nc" id="L56">            return new FromNestedImpl(item);</span>
+    }
+
+    public ImageChangeTriggerFluent.FromNested&lt;A&gt; editFrom(){
+<span class="nc" id="L60">            return withNewFromLike(getFrom());</span>
+    }
+
+    public ImageChangeTriggerFluent.FromNested&lt;A&gt; editOrNewFrom(){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public ImageChangeTriggerFluent.FromNested&lt;A&gt; editOrNewFromLike(ObjectReference item){
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): item);</span>
+    }
+
+    public String getLastTriggeredImageID(){
+<span class="fc" id="L72">            return this.lastTriggeredImageID;</span>
+    }
+
+    public A withLastTriggeredImageID(String lastTriggeredImageID){
+<span class="fc" id="L76">            this.lastTriggeredImageID=lastTriggeredImageID; return (A) this;</span>
+    }
+
+    public Boolean hasLastTriggeredImageID(){
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            return this.lastTriggeredImageID != null;</span>
+    }
+
+    public Boolean isPaused(){
+<span class="fc" id="L84">            return this.paused;</span>
+    }
+
+    public A withPaused(Boolean paused){
+<span class="fc" id="L88">            this.paused=paused; return (A) this;</span>
+    }
+
+    public Boolean hasPaused(){
+<span class="nc bnc" id="L92" title="All 2 branches missed.">            return this.paused != null;</span>
+    }
+
+    public A withNewPaused(String arg1){
+<span class="nc" id="L96">            return (A)withPaused(new Boolean(arg1));</span>
+    }
+
+    public A withNewPaused(boolean arg1){
+<span class="nc" id="L100">            return (A)withPaused(new Boolean(arg1));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L105" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L107">            ImageChangeTriggerFluentImpl that = (ImageChangeTriggerFluentImpl) o;</span>
+<span class="nc bnc" id="L108" title="All 6 branches missed.">            if (from != null ? !from.equals(that.from) :that.from != null) return false;</span>
+<span class="nc bnc" id="L109" title="All 6 branches missed.">            if (lastTriggeredImageID != null ? !lastTriggeredImageID.equals(that.lastTriggeredImageID) :that.lastTriggeredImageID != null) return false;</span>
+<span class="nc bnc" id="L110" title="All 6 branches missed.">            if (paused != null ? !paused.equals(that.paused) :that.paused != null) return false;</span>
+<span class="nc" id="L111">            return true;</span>
+    }
+
+
+    public class FromNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;ImageChangeTriggerFluent.FromNested&lt;N&gt;&gt; implements ImageChangeTriggerFluent.FromNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L119">            FromNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L120">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L121">            }</span>
+<span class="nc" id="L122">            FromNestedImpl(){</span>
+<span class="nc" id="L123">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L124">            }</span>
+    
+    public N and(){
+<span class="nc" id="L127">            return (N) ImageChangeTriggerFluentImpl.this.withFrom(builder.build());</span>
+    }
+    public N endFrom(){
+<span class="nc" id="L130">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

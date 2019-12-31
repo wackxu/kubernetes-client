@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IngressBackendFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.extensions</a> &gt; <span class="el_source">IngressBackendFluentImpl.java</span></div><h1>IngressBackendFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.extensions;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.IntOrString;
+import io.fabric8.kubernetes.api.builder.Nested;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import java.lang.String;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import io.fabric8.kubernetes.api.model.IntOrStringBuilder;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import java.lang.Boolean;
+import java.lang.Override;
+import com.fasterxml.jackson.core.JsonParser;
+import java.lang.Integer;
+import javax.validation.Valid;
+import java.lang.Object;
+import io.fabric8.kubernetes.api.model.IntOrStringFluentImpl;
+
+public class IngressBackendFluentImpl&lt;A extends IngressBackendFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements IngressBackendFluent&lt;A&gt;{
+
+    private String serviceName;
+    private IntOrStringBuilder servicePort;
+
+<span class="nc" id="L28">    public IngressBackendFluentImpl(){</span>
+<span class="nc" id="L29">    }</span>
+<span class="nc" id="L30">    public IngressBackendFluentImpl(IngressBackend instance){</span>
+<span class="nc" id="L31">            this.withServiceName(instance.getServiceName()); </span>
+<span class="nc" id="L32">            this.withServicePort(instance.getServicePort()); </span>
+<span class="nc" id="L33">    }</span>
+
+    public String getServiceName(){
+<span class="nc" id="L36">            return this.serviceName;</span>
+    }
+
+    public A withServiceName(String serviceName){
+<span class="nc" id="L40">            this.serviceName=serviceName; return (A) this;</span>
+    }
+
+    public Boolean hasServiceName(){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            return this.serviceName != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildServicePort instead.
+ * @return The buildable object.
+ */
+@Deprecated public IntOrString getServicePort(){
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            return this.servicePort!=null?this.servicePort.build():null;</span>
+    }
+
+    public IntOrString buildServicePort(){
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            return this.servicePort!=null?this.servicePort.build():null;</span>
+    }
+
+    public A withServicePort(IntOrString servicePort){
+<span class="nc" id="L61">            _visitables.remove(this.servicePort);</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            if (servicePort!=null){ this.servicePort= new IntOrStringBuilder(servicePort); _visitables.add(this.servicePort);} return (A) this;</span>
+    }
+
+    public Boolean hasServicePort(){
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            return this.servicePort != null;</span>
+    }
+
+    public A withNewServicePort(String strVal){
+<span class="nc" id="L70">            return (A)withServicePort(new IntOrString(strVal));</span>
+    }
+
+    public A withNewServicePort(Integer intVal){
+<span class="nc" id="L74">            return (A)withServicePort(new IntOrString(intVal));</span>
+    }
+
+    public IngressBackendFluent.ServicePortNested&lt;A&gt; withNewServicePort(){
+<span class="nc" id="L78">            return new ServicePortNestedImpl();</span>
+    }
+
+    public IngressBackendFluent.ServicePortNested&lt;A&gt; withNewServicePortLike(IntOrString item){
+<span class="nc" id="L82">            return new ServicePortNestedImpl(item);</span>
+    }
+
+    public IngressBackendFluent.ServicePortNested&lt;A&gt; editServicePort(){
+<span class="nc" id="L86">            return withNewServicePortLike(getServicePort());</span>
+    }
+
+    public IngressBackendFluent.ServicePortNested&lt;A&gt; editOrNewServicePort(){
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            return withNewServicePortLike(getServicePort() != null ? getServicePort(): new IntOrStringBuilder().build());</span>
+    }
+
+    public IngressBackendFluent.ServicePortNested&lt;A&gt; editOrNewServicePortLike(IntOrString item){
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            return withNewServicePortLike(getServicePort() != null ? getServicePort(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L101">            IngressBackendFluentImpl that = (IngressBackendFluentImpl) o;</span>
+<span class="nc bnc" id="L102" title="All 6 branches missed.">            if (serviceName != null ? !serviceName.equals(that.serviceName) :that.serviceName != null) return false;</span>
+<span class="nc bnc" id="L103" title="All 6 branches missed.">            if (servicePort != null ? !servicePort.equals(that.servicePort) :that.servicePort != null) return false;</span>
+<span class="nc" id="L104">            return true;</span>
+    }
+
+
+    public class ServicePortNestedImpl&lt;N&gt; extends IntOrStringFluentImpl&lt;IngressBackendFluent.ServicePortNested&lt;N&gt;&gt; implements IngressBackendFluent.ServicePortNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final IntOrStringBuilder builder;
+    
+<span class="nc" id="L112">            ServicePortNestedImpl(IntOrString item){</span>
+<span class="nc" id="L113">                    this.builder = new IntOrStringBuilder(this, item);</span>
+<span class="nc" id="L114">            }</span>
+<span class="nc" id="L115">            ServicePortNestedImpl(){</span>
+<span class="nc" id="L116">                    this.builder = new IntOrStringBuilder(this);</span>
+<span class="nc" id="L117">            }</span>
+    
+    public N and(){
+<span class="nc" id="L120">            return (N) IngressBackendFluentImpl.this.withServicePort(builder.build());</span>
+    }
+    public N endServicePort(){
+<span class="nc" id="L123">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

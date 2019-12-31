@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OpenshiftClusterRoleFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">OpenshiftClusterRoleFluentImpl.java</span></div><h1>OpenshiftClusterRoleFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.model.rbac.AggregationRule;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.rbac.AggregationRuleFluentImpl;
+import io.fabric8.kubernetes.api.model.ObjectMetaFluentImpl;
+import io.fabric8.kubernetes.api.model.rbac.AggregationRuleBuilder;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class OpenshiftClusterRoleFluentImpl&lt;A extends OpenshiftClusterRoleFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements OpenshiftClusterRoleFluent&lt;A&gt;{
+
+    private AggregationRuleBuilder aggregationRule;
+    private String apiVersion;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+    private List&lt;io.fabric8.openshift.api.model.PolicyRuleBuilder&gt; rules;
+
+<span class="nc" id="L32">    public OpenshiftClusterRoleFluentImpl(){</span>
+<span class="nc" id="L33">    }</span>
+<span class="nc" id="L34">    public OpenshiftClusterRoleFluentImpl(OpenshiftClusterRole instance){</span>
+<span class="nc" id="L35">            this.withAggregationRule(instance.getAggregationRule()); </span>
+<span class="nc" id="L36">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L37">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L38">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L39">            this.withRules(instance.getRules()); </span>
+<span class="nc" id="L40">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildAggregationRule instead.
+ * @return The buildable object.
+ */
+@Deprecated public AggregationRule getAggregationRule(){
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            return this.aggregationRule!=null?this.aggregationRule.build():null;</span>
+    }
+
+    public AggregationRule buildAggregationRule(){
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            return this.aggregationRule!=null?this.aggregationRule.build():null;</span>
+    }
+
+    public A withAggregationRule(AggregationRule aggregationRule){
+<span class="nc" id="L56">            _visitables.remove(this.aggregationRule);</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            if (aggregationRule!=null){ this.aggregationRule= new AggregationRuleBuilder(aggregationRule); _visitables.add(this.aggregationRule);} return (A) this;</span>
+    }
+
+    public Boolean hasAggregationRule(){
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            return this.aggregationRule != null;</span>
+    }
+
+    public OpenshiftClusterRoleFluent.AggregationRuleNested&lt;A&gt; withNewAggregationRule(){
+<span class="nc" id="L65">            return new AggregationRuleNestedImpl();</span>
+    }
+
+    public OpenshiftClusterRoleFluent.AggregationRuleNested&lt;A&gt; withNewAggregationRuleLike(AggregationRule item){
+<span class="nc" id="L69">            return new AggregationRuleNestedImpl(item);</span>
+    }
+
+    public OpenshiftClusterRoleFluent.AggregationRuleNested&lt;A&gt; editAggregationRule(){
+<span class="nc" id="L73">            return withNewAggregationRuleLike(getAggregationRule());</span>
+    }
+
+    public OpenshiftClusterRoleFluent.AggregationRuleNested&lt;A&gt; editOrNewAggregationRule(){
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            return withNewAggregationRuleLike(getAggregationRule() != null ? getAggregationRule(): new AggregationRuleBuilder().build());</span>
+    }
+
+    public OpenshiftClusterRoleFluent.AggregationRuleNested&lt;A&gt; editOrNewAggregationRuleLike(AggregationRule item){
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            return withNewAggregationRuleLike(getAggregationRule() != null ? getAggregationRule(): item);</span>
+    }
+
+    public String getApiVersion(){
+<span class="nc" id="L85">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L89">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L97">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L101">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L114" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L122">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public OpenshiftClusterRoleFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L131">            return new MetadataNestedImpl();</span>
+    }
+
+    public OpenshiftClusterRoleFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L135">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public OpenshiftClusterRoleFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L139">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public OpenshiftClusterRoleFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public OpenshiftClusterRoleFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L147" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    public A addToRules(int index,io.fabric8.openshift.api.model.PolicyRule item){
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (this.rules == null) {this.rules = new ArrayList&lt;io.fabric8.openshift.api.model.PolicyRuleBuilder&gt;();}</span>
+<span class="nc bnc" id="L152" title="All 4 branches missed.">            io.fabric8.openshift.api.model.PolicyRuleBuilder builder = new io.fabric8.openshift.api.model.PolicyRuleBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.rules.add(index &gt;= 0 ? index : rules.size(), builder); return (A)this;</span>
+    }
+
+    public A setToRules(int index,io.fabric8.openshift.api.model.PolicyRule item){
+<span class="nc bnc" id="L156" title="All 2 branches missed.">            if (this.rules == null) {this.rules = new ArrayList&lt;io.fabric8.openshift.api.model.PolicyRuleBuilder&gt;();}</span>
+<span class="nc" id="L157">            io.fabric8.openshift.api.model.PolicyRuleBuilder builder = new io.fabric8.openshift.api.model.PolicyRuleBuilder(item);</span>
+<span class="nc bnc" id="L158" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L159" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= rules.size()) { rules.add(builder); } else { rules.set(index, builder);}</span>
+<span class="nc" id="L160">             return (A)this;</span>
+    }
+
+    public A addToRules(io.fabric8.openshift.api.model.PolicyRule... items){
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            if (this.rules == null) {this.rules = new ArrayList&lt;io.fabric8.openshift.api.model.PolicyRuleBuilder&gt;();}</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">            for (io.fabric8.openshift.api.model.PolicyRule item : items) {io.fabric8.openshift.api.model.PolicyRuleBuilder builder = new io.fabric8.openshift.api.model.PolicyRuleBuilder(item);_visitables.add(builder);this.rules.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToRules(Collection&lt;io.fabric8.openshift.api.model.PolicyRule&gt; items){
+<span class="nc bnc" id="L169" title="All 2 branches missed.">            if (this.rules == null) {this.rules = new ArrayList&lt;io.fabric8.openshift.api.model.PolicyRuleBuilder&gt;();}</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">            for (io.fabric8.openshift.api.model.PolicyRule item : items) {io.fabric8.openshift.api.model.PolicyRuleBuilder builder = new io.fabric8.openshift.api.model.PolicyRuleBuilder(item);_visitables.add(builder);this.rules.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromRules(io.fabric8.openshift.api.model.PolicyRule... items){
+<span class="nc bnc" id="L174" title="All 4 branches missed.">            for (io.fabric8.openshift.api.model.PolicyRule item : items) {io.fabric8.openshift.api.model.PolicyRuleBuilder builder = new io.fabric8.openshift.api.model.PolicyRuleBuilder(item);_visitables.remove(builder);if (this.rules != null) {this.rules.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromRules(Collection&lt;io.fabric8.openshift.api.model.PolicyRule&gt; items){
+<span class="nc bnc" id="L178" title="All 4 branches missed.">            for (io.fabric8.openshift.api.model.PolicyRule item : items) {io.fabric8.openshift.api.model.PolicyRuleBuilder builder = new io.fabric8.openshift.api.model.PolicyRuleBuilder(item);_visitables.remove(builder);if (this.rules != null) {this.rules.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildRules instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;io.fabric8.openshift.api.model.PolicyRule&gt; getRules(){
+<span class="nc" id="L187">            return build(rules);</span>
+    }
+
+    public List&lt;io.fabric8.openshift.api.model.PolicyRule&gt; buildRules(){
+<span class="nc" id="L191">            return build(rules);</span>
+    }
+
+    public io.fabric8.openshift.api.model.PolicyRule buildRule(int index){
+<span class="nc" id="L195">            return this.rules.get(index).build();</span>
+    }
+
+    public io.fabric8.openshift.api.model.PolicyRule buildFirstRule(){
+<span class="nc" id="L199">            return this.rules.get(0).build();</span>
+    }
+
+    public io.fabric8.openshift.api.model.PolicyRule buildLastRule(){
+<span class="nc" id="L203">            return this.rules.get(rules.size() - 1).build();</span>
+    }
+
+    public io.fabric8.openshift.api.model.PolicyRule buildMatchingRule(io.fabric8.kubernetes.api.builder.Predicate&lt;io.fabric8.openshift.api.model.PolicyRuleBuilder&gt; predicate){
+<span class="nc bnc" id="L207" title="All 4 branches missed.">            for (io.fabric8.openshift.api.model.PolicyRuleBuilder item: rules) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withRules(List&lt;io.fabric8.openshift.api.model.PolicyRule&gt; rules){
+<span class="nc bnc" id="L211" title="All 2 branches missed.">            if (this.rules != null) { _visitables.removeAll(this.rules);}</span>
+<span class="nc bnc" id="L212" title="All 4 branches missed.">            if (rules != null) {this.rules = new ArrayList&lt;io.fabric8.openshift.api.model.PolicyRuleBuilder&gt;(); for (io.fabric8.openshift.api.model.PolicyRule item : rules){this.addToRules(item);}} else { this.rules = new ArrayList&lt;io.fabric8.openshift.api.model.PolicyRuleBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withRules(io.fabric8.openshift.api.model.PolicyRule... rules){
+<span class="nc bnc" id="L216" title="All 2 branches missed.">            if (this.rules != null) {this.rules.clear();}</span>
+<span class="nc bnc" id="L217" title="All 4 branches missed.">            if (rules != null) {for (io.fabric8.openshift.api.model.PolicyRule item :rules){ this.addToRules(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasRules(){
+<span class="nc bnc" id="L221" title="All 4 branches missed.">            return rules != null &amp;&amp; !rules.isEmpty();</span>
+    }
+
+    public OpenshiftClusterRoleFluent.RulesNested&lt;A&gt; addNewRule(){
+<span class="nc" id="L225">            return new RulesNestedImpl();</span>
+    }
+
+    public OpenshiftClusterRoleFluent.RulesNested&lt;A&gt; addNewRuleLike(io.fabric8.openshift.api.model.PolicyRule item){
+<span class="nc" id="L229">            return new RulesNestedImpl(-1, item);</span>
+    }
+
+    public OpenshiftClusterRoleFluent.RulesNested&lt;A&gt; setNewRuleLike(int index,io.fabric8.openshift.api.model.PolicyRule item){
+<span class="nc" id="L233">            return new RulesNestedImpl(index, item);</span>
+    }
+
+    public OpenshiftClusterRoleFluent.RulesNested&lt;A&gt; editRule(int index){
+<span class="nc bnc" id="L237" title="All 2 branches missed.">            if (rules.size() &lt;= index) throw new RuntimeException(&quot;Can't edit rules. Index exceeds size.&quot;);</span>
+<span class="nc" id="L238">            return setNewRuleLike(index, buildRule(index));</span>
+    }
+
+    public OpenshiftClusterRoleFluent.RulesNested&lt;A&gt; editFirstRule(){
+<span class="nc bnc" id="L242" title="All 2 branches missed.">            if (rules.size() == 0) throw new RuntimeException(&quot;Can't edit first rules. The list is empty.&quot;);</span>
+<span class="nc" id="L243">            return setNewRuleLike(0, buildRule(0));</span>
+    }
+
+    public OpenshiftClusterRoleFluent.RulesNested&lt;A&gt; editLastRule(){
+<span class="nc" id="L247">            int index = rules.size() - 1;</span>
+<span class="nc bnc" id="L248" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last rules. The list is empty.&quot;);</span>
+<span class="nc" id="L249">            return setNewRuleLike(index, buildRule(index));</span>
+    }
+
+    public OpenshiftClusterRoleFluent.RulesNested&lt;A&gt; editMatchingRule(io.fabric8.kubernetes.api.builder.Predicate&lt;io.fabric8.openshift.api.model.PolicyRuleBuilder&gt; predicate){
+<span class="nc" id="L253">            int index = -1;</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">            for (int i=0;i&lt;rules.size();i++) { </span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">            if (predicate.apply(rules.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L257" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching rules. No match found.&quot;);</span>
+<span class="nc" id="L258">            return setNewRuleLike(index, buildRule(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L262" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L263" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L265">            OpenshiftClusterRoleFluentImpl that = (OpenshiftClusterRoleFluentImpl) o;</span>
+<span class="nc bnc" id="L266" title="All 6 branches missed.">            if (aggregationRule != null ? !aggregationRule.equals(that.aggregationRule) :that.aggregationRule != null) return false;</span>
+<span class="nc bnc" id="L267" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L268" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L269" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L270" title="All 6 branches missed.">            if (rules != null ? !rules.equals(that.rules) :that.rules != null) return false;</span>
+<span class="nc" id="L271">            return true;</span>
+    }
+
+
+    public class AggregationRuleNestedImpl&lt;N&gt; extends AggregationRuleFluentImpl&lt;OpenshiftClusterRoleFluent.AggregationRuleNested&lt;N&gt;&gt; implements OpenshiftClusterRoleFluent.AggregationRuleNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final AggregationRuleBuilder builder;
+    
+<span class="nc" id="L279">            AggregationRuleNestedImpl(AggregationRule item){</span>
+<span class="nc" id="L280">                    this.builder = new AggregationRuleBuilder(this, item);</span>
+<span class="nc" id="L281">            }</span>
+<span class="nc" id="L282">            AggregationRuleNestedImpl(){</span>
+<span class="nc" id="L283">                    this.builder = new AggregationRuleBuilder(this);</span>
+<span class="nc" id="L284">            }</span>
+    
+    public N and(){
+<span class="nc" id="L287">            return (N) OpenshiftClusterRoleFluentImpl.this.withAggregationRule(builder.build());</span>
+    }
+    public N endAggregationRule(){
+<span class="nc" id="L290">            return and();</span>
+    }
+
+}
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;OpenshiftClusterRoleFluent.MetadataNested&lt;N&gt;&gt; implements OpenshiftClusterRoleFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L298">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L299">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L300">            }</span>
+<span class="nc" id="L301">            MetadataNestedImpl(){</span>
+<span class="nc" id="L302">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L303">            }</span>
+    
+    public N and(){
+<span class="nc" id="L306">            return (N) OpenshiftClusterRoleFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L309">            return and();</span>
+    }
+
+}
+    public class RulesNestedImpl&lt;N&gt; extends io.fabric8.openshift.api.model.PolicyRuleFluentImpl&lt;OpenshiftClusterRoleFluent.RulesNested&lt;N&gt;&gt; implements OpenshiftClusterRoleFluent.RulesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final io.fabric8.openshift.api.model.PolicyRuleBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L318">            RulesNestedImpl(int index,io.fabric8.openshift.api.model.PolicyRule item){</span>
+<span class="nc" id="L319">                    this.index = index;</span>
+<span class="nc" id="L320">                    this.builder = new io.fabric8.openshift.api.model.PolicyRuleBuilder(this, item);</span>
+<span class="nc" id="L321">            }</span>
+<span class="nc" id="L322">            RulesNestedImpl(){</span>
+<span class="nc" id="L323">                    this.index = -1;</span>
+<span class="nc" id="L324">                    this.builder = new io.fabric8.openshift.api.model.PolicyRuleBuilder(this);</span>
+<span class="nc" id="L325">            }</span>
+    
+    public N and(){
+<span class="nc" id="L328">            return (N) OpenshiftClusterRoleFluentImpl.this.setToRules(index, builder.build());</span>
+    }
+    public N endRule(){
+<span class="nc" id="L331">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

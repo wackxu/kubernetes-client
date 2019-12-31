@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReplicaSetSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.apps</a> &gt; <span class="el_source">ReplicaSetSpecFluentImpl.java</span></div><h1>ReplicaSetSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.apps;
+
+import io.fabric8.kubernetes.api.model.LabelSelectorBuilder;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.PodTemplateSpecFluentImpl;
+import io.fabric8.kubernetes.api.model.LabelSelectorFluentImpl;
+import io.fabric8.kubernetes.api.builder.Nested;
+import io.fabric8.kubernetes.api.model.LabelSelector;
+import java.lang.Integer;
+import io.fabric8.kubernetes.api.model.PodTemplateSpec;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.PodTemplateSpecBuilder;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class ReplicaSetSpecFluentImpl&lt;A extends ReplicaSetSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ReplicaSetSpecFluent&lt;A&gt;{
+
+    private Integer minReadySeconds;
+    private Integer replicas;
+    private LabelSelectorBuilder selector;
+    private PodTemplateSpecBuilder template;
+
+<span class="nc" id="L25">    public ReplicaSetSpecFluentImpl(){</span>
+<span class="nc" id="L26">    }</span>
+<span class="nc" id="L27">    public ReplicaSetSpecFluentImpl(ReplicaSetSpec instance){</span>
+<span class="nc" id="L28">            this.withMinReadySeconds(instance.getMinReadySeconds()); </span>
+<span class="nc" id="L29">            this.withReplicas(instance.getReplicas()); </span>
+<span class="nc" id="L30">            this.withSelector(instance.getSelector()); </span>
+<span class="nc" id="L31">            this.withTemplate(instance.getTemplate()); </span>
+<span class="nc" id="L32">    }</span>
+
+    public Integer getMinReadySeconds(){
+<span class="nc" id="L35">            return this.minReadySeconds;</span>
+    }
+
+    public A withMinReadySeconds(Integer minReadySeconds){
+<span class="nc" id="L39">            this.minReadySeconds=minReadySeconds; return (A) this;</span>
+    }
+
+    public Boolean hasMinReadySeconds(){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            return this.minReadySeconds != null;</span>
+    }
+
+    public Integer getReplicas(){
+<span class="nc" id="L47">            return this.replicas;</span>
+    }
+
+    public A withReplicas(Integer replicas){
+<span class="nc" id="L51">            this.replicas=replicas; return (A) this;</span>
+    }
+
+    public Boolean hasReplicas(){
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            return this.replicas != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSelector instead.
+ * @return The buildable object.
+ */
+@Deprecated public LabelSelector getSelector(){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            return this.selector!=null?this.selector.build():null;</span>
+    }
+
+    public LabelSelector buildSelector(){
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            return this.selector!=null?this.selector.build():null;</span>
+    }
+
+    public A withSelector(LabelSelector selector){
+<span class="nc" id="L72">            _visitables.remove(this.selector);</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if (selector!=null){ this.selector= new LabelSelectorBuilder(selector); _visitables.add(this.selector);} return (A) this;</span>
+    }
+
+    public Boolean hasSelector(){
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            return this.selector != null;</span>
+    }
+
+    public ReplicaSetSpecFluent.SelectorNested&lt;A&gt; withNewSelector(){
+<span class="nc" id="L81">            return new SelectorNestedImpl();</span>
+    }
+
+    public ReplicaSetSpecFluent.SelectorNested&lt;A&gt; withNewSelectorLike(LabelSelector item){
+<span class="nc" id="L85">            return new SelectorNestedImpl(item);</span>
+    }
+
+    public ReplicaSetSpecFluent.SelectorNested&lt;A&gt; editSelector(){
+<span class="nc" id="L89">            return withNewSelectorLike(getSelector());</span>
+    }
+
+    public ReplicaSetSpecFluent.SelectorNested&lt;A&gt; editOrNewSelector(){
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            return withNewSelectorLike(getSelector() != null ? getSelector(): new LabelSelectorBuilder().build());</span>
+    }
+
+    public ReplicaSetSpecFluent.SelectorNested&lt;A&gt; editOrNewSelectorLike(LabelSelector item){
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            return withNewSelectorLike(getSelector() != null ? getSelector(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTemplate instead.
+ * @return The buildable object.
+ */
+@Deprecated public PodTemplateSpec getTemplate(){
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            return this.template!=null?this.template.build():null;</span>
+    }
+
+    public PodTemplateSpec buildTemplate(){
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            return this.template!=null?this.template.build():null;</span>
+    }
+
+    public A withTemplate(PodTemplateSpec template){
+<span class="nc" id="L114">            _visitables.remove(this.template);</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            if (template!=null){ this.template= new PodTemplateSpecBuilder(template); _visitables.add(this.template);} return (A) this;</span>
+    }
+
+    public Boolean hasTemplate(){
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            return this.template != null;</span>
+    }
+
+    public ReplicaSetSpecFluent.TemplateNested&lt;A&gt; withNewTemplate(){
+<span class="nc" id="L123">            return new TemplateNestedImpl();</span>
+    }
+
+    public ReplicaSetSpecFluent.TemplateNested&lt;A&gt; withNewTemplateLike(PodTemplateSpec item){
+<span class="nc" id="L127">            return new TemplateNestedImpl(item);</span>
+    }
+
+    public ReplicaSetSpecFluent.TemplateNested&lt;A&gt; editTemplate(){
+<span class="nc" id="L131">            return withNewTemplateLike(getTemplate());</span>
+    }
+
+    public ReplicaSetSpecFluent.TemplateNested&lt;A&gt; editOrNewTemplate(){
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            return withNewTemplateLike(getTemplate() != null ? getTemplate(): new PodTemplateSpecBuilder().build());</span>
+    }
+
+    public ReplicaSetSpecFluent.TemplateNested&lt;A&gt; editOrNewTemplateLike(PodTemplateSpec item){
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            return withNewTemplateLike(getTemplate() != null ? getTemplate(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L144" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L146">            ReplicaSetSpecFluentImpl that = (ReplicaSetSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L147" title="All 6 branches missed.">            if (minReadySeconds != null ? !minReadySeconds.equals(that.minReadySeconds) :that.minReadySeconds != null) return false;</span>
+<span class="nc bnc" id="L148" title="All 6 branches missed.">            if (replicas != null ? !replicas.equals(that.replicas) :that.replicas != null) return false;</span>
+<span class="nc bnc" id="L149" title="All 6 branches missed.">            if (selector != null ? !selector.equals(that.selector) :that.selector != null) return false;</span>
+<span class="nc bnc" id="L150" title="All 6 branches missed.">            if (template != null ? !template.equals(that.template) :that.template != null) return false;</span>
+<span class="nc" id="L151">            return true;</span>
+    }
+
+
+    public class SelectorNestedImpl&lt;N&gt; extends LabelSelectorFluentImpl&lt;ReplicaSetSpecFluent.SelectorNested&lt;N&gt;&gt; implements ReplicaSetSpecFluent.SelectorNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LabelSelectorBuilder builder;
+    
+<span class="nc" id="L159">            SelectorNestedImpl(LabelSelector item){</span>
+<span class="nc" id="L160">                    this.builder = new LabelSelectorBuilder(this, item);</span>
+<span class="nc" id="L161">            }</span>
+<span class="nc" id="L162">            SelectorNestedImpl(){</span>
+<span class="nc" id="L163">                    this.builder = new LabelSelectorBuilder(this);</span>
+<span class="nc" id="L164">            }</span>
+    
+    public N and(){
+<span class="nc" id="L167">            return (N) ReplicaSetSpecFluentImpl.this.withSelector(builder.build());</span>
+    }
+    public N endSelector(){
+<span class="nc" id="L170">            return and();</span>
+    }
+
+}
+    public class TemplateNestedImpl&lt;N&gt; extends PodTemplateSpecFluentImpl&lt;ReplicaSetSpecFluent.TemplateNested&lt;N&gt;&gt; implements ReplicaSetSpecFluent.TemplateNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodTemplateSpecBuilder builder;
+    
+<span class="nc" id="L178">            TemplateNestedImpl(PodTemplateSpec item){</span>
+<span class="nc" id="L179">                    this.builder = new PodTemplateSpecBuilder(this, item);</span>
+<span class="nc" id="L180">            }</span>
+<span class="nc" id="L181">            TemplateNestedImpl(){</span>
+<span class="nc" id="L182">                    this.builder = new PodTemplateSpecBuilder(this);</span>
+<span class="nc" id="L183">            }</span>
+    
+    public N and(){
+<span class="nc" id="L186">            return (N) ReplicaSetSpecFluentImpl.this.withTemplate(builder.build());</span>
+    }
+    public N endTemplate(){
+<span class="nc" id="L189">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeploymentCauseImageTriggerFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">DeploymentCauseImageTriggerFluentImpl.java</span></div><h1>DeploymentCauseImageTriggerFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import io.fabric8.kubernetes.api.model.ObjectReferenceFluentImpl;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.ObjectReferenceBuilder;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class DeploymentCauseImageTriggerFluentImpl&lt;A extends DeploymentCauseImageTriggerFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements DeploymentCauseImageTriggerFluent&lt;A&gt;{
+
+    private ObjectReferenceBuilder from;
+
+<span class="nc" id="L18">    public DeploymentCauseImageTriggerFluentImpl(){</span>
+<span class="nc" id="L19">    }</span>
+<span class="nc" id="L20">    public DeploymentCauseImageTriggerFluentImpl(DeploymentCauseImageTrigger instance){</span>
+<span class="nc" id="L21">            this.withFrom(instance.getFrom()); </span>
+<span class="nc" id="L22">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildFrom instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getFrom(){
+<span class="nc bnc" id="L30" title="All 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public ObjectReference buildFrom(){
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public A withFrom(ObjectReference from){
+<span class="nc" id="L38">            _visitables.remove(this.from);</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            if (from!=null){ this.from= new ObjectReferenceBuilder(from); _visitables.add(this.from);} return (A) this;</span>
+    }
+
+    public Boolean hasFrom(){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            return this.from != null;</span>
+    }
+
+    public DeploymentCauseImageTriggerFluent.FromNested&lt;A&gt; withNewFrom(){
+<span class="nc" id="L47">            return new FromNestedImpl();</span>
+    }
+
+    public DeploymentCauseImageTriggerFluent.FromNested&lt;A&gt; withNewFromLike(ObjectReference item){
+<span class="nc" id="L51">            return new FromNestedImpl(item);</span>
+    }
+
+    public DeploymentCauseImageTriggerFluent.FromNested&lt;A&gt; editFrom(){
+<span class="nc" id="L55">            return withNewFromLike(getFrom());</span>
+    }
+
+    public DeploymentCauseImageTriggerFluent.FromNested&lt;A&gt; editOrNewFrom(){
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public DeploymentCauseImageTriggerFluent.FromNested&lt;A&gt; editOrNewFromLike(ObjectReference item){
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L68" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L70">            DeploymentCauseImageTriggerFluentImpl that = (DeploymentCauseImageTriggerFluentImpl) o;</span>
+<span class="nc bnc" id="L71" title="All 6 branches missed.">            if (from != null ? !from.equals(that.from) :that.from != null) return false;</span>
+<span class="nc" id="L72">            return true;</span>
+    }
+
+
+    public class FromNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;DeploymentCauseImageTriggerFluent.FromNested&lt;N&gt;&gt; implements DeploymentCauseImageTriggerFluent.FromNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L80">            FromNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L81">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L82">            }</span>
+<span class="nc" id="L83">            FromNestedImpl(){</span>
+<span class="nc" id="L84">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L85">            }</span>
+    
+    public N and(){
+<span class="nc" id="L88">            return (N) DeploymentCauseImageTriggerFluentImpl.this.withFrom(builder.build());</span>
+    }
+    public N endFrom(){
+<span class="nc" id="L91">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

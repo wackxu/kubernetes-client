@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuildSourceBuilder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">BuildSourceBuilder.java</span></div><h1>BuildSourceBuilder.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import io.fabric8.kubernetes.api.builder.VisitableBuilder;
+import java.lang.Object;
+import java.lang.Boolean;
+import javax.validation.Validator;
+
+public class BuildSourceBuilder extends BuildSourceFluentImpl&lt;BuildSourceBuilder&gt; implements VisitableBuilder&lt;BuildSource,BuildSourceBuilder&gt;{
+
+    BuildSourceFluent&lt;?&gt; fluent;
+    Boolean validationEnabled;
+    Validator validator;
+
+    public BuildSourceBuilder(){
+<span class="nc" id="L15">            this(true);</span>
+<span class="nc" id="L16">    }</span>
+    public BuildSourceBuilder(Boolean validationEnabled){
+<span class="nc" id="L18">            this(new BuildSource(), validationEnabled);</span>
+<span class="nc" id="L19">    }</span>
+    public BuildSourceBuilder(BuildSourceFluent&lt;?&gt; fluent){
+<span class="fc" id="L21">            this(fluent, true);</span>
+<span class="fc" id="L22">    }</span>
+    public BuildSourceBuilder(BuildSourceFluent&lt;?&gt; fluent,Boolean validationEnabled){
+<span class="fc" id="L24">            this(fluent, new BuildSource(), validationEnabled);</span>
+<span class="fc" id="L25">    }</span>
+    public BuildSourceBuilder(BuildSourceFluent&lt;?&gt; fluent,BuildSource instance){
+<span class="nc" id="L27">            this(fluent, instance, true);</span>
+<span class="nc" id="L28">    }</span>
+<span class="fc" id="L29">    public BuildSourceBuilder(BuildSourceFluent&lt;?&gt; fluent,BuildSource instance,Boolean validationEnabled){</span>
+<span class="fc" id="L30">            this.fluent = fluent; </span>
+<span class="fc" id="L31">            fluent.withBinary(instance.getBinary()); </span>
+<span class="fc" id="L32">            fluent.withConfigMaps(instance.getConfigMaps()); </span>
+<span class="fc" id="L33">            fluent.withContextDir(instance.getContextDir()); </span>
+<span class="fc" id="L34">            fluent.withDockerfile(instance.getDockerfile()); </span>
+<span class="fc" id="L35">            fluent.withGit(instance.getGit()); </span>
+<span class="fc" id="L36">            fluent.withImages(instance.getImages()); </span>
+<span class="fc" id="L37">            fluent.withSecrets(instance.getSecrets()); </span>
+<span class="fc" id="L38">            fluent.withSourceSecret(instance.getSourceSecret()); </span>
+<span class="fc" id="L39">            fluent.withType(instance.getType()); </span>
+<span class="fc" id="L40">            this.validationEnabled = validationEnabled; </span>
+<span class="fc" id="L41">    }</span>
+    public BuildSourceBuilder(BuildSource instance){
+<span class="fc" id="L43">            this(instance,true);</span>
+<span class="fc" id="L44">    }</span>
+<span class="fc" id="L45">    public BuildSourceBuilder(BuildSource instance,Boolean validationEnabled){</span>
+<span class="fc" id="L46">            this.fluent = this; </span>
+<span class="fc" id="L47">            this.withBinary(instance.getBinary()); </span>
+<span class="fc" id="L48">            this.withConfigMaps(instance.getConfigMaps()); </span>
+<span class="fc" id="L49">            this.withContextDir(instance.getContextDir()); </span>
+<span class="fc" id="L50">            this.withDockerfile(instance.getDockerfile()); </span>
+<span class="fc" id="L51">            this.withGit(instance.getGit()); </span>
+<span class="fc" id="L52">            this.withImages(instance.getImages()); </span>
+<span class="fc" id="L53">            this.withSecrets(instance.getSecrets()); </span>
+<span class="fc" id="L54">            this.withSourceSecret(instance.getSourceSecret()); </span>
+<span class="fc" id="L55">            this.withType(instance.getType()); </span>
+<span class="fc" id="L56">            this.validationEnabled = validationEnabled; </span>
+<span class="fc" id="L57">    }</span>
+    public BuildSourceBuilder(Validator validator){
+<span class="nc" id="L59">            this(new BuildSource(), true);</span>
+<span class="nc" id="L60">    }</span>
+<span class="nc" id="L61">    public BuildSourceBuilder(BuildSourceFluent&lt;?&gt; fluent,BuildSource instance,Validator validator){</span>
+<span class="nc" id="L62">            this.fluent = fluent; </span>
+<span class="nc" id="L63">            fluent.withBinary(instance.getBinary()); </span>
+<span class="nc" id="L64">            fluent.withConfigMaps(instance.getConfigMaps()); </span>
+<span class="nc" id="L65">            fluent.withContextDir(instance.getContextDir()); </span>
+<span class="nc" id="L66">            fluent.withDockerfile(instance.getDockerfile()); </span>
+<span class="nc" id="L67">            fluent.withGit(instance.getGit()); </span>
+<span class="nc" id="L68">            fluent.withImages(instance.getImages()); </span>
+<span class="nc" id="L69">            fluent.withSecrets(instance.getSecrets()); </span>
+<span class="nc" id="L70">            fluent.withSourceSecret(instance.getSourceSecret()); </span>
+<span class="nc" id="L71">            fluent.withType(instance.getType()); </span>
+<span class="nc" id="L72">            this.validator = validator;</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            this.validationEnabled = validator != null; </span>
+<span class="nc" id="L74">    }</span>
+<span class="nc" id="L75">    public BuildSourceBuilder(BuildSource instance,Validator validator){</span>
+<span class="nc" id="L76">            this.fluent = this; </span>
+<span class="nc" id="L77">            this.withBinary(instance.getBinary()); </span>
+<span class="nc" id="L78">            this.withConfigMaps(instance.getConfigMaps()); </span>
+<span class="nc" id="L79">            this.withContextDir(instance.getContextDir()); </span>
+<span class="nc" id="L80">            this.withDockerfile(instance.getDockerfile()); </span>
+<span class="nc" id="L81">            this.withGit(instance.getGit()); </span>
+<span class="nc" id="L82">            this.withImages(instance.getImages()); </span>
+<span class="nc" id="L83">            this.withSecrets(instance.getSecrets()); </span>
+<span class="nc" id="L84">            this.withSourceSecret(instance.getSourceSecret()); </span>
+<span class="nc" id="L85">            this.withType(instance.getType()); </span>
+<span class="nc" id="L86">            this.validator = validator; </span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">            this.validationEnabled = validator != null; </span>
+<span class="nc" id="L88">    }</span>
+
+    public BuildSource build(){
+<span class="fc" id="L91">            BuildSource buildable = new BuildSource(fluent.getBinary(),fluent.getConfigMaps(),fluent.getContextDir(),fluent.getDockerfile(),fluent.getGit(),fluent.getImages(),fluent.getSecrets(),fluent.getSourceSecret(),fluent.getType());</span>
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">            if (validationEnabled) {io.fabric8.kubernetes.api.builder.ValidationUtils.validate(buildable, validator);}</span>
+<span class="fc" id="L93">            return buildable;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L98" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L100">            BuildSourceBuilder that = (BuildSourceBuilder) o;</span>
+<span class="nc bnc" id="L101" title="All 10 branches missed.">            if (fluent != null &amp;&amp;fluent != this ? !fluent.equals(that.fluent) :that.fluent != null &amp;&amp;fluent != this ) return false;</span>
+
+<span class="nc bnc" id="L103" title="All 6 branches missed.">            if (validationEnabled != null ? !validationEnabled.equals(that.validationEnabled) :that.validationEnabled != null) return false;</span>
+<span class="nc" id="L104">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

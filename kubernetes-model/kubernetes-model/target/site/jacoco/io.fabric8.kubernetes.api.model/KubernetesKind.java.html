@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>KubernetesKind.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">KubernetesKind.java</span></div><h1>KubernetesKind.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.api.model;
+
+import io.fabric8.openshift.api.model.*;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
+<span class="nc" id="L24">@Deprecated</span>
+public enum KubernetesKind {
+
+<span class="nc" id="L27">  List(KubernetesList.class),</span>
+<span class="nc" id="L28">  SecurityContextConstraints(SecurityContextConstraints.class),</span>
+<span class="nc" id="L29">  SecurityContextConstraintsList(SecurityContextConstraintsList.class),</span>
+<span class="nc" id="L30">  ServiceAccount(ServiceAccount.class),</span>
+<span class="nc" id="L31">  ServiceAccountList(ServiceAccountList.class),</span>
+<span class="nc" id="L32">  Service(Service.class),</span>
+<span class="nc" id="L33">  ServiceList(ServiceList.class),</span>
+<span class="nc" id="L34">  Pod(Pod.class),</span>
+<span class="nc" id="L35">  PodList(PodList.class),</span>
+<span class="nc" id="L36">  ReplicationController(ReplicationController.class),</span>
+<span class="nc" id="L37">  ReplicationControllerList(ReplicationControllerList.class),</span>
+<span class="nc" id="L38">  Namespace(Namespace.class),</span>
+<span class="nc" id="L39">  NamespaceList(NamespaceList.class),</span>
+<span class="nc" id="L40">  Secret(Secret.class),</span>
+<span class="nc" id="L41">  SecretList(SecretList.class),</span>
+<span class="nc" id="L42">  Endpoints(Endpoints.class),</span>
+<span class="nc" id="L43">  EndpointsList(EndpointsList.class),</span>
+<span class="nc" id="L44">  Node(Node.class),</span>
+<span class="nc" id="L45">  NodeList(NodeList.class),</span>
+<span class="nc" id="L46">  Build(Build.class),</span>
+<span class="nc" id="L47">  BuildList(BuildList.class),</span>
+<span class="nc" id="L48">  BuildConfig(BuildConfig.class),</span>
+<span class="nc" id="L49">  BuildConfigList(BuildConfigList.class),</span>
+<span class="nc" id="L50">  DeploymentConfig(DeploymentConfig.class),</span>
+<span class="nc" id="L51">  DeploymentConfigList(DeploymentConfigList.class),</span>
+<span class="nc" id="L52">  Image(Image.class),</span>
+<span class="nc" id="L53">  ImageList(ImageList.class),</span>
+<span class="nc" id="L54">  ImageStream(ImageStream.class),</span>
+<span class="nc" id="L55">  ImageStreamList(ImageStreamList.class),</span>
+<span class="nc" id="L56">  NameTagEventList(NamedTagEventList.class),</span>
+<span class="nc" id="L57">  Route(Route.class),</span>
+<span class="nc" id="L58">  RouteList(RouteList.class),</span>
+<span class="nc" id="L59">  Template(Template.class),</span>
+<span class="nc" id="L60">  TemplateList(TemplateList.class),</span>
+<span class="nc" id="L61">  OAuthClient(OAuthClient.class),</span>
+<span class="nc" id="L62">  OAuthClientList(OAuthClientList.class),</span>
+<span class="nc" id="L63">  OAuthClientAuthorization(OAuthClientAuthorization.class),</span>
+<span class="nc" id="L64">  OAuthClientAuthorizationList(OAuthClientAuthorizationList.class),</span>
+<span class="nc" id="L65">  OAuthAuthorizeToken(OAuthAuthorizeToken.class),</span>
+<span class="nc" id="L66">  OAuthAuthorizeTokenList(OAuthAuthorizeTokenList.class),</span>
+<span class="nc" id="L67">  OAuthAccessToken(OAuthAccessToken.class),</span>
+<span class="nc" id="L68">  OAuthAccessTokenList(OAuthAccessTokenList.class),</span>
+<span class="nc" id="L69">  Role(OpenshiftRole.class),</span>
+<span class="nc" id="L70">  RoleList(OpenshiftRoleList.class),</span>
+<span class="nc" id="L71">  RoleBinding(OpenshiftRoleBinding.class),</span>
+<span class="nc" id="L72">  RoleBindingList(OpenshiftRoleBindingList.class),</span>
+<span class="nc" id="L73">  ClusterRoleBinding(OpenshiftClusterRoleBinding.class),</span>
+<span class="nc" id="L74">  ClusterRoleBindingList(OpenshiftClusterRoleBindingList.class),</span>
+<span class="nc" id="L75">  User(User.class),</span>
+<span class="nc" id="L76">  UserList(UserList.class),</span>
+<span class="nc" id="L77">  Group(Group.class),</span>
+<span class="nc" id="L78">  GroupList(GroupList.class),</span>
+<span class="nc" id="L79">  Identity(Identity.class),</span>
+<span class="nc" id="L80">  IdentityList(IdentityList.class),</span>
+<span class="nc" id="L81">  PersistentVolume(PersistentVolume.class),</span>
+<span class="nc" id="L82">  PersistentVolumeList(PersistentVolumeList.class),</span>
+<span class="nc" id="L83">  PersistentVolumeClaim(PersistentVolumeClaim.class),</span>
+<span class="nc" id="L84">  PersistentVolumeClaimList(PersistentVolumeClaimList.class),</span>
+<span class="nc" id="L85">  SubjectAccessReview(SubjectAccessReview.class),</span>
+<span class="nc" id="L86">  SubjectAccessReviewResponse(SubjectAccessReviewResponse.class),</span>
+<span class="nc" id="L87">  LocalSubjectAccessReview(LocalSubjectAccessReview.class),</span>
+<span class="nc" id="L88">  Project(Project.class),</span>
+<span class="nc" id="L89">  ProjectRequest(ProjectRequest.class);</span>
+
+<span class="nc" id="L91">  private static final Map&lt;String, Class&lt;? extends KubernetesResource&gt;&gt; map = new HashMap&lt;&gt;();</span>
+
+  static {
+<span class="nc bnc" id="L94" title="All 2 branches missed.">    for (KubernetesKind kind : KubernetesKind.values()) {</span>
+<span class="nc" id="L95">      map.put(kind.name(), kind.type);</span>
+    }
+<span class="nc" id="L97">  }</span>
+
+  private final Class&lt;? extends KubernetesResource&gt; type;
+
+<span class="nc" id="L101">  KubernetesKind(Class type) {</span>
+<span class="nc" id="L102">    this.type = type;</span>
+<span class="nc" id="L103">  }</span>
+
+  public Class getType() {
+<span class="nc" id="L106">    return type;</span>
+  }
+
+  public static Class&lt;? extends KubernetesResource&gt; getTypeForName(String name) {
+<span class="nc" id="L110">    return map.get(name);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

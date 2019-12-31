@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WebHookTriggerFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">WebHookTriggerFluentImpl.java</span></div><h1>WebHookTriggerFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class WebHookTriggerFluentImpl&lt;A extends WebHookTriggerFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements WebHookTriggerFluent&lt;A&gt;{
+
+    private Boolean allowEnv;
+    private String secret;
+    private SecretLocalReferenceBuilder secretReference;
+
+<span class="fc" id="L18">    public WebHookTriggerFluentImpl(){</span>
+<span class="fc" id="L19">    }</span>
+<span class="nc" id="L20">    public WebHookTriggerFluentImpl(WebHookTrigger instance){</span>
+<span class="nc" id="L21">            this.withAllowEnv(instance.getAllowEnv()); </span>
+<span class="nc" id="L22">            this.withSecret(instance.getSecret()); </span>
+<span class="nc" id="L23">            this.withSecretReference(instance.getSecretReference()); </span>
+<span class="nc" id="L24">    }</span>
+
+    public Boolean isAllowEnv(){
+<span class="fc" id="L27">            return this.allowEnv;</span>
+    }
+
+    public A withAllowEnv(Boolean allowEnv){
+<span class="fc" id="L31">            this.allowEnv=allowEnv; return (A) this;</span>
+    }
+
+    public Boolean hasAllowEnv(){
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            return this.allowEnv != null;</span>
+    }
+
+    public A withNewAllowEnv(String arg1){
+<span class="nc" id="L39">            return (A)withAllowEnv(new Boolean(arg1));</span>
+    }
+
+    public A withNewAllowEnv(boolean arg1){
+<span class="nc" id="L43">            return (A)withAllowEnv(new Boolean(arg1));</span>
+    }
+
+    public String getSecret(){
+<span class="fc" id="L47">            return this.secret;</span>
+    }
+
+    public A withSecret(String secret){
+<span class="fc" id="L51">            this.secret=secret; return (A) this;</span>
+    }
+
+    public Boolean hasSecret(){
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            return this.secret != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSecretReference instead.
+ * @return The buildable object.
+ */
+@Deprecated public SecretLocalReference getSecretReference(){
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">            return this.secretReference!=null?this.secretReference.build():null;</span>
+    }
+
+    public SecretLocalReference buildSecretReference(){
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            return this.secretReference!=null?this.secretReference.build():null;</span>
+    }
+
+    public A withSecretReference(SecretLocalReference secretReference){
+<span class="fc" id="L72">            _visitables.remove(this.secretReference);</span>
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">            if (secretReference!=null){ this.secretReference= new SecretLocalReferenceBuilder(secretReference); _visitables.add(this.secretReference);} return (A) this;</span>
+    }
+
+    public Boolean hasSecretReference(){
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            return this.secretReference != null;</span>
+    }
+
+    public A withNewSecretReference(String name){
+<span class="nc" id="L81">            return (A)withSecretReference(new SecretLocalReference(name));</span>
+    }
+
+    public WebHookTriggerFluent.SecretReferenceNested&lt;A&gt; withNewSecretReference(){
+<span class="nc" id="L85">            return new SecretReferenceNestedImpl();</span>
+    }
+
+    public WebHookTriggerFluent.SecretReferenceNested&lt;A&gt; withNewSecretReferenceLike(SecretLocalReference item){
+<span class="nc" id="L89">            return new SecretReferenceNestedImpl(item);</span>
+    }
+
+    public WebHookTriggerFluent.SecretReferenceNested&lt;A&gt; editSecretReference(){
+<span class="nc" id="L93">            return withNewSecretReferenceLike(getSecretReference());</span>
+    }
+
+    public WebHookTriggerFluent.SecretReferenceNested&lt;A&gt; editOrNewSecretReference(){
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            return withNewSecretReferenceLike(getSecretReference() != null ? getSecretReference(): new SecretLocalReferenceBuilder().build());</span>
+    }
+
+    public WebHookTriggerFluent.SecretReferenceNested&lt;A&gt; editOrNewSecretReferenceLike(SecretLocalReference item){
+<span class="nc bnc" id="L101" title="All 2 branches missed.">            return withNewSecretReferenceLike(getSecretReference() != null ? getSecretReference(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L106" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L108">            WebHookTriggerFluentImpl that = (WebHookTriggerFluentImpl) o;</span>
+<span class="nc bnc" id="L109" title="All 6 branches missed.">            if (allowEnv != null ? !allowEnv.equals(that.allowEnv) :that.allowEnv != null) return false;</span>
+<span class="nc bnc" id="L110" title="All 6 branches missed.">            if (secret != null ? !secret.equals(that.secret) :that.secret != null) return false;</span>
+<span class="nc bnc" id="L111" title="All 6 branches missed.">            if (secretReference != null ? !secretReference.equals(that.secretReference) :that.secretReference != null) return false;</span>
+<span class="nc" id="L112">            return true;</span>
+    }
+
+
+    public class SecretReferenceNestedImpl&lt;N&gt; extends SecretLocalReferenceFluentImpl&lt;WebHookTriggerFluent.SecretReferenceNested&lt;N&gt;&gt; implements WebHookTriggerFluent.SecretReferenceNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SecretLocalReferenceBuilder builder;
+    
+<span class="nc" id="L120">            SecretReferenceNestedImpl(SecretLocalReference item){</span>
+<span class="nc" id="L121">                    this.builder = new SecretLocalReferenceBuilder(this, item);</span>
+<span class="nc" id="L122">            }</span>
+<span class="nc" id="L123">            SecretReferenceNestedImpl(){</span>
+<span class="nc" id="L124">                    this.builder = new SecretLocalReferenceBuilder(this);</span>
+<span class="nc" id="L125">            }</span>
+    
+    public N and(){
+<span class="nc" id="L128">            return (N) WebHookTriggerFluentImpl.this.withSecretReference(builder.build());</span>
+    }
+    public N endSecretReference(){
+<span class="nc" id="L131">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

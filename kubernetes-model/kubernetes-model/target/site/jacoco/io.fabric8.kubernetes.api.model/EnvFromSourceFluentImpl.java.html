@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EnvFromSourceFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">EnvFromSourceFluentImpl.java</span></div><h1>EnvFromSourceFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class EnvFromSourceFluentImpl&lt;A extends EnvFromSourceFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements EnvFromSourceFluent&lt;A&gt;{
+
+    private ConfigMapEnvSourceBuilder configMapRef;
+    private String prefix;
+    private SecretEnvSourceBuilder secretRef;
+
+<span class="fc" id="L18">    public EnvFromSourceFluentImpl(){</span>
+<span class="fc" id="L19">    }</span>
+<span class="nc" id="L20">    public EnvFromSourceFluentImpl(EnvFromSource instance){</span>
+<span class="nc" id="L21">            this.withConfigMapRef(instance.getConfigMapRef()); </span>
+<span class="nc" id="L22">            this.withPrefix(instance.getPrefix()); </span>
+<span class="nc" id="L23">            this.withSecretRef(instance.getSecretRef()); </span>
+<span class="nc" id="L24">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildConfigMapRef instead.
+ * @return The buildable object.
+ */
+@Deprecated public ConfigMapEnvSource getConfigMapRef(){
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">            return this.configMapRef!=null?this.configMapRef.build():null;</span>
+    }
+
+    public ConfigMapEnvSource buildConfigMapRef(){
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            return this.configMapRef!=null?this.configMapRef.build():null;</span>
+    }
+
+    public A withConfigMapRef(ConfigMapEnvSource configMapRef){
+<span class="fc" id="L40">            _visitables.remove(this.configMapRef);</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">            if (configMapRef!=null){ this.configMapRef= new ConfigMapEnvSourceBuilder(configMapRef); _visitables.add(this.configMapRef);} return (A) this;</span>
+    }
+
+    public Boolean hasConfigMapRef(){
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            return this.configMapRef != null;</span>
+    }
+
+    public A withNewConfigMapRef(String name,Boolean optional){
+<span class="nc" id="L49">            return (A)withConfigMapRef(new ConfigMapEnvSource(name, optional));</span>
+    }
+
+    public EnvFromSourceFluent.ConfigMapRefNested&lt;A&gt; withNewConfigMapRef(){
+<span class="nc" id="L53">            return new ConfigMapRefNestedImpl();</span>
+    }
+
+    public EnvFromSourceFluent.ConfigMapRefNested&lt;A&gt; withNewConfigMapRefLike(ConfigMapEnvSource item){
+<span class="nc" id="L57">            return new ConfigMapRefNestedImpl(item);</span>
+    }
+
+    public EnvFromSourceFluent.ConfigMapRefNested&lt;A&gt; editConfigMapRef(){
+<span class="nc" id="L61">            return withNewConfigMapRefLike(getConfigMapRef());</span>
+    }
+
+    public EnvFromSourceFluent.ConfigMapRefNested&lt;A&gt; editOrNewConfigMapRef(){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            return withNewConfigMapRefLike(getConfigMapRef() != null ? getConfigMapRef(): new ConfigMapEnvSourceBuilder().build());</span>
+    }
+
+    public EnvFromSourceFluent.ConfigMapRefNested&lt;A&gt; editOrNewConfigMapRefLike(ConfigMapEnvSource item){
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            return withNewConfigMapRefLike(getConfigMapRef() != null ? getConfigMapRef(): item);</span>
+    }
+
+    public String getPrefix(){
+<span class="fc" id="L73">            return this.prefix;</span>
+    }
+
+    public A withPrefix(String prefix){
+<span class="fc" id="L77">            this.prefix=prefix; return (A) this;</span>
+    }
+
+    public Boolean hasPrefix(){
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            return this.prefix != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSecretRef instead.
+ * @return The buildable object.
+ */
+@Deprecated public SecretEnvSource getSecretRef(){
+<span class="pc bpc" id="L90" title="1 of 2 branches missed.">            return this.secretRef!=null?this.secretRef.build():null;</span>
+    }
+
+    public SecretEnvSource buildSecretRef(){
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            return this.secretRef!=null?this.secretRef.build():null;</span>
+    }
+
+    public A withSecretRef(SecretEnvSource secretRef){
+<span class="fc" id="L98">            _visitables.remove(this.secretRef);</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">            if (secretRef!=null){ this.secretRef= new SecretEnvSourceBuilder(secretRef); _visitables.add(this.secretRef);} return (A) this;</span>
+    }
+
+    public Boolean hasSecretRef(){
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            return this.secretRef != null;</span>
+    }
+
+    public A withNewSecretRef(String name,Boolean optional){
+<span class="nc" id="L107">            return (A)withSecretRef(new SecretEnvSource(name, optional));</span>
+    }
+
+    public EnvFromSourceFluent.SecretRefNested&lt;A&gt; withNewSecretRef(){
+<span class="fc" id="L111">            return new SecretRefNestedImpl();</span>
+    }
+
+    public EnvFromSourceFluent.SecretRefNested&lt;A&gt; withNewSecretRefLike(SecretEnvSource item){
+<span class="nc" id="L115">            return new SecretRefNestedImpl(item);</span>
+    }
+
+    public EnvFromSourceFluent.SecretRefNested&lt;A&gt; editSecretRef(){
+<span class="nc" id="L119">            return withNewSecretRefLike(getSecretRef());</span>
+    }
+
+    public EnvFromSourceFluent.SecretRefNested&lt;A&gt; editOrNewSecretRef(){
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            return withNewSecretRefLike(getSecretRef() != null ? getSecretRef(): new SecretEnvSourceBuilder().build());</span>
+    }
+
+    public EnvFromSourceFluent.SecretRefNested&lt;A&gt; editOrNewSecretRefLike(SecretEnvSource item){
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            return withNewSecretRefLike(getSecretRef() != null ? getSecretRef(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L131" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L132" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L134">            EnvFromSourceFluentImpl that = (EnvFromSourceFluentImpl) o;</span>
+<span class="nc bnc" id="L135" title="All 6 branches missed.">            if (configMapRef != null ? !configMapRef.equals(that.configMapRef) :that.configMapRef != null) return false;</span>
+<span class="nc bnc" id="L136" title="All 6 branches missed.">            if (prefix != null ? !prefix.equals(that.prefix) :that.prefix != null) return false;</span>
+<span class="nc bnc" id="L137" title="All 6 branches missed.">            if (secretRef != null ? !secretRef.equals(that.secretRef) :that.secretRef != null) return false;</span>
+<span class="nc" id="L138">            return true;</span>
+    }
+
+
+    public class ConfigMapRefNestedImpl&lt;N&gt; extends ConfigMapEnvSourceFluentImpl&lt;EnvFromSourceFluent.ConfigMapRefNested&lt;N&gt;&gt; implements EnvFromSourceFluent.ConfigMapRefNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ConfigMapEnvSourceBuilder builder;
+    
+<span class="nc" id="L146">            ConfigMapRefNestedImpl(ConfigMapEnvSource item){</span>
+<span class="nc" id="L147">                    this.builder = new ConfigMapEnvSourceBuilder(this, item);</span>
+<span class="nc" id="L148">            }</span>
+<span class="nc" id="L149">            ConfigMapRefNestedImpl(){</span>
+<span class="nc" id="L150">                    this.builder = new ConfigMapEnvSourceBuilder(this);</span>
+<span class="nc" id="L151">            }</span>
+    
+    public N and(){
+<span class="nc" id="L154">            return (N) EnvFromSourceFluentImpl.this.withConfigMapRef(builder.build());</span>
+    }
+    public N endConfigMapRef(){
+<span class="nc" id="L157">            return and();</span>
+    }
+
+}
+    public class SecretRefNestedImpl&lt;N&gt; extends SecretEnvSourceFluentImpl&lt;EnvFromSourceFluent.SecretRefNested&lt;N&gt;&gt; implements EnvFromSourceFluent.SecretRefNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SecretEnvSourceBuilder builder;
+    
+<span class="nc" id="L165">            SecretRefNestedImpl(SecretEnvSource item){</span>
+<span class="nc" id="L166">                    this.builder = new SecretEnvSourceBuilder(this, item);</span>
+<span class="nc" id="L167">            }</span>
+<span class="fc" id="L168">            SecretRefNestedImpl(){</span>
+<span class="fc" id="L169">                    this.builder = new SecretEnvSourceBuilder(this);</span>
+<span class="fc" id="L170">            }</span>
+    
+    public N and(){
+<span class="fc" id="L173">            return (N) EnvFromSourceFluentImpl.this.withSecretRef(builder.build());</span>
+    }
+    public N endSecretRef(){
+<span class="fc" id="L176">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

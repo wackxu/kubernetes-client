@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RollingUpdater.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.dsl.internal</a> &gt; <span class="el_source">RollingUpdater.java</span></div><h1>RollingUpdater.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.dsl.internal;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import okhttp3.OkHttpClient;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.DoneablePod;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.Pod;
+import io.fabric8.kubernetes.api.model.PodCondition;
+import io.fabric8.kubernetes.api.model.PodList;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.dsl.Operation;
+import io.fabric8.kubernetes.client.dsl.PodResource;
+import io.fabric8.kubernetes.client.dsl.RollableScalableResource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static io.fabric8.kubernetes.client.internal.SerializationUtils.dumpWithoutRuntimeStateAsYaml;
+
+abstract class RollingUpdater&lt;T extends HasMetadata, L, D extends Doneable&lt;T&gt;&gt; {
+  static final String DEPLOYMENT_KEY = &quot;deployment&quot;;
+
+<span class="nc" id="L51">  private static final Long DEFAULT_ROLLING_TIMEOUT = 15 * 60 * 1000L; // 15 mins</span>
+
+<span class="nc" id="L53">  private static final Long DEFAULT_SERVER_GC_WAIT_TIMEOUT = 60 * 1000L; // 60 seconds</span>
+
+<span class="nc" id="L55">  private static final transient Logger LOG = LoggerFactory.getLogger(RollingUpdater.class);</span>
+
+  protected final OkHttpClient client;
+  protected final Config config;
+  protected final String namespace;
+  private final long rollingTimeoutMillis;
+  private final long loggingIntervalMillis;
+
+  RollingUpdater(OkHttpClient client, Config config, String namespace) {
+<span class="nc" id="L64">    this(client, config, namespace, DEFAULT_ROLLING_TIMEOUT, Config.DEFAULT_LOGGING_INTERVAL);</span>
+<span class="nc" id="L65">  }</span>
+
+<span class="nc" id="L67">  RollingUpdater(OkHttpClient client, Config config, String namespace, long rollingTimeoutMillis, long loggingIntervalMillis) {</span>
+<span class="nc" id="L68">    this.client = client;</span>
+<span class="nc" id="L69">    this.config = config;</span>
+<span class="nc" id="L70">    this.namespace = namespace;</span>
+<span class="nc" id="L71">    this.rollingTimeoutMillis = rollingTimeoutMillis;</span>
+<span class="nc" id="L72">    this.loggingIntervalMillis = loggingIntervalMillis;</span>
+<span class="nc" id="L73">  }</span>
+
+  protected abstract T createClone(T obj, String newName, String newDeploymentHash);
+
+  protected abstract PodList listSelectedPods(T obj);
+
+  protected abstract void updateDeploymentKey(D obj, String hash);
+
+  protected abstract void removeDeploymentKey(D obj);
+
+  protected abstract int getReplicas(T obj);
+
+  protected abstract T setReplicas(T obj, int replicas);
+
+  T rollUpdate(T oldObj, T newObj) {
+    try {
+      // Get what namespace we're working in
+<span class="nc" id="L90">      String namespace = oldObj.getMetadata().getNamespace();</span>
+      // And the old RC name
+<span class="nc" id="L92">      String oldName = oldObj.getMetadata().getName();</span>
+
+      // Update the old to ensure there's no overlap between the new &amp; old selectors
+<span class="nc" id="L95">      String oldDeploymentHash = md5sum(oldObj);</span>
+
+      //Before we update the resource though we need to add the labels to the existing managed pods
+<span class="nc" id="L98">      PodList oldPods = listSelectedPods(oldObj);</span>
+
+<span class="nc bnc" id="L100" title="All 2 branches missed.">      for (Pod pod : oldPods.getItems()) {</span>
+        try {
+<span class="nc" id="L102">          pods().inNamespace(namespace).withName(pod.getMetadata().getName())</span>
+<span class="nc" id="L103">            .edit()</span>
+<span class="nc" id="L104">            .editMetadata().addToLabels(DEPLOYMENT_KEY, oldDeploymentHash)</span>
+<span class="nc" id="L105">            .and().done();</span>
+<span class="nc" id="L106">        } catch (KubernetesClientException e) {</span>
+<span class="nc" id="L107">          LOG.warn(&quot;Unable to add deployment key to pod: {}&quot;, e.getMessage());</span>
+<span class="nc" id="L108">        }</span>
+<span class="nc" id="L109">      }</span>
+
+      // Now we can update the old object with the new selector
+<span class="nc" id="L112">      D editable = resources().inNamespace(namespace).withName(oldName).cascading(false).edit();</span>
+<span class="nc" id="L113">      updateDeploymentKey(editable, oldDeploymentHash);</span>
+<span class="nc" id="L114">      oldObj = editable.done();</span>
+
+      // Get a hash of the new RC for
+<span class="nc" id="L117">      String newDeploymentHash = md5sum(newObj);</span>
+
+      // And a name for the cloned object
+<span class="nc" id="L120">      String newName = newObj.getMetadata().getName();</span>
+<span class="nc bnc" id="L121" title="All 4 branches missed.">      if (newName == null || newName.equals(oldName)) {</span>
+<span class="nc" id="L122">        newName = newName + &quot;-&quot; + newDeploymentHash;</span>
+      }
+
+      // Create a clone of the requested RC ready for the rolling update:
+      //   - Set the new RC replicas to 0 before we do anything so we can scale up ourselves.
+      //   - Set the new RC name to contain the hash if matches old RC name.
+      //   - Add selector containing deployment hash.
+      //   - Ensure it looks like a new RC by resetting resource version.
+<span class="nc" id="L130">      T clonedObj = createClone(newObj, newName, newDeploymentHash);</span>
+<span class="nc" id="L131">      T createdObj = resources().inNamespace(namespace).create(clonedObj);</span>
+
+      // Now do the scale up/scale down dance
+<span class="nc" id="L134">      int oldReplicas = getReplicas(oldObj);</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">      while (getReplicas(createdObj) &lt; getReplicas(newObj)) {</span>
+<span class="nc" id="L136">        int newReplicas = getReplicas(createdObj) + 1;</span>
+<span class="nc" id="L137">        resources().inNamespace(namespace).withName(createdObj.getMetadata().getName()).scale(newReplicas, true);</span>
+<span class="nc" id="L138">        waitUntilPodsAreReady(createdObj, namespace, newReplicas);</span>
+<span class="nc" id="L139">        createdObj = setReplicas(createdObj, newReplicas);</span>
+
+<span class="nc bnc" id="L141" title="All 2 branches missed.">        if (oldReplicas &gt; 0) {</span>
+<span class="nc" id="L142">          resources().inNamespace(namespace).withName(oldName).scale(--oldReplicas, true);</span>
+<span class="nc" id="L143">          waitUntilPodsAreReady(oldObj, namespace, oldReplicas);</span>
+        }
+<span class="nc" id="L145">      }</span>
+
+      // Now delete all existing remaining resources, ensure to cascade
+<span class="nc" id="L148">      resources().inNamespace(namespace).withName(oldName).delete();</span>
+
+      // Check if we need to rename it back to the original RC name
+<span class="nc bnc" id="L151" title="All 2 branches missed.">      if (Objects.equals(oldName, newObj.getMetadata().getName())) {</span>
+        // first delete the resource and orphan its pods.
+<span class="nc" id="L153">        resources().inNamespace(namespace).withName(newName).cascading(false).delete();</span>
+
+<span class="nc" id="L155">        waitUntilDeleted(namespace, newName);</span>
+
+<span class="nc" id="L157">        createdObj.getMetadata().setResourceVersion(null);</span>
+<span class="nc" id="L158">        createdObj.getMetadata().setName(oldName);</span>
+
+<span class="nc" id="L160">        createdObj = resources().inNamespace(namespace).create(createdObj);</span>
+
+<span class="nc" id="L162">        editable = resources().inNamespace(namespace).withName(createdObj.getMetadata().getName()).cascading(false).edit();</span>
+<span class="nc" id="L163">        removeDeploymentKey(editable);</span>
+<span class="nc" id="L164">        createdObj = editable.done();</span>
+      }
+
+<span class="nc" id="L167">      return createdObj;</span>
+<span class="nc" id="L168">    } catch (NoSuchAlgorithmException | JsonProcessingException e) {</span>
+<span class="nc" id="L169">      throw new KubernetesClientException(&quot;Could not calculate MD5 of RC&quot;, e);</span>
+    }
+  }
+
+  /**
+   * Lets wait until there are enough Ready pods of the given RC
+   */
+  private void waitUntilPodsAreReady(final T obj, final String namespace, final int requiredPodCount) {
+<span class="nc" id="L177">    final CountDownLatch countDownLatch = new CountDownLatch(1);</span>
+<span class="nc" id="L178">    final AtomicInteger podCount = new AtomicInteger(0);</span>
+
+<span class="nc" id="L180">    final Runnable readyPodsPoller = new Runnable() {</span>
+      public void run() {
+<span class="nc" id="L182">        PodList podList = listSelectedPods(obj);</span>
+<span class="nc" id="L183">        int count = 0;</span>
+<span class="nc" id="L184">        List&lt;Pod&gt; items = podList.getItems();</span>
+<span class="nc bnc" id="L185" title="All 2 branches missed.">        for (Pod item : items) {</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">          for (PodCondition c : item.getStatus().getConditions()) {</span>
+<span class="nc bnc" id="L187" title="All 4 branches missed.">            if (c.getType().equals(&quot;Ready&quot;) &amp;&amp; c.getStatus().equals(&quot;True&quot;)) {</span>
+<span class="nc" id="L188">              count++;</span>
+            }
+<span class="nc" id="L190">          }</span>
+<span class="nc" id="L191">        }</span>
+<span class="nc" id="L192">        podCount.set(count);</span>
+<span class="nc bnc" id="L193" title="All 2 branches missed.">        if (count == requiredPodCount) {</span>
+<span class="nc" id="L194">          countDownLatch.countDown();</span>
+        }
+<span class="nc" id="L196">      }</span>
+    };
+
+<span class="nc" id="L199">    ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();</span>
+<span class="nc" id="L200">    ScheduledFuture poller = executor.scheduleWithFixedDelay(readyPodsPoller, 0, 1, TimeUnit.SECONDS);</span>
+<span class="nc" id="L201">    ScheduledFuture logger = executor.scheduleWithFixedDelay(new Runnable() {</span>
+      @Override
+      public void run() {
+<span class="nc" id="L204">        LOG.debug(&quot;Only {}/{} pod(s) ready for {}: {} in namespace: {} seconds so waiting...&quot;,</span>
+<span class="nc" id="L205">            podCount.get(), requiredPodCount, obj.getKind(), obj.getMetadata().getName(), namespace);</span>
+<span class="nc" id="L206">      }</span>
+    }, 0, loggingIntervalMillis, TimeUnit.MILLISECONDS);
+    try {
+<span class="nc" id="L209">      countDownLatch.await(rollingTimeoutMillis, TimeUnit.MILLISECONDS);</span>
+<span class="nc" id="L210">      executor.shutdown();</span>
+<span class="nc" id="L211">    } catch (InterruptedException e) {</span>
+<span class="nc" id="L212">      Thread.currentThread().interrupt();</span>
+<span class="nc" id="L213">      poller.cancel(true);</span>
+<span class="nc" id="L214">      logger.cancel(true);</span>
+<span class="nc" id="L215">      executor.shutdown();</span>
+<span class="nc" id="L216">      LOG.warn(&quot;Only {}/{} pod(s) ready for {}: {} in namespace: {}  after waiting for {} seconds so giving up&quot;,</span>
+<span class="nc" id="L217">          podCount.get(), requiredPodCount, obj.getKind(), obj.getMetadata().getName(), namespace, TimeUnit.MILLISECONDS.toSeconds(rollingTimeoutMillis));</span>
+<span class="nc" id="L218">    }</span>
+<span class="nc" id="L219">  }</span>
+
+  /**
+   * Since k8s v1.4.x, rc/rs deletes are asynchronous.
+   * Lets wait until the resource is actually deleted in the server
+   */
+  private void waitUntilDeleted(final String namespace, final String name) {
+<span class="nc" id="L226">    final CountDownLatch countDownLatch = new CountDownLatch(1);</span>
+
+<span class="nc" id="L228">    final Runnable waitTillDeletedPoller = new Runnable() {</span>
+      public void run() {
+        try {
+<span class="nc" id="L231">          T res = resources().inNamespace(namespace).withName(name).get();</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">          if (res == null) {</span>
+<span class="nc" id="L233">            countDownLatch.countDown();</span>
+          }
+<span class="nc" id="L235">        } catch (KubernetesClientException e) {</span>
+<span class="nc bnc" id="L236" title="All 2 branches missed.">          if (e.getCode() == 404) {</span>
+<span class="nc" id="L237">            countDownLatch.countDown();</span>
+          }
+<span class="nc" id="L239">        }</span>
+<span class="nc" id="L240">      }</span>
+    };
+
+<span class="nc" id="L243">    ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();</span>
+<span class="nc" id="L244">    ScheduledFuture poller = executor.scheduleWithFixedDelay(waitTillDeletedPoller, 0, 5, TimeUnit.SECONDS);</span>
+<span class="nc" id="L245">    ScheduledFuture logger = executor.scheduleWithFixedDelay(new Runnable() {</span>
+      @Override
+      public void run() {
+<span class="nc" id="L248">        LOG.debug(&quot;Found resource {}/{} not yet deleted on server, so waiting...&quot;, namespace, name);</span>
+<span class="nc" id="L249">      }</span>
+    }, 0, loggingIntervalMillis, TimeUnit.MILLISECONDS);
+    try {
+<span class="nc" id="L252">      countDownLatch.await(DEFAULT_SERVER_GC_WAIT_TIMEOUT, TimeUnit.MILLISECONDS);</span>
+<span class="nc" id="L253">      executor.shutdown();</span>
+<span class="nc" id="L254">    } catch (InterruptedException e) {</span>
+<span class="nc" id="L255">      Thread.currentThread().interrupt();</span>
+<span class="nc" id="L256">      poller.cancel(true);</span>
+<span class="nc" id="L257">      logger.cancel(true);</span>
+<span class="nc" id="L258">      executor.shutdown();</span>
+<span class="nc" id="L259">      LOG.warn(&quot;Still found deleted resource {} in namespace: {}  after waiting for {} seconds so giving up&quot;,</span>
+<span class="nc" id="L260">               name, namespace, TimeUnit.MILLISECONDS.toSeconds(DEFAULT_SERVER_GC_WAIT_TIMEOUT));</span>
+<span class="nc" id="L261">    }</span>
+<span class="nc" id="L262">  }</span>
+
+  private String md5sum(HasMetadata obj) throws NoSuchAlgorithmException, JsonProcessingException {
+<span class="nc" id="L265">    byte[] digest = MessageDigest.getInstance(&quot;MD5&quot;).digest(dumpWithoutRuntimeStateAsYaml(obj).getBytes());</span>
+<span class="nc" id="L266">    BigInteger i = new BigInteger(1, digest);</span>
+<span class="nc" id="L267">    return String.format(&quot;%1$032x&quot;, i);</span>
+  }
+
+  protected abstract Operation&lt;T, L, D, RollableScalableResource&lt;T, D&gt;&gt; resources();
+
+  protected Operation&lt;Pod, PodList, DoneablePod, PodResource&lt;Pod, DoneablePod&gt;&gt; pods() {
+<span class="nc" id="L273">    return new PodOperationsImpl(client, config, namespace);</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

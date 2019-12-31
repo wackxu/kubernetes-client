@@ -1,0 +1,1028 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PersistentVolumeSpec.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">PersistentVolumeSpec.java</span></div><h1>PersistentVolumeSpec.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;accessModes&quot;,
+    &quot;awsElasticBlockStore&quot;,
+    &quot;azureDisk&quot;,
+    &quot;azureFile&quot;,
+    &quot;capacity&quot;,
+    &quot;cephfs&quot;,
+    &quot;cinder&quot;,
+    &quot;claimRef&quot;,
+    &quot;csi&quot;,
+    &quot;fc&quot;,
+    &quot;flexVolume&quot;,
+    &quot;flocker&quot;,
+    &quot;gcePersistentDisk&quot;,
+    &quot;glusterfs&quot;,
+    &quot;hostPath&quot;,
+    &quot;iscsi&quot;,
+    &quot;local&quot;,
+    &quot;mountOptions&quot;,
+    &quot;nfs&quot;,
+    &quot;nodeAffinity&quot;,
+    &quot;persistentVolumeReclaimPolicy&quot;,
+    &quot;photonPersistentDisk&quot;,
+    &quot;portworxVolume&quot;,
+    &quot;quobyte&quot;,
+    &quot;rbd&quot;,
+    &quot;scaleIO&quot;,
+    &quot;storageClassName&quot;,
+    &quot;storageos&quot;,
+    &quot;volumeMode&quot;,
+    &quot;vsphereVolume&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L66">@ToString</span>
+<span class="nc bnc" id="L67" title="All 254 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class PersistentVolumeSpec implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L76">    @JsonProperty(&quot;accessModes&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;java.lang.String&gt; accessModes = new ArrayList&lt;java.lang.String&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;awsElasticBlockStore&quot;)
+    @Valid
+    private AWSElasticBlockStoreVolumeSource awsElasticBlockStore;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;azureDisk&quot;)
+    @Valid
+    private AzureDiskVolumeSource azureDisk;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;azureFile&quot;)
+    @Valid
+    private AzureFilePersistentVolumeSource azureFile;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;capacity&quot;)
+    @Valid
+    private Map&lt;String, Quantity&gt; capacity;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;cephfs&quot;)
+    @Valid
+    private CephFSPersistentVolumeSource cephfs;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;cinder&quot;)
+    @Valid
+    private CinderPersistentVolumeSource cinder;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;claimRef&quot;)
+    @Valid
+    private ObjectReference claimRef;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;csi&quot;)
+    @Valid
+    private CSIPersistentVolumeSource csi;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;fc&quot;)
+    @Valid
+    private FCVolumeSource fc;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;flexVolume&quot;)
+    @Valid
+    private FlexPersistentVolumeSource flexVolume;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;flocker&quot;)
+    @Valid
+    private FlockerVolumeSource flocker;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;gcePersistentDisk&quot;)
+    @Valid
+    private GCEPersistentDiskVolumeSource gcePersistentDisk;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;glusterfs&quot;)
+    @Valid
+    private GlusterfsPersistentVolumeSource glusterfs;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;hostPath&quot;)
+    @Valid
+    private HostPathVolumeSource hostPath;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;iscsi&quot;)
+    @Valid
+    private ISCSIPersistentVolumeSource iscsi;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;local&quot;)
+    @Valid
+    private LocalVolumeSource local;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L196">    @JsonProperty(&quot;mountOptions&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;java.lang.String&gt; mountOptions = new ArrayList&lt;java.lang.String&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;nfs&quot;)
+    @Valid
+    private NFSVolumeSource nfs;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;nodeAffinity&quot;)
+    @Valid
+    private VolumeNodeAffinity nodeAffinity;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;persistentVolumeReclaimPolicy&quot;)
+    private java.lang.String persistentVolumeReclaimPolicy;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;photonPersistentDisk&quot;)
+    @Valid
+    private PhotonPersistentDiskVolumeSource photonPersistentDisk;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;portworxVolume&quot;)
+    @Valid
+    private PortworxVolumeSource portworxVolume;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;quobyte&quot;)
+    @Valid
+    private QuobyteVolumeSource quobyte;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;rbd&quot;)
+    @Valid
+    private RBDPersistentVolumeSource rbd;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;scaleIO&quot;)
+    @Valid
+    private ScaleIOPersistentVolumeSource scaleIO;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;storageClassName&quot;)
+    private java.lang.String storageClassName;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;storageos&quot;)
+    @Valid
+    private StorageOSPersistentVolumeSource storageos;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;volumeMode&quot;)
+    private java.lang.String volumeMode;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;vsphereVolume&quot;)
+    @Valid
+    private VsphereVirtualDiskVolumeSource vsphereVolume;
+<span class="nc" id="L281">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L288">    public PersistentVolumeSpec() {</span>
+<span class="nc" id="L289">    }</span>
+
+    /**
+     * 
+     * @param claimRef
+     * @param quobyte
+     * @param azureFile
+     * @param flexVolume
+     * @param mountOptions
+     * @param local
+     * @param capacity
+     * @param cephfs
+     * @param scaleIO
+     * @param accessModes
+     * @param glusterfs
+     * @param gcePersistentDisk
+     * @param photonPersistentDisk
+     * @param azureDisk
+     * @param cinder
+     * @param awsElasticBlockStore
+     * @param nodeAffinity
+     * @param flocker
+     * @param volumeMode
+     * @param iscsi
+     * @param rbd
+     * @param storageClassName
+     * @param storageos
+     * @param csi
+     * @param nfs
+     * @param persistentVolumeReclaimPolicy
+     * @param portworxVolume
+     * @param vsphereVolume
+     * @param fc
+     * @param hostPath
+     */
+<span class="nc" id="L324">    public PersistentVolumeSpec(List&lt;java.lang.String&gt; accessModes, AWSElasticBlockStoreVolumeSource awsElasticBlockStore, AzureDiskVolumeSource azureDisk, AzureFilePersistentVolumeSource azureFile, Map&lt;String, Quantity&gt; capacity, CephFSPersistentVolumeSource cephfs, CinderPersistentVolumeSource cinder, ObjectReference claimRef, CSIPersistentVolumeSource csi, FCVolumeSource fc, FlexPersistentVolumeSource flexVolume, FlockerVolumeSource flocker, GCEPersistentDiskVolumeSource gcePersistentDisk, GlusterfsPersistentVolumeSource glusterfs, HostPathVolumeSource hostPath, ISCSIPersistentVolumeSource iscsi, LocalVolumeSource local, List&lt;java.lang.String&gt; mountOptions, NFSVolumeSource nfs, VolumeNodeAffinity nodeAffinity, java.lang.String persistentVolumeReclaimPolicy, PhotonPersistentDiskVolumeSource photonPersistentDisk, PortworxVolumeSource portworxVolume, QuobyteVolumeSource quobyte, RBDPersistentVolumeSource rbd, ScaleIOPersistentVolumeSource scaleIO, java.lang.String storageClassName, StorageOSPersistentVolumeSource storageos, java.lang.String volumeMode, VsphereVirtualDiskVolumeSource vsphereVolume) {</span>
+<span class="nc" id="L325">        this.accessModes = accessModes;</span>
+<span class="nc" id="L326">        this.awsElasticBlockStore = awsElasticBlockStore;</span>
+<span class="nc" id="L327">        this.azureDisk = azureDisk;</span>
+<span class="nc" id="L328">        this.azureFile = azureFile;</span>
+<span class="nc" id="L329">        this.capacity = capacity;</span>
+<span class="nc" id="L330">        this.cephfs = cephfs;</span>
+<span class="nc" id="L331">        this.cinder = cinder;</span>
+<span class="nc" id="L332">        this.claimRef = claimRef;</span>
+<span class="nc" id="L333">        this.csi = csi;</span>
+<span class="nc" id="L334">        this.fc = fc;</span>
+<span class="nc" id="L335">        this.flexVolume = flexVolume;</span>
+<span class="nc" id="L336">        this.flocker = flocker;</span>
+<span class="nc" id="L337">        this.gcePersistentDisk = gcePersistentDisk;</span>
+<span class="nc" id="L338">        this.glusterfs = glusterfs;</span>
+<span class="nc" id="L339">        this.hostPath = hostPath;</span>
+<span class="nc" id="L340">        this.iscsi = iscsi;</span>
+<span class="nc" id="L341">        this.local = local;</span>
+<span class="nc" id="L342">        this.mountOptions = mountOptions;</span>
+<span class="nc" id="L343">        this.nfs = nfs;</span>
+<span class="nc" id="L344">        this.nodeAffinity = nodeAffinity;</span>
+<span class="nc" id="L345">        this.persistentVolumeReclaimPolicy = persistentVolumeReclaimPolicy;</span>
+<span class="nc" id="L346">        this.photonPersistentDisk = photonPersistentDisk;</span>
+<span class="nc" id="L347">        this.portworxVolume = portworxVolume;</span>
+<span class="nc" id="L348">        this.quobyte = quobyte;</span>
+<span class="nc" id="L349">        this.rbd = rbd;</span>
+<span class="nc" id="L350">        this.scaleIO = scaleIO;</span>
+<span class="nc" id="L351">        this.storageClassName = storageClassName;</span>
+<span class="nc" id="L352">        this.storageos = storageos;</span>
+<span class="nc" id="L353">        this.volumeMode = volumeMode;</span>
+<span class="nc" id="L354">        this.vsphereVolume = vsphereVolume;</span>
+<span class="nc" id="L355">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The accessModes
+     */
+    @JsonProperty(&quot;accessModes&quot;)
+    public List&lt;java.lang.String&gt; getAccessModes() {
+<span class="nc" id="L365">        return accessModes;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param accessModes
+     *     The accessModes
+     */
+    @JsonProperty(&quot;accessModes&quot;)
+    public void setAccessModes(List&lt;java.lang.String&gt; accessModes) {
+<span class="nc" id="L376">        this.accessModes = accessModes;</span>
+<span class="nc" id="L377">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The awsElasticBlockStore
+     */
+    @JsonProperty(&quot;awsElasticBlockStore&quot;)
+    public AWSElasticBlockStoreVolumeSource getAwsElasticBlockStore() {
+<span class="nc" id="L387">        return awsElasticBlockStore;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param awsElasticBlockStore
+     *     The awsElasticBlockStore
+     */
+    @JsonProperty(&quot;awsElasticBlockStore&quot;)
+    public void setAwsElasticBlockStore(AWSElasticBlockStoreVolumeSource awsElasticBlockStore) {
+<span class="nc" id="L398">        this.awsElasticBlockStore = awsElasticBlockStore;</span>
+<span class="nc" id="L399">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The azureDisk
+     */
+    @JsonProperty(&quot;azureDisk&quot;)
+    public AzureDiskVolumeSource getAzureDisk() {
+<span class="nc" id="L409">        return azureDisk;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param azureDisk
+     *     The azureDisk
+     */
+    @JsonProperty(&quot;azureDisk&quot;)
+    public void setAzureDisk(AzureDiskVolumeSource azureDisk) {
+<span class="nc" id="L420">        this.azureDisk = azureDisk;</span>
+<span class="nc" id="L421">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The azureFile
+     */
+    @JsonProperty(&quot;azureFile&quot;)
+    public AzureFilePersistentVolumeSource getAzureFile() {
+<span class="nc" id="L431">        return azureFile;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param azureFile
+     *     The azureFile
+     */
+    @JsonProperty(&quot;azureFile&quot;)
+    public void setAzureFile(AzureFilePersistentVolumeSource azureFile) {
+<span class="nc" id="L442">        this.azureFile = azureFile;</span>
+<span class="nc" id="L443">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The capacity
+     */
+    @JsonProperty(&quot;capacity&quot;)
+    public Map&lt;String, Quantity&gt; getCapacity() {
+<span class="nc" id="L453">        return capacity;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param capacity
+     *     The capacity
+     */
+    @JsonProperty(&quot;capacity&quot;)
+    public void setCapacity(Map&lt;String, Quantity&gt; capacity) {
+<span class="nc" id="L464">        this.capacity = capacity;</span>
+<span class="nc" id="L465">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The cephfs
+     */
+    @JsonProperty(&quot;cephfs&quot;)
+    public CephFSPersistentVolumeSource getCephfs() {
+<span class="nc" id="L475">        return cephfs;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param cephfs
+     *     The cephfs
+     */
+    @JsonProperty(&quot;cephfs&quot;)
+    public void setCephfs(CephFSPersistentVolumeSource cephfs) {
+<span class="nc" id="L486">        this.cephfs = cephfs;</span>
+<span class="nc" id="L487">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The cinder
+     */
+    @JsonProperty(&quot;cinder&quot;)
+    public CinderPersistentVolumeSource getCinder() {
+<span class="nc" id="L497">        return cinder;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param cinder
+     *     The cinder
+     */
+    @JsonProperty(&quot;cinder&quot;)
+    public void setCinder(CinderPersistentVolumeSource cinder) {
+<span class="nc" id="L508">        this.cinder = cinder;</span>
+<span class="nc" id="L509">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The claimRef
+     */
+    @JsonProperty(&quot;claimRef&quot;)
+    public ObjectReference getClaimRef() {
+<span class="nc" id="L519">        return claimRef;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param claimRef
+     *     The claimRef
+     */
+    @JsonProperty(&quot;claimRef&quot;)
+    public void setClaimRef(ObjectReference claimRef) {
+<span class="nc" id="L530">        this.claimRef = claimRef;</span>
+<span class="nc" id="L531">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The csi
+     */
+    @JsonProperty(&quot;csi&quot;)
+    public CSIPersistentVolumeSource getCsi() {
+<span class="nc" id="L541">        return csi;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param csi
+     *     The csi
+     */
+    @JsonProperty(&quot;csi&quot;)
+    public void setCsi(CSIPersistentVolumeSource csi) {
+<span class="nc" id="L552">        this.csi = csi;</span>
+<span class="nc" id="L553">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The fc
+     */
+    @JsonProperty(&quot;fc&quot;)
+    public FCVolumeSource getFc() {
+<span class="nc" id="L563">        return fc;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param fc
+     *     The fc
+     */
+    @JsonProperty(&quot;fc&quot;)
+    public void setFc(FCVolumeSource fc) {
+<span class="nc" id="L574">        this.fc = fc;</span>
+<span class="nc" id="L575">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The flexVolume
+     */
+    @JsonProperty(&quot;flexVolume&quot;)
+    public FlexPersistentVolumeSource getFlexVolume() {
+<span class="nc" id="L585">        return flexVolume;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param flexVolume
+     *     The flexVolume
+     */
+    @JsonProperty(&quot;flexVolume&quot;)
+    public void setFlexVolume(FlexPersistentVolumeSource flexVolume) {
+<span class="nc" id="L596">        this.flexVolume = flexVolume;</span>
+<span class="nc" id="L597">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The flocker
+     */
+    @JsonProperty(&quot;flocker&quot;)
+    public FlockerVolumeSource getFlocker() {
+<span class="nc" id="L607">        return flocker;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param flocker
+     *     The flocker
+     */
+    @JsonProperty(&quot;flocker&quot;)
+    public void setFlocker(FlockerVolumeSource flocker) {
+<span class="nc" id="L618">        this.flocker = flocker;</span>
+<span class="nc" id="L619">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The gcePersistentDisk
+     */
+    @JsonProperty(&quot;gcePersistentDisk&quot;)
+    public GCEPersistentDiskVolumeSource getGcePersistentDisk() {
+<span class="nc" id="L629">        return gcePersistentDisk;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param gcePersistentDisk
+     *     The gcePersistentDisk
+     */
+    @JsonProperty(&quot;gcePersistentDisk&quot;)
+    public void setGcePersistentDisk(GCEPersistentDiskVolumeSource gcePersistentDisk) {
+<span class="nc" id="L640">        this.gcePersistentDisk = gcePersistentDisk;</span>
+<span class="nc" id="L641">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The glusterfs
+     */
+    @JsonProperty(&quot;glusterfs&quot;)
+    public GlusterfsPersistentVolumeSource getGlusterfs() {
+<span class="nc" id="L651">        return glusterfs;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param glusterfs
+     *     The glusterfs
+     */
+    @JsonProperty(&quot;glusterfs&quot;)
+    public void setGlusterfs(GlusterfsPersistentVolumeSource glusterfs) {
+<span class="nc" id="L662">        this.glusterfs = glusterfs;</span>
+<span class="nc" id="L663">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The hostPath
+     */
+    @JsonProperty(&quot;hostPath&quot;)
+    public HostPathVolumeSource getHostPath() {
+<span class="nc" id="L673">        return hostPath;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param hostPath
+     *     The hostPath
+     */
+    @JsonProperty(&quot;hostPath&quot;)
+    public void setHostPath(HostPathVolumeSource hostPath) {
+<span class="nc" id="L684">        this.hostPath = hostPath;</span>
+<span class="nc" id="L685">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The iscsi
+     */
+    @JsonProperty(&quot;iscsi&quot;)
+    public ISCSIPersistentVolumeSource getIscsi() {
+<span class="nc" id="L695">        return iscsi;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param iscsi
+     *     The iscsi
+     */
+    @JsonProperty(&quot;iscsi&quot;)
+    public void setIscsi(ISCSIPersistentVolumeSource iscsi) {
+<span class="nc" id="L706">        this.iscsi = iscsi;</span>
+<span class="nc" id="L707">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The local
+     */
+    @JsonProperty(&quot;local&quot;)
+    public LocalVolumeSource getLocal() {
+<span class="nc" id="L717">        return local;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param local
+     *     The local
+     */
+    @JsonProperty(&quot;local&quot;)
+    public void setLocal(LocalVolumeSource local) {
+<span class="nc" id="L728">        this.local = local;</span>
+<span class="nc" id="L729">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The mountOptions
+     */
+    @JsonProperty(&quot;mountOptions&quot;)
+    public List&lt;java.lang.String&gt; getMountOptions() {
+<span class="nc" id="L739">        return mountOptions;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param mountOptions
+     *     The mountOptions
+     */
+    @JsonProperty(&quot;mountOptions&quot;)
+    public void setMountOptions(List&lt;java.lang.String&gt; mountOptions) {
+<span class="nc" id="L750">        this.mountOptions = mountOptions;</span>
+<span class="nc" id="L751">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The nfs
+     */
+    @JsonProperty(&quot;nfs&quot;)
+    public NFSVolumeSource getNfs() {
+<span class="nc" id="L761">        return nfs;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param nfs
+     *     The nfs
+     */
+    @JsonProperty(&quot;nfs&quot;)
+    public void setNfs(NFSVolumeSource nfs) {
+<span class="nc" id="L772">        this.nfs = nfs;</span>
+<span class="nc" id="L773">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The nodeAffinity
+     */
+    @JsonProperty(&quot;nodeAffinity&quot;)
+    public VolumeNodeAffinity getNodeAffinity() {
+<span class="nc" id="L783">        return nodeAffinity;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param nodeAffinity
+     *     The nodeAffinity
+     */
+    @JsonProperty(&quot;nodeAffinity&quot;)
+    public void setNodeAffinity(VolumeNodeAffinity nodeAffinity) {
+<span class="nc" id="L794">        this.nodeAffinity = nodeAffinity;</span>
+<span class="nc" id="L795">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The persistentVolumeReclaimPolicy
+     */
+    @JsonProperty(&quot;persistentVolumeReclaimPolicy&quot;)
+    public java.lang.String getPersistentVolumeReclaimPolicy() {
+<span class="nc" id="L805">        return persistentVolumeReclaimPolicy;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param persistentVolumeReclaimPolicy
+     *     The persistentVolumeReclaimPolicy
+     */
+    @JsonProperty(&quot;persistentVolumeReclaimPolicy&quot;)
+    public void setPersistentVolumeReclaimPolicy(java.lang.String persistentVolumeReclaimPolicy) {
+<span class="nc" id="L816">        this.persistentVolumeReclaimPolicy = persistentVolumeReclaimPolicy;</span>
+<span class="nc" id="L817">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The photonPersistentDisk
+     */
+    @JsonProperty(&quot;photonPersistentDisk&quot;)
+    public PhotonPersistentDiskVolumeSource getPhotonPersistentDisk() {
+<span class="nc" id="L827">        return photonPersistentDisk;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param photonPersistentDisk
+     *     The photonPersistentDisk
+     */
+    @JsonProperty(&quot;photonPersistentDisk&quot;)
+    public void setPhotonPersistentDisk(PhotonPersistentDiskVolumeSource photonPersistentDisk) {
+<span class="nc" id="L838">        this.photonPersistentDisk = photonPersistentDisk;</span>
+<span class="nc" id="L839">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The portworxVolume
+     */
+    @JsonProperty(&quot;portworxVolume&quot;)
+    public PortworxVolumeSource getPortworxVolume() {
+<span class="nc" id="L849">        return portworxVolume;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param portworxVolume
+     *     The portworxVolume
+     */
+    @JsonProperty(&quot;portworxVolume&quot;)
+    public void setPortworxVolume(PortworxVolumeSource portworxVolume) {
+<span class="nc" id="L860">        this.portworxVolume = portworxVolume;</span>
+<span class="nc" id="L861">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The quobyte
+     */
+    @JsonProperty(&quot;quobyte&quot;)
+    public QuobyteVolumeSource getQuobyte() {
+<span class="nc" id="L871">        return quobyte;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param quobyte
+     *     The quobyte
+     */
+    @JsonProperty(&quot;quobyte&quot;)
+    public void setQuobyte(QuobyteVolumeSource quobyte) {
+<span class="nc" id="L882">        this.quobyte = quobyte;</span>
+<span class="nc" id="L883">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The rbd
+     */
+    @JsonProperty(&quot;rbd&quot;)
+    public RBDPersistentVolumeSource getRbd() {
+<span class="nc" id="L893">        return rbd;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param rbd
+     *     The rbd
+     */
+    @JsonProperty(&quot;rbd&quot;)
+    public void setRbd(RBDPersistentVolumeSource rbd) {
+<span class="nc" id="L904">        this.rbd = rbd;</span>
+<span class="nc" id="L905">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The scaleIO
+     */
+    @JsonProperty(&quot;scaleIO&quot;)
+    public ScaleIOPersistentVolumeSource getScaleIO() {
+<span class="nc" id="L915">        return scaleIO;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param scaleIO
+     *     The scaleIO
+     */
+    @JsonProperty(&quot;scaleIO&quot;)
+    public void setScaleIO(ScaleIOPersistentVolumeSource scaleIO) {
+<span class="nc" id="L926">        this.scaleIO = scaleIO;</span>
+<span class="nc" id="L927">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The storageClassName
+     */
+    @JsonProperty(&quot;storageClassName&quot;)
+    public java.lang.String getStorageClassName() {
+<span class="nc" id="L937">        return storageClassName;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param storageClassName
+     *     The storageClassName
+     */
+    @JsonProperty(&quot;storageClassName&quot;)
+    public void setStorageClassName(java.lang.String storageClassName) {
+<span class="nc" id="L948">        this.storageClassName = storageClassName;</span>
+<span class="nc" id="L949">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The storageos
+     */
+    @JsonProperty(&quot;storageos&quot;)
+    public StorageOSPersistentVolumeSource getStorageos() {
+<span class="nc" id="L959">        return storageos;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param storageos
+     *     The storageos
+     */
+    @JsonProperty(&quot;storageos&quot;)
+    public void setStorageos(StorageOSPersistentVolumeSource storageos) {
+<span class="nc" id="L970">        this.storageos = storageos;</span>
+<span class="nc" id="L971">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The volumeMode
+     */
+    @JsonProperty(&quot;volumeMode&quot;)
+    public java.lang.String getVolumeMode() {
+<span class="nc" id="L981">        return volumeMode;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param volumeMode
+     *     The volumeMode
+     */
+    @JsonProperty(&quot;volumeMode&quot;)
+    public void setVolumeMode(java.lang.String volumeMode) {
+<span class="nc" id="L992">        this.volumeMode = volumeMode;</span>
+<span class="nc" id="L993">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The vsphereVolume
+     */
+    @JsonProperty(&quot;vsphereVolume&quot;)
+    public VsphereVirtualDiskVolumeSource getVsphereVolume() {
+<span class="nc" id="L1003">        return vsphereVolume;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param vsphereVolume
+     *     The vsphereVolume
+     */
+    @JsonProperty(&quot;vsphereVolume&quot;)
+    public void setVsphereVolume(VsphereVirtualDiskVolumeSource vsphereVolume) {
+<span class="nc" id="L1014">        this.vsphereVolume = vsphereVolume;</span>
+<span class="nc" id="L1015">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L1019">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L1024">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L1025">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

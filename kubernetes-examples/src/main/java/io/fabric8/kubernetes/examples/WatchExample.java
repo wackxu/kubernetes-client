@@ -15,7 +15,7 @@
  */
 package io.fabric8.kubernetes.examples;
 
-import io.fabric8.kubernetes.api.model.ReplicationController;
+import io.fabric8.kubernetes.api.model.Pod;
 import io.fabric8.kubernetes.client.Config;
 import io.fabric8.kubernetes.client.ConfigBuilder;
 import io.fabric8.kubernetes.client.DefaultKubernetesClient;
@@ -35,11 +35,12 @@ public class WatchExample {
 
   public static void main(String[] args) throws InterruptedException {
     final CountDownLatch closeLatch = new CountDownLatch(1);
-    Config config = new ConfigBuilder().build();
+    String kubernetesMaster = "https://cci.cn-north-1.myhuaweicloud.com/";
+    Config config = new ConfigBuilder().withMasterUrl(kubernetesMaster).withConnectionTimeout(1000000).withRequestTimeout(1000000).withWebsocketTimeout(1000000).withWatchReconnectLimit(10000).withWatchReconnectInterval(10000).build();
     try (final KubernetesClient client = new DefaultKubernetesClient(config)) {
-      try (Watch watch = client.replicationControllers().inNamespace("default").withName("test").watch(new Watcher<ReplicationController>() {
+      try (Watch watch = client.pods().inNamespace("cci-wulei").watch(new Watcher<Pod>() {
         @Override
-        public void eventReceived(Action action, ReplicationController resource) {
+        public void eventReceived(Action action, Pod resource) {
           logger.info("{}: {}", action, resource.getMetadata().getResourceVersion());
         }
 

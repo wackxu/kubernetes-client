@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SecurityContext.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">SecurityContext.java</span></div><h1>SecurityContext.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;allowPrivilegeEscalation&quot;,
+    &quot;capabilities&quot;,
+    &quot;privileged&quot;,
+    &quot;procMount&quot;,
+    &quot;readOnlyRootFilesystem&quot;,
+    &quot;runAsGroup&quot;,
+    &quot;runAsNonRoot&quot;,
+    &quot;runAsUser&quot;,
+    &quot;seLinuxOptions&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L43">@ToString</span>
+<span class="nc bnc" id="L44" title="All 86 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class SecurityContext implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;allowPrivilegeEscalation&quot;)
+    private Boolean allowPrivilegeEscalation;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;capabilities&quot;)
+    @Valid
+    private Capabilities capabilities;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;privileged&quot;)
+    private Boolean privileged;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;procMount&quot;)
+    private String procMount;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;readOnlyRootFilesystem&quot;)
+    private Boolean readOnlyRootFilesystem;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;runAsGroup&quot;)
+    private Long runAsGroup;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;runAsNonRoot&quot;)
+    private Boolean runAsNonRoot;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;runAsUser&quot;)
+    private Long runAsUser;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;seLinuxOptions&quot;)
+    @Valid
+    private SELinuxOptions seLinuxOptions;
+<span class="pc" id="L105">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L112">    public SecurityContext() {</span>
+<span class="fc" id="L113">    }</span>
+
+    /**
+     * 
+     * @param privileged
+     * @param runAsUser
+     * @param capabilities
+     * @param seLinuxOptions
+     * @param procMount
+     * @param allowPrivilegeEscalation
+     * @param runAsGroup
+     * @param runAsNonRoot
+     * @param readOnlyRootFilesystem
+     */
+<span class="nc" id="L127">    public SecurityContext(Boolean allowPrivilegeEscalation, Capabilities capabilities, Boolean privileged, String procMount, Boolean readOnlyRootFilesystem, Long runAsGroup, Boolean runAsNonRoot, Long runAsUser, SELinuxOptions seLinuxOptions) {</span>
+<span class="nc" id="L128">        this.allowPrivilegeEscalation = allowPrivilegeEscalation;</span>
+<span class="nc" id="L129">        this.capabilities = capabilities;</span>
+<span class="nc" id="L130">        this.privileged = privileged;</span>
+<span class="nc" id="L131">        this.procMount = procMount;</span>
+<span class="nc" id="L132">        this.readOnlyRootFilesystem = readOnlyRootFilesystem;</span>
+<span class="nc" id="L133">        this.runAsGroup = runAsGroup;</span>
+<span class="nc" id="L134">        this.runAsNonRoot = runAsNonRoot;</span>
+<span class="nc" id="L135">        this.runAsUser = runAsUser;</span>
+<span class="nc" id="L136">        this.seLinuxOptions = seLinuxOptions;</span>
+<span class="nc" id="L137">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The allowPrivilegeEscalation
+     */
+    @JsonProperty(&quot;allowPrivilegeEscalation&quot;)
+    public Boolean getAllowPrivilegeEscalation() {
+<span class="fc" id="L147">        return allowPrivilegeEscalation;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param allowPrivilegeEscalation
+     *     The allowPrivilegeEscalation
+     */
+    @JsonProperty(&quot;allowPrivilegeEscalation&quot;)
+    public void setAllowPrivilegeEscalation(Boolean allowPrivilegeEscalation) {
+<span class="nc" id="L158">        this.allowPrivilegeEscalation = allowPrivilegeEscalation;</span>
+<span class="nc" id="L159">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The capabilities
+     */
+    @JsonProperty(&quot;capabilities&quot;)
+    public Capabilities getCapabilities() {
+<span class="fc" id="L169">        return capabilities;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param capabilities
+     *     The capabilities
+     */
+    @JsonProperty(&quot;capabilities&quot;)
+    public void setCapabilities(Capabilities capabilities) {
+<span class="nc" id="L180">        this.capabilities = capabilities;</span>
+<span class="nc" id="L181">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The privileged
+     */
+    @JsonProperty(&quot;privileged&quot;)
+    public Boolean getPrivileged() {
+<span class="fc" id="L191">        return privileged;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param privileged
+     *     The privileged
+     */
+    @JsonProperty(&quot;privileged&quot;)
+    public void setPrivileged(Boolean privileged) {
+<span class="fc" id="L202">        this.privileged = privileged;</span>
+<span class="fc" id="L203">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The procMount
+     */
+    @JsonProperty(&quot;procMount&quot;)
+    public String getProcMount() {
+<span class="fc" id="L213">        return procMount;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param procMount
+     *     The procMount
+     */
+    @JsonProperty(&quot;procMount&quot;)
+    public void setProcMount(String procMount) {
+<span class="nc" id="L224">        this.procMount = procMount;</span>
+<span class="nc" id="L225">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The readOnlyRootFilesystem
+     */
+    @JsonProperty(&quot;readOnlyRootFilesystem&quot;)
+    public Boolean getReadOnlyRootFilesystem() {
+<span class="fc" id="L235">        return readOnlyRootFilesystem;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param readOnlyRootFilesystem
+     *     The readOnlyRootFilesystem
+     */
+    @JsonProperty(&quot;readOnlyRootFilesystem&quot;)
+    public void setReadOnlyRootFilesystem(Boolean readOnlyRootFilesystem) {
+<span class="nc" id="L246">        this.readOnlyRootFilesystem = readOnlyRootFilesystem;</span>
+<span class="nc" id="L247">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The runAsGroup
+     */
+    @JsonProperty(&quot;runAsGroup&quot;)
+    public Long getRunAsGroup() {
+<span class="fc" id="L257">        return runAsGroup;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param runAsGroup
+     *     The runAsGroup
+     */
+    @JsonProperty(&quot;runAsGroup&quot;)
+    public void setRunAsGroup(Long runAsGroup) {
+<span class="nc" id="L268">        this.runAsGroup = runAsGroup;</span>
+<span class="nc" id="L269">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The runAsNonRoot
+     */
+    @JsonProperty(&quot;runAsNonRoot&quot;)
+    public Boolean getRunAsNonRoot() {
+<span class="fc" id="L279">        return runAsNonRoot;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param runAsNonRoot
+     *     The runAsNonRoot
+     */
+    @JsonProperty(&quot;runAsNonRoot&quot;)
+    public void setRunAsNonRoot(Boolean runAsNonRoot) {
+<span class="nc" id="L290">        this.runAsNonRoot = runAsNonRoot;</span>
+<span class="nc" id="L291">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The runAsUser
+     */
+    @JsonProperty(&quot;runAsUser&quot;)
+    public Long getRunAsUser() {
+<span class="fc" id="L301">        return runAsUser;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param runAsUser
+     *     The runAsUser
+     */
+    @JsonProperty(&quot;runAsUser&quot;)
+    public void setRunAsUser(Long runAsUser) {
+<span class="nc" id="L312">        this.runAsUser = runAsUser;</span>
+<span class="nc" id="L313">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The seLinuxOptions
+     */
+    @JsonProperty(&quot;seLinuxOptions&quot;)
+    public SELinuxOptions getSeLinuxOptions() {
+<span class="fc" id="L323">        return seLinuxOptions;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param seLinuxOptions
+     *     The seLinuxOptions
+     */
+    @JsonProperty(&quot;seLinuxOptions&quot;)
+    public void setSeLinuxOptions(SELinuxOptions seLinuxOptions) {
+<span class="nc" id="L334">        this.seLinuxOptions = seLinuxOptions;</span>
+<span class="nc" id="L335">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L339">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L344">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L345">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

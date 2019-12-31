@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContainerBuilder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ContainerBuilder.java</span></div><h1>ContainerBuilder.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import io.fabric8.kubernetes.api.builder.VisitableBuilder;
+import java.lang.Object;
+import java.lang.Boolean;
+import javax.validation.Validator;
+
+public class ContainerBuilder extends ContainerFluentImpl&lt;ContainerBuilder&gt; implements VisitableBuilder&lt;Container,ContainerBuilder&gt;{
+
+    ContainerFluent&lt;?&gt; fluent;
+    Boolean validationEnabled;
+    Validator validator;
+
+    public ContainerBuilder(){
+<span class="fc" id="L15">            this(true);</span>
+<span class="fc" id="L16">    }</span>
+    public ContainerBuilder(Boolean validationEnabled){
+<span class="fc" id="L18">            this(new Container(), validationEnabled);</span>
+<span class="fc" id="L19">    }</span>
+    public ContainerBuilder(ContainerFluent&lt;?&gt; fluent){
+<span class="fc" id="L21">            this(fluent, true);</span>
+<span class="fc" id="L22">    }</span>
+    public ContainerBuilder(ContainerFluent&lt;?&gt; fluent,Boolean validationEnabled){
+<span class="fc" id="L24">            this(fluent, new Container(), validationEnabled);</span>
+<span class="fc" id="L25">    }</span>
+    public ContainerBuilder(ContainerFluent&lt;?&gt; fluent,Container instance){
+<span class="nc" id="L27">            this(fluent, instance, true);</span>
+<span class="nc" id="L28">    }</span>
+<span class="fc" id="L29">    public ContainerBuilder(ContainerFluent&lt;?&gt; fluent,Container instance,Boolean validationEnabled){</span>
+<span class="fc" id="L30">            this.fluent = fluent; </span>
+<span class="fc" id="L31">            fluent.withArgs(instance.getArgs()); </span>
+<span class="fc" id="L32">            fluent.withCommand(instance.getCommand()); </span>
+<span class="fc" id="L33">            fluent.withEnv(instance.getEnv()); </span>
+<span class="fc" id="L34">            fluent.withEnvFrom(instance.getEnvFrom()); </span>
+<span class="fc" id="L35">            fluent.withImage(instance.getImage()); </span>
+<span class="fc" id="L36">            fluent.withImagePullPolicy(instance.getImagePullPolicy()); </span>
+<span class="fc" id="L37">            fluent.withLifecycle(instance.getLifecycle()); </span>
+<span class="fc" id="L38">            fluent.withLivenessProbe(instance.getLivenessProbe()); </span>
+<span class="fc" id="L39">            fluent.withName(instance.getName()); </span>
+<span class="fc" id="L40">            fluent.withPorts(instance.getPorts()); </span>
+<span class="fc" id="L41">            fluent.withReadinessProbe(instance.getReadinessProbe()); </span>
+<span class="fc" id="L42">            fluent.withResources(instance.getResources()); </span>
+<span class="fc" id="L43">            fluent.withSecurityContext(instance.getSecurityContext()); </span>
+<span class="fc" id="L44">            fluent.withStdin(instance.getStdin()); </span>
+<span class="fc" id="L45">            fluent.withStdinOnce(instance.getStdinOnce()); </span>
+<span class="fc" id="L46">            fluent.withTerminationMessagePath(instance.getTerminationMessagePath()); </span>
+<span class="fc" id="L47">            fluent.withTerminationMessagePolicy(instance.getTerminationMessagePolicy()); </span>
+<span class="fc" id="L48">            fluent.withTty(instance.getTty()); </span>
+<span class="fc" id="L49">            fluent.withVolumeDevices(instance.getVolumeDevices()); </span>
+<span class="fc" id="L50">            fluent.withVolumeMounts(instance.getVolumeMounts()); </span>
+<span class="fc" id="L51">            fluent.withWorkingDir(instance.getWorkingDir()); </span>
+<span class="fc" id="L52">            this.validationEnabled = validationEnabled; </span>
+<span class="fc" id="L53">    }</span>
+    public ContainerBuilder(Container instance){
+<span class="fc" id="L55">            this(instance,true);</span>
+<span class="fc" id="L56">    }</span>
+<span class="fc" id="L57">    public ContainerBuilder(Container instance,Boolean validationEnabled){</span>
+<span class="fc" id="L58">            this.fluent = this; </span>
+<span class="fc" id="L59">            this.withArgs(instance.getArgs()); </span>
+<span class="fc" id="L60">            this.withCommand(instance.getCommand()); </span>
+<span class="fc" id="L61">            this.withEnv(instance.getEnv()); </span>
+<span class="fc" id="L62">            this.withEnvFrom(instance.getEnvFrom()); </span>
+<span class="fc" id="L63">            this.withImage(instance.getImage()); </span>
+<span class="fc" id="L64">            this.withImagePullPolicy(instance.getImagePullPolicy()); </span>
+<span class="fc" id="L65">            this.withLifecycle(instance.getLifecycle()); </span>
+<span class="fc" id="L66">            this.withLivenessProbe(instance.getLivenessProbe()); </span>
+<span class="fc" id="L67">            this.withName(instance.getName()); </span>
+<span class="fc" id="L68">            this.withPorts(instance.getPorts()); </span>
+<span class="fc" id="L69">            this.withReadinessProbe(instance.getReadinessProbe()); </span>
+<span class="fc" id="L70">            this.withResources(instance.getResources()); </span>
+<span class="fc" id="L71">            this.withSecurityContext(instance.getSecurityContext()); </span>
+<span class="fc" id="L72">            this.withStdin(instance.getStdin()); </span>
+<span class="fc" id="L73">            this.withStdinOnce(instance.getStdinOnce()); </span>
+<span class="fc" id="L74">            this.withTerminationMessagePath(instance.getTerminationMessagePath()); </span>
+<span class="fc" id="L75">            this.withTerminationMessagePolicy(instance.getTerminationMessagePolicy()); </span>
+<span class="fc" id="L76">            this.withTty(instance.getTty()); </span>
+<span class="fc" id="L77">            this.withVolumeDevices(instance.getVolumeDevices()); </span>
+<span class="fc" id="L78">            this.withVolumeMounts(instance.getVolumeMounts()); </span>
+<span class="fc" id="L79">            this.withWorkingDir(instance.getWorkingDir()); </span>
+<span class="fc" id="L80">            this.validationEnabled = validationEnabled; </span>
+<span class="fc" id="L81">    }</span>
+    public ContainerBuilder(Validator validator){
+<span class="nc" id="L83">            this(new Container(), true);</span>
+<span class="nc" id="L84">    }</span>
+<span class="nc" id="L85">    public ContainerBuilder(ContainerFluent&lt;?&gt; fluent,Container instance,Validator validator){</span>
+<span class="nc" id="L86">            this.fluent = fluent; </span>
+<span class="nc" id="L87">            fluent.withArgs(instance.getArgs()); </span>
+<span class="nc" id="L88">            fluent.withCommand(instance.getCommand()); </span>
+<span class="nc" id="L89">            fluent.withEnv(instance.getEnv()); </span>
+<span class="nc" id="L90">            fluent.withEnvFrom(instance.getEnvFrom()); </span>
+<span class="nc" id="L91">            fluent.withImage(instance.getImage()); </span>
+<span class="nc" id="L92">            fluent.withImagePullPolicy(instance.getImagePullPolicy()); </span>
+<span class="nc" id="L93">            fluent.withLifecycle(instance.getLifecycle()); </span>
+<span class="nc" id="L94">            fluent.withLivenessProbe(instance.getLivenessProbe()); </span>
+<span class="nc" id="L95">            fluent.withName(instance.getName()); </span>
+<span class="nc" id="L96">            fluent.withPorts(instance.getPorts()); </span>
+<span class="nc" id="L97">            fluent.withReadinessProbe(instance.getReadinessProbe()); </span>
+<span class="nc" id="L98">            fluent.withResources(instance.getResources()); </span>
+<span class="nc" id="L99">            fluent.withSecurityContext(instance.getSecurityContext()); </span>
+<span class="nc" id="L100">            fluent.withStdin(instance.getStdin()); </span>
+<span class="nc" id="L101">            fluent.withStdinOnce(instance.getStdinOnce()); </span>
+<span class="nc" id="L102">            fluent.withTerminationMessagePath(instance.getTerminationMessagePath()); </span>
+<span class="nc" id="L103">            fluent.withTerminationMessagePolicy(instance.getTerminationMessagePolicy()); </span>
+<span class="nc" id="L104">            fluent.withTty(instance.getTty()); </span>
+<span class="nc" id="L105">            fluent.withVolumeDevices(instance.getVolumeDevices()); </span>
+<span class="nc" id="L106">            fluent.withVolumeMounts(instance.getVolumeMounts()); </span>
+<span class="nc" id="L107">            fluent.withWorkingDir(instance.getWorkingDir()); </span>
+<span class="nc" id="L108">            this.validator = validator;</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            this.validationEnabled = validator != null; </span>
+<span class="nc" id="L110">    }</span>
+<span class="nc" id="L111">    public ContainerBuilder(Container instance,Validator validator){</span>
+<span class="nc" id="L112">            this.fluent = this; </span>
+<span class="nc" id="L113">            this.withArgs(instance.getArgs()); </span>
+<span class="nc" id="L114">            this.withCommand(instance.getCommand()); </span>
+<span class="nc" id="L115">            this.withEnv(instance.getEnv()); </span>
+<span class="nc" id="L116">            this.withEnvFrom(instance.getEnvFrom()); </span>
+<span class="nc" id="L117">            this.withImage(instance.getImage()); </span>
+<span class="nc" id="L118">            this.withImagePullPolicy(instance.getImagePullPolicy()); </span>
+<span class="nc" id="L119">            this.withLifecycle(instance.getLifecycle()); </span>
+<span class="nc" id="L120">            this.withLivenessProbe(instance.getLivenessProbe()); </span>
+<span class="nc" id="L121">            this.withName(instance.getName()); </span>
+<span class="nc" id="L122">            this.withPorts(instance.getPorts()); </span>
+<span class="nc" id="L123">            this.withReadinessProbe(instance.getReadinessProbe()); </span>
+<span class="nc" id="L124">            this.withResources(instance.getResources()); </span>
+<span class="nc" id="L125">            this.withSecurityContext(instance.getSecurityContext()); </span>
+<span class="nc" id="L126">            this.withStdin(instance.getStdin()); </span>
+<span class="nc" id="L127">            this.withStdinOnce(instance.getStdinOnce()); </span>
+<span class="nc" id="L128">            this.withTerminationMessagePath(instance.getTerminationMessagePath()); </span>
+<span class="nc" id="L129">            this.withTerminationMessagePolicy(instance.getTerminationMessagePolicy()); </span>
+<span class="nc" id="L130">            this.withTty(instance.getTty()); </span>
+<span class="nc" id="L131">            this.withVolumeDevices(instance.getVolumeDevices()); </span>
+<span class="nc" id="L132">            this.withVolumeMounts(instance.getVolumeMounts()); </span>
+<span class="nc" id="L133">            this.withWorkingDir(instance.getWorkingDir()); </span>
+<span class="nc" id="L134">            this.validator = validator; </span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            this.validationEnabled = validator != null; </span>
+<span class="nc" id="L136">    }</span>
+
+    public Container build(){
+<span class="fc" id="L139">            Container buildable = new Container(fluent.getArgs(),fluent.getCommand(),fluent.getEnv(),fluent.getEnvFrom(),fluent.getImage(),fluent.getImagePullPolicy(),fluent.getLifecycle(),fluent.getLivenessProbe(),fluent.getName(),fluent.getPorts(),fluent.getReadinessProbe(),fluent.getResources(),fluent.getSecurityContext(),fluent.isStdin(),fluent.isStdinOnce(),fluent.getTerminationMessagePath(),fluent.getTerminationMessagePolicy(),fluent.isTty(),fluent.getVolumeDevices(),fluent.getVolumeMounts(),fluent.getWorkingDir());</span>
+<span class="pc bpc" id="L140" title="1 of 2 branches missed.">            if (validationEnabled) {io.fabric8.kubernetes.api.builder.ValidationUtils.validate(buildable, validator);}</span>
+<span class="fc" id="L141">            return buildable;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L146" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L148">            ContainerBuilder that = (ContainerBuilder) o;</span>
+<span class="nc bnc" id="L149" title="All 10 branches missed.">            if (fluent != null &amp;&amp;fluent != this ? !fluent.equals(that.fluent) :that.fluent != null &amp;&amp;fluent != this ) return false;</span>
+
+<span class="nc bnc" id="L151" title="All 6 branches missed.">            if (validationEnabled != null ? !validationEnabled.equals(that.validationEnabled) :that.validationEnabled != null) return false;</span>
+<span class="nc" id="L152">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

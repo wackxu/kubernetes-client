@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SourceBuildStrategyFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">SourceBuildStrategyFluentImpl.java</span></div><h1>SourceBuildStrategyFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.model.EnvVarBuilder;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import io.fabric8.kubernetes.api.model.LocalObjectReferenceFluentImpl;
+import io.fabric8.kubernetes.api.model.EnvVar;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectReferenceFluentImpl;
+import io.fabric8.kubernetes.api.model.LocalObjectReferenceBuilder;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.ObjectReferenceBuilder;
+import io.fabric8.kubernetes.api.model.LocalObjectReference;
+import java.util.Collection;
+import io.fabric8.kubernetes.api.model.EnvVarFluentImpl;
+import java.lang.Object;
+
+public class SourceBuildStrategyFluentImpl&lt;A extends SourceBuildStrategyFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements SourceBuildStrategyFluent&lt;A&gt;{
+
+    private List&lt;EnvVarBuilder&gt; env;
+    private Boolean forcePull;
+    private ObjectReferenceBuilder from;
+    private Boolean incremental;
+    private LocalObjectReferenceBuilder pullSecret;
+    private String scripts;
+
+<span class="fc" id="L35">    public SourceBuildStrategyFluentImpl(){</span>
+<span class="fc" id="L36">    }</span>
+<span class="nc" id="L37">    public SourceBuildStrategyFluentImpl(SourceBuildStrategy instance){</span>
+<span class="nc" id="L38">            this.withEnv(instance.getEnv()); </span>
+<span class="nc" id="L39">            this.withForcePull(instance.getForcePull()); </span>
+<span class="nc" id="L40">            this.withFrom(instance.getFrom()); </span>
+<span class="nc" id="L41">            this.withIncremental(instance.getIncremental()); </span>
+<span class="nc" id="L42">            this.withPullSecret(instance.getPullSecret()); </span>
+<span class="nc" id="L43">            this.withScripts(instance.getScripts()); </span>
+<span class="nc" id="L44">    }</span>
+
+    public A addToEnv(int index,EnvVar item){
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="pc bpc" id="L48" title="2 of 4 branches missed.">            EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.env.add(index &gt;= 0 ? index : env.size(), builder); return (A)this;</span>
+    }
+
+    public A setToEnv(int index,EnvVar item){
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc" id="L53">            EnvVarBuilder builder = new EnvVarBuilder(item);</span>
+<span class="nc bnc" id="L54" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L55" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= env.size()) { env.add(builder); } else { env.set(index, builder);}</span>
+<span class="nc" id="L56">             return (A)this;</span>
+    }
+
+    public A addToEnv(EnvVar... items){
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(builder);this.env.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToEnv(Collection&lt;EnvVar&gt; items){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(builder);this.env.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromEnv(EnvVar... items){
+<span class="nc bnc" id="L70" title="All 4 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.remove(builder);if (this.env != null) {this.env.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromEnv(Collection&lt;EnvVar&gt; items){
+<span class="nc bnc" id="L74" title="All 4 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.remove(builder);if (this.env != null) {this.env.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildEnv instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;EnvVar&gt; getEnv(){
+<span class="fc" id="L83">            return build(env);</span>
+    }
+
+    public List&lt;EnvVar&gt; buildEnv(){
+<span class="nc" id="L87">            return build(env);</span>
+    }
+
+    public EnvVar buildEnv(int index){
+<span class="nc" id="L91">            return this.env.get(index).build();</span>
+    }
+
+    public EnvVar buildFirstEnv(){
+<span class="nc" id="L95">            return this.env.get(0).build();</span>
+    }
+
+    public EnvVar buildLastEnv(){
+<span class="nc" id="L99">            return this.env.get(env.size() - 1).build();</span>
+    }
+
+    public EnvVar buildMatchingEnv(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvVarBuilder&gt; predicate){
+<span class="nc bnc" id="L103" title="All 4 branches missed.">            for (EnvVarBuilder item: env) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withEnv(List&lt;EnvVar&gt; env){
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">            if (this.env != null) { _visitables.removeAll(this.env);}</span>
+<span class="pc bpc" id="L108" title="1 of 4 branches missed.">            if (env != null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;(); for (EnvVar item : env){this.addToEnv(item);}} else { this.env = new ArrayList&lt;EnvVarBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withEnv(EnvVar... env){
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            if (this.env != null) {this.env.clear();}</span>
+<span class="nc bnc" id="L113" title="All 4 branches missed.">            if (env != null) {for (EnvVar item :env){ this.addToEnv(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasEnv(){
+<span class="nc bnc" id="L117" title="All 4 branches missed.">            return env != null &amp;&amp; !env.isEmpty();</span>
+    }
+
+    public SourceBuildStrategyFluent.EnvNested&lt;A&gt; addNewEnv(){
+<span class="nc" id="L121">            return new EnvNestedImpl();</span>
+    }
+
+    public SourceBuildStrategyFluent.EnvNested&lt;A&gt; addNewEnvLike(EnvVar item){
+<span class="nc" id="L125">            return new EnvNestedImpl(-1, item);</span>
+    }
+
+    public SourceBuildStrategyFluent.EnvNested&lt;A&gt; setNewEnvLike(int index,EnvVar item){
+<span class="nc" id="L129">            return new EnvNestedImpl(index, item);</span>
+    }
+
+    public SourceBuildStrategyFluent.EnvNested&lt;A&gt; editEnv(int index){
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (env.size() &lt;= index) throw new RuntimeException(&quot;Can't edit env. Index exceeds size.&quot;);</span>
+<span class="nc" id="L134">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    public SourceBuildStrategyFluent.EnvNested&lt;A&gt; editFirstEnv(){
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            if (env.size() == 0) throw new RuntimeException(&quot;Can't edit first env. The list is empty.&quot;);</span>
+<span class="nc" id="L139">            return setNewEnvLike(0, buildEnv(0));</span>
+    }
+
+    public SourceBuildStrategyFluent.EnvNested&lt;A&gt; editLastEnv(){
+<span class="nc" id="L143">            int index = env.size() - 1;</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last env. The list is empty.&quot;);</span>
+<span class="nc" id="L145">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    public SourceBuildStrategyFluent.EnvNested&lt;A&gt; editMatchingEnv(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvVarBuilder&gt; predicate){
+<span class="nc" id="L149">            int index = -1;</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">            for (int i=0;i&lt;env.size();i++) { </span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (predicate.apply(env.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching env. No match found.&quot;);</span>
+<span class="nc" id="L154">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    public Boolean isForcePull(){
+<span class="fc" id="L158">            return this.forcePull;</span>
+    }
+
+    public A withForcePull(Boolean forcePull){
+<span class="fc" id="L162">            this.forcePull=forcePull; return (A) this;</span>
+    }
+
+    public Boolean hasForcePull(){
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            return this.forcePull != null;</span>
+    }
+
+    public A withNewForcePull(String arg1){
+<span class="nc" id="L170">            return (A)withForcePull(new Boolean(arg1));</span>
+    }
+
+    public A withNewForcePull(boolean arg1){
+<span class="nc" id="L174">            return (A)withForcePull(new Boolean(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildFrom instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getFrom(){
+<span class="pc bpc" id="L183" title="1 of 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public ObjectReference buildFrom(){
+<span class="nc bnc" id="L187" title="All 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public A withFrom(ObjectReference from){
+<span class="fc" id="L191">            _visitables.remove(this.from);</span>
+<span class="fc bfc" id="L192" title="All 2 branches covered.">            if (from!=null){ this.from= new ObjectReferenceBuilder(from); _visitables.add(this.from);} return (A) this;</span>
+    }
+
+    public Boolean hasFrom(){
+<span class="nc bnc" id="L196" title="All 2 branches missed.">            return this.from != null;</span>
+    }
+
+    public SourceBuildStrategyFluent.FromNested&lt;A&gt; withNewFrom(){
+<span class="nc" id="L200">            return new FromNestedImpl();</span>
+    }
+
+    public SourceBuildStrategyFluent.FromNested&lt;A&gt; withNewFromLike(ObjectReference item){
+<span class="nc" id="L204">            return new FromNestedImpl(item);</span>
+    }
+
+    public SourceBuildStrategyFluent.FromNested&lt;A&gt; editFrom(){
+<span class="nc" id="L208">            return withNewFromLike(getFrom());</span>
+    }
+
+    public SourceBuildStrategyFluent.FromNested&lt;A&gt; editOrNewFrom(){
+<span class="nc bnc" id="L212" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public SourceBuildStrategyFluent.FromNested&lt;A&gt; editOrNewFromLike(ObjectReference item){
+<span class="nc bnc" id="L216" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): item);</span>
+    }
+
+    public Boolean isIncremental(){
+<span class="fc" id="L220">            return this.incremental;</span>
+    }
+
+    public A withIncremental(Boolean incremental){
+<span class="fc" id="L224">            this.incremental=incremental; return (A) this;</span>
+    }
+
+    public Boolean hasIncremental(){
+<span class="nc bnc" id="L228" title="All 2 branches missed.">            return this.incremental != null;</span>
+    }
+
+    public A withNewIncremental(String arg1){
+<span class="nc" id="L232">            return (A)withIncremental(new Boolean(arg1));</span>
+    }
+
+    public A withNewIncremental(boolean arg1){
+<span class="nc" id="L236">            return (A)withIncremental(new Boolean(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPullSecret instead.
+ * @return The buildable object.
+ */
+@Deprecated public LocalObjectReference getPullSecret(){
+<span class="pc bpc" id="L245" title="1 of 2 branches missed.">            return this.pullSecret!=null?this.pullSecret.build():null;</span>
+    }
+
+    public LocalObjectReference buildPullSecret(){
+<span class="nc bnc" id="L249" title="All 2 branches missed.">            return this.pullSecret!=null?this.pullSecret.build():null;</span>
+    }
+
+    public A withPullSecret(LocalObjectReference pullSecret){
+<span class="fc" id="L253">            _visitables.remove(this.pullSecret);</span>
+<span class="fc bfc" id="L254" title="All 2 branches covered.">            if (pullSecret!=null){ this.pullSecret= new LocalObjectReferenceBuilder(pullSecret); _visitables.add(this.pullSecret);} return (A) this;</span>
+    }
+
+    public Boolean hasPullSecret(){
+<span class="nc bnc" id="L258" title="All 2 branches missed.">            return this.pullSecret != null;</span>
+    }
+
+    public A withNewPullSecret(String name){
+<span class="nc" id="L262">            return (A)withPullSecret(new LocalObjectReference(name));</span>
+    }
+
+    public SourceBuildStrategyFluent.PullSecretNested&lt;A&gt; withNewPullSecret(){
+<span class="nc" id="L266">            return new PullSecretNestedImpl();</span>
+    }
+
+    public SourceBuildStrategyFluent.PullSecretNested&lt;A&gt; withNewPullSecretLike(LocalObjectReference item){
+<span class="nc" id="L270">            return new PullSecretNestedImpl(item);</span>
+    }
+
+    public SourceBuildStrategyFluent.PullSecretNested&lt;A&gt; editPullSecret(){
+<span class="nc" id="L274">            return withNewPullSecretLike(getPullSecret());</span>
+    }
+
+    public SourceBuildStrategyFluent.PullSecretNested&lt;A&gt; editOrNewPullSecret(){
+<span class="nc bnc" id="L278" title="All 2 branches missed.">            return withNewPullSecretLike(getPullSecret() != null ? getPullSecret(): new LocalObjectReferenceBuilder().build());</span>
+    }
+
+    public SourceBuildStrategyFluent.PullSecretNested&lt;A&gt; editOrNewPullSecretLike(LocalObjectReference item){
+<span class="nc bnc" id="L282" title="All 2 branches missed.">            return withNewPullSecretLike(getPullSecret() != null ? getPullSecret(): item);</span>
+    }
+
+    public String getScripts(){
+<span class="fc" id="L286">            return this.scripts;</span>
+    }
+
+    public A withScripts(String scripts){
+<span class="fc" id="L290">            this.scripts=scripts; return (A) this;</span>
+    }
+
+    public Boolean hasScripts(){
+<span class="nc bnc" id="L294" title="All 2 branches missed.">            return this.scripts != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L298" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L299" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L300" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L301">            SourceBuildStrategyFluentImpl that = (SourceBuildStrategyFluentImpl) o;</span>
+<span class="nc bnc" id="L302" title="All 6 branches missed.">            if (env != null ? !env.equals(that.env) :that.env != null) return false;</span>
+<span class="nc bnc" id="L303" title="All 6 branches missed.">            if (forcePull != null ? !forcePull.equals(that.forcePull) :that.forcePull != null) return false;</span>
+<span class="nc bnc" id="L304" title="All 6 branches missed.">            if (from != null ? !from.equals(that.from) :that.from != null) return false;</span>
+<span class="nc bnc" id="L305" title="All 6 branches missed.">            if (incremental != null ? !incremental.equals(that.incremental) :that.incremental != null) return false;</span>
+<span class="nc bnc" id="L306" title="All 6 branches missed.">            if (pullSecret != null ? !pullSecret.equals(that.pullSecret) :that.pullSecret != null) return false;</span>
+<span class="nc bnc" id="L307" title="All 6 branches missed.">            if (scripts != null ? !scripts.equals(that.scripts) :that.scripts != null) return false;</span>
+<span class="nc" id="L308">            return true;</span>
+    }
+
+
+    public class EnvNestedImpl&lt;N&gt; extends EnvVarFluentImpl&lt;SourceBuildStrategyFluent.EnvNested&lt;N&gt;&gt; implements SourceBuildStrategyFluent.EnvNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EnvVarBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L317">            EnvNestedImpl(int index,EnvVar item){</span>
+<span class="nc" id="L318">                    this.index = index;</span>
+<span class="nc" id="L319">                    this.builder = new EnvVarBuilder(this, item);</span>
+<span class="nc" id="L320">            }</span>
+<span class="nc" id="L321">            EnvNestedImpl(){</span>
+<span class="nc" id="L322">                    this.index = -1;</span>
+<span class="nc" id="L323">                    this.builder = new EnvVarBuilder(this);</span>
+<span class="nc" id="L324">            }</span>
+    
+    public N and(){
+<span class="nc" id="L327">            return (N) SourceBuildStrategyFluentImpl.this.setToEnv(index, builder.build());</span>
+    }
+    public N endEnv(){
+<span class="nc" id="L330">            return and();</span>
+    }
+
+}
+    public class FromNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;SourceBuildStrategyFluent.FromNested&lt;N&gt;&gt; implements SourceBuildStrategyFluent.FromNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L338">            FromNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L339">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L340">            }</span>
+<span class="nc" id="L341">            FromNestedImpl(){</span>
+<span class="nc" id="L342">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L343">            }</span>
+    
+    public N and(){
+<span class="nc" id="L346">            return (N) SourceBuildStrategyFluentImpl.this.withFrom(builder.build());</span>
+    }
+    public N endFrom(){
+<span class="nc" id="L349">            return and();</span>
+    }
+
+}
+    public class PullSecretNestedImpl&lt;N&gt; extends LocalObjectReferenceFluentImpl&lt;SourceBuildStrategyFluent.PullSecretNested&lt;N&gt;&gt; implements SourceBuildStrategyFluent.PullSecretNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LocalObjectReferenceBuilder builder;
+    
+<span class="nc" id="L357">            PullSecretNestedImpl(LocalObjectReference item){</span>
+<span class="nc" id="L358">                    this.builder = new LocalObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L359">            }</span>
+<span class="nc" id="L360">            PullSecretNestedImpl(){</span>
+<span class="nc" id="L361">                    this.builder = new LocalObjectReferenceBuilder(this);</span>
+<span class="nc" id="L362">            }</span>
+    
+    public N and(){
+<span class="nc" id="L365">            return (N) SourceBuildStrategyFluentImpl.this.withPullSecret(builder.build());</span>
+    }
+    public N endPullSecret(){
+<span class="nc" id="L368">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

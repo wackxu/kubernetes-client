@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PodSecurityContext.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">PodSecurityContext.java</span></div><h1>PodSecurityContext.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;fsGroup&quot;,
+    &quot;runAsGroup&quot;,
+    &quot;runAsNonRoot&quot;,
+    &quot;runAsUser&quot;,
+    &quot;seLinuxOptions&quot;,
+    &quot;supplementalGroups&quot;,
+    &quot;sysctls&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L43">@ToString</span>
+<span class="nc bnc" id="L44" title="All 70 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class PodSecurityContext implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;fsGroup&quot;)
+    private Long fsGroup;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;runAsGroup&quot;)
+    private Long runAsGroup;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;runAsNonRoot&quot;)
+    private Boolean runAsNonRoot;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;runAsUser&quot;)
+    private Long runAsUser;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;seLinuxOptions&quot;)
+    @Valid
+    private SELinuxOptions seLinuxOptions;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L84">    @JsonProperty(&quot;supplementalGroups&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;Long&gt; supplementalGroups = new ArrayList&lt;Long&gt;();
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L92">    @JsonProperty(&quot;sysctls&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;Sysctl&gt; sysctls = new ArrayList&lt;Sysctl&gt;();
+<span class="nc" id="L96">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L103">    public PodSecurityContext() {</span>
+<span class="nc" id="L104">    }</span>
+
+    /**
+     * 
+     * @param runAsUser
+     * @param seLinuxOptions
+     * @param fsGroup
+     * @param supplementalGroups
+     * @param runAsGroup
+     * @param runAsNonRoot
+     * @param sysctls
+     */
+<span class="nc" id="L116">    public PodSecurityContext(Long fsGroup, Long runAsGroup, Boolean runAsNonRoot, Long runAsUser, SELinuxOptions seLinuxOptions, List&lt;Long&gt; supplementalGroups, List&lt;Sysctl&gt; sysctls) {</span>
+<span class="nc" id="L117">        this.fsGroup = fsGroup;</span>
+<span class="nc" id="L118">        this.runAsGroup = runAsGroup;</span>
+<span class="nc" id="L119">        this.runAsNonRoot = runAsNonRoot;</span>
+<span class="nc" id="L120">        this.runAsUser = runAsUser;</span>
+<span class="nc" id="L121">        this.seLinuxOptions = seLinuxOptions;</span>
+<span class="nc" id="L122">        this.supplementalGroups = supplementalGroups;</span>
+<span class="nc" id="L123">        this.sysctls = sysctls;</span>
+<span class="nc" id="L124">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The fsGroup
+     */
+    @JsonProperty(&quot;fsGroup&quot;)
+    public Long getFsGroup() {
+<span class="nc" id="L134">        return fsGroup;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param fsGroup
+     *     The fsGroup
+     */
+    @JsonProperty(&quot;fsGroup&quot;)
+    public void setFsGroup(Long fsGroup) {
+<span class="nc" id="L145">        this.fsGroup = fsGroup;</span>
+<span class="nc" id="L146">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The runAsGroup
+     */
+    @JsonProperty(&quot;runAsGroup&quot;)
+    public Long getRunAsGroup() {
+<span class="nc" id="L156">        return runAsGroup;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param runAsGroup
+     *     The runAsGroup
+     */
+    @JsonProperty(&quot;runAsGroup&quot;)
+    public void setRunAsGroup(Long runAsGroup) {
+<span class="nc" id="L167">        this.runAsGroup = runAsGroup;</span>
+<span class="nc" id="L168">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The runAsNonRoot
+     */
+    @JsonProperty(&quot;runAsNonRoot&quot;)
+    public Boolean getRunAsNonRoot() {
+<span class="nc" id="L178">        return runAsNonRoot;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param runAsNonRoot
+     *     The runAsNonRoot
+     */
+    @JsonProperty(&quot;runAsNonRoot&quot;)
+    public void setRunAsNonRoot(Boolean runAsNonRoot) {
+<span class="nc" id="L189">        this.runAsNonRoot = runAsNonRoot;</span>
+<span class="nc" id="L190">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The runAsUser
+     */
+    @JsonProperty(&quot;runAsUser&quot;)
+    public Long getRunAsUser() {
+<span class="nc" id="L200">        return runAsUser;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param runAsUser
+     *     The runAsUser
+     */
+    @JsonProperty(&quot;runAsUser&quot;)
+    public void setRunAsUser(Long runAsUser) {
+<span class="nc" id="L211">        this.runAsUser = runAsUser;</span>
+<span class="nc" id="L212">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The seLinuxOptions
+     */
+    @JsonProperty(&quot;seLinuxOptions&quot;)
+    public SELinuxOptions getSeLinuxOptions() {
+<span class="nc" id="L222">        return seLinuxOptions;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param seLinuxOptions
+     *     The seLinuxOptions
+     */
+    @JsonProperty(&quot;seLinuxOptions&quot;)
+    public void setSeLinuxOptions(SELinuxOptions seLinuxOptions) {
+<span class="nc" id="L233">        this.seLinuxOptions = seLinuxOptions;</span>
+<span class="nc" id="L234">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The supplementalGroups
+     */
+    @JsonProperty(&quot;supplementalGroups&quot;)
+    public List&lt;Long&gt; getSupplementalGroups() {
+<span class="nc" id="L244">        return supplementalGroups;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param supplementalGroups
+     *     The supplementalGroups
+     */
+    @JsonProperty(&quot;supplementalGroups&quot;)
+    public void setSupplementalGroups(List&lt;Long&gt; supplementalGroups) {
+<span class="nc" id="L255">        this.supplementalGroups = supplementalGroups;</span>
+<span class="nc" id="L256">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The sysctls
+     */
+    @JsonProperty(&quot;sysctls&quot;)
+    public List&lt;Sysctl&gt; getSysctls() {
+<span class="nc" id="L266">        return sysctls;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param sysctls
+     *     The sysctls
+     */
+    @JsonProperty(&quot;sysctls&quot;)
+    public void setSysctls(List&lt;Sysctl&gt; sysctls) {
+<span class="nc" id="L277">        this.sysctls = sysctls;</span>
+<span class="nc" id="L278">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L282">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L287">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L288">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

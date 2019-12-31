@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JobOperationsImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.dsl.internal</a> &gt; <span class="el_source">JobOperationsImpl.java</span></div><h1>JobOperationsImpl.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.dsl.internal;
+
+import okhttp3.OkHttpClient;
+import io.fabric8.kubernetes.api.model.batch.DoneableJob;
+import io.fabric8.kubernetes.api.model.batch.Job;
+import io.fabric8.kubernetes.api.model.batch.JobList;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.dsl.ScalableResource;
+import io.fabric8.kubernetes.client.dsl.Reaper;
+import io.fabric8.kubernetes.client.dsl.base.HasMetadataOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.InputStream;
+import java.util.Map;
+import java.util.Objects;
+import java.util.TreeMap;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
+
+public class JobOperationsImpl extends HasMetadataOperation&lt;Job, JobList, DoneableJob, ScalableResource&lt;Job, DoneableJob&gt;&gt;
+  implements ScalableResource&lt;Job, DoneableJob&gt; {
+
+<span class="nc" id="L44">  static final transient Logger LOG = LoggerFactory.getLogger(JobOperationsImpl.class);</span>
+
+  public JobOperationsImpl(OkHttpClient client, Config config, String namespace) {
+<span class="nc" id="L47">    this(client, config, &quot;batch&quot;,&quot;v1&quot;, namespace, null, true, null, null, false, -1, new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String&gt;());</span>
+<span class="nc" id="L48">  }</span>
+
+  public JobOperationsImpl(OkHttpClient client, Config config, String apiGroup, String apiVersion, String namespace, String name, Boolean cascading, Job item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields) {
+<span class="nc" id="L51">    super(client, config, apiGroup, apiVersion, &quot;jobs&quot;, namespace, name, cascading, item, resourceVersion, reloadingFromServer, gracePeriodSeconds, labels, labelsNot, labelsIn, labelsNotIn, fields);</span>
+<span class="nc" id="L52">    reaper = new JobReaper(this);</span>
+<span class="nc" id="L53">  }</span>
+
+  @Override
+  public ScalableResource&lt;Job, DoneableJob&gt; load(InputStream is) {
+    try {
+<span class="nc" id="L58">      Job item = unmarshal(is, Job.class);</span>
+<span class="nc" id="L59">      return new JobOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), item, getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields());</span>
+<span class="nc" id="L60">    } catch (Throwable t) {</span>
+<span class="nc" id="L61">      throw KubernetesClientException.launderThrowable(t);</span>
+    }
+  }
+
+  @Override
+  public ScalableResource&lt;Job, DoneableJob&gt; fromServer() {
+<span class="nc" id="L67">    return new JobOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), getResourceVersion(), true, getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields());</span>
+  }
+
+  @Override
+  public Job scale(int count) {
+<span class="nc" id="L72">    return scale(count, false);</span>
+  }
+
+  @Override
+  public Job scale(int count, boolean wait) {
+<span class="nc" id="L77">    Job res = cascading(false).edit().editSpec().withParallelism(count).endSpec().done();</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">    if (wait) {</span>
+<span class="nc" id="L79">      waitUntilJobIsScaled();</span>
+<span class="nc" id="L80">      res = getMandatory();</span>
+    }
+<span class="nc" id="L82">    return res;</span>
+  }
+
+  /**
+   * Lets wait until there are enough Ready pods of the given Job
+   */
+  private void waitUntilJobIsScaled() {
+<span class="nc" id="L89">    final CountDownLatch countDownLatch = new CountDownLatch(1);</span>
+
+<span class="nc" id="L91">    final AtomicReference&lt;Job&gt; atomicJob = new AtomicReference&lt;&gt;();</span>
+
+<span class="nc" id="L93">    final Runnable jobPoller = new Runnable() {</span>
+      public void run() {
+        try {
+<span class="nc" id="L96">          Job job = getMandatory();</span>
+<span class="nc" id="L97">          atomicJob.set(job);</span>
+<span class="nc" id="L98">          Integer activeJobs = job.getStatus().getActive();</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">          if (activeJobs == null) {</span>
+<span class="nc" id="L100">            activeJobs = 0;</span>
+          }
+<span class="nc bnc" id="L102" title="All 2 branches missed.">          if (Objects.equals(job.getSpec().getParallelism(), activeJobs)) {</span>
+<span class="nc" id="L103">            countDownLatch.countDown();</span>
+          } else {
+<span class="nc" id="L105">            LOG.debug(&quot;Only {}/{} pods scheduled for Job: {} in namespace: {} seconds so waiting...&quot;,</span>
+<span class="nc" id="L106">              job.getStatus().getActive(), job.getSpec().getParallelism(), job.getMetadata().getName(), namespace);</span>
+          }
+<span class="nc" id="L108">        } catch (Throwable t) {</span>
+<span class="nc" id="L109">          LOG.error(&quot;Error while waiting for Job to be scaled.&quot;, t);</span>
+<span class="nc" id="L110">        }</span>
+<span class="nc" id="L111">      }</span>
+    };
+
+<span class="nc" id="L114">    ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();</span>
+<span class="nc" id="L115">    ScheduledFuture poller = executor.scheduleWithFixedDelay(jobPoller, 0, POLL_INTERVAL_MS, TimeUnit.MILLISECONDS);</span>
+    try {
+<span class="nc" id="L117">      countDownLatch.await(getConfig().getScaleTimeout(), TimeUnit.MILLISECONDS);</span>
+<span class="nc" id="L118">      executor.shutdown();</span>
+<span class="nc" id="L119">    } catch (InterruptedException e) {</span>
+<span class="nc" id="L120">      Thread.currentThread().interrupt();</span>
+<span class="nc" id="L121">      poller.cancel(true);</span>
+<span class="nc" id="L122">      executor.shutdown();</span>
+<span class="nc" id="L123">      LOG.error(&quot;Only {}/{} pod(s) ready for Job: {} in namespace: {} - giving up&quot;,</span>
+<span class="nc" id="L124">        atomicJob.get().getStatus().getActive(), atomicJob.get().getSpec().getParallelism(), atomicJob.get().getMetadata().getName(), namespace);</span>
+<span class="nc" id="L125">    }</span>
+<span class="nc" id="L126">  }</span>
+
+  private static class JobReaper implements Reaper {
+    private JobOperationsImpl oper;
+
+<span class="nc" id="L131">    public JobReaper(JobOperationsImpl oper) {</span>
+<span class="nc" id="L132">      this.oper = oper;</span>
+<span class="nc" id="L133">    }</span>
+
+    @Override
+    public boolean reap() {
+<span class="nc" id="L137">      oper.scale(0, true);</span>
+<span class="nc" id="L138">      return false;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

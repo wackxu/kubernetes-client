@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OAuthClientAuthorizationFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">OAuthClientAuthorizationFluentImpl.java</span></div><h1>OAuthClientAuthorizationFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.ObjectMetaFluentImpl;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class OAuthClientAuthorizationFluentImpl&lt;A extends OAuthClientAuthorizationFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements OAuthClientAuthorizationFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private String clientName;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+    private List&lt;String&gt; scopes;
+    private String userName;
+    private String userUID;
+
+<span class="nc" id="L32">    public OAuthClientAuthorizationFluentImpl(){</span>
+<span class="nc" id="L33">    }</span>
+<span class="nc" id="L34">    public OAuthClientAuthorizationFluentImpl(OAuthClientAuthorization instance){</span>
+<span class="nc" id="L35">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L36">            this.withClientName(instance.getClientName()); </span>
+<span class="nc" id="L37">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L38">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L39">            this.withScopes(instance.getScopes()); </span>
+<span class="nc" id="L40">            this.withUserName(instance.getUserName()); </span>
+<span class="nc" id="L41">            this.withUserUID(instance.getUserUID()); </span>
+<span class="nc" id="L42">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L45">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L49">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public String getClientName(){
+<span class="nc" id="L57">            return this.clientName;</span>
+    }
+
+    public A withClientName(String clientName){
+<span class="nc" id="L61">            this.clientName=clientName; return (A) this;</span>
+    }
+
+    public Boolean hasClientName(){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            return this.clientName != null;</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L69">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L73">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L94">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public OAuthClientAuthorizationFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L103">            return new MetadataNestedImpl();</span>
+    }
+
+    public OAuthClientAuthorizationFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L107">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public OAuthClientAuthorizationFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L111">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public OAuthClientAuthorizationFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public OAuthClientAuthorizationFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    public A addToScopes(int index,String item){
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            if (this.scopes == null) {this.scopes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L124">            this.scopes.add(index, item);</span>
+<span class="nc" id="L125">            return (A)this;</span>
+    }
+
+    public A setToScopes(int index,String item){
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            if (this.scopes == null) {this.scopes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L130">            this.scopes.set(index, item); return (A)this;</span>
+    }
+
+    public A addToScopes(String... items){
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            if (this.scopes == null) {this.scopes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            for (String item : items) {this.scopes.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToScopes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            if (this.scopes == null) {this.scopes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            for (String item : items) {this.scopes.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromScopes(String... items){
+<span class="nc bnc" id="L144" title="All 4 branches missed.">            for (String item : items) {if (this.scopes!= null){ this.scopes.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromScopes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L148" title="All 4 branches missed.">            for (String item : items) {if (this.scopes!= null){ this.scopes.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getScopes(){
+<span class="nc" id="L152">            return this.scopes;</span>
+    }
+
+    public String getScope(int index){
+<span class="nc" id="L156">            return this.scopes.get(index);</span>
+    }
+
+    public String getFirstScope(){
+<span class="nc" id="L160">            return this.scopes.get(0);</span>
+    }
+
+    public String getLastScope(){
+<span class="nc" id="L164">            return this.scopes.get(scopes.size() - 1);</span>
+    }
+
+    public String getMatchingScope(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L168" title="All 4 branches missed.">            for (String item: scopes) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withScopes(List&lt;String&gt; scopes){
+<span class="nc bnc" id="L172" title="All 2 branches missed.">            if (this.scopes != null) { _visitables.removeAll(this.scopes);}</span>
+<span class="nc bnc" id="L173" title="All 4 branches missed.">            if (scopes != null) {this.scopes = new ArrayList&lt;String&gt;(); for (String item : scopes){this.addToScopes(item);}} else { this.scopes = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withScopes(String... scopes){
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            if (this.scopes != null) {this.scopes.clear();}</span>
+<span class="nc bnc" id="L178" title="All 4 branches missed.">            if (scopes != null) {for (String item :scopes){ this.addToScopes(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasScopes(){
+<span class="nc bnc" id="L182" title="All 4 branches missed.">            return scopes != null &amp;&amp; !scopes.isEmpty();</span>
+    }
+
+    public String getUserName(){
+<span class="nc" id="L186">            return this.userName;</span>
+    }
+
+    public A withUserName(String userName){
+<span class="nc" id="L190">            this.userName=userName; return (A) this;</span>
+    }
+
+    public Boolean hasUserName(){
+<span class="nc bnc" id="L194" title="All 2 branches missed.">            return this.userName != null;</span>
+    }
+
+    public String getUserUID(){
+<span class="nc" id="L198">            return this.userUID;</span>
+    }
+
+    public A withUserUID(String userUID){
+<span class="nc" id="L202">            this.userUID=userUID; return (A) this;</span>
+    }
+
+    public Boolean hasUserUID(){
+<span class="nc bnc" id="L206" title="All 2 branches missed.">            return this.userUID != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L211" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L212" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L213">            OAuthClientAuthorizationFluentImpl that = (OAuthClientAuthorizationFluentImpl) o;</span>
+<span class="nc bnc" id="L214" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L215" title="All 6 branches missed.">            if (clientName != null ? !clientName.equals(that.clientName) :that.clientName != null) return false;</span>
+<span class="nc bnc" id="L216" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L217" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L218" title="All 6 branches missed.">            if (scopes != null ? !scopes.equals(that.scopes) :that.scopes != null) return false;</span>
+<span class="nc bnc" id="L219" title="All 6 branches missed.">            if (userName != null ? !userName.equals(that.userName) :that.userName != null) return false;</span>
+<span class="nc bnc" id="L220" title="All 6 branches missed.">            if (userUID != null ? !userUID.equals(that.userUID) :that.userUID != null) return false;</span>
+<span class="nc" id="L221">            return true;</span>
+    }
+
+
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;OAuthClientAuthorizationFluent.MetadataNested&lt;N&gt;&gt; implements OAuthClientAuthorizationFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L229">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L230">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L231">            }</span>
+<span class="nc" id="L232">            MetadataNestedImpl(){</span>
+<span class="nc" id="L233">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L234">            }</span>
+    
+    public N and(){
+<span class="nc" id="L237">            return (N) OAuthClientAuthorizationFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L240">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

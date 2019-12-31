@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeploymentOperationsImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.dsl.internal</a> &gt; <span class="el_source">DeploymentOperationsImpl.java</span></div><h1>DeploymentOperationsImpl.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.dsl.internal;
+
+import io.fabric8.kubernetes.client.utils.Utils;
+import okhttp3.OkHttpClient;
+import io.fabric8.kubernetes.api.model.apps.Deployment;
+import io.fabric8.kubernetes.api.model.apps.DeploymentList;
+import io.fabric8.kubernetes.api.model.apps.DoneableDeployment;
+import io.fabric8.kubernetes.api.model.LabelSelector;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.dsl.ScalableResource;
+import io.fabric8.kubernetes.client.dsl.Reaper;
+import io.fabric8.kubernetes.client.dsl.base.HasMetadataOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Map;
+import java.util.Objects;
+import java.util.TreeMap;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
+
+public class DeploymentOperationsImpl extends HasMetadataOperation&lt;Deployment, DeploymentList, DoneableDeployment, ScalableResource&lt;Deployment, DoneableDeployment&gt;&gt;
+  implements ScalableResource&lt;Deployment, DoneableDeployment&gt; {
+
+<span class="nc" id="L47">  static final transient Logger LOG = LoggerFactory.getLogger(DeploymentOperationsImpl.class);</span>
+
+  public DeploymentOperationsImpl(OkHttpClient client, Config config, String namespace) {
+<span class="nc" id="L50">      this(client, config, &quot;apps&quot;, &quot;v1&quot;, namespace, null, true, null, null, false, -1, new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String&gt;());</span>
+<span class="nc" id="L51">  }</span>
+
+  public DeploymentOperationsImpl(OkHttpClient client, Config config, String apiGroup, String apiVersion, String namespace, String name, Boolean cascading, Deployment item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields) {
+<span class="nc" id="L54">    super(client, config, apiGroup, apiVersion, &quot;deployments&quot;, namespace, name, cascading, item, resourceVersion, reloadingFromServer, gracePeriodSeconds, labels, labelsNot, labelsIn, labelsNotIn, fields);</span>
+<span class="nc" id="L55">    reaper = new DeploymentReaper(this);</span>
+<span class="nc" id="L56">  }</span>
+
+  @Override
+  public Deployment scale(int count) {
+<span class="nc" id="L60">    return scale(count, false);</span>
+  }
+
+  @Override
+  public Deployment scale(int count, boolean wait) {
+<span class="nc" id="L65">    Deployment res = cascading(false).edit().editSpec().withReplicas(count).endSpec().done();</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">    if (wait) {</span>
+<span class="nc" id="L67">      waitUntilDeploymentIsScaled(count);</span>
+<span class="nc" id="L68">      res = getMandatory();</span>
+    }
+<span class="nc" id="L70">    return res;</span>
+  }
+
+  @Override
+  public DoneableDeployment edit() {
+<span class="nc bnc" id="L75" title="All 2 branches missed.">    if (isCascading()) {</span>
+<span class="nc" id="L76">      return cascading(false).edit();</span>
+    }
+<span class="nc" id="L78">    return super.edit();</span>
+  }
+
+  @Override
+  public Deployment replace(Deployment item) {
+<span class="nc bnc" id="L83" title="All 2 branches missed.">    if (isCascading()) {</span>
+<span class="nc" id="L84">      return cascading(false).replace(item);</span>
+    }
+<span class="nc" id="L86">    return super.replace(item);</span>
+  }
+
+  @Override
+  public Deployment patch(Deployment item) {
+<span class="nc bnc" id="L91" title="All 2 branches missed.">    if (isCascading()) {</span>
+<span class="nc" id="L92">      return cascading(false).patch(item);</span>
+    }
+<span class="nc" id="L94">    return super.patch(item);</span>
+  }
+
+  /**
+   * Lets wait until there are enough Ready pods of the given Deployment
+   */
+  private void waitUntilDeploymentIsScaled(final int count) {
+<span class="nc" id="L101">    final BlockingQueue&lt;Object&gt; queue = new ArrayBlockingQueue&lt;&gt;(1);</span>
+<span class="nc" id="L102">    final AtomicReference&lt;Integer&gt; replicasRef = new AtomicReference&lt;&gt;(0);</span>
+
+<span class="nc" id="L104">    final String name = checkName(getItem());</span>
+<span class="nc" id="L105">    final String namespace = checkNamespace(getItem());</span>
+
+<span class="nc" id="L107">    final Runnable deploymentPoller = new Runnable() {</span>
+      public void run() {
+        try {
+<span class="nc" id="L110">          Deployment deployment = get();</span>
+          //If the deployment is gone, we shouldn't wait.
+<span class="nc bnc" id="L112" title="All 2 branches missed.">          if (deployment == null) {</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            if (count == 0) {</span>
+<span class="nc" id="L114">              queue.put(true);</span>
+<span class="nc" id="L115">              return;</span>
+            } else {
+<span class="nc" id="L117">              queue.put(new IllegalStateException(&quot;Can't wait for Deployment: &quot; + checkName(getItem()) + &quot; in namespace: &quot; + checkName(getItem()) + &quot; to scale. Resource is no longer available.&quot;));</span>
+<span class="nc" id="L118">              return;</span>
+            }
+          }
+
+<span class="nc" id="L122">          replicasRef.set(deployment.getStatus().getReplicas());</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">          int currentReplicas = deployment.getStatus().getReplicas() != null ? deployment.getStatus().getReplicas() : 0;</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">          long generation = deployment.getMetadata().getGeneration() != null ? deployment.getMetadata().getGeneration() : 0;</span>
+<span class="nc bnc" id="L125" title="All 4 branches missed.">          long observedGeneration = deployment.getStatus() != null &amp;&amp; deployment.getStatus().getObservedGeneration() != null ? deployment.getStatus().getObservedGeneration() : -1;</span>
+<span class="nc bnc" id="L126" title="All 4 branches missed.">          if (observedGeneration &gt;= generation &amp;&amp; Objects.equals(deployment.getSpec().getReplicas(), currentReplicas)) {</span>
+<span class="nc" id="L127">            queue.put(true);</span>
+          } else {
+<span class="nc" id="L129">            LOG.debug(&quot;Only {}/{} pods scheduled for Deployment: {} in namespace: {} seconds so waiting...&quot;,</span>
+<span class="nc" id="L130">              deployment.getStatus().getReplicas(), deployment.getSpec().getReplicas(), deployment.getMetadata().getName(), namespace);</span>
+          }
+<span class="nc" id="L132">        } catch (Throwable t) {</span>
+<span class="nc" id="L133">          LOG.error(&quot;Error while waiting for Deployment to be scaled.&quot;, t);</span>
+<span class="nc" id="L134">        }</span>
+<span class="nc" id="L135">      }</span>
+    };
+
+<span class="nc" id="L138">    ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();</span>
+<span class="nc" id="L139">    ScheduledFuture poller = executor.scheduleWithFixedDelay(deploymentPoller, 0, POLL_INTERVAL_MS, TimeUnit.MILLISECONDS);</span>
+    try {
+<span class="nc bnc" id="L141" title="All 2 branches missed.">      if (Utils.waitUntilReady(queue, getConfig().getScaleTimeout(), TimeUnit.MILLISECONDS)) {</span>
+<span class="nc" id="L142">        LOG.debug(&quot;{}/{} pod(s) ready for Deployment: {} in namespace: {}.&quot;,</span>
+<span class="nc" id="L143">          replicasRef.get(), count, name, namespace);</span>
+      } else {
+<span class="nc" id="L145">        LOG.error(&quot;{}/{} pod(s) ready for Deployment: {} in namespace: {}  after waiting for {} seconds so giving up&quot;,</span>
+<span class="nc" id="L146">          replicasRef.get(), count, name, namespace, TimeUnit.MILLISECONDS.toSeconds(getConfig().getScaleTimeout()));</span>
+      }
+    } finally {
+<span class="nc" id="L149">      poller.cancel(true);</span>
+<span class="nc" id="L150">      executor.shutdown();</span>
+    }
+<span class="nc" id="L152">  }</span>
+
+  private static class DeploymentReaper implements Reaper {
+    private DeploymentOperationsImpl oper;
+
+<span class="nc" id="L157">    public DeploymentReaper(DeploymentOperationsImpl oper) {</span>
+<span class="nc" id="L158">      this.oper = oper;</span>
+<span class="nc" id="L159">    }</span>
+
+    @Override
+    public boolean reap() {
+<span class="nc" id="L163">      Deployment deployment = oper.cascading(false).edit().editSpec().withReplicas(0).endSpec().done();</span>
+
+      //TODO: These checks shouldn't be used as they are not realistic. We just use them to support mock/crud tests. Need to find a cleaner way to do so.
+<span class="nc bnc" id="L166" title="All 2 branches missed.">      if (deployment.getStatus() != null) {</span>
+<span class="nc" id="L167">        waitForObservedGeneration(deployment.getStatus().getObservedGeneration());</span>
+      }
+
+<span class="nc bnc" id="L170" title="All 2 branches missed.">      if (deployment.getSpec().getSelector() != null) {</span>
+<span class="nc" id="L171">        reapMatchingReplicaSets(deployment.getSpec().getSelector());</span>
+      }
+<span class="nc" id="L173">      return false;</span>
+    }
+
+    private void waitForObservedGeneration(final long observedGeneration) {
+<span class="nc" id="L177">      final CountDownLatch countDownLatch = new CountDownLatch(1);</span>
+
+<span class="nc" id="L179">      final Runnable deploymentPoller = new Runnable() {</span>
+        public void run() {
+<span class="nc" id="L181">          Deployment deployment = oper.getMandatory();</span>
+<span class="nc bnc" id="L182" title="All 2 branches missed.">          if (observedGeneration &lt;= deployment.getStatus().getObservedGeneration()) {</span>
+<span class="nc" id="L183">            countDownLatch.countDown();</span>
+          }
+<span class="nc" id="L185">        }</span>
+      };
+
+<span class="nc" id="L188">      ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();</span>
+<span class="nc" id="L189">      ScheduledFuture poller = executor.scheduleWithFixedDelay(deploymentPoller, 0, 10, TimeUnit.MILLISECONDS);</span>
+      try {
+<span class="nc" id="L191">        countDownLatch.await(1, TimeUnit.MINUTES);</span>
+<span class="nc" id="L192">        executor.shutdown();</span>
+<span class="nc" id="L193">      } catch (InterruptedException e) {        </span>
+<span class="nc" id="L194">        poller.cancel(true);</span>
+<span class="nc" id="L195">        executor.shutdown();</span>
+<span class="nc" id="L196">        throw KubernetesClientException.launderThrowable(e);</span>
+<span class="nc" id="L197">      }</span>
+<span class="nc" id="L198">    }</span>
+
+    private void reapMatchingReplicaSets(LabelSelector selector) {
+<span class="nc bnc" id="L201" title="All 6 branches missed.">      if (selector == null || (selector.getMatchLabels() == null &amp;&amp; selector.getMatchExpressions() == null)) {</span>
+<span class="nc" id="L202">        return;</span>
+      }
+<span class="nc" id="L204">      ReplicaSetOperationsImpl rsOper = new ReplicaSetOperationsImpl(oper.client, oper.getConfig(), oper.getNamespace());</span>
+<span class="nc" id="L205">      rsOper.inNamespace(oper.getNamespace()).withLabelSelector(selector).delete();</span>
+<span class="nc" id="L206">    }</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

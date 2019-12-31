@@ -1,0 +1,1053 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Config.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client</a> &gt; <span class="el_source">Config.java</span></div><h1>Config.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.fabric8.kubernetes.client;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.AuthInfo;
+import io.fabric8.kubernetes.api.model.Cluster;
+import io.fabric8.kubernetes.api.model.ConfigBuilder;
+import io.fabric8.kubernetes.api.model.Context;
+import io.fabric8.kubernetes.api.model.ExecConfig;
+import io.fabric8.kubernetes.api.model.ExecEnvVar;
+import io.fabric8.kubernetes.client.internal.KubeConfigUtils;
+import io.fabric8.kubernetes.client.internal.SSLUtils;
+import io.fabric8.kubernetes.client.utils.IOHelpers;
+import io.fabric8.kubernetes.client.utils.Serialization;
+import io.fabric8.kubernetes.client.utils.Utils;
+import io.sundr.builder.annotations.Buildable;
+import okhttp3.TlsVersion;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static okhttp3.TlsVersion.TLS_1_2;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true, allowGetters = true, allowSetters = true)
+public class Config {
+
+<span class="fc" id="L55">  private static final Logger LOGGER = LoggerFactory.getLogger(Config.class);</span>
+
+  public static final String KUBERNETES_MASTER_SYSTEM_PROPERTY = &quot;kubernetes.master&quot;;
+  public static final String KUBERNETES_API_VERSION_SYSTEM_PROPERTY = &quot;kubernetes.api.version&quot;;
+  public static final String KUBERNETES_TRUST_CERT_SYSTEM_PROPERTY = &quot;kubernetes.trust.certificates&quot;;
+  public static final String KUBERNETES_DISABLE_HOSTNAME_VERIFICATION_SYSTEM_PROPERTY = &quot;kubernetes.disable.hostname.verification&quot;;
+  public static final String KUBERNETES_CA_CERTIFICATE_FILE_SYSTEM_PROPERTY = &quot;kubernetes.certs.ca.file&quot;;
+  public static final String KUBERNETES_CA_CERTIFICATE_DATA_SYSTEM_PROPERTY = &quot;kubernetes.certs.ca.data&quot;;
+  public static final String KUBERNETES_CLIENT_CERTIFICATE_FILE_SYSTEM_PROPERTY = &quot;kubernetes.certs.client.file&quot;;
+  public static final String KUBERNETES_CLIENT_CERTIFICATE_DATA_SYSTEM_PROPERTY = &quot;kubernetes.certs.client.data&quot;;
+  public static final String KUBERNETES_CLIENT_KEY_FILE_SYSTEM_PROPERTY = &quot;kubernetes.certs.client.key.file&quot;;
+  public static final String KUBERNETES_CLIENT_KEY_DATA_SYSTEM_PROPERTY = &quot;kubernetes.certs.client.key.data&quot;;
+  public static final String KUBERNETES_CLIENT_KEY_ALGO_SYSTEM_PROPERTY = &quot;kubernetes.certs.client.key.algo&quot;;
+  public static final String KUBERNETES_CLIENT_KEY_PASSPHRASE_SYSTEM_PROPERTY = &quot;kubernetes.certs.client.key.passphrase&quot;;
+  public static final String KUBERNETES_AUTH_BASIC_USERNAME_SYSTEM_PROPERTY = &quot;kubernetes.auth.basic.username&quot;;
+  public static final String KUBERNETES_AUTH_BASIC_PASSWORD_SYSTEM_PROPERTY = &quot;kubernetes.auth.basic.password&quot;;
+  public static final String KUBERNETES_AUTH_TRYKUBECONFIG_SYSTEM_PROPERTY = &quot;kubernetes.auth.tryKubeConfig&quot;;
+  public static final String KUBERNETES_AUTH_TRYSERVICEACCOUNT_SYSTEM_PROPERTY = &quot;kubernetes.auth.tryServiceAccount&quot;;
+  public static final String KUBERNETES_OAUTH_TOKEN_SYSTEM_PROPERTY = &quot;kubernetes.auth.token&quot;;
+  public static final String KUBERNETES_WATCH_RECONNECT_INTERVAL_SYSTEM_PROPERTY = &quot;kubernetes.watch.reconnectInterval&quot;;
+  public static final String KUBERNETES_WATCH_RECONNECT_LIMIT_SYSTEM_PROPERTY = &quot;kubernetes.watch.reconnectLimit&quot;;
+  public static final String KUBERNETES_CONNECTION_TIMEOUT_SYSTEM_PROPERTY = &quot;kubernetes.connection.timeout&quot;;
+  public static final String KUBERNETES_REQUEST_TIMEOUT_SYSTEM_PROPERTY = &quot;kubernetes.request.timeout&quot;;
+  public static final String KUBERNETES_ROLLING_TIMEOUT_SYSTEM_PROPERTY = &quot;kubernetes.rolling.timeout&quot;;
+  public static final String KUBERNETES_LOGGING_INTERVAL_SYSTEM_PROPERTY = &quot;kubernetes.logging.interval&quot;;
+  public static final String KUBERNETES_SCALE_TIMEOUT_SYSTEM_PROPERTY = &quot;kubernetes.scale.timeout&quot;;
+  public static final String KUBERNETES_WEBSOCKET_TIMEOUT_SYSTEM_PROPERTY = &quot;kubernetes.websocket.timeout&quot;;
+  public static final String KUBERNETES_WEBSOCKET_PING_INTERVAL_SYSTEM_PROPERTY = &quot;kubernetes.websocket.ping.interval&quot;;
+  public static final String KUBERNETES_MAX_CONCURRENT_REQUESTS =&quot;kubernetes.max.concurrent.requests&quot;;
+  public static final String KUBERNETES_MAX_CONCURRENT_REQUESTS_PER_HOST =&quot;kubernetes.max.concurrent.requests.per.host&quot;;
+
+  public static final String KUBERNETES_IMPERSONATE_USERNAME = &quot;kubernetes.impersonate.username&quot;;
+  public static final String KUBERNETES_IMPERSONATE_GROUP = &quot;kubernetes.impersonate.group&quot;;
+
+
+  public static final String KUBERNETES_TRUSTSTORE_PASSPHRASE_PROPERTY = &quot;kubernetes.truststore.passphrase&quot;;
+  public static final String KUBERNETES_TRUSTSTORE_FILE_PROPERTY = &quot;kubernetes.truststore.file&quot;;
+  public static final String KUBERNETES_KEYSTORE_PASSPHRASE_PROPERTY = &quot;kubernetes.keystore.passphrase&quot;;
+  public static final String KUBERNETES_KEYSTORE_FILE_PROPERTY = &quot;kubernetes.keystore.file&quot;;
+
+  public static final String KUBERNETES_TLS_VERSIONS = &quot;kubernetes.tls.versions&quot;;
+
+  public static final String KUBERNETES_TRYNAMESPACE_PATH_SYSTEM_PROPERTY = &quot;kubernetes.tryNamespacePath&quot;;
+  public static final String KUBERNETES_NAMESPACE_PATH = &quot;/var/run/secrets/kubernetes.io/serviceaccount/namespace&quot;;
+  public static final String KUBERNETES_NAMESPACE_FILE = &quot;kubenamespace&quot;;
+  public static final String KUBERNETES_NAMESPACE_SYSTEM_PROPERTY = &quot;kubernetes.namespace&quot;;
+  public static final String KUBERNETES_KUBECONFIG_FILE = &quot;kubeconfig&quot;;
+  public static final String KUBERNETES_SERVICE_HOST_PROPERTY = &quot;KUBERNETES_SERVICE_HOST&quot;;
+  public static final String KUBERNETES_SERVICE_PORT_PROPERTY = &quot;KUBERNETES_SERVICE_PORT&quot;;
+  public static final String KUBERNETES_SERVICE_ACCOUNT_TOKEN_PATH = &quot;/var/run/secrets/kubernetes.io/serviceaccount/token&quot;;
+  public static final String KUBERNETES_SERVICE_ACCOUNT_CA_CRT_PATH = &quot;/var/run/secrets/kubernetes.io/serviceaccount/ca.crt&quot;;
+  public static final String KUBERNETES_HTTP_PROXY = &quot;http.proxy&quot;;
+  public static final String KUBERNETES_HTTPS_PROXY = &quot;https.proxy&quot;;
+  public static final String KUBERNETES_ALL_PROXY = &quot;all.proxy&quot;;
+  public static final String KUBERNETES_NO_PROXY = &quot;no.proxy&quot;;
+  public static final String KUBERNETES_PROXY_USERNAME = &quot;proxy.username&quot;;
+  public static final String KUBERNETES_PROXY_PASSWORD = &quot;proxy.password&quot;;
+
+<span class="fc" id="L113">  public static final String KUBERNETES_USER_AGENT = &quot;fabric8-kubernetes-client/&quot; + Version.clientVersion() ;</span>
+
+  public static final String DEFAULT_MASTER_URL = &quot;https://kubernetes.default.svc&quot;;
+<span class="fc" id="L116">  public static final Long DEFAULT_ROLLING_TIMEOUT = 15 * 60 * 1000L;</span>
+<span class="fc" id="L117">  public static final Long DEFAULT_SCALE_TIMEOUT = 10 * 60 * 1000L;</span>
+  public static final int DEFAULT_LOGGING_INTERVAL = 20 * 1000;
+<span class="fc" id="L119">  public static final Long DEFAULT_WEBSOCKET_TIMEOUT = 5 * 1000L;</span>
+<span class="fc" id="L120">  public static final Long DEFAULT_WEBSOCKET_PING_INTERVAL = 1 * 1000L;</span>
+
+<span class="fc" id="L122">  public static final Integer DEFAULT_MAX_CONCURRENT_REQUESTS = 64;</span>
+<span class="fc" id="L123">  public static final Integer DEFAULT_MAX_CONCURRENT_REQUESTS_PER_HOST = 5;</span>
+
+  public static final String HTTP_PROTOCOL_PREFIX = &quot;http://&quot;;
+  public static final String HTTPS_PROTOCOL_PREFIX = &quot;https://&quot;;
+
+  private static final String ACCESS_TOKEN = &quot;access-token&quot;;
+
+  private boolean trustCerts;
+  private boolean disableHostnameVerification;
+<span class="fc" id="L132">  private String masterUrl = DEFAULT_MASTER_URL;</span>
+<span class="fc" id="L133">  private String apiVersion = &quot;v1&quot;;</span>
+  private String namespace;
+  private String caCertFile;
+  private String caCertData;
+  private String clientCertFile;
+  private String clientCertData;
+  private String clientKeyFile;
+  private String clientKeyData;
+<span class="fc" id="L141">  private String clientKeyAlgo = &quot;RSA&quot;;</span>
+<span class="fc" id="L142">  private String clientKeyPassphrase = &quot;changeit&quot;;</span>
+  private String trustStoreFile;
+  private String trustStorePassphrase;
+  private String keyStoreFile;
+  private String keyStorePassphrase;
+
+<span class="fc" id="L148">  private RequestConfig requestConfig = new RequestConfig();</span>
+
+  /**
+   * fields not used but needed for builder generation.
+   */
+  private String username;
+  private String password;
+  private String oauthToken;
+<span class="fc" id="L156">  private int watchReconnectInterval = 1000;</span>
+<span class="fc" id="L157">  private int watchReconnectLimit = -1;</span>
+<span class="fc" id="L158">  private int connectionTimeout = 10 * 1000;</span>
+<span class="fc" id="L159">  private int requestTimeout = 10 * 1000;</span>
+<span class="fc" id="L160">  private long rollingTimeout = DEFAULT_ROLLING_TIMEOUT;</span>
+<span class="fc" id="L161">  private long scaleTimeout = DEFAULT_SCALE_TIMEOUT;</span>
+<span class="fc" id="L162">  private int loggingInterval = DEFAULT_LOGGING_INTERVAL;</span>
+<span class="fc" id="L163">  private long websocketTimeout = DEFAULT_WEBSOCKET_TIMEOUT;</span>
+<span class="fc" id="L164">  private long websocketPingInterval = DEFAULT_WEBSOCKET_PING_INTERVAL;</span>
+<span class="fc" id="L165">  private int maxConcurrentRequests = DEFAULT_MAX_CONCURRENT_REQUESTS;</span>
+<span class="fc" id="L166">  private int maxConcurrentRequestsPerHost = DEFAULT_MAX_CONCURRENT_REQUESTS_PER_HOST;</span>
+  private String impersonateUsername;
+  private OAuthTokenProvider oauthTokenProvider;
+
+  /**
+  * @deprecated use impersonateGroups instead
+  */
+  @Deprecated
+  private String impersonateGroup;
+  private String[] impersonateGroups;
+  private Map&lt;String, List&lt;String&gt;&gt; impersonateExtras;
+  /**
+   * end of fields not used but needed for builder generation.
+   */
+
+  private String httpProxy;
+  private String httpsProxy;
+  private String proxyUsername;
+  private String proxyPassword;
+  private String[] noProxy;
+  private String userAgent;
+<span class="fc" id="L187">  private TlsVersion[] tlsVersions = new TlsVersion[]{TLS_1_2};</span>
+
+<span class="fc" id="L189">  private Map&lt;Integer, String&gt; errorMessages = new HashMap&lt;&gt;();</span>
+
+  //In future releases (2.4.x) the public constructor will be empty.
+  //The current functionality will be provided by autoConfigure().
+  //This is a necessary change to allow us distinguish between auto configured values and builder values.
+  @Deprecated
+<span class="fc" id="L195">  public Config() {</span>
+<span class="fc" id="L196">    autoConfigure(this, null);</span>
+<span class="fc" id="L197">  }</span>
+
+  /**
+   * @param context if null will use current-context
+   */
+  public static Config autoConfigure(String context) {
+<span class="fc" id="L203">    Config config = new Config();</span>
+<span class="fc" id="L204">    return autoConfigure(config, context);</span>
+  }
+
+  private static Config autoConfigure(Config config, String context) {
+<span class="fc bfc" id="L208" title="All 2 branches covered.">    if (!tryKubeConfig(config, context)) {</span>
+<span class="fc" id="L209">      tryServiceAccount(config);</span>
+<span class="fc" id="L210">      tryNamespaceFromPath(config);</span>
+    }
+<span class="fc" id="L212">    configFromSysPropsOrEnvVars(config);</span>
+
+<span class="pc bpc" id="L214" title="1 of 4 branches missed.">    if (!config.masterUrl.toLowerCase().startsWith(HTTP_PROTOCOL_PREFIX) &amp;&amp; !config.masterUrl.toLowerCase().startsWith(HTTPS_PROTOCOL_PREFIX)) {</span>
+<span class="nc bnc" id="L215" title="All 2 branches missed.">      config.masterUrl = (SSLUtils.isHttpsAvailable(config) ? HTTPS_PROTOCOL_PREFIX : HTTP_PROTOCOL_PREFIX) + config.masterUrl;</span>
+    }
+
+<span class="pc bpc" id="L218" title="1 of 2 branches missed.">    if (!config.masterUrl.endsWith(&quot;/&quot;)) {</span>
+<span class="fc" id="L219">      config.masterUrl = config.masterUrl + &quot;/&quot;;</span>
+    }
+<span class="fc" id="L221">    return config;</span>
+  }
+
+  @Deprecated
+  public Config(String masterUrl, String apiVersion, String namespace, boolean trustCerts, boolean disableHostnameVerification, String caCertFile, String caCertData, String clientCertFile, String clientCertData, String clientKeyFile, String clientKeyData, String clientKeyAlgo, String clientKeyPassphrase, String username, String password, String oauthToken, int watchReconnectInterval, int watchReconnectLimit, int connectionTimeout, int requestTimeout, long rollingTimeout, long scaleTimeout, int loggingInterval, int maxConcurrentRequestsPerHost, String httpProxy, String httpsProxy, String[] noProxy, Map&lt;Integer, String&gt; errorMessages, String userAgent, TlsVersion[] tlsVersions, long websocketTimeout, long websocketPingInterval, String proxyUsername, String proxyPassword, String trustStoreFile, String trustStorePassphrase, String keyStoreFile, String keyStorePassphrase, String impersonateUsername, String[] impersonateGroups, Map&lt;String, List&lt;String&gt;&gt; impersonateExtras) {
+<span class="nc" id="L226">    this(masterUrl, apiVersion, namespace, trustCerts, disableHostnameVerification, caCertFile, caCertData, clientCertFile, clientCertData, clientKeyFile, clientKeyData, clientKeyAlgo, clientKeyPassphrase, username, password, oauthToken, watchReconnectInterval, watchReconnectLimit, connectionTimeout, requestTimeout, rollingTimeout, scaleTimeout, loggingInterval, maxConcurrentRequestsPerHost, httpProxy, httpsProxy, noProxy, errorMessages, userAgent, tlsVersions,  websocketTimeout, websocketPingInterval, proxyUsername, proxyPassword, trustStoreFile, trustStorePassphrase, keyStoreFile, keyStorePassphrase, impersonateUsername, impersonateGroups, impersonateExtras, null);</span>
+<span class="nc" id="L227">  }</span>
+
+  @Buildable(builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, editableEnabled = false)
+<span class="fc" id="L230">  public Config(String masterUrl, String apiVersion, String namespace, boolean trustCerts, boolean disableHostnameVerification, String caCertFile, String caCertData, String clientCertFile, String clientCertData, String clientKeyFile, String clientKeyData, String clientKeyAlgo, String clientKeyPassphrase, String username, String password, String oauthToken, int watchReconnectInterval, int watchReconnectLimit, int connectionTimeout, int requestTimeout, long rollingTimeout, long scaleTimeout, int loggingInterval, int maxConcurrentRequestsPerHost, String httpProxy, String httpsProxy, String[] noProxy, Map&lt;Integer, String&gt; errorMessages, String userAgent, TlsVersion[] tlsVersions, long websocketTimeout, long websocketPingInterval, String proxyUsername, String proxyPassword, String trustStoreFile, String trustStorePassphrase, String keyStoreFile, String keyStorePassphrase, String impersonateUsername, String[] impersonateGroups, Map&lt;String, List&lt;String&gt;&gt; impersonateExtras, OAuthTokenProvider oauthTokenProvider) {</span>
+<span class="fc" id="L231">    this.masterUrl = masterUrl;</span>
+<span class="fc" id="L232">    this.apiVersion = apiVersion;</span>
+<span class="fc" id="L233">    this.namespace = namespace;</span>
+<span class="fc" id="L234">    this.trustCerts = trustCerts;</span>
+<span class="fc" id="L235">    this.disableHostnameVerification = disableHostnameVerification;</span>
+<span class="fc" id="L236">    this.caCertFile = caCertFile;</span>
+<span class="fc" id="L237">    this.caCertData = caCertData;</span>
+<span class="fc" id="L238">    this.clientCertFile = clientCertFile;</span>
+<span class="fc" id="L239">    this.clientCertData = clientCertData;</span>
+<span class="fc" id="L240">    this.clientKeyFile = clientKeyFile;</span>
+<span class="fc" id="L241">    this.clientKeyData = clientKeyData;</span>
+<span class="fc" id="L242">    this.clientKeyAlgo = clientKeyAlgo;</span>
+<span class="fc" id="L243">    this.clientKeyPassphrase = clientKeyPassphrase;</span>
+
+<span class="fc" id="L245">    this.requestConfig = new RequestConfig(username, password, oauthToken, watchReconnectLimit, watchReconnectInterval, connectionTimeout, rollingTimeout, requestTimeout, scaleTimeout, loggingInterval, websocketTimeout, websocketPingInterval, maxConcurrentRequests, maxConcurrentRequestsPerHost, oauthTokenProvider);</span>
+<span class="fc" id="L246">    this.requestConfig.setImpersonateUsername(impersonateUsername);</span>
+<span class="fc" id="L247">    this.requestConfig.setImpersonateGroups(impersonateGroups);</span>
+<span class="fc" id="L248">    this.requestConfig.setImpersonateExtras(impersonateExtras);</span>
+
+
+<span class="fc" id="L251">    this.httpProxy= httpProxy;</span>
+<span class="fc" id="L252">    this.httpsProxy= httpsProxy;</span>
+<span class="fc" id="L253">    this.noProxy= noProxy;</span>
+<span class="fc" id="L254">    this.proxyUsername = proxyUsername;</span>
+<span class="fc" id="L255">    this.proxyPassword = proxyPassword;</span>
+<span class="fc" id="L256">    this.errorMessages = errorMessages;</span>
+<span class="fc" id="L257">    this.userAgent = userAgent;</span>
+<span class="fc" id="L258">    this.tlsVersions = tlsVersions;</span>
+
+<span class="pc bpc" id="L260" title="1 of 4 branches missed.">    if (!this.masterUrl.toLowerCase().startsWith(HTTP_PROTOCOL_PREFIX) &amp;&amp; !this.masterUrl.startsWith(HTTPS_PROTOCOL_PREFIX)) {</span>
+<span class="nc bnc" id="L261" title="All 2 branches missed.">      this.masterUrl = (SSLUtils.isHttpsAvailable(this) ? HTTPS_PROTOCOL_PREFIX : HTTP_PROTOCOL_PREFIX) + this.masterUrl;</span>
+    }
+
+<span class="fc bfc" id="L264" title="All 2 branches covered.">    if (!this.masterUrl.endsWith(&quot;/&quot;)) {</span>
+<span class="fc" id="L265">      this.masterUrl = this.masterUrl + &quot;/&quot;;</span>
+    }
+
+<span class="fc" id="L268">    this.trustStoreFile = trustStoreFile;</span>
+<span class="fc" id="L269">    this.trustStorePassphrase = trustStorePassphrase;</span>
+<span class="fc" id="L270">    this.keyStoreFile = keyStoreFile;</span>
+<span class="fc" id="L271">    this.keyStorePassphrase = keyStorePassphrase;</span>
+<span class="fc" id="L272">    this.oauthTokenProvider = oauthTokenProvider;</span>
+<span class="fc" id="L273">  }</span>
+
+  public static void configFromSysPropsOrEnvVars(Config config) {
+<span class="fc" id="L276">    config.setTrustCerts(Utils.getSystemPropertyOrEnvVar(KUBERNETES_TRUST_CERT_SYSTEM_PROPERTY, config.isTrustCerts()));</span>
+<span class="fc" id="L277">    config.setDisableHostnameVerification(Utils.getSystemPropertyOrEnvVar(KUBERNETES_DISABLE_HOSTNAME_VERIFICATION_SYSTEM_PROPERTY, config.isDisableHostnameVerification()));</span>
+<span class="fc" id="L278">    config.setMasterUrl(Utils.getSystemPropertyOrEnvVar(KUBERNETES_MASTER_SYSTEM_PROPERTY, config.getMasterUrl()));</span>
+<span class="fc" id="L279">    config.setApiVersion(Utils.getSystemPropertyOrEnvVar(KUBERNETES_API_VERSION_SYSTEM_PROPERTY, config.getApiVersion()));</span>
+<span class="fc" id="L280">    config.setNamespace(Utils.getSystemPropertyOrEnvVar(KUBERNETES_NAMESPACE_SYSTEM_PROPERTY, config.getNamespace()));</span>
+<span class="fc" id="L281">    config.setCaCertFile(Utils.getSystemPropertyOrEnvVar(KUBERNETES_CA_CERTIFICATE_FILE_SYSTEM_PROPERTY, config.getCaCertFile()));</span>
+<span class="fc" id="L282">    config.setCaCertData(Utils.getSystemPropertyOrEnvVar(KUBERNETES_CA_CERTIFICATE_DATA_SYSTEM_PROPERTY, config.getCaCertData()));</span>
+<span class="fc" id="L283">    config.setClientCertFile(Utils.getSystemPropertyOrEnvVar(KUBERNETES_CLIENT_CERTIFICATE_FILE_SYSTEM_PROPERTY, config.getClientCertFile()));</span>
+<span class="fc" id="L284">    config.setClientCertData(Utils.getSystemPropertyOrEnvVar(KUBERNETES_CLIENT_CERTIFICATE_DATA_SYSTEM_PROPERTY, config.getClientCertData()));</span>
+<span class="fc" id="L285">    config.setClientKeyFile(Utils.getSystemPropertyOrEnvVar(KUBERNETES_CLIENT_KEY_FILE_SYSTEM_PROPERTY, config.getClientKeyFile()));</span>
+<span class="fc" id="L286">    config.setClientKeyData(Utils.getSystemPropertyOrEnvVar(KUBERNETES_CLIENT_KEY_DATA_SYSTEM_PROPERTY, config.getClientKeyData()));</span>
+<span class="fc" id="L287">    config.setClientKeyAlgo(Utils.getSystemPropertyOrEnvVar(KUBERNETES_CLIENT_KEY_ALGO_SYSTEM_PROPERTY, config.getClientKeyAlgo()));</span>
+<span class="fc" id="L288">    config.setClientKeyPassphrase(Utils.getSystemPropertyOrEnvVar(KUBERNETES_CLIENT_KEY_PASSPHRASE_SYSTEM_PROPERTY, new String(config.getClientKeyPassphrase())));</span>
+<span class="fc" id="L289">    config.setUserAgent(Utils.getSystemPropertyOrEnvVar(KUBERNETES_USER_AGENT, config.getUserAgent()));</span>
+
+<span class="fc" id="L291">    config.setTrustStorePassphrase(Utils.getSystemPropertyOrEnvVar(KUBERNETES_TRUSTSTORE_PASSPHRASE_PROPERTY, config.getTrustStorePassphrase()));</span>
+<span class="fc" id="L292">    config.setTrustStoreFile(Utils.getSystemPropertyOrEnvVar(KUBERNETES_TRUSTSTORE_FILE_PROPERTY, config.getTrustStoreFile()));</span>
+<span class="fc" id="L293">    config.setKeyStorePassphrase(Utils.getSystemPropertyOrEnvVar(KUBERNETES_KEYSTORE_PASSPHRASE_PROPERTY, config.getKeyStorePassphrase()));</span>
+<span class="fc" id="L294">    config.setKeyStoreFile(Utils.getSystemPropertyOrEnvVar(KUBERNETES_KEYSTORE_FILE_PROPERTY, config.getKeyStoreFile()));</span>
+
+<span class="fc" id="L296">    config.setOauthToken(Utils.getSystemPropertyOrEnvVar(KUBERNETES_OAUTH_TOKEN_SYSTEM_PROPERTY, config.getOauthToken()));</span>
+<span class="fc" id="L297">    config.setUsername(Utils.getSystemPropertyOrEnvVar(KUBERNETES_AUTH_BASIC_USERNAME_SYSTEM_PROPERTY, config.getUsername()));</span>
+<span class="fc" id="L298">    config.setPassword(Utils.getSystemPropertyOrEnvVar(KUBERNETES_AUTH_BASIC_PASSWORD_SYSTEM_PROPERTY, config.getPassword()));</span>
+
+<span class="fc" id="L300">    config.setImpersonateUsername(Utils.getSystemPropertyOrEnvVar(KUBERNETES_IMPERSONATE_USERNAME, config.getImpersonateUsername()));</span>
+
+<span class="fc" id="L302">    String configuredImpersonateGroups = Utils.getSystemPropertyOrEnvVar(KUBERNETES_IMPERSONATE_GROUP, config.getImpersonateGroup());</span>
+<span class="fc bfc" id="L303" title="All 2 branches covered.">    if (configuredImpersonateGroups != null) {</span>
+<span class="fc" id="L304">      config.setImpersonateGroups(configuredImpersonateGroups.split(&quot;,&quot;));</span>
+    }
+
+<span class="fc" id="L307">    String configuredWatchReconnectInterval = Utils.getSystemPropertyOrEnvVar(KUBERNETES_WATCH_RECONNECT_INTERVAL_SYSTEM_PROPERTY);</span>
+<span class="fc bfc" id="L308" title="All 2 branches covered.">    if (configuredWatchReconnectInterval != null) {</span>
+<span class="fc" id="L309">      config.setWatchReconnectInterval(Integer.parseInt(configuredWatchReconnectInterval));</span>
+    }
+
+<span class="fc" id="L312">    String configuredWatchReconnectLimit = Utils.getSystemPropertyOrEnvVar(KUBERNETES_WATCH_RECONNECT_LIMIT_SYSTEM_PROPERTY);</span>
+<span class="fc bfc" id="L313" title="All 2 branches covered.">    if (configuredWatchReconnectLimit != null) {</span>
+<span class="fc" id="L314">      config.setWatchReconnectLimit(Integer.parseInt(configuredWatchReconnectLimit));</span>
+    }
+
+<span class="fc" id="L317">    String configuredRollingTimeout = Utils.getSystemPropertyOrEnvVar(KUBERNETES_ROLLING_TIMEOUT_SYSTEM_PROPERTY, String.valueOf(DEFAULT_ROLLING_TIMEOUT));</span>
+<span class="pc bpc" id="L318" title="1 of 2 branches missed.">    if (configuredRollingTimeout != null) {</span>
+<span class="fc" id="L319">      config.setRollingTimeout(Long.parseLong(configuredRollingTimeout));</span>
+    }
+
+<span class="fc" id="L322">    String configuredScaleTimeout = Utils.getSystemPropertyOrEnvVar(KUBERNETES_SCALE_TIMEOUT_SYSTEM_PROPERTY, String.valueOf(DEFAULT_SCALE_TIMEOUT));</span>
+<span class="pc bpc" id="L323" title="1 of 2 branches missed.">    if (configuredScaleTimeout != null) {</span>
+<span class="fc" id="L324">      config.setScaleTimeout(Long.parseLong(configuredScaleTimeout));</span>
+    }
+
+
+<span class="fc" id="L328">    String configuredLoggingInterval = Utils.getSystemPropertyOrEnvVar(KUBERNETES_LOGGING_INTERVAL_SYSTEM_PROPERTY, String.valueOf(DEFAULT_LOGGING_INTERVAL));</span>
+<span class="pc bpc" id="L329" title="1 of 2 branches missed.">    if (configuredLoggingInterval != null) {</span>
+<span class="fc" id="L330">      config.setLoggingInterval(Integer.parseInt(configuredLoggingInterval));</span>
+    }
+
+<span class="fc" id="L333">    config.setConnectionTimeout(Utils.getSystemPropertyOrEnvVar(KUBERNETES_CONNECTION_TIMEOUT_SYSTEM_PROPERTY, config.getConnectionTimeout()));</span>
+<span class="fc" id="L334">    config.setRequestTimeout(Utils.getSystemPropertyOrEnvVar(KUBERNETES_REQUEST_TIMEOUT_SYSTEM_PROPERTY, config.getRequestTimeout()));</span>
+
+<span class="fc" id="L336">    String configuredWebsocketTimeout = Utils.getSystemPropertyOrEnvVar(KUBERNETES_WEBSOCKET_TIMEOUT_SYSTEM_PROPERTY, String.valueOf(config.getWebsocketTimeout()));</span>
+<span class="pc bpc" id="L337" title="1 of 2 branches missed.">    if (configuredWebsocketTimeout != null) {</span>
+<span class="fc" id="L338">      config.setWebsocketTimeout(Long.parseLong(configuredWebsocketTimeout));</span>
+    }
+
+<span class="fc" id="L341">    String configuredWebsocketPingInterval = Utils.getSystemPropertyOrEnvVar(KUBERNETES_WEBSOCKET_PING_INTERVAL_SYSTEM_PROPERTY, String.valueOf(config.getWebsocketPingInterval()));</span>
+<span class="pc bpc" id="L342" title="1 of 2 branches missed.">    if (configuredWebsocketPingInterval != null) {</span>
+<span class="fc" id="L343">      config.setWebsocketPingInterval(Long.parseLong(configuredWebsocketPingInterval));</span>
+    }
+
+<span class="fc" id="L346">    String configuredMaxConcurrentReqeustsPerHost = Utils.getSystemPropertyOrEnvVar(KUBERNETES_MAX_CONCURRENT_REQUESTS_PER_HOST, String.valueOf(config.getMaxConcurrentRequestsPerHost()));</span>
+<span class="pc bpc" id="L347" title="1 of 2 branches missed.">    if (configuredMaxConcurrentReqeustsPerHost != null) {</span>
+<span class="fc" id="L348">      config.setMaxConcurrentRequestsPerHost(Integer.parseInt(configuredMaxConcurrentReqeustsPerHost));</span>
+    }
+
+<span class="fc" id="L351">    config.setHttpProxy(Utils.getSystemPropertyOrEnvVar(KUBERNETES_ALL_PROXY, config.getHttpProxy()));</span>
+<span class="fc" id="L352">    config.setHttpsProxy(Utils.getSystemPropertyOrEnvVar(KUBERNETES_ALL_PROXY, config.getHttpsProxy()));</span>
+
+<span class="fc" id="L354">    config.setHttpsProxy(Utils.getSystemPropertyOrEnvVar(KUBERNETES_HTTPS_PROXY, config.getHttpsProxy()));</span>
+<span class="fc" id="L355">    config.setHttpProxy(Utils.getSystemPropertyOrEnvVar(KUBERNETES_HTTP_PROXY, config.getHttpProxy()));</span>
+
+<span class="fc" id="L357">    config.setProxyUsername(Utils.getSystemPropertyOrEnvVar(KUBERNETES_PROXY_USERNAME, config.getProxyUsername()));</span>
+<span class="fc" id="L358">    config.setProxyPassword(Utils.getSystemPropertyOrEnvVar(KUBERNETES_PROXY_PASSWORD, config.getProxyPassword()));</span>
+
+<span class="fc" id="L360">    String noProxyVar = Utils.getSystemPropertyOrEnvVar(KUBERNETES_NO_PROXY);</span>
+<span class="pc bpc" id="L361" title="1 of 2 branches missed.">    if (noProxyVar != null) {</span>
+<span class="nc" id="L362">      config.setNoProxy(noProxyVar.split(&quot;,&quot;));</span>
+    }
+
+<span class="fc" id="L365">    String tlsVersionsVar = Utils.getSystemPropertyOrEnvVar(KUBERNETES_TLS_VERSIONS);</span>
+<span class="pc bpc" id="L366" title="1 of 4 branches missed.">    if (tlsVersionsVar != null &amp;&amp; !tlsVersionsVar.isEmpty()) {</span>
+<span class="fc" id="L367">      String[] tlsVersionsSplit = tlsVersionsVar.split(&quot;,&quot;);</span>
+<span class="fc" id="L368">      TlsVersion[] tlsVersions = new TlsVersion[tlsVersionsSplit.length];</span>
+<span class="fc bfc" id="L369" title="All 2 branches covered.">      for (int i = 0; i &lt; tlsVersionsSplit.length; i++) {</span>
+<span class="fc" id="L370">        tlsVersions[i] = TlsVersion.forJavaName(tlsVersionsSplit[i]);</span>
+      }
+<span class="fc" id="L372">      config.setTlsVersions(tlsVersions);</span>
+    }
+<span class="fc" id="L374">  }</span>
+
+  private static boolean tryServiceAccount(Config config) {
+<span class="fc" id="L377">    LOGGER.debug(&quot;Trying to configure client from service account...&quot;);</span>
+<span class="fc" id="L378">    String masterHost = Utils.getSystemPropertyOrEnvVar(KUBERNETES_SERVICE_HOST_PROPERTY, (String) null);</span>
+<span class="fc" id="L379">    String masterPort = Utils.getSystemPropertyOrEnvVar(KUBERNETES_SERVICE_PORT_PROPERTY, (String) null);</span>
+<span class="pc bpc" id="L380" title="1 of 4 branches missed.">    if (masterHost != null &amp;&amp; masterPort != null) {</span>
+<span class="fc" id="L381">      String hostPort = joinHostPort(masterHost, masterPort);</span>
+<span class="fc" id="L382">      LOGGER.debug(&quot;Found service account host and port: &quot; + hostPort);</span>
+<span class="fc" id="L383">      config.setMasterUrl(&quot;https://&quot; + hostPort);</span>
+    }
+<span class="pc bpc" id="L385" title="1 of 2 branches missed.">    if (Utils.getSystemPropertyOrEnvVar(KUBERNETES_AUTH_TRYSERVICEACCOUNT_SYSTEM_PROPERTY, true)) {</span>
+<span class="fc" id="L386">      boolean serviceAccountCaCertExists = Files.isRegularFile(new File(KUBERNETES_SERVICE_ACCOUNT_CA_CRT_PATH).toPath());</span>
+<span class="pc bpc" id="L387" title="1 of 2 branches missed.">      if (serviceAccountCaCertExists) {</span>
+<span class="nc" id="L388">        LOGGER.debug(&quot;Found service account ca cert at: [&quot;+KUBERNETES_SERVICE_ACCOUNT_CA_CRT_PATH+&quot;].&quot;);</span>
+<span class="nc" id="L389">        config.setCaCertFile(KUBERNETES_SERVICE_ACCOUNT_CA_CRT_PATH);</span>
+      } else {
+<span class="fc" id="L391">        LOGGER.debug(&quot;Did not find service account ca cert at: [&quot;+KUBERNETES_SERVICE_ACCOUNT_CA_CRT_PATH+&quot;].&quot;);</span>
+      }
+      try {
+<span class="nc" id="L394">        String serviceTokenCandidate = new String(Files.readAllBytes(new File(KUBERNETES_SERVICE_ACCOUNT_TOKEN_PATH).toPath()));</span>
+<span class="nc bnc" id="L395" title="All 2 branches missed.">        if (serviceTokenCandidate != null) {</span>
+<span class="nc" id="L396">          LOGGER.debug(&quot;Found service account token at: [&quot;+KUBERNETES_SERVICE_ACCOUNT_TOKEN_PATH+&quot;].&quot;);</span>
+<span class="nc" id="L397">          config.setOauthToken(serviceTokenCandidate);</span>
+<span class="nc" id="L398">          String txt = &quot;Configured service account doesn't have access. Service account may have been revoked.&quot;;</span>
+<span class="nc" id="L399">          config.getErrorMessages().put(401, &quot;Unauthorized! &quot; + txt);</span>
+<span class="nc" id="L400">          config.getErrorMessages().put(403, &quot;Forbidden!&quot; + txt);</span>
+<span class="nc" id="L401">          return true;</span>
+        } else {
+<span class="nc" id="L403">          LOGGER.debug(&quot;Did not find service account token at: [&quot;+KUBERNETES_SERVICE_ACCOUNT_TOKEN_PATH+&quot;].&quot;);</span>
+        }
+<span class="fc" id="L405">      } catch (IOException e) {</span>
+        // No service account token available...
+<span class="fc" id="L407">        LOGGER.warn(&quot;Error reading service account token from: [&quot;+KUBERNETES_SERVICE_ACCOUNT_TOKEN_PATH+&quot;]. Ignoring.&quot;);</span>
+<span class="nc" id="L408">      }</span>
+    }
+<span class="fc" id="L410">    return false;</span>
+  }
+
+  private static String joinHostPort(String host, String port) {
+<span class="fc bfc" id="L414" title="All 2 branches covered.">    if (host.indexOf(':') &gt;= 0) {</span>
+       // Host is an IPv6
+<span class="fc" id="L416">      return &quot;[&quot; + host + &quot;]:&quot; + port;</span>
+    }
+<span class="fc" id="L418">    return host + &quot;:&quot; + port;</span>
+  }
+
+  private static String absolutify(File relativeTo, String filename) {
+<span class="fc bfc" id="L422" title="All 2 branches covered.">    if (filename == null) {</span>
+<span class="fc" id="L423">      return null;</span>
+    }
+
+<span class="fc" id="L426">    File file = new File(filename);</span>
+<span class="pc bpc" id="L427" title="1 of 2 branches missed.">    if (file.isAbsolute()) {</span>
+<span class="nc" id="L428">      return file.getAbsolutePath();</span>
+    }
+
+<span class="fc" id="L431">    return new File(relativeTo.getParentFile(), filename).getAbsolutePath();</span>
+  }
+
+  public static Config fromKubeconfig(String kubeconfigContents) {
+<span class="nc" id="L435">    return fromKubeconfig(null, kubeconfigContents, null);</span>
+  }
+
+  // Note: kubeconfigPath is optional (see note on loadFromKubeConfig)
+  public static Config fromKubeconfig(String context, String kubeconfigContents, String kubeconfigPath) {
+    // we allow passing context along here, since downstream accepts it
+<span class="nc" id="L441">    Config config = new Config();</span>
+<span class="nc" id="L442">    Config.loadFromKubeconfig(config, context, kubeconfigContents, kubeconfigPath);</span>
+<span class="nc" id="L443">    return config;</span>
+  }
+
+  private static boolean tryKubeConfig(Config config, String context) {
+<span class="fc" id="L447">    LOGGER.debug(&quot;Trying to configure client from Kubernetes config...&quot;);</span>
+<span class="pc bpc" id="L448" title="1 of 2 branches missed.">    if (Utils.getSystemPropertyOrEnvVar(KUBERNETES_AUTH_TRYKUBECONFIG_SYSTEM_PROPERTY, true)) {</span>
+<span class="fc" id="L449">      String fileName = Utils.getSystemPropertyOrEnvVar(KUBERNETES_KUBECONFIG_FILE, new File(getHomeDir(), &quot;.kube&quot; + File.separator + &quot;config&quot;).toString());</span>
+
+      // if system property/env var contains multiple files take the first one based on the environment
+      // we are running in (eg. : for Linux, ; for Windows)
+<span class="fc" id="L453">      String[] fileNames = fileName.split(File.pathSeparator);</span>
+
+<span class="fc bfc" id="L455" title="All 2 branches covered.">      if (fileNames.length &gt; 1) {</span>
+<span class="fc" id="L456">        LOGGER.debug(&quot;Found multiple Kubernetes config files [{}], using the first one: [{}].&quot;, fileNames, fileNames[0]);</span>
+<span class="fc" id="L457">        fileName = fileNames[0];</span>
+      }
+
+<span class="fc" id="L460">      File kubeConfigFile = new File(fileName);</span>
+<span class="fc" id="L461">      boolean kubeConfigFileExists = Files.isRegularFile(kubeConfigFile.toPath());</span>
+
+<span class="fc bfc" id="L463" title="All 2 branches covered.">      if (kubeConfigFileExists) {</span>
+<span class="fc" id="L464">        LOGGER.debug(&quot;Found for Kubernetes config at: [&quot;+kubeConfigFile.getPath()+&quot;].&quot;);</span>
+        String kubeconfigContents;
+        try {
+<span class="fc" id="L467">          kubeconfigContents = new String(Files.readAllBytes(kubeConfigFile.toPath()), StandardCharsets.UTF_8);</span>
+<span class="nc" id="L468">        } catch(IOException e) {</span>
+<span class="nc" id="L469">          LOGGER.error(&quot;Could not load Kubernetes config file from {}&quot;, kubeConfigFile.getPath(), e);</span>
+<span class="nc" id="L470">          return false;</span>
+<span class="fc" id="L471">        }</span>
+<span class="fc" id="L472">        Config.loadFromKubeconfig(config, context, kubeconfigContents, kubeConfigFile.getPath());</span>
+<span class="fc" id="L473">        return true;</span>
+      } else {
+<span class="fc" id="L475">        LOGGER.debug(&quot;Did not find Kubernetes config at: [&quot;+kubeConfigFile.getPath()+&quot;]. Ignoring.&quot;);</span>
+      }
+    }
+<span class="fc" id="L478">    return false;</span>
+  }
+
+  // Note: kubeconfigPath is optional
+  // It is only used to rewrite relative tls asset paths inside kubeconfig when a file is passed, and in the case that
+  // the kubeconfig references some assets via relative paths.
+  private static boolean loadFromKubeconfig(Config config, String context, String kubeconfigContents, String kubeconfigPath) {
+    try {
+<span class="fc" id="L486">      io.fabric8.kubernetes.api.model.Config kubeConfig = KubeConfigUtils.parseConfigFromString(kubeconfigContents);</span>
+<span class="fc bfc" id="L487" title="All 2 branches covered.">      if (context != null) {</span>
+<span class="fc" id="L488">        kubeConfig.setCurrentContext(context);</span>
+      }
+<span class="fc" id="L490">      Context currentContext = KubeConfigUtils.getCurrentContext(kubeConfig);</span>
+<span class="fc" id="L491">      Cluster currentCluster = KubeConfigUtils.getCluster(kubeConfig, currentContext);</span>
+<span class="pc bpc" id="L492" title="1 of 2 branches missed.">      if (currentCluster != null) {</span>
+<span class="fc" id="L493">        config.setMasterUrl(currentCluster.getServer());</span>
+<span class="fc" id="L494">        config.setNamespace(currentContext.getNamespace());</span>
+<span class="pc bpc" id="L495" title="1 of 4 branches missed.">        config.setTrustCerts(currentCluster.getInsecureSkipTlsVerify() != null &amp;&amp; currentCluster.getInsecureSkipTlsVerify());</span>
+<span class="pc bpc" id="L496" title="1 of 4 branches missed.">        config.setDisableHostnameVerification(currentCluster.getInsecureSkipTlsVerify() != null &amp;&amp; currentCluster.getInsecureSkipTlsVerify());</span>
+<span class="fc" id="L497">        config.setCaCertData(currentCluster.getCertificateAuthorityData());</span>
+<span class="fc" id="L498">        AuthInfo currentAuthInfo = KubeConfigUtils.getUserAuthInfo(kubeConfig, currentContext);</span>
+<span class="pc bpc" id="L499" title="1 of 2 branches missed.">        if (currentAuthInfo != null) {</span>
+          // rewrite tls asset paths if needed
+<span class="fc" id="L501">          String caCertFile = currentCluster.getCertificateAuthority();</span>
+<span class="fc" id="L502">          String clientCertFile = currentAuthInfo.getClientCertificate();</span>
+<span class="fc" id="L503">          String clientKeyFile = currentAuthInfo.getClientKey();</span>
+<span class="pc bpc" id="L504" title="2 of 4 branches missed.">          if (kubeconfigPath != null &amp;&amp; !kubeconfigPath.isEmpty()) {</span>
+<span class="fc" id="L505">            caCertFile = absolutify(new File(kubeconfigPath), currentCluster.getCertificateAuthority());</span>
+<span class="fc" id="L506">            clientCertFile = absolutify(new File(kubeconfigPath), currentAuthInfo.getClientCertificate());</span>
+<span class="fc" id="L507">            clientKeyFile = absolutify(new File(kubeconfigPath), currentAuthInfo.getClientKey());</span>
+          }
+<span class="fc" id="L509">          config.setCaCertFile(caCertFile);</span>
+<span class="fc" id="L510">          config.setClientCertFile(clientCertFile);</span>
+<span class="fc" id="L511">          config.setClientCertData(currentAuthInfo.getClientCertificateData());</span>
+<span class="fc" id="L512">          config.setClientKeyFile(clientKeyFile);</span>
+<span class="fc" id="L513">          config.setClientKeyData(currentAuthInfo.getClientKeyData());</span>
+<span class="fc" id="L514">          config.setOauthToken(currentAuthInfo.getToken());</span>
+<span class="fc" id="L515">          config.setUsername(currentAuthInfo.getUsername());</span>
+<span class="fc" id="L516">          config.setPassword(currentAuthInfo.getPassword());</span>
+
+<span class="pc bpc" id="L518" title="3 of 6 branches missed.">          if (Utils.isNullOrEmpty(config.getOauthToken()) &amp;&amp; currentAuthInfo.getAuthProvider() != null &amp;&amp; !Utils.isNullOrEmpty(currentAuthInfo.getAuthProvider().getConfig().get(ACCESS_TOKEN))) {</span>
+<span class="nc" id="L519">            config.setOauthToken(currentAuthInfo.getAuthProvider().getConfig().get(ACCESS_TOKEN));</span>
+<span class="pc bpc" id="L520" title="1 of 2 branches missed.">          } else if (config.getOauthTokenProvider() == null) {  // https://kubernetes.io/docs/reference/access-authn-authz/authentication/#client-go-credential-plugins</span>
+<span class="fc" id="L521">            ExecConfig exec = currentAuthInfo.getExec();</span>
+<span class="fc bfc" id="L522" title="All 2 branches covered.">            if (exec != null) {</span>
+<span class="fc" id="L523">              String apiVersion = exec.getApiVersion();</span>
+<span class="pc bpc" id="L524" title="3 of 4 branches missed.">              if (&quot;client.authentication.k8s.io/v1alpha1&quot;.equals(apiVersion) || &quot;client.authentication.k8s.io/v1beta1&quot;.equals(apiVersion)) {</span>
+<span class="fc" id="L525">                List&lt;String&gt; argv = new ArrayList&lt;String&gt;();</span>
+<span class="fc" id="L526">                String command = exec.getCommand();</span>
+<span class="pc bpc" id="L527" title="4 of 8 branches missed.">                if (command.contains(&quot;/&quot;) &amp;&amp; !command.startsWith(&quot;/&quot;) &amp;&amp; kubeconfigPath != null &amp;&amp; !kubeconfigPath.isEmpty()) {</span>
+                  // Appears to be a relative path; normalize. Spec is vague about how to detect this situation.
+<span class="fc" id="L529">                  command = Paths.get(kubeconfigPath).resolveSibling(command).normalize().toString();</span>
+                }
+<span class="fc" id="L531">                argv.add(command);</span>
+<span class="fc" id="L532">                List&lt;String&gt; args = exec.getArgs();</span>
+<span class="pc bpc" id="L533" title="1 of 2 branches missed.">                if (args != null) {</span>
+<span class="fc" id="L534">                  argv.addAll(args);</span>
+                }
+<span class="fc" id="L536">                ProcessBuilder pb = new ProcessBuilder(argv);</span>
+<span class="fc" id="L537">                List&lt;ExecEnvVar&gt; env = exec.getEnv();</span>
+<span class="pc bpc" id="L538" title="1 of 2 branches missed.">                if (env != null) {</span>
+<span class="fc" id="L539">                  Map&lt;String, String&gt; environment = pb.environment();</span>
+<span class="fc" id="L540">                  env.forEach(var -&gt; environment.put(var.getName(), var.getValue()));</span>
+                }
+                // TODO check behavior of tty &amp; stdin
+<span class="fc" id="L543">                Process p = pb.start();</span>
+<span class="pc bpc" id="L544" title="1 of 2 branches missed.">                if (p.waitFor() != 0) {</span>
+<span class="nc" id="L545">                  LOGGER.warn(IOHelpers.readFully(p.getErrorStream()));</span>
+                }
+<span class="fc" id="L547">                ExecCredential ec = Serialization.unmarshal(p.getInputStream(), ExecCredential.class);</span>
+<span class="pc bpc" id="L548" title="1 of 2 branches missed.">                if (!apiVersion.equals(ec.apiVersion)) {</span>
+<span class="nc" id="L549">                  LOGGER.warn(&quot;Wrong apiGroupVersion {} vs. {}&quot;, ec.apiVersion, apiVersion);</span>
+                }
+<span class="pc bpc" id="L551" title="2 of 4 branches missed.">                if (ec.status != null &amp;&amp; ec.status.token != null) {</span>
+<span class="fc" id="L552">                  config.setOauthToken(ec.status.token);</span>
+                } else {
+<span class="nc" id="L554">                  LOGGER.warn(&quot;No token returned&quot;);</span>
+                }
+<span class="fc" id="L556">              } else { // TODO v1beta1?</span>
+<span class="nc" id="L557">                LOGGER.warn(&quot;Unsupported apiGroupVersion: {}&quot;, apiVersion);</span>
+              }
+            }
+          }
+
+<span class="fc" id="L562">          config.getErrorMessages().put(401, &quot;Unauthorized! Token may have expired! Please log-in again.&quot;);</span>
+<span class="fc" id="L563">          config.getErrorMessages().put(403, &quot;Forbidden! User &quot;+currentContext.getUser()+ &quot; doesn't have permission.&quot;);</span>
+        }
+<span class="fc" id="L565">        return true;</span>
+      }
+<span class="nc" id="L567">    } catch (Exception e) {</span>
+<span class="nc" id="L568">      LOGGER.error(&quot;Failed to parse the kubeconfig.&quot;, e);</span>
+<span class="nc" id="L569">    }</span>
+
+<span class="nc" id="L571">    return false;</span>
+  }
+  @JsonIgnoreProperties(ignoreUnknown = true)
+  private static final class ExecCredential {
+    public String kind;
+    public String apiVersion;
+    public ExecCredentialSpec spec;
+    public ExecCredentialStatus status;
+  }
+  @JsonIgnoreProperties(ignoreUnknown = true)
+  private static final class ExecCredentialSpec {}
+  @JsonIgnoreProperties(ignoreUnknown = true)
+  private static final class ExecCredentialStatus {
+    public String token;
+    // TODO clientCertificateData, clientKeyData, expirationTimestamp
+  }
+
+  private static boolean tryNamespaceFromPath(Config config) {
+<span class="fc" id="L589">    LOGGER.debug(&quot;Trying to configure client namespace from Kubernetes service account namespace path...&quot;);</span>
+<span class="pc bpc" id="L590" title="1 of 2 branches missed.">    if (Utils.getSystemPropertyOrEnvVar(KUBERNETES_TRYNAMESPACE_PATH_SYSTEM_PROPERTY, true)) {</span>
+<span class="fc" id="L591">      String serviceAccountNamespace = Utils.getSystemPropertyOrEnvVar(KUBERNETES_NAMESPACE_FILE, KUBERNETES_NAMESPACE_PATH);</span>
+<span class="fc" id="L592">      boolean serviceAccountNamespaceExists = Files.isRegularFile(new File(serviceAccountNamespace).toPath());</span>
+<span class="fc bfc" id="L593" title="All 2 branches covered.">      if (serviceAccountNamespaceExists) {</span>
+<span class="fc" id="L594">        LOGGER.debug(&quot;Found service account namespace at: [&quot; + serviceAccountNamespace + &quot;].&quot;);</span>
+        try {
+<span class="fc" id="L596">          String namespace = new String(Files.readAllBytes(new File(serviceAccountNamespace).toPath()));</span>
+<span class="fc" id="L597">          config.setNamespace(namespace.replace(System.lineSeparator(), &quot;&quot;));</span>
+<span class="fc" id="L598">          return true;</span>
+<span class="nc" id="L599">        } catch (IOException e) {</span>
+<span class="nc" id="L600">          LOGGER.error(&quot;Error reading service account namespace from: [&quot; + serviceAccountNamespace + &quot;].&quot;, e);</span>
+<span class="nc" id="L601">        }</span>
+      } else {
+<span class="fc" id="L603">        LOGGER.debug(&quot;Did not find service account namespace at: [&quot; + serviceAccountNamespace + &quot;]. Ignoring.&quot;);</span>
+      }
+    }
+<span class="fc" id="L606">    return false;</span>
+  }
+
+  private static String getHomeDir() {
+<span class="fc" id="L610">    String osName = System.getProperty(&quot;os.name&quot;).toLowerCase();</span>
+<span class="pc bpc" id="L611" title="1 of 2 branches missed.">    if (osName.startsWith(&quot;win&quot;)) {</span>
+<span class="nc" id="L612">      String homeDrive = System.getenv(&quot;HOMEDRIVE&quot;);</span>
+<span class="nc" id="L613">      String homePath = System.getenv(&quot;HOMEPATH&quot;);</span>
+<span class="nc bnc" id="L614" title="All 8 branches missed.">      if (homeDrive != null &amp;&amp; !homeDrive.isEmpty() &amp;&amp; homePath != null &amp;&amp; !homePath.isEmpty()) {</span>
+<span class="nc" id="L615">        String homeDir = homeDrive + homePath;</span>
+<span class="nc" id="L616">        File f = new File(homeDir);</span>
+<span class="nc bnc" id="L617" title="All 4 branches missed.">        if (f.exists() &amp;&amp; f.isDirectory()) {</span>
+<span class="nc" id="L618">          return homeDir;</span>
+        }
+      }
+<span class="nc" id="L621">      String userProfile = System.getenv(&quot;USERPROFILE&quot;);</span>
+<span class="nc bnc" id="L622" title="All 4 branches missed.">      if (userProfile != null &amp;&amp; !userProfile.isEmpty()) {</span>
+<span class="nc" id="L623">        File f = new File(userProfile);</span>
+<span class="nc bnc" id="L624" title="All 4 branches missed.">        if (f.exists() &amp;&amp; f.isDirectory()) {</span>
+<span class="nc" id="L625">          return userProfile;</span>
+        }
+      }
+    }
+<span class="fc" id="L629">    String home = System.getenv(&quot;HOME&quot;);</span>
+<span class="pc bpc" id="L630" title="2 of 4 branches missed.">    if (home != null &amp;&amp; !home.isEmpty()) {</span>
+<span class="fc" id="L631">      File f = new File(home);</span>
+<span class="pc bpc" id="L632" title="2 of 4 branches missed.">      if (f.exists() &amp;&amp; f.isDirectory()) {</span>
+<span class="fc" id="L633">        return home;</span>
+      }
+    }
+
+    //Fall back to user.home should never really get here
+<span class="nc" id="L638">    return System.getProperty(&quot;user.home&quot;, &quot;.&quot;);</span>
+  }
+
+  @JsonProperty(&quot;oauthToken&quot;)
+  public String getOauthToken() {
+<span class="fc" id="L643">    return getRequestConfig().getOauthToken();</span>
+  }
+
+  public void setOauthToken(String oauthToken) {
+<span class="fc" id="L647">    this.requestConfig.setOauthToken(oauthToken);</span>
+<span class="fc" id="L648">  }</span>
+
+  @JsonProperty(&quot;password&quot;)
+  public String getPassword() {
+<span class="fc" id="L652">    return getRequestConfig().getPassword();</span>
+  }
+
+  public void setPassword(String password) {
+<span class="fc" id="L656">   this.requestConfig.setPassword(password);</span>
+<span class="fc" id="L657">  }</span>
+
+  @JsonProperty(&quot;username&quot;)
+  public String getUsername() {
+<span class="fc" id="L661">    return getRequestConfig().getUsername();</span>
+  }
+
+  public void setUsername(String username) {
+<span class="fc" id="L665">    this.requestConfig.setUsername(username);</span>
+<span class="fc" id="L666">  }</span>
+
+  @JsonProperty(&quot;impersonateUsername&quot;)
+  public String getImpersonateUsername() {
+<span class="fc" id="L670">    return getRequestConfig().getImpersonateUsername();</span>
+  }
+
+  public void setImpersonateUsername(String impersonateUsername) {
+<span class="fc" id="L674">    this.requestConfig.setImpersonateUsername(impersonateUsername);</span>
+<span class="fc" id="L675">  }</span>
+
+  @JsonProperty(&quot;impersonateGroups&quot;)
+  public String[] getImpersonateGroups() {
+<span class="fc" id="L679">    return getRequestConfig().getImpersonateGroups();</span>
+  }
+
+  public void setImpersonateGroups(String... impersonateGroup) {
+<span class="fc" id="L683">    this.requestConfig.setImpersonateGroups(impersonateGroup);</span>
+<span class="fc" id="L684">  }</span>
+
+  /**
+   * @deprecated Use {@link #getImpersonateGroups()} instead
+   */
+  @Deprecated
+  @JsonProperty(&quot;impersonateGroup&quot;)
+  public String getImpersonateGroup() {
+<span class="fc" id="L692">    return getRequestConfig().getImpersonateGroup();</span>
+  }
+
+  /**
+   * @deprecated Use {@link #setImpersonateGroups(String...)} instead
+   */
+  @Deprecated
+  public void setImpersonateGroup(String impersonateGroup) {
+<span class="fc" id="L700">    this.requestConfig.setImpersonateGroups(impersonateGroup);</span>
+<span class="fc" id="L701">  }</span>
+
+  @JsonProperty(&quot;impersonateExtras&quot;)
+  public Map&lt;String, List&lt;String&gt;&gt; getImpersonateExtras() {
+<span class="fc" id="L705">    return getRequestConfig().getImpersonateExtras();</span>
+  }
+
+  public void setImpersonateExtras(Map&lt;String, List&lt;String&gt;&gt; impersonateExtras) {
+<span class="fc" id="L709">    this.requestConfig.setImpersonateExtras(impersonateExtras);</span>
+<span class="fc" id="L710">  }</span>
+
+  @JsonProperty(&quot;clientKeyPassphrase&quot;)
+  public String getClientKeyPassphrase() {
+<span class="fc" id="L714">    return clientKeyPassphrase;</span>
+  }
+
+  public void setClientKeyPassphrase(String clientKeyPassphrase) {
+<span class="fc" id="L718">    this.clientKeyPassphrase = clientKeyPassphrase;</span>
+<span class="fc" id="L719">  }</span>
+
+  @JsonProperty(&quot;clientKeyAlgo&quot;)
+  public String getClientKeyAlgo() {
+<span class="fc" id="L723">    return clientKeyAlgo;</span>
+  }
+
+  public void setClientKeyAlgo(String clientKeyAlgo) {
+<span class="fc" id="L727">    this.clientKeyAlgo = clientKeyAlgo;</span>
+<span class="fc" id="L728">  }</span>
+
+  @JsonProperty(&quot;clientKeyData&quot;)
+  public String getClientKeyData() {
+<span class="fc" id="L732">    return clientKeyData;</span>
+  }
+
+  public void setClientKeyData(String clientKeyData) {
+<span class="fc" id="L736">    this.clientKeyData = clientKeyData;</span>
+<span class="fc" id="L737">  }</span>
+
+  @JsonProperty(&quot;clientKeyFile&quot;)
+  public String getClientKeyFile() {
+<span class="fc" id="L741">    return clientKeyFile;</span>
+  }
+
+  public void setClientKeyFile(String clientKeyFile) {
+<span class="fc" id="L745">    this.clientKeyFile = clientKeyFile;</span>
+<span class="fc" id="L746">  }</span>
+
+  @JsonProperty(&quot;clientCertData&quot;)
+  public String getClientCertData() {
+<span class="fc" id="L750">    return clientCertData;</span>
+  }
+
+  public void setClientCertData(String clientCertData) {
+<span class="fc" id="L754">    this.clientCertData = clientCertData;</span>
+<span class="fc" id="L755">  }</span>
+
+  @JsonProperty(&quot;clientCertFile&quot;)
+  public String getClientCertFile() {
+<span class="fc" id="L759">    return clientCertFile;</span>
+  }
+
+  public void setClientCertFile(String clientCertFile) {
+<span class="fc" id="L763">    this.clientCertFile = clientCertFile;</span>
+<span class="fc" id="L764">  }</span>
+
+  @JsonProperty(&quot;caCertData&quot;)
+  public String getCaCertData() {
+<span class="fc" id="L768">    return caCertData;</span>
+  }
+
+  public void setCaCertData(String caCertData) {
+<span class="fc" id="L772">    this.caCertData = caCertData;</span>
+<span class="fc" id="L773">  }</span>
+
+  @JsonProperty(&quot;caCertFile&quot;)
+  public String getCaCertFile() {
+<span class="fc" id="L777">    return caCertFile;</span>
+  }
+
+  public void setCaCertFile(String caCertFile) {
+<span class="fc" id="L781">    this.caCertFile = caCertFile;</span>
+<span class="fc" id="L782">  }</span>
+
+  @JsonProperty(&quot;apiGroupVersion&quot;)
+  public String getApiVersion() {
+<span class="fc" id="L786">    return apiVersion;</span>
+  }
+
+  public void setApiVersion(String apiVersion) {
+<span class="fc" id="L790">    this.apiVersion = apiVersion;</span>
+<span class="fc" id="L791">  }</span>
+
+  @JsonProperty(&quot;masterUrl&quot;)
+  public String getMasterUrl() {
+<span class="fc" id="L795">    return masterUrl;</span>
+  }
+
+  public void setMasterUrl(String masterUrl) {
+<span class="fc" id="L799">    this.masterUrl = masterUrl;</span>
+<span class="fc" id="L800">  }</span>
+
+  @JsonProperty(&quot;trustCerts&quot;)
+  public boolean isTrustCerts() {
+<span class="fc" id="L804">    return trustCerts;</span>
+  }
+
+  public void setTrustCerts(boolean trustCerts) {
+<span class="fc" id="L808">    this.trustCerts = trustCerts;</span>
+<span class="fc" id="L809">  }</span>
+
+  @JsonProperty(&quot;disableHostnameVerification&quot;)
+  public boolean isDisableHostnameVerification() {
+<span class="fc" id="L813">    return disableHostnameVerification;</span>
+  }
+
+  public void setDisableHostnameVerification(boolean disableHostnameVerification) {
+<span class="fc" id="L817">    this.disableHostnameVerification = disableHostnameVerification;</span>
+<span class="fc" id="L818">  }</span>
+
+  @JsonProperty(&quot;watchReconnectInterval&quot;)
+  public int getWatchReconnectInterval() {
+<span class="fc" id="L822">    return requestConfig.getWatchReconnectInterval();</span>
+  }
+
+  public void setWatchReconnectInterval(int watchReconnectInterval) {
+<span class="fc" id="L826">    this.requestConfig.setWatchReconnectInterval(watchReconnectInterval);</span>
+<span class="fc" id="L827">  }</span>
+
+  @JsonProperty(&quot;watchReconnectLimit&quot;)
+  public int getWatchReconnectLimit() {
+<span class="fc" id="L831">    return getRequestConfig().getWatchReconnectLimit();</span>
+  }
+
+  public void setWatchReconnectLimit(int watchReconnectLimit) {
+<span class="fc" id="L835">    this.requestConfig.setWatchReconnectLimit(watchReconnectLimit);</span>
+<span class="fc" id="L836">  }</span>
+
+  @JsonProperty(&quot;errorMessages&quot;)
+  public Map&lt;Integer, String&gt; getErrorMessages() {
+<span class="fc" id="L840">    return errorMessages;</span>
+  }
+
+  public void setErrorMessages(Map&lt;Integer, String&gt; errorMessages) {
+<span class="fc" id="L844">    this.errorMessages = errorMessages;</span>
+<span class="fc" id="L845">  }</span>
+
+  public static ConfigBuilder builder() {
+<span class="nc" id="L848">    return new ConfigBuilder();</span>
+  }
+
+  @JsonProperty(&quot;connectionTimeout&quot;)
+  public int getConnectionTimeout() {
+<span class="fc" id="L853">    return getRequestConfig().getConnectionTimeout();</span>
+  }
+
+  public void setConnectionTimeout(int connectionTimeout) {
+<span class="fc" id="L857">    this.requestConfig.setConnectionTimeout(connectionTimeout);</span>
+<span class="fc" id="L858">  }</span>
+
+  @JsonProperty(&quot;requestTimeout&quot;)
+  public int getRequestTimeout() {
+<span class="fc" id="L862">    return getRequestConfig().getRequestTimeout();</span>
+  }
+
+  public void setRequestTimeout(int requestTimeout) {
+<span class="fc" id="L866">    this.requestConfig.setRequestTimeout(requestTimeout);</span>
+<span class="fc" id="L867">  }</span>
+
+  @JsonProperty(&quot;rollingTimeout&quot;)
+  public long getRollingTimeout() {
+<span class="fc" id="L871">    return getRequestConfig().getRollingTimeout();</span>
+  }
+
+  public void setRollingTimeout(long rollingTimeout) {
+<span class="fc" id="L875">    this.requestConfig.setRollingTimeout(rollingTimeout);</span>
+<span class="fc" id="L876">  }</span>
+
+  @JsonProperty(&quot;scaleTimeout&quot;)
+  public long getScaleTimeout() {
+<span class="fc" id="L880">    return getRequestConfig().getScaleTimeout();</span>
+  }
+
+  public void setScaleTimeout(long scaleTimeout) {
+<span class="fc" id="L884">    this.requestConfig.setScaleTimeout(scaleTimeout);</span>
+<span class="fc" id="L885">  }</span>
+
+  @JsonProperty(&quot;loggingInterval&quot;)
+  public int getLoggingInterval() {
+<span class="fc" id="L889">    return getRequestConfig().getLoggingInterval();</span>
+  }
+
+  public void setLoggingInterval(int loggingInterval) {
+<span class="fc" id="L893">    this.requestConfig.setLoggingInterval(loggingInterval);</span>
+<span class="fc" id="L894">  }</span>
+
+
+  public void setHttpProxy(String httpProxy) {
+<span class="fc" id="L898">    this.httpProxy= httpProxy;</span>
+<span class="fc" id="L899">  }</span>
+
+  @JsonProperty(&quot;httpProxy&quot;)
+  public String getHttpProxy() {
+<span class="fc" id="L903">    return httpProxy;</span>
+  }
+
+  public void setHttpsProxy(String httpsProxy) {
+<span class="fc" id="L907">    this.httpsProxy= httpsProxy;</span>
+<span class="fc" id="L908">  }</span>
+
+  @JsonProperty(&quot;httpsProxy&quot;)
+  public String getHttpsProxy() {
+<span class="fc" id="L912">    return httpsProxy;</span>
+  }
+
+  public void setNoProxy(String[] noProxy) {
+<span class="fc" id="L916">    this.noProxy = noProxy;</span>
+<span class="fc" id="L917">  }</span>
+
+  @JsonProperty(&quot;noProxy&quot;)
+  public String[] getNoProxy() {
+<span class="fc" id="L921">    return noProxy;</span>
+  }
+
+  @JsonProperty(&quot;namespace&quot;)
+  public String getNamespace() {
+<span class="fc" id="L926">    return namespace;</span>
+  }
+
+  public void setNamespace(String namespace) {
+<span class="fc" id="L930">    this.namespace = namespace;</span>
+<span class="fc" id="L931">  }</span>
+
+  @JsonProperty(&quot;userAgent&quot;)
+  public String getUserAgent() {
+<span class="fc" id="L935">    return userAgent;</span>
+  }
+
+  public void setUserAgent(String userAgent) {
+<span class="fc" id="L939">    this.userAgent = userAgent;</span>
+<span class="fc" id="L940">  }</span>
+
+  @JsonProperty(&quot;tlsVersions&quot;)
+  public TlsVersion[] getTlsVersions() {
+<span class="fc" id="L944">    return tlsVersions;</span>
+  }
+
+  public void setTlsVersions(TlsVersion[] tlsVersions) {
+<span class="fc" id="L948">    this.tlsVersions = tlsVersions;</span>
+<span class="fc" id="L949">  }</span>
+
+  @JsonProperty(&quot;websocketTimeout&quot;)
+  public long getWebsocketTimeout() {
+<span class="fc" id="L953">    return getRequestConfig().getWebsocketTimeout();</span>
+  }
+
+  public void setWebsocketTimeout(long websocketTimeout) {
+<span class="fc" id="L957">    this.requestConfig.setWebsocketTimeout(websocketTimeout);</span>
+<span class="fc" id="L958">  }</span>
+
+  @JsonProperty(&quot;websocketPingInterval&quot;)
+  public long getWebsocketPingInterval() {
+<span class="fc" id="L962">    return getRequestConfig().getWebsocketPingInterval();</span>
+  }
+
+  public void setWebsocketPingInterval(long websocketPingInterval) {
+<span class="fc" id="L966">    this.requestConfig.setWebsocketPingInterval(websocketPingInterval);</span>
+<span class="fc" id="L967">  }</span>
+
+  public int getMaxConcurrentRequests() {
+<span class="fc" id="L970">    return getRequestConfig().getMaxConcurrentRequests();</span>
+  }
+
+  public void setMaxConcurrentRequests(int maxConcurrentRequests) {
+<span class="fc" id="L974">    this.requestConfig.setMaxConcurrentRequests(maxConcurrentRequests);</span>
+<span class="fc" id="L975">  }</span>
+
+  public int getMaxConcurrentRequestsPerHost() {
+<span class="fc" id="L978">    return getRequestConfig().getMaxConcurrentRequestsPerHost();</span>
+  }
+
+  public void setMaxConcurrentRequestsPerHost(int maxConcurrentRequestsPerHost) {
+<span class="fc" id="L982">    this.requestConfig.setMaxConcurrentRequestsPerHost(maxConcurrentRequestsPerHost);</span>
+<span class="fc" id="L983">  }</span>
+
+  @JsonProperty(&quot;proxyUsername&quot;)
+  public String getProxyUsername() {
+<span class="fc" id="L987">    return proxyUsername;</span>
+  }
+
+  public void setProxyUsername(String proxyUsername) {
+<span class="fc" id="L991">    this.proxyUsername = proxyUsername;</span>
+<span class="fc" id="L992">  }</span>
+
+  @JsonProperty(&quot;proxyPassword&quot;)
+  public String getProxyPassword() {
+<span class="fc" id="L996">    return proxyPassword;</span>
+  }
+
+  public void setProxyPassword(String proxyPassword) {
+<span class="fc" id="L1000">    this.proxyPassword = proxyPassword;</span>
+<span class="fc" id="L1001">  }</span>
+
+  public RequestConfig getRequestConfig() {
+<span class="fc" id="L1004">    RequestConfig rc = RequestConfigHolder.get();</span>
+<span class="pc bpc" id="L1005" title="1 of 2 branches missed.">    return rc != null ? rc : this.requestConfig;</span>
+  }
+
+  public void setTrustStorePassphrase(String trustStorePassphrase) {
+<span class="fc" id="L1009">    this.trustStorePassphrase = trustStorePassphrase;</span>
+<span class="fc" id="L1010">  }</span>
+
+  @JsonProperty(&quot;trustStorePassphrase&quot;)
+  public String getTrustStorePassphrase() {
+<span class="fc" id="L1014">    return trustStorePassphrase;</span>
+  }
+
+  public void setKeyStorePassphrase(String keyStorePassphrase) {
+<span class="fc" id="L1018">    this.keyStorePassphrase = keyStorePassphrase;</span>
+<span class="fc" id="L1019">  }</span>
+
+  @JsonProperty(&quot;keyStorePassphrase&quot;)
+  public String getKeyStorePassphrase() {
+<span class="fc" id="L1023">    return keyStorePassphrase;</span>
+  }
+
+  public void setTrustStoreFile(String trustStoreFile) {
+<span class="fc" id="L1027">    this.trustStoreFile = trustStoreFile;</span>
+<span class="fc" id="L1028">  }</span>
+
+  @JsonProperty(&quot;trustStoreFile&quot;)
+  public String getTrustStoreFile() {
+<span class="fc" id="L1032">    return trustStoreFile;</span>
+  }
+
+  public void setKeyStoreFile(String keyStoreFile) {
+<span class="fc" id="L1036">    this.keyStoreFile = keyStoreFile;</span>
+<span class="fc" id="L1037">  }</span>
+
+  @JsonProperty(&quot;keyStoreFile&quot;)
+  public String getKeyStoreFile() {
+<span class="fc" id="L1041">    return keyStoreFile;</span>
+  }
+
+  @JsonIgnore
+  public OAuthTokenProvider getOauthTokenProvider() {
+<span class="fc" id="L1046">    return oauthTokenProvider;</span>
+  }
+
+  public void setOauthTokenProvider(OAuthTokenProvider oauthTokenProvider) {
+<span class="nc" id="L1050">    this.oauthTokenProvider = oauthTokenProvider;</span>
+<span class="nc" id="L1051">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

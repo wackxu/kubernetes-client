@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IngressTLSFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.extensions</a> &gt; <span class="el_source">IngressTLSFluentImpl.java</span></div><h1>IngressTLSFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.extensions;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class IngressTLSFluentImpl&lt;A extends IngressTLSFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements IngressTLSFluent&lt;A&gt;{
+
+    private List&lt;String&gt; hosts;
+    private String secretName;
+
+<span class="nc" id="L20">    public IngressTLSFluentImpl(){</span>
+<span class="nc" id="L21">    }</span>
+<span class="nc" id="L22">    public IngressTLSFluentImpl(IngressTLS instance){</span>
+<span class="nc" id="L23">            this.withHosts(instance.getHosts()); </span>
+<span class="nc" id="L24">            this.withSecretName(instance.getSecretName()); </span>
+<span class="nc" id="L25">    }</span>
+
+    public A addToHosts(int index,String item){
+<span class="nc bnc" id="L28" title="All 2 branches missed.">            if (this.hosts == null) {this.hosts = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L29">            this.hosts.add(index, item);</span>
+<span class="nc" id="L30">            return (A)this;</span>
+    }
+
+    public A setToHosts(int index,String item){
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            if (this.hosts == null) {this.hosts = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L35">            this.hosts.set(index, item); return (A)this;</span>
+    }
+
+    public A addToHosts(String... items){
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            if (this.hosts == null) {this.hosts = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            for (String item : items) {this.hosts.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToHosts(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            if (this.hosts == null) {this.hosts = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            for (String item : items) {this.hosts.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromHosts(String... items){
+<span class="nc bnc" id="L49" title="All 4 branches missed.">            for (String item : items) {if (this.hosts!= null){ this.hosts.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromHosts(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L53" title="All 4 branches missed.">            for (String item : items) {if (this.hosts!= null){ this.hosts.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getHosts(){
+<span class="nc" id="L57">            return this.hosts;</span>
+    }
+
+    public String getHost(int index){
+<span class="nc" id="L61">            return this.hosts.get(index);</span>
+    }
+
+    public String getFirstHost(){
+<span class="nc" id="L65">            return this.hosts.get(0);</span>
+    }
+
+    public String getLastHost(){
+<span class="nc" id="L69">            return this.hosts.get(hosts.size() - 1);</span>
+    }
+
+    public String getMatchingHost(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L73" title="All 4 branches missed.">            for (String item: hosts) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withHosts(List&lt;String&gt; hosts){
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            if (this.hosts != null) { _visitables.removeAll(this.hosts);}</span>
+<span class="nc bnc" id="L78" title="All 4 branches missed.">            if (hosts != null) {this.hosts = new ArrayList&lt;String&gt;(); for (String item : hosts){this.addToHosts(item);}} else { this.hosts = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withHosts(String... hosts){
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            if (this.hosts != null) {this.hosts.clear();}</span>
+<span class="nc bnc" id="L83" title="All 4 branches missed.">            if (hosts != null) {for (String item :hosts){ this.addToHosts(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasHosts(){
+<span class="nc bnc" id="L87" title="All 4 branches missed.">            return hosts != null &amp;&amp; !hosts.isEmpty();</span>
+    }
+
+    public String getSecretName(){
+<span class="nc" id="L91">            return this.secretName;</span>
+    }
+
+    public A withSecretName(String secretName){
+<span class="nc" id="L95">            this.secretName=secretName; return (A) this;</span>
+    }
+
+    public Boolean hasSecretName(){
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            return this.secretName != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L104" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L106">            IngressTLSFluentImpl that = (IngressTLSFluentImpl) o;</span>
+<span class="nc bnc" id="L107" title="All 6 branches missed.">            if (hosts != null ? !hosts.equals(that.hosts) :that.hosts != null) return false;</span>
+<span class="nc bnc" id="L108" title="All 6 branches missed.">            if (secretName != null ? !secretName.equals(that.secretName) :that.secretName != null) return false;</span>
+<span class="nc" id="L109">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

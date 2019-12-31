@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>URLFromEnvVarsImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client</a> &gt; <span class="el_source">URLFromEnvVarsImpl.java</span></div><h1>URLFromEnvVarsImpl.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.fabric8.kubernetes.client;
+
+import io.fabric8.kubernetes.api.model.Service;
+import io.fabric8.kubernetes.client.utils.URLFromServiceUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+<span class="nc" id="L24">public class URLFromEnvVarsImpl implements ServiceToURLProvider {</span>
+<span class="nc" id="L25">  public static Logger logger = LoggerFactory.getLogger(URLFromEnvVarsImpl.class);</span>
+
+  public static final String ANNOTATION_EXPOSE_URL = &quot;fabric8.io/exposeUrl&quot;;
+
+  @Override
+  public String getURL(Service service, String portName, String namespace, KubernetesClient client) {
+<span class="nc" id="L31">    String serviceHost     = URLFromServiceUtil.resolveHostFromEnvVarOrSystemProperty(service.getMetadata().getName());</span>
+<span class="nc" id="L32">    String servicePort     = URLFromServiceUtil.resolvePortFromEnvVarOrSystemProperty(service.getMetadata().getName(), &quot;&quot;);</span>
+<span class="nc" id="L33">    String serviceProtocol = URLFromServiceUtil.resolveProtocolFromEnvVarOrSystemProperty(service.getSpec().getPorts().iterator().next().getProtocol(), &quot;&quot;);</span>
+
+<span class="nc bnc" id="L35" title="All 6 branches missed.">    if(!serviceHost.isEmpty() &amp;&amp; !servicePort.isEmpty() &amp;&amp; !serviceProtocol.isEmpty()) {</span>
+<span class="nc" id="L36">      return serviceProtocol + &quot;://&quot; + serviceHost + &quot;:&quot; + servicePort;</span>
+    } else {
+<span class="nc" id="L38">      String answer = URLFromServiceUtil.getOrCreateAnnotations(service).get(ANNOTATION_EXPOSE_URL);</span>
+<span class="nc bnc" id="L39" title="All 4 branches missed.">      if(answer != null &amp;&amp; !answer.isEmpty()) {</span>
+<span class="nc" id="L40">        return answer;</span>
+      }
+    }
+<span class="nc" id="L43">    return null;</span>
+  }
+
+  @Override
+  public int getPriority() {
+<span class="nc" id="L48">    return ServiceToUrlImplPriority.THIRD.getValue();</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

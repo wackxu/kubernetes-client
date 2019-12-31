@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CSIPersistentVolumeSource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">CSIPersistentVolumeSource.java</span></div><h1>CSIPersistentVolumeSource.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;controllerPublishSecretRef&quot;,
+    &quot;driver&quot;,
+    &quot;fsType&quot;,
+    &quot;nodePublishSecretRef&quot;,
+    &quot;nodeStageSecretRef&quot;,
+    &quot;readOnly&quot;,
+    &quot;volumeAttributes&quot;,
+    &quot;volumeHandle&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L42">@ToString</span>
+<span class="nc bnc" id="L43" title="All 78 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class CSIPersistentVolumeSource implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;controllerPublishSecretRef&quot;)
+    @Valid
+    private SecretReference controllerPublishSecretRef;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;driver&quot;)
+    private java.lang.String driver;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    private java.lang.String fsType;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;nodePublishSecretRef&quot;)
+    @Valid
+    private SecretReference nodePublishSecretRef;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;nodeStageSecretRef&quot;)
+    @Valid
+    private SecretReference nodeStageSecretRef;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    private Boolean readOnly;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;volumeAttributes&quot;)
+    @Valid
+    private Map&lt;String, String&gt; volumeAttributes;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;volumeHandle&quot;)
+    private java.lang.String volumeHandle;
+<span class="nc" id="L100">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L107">    public CSIPersistentVolumeSource() {</span>
+<span class="nc" id="L108">    }</span>
+
+    /**
+     * 
+     * @param controllerPublishSecretRef
+     * @param driver
+     * @param nodePublishSecretRef
+     * @param nodeStageSecretRef
+     * @param volumeHandle
+     * @param readOnly
+     * @param fsType
+     * @param volumeAttributes
+     */
+<span class="nc" id="L121">    public CSIPersistentVolumeSource(SecretReference controllerPublishSecretRef, java.lang.String driver, java.lang.String fsType, SecretReference nodePublishSecretRef, SecretReference nodeStageSecretRef, Boolean readOnly, Map&lt;String, String&gt; volumeAttributes, java.lang.String volumeHandle) {</span>
+<span class="nc" id="L122">        this.controllerPublishSecretRef = controllerPublishSecretRef;</span>
+<span class="nc" id="L123">        this.driver = driver;</span>
+<span class="nc" id="L124">        this.fsType = fsType;</span>
+<span class="nc" id="L125">        this.nodePublishSecretRef = nodePublishSecretRef;</span>
+<span class="nc" id="L126">        this.nodeStageSecretRef = nodeStageSecretRef;</span>
+<span class="nc" id="L127">        this.readOnly = readOnly;</span>
+<span class="nc" id="L128">        this.volumeAttributes = volumeAttributes;</span>
+<span class="nc" id="L129">        this.volumeHandle = volumeHandle;</span>
+<span class="nc" id="L130">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The controllerPublishSecretRef
+     */
+    @JsonProperty(&quot;controllerPublishSecretRef&quot;)
+    public SecretReference getControllerPublishSecretRef() {
+<span class="nc" id="L140">        return controllerPublishSecretRef;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param controllerPublishSecretRef
+     *     The controllerPublishSecretRef
+     */
+    @JsonProperty(&quot;controllerPublishSecretRef&quot;)
+    public void setControllerPublishSecretRef(SecretReference controllerPublishSecretRef) {
+<span class="nc" id="L151">        this.controllerPublishSecretRef = controllerPublishSecretRef;</span>
+<span class="nc" id="L152">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The driver
+     */
+    @JsonProperty(&quot;driver&quot;)
+    public java.lang.String getDriver() {
+<span class="nc" id="L162">        return driver;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param driver
+     *     The driver
+     */
+    @JsonProperty(&quot;driver&quot;)
+    public void setDriver(java.lang.String driver) {
+<span class="nc" id="L173">        this.driver = driver;</span>
+<span class="nc" id="L174">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The fsType
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    public java.lang.String getFsType() {
+<span class="nc" id="L184">        return fsType;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param fsType
+     *     The fsType
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    public void setFsType(java.lang.String fsType) {
+<span class="nc" id="L195">        this.fsType = fsType;</span>
+<span class="nc" id="L196">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The nodePublishSecretRef
+     */
+    @JsonProperty(&quot;nodePublishSecretRef&quot;)
+    public SecretReference getNodePublishSecretRef() {
+<span class="nc" id="L206">        return nodePublishSecretRef;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param nodePublishSecretRef
+     *     The nodePublishSecretRef
+     */
+    @JsonProperty(&quot;nodePublishSecretRef&quot;)
+    public void setNodePublishSecretRef(SecretReference nodePublishSecretRef) {
+<span class="nc" id="L217">        this.nodePublishSecretRef = nodePublishSecretRef;</span>
+<span class="nc" id="L218">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The nodeStageSecretRef
+     */
+    @JsonProperty(&quot;nodeStageSecretRef&quot;)
+    public SecretReference getNodeStageSecretRef() {
+<span class="nc" id="L228">        return nodeStageSecretRef;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param nodeStageSecretRef
+     *     The nodeStageSecretRef
+     */
+    @JsonProperty(&quot;nodeStageSecretRef&quot;)
+    public void setNodeStageSecretRef(SecretReference nodeStageSecretRef) {
+<span class="nc" id="L239">        this.nodeStageSecretRef = nodeStageSecretRef;</span>
+<span class="nc" id="L240">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The readOnly
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    public Boolean getReadOnly() {
+<span class="nc" id="L250">        return readOnly;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param readOnly
+     *     The readOnly
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    public void setReadOnly(Boolean readOnly) {
+<span class="nc" id="L261">        this.readOnly = readOnly;</span>
+<span class="nc" id="L262">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The volumeAttributes
+     */
+    @JsonProperty(&quot;volumeAttributes&quot;)
+    public Map&lt;String, String&gt; getVolumeAttributes() {
+<span class="nc" id="L272">        return volumeAttributes;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param volumeAttributes
+     *     The volumeAttributes
+     */
+    @JsonProperty(&quot;volumeAttributes&quot;)
+    public void setVolumeAttributes(Map&lt;String, String&gt; volumeAttributes) {
+<span class="nc" id="L283">        this.volumeAttributes = volumeAttributes;</span>
+<span class="nc" id="L284">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The volumeHandle
+     */
+    @JsonProperty(&quot;volumeHandle&quot;)
+    public java.lang.String getVolumeHandle() {
+<span class="nc" id="L294">        return volumeHandle;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param volumeHandle
+     *     The volumeHandle
+     */
+    @JsonProperty(&quot;volumeHandle&quot;)
+    public void setVolumeHandle(java.lang.String volumeHandle) {
+<span class="nc" id="L305">        this.volumeHandle = volumeHandle;</span>
+<span class="nc" id="L306">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L310">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L315">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L316">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

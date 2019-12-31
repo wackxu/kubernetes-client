@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ResourceMetricStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ResourceMetricStatusFluentImpl.java</span></div><h1>ResourceMetricStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import java.lang.String;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import java.lang.Boolean;
+import java.lang.Override;
+import com.fasterxml.jackson.core.JsonParser;
+import java.lang.Integer;
+import javax.validation.Valid;
+import java.lang.Object;
+
+public class ResourceMetricStatusFluentImpl&lt;A extends ResourceMetricStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ResourceMetricStatusFluent&lt;A&gt;{
+
+    private Integer currentAverageUtilization;
+    private QuantityBuilder currentAverageValue;
+    private String name;
+
+<span class="nc" id="L26">    public ResourceMetricStatusFluentImpl(){</span>
+<span class="nc" id="L27">    }</span>
+<span class="nc" id="L28">    public ResourceMetricStatusFluentImpl(ResourceMetricStatus instance){</span>
+<span class="nc" id="L29">            this.withCurrentAverageUtilization(instance.getCurrentAverageUtilization()); </span>
+<span class="nc" id="L30">            this.withCurrentAverageValue(instance.getCurrentAverageValue()); </span>
+<span class="nc" id="L31">            this.withName(instance.getName()); </span>
+<span class="nc" id="L32">    }</span>
+
+    public Integer getCurrentAverageUtilization(){
+<span class="nc" id="L35">            return this.currentAverageUtilization;</span>
+    }
+
+    public A withCurrentAverageUtilization(Integer currentAverageUtilization){
+<span class="nc" id="L39">            this.currentAverageUtilization=currentAverageUtilization; return (A) this;</span>
+    }
+
+    public Boolean hasCurrentAverageUtilization(){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            return this.currentAverageUtilization != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildCurrentAverageValue instead.
+ * @return The buildable object.
+ */
+@Deprecated public Quantity getCurrentAverageValue(){
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            return this.currentAverageValue!=null?this.currentAverageValue.build():null;</span>
+    }
+
+    public Quantity buildCurrentAverageValue(){
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            return this.currentAverageValue!=null?this.currentAverageValue.build():null;</span>
+    }
+
+    public A withCurrentAverageValue(Quantity currentAverageValue){
+<span class="nc" id="L60">            _visitables.remove(this.currentAverageValue);</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            if (currentAverageValue!=null){ this.currentAverageValue= new QuantityBuilder(currentAverageValue); _visitables.add(this.currentAverageValue);} return (A) this;</span>
+    }
+
+    public Boolean hasCurrentAverageValue(){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            return this.currentAverageValue != null;</span>
+    }
+
+    public A withNewCurrentAverageValue(String amount,String format){
+<span class="nc" id="L69">            return (A)withCurrentAverageValue(new Quantity(amount, format));</span>
+    }
+
+    public A withNewCurrentAverageValue(String amount){
+<span class="nc" id="L73">            return (A)withCurrentAverageValue(new Quantity(amount));</span>
+    }
+
+    public ResourceMetricStatusFluent.CurrentAverageValueNested&lt;A&gt; withNewCurrentAverageValue(){
+<span class="nc" id="L77">            return new CurrentAverageValueNestedImpl();</span>
+    }
+
+    public ResourceMetricStatusFluent.CurrentAverageValueNested&lt;A&gt; withNewCurrentAverageValueLike(Quantity item){
+<span class="nc" id="L81">            return new CurrentAverageValueNestedImpl(item);</span>
+    }
+
+    public ResourceMetricStatusFluent.CurrentAverageValueNested&lt;A&gt; editCurrentAverageValue(){
+<span class="nc" id="L85">            return withNewCurrentAverageValueLike(getCurrentAverageValue());</span>
+    }
+
+    public ResourceMetricStatusFluent.CurrentAverageValueNested&lt;A&gt; editOrNewCurrentAverageValue(){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            return withNewCurrentAverageValueLike(getCurrentAverageValue() != null ? getCurrentAverageValue(): new QuantityBuilder().build());</span>
+    }
+
+    public ResourceMetricStatusFluent.CurrentAverageValueNested&lt;A&gt; editOrNewCurrentAverageValueLike(Quantity item){
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            return withNewCurrentAverageValueLike(getCurrentAverageValue() != null ? getCurrentAverageValue(): item);</span>
+    }
+
+    public String getName(){
+<span class="nc" id="L97">            return this.name;</span>
+    }
+
+    public A withName(String name){
+<span class="nc" id="L101">            this.name=name; return (A) this;</span>
+    }
+
+    public Boolean hasName(){
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            return this.name != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L110" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L112">            ResourceMetricStatusFluentImpl that = (ResourceMetricStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L113" title="All 6 branches missed.">            if (currentAverageUtilization != null ? !currentAverageUtilization.equals(that.currentAverageUtilization) :that.currentAverageUtilization != null) return false;</span>
+<span class="nc bnc" id="L114" title="All 6 branches missed.">            if (currentAverageValue != null ? !currentAverageValue.equals(that.currentAverageValue) :that.currentAverageValue != null) return false;</span>
+<span class="nc bnc" id="L115" title="All 6 branches missed.">            if (name != null ? !name.equals(that.name) :that.name != null) return false;</span>
+<span class="nc" id="L116">            return true;</span>
+    }
+
+
+    public class CurrentAverageValueNestedImpl&lt;N&gt; extends QuantityFluentImpl&lt;ResourceMetricStatusFluent.CurrentAverageValueNested&lt;N&gt;&gt; implements ResourceMetricStatusFluent.CurrentAverageValueNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final QuantityBuilder builder;
+    
+<span class="nc" id="L124">            CurrentAverageValueNestedImpl(Quantity item){</span>
+<span class="nc" id="L125">                    this.builder = new QuantityBuilder(this, item);</span>
+<span class="nc" id="L126">            }</span>
+<span class="nc" id="L127">            CurrentAverageValueNestedImpl(){</span>
+<span class="nc" id="L128">                    this.builder = new QuantityBuilder(this);</span>
+<span class="nc" id="L129">            }</span>
+    
+    public N and(){
+<span class="nc" id="L132">            return (N) ResourceMetricStatusFluentImpl.this.withCurrentAverageValue(builder.build());</span>
+    }
+    public N endCurrentAverageValue(){
+<span class="nc" id="L135">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

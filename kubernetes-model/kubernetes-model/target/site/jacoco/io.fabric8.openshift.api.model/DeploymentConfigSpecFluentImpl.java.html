@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeploymentConfigSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">DeploymentConfigSpecFluentImpl.java</span></div><h1>DeploymentConfigSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.PodTemplateSpecFluentImpl;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.util.LinkedHashMap;
+import io.fabric8.kubernetes.api.model.PodTemplateSpec;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import java.lang.Integer;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.PodTemplateSpecBuilder;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.Map;
+
+public class DeploymentConfigSpecFluentImpl&lt;A extends DeploymentConfigSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements DeploymentConfigSpecFluent&lt;A&gt;{
+
+    private Integer minReadySeconds;
+    private Boolean paused;
+    private Integer replicas;
+    private Integer revisionHistoryLimit;
+    private Map&lt;String,String&gt; selector;
+    private io.fabric8.openshift.api.model.DeploymentStrategyBuilder strategy;
+    private PodTemplateSpecBuilder template;
+    private Boolean test;
+    private List&lt;DeploymentTriggerPolicyBuilder&gt; triggers;
+
+<span class="fc" id="L34">    public DeploymentConfigSpecFluentImpl(){</span>
+<span class="fc" id="L35">    }</span>
+<span class="nc" id="L36">    public DeploymentConfigSpecFluentImpl(DeploymentConfigSpec instance){</span>
+<span class="nc" id="L37">            this.withMinReadySeconds(instance.getMinReadySeconds()); </span>
+<span class="nc" id="L38">            this.withPaused(instance.getPaused()); </span>
+<span class="nc" id="L39">            this.withReplicas(instance.getReplicas()); </span>
+<span class="nc" id="L40">            this.withRevisionHistoryLimit(instance.getRevisionHistoryLimit()); </span>
+<span class="nc" id="L41">            this.withSelector(instance.getSelector()); </span>
+<span class="nc" id="L42">            this.withStrategy(instance.getStrategy()); </span>
+<span class="nc" id="L43">            this.withTemplate(instance.getTemplate()); </span>
+<span class="nc" id="L44">            this.withTest(instance.getTest()); </span>
+<span class="nc" id="L45">            this.withTriggers(instance.getTriggers()); </span>
+<span class="nc" id="L46">    }</span>
+
+    public Integer getMinReadySeconds(){
+<span class="fc" id="L49">            return this.minReadySeconds;</span>
+    }
+
+    public A withMinReadySeconds(Integer minReadySeconds){
+<span class="fc" id="L53">            this.minReadySeconds=minReadySeconds; return (A) this;</span>
+    }
+
+    public Boolean hasMinReadySeconds(){
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            return this.minReadySeconds != null;</span>
+    }
+
+    public Boolean isPaused(){
+<span class="fc" id="L61">            return this.paused;</span>
+    }
+
+    public A withPaused(Boolean paused){
+<span class="fc" id="L65">            this.paused=paused; return (A) this;</span>
+    }
+
+    public Boolean hasPaused(){
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            return this.paused != null;</span>
+    }
+
+    public A withNewPaused(String arg1){
+<span class="nc" id="L73">            return (A)withPaused(new Boolean(arg1));</span>
+    }
+
+    public A withNewPaused(boolean arg1){
+<span class="nc" id="L77">            return (A)withPaused(new Boolean(arg1));</span>
+    }
+
+    public Integer getReplicas(){
+<span class="fc" id="L81">            return this.replicas;</span>
+    }
+
+    public A withReplicas(Integer replicas){
+<span class="fc" id="L85">            this.replicas=replicas; return (A) this;</span>
+    }
+
+    public Boolean hasReplicas(){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            return this.replicas != null;</span>
+    }
+
+    public Integer getRevisionHistoryLimit(){
+<span class="fc" id="L93">            return this.revisionHistoryLimit;</span>
+    }
+
+    public A withRevisionHistoryLimit(Integer revisionHistoryLimit){
+<span class="fc" id="L97">            this.revisionHistoryLimit=revisionHistoryLimit; return (A) this;</span>
+    }
+
+    public Boolean hasRevisionHistoryLimit(){
+<span class="nc bnc" id="L101" title="All 2 branches missed.">            return this.revisionHistoryLimit != null;</span>
+    }
+
+    public A addToSelector(String key,String value){
+<span class="pc bpc" id="L105" title="5 of 6 branches missed.">            if(this.selector == null &amp;&amp; key != null &amp;&amp; value != null) { this.selector = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="pc bpc" id="L106" title="2 of 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.selector.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToSelector(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L110" title="All 4 branches missed.">            if(this.selector == null &amp;&amp; map != null) { this.selector = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            if(map != null) { this.selector.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromSelector(String key){
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            if(this.selector == null) { return (A) this; }</span>
+<span class="nc bnc" id="L116" title="All 4 branches missed.">            if(key != null &amp;&amp; this.selector != null) {this.selector.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromSelector(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            if(this.selector == null) { return (A) this; }</span>
+<span class="nc bnc" id="L121" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.selector != null){this.selector.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getSelector(){
+<span class="fc" id="L125">            return this.selector;</span>
+    }
+
+    public A withSelector(Map&lt;String,String&gt; selector){
+<span class="fc bfc" id="L129" title="All 2 branches covered.">            if (selector == null) { this.selector =  new LinkedHashMap&lt;String,String&gt;();} else {this.selector = new LinkedHashMap&lt;String,String&gt;(selector);} return (A) this;</span>
+    }
+
+    public Boolean hasSelector(){
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            return this.selector != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildStrategy instead.
+ * @return The buildable object.
+ */
+@Deprecated public io.fabric8.openshift.api.model.DeploymentStrategy getStrategy(){
+<span class="pc bpc" id="L142" title="1 of 2 branches missed.">            return this.strategy!=null?this.strategy.build():null;</span>
+    }
+
+    public io.fabric8.openshift.api.model.DeploymentStrategy buildStrategy(){
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            return this.strategy!=null?this.strategy.build():null;</span>
+    }
+
+    public A withStrategy(io.fabric8.openshift.api.model.DeploymentStrategy strategy){
+<span class="fc" id="L150">            _visitables.remove(this.strategy);</span>
+<span class="fc bfc" id="L151" title="All 2 branches covered.">            if (strategy!=null){ this.strategy= new io.fabric8.openshift.api.model.DeploymentStrategyBuilder(strategy); _visitables.add(this.strategy);} return (A) this;</span>
+    }
+
+    public Boolean hasStrategy(){
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            return this.strategy != null;</span>
+    }
+
+    public DeploymentConfigSpecFluent.StrategyNested&lt;A&gt; withNewStrategy(){
+<span class="fc" id="L159">            return new StrategyNestedImpl();</span>
+    }
+
+    public DeploymentConfigSpecFluent.StrategyNested&lt;A&gt; withNewStrategyLike(io.fabric8.openshift.api.model.DeploymentStrategy item){
+<span class="nc" id="L163">            return new StrategyNestedImpl(item);</span>
+    }
+
+    public DeploymentConfigSpecFluent.StrategyNested&lt;A&gt; editStrategy(){
+<span class="nc" id="L167">            return withNewStrategyLike(getStrategy());</span>
+    }
+
+    public DeploymentConfigSpecFluent.StrategyNested&lt;A&gt; editOrNewStrategy(){
+<span class="nc bnc" id="L171" title="All 2 branches missed.">            return withNewStrategyLike(getStrategy() != null ? getStrategy(): new io.fabric8.openshift.api.model.DeploymentStrategyBuilder().build());</span>
+    }
+
+    public DeploymentConfigSpecFluent.StrategyNested&lt;A&gt; editOrNewStrategyLike(io.fabric8.openshift.api.model.DeploymentStrategy item){
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            return withNewStrategyLike(getStrategy() != null ? getStrategy(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTemplate instead.
+ * @return The buildable object.
+ */
+@Deprecated public PodTemplateSpec getTemplate(){
+<span class="pc bpc" id="L184" title="1 of 2 branches missed.">            return this.template!=null?this.template.build():null;</span>
+    }
+
+    public PodTemplateSpec buildTemplate(){
+<span class="nc bnc" id="L188" title="All 2 branches missed.">            return this.template!=null?this.template.build():null;</span>
+    }
+
+    public A withTemplate(PodTemplateSpec template){
+<span class="fc" id="L192">            _visitables.remove(this.template);</span>
+<span class="fc bfc" id="L193" title="All 2 branches covered.">            if (template!=null){ this.template= new PodTemplateSpecBuilder(template); _visitables.add(this.template);} return (A) this;</span>
+    }
+
+    public Boolean hasTemplate(){
+<span class="nc bnc" id="L197" title="All 2 branches missed.">            return this.template != null;</span>
+    }
+
+    public DeploymentConfigSpecFluent.TemplateNested&lt;A&gt; withNewTemplate(){
+<span class="fc" id="L201">            return new TemplateNestedImpl();</span>
+    }
+
+    public DeploymentConfigSpecFluent.TemplateNested&lt;A&gt; withNewTemplateLike(PodTemplateSpec item){
+<span class="nc" id="L205">            return new TemplateNestedImpl(item);</span>
+    }
+
+    public DeploymentConfigSpecFluent.TemplateNested&lt;A&gt; editTemplate(){
+<span class="nc" id="L209">            return withNewTemplateLike(getTemplate());</span>
+    }
+
+    public DeploymentConfigSpecFluent.TemplateNested&lt;A&gt; editOrNewTemplate(){
+<span class="nc bnc" id="L213" title="All 2 branches missed.">            return withNewTemplateLike(getTemplate() != null ? getTemplate(): new PodTemplateSpecBuilder().build());</span>
+    }
+
+    public DeploymentConfigSpecFluent.TemplateNested&lt;A&gt; editOrNewTemplateLike(PodTemplateSpec item){
+<span class="nc bnc" id="L217" title="All 2 branches missed.">            return withNewTemplateLike(getTemplate() != null ? getTemplate(): item);</span>
+    }
+
+    public Boolean isTest(){
+<span class="fc" id="L221">            return this.test;</span>
+    }
+
+    public A withTest(Boolean test){
+<span class="fc" id="L225">            this.test=test; return (A) this;</span>
+    }
+
+    public Boolean hasTest(){
+<span class="nc bnc" id="L229" title="All 2 branches missed.">            return this.test != null;</span>
+    }
+
+    public A withNewTest(String arg1){
+<span class="nc" id="L233">            return (A)withTest(new Boolean(arg1));</span>
+    }
+
+    public A withNewTest(boolean arg1){
+<span class="nc" id="L237">            return (A)withTest(new Boolean(arg1));</span>
+    }
+
+    public A addToTriggers(int index,DeploymentTriggerPolicy item){
+<span class="nc bnc" id="L241" title="All 2 branches missed.">            if (this.triggers == null) {this.triggers = new ArrayList&lt;DeploymentTriggerPolicyBuilder&gt;();}</span>
+<span class="nc bnc" id="L242" title="All 4 branches missed.">            DeploymentTriggerPolicyBuilder builder = new DeploymentTriggerPolicyBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.triggers.add(index &gt;= 0 ? index : triggers.size(), builder); return (A)this;</span>
+    }
+
+    public A setToTriggers(int index,DeploymentTriggerPolicy item){
+<span class="pc bpc" id="L246" title="1 of 2 branches missed.">            if (this.triggers == null) {this.triggers = new ArrayList&lt;DeploymentTriggerPolicyBuilder&gt;();}</span>
+<span class="fc" id="L247">            DeploymentTriggerPolicyBuilder builder = new DeploymentTriggerPolicyBuilder(item);</span>
+<span class="pc bpc" id="L248" title="3 of 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="pc bpc" id="L249" title="3 of 4 branches missed.">            if (index &lt; 0 || index &gt;= triggers.size()) { triggers.add(builder); } else { triggers.set(index, builder);}</span>
+<span class="fc" id="L250">             return (A)this;</span>
+    }
+
+    public A addToTriggers(DeploymentTriggerPolicy... items){
+<span class="pc bpc" id="L254" title="1 of 2 branches missed.">            if (this.triggers == null) {this.triggers = new ArrayList&lt;DeploymentTriggerPolicyBuilder&gt;();}</span>
+<span class="fc bfc" id="L255" title="All 2 branches covered.">            for (DeploymentTriggerPolicy item : items) {DeploymentTriggerPolicyBuilder builder = new DeploymentTriggerPolicyBuilder(item);_visitables.add(builder);this.triggers.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToTriggers(Collection&lt;DeploymentTriggerPolicy&gt; items){
+<span class="nc bnc" id="L259" title="All 2 branches missed.">            if (this.triggers == null) {this.triggers = new ArrayList&lt;DeploymentTriggerPolicyBuilder&gt;();}</span>
+<span class="nc bnc" id="L260" title="All 2 branches missed.">            for (DeploymentTriggerPolicy item : items) {DeploymentTriggerPolicyBuilder builder = new DeploymentTriggerPolicyBuilder(item);_visitables.add(builder);this.triggers.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromTriggers(DeploymentTriggerPolicy... items){
+<span class="nc bnc" id="L264" title="All 4 branches missed.">            for (DeploymentTriggerPolicy item : items) {DeploymentTriggerPolicyBuilder builder = new DeploymentTriggerPolicyBuilder(item);_visitables.remove(builder);if (this.triggers != null) {this.triggers.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromTriggers(Collection&lt;DeploymentTriggerPolicy&gt; items){
+<span class="nc bnc" id="L268" title="All 4 branches missed.">            for (DeploymentTriggerPolicy item : items) {DeploymentTriggerPolicyBuilder builder = new DeploymentTriggerPolicyBuilder(item);_visitables.remove(builder);if (this.triggers != null) {this.triggers.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTriggers instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;DeploymentTriggerPolicy&gt; getTriggers(){
+<span class="fc" id="L277">            return build(triggers);</span>
+    }
+
+    public List&lt;DeploymentTriggerPolicy&gt; buildTriggers(){
+<span class="nc" id="L281">            return build(triggers);</span>
+    }
+
+    public DeploymentTriggerPolicy buildTrigger(int index){
+<span class="nc" id="L285">            return this.triggers.get(index).build();</span>
+    }
+
+    public DeploymentTriggerPolicy buildFirstTrigger(){
+<span class="nc" id="L289">            return this.triggers.get(0).build();</span>
+    }
+
+    public DeploymentTriggerPolicy buildLastTrigger(){
+<span class="nc" id="L293">            return this.triggers.get(triggers.size() - 1).build();</span>
+    }
+
+    public DeploymentTriggerPolicy buildMatchingTrigger(io.fabric8.kubernetes.api.builder.Predicate&lt;DeploymentTriggerPolicyBuilder&gt; predicate){
+<span class="nc bnc" id="L297" title="All 4 branches missed.">            for (DeploymentTriggerPolicyBuilder item: triggers) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withTriggers(List&lt;DeploymentTriggerPolicy&gt; triggers){
+<span class="pc bpc" id="L301" title="1 of 2 branches missed.">            if (this.triggers != null) { _visitables.removeAll(this.triggers);}</span>
+<span class="pc bpc" id="L302" title="1 of 4 branches missed.">            if (triggers != null) {this.triggers = new ArrayList&lt;DeploymentTriggerPolicyBuilder&gt;(); for (DeploymentTriggerPolicy item : triggers){this.addToTriggers(item);}} else { this.triggers = new ArrayList&lt;DeploymentTriggerPolicyBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withTriggers(DeploymentTriggerPolicy... triggers){
+<span class="nc bnc" id="L306" title="All 2 branches missed.">            if (this.triggers != null) {this.triggers.clear();}</span>
+<span class="nc bnc" id="L307" title="All 4 branches missed.">            if (triggers != null) {for (DeploymentTriggerPolicy item :triggers){ this.addToTriggers(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasTriggers(){
+<span class="nc bnc" id="L311" title="All 4 branches missed.">            return triggers != null &amp;&amp; !triggers.isEmpty();</span>
+    }
+
+    public DeploymentConfigSpecFluent.TriggersNested&lt;A&gt; addNewTrigger(){
+<span class="fc" id="L315">            return new TriggersNestedImpl();</span>
+    }
+
+    public DeploymentConfigSpecFluent.TriggersNested&lt;A&gt; addNewTriggerLike(DeploymentTriggerPolicy item){
+<span class="nc" id="L319">            return new TriggersNestedImpl(-1, item);</span>
+    }
+
+    public DeploymentConfigSpecFluent.TriggersNested&lt;A&gt; setNewTriggerLike(int index,DeploymentTriggerPolicy item){
+<span class="nc" id="L323">            return new TriggersNestedImpl(index, item);</span>
+    }
+
+    public DeploymentConfigSpecFluent.TriggersNested&lt;A&gt; editTrigger(int index){
+<span class="nc bnc" id="L327" title="All 2 branches missed.">            if (triggers.size() &lt;= index) throw new RuntimeException(&quot;Can't edit triggers. Index exceeds size.&quot;);</span>
+<span class="nc" id="L328">            return setNewTriggerLike(index, buildTrigger(index));</span>
+    }
+
+    public DeploymentConfigSpecFluent.TriggersNested&lt;A&gt; editFirstTrigger(){
+<span class="nc bnc" id="L332" title="All 2 branches missed.">            if (triggers.size() == 0) throw new RuntimeException(&quot;Can't edit first triggers. The list is empty.&quot;);</span>
+<span class="nc" id="L333">            return setNewTriggerLike(0, buildTrigger(0));</span>
+    }
+
+    public DeploymentConfigSpecFluent.TriggersNested&lt;A&gt; editLastTrigger(){
+<span class="nc" id="L337">            int index = triggers.size() - 1;</span>
+<span class="nc bnc" id="L338" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last triggers. The list is empty.&quot;);</span>
+<span class="nc" id="L339">            return setNewTriggerLike(index, buildTrigger(index));</span>
+    }
+
+    public DeploymentConfigSpecFluent.TriggersNested&lt;A&gt; editMatchingTrigger(io.fabric8.kubernetes.api.builder.Predicate&lt;DeploymentTriggerPolicyBuilder&gt; predicate){
+<span class="nc" id="L343">            int index = -1;</span>
+<span class="nc bnc" id="L344" title="All 2 branches missed.">            for (int i=0;i&lt;triggers.size();i++) { </span>
+<span class="nc bnc" id="L345" title="All 2 branches missed.">            if (predicate.apply(triggers.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L347" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching triggers. No match found.&quot;);</span>
+<span class="nc" id="L348">            return setNewTriggerLike(index, buildTrigger(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L352" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L353" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L354" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L355">            DeploymentConfigSpecFluentImpl that = (DeploymentConfigSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L356" title="All 6 branches missed.">            if (minReadySeconds != null ? !minReadySeconds.equals(that.minReadySeconds) :that.minReadySeconds != null) return false;</span>
+<span class="nc bnc" id="L357" title="All 6 branches missed.">            if (paused != null ? !paused.equals(that.paused) :that.paused != null) return false;</span>
+<span class="nc bnc" id="L358" title="All 6 branches missed.">            if (replicas != null ? !replicas.equals(that.replicas) :that.replicas != null) return false;</span>
+<span class="nc bnc" id="L359" title="All 6 branches missed.">            if (revisionHistoryLimit != null ? !revisionHistoryLimit.equals(that.revisionHistoryLimit) :that.revisionHistoryLimit != null) return false;</span>
+<span class="nc bnc" id="L360" title="All 6 branches missed.">            if (selector != null ? !selector.equals(that.selector) :that.selector != null) return false;</span>
+<span class="nc bnc" id="L361" title="All 6 branches missed.">            if (strategy != null ? !strategy.equals(that.strategy) :that.strategy != null) return false;</span>
+<span class="nc bnc" id="L362" title="All 6 branches missed.">            if (template != null ? !template.equals(that.template) :that.template != null) return false;</span>
+<span class="nc bnc" id="L363" title="All 6 branches missed.">            if (test != null ? !test.equals(that.test) :that.test != null) return false;</span>
+<span class="nc bnc" id="L364" title="All 6 branches missed.">            if (triggers != null ? !triggers.equals(that.triggers) :that.triggers != null) return false;</span>
+<span class="nc" id="L365">            return true;</span>
+    }
+
+
+    public class StrategyNestedImpl&lt;N&gt; extends io.fabric8.openshift.api.model.DeploymentStrategyFluentImpl&lt;DeploymentConfigSpecFluent.StrategyNested&lt;N&gt;&gt; implements DeploymentConfigSpecFluent.StrategyNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final io.fabric8.openshift.api.model.DeploymentStrategyBuilder builder;
+    
+<span class="nc" id="L373">            StrategyNestedImpl(io.fabric8.openshift.api.model.DeploymentStrategy item){</span>
+<span class="nc" id="L374">                    this.builder = new io.fabric8.openshift.api.model.DeploymentStrategyBuilder(this, item);</span>
+<span class="nc" id="L375">            }</span>
+<span class="fc" id="L376">            StrategyNestedImpl(){</span>
+<span class="fc" id="L377">                    this.builder = new io.fabric8.openshift.api.model.DeploymentStrategyBuilder(this);</span>
+<span class="fc" id="L378">            }</span>
+    
+    public N and(){
+<span class="fc" id="L381">            return (N) DeploymentConfigSpecFluentImpl.this.withStrategy(builder.build());</span>
+    }
+    public N endStrategy(){
+<span class="fc" id="L384">            return and();</span>
+    }
+
+}
+    public class TemplateNestedImpl&lt;N&gt; extends PodTemplateSpecFluentImpl&lt;DeploymentConfigSpecFluent.TemplateNested&lt;N&gt;&gt; implements DeploymentConfigSpecFluent.TemplateNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodTemplateSpecBuilder builder;
+    
+<span class="nc" id="L392">            TemplateNestedImpl(PodTemplateSpec item){</span>
+<span class="nc" id="L393">                    this.builder = new PodTemplateSpecBuilder(this, item);</span>
+<span class="nc" id="L394">            }</span>
+<span class="fc" id="L395">            TemplateNestedImpl(){</span>
+<span class="fc" id="L396">                    this.builder = new PodTemplateSpecBuilder(this);</span>
+<span class="fc" id="L397">            }</span>
+    
+    public N and(){
+<span class="fc" id="L400">            return (N) DeploymentConfigSpecFluentImpl.this.withTemplate(builder.build());</span>
+    }
+    public N endTemplate(){
+<span class="fc" id="L403">            return and();</span>
+    }
+
+}
+    public class TriggersNestedImpl&lt;N&gt; extends DeploymentTriggerPolicyFluentImpl&lt;DeploymentConfigSpecFluent.TriggersNested&lt;N&gt;&gt; implements DeploymentConfigSpecFluent.TriggersNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final DeploymentTriggerPolicyBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L412">            TriggersNestedImpl(int index,DeploymentTriggerPolicy item){</span>
+<span class="nc" id="L413">                    this.index = index;</span>
+<span class="nc" id="L414">                    this.builder = new DeploymentTriggerPolicyBuilder(this, item);</span>
+<span class="nc" id="L415">            }</span>
+<span class="fc" id="L416">            TriggersNestedImpl(){</span>
+<span class="fc" id="L417">                    this.index = -1;</span>
+<span class="fc" id="L418">                    this.builder = new DeploymentTriggerPolicyBuilder(this);</span>
+<span class="fc" id="L419">            }</span>
+    
+    public N and(){
+<span class="fc" id="L422">            return (N) DeploymentConfigSpecFluentImpl.this.setToTriggers(index, builder.build());</span>
+    }
+    public N endTrigger(){
+<span class="fc" id="L425">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

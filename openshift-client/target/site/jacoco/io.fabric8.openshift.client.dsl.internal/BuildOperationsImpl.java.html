@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuildOperationsImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Openshift :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.client.dsl.internal</a> &gt; <span class="el_source">BuildOperationsImpl.java</span></div><h1>BuildOperationsImpl.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.openshift.client.dsl.internal;
+
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.dsl.BytesLimitTerminateTimeTailPrettyLoggable;
+import io.fabric8.kubernetes.client.dsl.LogWatch;
+import io.fabric8.kubernetes.client.dsl.Loggable;
+import io.fabric8.kubernetes.client.dsl.PrettyLoggable;
+import io.fabric8.kubernetes.client.dsl.TailPrettyLoggable;
+import io.fabric8.kubernetes.client.dsl.TimeTailPrettyLoggable;
+import io.fabric8.kubernetes.client.dsl.internal.LogWatchCallback;
+import io.fabric8.kubernetes.client.utils.URLUtils;
+import io.fabric8.openshift.client.dsl.BuildResource;
+import okhttp3.OkHttpClient;
+import io.fabric8.openshift.api.model.Build;
+import io.fabric8.openshift.api.model.BuildList;
+import io.fabric8.openshift.api.model.DoneableBuild;
+import io.fabric8.openshift.client.OpenShiftConfig;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
+import java.io.Reader;
+import java.net.URL;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
+
+import static io.fabric8.openshift.client.OpenShiftAPIGroups.BUILD;
+
+public class BuildOperationsImpl extends OpenShiftOperation&lt;Build, BuildList, DoneableBuild,
+  BuildResource&lt;Build, DoneableBuild, String, LogWatch&gt;&gt; implements
+  BuildResource&lt;Build, DoneableBuild, String, LogWatch&gt; {
+
+  private final InputStream in;
+  private final OutputStream out;
+  private final OutputStream err;
+
+  private final PipedOutputStream inPipe;
+  private final PipedInputStream outPipe;
+  private final PipedInputStream errPipe;
+  private final boolean withTTY;
+  private final boolean withTerminatedStatus;
+  private final boolean withTimestamps;
+  private final String sinceTimestamp;
+  private final Integer sinceSeconds;
+  private final Integer withTailingLines;
+  private final boolean withPrettyOutput;
+  private final String version;
+  private final Integer limitBytes;
+
+  public BuildOperationsImpl(OkHttpClient client, OpenShiftConfig config, String namespace) {
+<span class="nc" id="L72">    this(client, config, BUILD, null, namespace, null, true, null, null, false, -1, new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String&gt;(), null, null, null, null, null, null, false, false, false, null, null, null, false, null, null);</span>
+<span class="nc" id="L73">  }</span>
+
+  public BuildOperationsImpl(OkHttpClient client, OpenShiftConfig config, String apiGroup, String apiVersion, String namespace, String name, Boolean cascading, Build item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields) {
+<span class="nc" id="L76">    this(client, config, apiGroup, apiVersion, namespace, name, cascading, item, null, false, -1, new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String&gt;(), null, null, null, null, null, null, false, false, false, null, null, null, false, null, null);</span>
+<span class="nc" id="L77">  }</span>
+
+  public BuildOperationsImpl(OkHttpClient client, OpenShiftConfig config, String apiGroup, String apiVersion, String namespace, String name, Boolean cascading, Build item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields, InputStream in, OutputStream out, OutputStream err, PipedOutputStream inPipe, PipedInputStream outPipe, PipedInputStream errPipe, boolean withTTY, boolean withTerminatedStatus, boolean withTimestamps, String sinceTimestamp, Integer sinceSeconds, Integer withTailingLines, boolean withPrettyOutput, String version, Integer limitBytes) {
+<span class="nc" id="L80">    super(client, OpenShiftOperation.withApiGroup(client, apiGroup, apiVersion, config), &quot;builds&quot;, namespace, name, cascading, item, resourceVersion, reloadingFromServer, gracePeriodSeconds, labels, labelsNot, labelsIn, labelsNotIn, fields);</span>
+<span class="nc" id="L81">    this.in = in;</span>
+<span class="nc" id="L82">    this.out = out;</span>
+<span class="nc" id="L83">    this.err = err;</span>
+<span class="nc" id="L84">    this.inPipe = inPipe;</span>
+<span class="nc" id="L85">    this.outPipe = outPipe;</span>
+<span class="nc" id="L86">    this.errPipe = errPipe;</span>
+<span class="nc" id="L87">    this.withTTY = withTTY;</span>
+<span class="nc" id="L88">    this.withTerminatedStatus = withTerminatedStatus;</span>
+<span class="nc" id="L89">    this.withTimestamps = withTimestamps;</span>
+<span class="nc" id="L90">    this.sinceTimestamp = sinceTimestamp;</span>
+<span class="nc" id="L91">    this.sinceSeconds = sinceSeconds;</span>
+<span class="nc" id="L92">    this.withTailingLines = withTailingLines;</span>
+<span class="nc" id="L93">    this.withPrettyOutput = withPrettyOutput;</span>
+<span class="nc" id="L94">    this.version = version;</span>
+<span class="nc" id="L95">    this.limitBytes = limitBytes;</span>
+<span class="nc" id="L96">  }</span>
+
+  protected String getLogParameters() {
+<span class="nc" id="L99">    StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L100">    sb.append(&quot;log?pretty=&quot;).append(withPrettyOutput);</span>
+<span class="nc bnc" id="L101" title="All 4 branches missed.">    if (version != null &amp;&amp; !version.isEmpty()) {</span>
+<span class="nc" id="L102">      sb.append(&quot;&amp;version=&quot;).append(version);</span>
+    }
+<span class="nc bnc" id="L104" title="All 2 branches missed.">    if (withTerminatedStatus) {</span>
+<span class="nc" id="L105">      sb.append(&quot;&amp;previous=true&quot;);</span>
+    }
+<span class="nc bnc" id="L107" title="All 2 branches missed.">    if (sinceSeconds != null) {</span>
+<span class="nc" id="L108">      sb.append(&quot;&amp;sinceSeconds=&quot;).append(sinceSeconds);</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">    } else if (sinceTimestamp != null) {</span>
+<span class="nc" id="L110">      sb.append(&quot;&amp;sinceTime=&quot;).append(sinceTimestamp);</span>
+    }
+<span class="nc bnc" id="L112" title="All 2 branches missed.">    if (withTailingLines != null) {</span>
+<span class="nc" id="L113">      sb.append(&quot;&amp;tailLines=&quot;).append(withTailingLines);</span>
+    }
+<span class="nc bnc" id="L115" title="All 2 branches missed.">    if (limitBytes != null) {</span>
+<span class="nc" id="L116">      sb.append(&quot;&amp;limitBytes=&quot;).append(limitBytes);</span>
+    }
+<span class="nc bnc" id="L118" title="All 2 branches missed.">    if (withTimestamps) {</span>
+<span class="nc" id="L119">      sb.append(&quot;&amp;timestamps=true&quot;);</span>
+    }
+<span class="nc" id="L121">    return sb.toString();</span>
+  }
+
+  protected ResponseBody doGetLog(){
+    try {
+<span class="nc" id="L126">      URL url = new URL(URLUtils.join(getResourceUrl().toString(), getLogParameters()));</span>
+<span class="nc" id="L127">      Request.Builder requestBuilder = new Request.Builder().get().url(url);</span>
+<span class="nc" id="L128">      Request request = requestBuilder.build();</span>
+<span class="nc" id="L129">      Response response = client.newCall(request).execute();</span>
+<span class="nc" id="L130">      ResponseBody body = response.body();</span>
+<span class="nc" id="L131">      assertResponseCode(request, response);</span>
+<span class="nc" id="L132">      return body;</span>
+<span class="nc" id="L133">    } catch (Throwable t) {</span>
+<span class="nc" id="L134">      throw KubernetesClientException.launderThrowable(forOperationType(&quot;doGetLog&quot;), t);</span>
+    }
+  }
+
+  @Override
+  public String getLog() {
+<span class="nc" id="L140">    try(ResponseBody body = doGetLog()) {</span>
+<span class="nc" id="L141">      return doGetLog().string();</span>
+<span class="nc" id="L142">    } catch (IOException e) {</span>
+<span class="nc" id="L143">      throw KubernetesClientException.launderThrowable(forOperationType(&quot;getLog&quot;), e);</span>
+    }
+  }
+
+  @Override
+  public String getLog(Boolean isPretty) {
+<span class="nc" id="L149">    return new BuildOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), in,out,err,inPipe, outPipe, errPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, version, limitBytes).getLog();</span>
+  }
+
+  /**
+   * Returns an unclosed Reader. It's the caller responsibility to close it.
+   * @return Reader
+   */
+  @Override
+  public Reader getLogReader(){
+<span class="nc" id="L158">    return doGetLog().charStream();</span>
+  }
+
+  @Override
+  public LogWatch watchLog() {
+<span class="nc" id="L163">    return watchLog(null);</span>
+  }
+
+  @Override
+  public LogWatch watchLog(OutputStream out) {
+    try {
+<span class="nc" id="L169">      URL url = new URL(URLUtils.join(getResourceUrl().toString(), getLogParameters() + &quot;&amp;follow=true&quot;));</span>
+<span class="nc" id="L170">      Request request = new Request.Builder().url(url).get().build();</span>
+<span class="nc" id="L171">      final LogWatchCallback callback = new LogWatchCallback(out);</span>
+<span class="nc" id="L172">      OkHttpClient clone = client.newBuilder().readTimeout(0, TimeUnit.MILLISECONDS).build();</span>
+<span class="nc" id="L173">      clone.newCall(request).enqueue(callback);</span>
+<span class="nc" id="L174">      callback.waitUntilReady();</span>
+<span class="nc" id="L175">      return callback;</span>
+<span class="nc" id="L176">    } catch (Throwable t) {</span>
+<span class="nc" id="L177">      throw KubernetesClientException.launderThrowable(forOperationType(&quot;watchLog&quot;), t);</span>
+    }
+  }
+
+
+  @Override
+  public Loggable&lt;String, LogWatch&gt; withPrettyOutput() {
+<span class="nc" id="L184">    return new BuildOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), in,out,err,inPipe, outPipe, errPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, true, version, limitBytes);</span>
+  }
+
+  @Override
+  public PrettyLoggable&lt;String, LogWatch&gt; tailingLines(int withTailingLines) {
+<span class="nc" id="L189">    return new BuildOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), in,out,err,inPipe, outPipe, errPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, version, limitBytes);</span>
+  }
+
+  @Override
+  public TimeTailPrettyLoggable&lt;String, LogWatch&gt; terminated() {
+<span class="nc" id="L194">    return new BuildOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), in,out,err,inPipe, outPipe, errPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, version, limitBytes);</span>
+  }
+
+  @Override
+  public TailPrettyLoggable&lt;String, LogWatch&gt; sinceTime(String sinceTimestamp) {
+<span class="nc" id="L199">    return new BuildOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), in,out,err,inPipe, outPipe, errPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, version, limitBytes);</span>
+  }
+
+  @Override
+  public TailPrettyLoggable&lt;String, LogWatch&gt; sinceSeconds(int sinceSeconds) {
+<span class="nc" id="L204">    return new BuildOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), in,out,err,inPipe, outPipe, errPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, version, limitBytes);</span>
+  }
+
+  @Override
+  public BytesLimitTerminateTimeTailPrettyLoggable&lt;String, LogWatch&gt; limitBytes(int limitBytes) {
+<span class="nc" id="L209">    return new BuildOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), in,out,err,inPipe, outPipe, errPipe, withTTY, withTerminatedStatus, withTimestamps, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, version, limitBytes);</span>
+  }
+
+  @Override
+  public BytesLimitTerminateTimeTailPrettyLoggable&lt;String, LogWatch&gt; usingTimestamps() {
+<span class="nc" id="L214">    return new BuildOperationsImpl(client, getConfig(), apiGroupName, apiGroupVersion, namespace, name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), in,out,err,inPipe, outPipe, errPipe, withTTY, withTerminatedStatus, true, sinceTimestamp, sinceSeconds, withTailingLines, withPrettyOutput, version, limitBytes);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

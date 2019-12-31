@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TagReferenceFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">TagReferenceFluentImpl.java</span></div><h1>TagReferenceFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.util.LinkedHashMap;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectReferenceFluentImpl;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.ObjectReferenceBuilder;
+import java.lang.Long;
+import java.lang.Object;
+import java.util.Map;
+
+public class TagReferenceFluentImpl&lt;A extends TagReferenceFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements TagReferenceFluent&lt;A&gt;{
+
+    private Map&lt;String,String&gt; annotations;
+    private ObjectReferenceBuilder from;
+    private Long generation;
+    private TagImportPolicyBuilder importPolicy;
+    private String name;
+    private Boolean reference;
+    private TagReferencePolicyBuilder referencePolicy;
+
+<span class="fc" id="L28">    public TagReferenceFluentImpl(){</span>
+<span class="fc" id="L29">    }</span>
+<span class="nc" id="L30">    public TagReferenceFluentImpl(TagReference instance){</span>
+<span class="nc" id="L31">            this.withAnnotations(instance.getAnnotations()); </span>
+<span class="nc" id="L32">            this.withFrom(instance.getFrom()); </span>
+<span class="nc" id="L33">            this.withGeneration(instance.getGeneration()); </span>
+<span class="nc" id="L34">            this.withImportPolicy(instance.getImportPolicy()); </span>
+<span class="nc" id="L35">            this.withName(instance.getName()); </span>
+<span class="nc" id="L36">            this.withReference(instance.getReference()); </span>
+<span class="nc" id="L37">            this.withReferencePolicy(instance.getReferencePolicy()); </span>
+<span class="nc" id="L38">    }</span>
+
+    public A addToAnnotations(String key,String value){
+<span class="pc bpc" id="L41" title="5 of 6 branches missed.">            if(this.annotations == null &amp;&amp; key != null &amp;&amp; value != null) { this.annotations = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="pc bpc" id="L42" title="2 of 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.annotations.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToAnnotations(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L46" title="All 4 branches missed.">            if(this.annotations == null &amp;&amp; map != null) { this.annotations = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            if(map != null) { this.annotations.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromAnnotations(String key){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            if(this.annotations == null) { return (A) this; }</span>
+<span class="nc bnc" id="L52" title="All 4 branches missed.">            if(key != null &amp;&amp; this.annotations != null) {this.annotations.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromAnnotations(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            if(this.annotations == null) { return (A) this; }</span>
+<span class="nc bnc" id="L57" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.annotations != null){this.annotations.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getAnnotations(){
+<span class="fc" id="L61">            return this.annotations;</span>
+    }
+
+    public A withAnnotations(Map&lt;String,String&gt; annotations){
+<span class="fc bfc" id="L65" title="All 2 branches covered.">            if (annotations == null) { this.annotations =  new LinkedHashMap&lt;String,String&gt;();} else {this.annotations = new LinkedHashMap&lt;String,String&gt;(annotations);} return (A) this;</span>
+    }
+
+    public Boolean hasAnnotations(){
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            return this.annotations != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildFrom instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getFrom(){
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public ObjectReference buildFrom(){
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public A withFrom(ObjectReference from){
+<span class="fc" id="L86">            _visitables.remove(this.from);</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">            if (from!=null){ this.from= new ObjectReferenceBuilder(from); _visitables.add(this.from);} return (A) this;</span>
+    }
+
+    public Boolean hasFrom(){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            return this.from != null;</span>
+    }
+
+    public TagReferenceFluent.FromNested&lt;A&gt; withNewFrom(){
+<span class="nc" id="L95">            return new FromNestedImpl();</span>
+    }
+
+    public TagReferenceFluent.FromNested&lt;A&gt; withNewFromLike(ObjectReference item){
+<span class="nc" id="L99">            return new FromNestedImpl(item);</span>
+    }
+
+    public TagReferenceFluent.FromNested&lt;A&gt; editFrom(){
+<span class="nc" id="L103">            return withNewFromLike(getFrom());</span>
+    }
+
+    public TagReferenceFluent.FromNested&lt;A&gt; editOrNewFrom(){
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public TagReferenceFluent.FromNested&lt;A&gt; editOrNewFromLike(ObjectReference item){
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): item);</span>
+    }
+
+    public Long getGeneration(){
+<span class="fc" id="L115">            return this.generation;</span>
+    }
+
+    public A withGeneration(Long generation){
+<span class="fc" id="L119">            this.generation=generation; return (A) this;</span>
+    }
+
+    public Boolean hasGeneration(){
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            return this.generation != null;</span>
+    }
+
+    public A withNewGeneration(String arg1){
+<span class="nc" id="L127">            return (A)withGeneration(new Long(arg1));</span>
+    }
+
+    public A withNewGeneration(long arg1){
+<span class="nc" id="L131">            return (A)withGeneration(new Long(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildImportPolicy instead.
+ * @return The buildable object.
+ */
+@Deprecated public TagImportPolicy getImportPolicy(){
+<span class="pc bpc" id="L140" title="1 of 2 branches missed.">            return this.importPolicy!=null?this.importPolicy.build():null;</span>
+    }
+
+    public TagImportPolicy buildImportPolicy(){
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            return this.importPolicy!=null?this.importPolicy.build():null;</span>
+    }
+
+    public A withImportPolicy(TagImportPolicy importPolicy){
+<span class="fc" id="L148">            _visitables.remove(this.importPolicy);</span>
+<span class="pc bpc" id="L149" title="1 of 2 branches missed.">            if (importPolicy!=null){ this.importPolicy= new TagImportPolicyBuilder(importPolicy); _visitables.add(this.importPolicy);} return (A) this;</span>
+    }
+
+    public Boolean hasImportPolicy(){
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            return this.importPolicy != null;</span>
+    }
+
+    public A withNewImportPolicy(Boolean insecure,Boolean scheduled){
+<span class="nc" id="L157">            return (A)withImportPolicy(new TagImportPolicy(insecure, scheduled));</span>
+    }
+
+    public TagReferenceFluent.ImportPolicyNested&lt;A&gt; withNewImportPolicy(){
+<span class="nc" id="L161">            return new ImportPolicyNestedImpl();</span>
+    }
+
+    public TagReferenceFluent.ImportPolicyNested&lt;A&gt; withNewImportPolicyLike(TagImportPolicy item){
+<span class="nc" id="L165">            return new ImportPolicyNestedImpl(item);</span>
+    }
+
+    public TagReferenceFluent.ImportPolicyNested&lt;A&gt; editImportPolicy(){
+<span class="nc" id="L169">            return withNewImportPolicyLike(getImportPolicy());</span>
+    }
+
+    public TagReferenceFluent.ImportPolicyNested&lt;A&gt; editOrNewImportPolicy(){
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            return withNewImportPolicyLike(getImportPolicy() != null ? getImportPolicy(): new TagImportPolicyBuilder().build());</span>
+    }
+
+    public TagReferenceFluent.ImportPolicyNested&lt;A&gt; editOrNewImportPolicyLike(TagImportPolicy item){
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            return withNewImportPolicyLike(getImportPolicy() != null ? getImportPolicy(): item);</span>
+    }
+
+    public String getName(){
+<span class="fc" id="L181">            return this.name;</span>
+    }
+
+    public A withName(String name){
+<span class="fc" id="L185">            this.name=name; return (A) this;</span>
+    }
+
+    public Boolean hasName(){
+<span class="nc bnc" id="L189" title="All 2 branches missed.">            return this.name != null;</span>
+    }
+
+    public Boolean isReference(){
+<span class="fc" id="L193">            return this.reference;</span>
+    }
+
+    public A withReference(Boolean reference){
+<span class="fc" id="L197">            this.reference=reference; return (A) this;</span>
+    }
+
+    public Boolean hasReference(){
+<span class="nc bnc" id="L201" title="All 2 branches missed.">            return this.reference != null;</span>
+    }
+
+    public A withNewReference(String arg1){
+<span class="nc" id="L205">            return (A)withReference(new Boolean(arg1));</span>
+    }
+
+    public A withNewReference(boolean arg1){
+<span class="nc" id="L209">            return (A)withReference(new Boolean(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildReferencePolicy instead.
+ * @return The buildable object.
+ */
+@Deprecated public TagReferencePolicy getReferencePolicy(){
+<span class="pc bpc" id="L218" title="1 of 2 branches missed.">            return this.referencePolicy!=null?this.referencePolicy.build():null;</span>
+    }
+
+    public TagReferencePolicy buildReferencePolicy(){
+<span class="nc bnc" id="L222" title="All 2 branches missed.">            return this.referencePolicy!=null?this.referencePolicy.build():null;</span>
+    }
+
+    public A withReferencePolicy(TagReferencePolicy referencePolicy){
+<span class="fc" id="L226">            _visitables.remove(this.referencePolicy);</span>
+<span class="fc bfc" id="L227" title="All 2 branches covered.">            if (referencePolicy!=null){ this.referencePolicy= new TagReferencePolicyBuilder(referencePolicy); _visitables.add(this.referencePolicy);} return (A) this;</span>
+    }
+
+    public Boolean hasReferencePolicy(){
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            return this.referencePolicy != null;</span>
+    }
+
+    public A withNewReferencePolicy(String type){
+<span class="nc" id="L235">            return (A)withReferencePolicy(new TagReferencePolicy(type));</span>
+    }
+
+    public TagReferenceFluent.ReferencePolicyNested&lt;A&gt; withNewReferencePolicy(){
+<span class="nc" id="L239">            return new ReferencePolicyNestedImpl();</span>
+    }
+
+    public TagReferenceFluent.ReferencePolicyNested&lt;A&gt; withNewReferencePolicyLike(TagReferencePolicy item){
+<span class="nc" id="L243">            return new ReferencePolicyNestedImpl(item);</span>
+    }
+
+    public TagReferenceFluent.ReferencePolicyNested&lt;A&gt; editReferencePolicy(){
+<span class="nc" id="L247">            return withNewReferencePolicyLike(getReferencePolicy());</span>
+    }
+
+    public TagReferenceFluent.ReferencePolicyNested&lt;A&gt; editOrNewReferencePolicy(){
+<span class="nc bnc" id="L251" title="All 2 branches missed.">            return withNewReferencePolicyLike(getReferencePolicy() != null ? getReferencePolicy(): new TagReferencePolicyBuilder().build());</span>
+    }
+
+    public TagReferenceFluent.ReferencePolicyNested&lt;A&gt; editOrNewReferencePolicyLike(TagReferencePolicy item){
+<span class="nc bnc" id="L255" title="All 2 branches missed.">            return withNewReferencePolicyLike(getReferencePolicy() != null ? getReferencePolicy(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L259" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L260" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L261" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L262">            TagReferenceFluentImpl that = (TagReferenceFluentImpl) o;</span>
+<span class="nc bnc" id="L263" title="All 6 branches missed.">            if (annotations != null ? !annotations.equals(that.annotations) :that.annotations != null) return false;</span>
+<span class="nc bnc" id="L264" title="All 6 branches missed.">            if (from != null ? !from.equals(that.from) :that.from != null) return false;</span>
+<span class="nc bnc" id="L265" title="All 6 branches missed.">            if (generation != null ? !generation.equals(that.generation) :that.generation != null) return false;</span>
+<span class="nc bnc" id="L266" title="All 6 branches missed.">            if (importPolicy != null ? !importPolicy.equals(that.importPolicy) :that.importPolicy != null) return false;</span>
+<span class="nc bnc" id="L267" title="All 6 branches missed.">            if (name != null ? !name.equals(that.name) :that.name != null) return false;</span>
+<span class="nc bnc" id="L268" title="All 6 branches missed.">            if (reference != null ? !reference.equals(that.reference) :that.reference != null) return false;</span>
+<span class="nc bnc" id="L269" title="All 6 branches missed.">            if (referencePolicy != null ? !referencePolicy.equals(that.referencePolicy) :that.referencePolicy != null) return false;</span>
+<span class="nc" id="L270">            return true;</span>
+    }
+
+
+    public class FromNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;TagReferenceFluent.FromNested&lt;N&gt;&gt; implements TagReferenceFluent.FromNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L278">            FromNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L279">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L280">            }</span>
+<span class="nc" id="L281">            FromNestedImpl(){</span>
+<span class="nc" id="L282">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L283">            }</span>
+    
+    public N and(){
+<span class="nc" id="L286">            return (N) TagReferenceFluentImpl.this.withFrom(builder.build());</span>
+    }
+    public N endFrom(){
+<span class="nc" id="L289">            return and();</span>
+    }
+
+}
+    public class ImportPolicyNestedImpl&lt;N&gt; extends TagImportPolicyFluentImpl&lt;TagReferenceFluent.ImportPolicyNested&lt;N&gt;&gt; implements TagReferenceFluent.ImportPolicyNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TagImportPolicyBuilder builder;
+    
+<span class="nc" id="L297">            ImportPolicyNestedImpl(TagImportPolicy item){</span>
+<span class="nc" id="L298">                    this.builder = new TagImportPolicyBuilder(this, item);</span>
+<span class="nc" id="L299">            }</span>
+<span class="nc" id="L300">            ImportPolicyNestedImpl(){</span>
+<span class="nc" id="L301">                    this.builder = new TagImportPolicyBuilder(this);</span>
+<span class="nc" id="L302">            }</span>
+    
+    public N and(){
+<span class="nc" id="L305">            return (N) TagReferenceFluentImpl.this.withImportPolicy(builder.build());</span>
+    }
+    public N endImportPolicy(){
+<span class="nc" id="L308">            return and();</span>
+    }
+
+}
+    public class ReferencePolicyNestedImpl&lt;N&gt; extends TagReferencePolicyFluentImpl&lt;TagReferenceFluent.ReferencePolicyNested&lt;N&gt;&gt; implements TagReferenceFluent.ReferencePolicyNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TagReferencePolicyBuilder builder;
+    
+<span class="nc" id="L316">            ReferencePolicyNestedImpl(TagReferencePolicy item){</span>
+<span class="nc" id="L317">                    this.builder = new TagReferencePolicyBuilder(this, item);</span>
+<span class="nc" id="L318">            }</span>
+<span class="nc" id="L319">            ReferencePolicyNestedImpl(){</span>
+<span class="nc" id="L320">                    this.builder = new TagReferencePolicyBuilder(this);</span>
+<span class="nc" id="L321">            }</span>
+    
+    public N and(){
+<span class="nc" id="L324">            return (N) TagReferenceFluentImpl.this.withReferencePolicy(builder.build());</span>
+    }
+    public N endReferencePolicy(){
+<span class="nc" id="L327">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PodAntiAffinityFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">PodAntiAffinityFluentImpl.java</span></div><h1>PodAntiAffinityFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class PodAntiAffinityFluentImpl&lt;A extends PodAntiAffinityFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements PodAntiAffinityFluent&lt;A&gt;{
+
+    private List&lt;WeightedPodAffinityTermBuilder&gt; preferredDuringSchedulingIgnoredDuringExecution;
+    private List&lt;PodAffinityTermBuilder&gt; requiredDuringSchedulingIgnoredDuringExecution;
+
+<span class="nc" id="L21">    public PodAntiAffinityFluentImpl(){</span>
+<span class="nc" id="L22">    }</span>
+<span class="nc" id="L23">    public PodAntiAffinityFluentImpl(PodAntiAffinity instance){</span>
+<span class="nc" id="L24">            this.withPreferredDuringSchedulingIgnoredDuringExecution(instance.getPreferredDuringSchedulingIgnoredDuringExecution()); </span>
+<span class="nc" id="L25">            this.withRequiredDuringSchedulingIgnoredDuringExecution(instance.getRequiredDuringSchedulingIgnoredDuringExecution()); </span>
+<span class="nc" id="L26">    }</span>
+
+    public A addToPreferredDuringSchedulingIgnoredDuringExecution(int index,WeightedPodAffinityTerm item){
+<span class="nc bnc" id="L29" title="All 2 branches missed.">            if (this.preferredDuringSchedulingIgnoredDuringExecution == null) {this.preferredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;WeightedPodAffinityTermBuilder&gt;();}</span>
+<span class="nc bnc" id="L30" title="All 4 branches missed.">            WeightedPodAffinityTermBuilder builder = new WeightedPodAffinityTermBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.preferredDuringSchedulingIgnoredDuringExecution.add(index &gt;= 0 ? index : preferredDuringSchedulingIgnoredDuringExecution.size(), builder); return (A)this;</span>
+    }
+
+    public A setToPreferredDuringSchedulingIgnoredDuringExecution(int index,WeightedPodAffinityTerm item){
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            if (this.preferredDuringSchedulingIgnoredDuringExecution == null) {this.preferredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;WeightedPodAffinityTermBuilder&gt;();}</span>
+<span class="nc" id="L35">            WeightedPodAffinityTermBuilder builder = new WeightedPodAffinityTermBuilder(item);</span>
+<span class="nc bnc" id="L36" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L37" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= preferredDuringSchedulingIgnoredDuringExecution.size()) { preferredDuringSchedulingIgnoredDuringExecution.add(builder); } else { preferredDuringSchedulingIgnoredDuringExecution.set(index, builder);}</span>
+<span class="nc" id="L38">             return (A)this;</span>
+    }
+
+    public A addToPreferredDuringSchedulingIgnoredDuringExecution(WeightedPodAffinityTerm... items){
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            if (this.preferredDuringSchedulingIgnoredDuringExecution == null) {this.preferredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;WeightedPodAffinityTermBuilder&gt;();}</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            for (WeightedPodAffinityTerm item : items) {WeightedPodAffinityTermBuilder builder = new WeightedPodAffinityTermBuilder(item);_visitables.add(builder);this.preferredDuringSchedulingIgnoredDuringExecution.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToPreferredDuringSchedulingIgnoredDuringExecution(Collection&lt;WeightedPodAffinityTerm&gt; items){
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            if (this.preferredDuringSchedulingIgnoredDuringExecution == null) {this.preferredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;WeightedPodAffinityTermBuilder&gt;();}</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            for (WeightedPodAffinityTerm item : items) {WeightedPodAffinityTermBuilder builder = new WeightedPodAffinityTermBuilder(item);_visitables.add(builder);this.preferredDuringSchedulingIgnoredDuringExecution.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromPreferredDuringSchedulingIgnoredDuringExecution(WeightedPodAffinityTerm... items){
+<span class="nc bnc" id="L52" title="All 4 branches missed.">            for (WeightedPodAffinityTerm item : items) {WeightedPodAffinityTermBuilder builder = new WeightedPodAffinityTermBuilder(item);_visitables.remove(builder);if (this.preferredDuringSchedulingIgnoredDuringExecution != null) {this.preferredDuringSchedulingIgnoredDuringExecution.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromPreferredDuringSchedulingIgnoredDuringExecution(Collection&lt;WeightedPodAffinityTerm&gt; items){
+<span class="nc bnc" id="L56" title="All 4 branches missed.">            for (WeightedPodAffinityTerm item : items) {WeightedPodAffinityTermBuilder builder = new WeightedPodAffinityTermBuilder(item);_visitables.remove(builder);if (this.preferredDuringSchedulingIgnoredDuringExecution != null) {this.preferredDuringSchedulingIgnoredDuringExecution.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPreferredDuringSchedulingIgnoredDuringExecution instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;WeightedPodAffinityTerm&gt; getPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L65">            return build(preferredDuringSchedulingIgnoredDuringExecution);</span>
+    }
+
+    public List&lt;WeightedPodAffinityTerm&gt; buildPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L69">            return build(preferredDuringSchedulingIgnoredDuringExecution);</span>
+    }
+
+    public WeightedPodAffinityTerm buildPreferredDuringSchedulingIgnoredDuringExecution(int index){
+<span class="nc" id="L73">            return this.preferredDuringSchedulingIgnoredDuringExecution.get(index).build();</span>
+    }
+
+    public WeightedPodAffinityTerm buildFirstPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L77">            return this.preferredDuringSchedulingIgnoredDuringExecution.get(0).build();</span>
+    }
+
+    public WeightedPodAffinityTerm buildLastPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L81">            return this.preferredDuringSchedulingIgnoredDuringExecution.get(preferredDuringSchedulingIgnoredDuringExecution.size() - 1).build();</span>
+    }
+
+    public WeightedPodAffinityTerm buildMatchingPreferredDuringSchedulingIgnoredDuringExecution(io.fabric8.kubernetes.api.builder.Predicate&lt;WeightedPodAffinityTermBuilder&gt; predicate){
+<span class="nc bnc" id="L85" title="All 4 branches missed.">            for (WeightedPodAffinityTermBuilder item: preferredDuringSchedulingIgnoredDuringExecution) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withPreferredDuringSchedulingIgnoredDuringExecution(List&lt;WeightedPodAffinityTerm&gt; preferredDuringSchedulingIgnoredDuringExecution){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (this.preferredDuringSchedulingIgnoredDuringExecution != null) { _visitables.removeAll(this.preferredDuringSchedulingIgnoredDuringExecution);}</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">            if (preferredDuringSchedulingIgnoredDuringExecution != null) {this.preferredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;WeightedPodAffinityTermBuilder&gt;(); for (WeightedPodAffinityTerm item : preferredDuringSchedulingIgnoredDuringExecution){this.addToPreferredDuringSchedulingIgnoredDuringExecution(item);}} else { this.preferredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;WeightedPodAffinityTermBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withPreferredDuringSchedulingIgnoredDuringExecution(WeightedPodAffinityTerm... preferredDuringSchedulingIgnoredDuringExecution){
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            if (this.preferredDuringSchedulingIgnoredDuringExecution != null) {this.preferredDuringSchedulingIgnoredDuringExecution.clear();}</span>
+<span class="nc bnc" id="L95" title="All 4 branches missed.">            if (preferredDuringSchedulingIgnoredDuringExecution != null) {for (WeightedPodAffinityTerm item :preferredDuringSchedulingIgnoredDuringExecution){ this.addToPreferredDuringSchedulingIgnoredDuringExecution(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            return preferredDuringSchedulingIgnoredDuringExecution != null &amp;&amp; !preferredDuringSchedulingIgnoredDuringExecution.isEmpty();</span>
+    }
+
+    public PodAntiAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; addNewPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L103">            return new PreferredDuringSchedulingIgnoredDuringExecutionNestedImpl();</span>
+    }
+
+    public PodAntiAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; addNewPreferredDuringSchedulingIgnoredDuringExecutionLike(WeightedPodAffinityTerm item){
+<span class="nc" id="L107">            return new PreferredDuringSchedulingIgnoredDuringExecutionNestedImpl(-1, item);</span>
+    }
+
+    public PodAntiAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; setNewPreferredDuringSchedulingIgnoredDuringExecutionLike(int index,WeightedPodAffinityTerm item){
+<span class="nc" id="L111">            return new PreferredDuringSchedulingIgnoredDuringExecutionNestedImpl(index, item);</span>
+    }
+
+    public PodAntiAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; editPreferredDuringSchedulingIgnoredDuringExecution(int index){
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            if (preferredDuringSchedulingIgnoredDuringExecution.size() &lt;= index) throw new RuntimeException(&quot;Can't edit preferredDuringSchedulingIgnoredDuringExecution. Index exceeds size.&quot;);</span>
+<span class="nc" id="L116">            return setNewPreferredDuringSchedulingIgnoredDuringExecutionLike(index, buildPreferredDuringSchedulingIgnoredDuringExecution(index));</span>
+    }
+
+    public PodAntiAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; editFirstPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            if (preferredDuringSchedulingIgnoredDuringExecution.size() == 0) throw new RuntimeException(&quot;Can't edit first preferredDuringSchedulingIgnoredDuringExecution. The list is empty.&quot;);</span>
+<span class="nc" id="L121">            return setNewPreferredDuringSchedulingIgnoredDuringExecutionLike(0, buildPreferredDuringSchedulingIgnoredDuringExecution(0));</span>
+    }
+
+    public PodAntiAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; editLastPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L125">            int index = preferredDuringSchedulingIgnoredDuringExecution.size() - 1;</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last preferredDuringSchedulingIgnoredDuringExecution. The list is empty.&quot;);</span>
+<span class="nc" id="L127">            return setNewPreferredDuringSchedulingIgnoredDuringExecutionLike(index, buildPreferredDuringSchedulingIgnoredDuringExecution(index));</span>
+    }
+
+    public PodAntiAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; editMatchingPreferredDuringSchedulingIgnoredDuringExecution(io.fabric8.kubernetes.api.builder.Predicate&lt;WeightedPodAffinityTermBuilder&gt; predicate){
+<span class="nc" id="L131">            int index = -1;</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            for (int i=0;i&lt;preferredDuringSchedulingIgnoredDuringExecution.size();i++) { </span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (predicate.apply(preferredDuringSchedulingIgnoredDuringExecution.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching preferredDuringSchedulingIgnoredDuringExecution. No match found.&quot;);</span>
+<span class="nc" id="L136">            return setNewPreferredDuringSchedulingIgnoredDuringExecutionLike(index, buildPreferredDuringSchedulingIgnoredDuringExecution(index));</span>
+    }
+
+    public A addToRequiredDuringSchedulingIgnoredDuringExecution(int index,PodAffinityTerm item){
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            if (this.requiredDuringSchedulingIgnoredDuringExecution == null) {this.requiredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;PodAffinityTermBuilder&gt;();}</span>
+<span class="nc bnc" id="L141" title="All 4 branches missed.">            PodAffinityTermBuilder builder = new PodAffinityTermBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.requiredDuringSchedulingIgnoredDuringExecution.add(index &gt;= 0 ? index : requiredDuringSchedulingIgnoredDuringExecution.size(), builder); return (A)this;</span>
+    }
+
+    public A setToRequiredDuringSchedulingIgnoredDuringExecution(int index,PodAffinityTerm item){
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (this.requiredDuringSchedulingIgnoredDuringExecution == null) {this.requiredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;PodAffinityTermBuilder&gt;();}</span>
+<span class="nc" id="L146">            PodAffinityTermBuilder builder = new PodAffinityTermBuilder(item);</span>
+<span class="nc bnc" id="L147" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L148" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= requiredDuringSchedulingIgnoredDuringExecution.size()) { requiredDuringSchedulingIgnoredDuringExecution.add(builder); } else { requiredDuringSchedulingIgnoredDuringExecution.set(index, builder);}</span>
+<span class="nc" id="L149">             return (A)this;</span>
+    }
+
+    public A addToRequiredDuringSchedulingIgnoredDuringExecution(PodAffinityTerm... items){
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            if (this.requiredDuringSchedulingIgnoredDuringExecution == null) {this.requiredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;PodAffinityTermBuilder&gt;();}</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            for (PodAffinityTerm item : items) {PodAffinityTermBuilder builder = new PodAffinityTermBuilder(item);_visitables.add(builder);this.requiredDuringSchedulingIgnoredDuringExecution.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToRequiredDuringSchedulingIgnoredDuringExecution(Collection&lt;PodAffinityTerm&gt; items){
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            if (this.requiredDuringSchedulingIgnoredDuringExecution == null) {this.requiredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;PodAffinityTermBuilder&gt;();}</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            for (PodAffinityTerm item : items) {PodAffinityTermBuilder builder = new PodAffinityTermBuilder(item);_visitables.add(builder);this.requiredDuringSchedulingIgnoredDuringExecution.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromRequiredDuringSchedulingIgnoredDuringExecution(PodAffinityTerm... items){
+<span class="nc bnc" id="L163" title="All 4 branches missed.">            for (PodAffinityTerm item : items) {PodAffinityTermBuilder builder = new PodAffinityTermBuilder(item);_visitables.remove(builder);if (this.requiredDuringSchedulingIgnoredDuringExecution != null) {this.requiredDuringSchedulingIgnoredDuringExecution.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromRequiredDuringSchedulingIgnoredDuringExecution(Collection&lt;PodAffinityTerm&gt; items){
+<span class="nc bnc" id="L167" title="All 4 branches missed.">            for (PodAffinityTerm item : items) {PodAffinityTermBuilder builder = new PodAffinityTermBuilder(item);_visitables.remove(builder);if (this.requiredDuringSchedulingIgnoredDuringExecution != null) {this.requiredDuringSchedulingIgnoredDuringExecution.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildRequiredDuringSchedulingIgnoredDuringExecution instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;PodAffinityTerm&gt; getRequiredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L176">            return build(requiredDuringSchedulingIgnoredDuringExecution);</span>
+    }
+
+    public List&lt;PodAffinityTerm&gt; buildRequiredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L180">            return build(requiredDuringSchedulingIgnoredDuringExecution);</span>
+    }
+
+    public PodAffinityTerm buildRequiredDuringSchedulingIgnoredDuringExecution(int index){
+<span class="nc" id="L184">            return this.requiredDuringSchedulingIgnoredDuringExecution.get(index).build();</span>
+    }
+
+    public PodAffinityTerm buildFirstRequiredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L188">            return this.requiredDuringSchedulingIgnoredDuringExecution.get(0).build();</span>
+    }
+
+    public PodAffinityTerm buildLastRequiredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L192">            return this.requiredDuringSchedulingIgnoredDuringExecution.get(requiredDuringSchedulingIgnoredDuringExecution.size() - 1).build();</span>
+    }
+
+    public PodAffinityTerm buildMatchingRequiredDuringSchedulingIgnoredDuringExecution(io.fabric8.kubernetes.api.builder.Predicate&lt;PodAffinityTermBuilder&gt; predicate){
+<span class="nc bnc" id="L196" title="All 4 branches missed.">            for (PodAffinityTermBuilder item: requiredDuringSchedulingIgnoredDuringExecution) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withRequiredDuringSchedulingIgnoredDuringExecution(List&lt;PodAffinityTerm&gt; requiredDuringSchedulingIgnoredDuringExecution){
+<span class="nc bnc" id="L200" title="All 2 branches missed.">            if (this.requiredDuringSchedulingIgnoredDuringExecution != null) { _visitables.removeAll(this.requiredDuringSchedulingIgnoredDuringExecution);}</span>
+<span class="nc bnc" id="L201" title="All 4 branches missed.">            if (requiredDuringSchedulingIgnoredDuringExecution != null) {this.requiredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;PodAffinityTermBuilder&gt;(); for (PodAffinityTerm item : requiredDuringSchedulingIgnoredDuringExecution){this.addToRequiredDuringSchedulingIgnoredDuringExecution(item);}} else { this.requiredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;PodAffinityTermBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withRequiredDuringSchedulingIgnoredDuringExecution(PodAffinityTerm... requiredDuringSchedulingIgnoredDuringExecution){
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            if (this.requiredDuringSchedulingIgnoredDuringExecution != null) {this.requiredDuringSchedulingIgnoredDuringExecution.clear();}</span>
+<span class="nc bnc" id="L206" title="All 4 branches missed.">            if (requiredDuringSchedulingIgnoredDuringExecution != null) {for (PodAffinityTerm item :requiredDuringSchedulingIgnoredDuringExecution){ this.addToRequiredDuringSchedulingIgnoredDuringExecution(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasRequiredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc bnc" id="L210" title="All 4 branches missed.">            return requiredDuringSchedulingIgnoredDuringExecution != null &amp;&amp; !requiredDuringSchedulingIgnoredDuringExecution.isEmpty();</span>
+    }
+
+    public PodAntiAffinityFluent.RequiredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; addNewRequiredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L214">            return new RequiredDuringSchedulingIgnoredDuringExecutionNestedImpl();</span>
+    }
+
+    public PodAntiAffinityFluent.RequiredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; addNewRequiredDuringSchedulingIgnoredDuringExecutionLike(PodAffinityTerm item){
+<span class="nc" id="L218">            return new RequiredDuringSchedulingIgnoredDuringExecutionNestedImpl(-1, item);</span>
+    }
+
+    public PodAntiAffinityFluent.RequiredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; setNewRequiredDuringSchedulingIgnoredDuringExecutionLike(int index,PodAffinityTerm item){
+<span class="nc" id="L222">            return new RequiredDuringSchedulingIgnoredDuringExecutionNestedImpl(index, item);</span>
+    }
+
+    public PodAntiAffinityFluent.RequiredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; editRequiredDuringSchedulingIgnoredDuringExecution(int index){
+<span class="nc bnc" id="L226" title="All 2 branches missed.">            if (requiredDuringSchedulingIgnoredDuringExecution.size() &lt;= index) throw new RuntimeException(&quot;Can't edit requiredDuringSchedulingIgnoredDuringExecution. Index exceeds size.&quot;);</span>
+<span class="nc" id="L227">            return setNewRequiredDuringSchedulingIgnoredDuringExecutionLike(index, buildRequiredDuringSchedulingIgnoredDuringExecution(index));</span>
+    }
+
+    public PodAntiAffinityFluent.RequiredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; editFirstRequiredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            if (requiredDuringSchedulingIgnoredDuringExecution.size() == 0) throw new RuntimeException(&quot;Can't edit first requiredDuringSchedulingIgnoredDuringExecution. The list is empty.&quot;);</span>
+<span class="nc" id="L232">            return setNewRequiredDuringSchedulingIgnoredDuringExecutionLike(0, buildRequiredDuringSchedulingIgnoredDuringExecution(0));</span>
+    }
+
+    public PodAntiAffinityFluent.RequiredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; editLastRequiredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L236">            int index = requiredDuringSchedulingIgnoredDuringExecution.size() - 1;</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last requiredDuringSchedulingIgnoredDuringExecution. The list is empty.&quot;);</span>
+<span class="nc" id="L238">            return setNewRequiredDuringSchedulingIgnoredDuringExecutionLike(index, buildRequiredDuringSchedulingIgnoredDuringExecution(index));</span>
+    }
+
+    public PodAntiAffinityFluent.RequiredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; editMatchingRequiredDuringSchedulingIgnoredDuringExecution(io.fabric8.kubernetes.api.builder.Predicate&lt;PodAffinityTermBuilder&gt; predicate){
+<span class="nc" id="L242">            int index = -1;</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            for (int i=0;i&lt;requiredDuringSchedulingIgnoredDuringExecution.size();i++) { </span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">            if (predicate.apply(requiredDuringSchedulingIgnoredDuringExecution.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L246" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching requiredDuringSchedulingIgnoredDuringExecution. No match found.&quot;);</span>
+<span class="nc" id="L247">            return setNewRequiredDuringSchedulingIgnoredDuringExecutionLike(index, buildRequiredDuringSchedulingIgnoredDuringExecution(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L251" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L252" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L253" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L254">            PodAntiAffinityFluentImpl that = (PodAntiAffinityFluentImpl) o;</span>
+<span class="nc bnc" id="L255" title="All 6 branches missed.">            if (preferredDuringSchedulingIgnoredDuringExecution != null ? !preferredDuringSchedulingIgnoredDuringExecution.equals(that.preferredDuringSchedulingIgnoredDuringExecution) :that.preferredDuringSchedulingIgnoredDuringExecution != null) return false;</span>
+<span class="nc bnc" id="L256" title="All 6 branches missed.">            if (requiredDuringSchedulingIgnoredDuringExecution != null ? !requiredDuringSchedulingIgnoredDuringExecution.equals(that.requiredDuringSchedulingIgnoredDuringExecution) :that.requiredDuringSchedulingIgnoredDuringExecution != null) return false;</span>
+<span class="nc" id="L257">            return true;</span>
+    }
+
+
+    public class PreferredDuringSchedulingIgnoredDuringExecutionNestedImpl&lt;N&gt; extends WeightedPodAffinityTermFluentImpl&lt;PodAntiAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;N&gt;&gt; implements PodAntiAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final WeightedPodAffinityTermBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L266">            PreferredDuringSchedulingIgnoredDuringExecutionNestedImpl(int index,WeightedPodAffinityTerm item){</span>
+<span class="nc" id="L267">                    this.index = index;</span>
+<span class="nc" id="L268">                    this.builder = new WeightedPodAffinityTermBuilder(this, item);</span>
+<span class="nc" id="L269">            }</span>
+<span class="nc" id="L270">            PreferredDuringSchedulingIgnoredDuringExecutionNestedImpl(){</span>
+<span class="nc" id="L271">                    this.index = -1;</span>
+<span class="nc" id="L272">                    this.builder = new WeightedPodAffinityTermBuilder(this);</span>
+<span class="nc" id="L273">            }</span>
+    
+    public N and(){
+<span class="nc" id="L276">            return (N) PodAntiAffinityFluentImpl.this.setToPreferredDuringSchedulingIgnoredDuringExecution(index, builder.build());</span>
+    }
+    public N endPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L279">            return and();</span>
+    }
+
+}
+    public class RequiredDuringSchedulingIgnoredDuringExecutionNestedImpl&lt;N&gt; extends PodAffinityTermFluentImpl&lt;PodAntiAffinityFluent.RequiredDuringSchedulingIgnoredDuringExecutionNested&lt;N&gt;&gt; implements PodAntiAffinityFluent.RequiredDuringSchedulingIgnoredDuringExecutionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodAffinityTermBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L288">            RequiredDuringSchedulingIgnoredDuringExecutionNestedImpl(int index,PodAffinityTerm item){</span>
+<span class="nc" id="L289">                    this.index = index;</span>
+<span class="nc" id="L290">                    this.builder = new PodAffinityTermBuilder(this, item);</span>
+<span class="nc" id="L291">            }</span>
+<span class="nc" id="L292">            RequiredDuringSchedulingIgnoredDuringExecutionNestedImpl(){</span>
+<span class="nc" id="L293">                    this.index = -1;</span>
+<span class="nc" id="L294">                    this.builder = new PodAffinityTermBuilder(this);</span>
+<span class="nc" id="L295">            }</span>
+    
+    public N and(){
+<span class="nc" id="L298">            return (N) PodAntiAffinityFluentImpl.this.setToRequiredDuringSchedulingIgnoredDuringExecution(index, builder.build());</span>
+    }
+    public N endRequiredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L301">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

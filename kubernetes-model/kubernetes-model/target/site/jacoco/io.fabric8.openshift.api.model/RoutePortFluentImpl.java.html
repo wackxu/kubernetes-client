@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RoutePortFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">RoutePortFluentImpl.java</span></div><h1>RoutePortFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.IntOrString;
+import io.fabric8.kubernetes.api.builder.Nested;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import java.lang.String;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import io.fabric8.kubernetes.api.model.IntOrStringBuilder;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import java.lang.Boolean;
+import java.lang.Override;
+import com.fasterxml.jackson.core.JsonParser;
+import java.lang.Integer;
+import javax.validation.Valid;
+import java.lang.Object;
+import io.fabric8.kubernetes.api.model.IntOrStringFluentImpl;
+
+public class RoutePortFluentImpl&lt;A extends RoutePortFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements RoutePortFluent&lt;A&gt;{
+
+    private IntOrStringBuilder targetPort;
+
+<span class="fc" id="L27">    public RoutePortFluentImpl(){</span>
+<span class="fc" id="L28">    }</span>
+<span class="nc" id="L29">    public RoutePortFluentImpl(RoutePort instance){</span>
+<span class="nc" id="L30">            this.withTargetPort(instance.getTargetPort()); </span>
+<span class="nc" id="L31">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildTargetPort instead.
+ * @return The buildable object.
+ */
+@Deprecated public IntOrString getTargetPort(){
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">            return this.targetPort!=null?this.targetPort.build():null;</span>
+    }
+
+    public IntOrString buildTargetPort(){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            return this.targetPort!=null?this.targetPort.build():null;</span>
+    }
+
+    public A withTargetPort(IntOrString targetPort){
+<span class="fc" id="L47">            _visitables.remove(this.targetPort);</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">            if (targetPort!=null){ this.targetPort= new IntOrStringBuilder(targetPort); _visitables.add(this.targetPort);} return (A) this;</span>
+    }
+
+    public Boolean hasTargetPort(){
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            return this.targetPort != null;</span>
+    }
+
+    public A withNewTargetPort(String strVal){
+<span class="nc" id="L56">            return (A)withTargetPort(new IntOrString(strVal));</span>
+    }
+
+    public A withNewTargetPort(Integer intVal){
+<span class="nc" id="L60">            return (A)withTargetPort(new IntOrString(intVal));</span>
+    }
+
+    public RoutePortFluent.TargetPortNested&lt;A&gt; withNewTargetPort(){
+<span class="fc" id="L64">            return new TargetPortNestedImpl();</span>
+    }
+
+    public RoutePortFluent.TargetPortNested&lt;A&gt; withNewTargetPortLike(IntOrString item){
+<span class="nc" id="L68">            return new TargetPortNestedImpl(item);</span>
+    }
+
+    public RoutePortFluent.TargetPortNested&lt;A&gt; editTargetPort(){
+<span class="nc" id="L72">            return withNewTargetPortLike(getTargetPort());</span>
+    }
+
+    public RoutePortFluent.TargetPortNested&lt;A&gt; editOrNewTargetPort(){
+<span class="nc bnc" id="L76" title="All 2 branches missed.">            return withNewTargetPortLike(getTargetPort() != null ? getTargetPort(): new IntOrStringBuilder().build());</span>
+    }
+
+    public RoutePortFluent.TargetPortNested&lt;A&gt; editOrNewTargetPortLike(IntOrString item){
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            return withNewTargetPortLike(getTargetPort() != null ? getTargetPort(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L85" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L87">            RoutePortFluentImpl that = (RoutePortFluentImpl) o;</span>
+<span class="nc bnc" id="L88" title="All 6 branches missed.">            if (targetPort != null ? !targetPort.equals(that.targetPort) :that.targetPort != null) return false;</span>
+<span class="nc" id="L89">            return true;</span>
+    }
+
+
+    public class TargetPortNestedImpl&lt;N&gt; extends IntOrStringFluentImpl&lt;RoutePortFluent.TargetPortNested&lt;N&gt;&gt; implements RoutePortFluent.TargetPortNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final IntOrStringBuilder builder;
+    
+<span class="nc" id="L97">            TargetPortNestedImpl(IntOrString item){</span>
+<span class="nc" id="L98">                    this.builder = new IntOrStringBuilder(this, item);</span>
+<span class="nc" id="L99">            }</span>
+<span class="fc" id="L100">            TargetPortNestedImpl(){</span>
+<span class="fc" id="L101">                    this.builder = new IntOrStringBuilder(this);</span>
+<span class="fc" id="L102">            }</span>
+    
+    public N and(){
+<span class="fc" id="L105">            return (N) RoutePortFluentImpl.this.withTargetPort(builder.build());</span>
+    }
+    public N endTargetPort(){
+<span class="fc" id="L108">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

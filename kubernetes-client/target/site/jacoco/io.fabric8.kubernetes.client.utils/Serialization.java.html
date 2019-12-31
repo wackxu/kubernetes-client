@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Serialization.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.utils</a> &gt; <span class="el_source">Serialization.java</span></div><h1>Serialization.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.utils;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+<span class="nc" id="L39">public class Serialization {</span>
+
+<span class="fc" id="L41">  private static final ObjectMapper JSON_MAPPER = new ObjectMapper();</span>
+<span class="fc" id="L42">  private static final ObjectMapper YAML_MAPPER = new ObjectMapper(new YAMLFactory());</span>
+  private static final String DOCUMENT_DELIMITER = &quot;---&quot;;
+
+  public static ObjectMapper jsonMapper() {
+<span class="fc" id="L46">    return JSON_MAPPER;</span>
+  }
+
+  public static ObjectMapper yamlMapper() {
+<span class="fc" id="L50">    return YAML_MAPPER;</span>
+  }
+
+  public static &lt;T&gt; String asJson(T object) throws KubernetesClientException {
+    try {
+<span class="fc" id="L55">      return JSON_MAPPER.writeValueAsString(object);</span>
+<span class="nc" id="L56">    } catch (JsonProcessingException e) {</span>
+<span class="nc" id="L57">      throw KubernetesClientException.launderThrowable(e);</span>
+    }
+  }
+
+  public static &lt;T&gt; String asYaml(T object) throws KubernetesClientException {
+    try {
+<span class="nc" id="L63">      return YAML_MAPPER.writeValueAsString(object);</span>
+<span class="nc" id="L64">    } catch (JsonProcessingException e) {</span>
+<span class="nc" id="L65">      throw KubernetesClientException.launderThrowable(e);</span>
+    }
+  }
+
+  /**
+   * Unmarshals a stream.
+   * @param is    The {@link InputStream}.
+   * @param &lt;T&gt;   The target type.
+   * @return
+   * @throws KubernetesClientException
+   */
+  public static &lt;T&gt; T unmarshal(InputStream is) throws KubernetesClientException {
+<span class="nc" id="L77">    return unmarshal(is, JSON_MAPPER);</span>
+  }
+
+  /**
+   * Unmarshals a stream optionally performing placeholder substitution to the stream.
+   * @param is    The {@link InputStream}.
+   * @param parameters  A {@link Map} with parameters for placeholder substitution.
+   * @param &lt;T&gt;   The target type.
+   * @return
+   * @throws KubernetesClientException
+   */
+  public static &lt;T&gt; T unmarshal(InputStream is, Map&lt;String, String&gt; parameters) throws KubernetesClientException {
+<span class="nc" id="L89">    String specFile = readSpecFileFromInputStream(is);</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">    if (containsMultipleDocuments(specFile)) {</span>
+<span class="nc" id="L91">      return (T) getKubernetesResourceList(parameters, specFile);</span>
+    }
+<span class="nc" id="L93">    return unmarshal(new ByteArrayInputStream(specFile.getBytes()), JSON_MAPPER, parameters);</span>
+  }
+
+  /**
+   * Unmarshals a stream.
+   * @param is      The {@link InputStream}.
+   * @param mapper  The {@link ObjectMapper} to use.
+   * @param &lt;T&gt;     The target type.
+   * @return
+   * @throws KubernetesClientException
+   */
+  public static &lt;T&gt; T unmarshal(InputStream is, ObjectMapper mapper) {
+<span class="nc" id="L105">   return unmarshal(is, mapper, Collections.&lt;String, String&gt;emptyMap());</span>
+  }
+
+  /**
+   * Unmarshals a stream optionally performing placeholder substitution to the stream.
+   * @param is          The {@link InputStream}.
+   * @param mapper      The {@link ObjectMapper} to use.
+   * @param parameters  A {@link Map} with parameters for placeholder substitution.
+   * @param &lt;T&gt;         The target type.
+   * @return
+   * @throws KubernetesClientException
+   */
+  public static &lt;T&gt; T unmarshal(InputStream is, ObjectMapper mapper, Map&lt;String, String&gt; parameters) {
+<span class="nc" id="L118">    try (BufferedInputStream bis = new BufferedInputStream(is)) {</span>
+<span class="nc" id="L119">      bis.mark(-1);</span>
+      int intch;
+      do {
+<span class="nc" id="L122">        intch = bis.read();</span>
+<span class="nc bnc" id="L123" title="All 4 branches missed.">      } while (intch &gt; -1 &amp;&amp; Character.isWhitespace(intch));</span>
+<span class="nc" id="L124">      bis.reset();</span>
+
+<span class="nc bnc" id="L126" title="All 2 branches missed.">      if (intch != '{') {</span>
+<span class="nc" id="L127">        mapper = YAML_MAPPER;</span>
+      }
+<span class="nc" id="L129">      return mapper.readerFor(KubernetesResource.class).readValue(bis);</span>
+<span class="nc" id="L130">    } catch (IOException e) {</span>
+<span class="nc" id="L131">      throw KubernetesClientException.launderThrowable(e);</span>
+    }
+  }
+
+  /**
+   * Unmarshals a {@link String}
+   * @param str   The {@link String}.
+   * @param type  The target type.
+   * @param &lt;T&gt;
+   * @return
+   * @throws KubernetesClientException
+   */
+  public static &lt;T&gt; T unmarshal(String str, final Class&lt;T&gt; type) throws KubernetesClientException {
+<span class="fc" id="L144">    return unmarshal(str, type, Collections.&lt;String, String&gt;emptyMap());</span>
+  }
+
+  /**
+   * Unmarshals a {@link String} optionally performing placeholder substitution to the String.
+   * @param str   The {@link String}.
+   * @param type  The target type.
+   * @param &lt;T&gt;
+   * @return
+   * @throws KubernetesClientException
+     */
+  public static &lt;T&gt; T unmarshal(String str, final Class&lt;T&gt; type, Map&lt;String, String&gt; parameters) throws KubernetesClientException {
+<span class="fc" id="L156">    try (InputStream is = new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8));) {</span>
+<span class="fc" id="L157">      return unmarshal(is, new TypeReference&lt;T&gt;() {</span>
+        @Override
+        public Type getType() {
+<span class="fc" id="L160">          return type;</span>
+        }
+      }, parameters);
+<span class="nc" id="L163">    } catch (IOException e) {</span>
+<span class="nc" id="L164">      throw KubernetesClientException.launderThrowable(e);</span>
+    }
+  }
+
+  /**
+   * Unmarshals an {@link InputStream}.
+   * @param is              The {@link InputStream}.
+   * @param type            The type.
+   * @param &lt;T&gt;
+   * @return
+   * @throws KubernetesClientException
+   */
+  public static &lt;T&gt; T unmarshal(InputStream is, final Class&lt;T&gt; type) throws KubernetesClientException {
+<span class="fc" id="L177">    return unmarshal(is, type, Collections.&lt;String, String&gt;emptyMap());</span>
+  }
+
+  /**
+   * Unmarshals an {@link InputStream} optionally performing placeholder substitution to the stream.
+   * @param is              The {@link InputStream}.
+   * @param type            The type.
+   * @param parameters      A {@link Map} with parameters for placeholder substitution.
+   * @param &lt;T&gt;
+   * @return
+   * @throws KubernetesClientException
+   */
+  public static &lt;T&gt; T unmarshal(InputStream is, final Class&lt;T&gt; type, Map&lt;String, String&gt; parameters) throws KubernetesClientException {
+<span class="fc" id="L190">    return unmarshal(is, new TypeReference&lt;T&gt;() {</span>
+      @Override
+      public Type getType() {
+<span class="fc" id="L193">        return type;</span>
+      }
+    }, parameters);
+  }
+
+
+  /**
+   * Unmarshals an {@link InputStream}.
+   * @param is            The {@link InputStream}.
+   * @param type          The {@link TypeReference}.
+   * @param &lt;T&gt;
+   * @return
+   * @throws KubernetesClientException
+   */
+  public static &lt;T&gt; T unmarshal(InputStream is, TypeReference&lt;T&gt; type) throws KubernetesClientException {
+<span class="nc" id="L208">   return unmarshal(is, type, Collections.&lt;String, String&gt;emptyMap());</span>
+  }
+
+  /**
+   * Unmarshals an {@link InputStream} optionally performing placeholder substitution to the stream.
+   *
+   * @param is            The {@link InputStream}.
+   * @param type          The {@link TypeReference}.
+   * @param parameters    A {@link Map} with parameters for placeholder substitution.
+   * @param &lt;T&gt;
+   * @return
+   * @throws KubernetesClientException
+   */
+  public static &lt;T&gt; T unmarshal(InputStream is, TypeReference&lt;T&gt; type, Map&lt;String, String&gt; parameters) throws KubernetesClientException {
+<span class="pc bpc" id="L222" title="2 of 4 branches missed.">    InputStream wrapped = parameters != null &amp;&amp; !parameters.isEmpty() ? new ReplaceValueStream(parameters).createInputStream(is) : is;</span>
+<span class="fc" id="L223">    try (BufferedInputStream bis = new BufferedInputStream(wrapped)) {</span>
+<span class="fc" id="L224">      bis.mark(-1);</span>
+      int intch;
+      do {
+<span class="fc" id="L227">        intch = bis.read();</span>
+<span class="pc bpc" id="L228" title="1 of 4 branches missed.">      } while (intch &gt; -1 &amp;&amp; Character.isWhitespace(intch));</span>
+<span class="fc" id="L229">      bis.reset();</span>
+
+<span class="fc" id="L231">      ObjectMapper mapper = JSON_MAPPER;</span>
+<span class="fc bfc" id="L232" title="All 2 branches covered.">      if (intch != '{') {</span>
+<span class="fc" id="L233">        mapper = YAML_MAPPER;</span>
+      }
+<span class="fc" id="L235">      return mapper.readValue(bis, type);</span>
+<span class="nc" id="L236">    } catch (IOException e) {</span>
+<span class="nc" id="L237">      throw KubernetesClientException.launderThrowable(e);</span>
+    }
+  }
+
+
+  private static List&lt;KubernetesResource&gt; getKubernetesResourceList(Map&lt;String, String&gt; parameters, String specFile) {
+<span class="nc" id="L243">    List&lt;KubernetesResource&gt; documentList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L244">    String[] documents = splitSpecFile(specFile);</span>
+<span class="nc bnc" id="L245" title="All 2 branches missed.">    for (String document : documents) {</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">      if (validate(document)) {</span>
+<span class="nc" id="L247">        ByteArrayInputStream documentInputStream = new ByteArrayInputStream(document.getBytes());</span>
+<span class="nc" id="L248">        Object resource = Serialization.unmarshal(documentInputStream, parameters);</span>
+<span class="nc" id="L249">        documentList.add((KubernetesResource) resource);</span>
+      }
+    }
+<span class="nc" id="L252">    return documentList;</span>
+  }
+
+  private static boolean containsMultipleDocuments(String specFile) {
+<span class="nc" id="L256">    String[] documents = splitSpecFile(specFile);</span>
+<span class="nc" id="L257">    int nValidDocuments = 0;</span>
+<span class="nc bnc" id="L258" title="All 2 branches missed.">    for(String document : documents) {</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">      if(validate(document))</span>
+<span class="nc" id="L260">        nValidDocuments++;</span>
+    }
+
+<span class="nc bnc" id="L263" title="All 2 branches missed.">    return nValidDocuments &gt; 1;</span>
+  }
+
+  private static String[] splitSpecFile(String aSpecFile) {
+<span class="nc" id="L267">    List&lt;String&gt; documents = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L268">    String[] lines = aSpecFile.split(System.lineSeparator());</span>
+<span class="nc" id="L269">    int nLine = 0;</span>
+<span class="nc" id="L270">    StringBuilder builder = new StringBuilder();</span>
+
+<span class="nc bnc" id="L272" title="All 2 branches missed.">    while(nLine &lt; lines.length) {</span>
+<span class="nc bnc" id="L273" title="All 2 branches missed.">      if((lines[nLine].length() &gt;= DOCUMENT_DELIMITER.length()</span>
+<span class="nc bnc" id="L274" title="All 4 branches missed.">          &amp;&amp; !lines[nLine].substring(0, DOCUMENT_DELIMITER.length()).equals(DOCUMENT_DELIMITER)) || (lines[nLine].length() &lt; DOCUMENT_DELIMITER.length())) {</span>
+<span class="nc" id="L275">        builder.append(lines[nLine] + System.lineSeparator());</span>
+      } else {
+<span class="nc" id="L277">        documents.add(builder.toString());</span>
+<span class="nc" id="L278">        builder.setLength(0);</span>
+      }
+
+<span class="nc" id="L281">      nLine++;</span>
+    }
+
+<span class="nc bnc" id="L284" title="All 2 branches missed.">    if(!builder.toString().isEmpty())</span>
+<span class="nc" id="L285">      documents.add(builder.toString());</span>
+<span class="nc" id="L286">    return documents.toArray(new String[documents.size()]);</span>
+  }
+
+  private static boolean validate(String document) {
+<span class="nc" id="L290">    Matcher keyValueMatcher = Pattern.compile(&quot;(\\S+):\\s(\\S*)(?:\\b(?!:)|$)&quot;).matcher(document);</span>
+<span class="nc bnc" id="L291" title="All 4 branches missed.">    return !document.isEmpty() &amp;&amp; keyValueMatcher.find();</span>
+  }
+
+  private static String readSpecFileFromInputStream(InputStream inputStream) {
+<span class="nc" id="L295">    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();</span>
+<span class="nc" id="L296">    byte[] buffer = new byte[1024];</span>
+    int length;
+    try {
+<span class="nc bnc" id="L299" title="All 2 branches missed.">      while ((length = inputStream.read(buffer)) != -1) {</span>
+<span class="nc" id="L300">        outputStream.write(buffer, 0, length);</span>
+      }
+<span class="nc" id="L302">      return outputStream.toString();</span>
+<span class="nc" id="L303">    } catch (IOException e) {</span>
+<span class="nc" id="L304">      throw new RuntimeException(&quot;Unable to read InputStream.&quot; + e);</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

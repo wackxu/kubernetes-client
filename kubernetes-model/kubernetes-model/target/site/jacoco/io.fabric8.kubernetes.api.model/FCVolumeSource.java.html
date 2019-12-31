@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FCVolumeSource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">FCVolumeSource.java</span></div><h1>FCVolumeSource.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;fsType&quot;,
+    &quot;lun&quot;,
+    &quot;readOnly&quot;,
+    &quot;targetWWNs&quot;,
+    &quot;wwids&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L41">@ToString</span>
+<span class="nc bnc" id="L42" title="All 54 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class FCVolumeSource implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    private String fsType;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;lun&quot;)
+    private Integer lun;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    private Boolean readOnly;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L69">    @JsonProperty(&quot;targetWWNs&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;String&gt; targetWWNs = new ArrayList&lt;String&gt;();
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L77">    @JsonProperty(&quot;wwids&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;String&gt; wwids = new ArrayList&lt;String&gt;();
+<span class="nc" id="L81">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L88">    public FCVolumeSource() {</span>
+<span class="nc" id="L89">    }</span>
+
+    /**
+     * 
+     * @param lun
+     * @param targetWWNs
+     * @param readOnly
+     * @param wwids
+     * @param fsType
+     */
+<span class="nc" id="L99">    public FCVolumeSource(String fsType, Integer lun, Boolean readOnly, List&lt;String&gt; targetWWNs, List&lt;String&gt; wwids) {</span>
+<span class="nc" id="L100">        this.fsType = fsType;</span>
+<span class="nc" id="L101">        this.lun = lun;</span>
+<span class="nc" id="L102">        this.readOnly = readOnly;</span>
+<span class="nc" id="L103">        this.targetWWNs = targetWWNs;</span>
+<span class="nc" id="L104">        this.wwids = wwids;</span>
+<span class="nc" id="L105">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The fsType
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    public String getFsType() {
+<span class="nc" id="L115">        return fsType;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param fsType
+     *     The fsType
+     */
+    @JsonProperty(&quot;fsType&quot;)
+    public void setFsType(String fsType) {
+<span class="nc" id="L126">        this.fsType = fsType;</span>
+<span class="nc" id="L127">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The lun
+     */
+    @JsonProperty(&quot;lun&quot;)
+    public Integer getLun() {
+<span class="nc" id="L137">        return lun;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param lun
+     *     The lun
+     */
+    @JsonProperty(&quot;lun&quot;)
+    public void setLun(Integer lun) {
+<span class="nc" id="L148">        this.lun = lun;</span>
+<span class="nc" id="L149">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The readOnly
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    public Boolean getReadOnly() {
+<span class="nc" id="L159">        return readOnly;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param readOnly
+     *     The readOnly
+     */
+    @JsonProperty(&quot;readOnly&quot;)
+    public void setReadOnly(Boolean readOnly) {
+<span class="nc" id="L170">        this.readOnly = readOnly;</span>
+<span class="nc" id="L171">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The targetWWNs
+     */
+    @JsonProperty(&quot;targetWWNs&quot;)
+    public List&lt;String&gt; getTargetWWNs() {
+<span class="nc" id="L181">        return targetWWNs;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param targetWWNs
+     *     The targetWWNs
+     */
+    @JsonProperty(&quot;targetWWNs&quot;)
+    public void setTargetWWNs(List&lt;String&gt; targetWWNs) {
+<span class="nc" id="L192">        this.targetWWNs = targetWWNs;</span>
+<span class="nc" id="L193">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The wwids
+     */
+    @JsonProperty(&quot;wwids&quot;)
+    public List&lt;String&gt; getWwids() {
+<span class="nc" id="L203">        return wwids;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param wwids
+     *     The wwids
+     */
+    @JsonProperty(&quot;wwids&quot;)
+    public void setWwids(List&lt;String&gt; wwids) {
+<span class="nc" id="L214">        this.wwids = wwids;</span>
+<span class="nc" id="L215">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L219">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L224">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L225">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

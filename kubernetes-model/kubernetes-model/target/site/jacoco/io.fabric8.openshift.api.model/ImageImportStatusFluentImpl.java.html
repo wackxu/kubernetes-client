@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImageImportStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">ImageImportStatusFluentImpl.java</span></div><h1>ImageImportStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import io.fabric8.kubernetes.api.model.Status;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.StatusFluentImpl;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import io.fabric8.kubernetes.api.model.StatusBuilder;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class ImageImportStatusFluentImpl&lt;A extends ImageImportStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ImageImportStatusFluent&lt;A&gt;{
+
+    private ImageBuilder image;
+    private StatusBuilder status;
+    private String tag;
+
+<span class="nc" id="L21">    public ImageImportStatusFluentImpl(){</span>
+<span class="nc" id="L22">    }</span>
+<span class="nc" id="L23">    public ImageImportStatusFluentImpl(ImageImportStatus instance){</span>
+<span class="nc" id="L24">            this.withImage(instance.getImage()); </span>
+<span class="nc" id="L25">            this.withStatus(instance.getStatus()); </span>
+<span class="nc" id="L26">            this.withTag(instance.getTag()); </span>
+<span class="nc" id="L27">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildImage instead.
+ * @return The buildable object.
+ */
+@Deprecated public Image getImage(){
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            return this.image!=null?this.image.build():null;</span>
+    }
+
+    public Image buildImage(){
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            return this.image!=null?this.image.build():null;</span>
+    }
+
+    public A withImage(Image image){
+<span class="nc" id="L43">            _visitables.remove(this.image);</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            if (image!=null){ this.image= new ImageBuilder(image); _visitables.add(this.image);} return (A) this;</span>
+    }
+
+    public Boolean hasImage(){
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            return this.image != null;</span>
+    }
+
+    public ImageImportStatusFluent.ImageNested&lt;A&gt; withNewImage(){
+<span class="nc" id="L52">            return new ImageNestedImpl();</span>
+    }
+
+    public ImageImportStatusFluent.ImageNested&lt;A&gt; withNewImageLike(Image item){
+<span class="nc" id="L56">            return new ImageNestedImpl(item);</span>
+    }
+
+    public ImageImportStatusFluent.ImageNested&lt;A&gt; editImage(){
+<span class="nc" id="L60">            return withNewImageLike(getImage());</span>
+    }
+
+    public ImageImportStatusFluent.ImageNested&lt;A&gt; editOrNewImage(){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            return withNewImageLike(getImage() != null ? getImage(): new ImageBuilder().build());</span>
+    }
+
+    public ImageImportStatusFluent.ImageNested&lt;A&gt; editOrNewImageLike(Image item){
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            return withNewImageLike(getImage() != null ? getImage(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildStatus instead.
+ * @return The buildable object.
+ */
+@Deprecated public Status getStatus(){
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            return this.status!=null?this.status.build():null;</span>
+    }
+
+    public Status buildStatus(){
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            return this.status!=null?this.status.build():null;</span>
+    }
+
+    public A withStatus(Status status){
+<span class="nc" id="L85">            _visitables.remove(this.status);</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            if (status!=null){ this.status= new StatusBuilder(status); _visitables.add(this.status);} return (A) this;</span>
+    }
+
+    public Boolean hasStatus(){
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            return this.status != null;</span>
+    }
+
+    public ImageImportStatusFluent.StatusNested&lt;A&gt; withNewStatus(){
+<span class="nc" id="L94">            return new StatusNestedImpl();</span>
+    }
+
+    public ImageImportStatusFluent.StatusNested&lt;A&gt; withNewStatusLike(Status item){
+<span class="nc" id="L98">            return new StatusNestedImpl(item);</span>
+    }
+
+    public ImageImportStatusFluent.StatusNested&lt;A&gt; editStatus(){
+<span class="nc" id="L102">            return withNewStatusLike(getStatus());</span>
+    }
+
+    public ImageImportStatusFluent.StatusNested&lt;A&gt; editOrNewStatus(){
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            return withNewStatusLike(getStatus() != null ? getStatus(): new StatusBuilder().build());</span>
+    }
+
+    public ImageImportStatusFluent.StatusNested&lt;A&gt; editOrNewStatusLike(Status item){
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            return withNewStatusLike(getStatus() != null ? getStatus(): item);</span>
+    }
+
+    public String getTag(){
+<span class="nc" id="L114">            return this.tag;</span>
+    }
+
+    public A withTag(String tag){
+<span class="nc" id="L118">            this.tag=tag; return (A) this;</span>
+    }
+
+    public Boolean hasTag(){
+<span class="nc bnc" id="L122" title="All 2 branches missed.">            return this.tag != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L127" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L129">            ImageImportStatusFluentImpl that = (ImageImportStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L130" title="All 6 branches missed.">            if (image != null ? !image.equals(that.image) :that.image != null) return false;</span>
+<span class="nc bnc" id="L131" title="All 6 branches missed.">            if (status != null ? !status.equals(that.status) :that.status != null) return false;</span>
+<span class="nc bnc" id="L132" title="All 6 branches missed.">            if (tag != null ? !tag.equals(that.tag) :that.tag != null) return false;</span>
+<span class="nc" id="L133">            return true;</span>
+    }
+
+
+    public class ImageNestedImpl&lt;N&gt; extends ImageFluentImpl&lt;ImageImportStatusFluent.ImageNested&lt;N&gt;&gt; implements ImageImportStatusFluent.ImageNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageBuilder builder;
+    
+<span class="nc" id="L141">            ImageNestedImpl(Image item){</span>
+<span class="nc" id="L142">                    this.builder = new ImageBuilder(this, item);</span>
+<span class="nc" id="L143">            }</span>
+<span class="nc" id="L144">            ImageNestedImpl(){</span>
+<span class="nc" id="L145">                    this.builder = new ImageBuilder(this);</span>
+<span class="nc" id="L146">            }</span>
+    
+    public N and(){
+<span class="nc" id="L149">            return (N) ImageImportStatusFluentImpl.this.withImage(builder.build());</span>
+    }
+    public N endImage(){
+<span class="nc" id="L152">            return and();</span>
+    }
+
+}
+    public class StatusNestedImpl&lt;N&gt; extends StatusFluentImpl&lt;ImageImportStatusFluent.StatusNested&lt;N&gt;&gt; implements ImageImportStatusFluent.StatusNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final StatusBuilder builder;
+    
+<span class="nc" id="L160">            StatusNestedImpl(Status item){</span>
+<span class="nc" id="L161">                    this.builder = new StatusBuilder(this, item);</span>
+<span class="nc" id="L162">            }</span>
+<span class="nc" id="L163">            StatusNestedImpl(){</span>
+<span class="nc" id="L164">                    this.builder = new StatusBuilder(this);</span>
+<span class="nc" id="L165">            }</span>
+    
+    public N and(){
+<span class="nc" id="L168">            return (N) ImageImportStatusFluentImpl.this.withStatus(builder.build());</span>
+    }
+    public N endStatus(){
+<span class="nc" id="L171">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

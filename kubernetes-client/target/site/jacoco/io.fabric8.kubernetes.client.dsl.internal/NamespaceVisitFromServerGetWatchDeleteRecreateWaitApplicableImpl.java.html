@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.dsl.internal</a> &gt; <span class="el_source">NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableImpl.java</span></div><h1>NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableImpl.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.dsl.internal;
+
+import io.fabric8.kubernetes.client.utils.Utils;
+import java.util.function.Predicate;
+import org.apache.commons.lang.NotImplementedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import io.fabric8.kubernetes.api.builder.TypedVisitor;
+import io.fabric8.kubernetes.api.builder.VisitableBuilder;
+import io.fabric8.kubernetes.api.builder.Visitor;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.KubernetesList;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.Handlers;
+import io.fabric8.kubernetes.client.HasMetadataVisitiableBuilder;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.ResourceHandler;
+import io.fabric8.kubernetes.client.Watch;
+import io.fabric8.kubernetes.client.Watcher;
+import io.fabric8.kubernetes.client.dsl.Applicable;
+import io.fabric8.kubernetes.client.dsl.CascadingDeletable;
+import io.fabric8.kubernetes.client.dsl.Deletable;
+import io.fabric8.kubernetes.client.dsl.Gettable;
+import io.fabric8.kubernetes.client.dsl.NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicable;
+import io.fabric8.kubernetes.client.dsl.Readiable;
+import io.fabric8.kubernetes.client.dsl.VisitFromServerGetWatchDeleteRecreateWaitApplicable;
+import io.fabric8.kubernetes.client.dsl.Waitable;
+import io.fabric8.kubernetes.client.dsl.base.OperationSupport;
+import io.fabric8.kubernetes.client.handlers.KubernetesListHandler;
+import io.fabric8.kubernetes.client.internal.readiness.Readiness;
+import io.fabric8.kubernetes.client.utils.ResourceCompare;
+import okhttp3.OkHttpClient;
+
+public class NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableImpl extends OperationSupport implements NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt;,
+Waitable&lt;HasMetadata, HasMetadata&gt;,
+  Readiable {
+
+<span class="nc" id="L63">  private static final Logger LOGGER = LoggerFactory.getLogger(NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableImpl.class);</span>
+
+  private final String fallbackNamespace;
+  private final String explicitNamespace;
+
+  private final Boolean fromServer;
+  private final Boolean deletingExisting;
+  private final List&lt;Visitor&gt; visitors;
+  private final Object item;
+  private final ResourceHandler handler;
+  private final long gracePeriodSeconds;
+  private final Boolean cascading;
+
+  /**
+   * We need to be able to either use an explicit namespace or fallback to the client default.
+   * Either-way we need to update the object itself or the client will complain about a mismatch.
+   * And this is how we its done.
+   */
+  private class ChangeNamespace extends TypedVisitor&lt;ObjectMetaBuilder&gt; {
+
+    private final String explicitNamespace;
+    private final String fallbackNamespace;
+
+<span class="nc" id="L86">    private ChangeNamespace(String explicitNamespace, String fallbackNamespace) {</span>
+<span class="nc" id="L87">      this.explicitNamespace = explicitNamespace;</span>
+<span class="nc" id="L88">      this.fallbackNamespace = fallbackNamespace;</span>
+<span class="nc" id="L89">    }</span>
+
+    @Override
+    public void visit(ObjectMetaBuilder builder) {
+<span class="nc bnc" id="L93" title="All 2 branches missed.">      if (Utils.isNotNullOrEmpty(explicitNamespace)) {</span>
+<span class="nc" id="L94">        builder.withNamespace(explicitNamespace);</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">      } else if (Utils.isNullOrEmpty(builder.getNamespace())) {</span>
+<span class="nc" id="L96">        builder.withNamespace(fallbackNamespace);</span>
+      }
+<span class="nc" id="L98">    }</span>
+  }
+
+  public NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableImpl(OkHttpClient client, Config config, String namespace, String explicitNamespace, Boolean fromServer, Boolean deletingExisting, List&lt;Visitor&gt; visitors, InputStream is, Boolean cascading) {
+<span class="nc" id="L102">    this(client, config, namespace, explicitNamespace, fromServer, deletingExisting, visitors, unmarshal(is), -1, cascading);</span>
+<span class="nc" id="L103">  }</span>
+
+  public NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableImpl(OkHttpClient client, Config config, String namespace, String explicitNamespace, Boolean fromServer, Boolean deletingExisting, List&lt;Visitor&gt; visitors, Object item, long gracePeriodSeconds, Boolean cascading) {
+<span class="nc" id="L106">    super(client, config, null, null, null, null, null);</span>
+<span class="nc" id="L107">    this.fallbackNamespace = namespace;</span>
+<span class="nc" id="L108">    this.explicitNamespace = explicitNamespace;</span>
+<span class="nc" id="L109">    this.fromServer = fromServer;</span>
+<span class="nc" id="L110">    this.deletingExisting = deletingExisting;</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">    this.visitors = visitors != null ? new ArrayList&lt;&gt;(visitors) : new ArrayList&lt;Visitor&gt;();</span>
+<span class="nc" id="L112">    this.item = item;</span>
+<span class="nc" id="L113">    this.handler = handlerOf(item);</span>
+<span class="nc" id="L114">    this.cascading = cascading;</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">    if (handler == null) {</span>
+<span class="nc" id="L116">      throw new KubernetesClientException(&quot;No handler found for object:&quot; + item);</span>
+    }
+<span class="nc" id="L118">    this.gracePeriodSeconds = gracePeriodSeconds;</span>
+<span class="nc" id="L119">    this.visitors.add(new ChangeNamespace(explicitNamespace, fallbackNamespace));</span>
+<span class="nc" id="L120">  }</span>
+
+  @Override
+  public HasMetadata apply() {
+<span class="nc" id="L124">    return createOrReplace();</span>
+  }
+
+  @Override
+  public HasMetadata createOrReplace() {
+<span class="nc" id="L129">    HasMetadata meta = acceptVisitors(asHasMetadata(item), visitors);</span>
+<span class="nc" id="L130">    ResourceHandler&lt;HasMetadata, HasMetadataVisitiableBuilder&gt; h = handlerOf(meta);</span>
+<span class="nc" id="L131">    HasMetadata r = h.reload(client, config, meta.getMetadata().getNamespace(), meta);</span>
+<span class="nc" id="L132">    String namespaceToUse = meta.getMetadata().getNamespace();</span>
+
+<span class="nc bnc" id="L134" title="All 2 branches missed.">    if (r == null) {</span>
+<span class="nc" id="L135">      return h.create(client, config, namespaceToUse, meta);</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">    } else if (deletingExisting) {</span>
+<span class="nc" id="L137">      Boolean deleted = h.delete(client, config, namespaceToUse, meta);</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">      if (!deleted) {</span>
+<span class="nc" id="L139">        throw new KubernetesClientException(&quot;Failed to delete existing item:&quot; + meta);</span>
+      }
+<span class="nc" id="L141">      return h.create(client, config, namespaceToUse, meta);</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">    } else if (ResourceCompare.equals(r, meta)) {</span>
+<span class="nc" id="L143">      LOGGER.debug(&quot;Item has not changed. Skipping&quot;);</span>
+<span class="nc" id="L144">      return meta;</span>
+    } else {
+<span class="nc" id="L146">      return h.replace(client, config, namespaceToUse, meta);</span>
+    }
+  }
+
+  @Override
+  public Waitable&lt;HasMetadata, HasMetadata&gt; createOrReplaceAnd() {
+<span class="nc" id="L152">    return new NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableImpl(client, config, fallbackNamespace, explicitNamespace, fromServer, deletingExisting, visitors, createOrReplace(), gracePeriodSeconds, cascading);</span>
+  }
+
+  @Override
+  public Boolean delete() {
+    //First pass check before deleting
+<span class="nc" id="L158">    HasMetadata meta = acceptVisitors(asHasMetadata(item), visitors);</span>
+<span class="nc" id="L159">    ResourceHandler&lt;HasMetadata, HasMetadataVisitiableBuilder&gt; h = handlerOf(meta);</span>
+<span class="nc" id="L160">    return h.delete(client, config, meta.getMetadata().getNamespace(), meta);</span>
+  }
+
+  @Override
+  public HasMetadata get() {
+<span class="nc bnc" id="L165" title="All 2 branches missed.">    if (fromServer) {</span>
+<span class="nc" id="L166">      HasMetadata meta = acceptVisitors(asHasMetadata(item), visitors);</span>
+<span class="nc" id="L167">      ResourceHandler&lt;HasMetadata, HasMetadataVisitiableBuilder&gt; h = handlerOf(meta);</span>
+<span class="nc" id="L168">      HasMetadata reloaded = h.reload(client, config, meta.getMetadata().getNamespace(), meta);</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">      if (reloaded != null) {</span>
+<span class="nc" id="L170">        HasMetadata edited = reloaded;</span>
+        //Let's apply any visitor that might have been specified.
+<span class="nc bnc" id="L172" title="All 2 branches missed.">        for (Visitor v : visitors) {</span>
+<span class="nc" id="L173">          edited = h.edit(edited).accept(v).build();</span>
+<span class="nc" id="L174">        }</span>
+<span class="nc" id="L175">        return edited;</span>
+      }
+<span class="nc" id="L177">      return null;</span>
+    } else {
+<span class="nc" id="L179">      return acceptVisitors(asHasMetadata(item), visitors);</span>
+    }
+  }
+
+  @Override
+  public VisitFromServerGetWatchDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; inNamespace(String explicitNamespace) {
+<span class="nc" id="L185">    return new NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableImpl(client, config, fallbackNamespace, explicitNamespace, fromServer, deletingExisting, visitors, item, gracePeriodSeconds, cascading);</span>
+  }
+
+  @Override
+  public Gettable&lt;HasMetadata&gt; fromServer() {
+<span class="nc" id="L190">    return new NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableImpl(client, config, fallbackNamespace, explicitNamespace, true, deletingExisting, visitors, item, gracePeriodSeconds, cascading);</span>
+  }
+
+  @Override
+  public Applicable&lt;HasMetadata&gt; deletingExisting() {
+<span class="nc" id="L195">    return new NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableImpl(client, config, fallbackNamespace, explicitNamespace, fromServer, true, visitors, item, gracePeriodSeconds, cascading);</span>
+  }
+
+  @Override
+  public VisitFromServerGetWatchDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; accept(Visitor visitor) {
+<span class="nc" id="L200">    List&lt;Visitor&gt; newVisitors = new ArrayList&lt;&gt;(visitors);</span>
+<span class="nc" id="L201">    newVisitors.add(visitor);</span>
+<span class="nc" id="L202">    return new NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableImpl(client, config, fallbackNamespace, explicitNamespace, fromServer, true, newVisitors, item, gracePeriodSeconds, cascading);</span>
+  }
+
+  @Override
+  public CascadingDeletable&lt;Boolean&gt; withGracePeriod(long gracePeriodSeconds) {
+<span class="nc" id="L207">    return new NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableImpl(client, config, fallbackNamespace, explicitNamespace, fromServer, true, visitors, item, gracePeriodSeconds, cascading);</span>
+  }
+
+
+  @Override
+  public Deletable&lt;Boolean&gt; cascading(boolean cascading) {
+<span class="nc" id="L213">    return new NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableImpl(client, config, fallbackNamespace, explicitNamespace, fromServer, true, visitors, item, gracePeriodSeconds, cascading);</span>
+  }
+
+  @Override
+  public Watch watch(Watcher&lt;HasMetadata&gt; watcher) {
+<span class="nc" id="L218">    HasMetadata meta = acceptVisitors(asHasMetadata(item), visitors);</span>
+<span class="nc" id="L219">    ResourceHandler&lt;HasMetadata, HasMetadataVisitiableBuilder&gt; h = handlerOf(meta);</span>
+<span class="nc" id="L220">    return h.watch(client, config, meta.getMetadata().getNamespace(), meta, watcher);</span>
+  }
+
+  @Override
+  public Watch watch(String resourceVersion, Watcher&lt;HasMetadata&gt; watcher) {
+<span class="nc" id="L225">    HasMetadata meta = acceptVisitors(asHasMetadata(item), visitors);</span>
+<span class="nc" id="L226">    ResourceHandler&lt;HasMetadata, HasMetadataVisitiableBuilder&gt; h = handlerOf(meta);</span>
+<span class="nc" id="L227">    return h.watch(client, config, meta.getMetadata().getNamespace(), meta, watcher);</span>
+  }
+
+  @Override
+  public Boolean isReady() {
+<span class="nc" id="L232">    return Readiness.isReady(get());</span>
+  }
+
+  @Override
+  public HasMetadata waitUntilReady(long amount, TimeUnit timeUnit) throws InterruptedException {
+<span class="nc" id="L237">    HasMetadata meta = acceptVisitors(asHasMetadata(get()), visitors);</span>
+<span class="nc" id="L238">    ResourceHandler&lt;HasMetadata, HasMetadataVisitiableBuilder&gt; h = handlerOf(meta);</span>
+<span class="nc" id="L239">    return h.waitUntilReady(client, config, meta.getMetadata().getNamespace(), meta, amount, timeUnit);</span>
+  }
+
+  @Override
+  public HasMetadata waitUntilCondition(Predicate&lt;HasMetadata&gt; condition, long amount,
+    TimeUnit timeUnit) throws InterruptedException {
+<span class="nc" id="L245">    HasMetadata meta = acceptVisitors(asHasMetadata(get()), visitors);</span>
+<span class="nc" id="L246">    ResourceHandler&lt;HasMetadata, HasMetadataVisitiableBuilder&gt; h = handlerOf(meta);</span>
+<span class="nc" id="L247">    return h.waitUntilCondition(client, config, meta.getMetadata().getNamespace(), meta, condition, amount, timeUnit);</span>
+  }
+
+
+  private static HasMetadata acceptVisitors(HasMetadata item, List&lt;Visitor&gt; visitors) {
+<span class="nc" id="L252">    ResourceHandler&lt;HasMetadata, HasMetadataVisitiableBuilder&gt; h = handlerOf(item);</span>
+<span class="nc" id="L253">    VisitableBuilder&lt;HasMetadata, ?&gt; builder = h.edit(item);</span>
+
+    //Let's apply any visitor that might have been specified.
+<span class="nc bnc" id="L256" title="All 2 branches missed.">    for (Visitor v : visitors) {</span>
+<span class="nc" id="L257">      builder.accept(v);</span>
+<span class="nc" id="L258">    }</span>
+<span class="nc" id="L259">    return builder.build();</span>
+  }
+
+  private static List&lt;HasMetadata&gt; acceptVisitors(List&lt;HasMetadata&gt; list, List&lt;Visitor&gt; visitors) {
+<span class="nc" id="L263">    List&lt;HasMetadata&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">    for (HasMetadata item : list) {</span>
+<span class="nc" id="L265">      ResourceHandler&lt;HasMetadata, HasMetadataVisitiableBuilder&gt; h = handlerOf(item);</span>
+<span class="nc" id="L266">      VisitableBuilder&lt;HasMetadata, ?&gt; builder = h.edit(item);</span>
+
+      //Let's apply any visitor that might have been specified.
+<span class="nc bnc" id="L269" title="All 2 branches missed.">      for (Visitor v : visitors) {</span>
+<span class="nc" id="L270">        builder.accept(v);</span>
+<span class="nc" id="L271">      }</span>
+<span class="nc" id="L272">      result.add(builder.build());</span>
+<span class="nc" id="L273">    }</span>
+<span class="nc" id="L274">    return result;</span>
+  }
+
+  private static &lt;T&gt; HasMetadata asHasMetadata(T item) {
+<span class="nc bnc" id="L278" title="All 2 branches missed.">    if (item instanceof HasMetadata) {</span>
+<span class="nc" id="L279">      return (HasMetadata) item;</span>
+<span class="nc bnc" id="L280" title="All 2 branches missed.">    } else if (item instanceof String) {</span>
+<span class="nc" id="L281">      try (InputStream is = new ByteArrayInputStream(((String) item).getBytes(StandardCharsets.UTF_8))) {</span>
+<span class="nc" id="L282">        return asHasMetadata(unmarshal(is));</span>
+<span class="nc" id="L283">      } catch (IOException e) {</span>
+<span class="nc" id="L284">        throw KubernetesClientException.launderThrowable(e);</span>
+      }
+    }
+<span class="nc" id="L287">    throw new IllegalArgumentException(&quot;Item needs to be an instance of HasMetadata or String.&quot;);</span>
+  }
+
+  private static &lt;T&gt; ResourceHandler handlerOf(T item) {
+<span class="nc bnc" id="L291" title="All 2 branches missed.">    if (item instanceof HasMetadata) {</span>
+<span class="nc" id="L292">      return Handlers.&lt;HasMetadata, HasMetadataVisitiableBuilder&gt;get(((HasMetadata) item).getKind());</span>
+<span class="nc bnc" id="L293" title="All 2 branches missed.">    } else if (item instanceof KubernetesList) {</span>
+<span class="nc" id="L294">      return new KubernetesListHandler();</span>
+    } else {
+<span class="nc" id="L296">      throw new IllegalArgumentException(&quot;Could not find a registered handler for item: [&quot; + item + &quot;].&quot;);</span>
+    }
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

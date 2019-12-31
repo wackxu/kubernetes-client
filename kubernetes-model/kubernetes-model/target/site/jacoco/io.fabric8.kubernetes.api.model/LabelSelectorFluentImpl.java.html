@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LabelSelectorFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">LabelSelectorFluentImpl.java</span></div><h1>LabelSelectorFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.util.LinkedHashMap;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+import java.util.Map;
+
+public class LabelSelectorFluentImpl&lt;A extends LabelSelectorFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements LabelSelectorFluent&lt;A&gt;{
+
+    private List&lt;LabelSelectorRequirementBuilder&gt; matchExpressions;
+    private Map&lt;String,String&gt; matchLabels;
+
+<span class="fc" id="L24">    public LabelSelectorFluentImpl(){</span>
+<span class="fc" id="L25">    }</span>
+<span class="nc" id="L26">    public LabelSelectorFluentImpl(LabelSelector instance){</span>
+<span class="nc" id="L27">            this.withMatchExpressions(instance.getMatchExpressions()); </span>
+<span class="nc" id="L28">            this.withMatchLabels(instance.getMatchLabels()); </span>
+<span class="nc" id="L29">    }</span>
+
+    public A addToMatchExpressions(int index,LabelSelectorRequirement item){
+<span class="nc bnc" id="L32" title="All 2 branches missed.">            if (this.matchExpressions == null) {this.matchExpressions = new ArrayList&lt;LabelSelectorRequirementBuilder&gt;();}</span>
+<span class="nc bnc" id="L33" title="All 4 branches missed.">            LabelSelectorRequirementBuilder builder = new LabelSelectorRequirementBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.matchExpressions.add(index &gt;= 0 ? index : matchExpressions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToMatchExpressions(int index,LabelSelectorRequirement item){
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            if (this.matchExpressions == null) {this.matchExpressions = new ArrayList&lt;LabelSelectorRequirementBuilder&gt;();}</span>
+<span class="nc" id="L38">            LabelSelectorRequirementBuilder builder = new LabelSelectorRequirementBuilder(item);</span>
+<span class="nc bnc" id="L39" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L40" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= matchExpressions.size()) { matchExpressions.add(builder); } else { matchExpressions.set(index, builder);}</span>
+<span class="nc" id="L41">             return (A)this;</span>
+    }
+
+    public A addToMatchExpressions(LabelSelectorRequirement... items){
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            if (this.matchExpressions == null) {this.matchExpressions = new ArrayList&lt;LabelSelectorRequirementBuilder&gt;();}</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            for (LabelSelectorRequirement item : items) {LabelSelectorRequirementBuilder builder = new LabelSelectorRequirementBuilder(item);_visitables.add(builder);this.matchExpressions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToMatchExpressions(Collection&lt;LabelSelectorRequirement&gt; items){
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            if (this.matchExpressions == null) {this.matchExpressions = new ArrayList&lt;LabelSelectorRequirementBuilder&gt;();}</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            for (LabelSelectorRequirement item : items) {LabelSelectorRequirementBuilder builder = new LabelSelectorRequirementBuilder(item);_visitables.add(builder);this.matchExpressions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromMatchExpressions(LabelSelectorRequirement... items){
+<span class="nc bnc" id="L55" title="All 4 branches missed.">            for (LabelSelectorRequirement item : items) {LabelSelectorRequirementBuilder builder = new LabelSelectorRequirementBuilder(item);_visitables.remove(builder);if (this.matchExpressions != null) {this.matchExpressions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromMatchExpressions(Collection&lt;LabelSelectorRequirement&gt; items){
+<span class="nc bnc" id="L59" title="All 4 branches missed.">            for (LabelSelectorRequirement item : items) {LabelSelectorRequirementBuilder builder = new LabelSelectorRequirementBuilder(item);_visitables.remove(builder);if (this.matchExpressions != null) {this.matchExpressions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMatchExpressions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;LabelSelectorRequirement&gt; getMatchExpressions(){
+<span class="fc" id="L68">            return build(matchExpressions);</span>
+    }
+
+    public List&lt;LabelSelectorRequirement&gt; buildMatchExpressions(){
+<span class="nc" id="L72">            return build(matchExpressions);</span>
+    }
+
+    public LabelSelectorRequirement buildMatchExpression(int index){
+<span class="nc" id="L76">            return this.matchExpressions.get(index).build();</span>
+    }
+
+    public LabelSelectorRequirement buildFirstMatchExpression(){
+<span class="nc" id="L80">            return this.matchExpressions.get(0).build();</span>
+    }
+
+    public LabelSelectorRequirement buildLastMatchExpression(){
+<span class="nc" id="L84">            return this.matchExpressions.get(matchExpressions.size() - 1).build();</span>
+    }
+
+    public LabelSelectorRequirement buildMatchingMatchExpression(io.fabric8.kubernetes.api.builder.Predicate&lt;LabelSelectorRequirementBuilder&gt; predicate){
+<span class="nc bnc" id="L88" title="All 4 branches missed.">            for (LabelSelectorRequirementBuilder item: matchExpressions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withMatchExpressions(List&lt;LabelSelectorRequirement&gt; matchExpressions){
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">            if (this.matchExpressions != null) { _visitables.removeAll(this.matchExpressions);}</span>
+<span class="pc bpc" id="L93" title="2 of 4 branches missed.">            if (matchExpressions != null) {this.matchExpressions = new ArrayList&lt;LabelSelectorRequirementBuilder&gt;(); for (LabelSelectorRequirement item : matchExpressions){this.addToMatchExpressions(item);}} else { this.matchExpressions = new ArrayList&lt;LabelSelectorRequirementBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withMatchExpressions(LabelSelectorRequirement... matchExpressions){
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            if (this.matchExpressions != null) {this.matchExpressions.clear();}</span>
+<span class="nc bnc" id="L98" title="All 4 branches missed.">            if (matchExpressions != null) {for (LabelSelectorRequirement item :matchExpressions){ this.addToMatchExpressions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasMatchExpressions(){
+<span class="nc bnc" id="L102" title="All 4 branches missed.">            return matchExpressions != null &amp;&amp; !matchExpressions.isEmpty();</span>
+    }
+
+    public LabelSelectorFluent.MatchExpressionsNested&lt;A&gt; addNewMatchExpression(){
+<span class="nc" id="L106">            return new MatchExpressionsNestedImpl();</span>
+    }
+
+    public LabelSelectorFluent.MatchExpressionsNested&lt;A&gt; addNewMatchExpressionLike(LabelSelectorRequirement item){
+<span class="nc" id="L110">            return new MatchExpressionsNestedImpl(-1, item);</span>
+    }
+
+    public LabelSelectorFluent.MatchExpressionsNested&lt;A&gt; setNewMatchExpressionLike(int index,LabelSelectorRequirement item){
+<span class="nc" id="L114">            return new MatchExpressionsNestedImpl(index, item);</span>
+    }
+
+    public LabelSelectorFluent.MatchExpressionsNested&lt;A&gt; editMatchExpression(int index){
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            if (matchExpressions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit matchExpressions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L119">            return setNewMatchExpressionLike(index, buildMatchExpression(index));</span>
+    }
+
+    public LabelSelectorFluent.MatchExpressionsNested&lt;A&gt; editFirstMatchExpression(){
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            if (matchExpressions.size() == 0) throw new RuntimeException(&quot;Can't edit first matchExpressions. The list is empty.&quot;);</span>
+<span class="nc" id="L124">            return setNewMatchExpressionLike(0, buildMatchExpression(0));</span>
+    }
+
+    public LabelSelectorFluent.MatchExpressionsNested&lt;A&gt; editLastMatchExpression(){
+<span class="nc" id="L128">            int index = matchExpressions.size() - 1;</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last matchExpressions. The list is empty.&quot;);</span>
+<span class="nc" id="L130">            return setNewMatchExpressionLike(index, buildMatchExpression(index));</span>
+    }
+
+    public LabelSelectorFluent.MatchExpressionsNested&lt;A&gt; editMatchingMatchExpression(io.fabric8.kubernetes.api.builder.Predicate&lt;LabelSelectorRequirementBuilder&gt; predicate){
+<span class="nc" id="L134">            int index = -1;</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            for (int i=0;i&lt;matchExpressions.size();i++) { </span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            if (predicate.apply(matchExpressions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching matchExpressions. No match found.&quot;);</span>
+<span class="nc" id="L139">            return setNewMatchExpressionLike(index, buildMatchExpression(index));</span>
+    }
+
+    public A addToMatchLabels(String key,String value){
+<span class="pc bpc" id="L143" title="5 of 6 branches missed.">            if(this.matchLabels == null &amp;&amp; key != null &amp;&amp; value != null) { this.matchLabels = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="pc bpc" id="L144" title="2 of 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.matchLabels.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToMatchLabels(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L148" title="All 4 branches missed.">            if(this.matchLabels == null &amp;&amp; map != null) { this.matchLabels = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if(map != null) { this.matchLabels.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromMatchLabels(String key){
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            if(this.matchLabels == null) { return (A) this; }</span>
+<span class="nc bnc" id="L154" title="All 4 branches missed.">            if(key != null &amp;&amp; this.matchLabels != null) {this.matchLabels.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromMatchLabels(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            if(this.matchLabels == null) { return (A) this; }</span>
+<span class="nc bnc" id="L159" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.matchLabels != null){this.matchLabels.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getMatchLabels(){
+<span class="fc" id="L163">            return this.matchLabels;</span>
+    }
+
+    public A withMatchLabels(Map&lt;String,String&gt; matchLabels){
+<span class="fc bfc" id="L167" title="All 2 branches covered.">            if (matchLabels == null) { this.matchLabels =  new LinkedHashMap&lt;String,String&gt;();} else {this.matchLabels = new LinkedHashMap&lt;String,String&gt;(matchLabels);} return (A) this;</span>
+    }
+
+    public Boolean hasMatchLabels(){
+<span class="nc bnc" id="L171" title="All 2 branches missed.">            return this.matchLabels != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L176" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L178">            LabelSelectorFluentImpl that = (LabelSelectorFluentImpl) o;</span>
+<span class="nc bnc" id="L179" title="All 6 branches missed.">            if (matchExpressions != null ? !matchExpressions.equals(that.matchExpressions) :that.matchExpressions != null) return false;</span>
+<span class="nc bnc" id="L180" title="All 6 branches missed.">            if (matchLabels != null ? !matchLabels.equals(that.matchLabels) :that.matchLabels != null) return false;</span>
+<span class="nc" id="L181">            return true;</span>
+    }
+
+
+    public class MatchExpressionsNestedImpl&lt;N&gt; extends LabelSelectorRequirementFluentImpl&lt;LabelSelectorFluent.MatchExpressionsNested&lt;N&gt;&gt; implements LabelSelectorFluent.MatchExpressionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LabelSelectorRequirementBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L190">            MatchExpressionsNestedImpl(int index,LabelSelectorRequirement item){</span>
+<span class="nc" id="L191">                    this.index = index;</span>
+<span class="nc" id="L192">                    this.builder = new LabelSelectorRequirementBuilder(this, item);</span>
+<span class="nc" id="L193">            }</span>
+<span class="nc" id="L194">            MatchExpressionsNestedImpl(){</span>
+<span class="nc" id="L195">                    this.index = -1;</span>
+<span class="nc" id="L196">                    this.builder = new LabelSelectorRequirementBuilder(this);</span>
+<span class="nc" id="L197">            }</span>
+    
+    public N and(){
+<span class="nc" id="L200">            return (N) LabelSelectorFluentImpl.this.setToMatchExpressions(index, builder.build());</span>
+    }
+    public N endMatchExpression(){
+<span class="nc" id="L203">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ResourceQuotaSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ResourceQuotaSpecFluentImpl.java</span></div><h1>ResourceQuotaSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.util.LinkedHashMap;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+import java.util.Map;
+
+public class ResourceQuotaSpecFluentImpl&lt;A extends ResourceQuotaSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ResourceQuotaSpecFluent&lt;A&gt;{
+
+    private Map&lt;String,Quantity&gt; hard;
+    private ScopeSelectorBuilder scopeSelector;
+    private List&lt;String&gt; scopes;
+
+<span class="nc" id="L25">    public ResourceQuotaSpecFluentImpl(){</span>
+<span class="nc" id="L26">    }</span>
+<span class="nc" id="L27">    public ResourceQuotaSpecFluentImpl(ResourceQuotaSpec instance){</span>
+<span class="nc" id="L28">            this.withHard(instance.getHard()); </span>
+<span class="nc" id="L29">            this.withScopeSelector(instance.getScopeSelector()); </span>
+<span class="nc" id="L30">            this.withScopes(instance.getScopes()); </span>
+<span class="nc" id="L31">    }</span>
+
+    public A addToHard(String key,Quantity value){
+<span class="nc bnc" id="L34" title="All 6 branches missed.">            if(this.hard == null &amp;&amp; key != null &amp;&amp; value != null) { this.hard = new LinkedHashMap&lt;String,Quantity&gt;(); }</span>
+<span class="nc bnc" id="L35" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.hard.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToHard(Map&lt;String,Quantity&gt; map){
+<span class="nc bnc" id="L39" title="All 4 branches missed.">            if(this.hard == null &amp;&amp; map != null) { this.hard = new LinkedHashMap&lt;String,Quantity&gt;(); }</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            if(map != null) { this.hard.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromHard(String key){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            if(this.hard == null) { return (A) this; }</span>
+<span class="nc bnc" id="L45" title="All 4 branches missed.">            if(key != null &amp;&amp; this.hard != null) {this.hard.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromHard(Map&lt;String,Quantity&gt; map){
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            if(this.hard == null) { return (A) this; }</span>
+<span class="nc bnc" id="L50" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.hard != null){this.hard.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,Quantity&gt; getHard(){
+<span class="nc" id="L54">            return this.hard;</span>
+    }
+
+    public A withHard(Map&lt;String,Quantity&gt; hard){
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            if (hard == null) { this.hard =  new LinkedHashMap&lt;String,Quantity&gt;();} else {this.hard = new LinkedHashMap&lt;String,Quantity&gt;(hard);} return (A) this;</span>
+    }
+
+    public Boolean hasHard(){
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            return this.hard != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildScopeSelector instead.
+ * @return The buildable object.
+ */
+@Deprecated public ScopeSelector getScopeSelector(){
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            return this.scopeSelector!=null?this.scopeSelector.build():null;</span>
+    }
+
+    public ScopeSelector buildScopeSelector(){
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            return this.scopeSelector!=null?this.scopeSelector.build():null;</span>
+    }
+
+    public A withScopeSelector(ScopeSelector scopeSelector){
+<span class="nc" id="L79">            _visitables.remove(this.scopeSelector);</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            if (scopeSelector!=null){ this.scopeSelector= new ScopeSelectorBuilder(scopeSelector); _visitables.add(this.scopeSelector);} return (A) this;</span>
+    }
+
+    public Boolean hasScopeSelector(){
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            return this.scopeSelector != null;</span>
+    }
+
+    public ResourceQuotaSpecFluent.ScopeSelectorNested&lt;A&gt; withNewScopeSelector(){
+<span class="nc" id="L88">            return new ScopeSelectorNestedImpl();</span>
+    }
+
+    public ResourceQuotaSpecFluent.ScopeSelectorNested&lt;A&gt; withNewScopeSelectorLike(ScopeSelector item){
+<span class="nc" id="L92">            return new ScopeSelectorNestedImpl(item);</span>
+    }
+
+    public ResourceQuotaSpecFluent.ScopeSelectorNested&lt;A&gt; editScopeSelector(){
+<span class="nc" id="L96">            return withNewScopeSelectorLike(getScopeSelector());</span>
+    }
+
+    public ResourceQuotaSpecFluent.ScopeSelectorNested&lt;A&gt; editOrNewScopeSelector(){
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            return withNewScopeSelectorLike(getScopeSelector() != null ? getScopeSelector(): new ScopeSelectorBuilder().build());</span>
+    }
+
+    public ResourceQuotaSpecFluent.ScopeSelectorNested&lt;A&gt; editOrNewScopeSelectorLike(ScopeSelector item){
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            return withNewScopeSelectorLike(getScopeSelector() != null ? getScopeSelector(): item);</span>
+    }
+
+    public A addToScopes(int index,String item){
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            if (this.scopes == null) {this.scopes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L109">            this.scopes.add(index, item);</span>
+<span class="nc" id="L110">            return (A)this;</span>
+    }
+
+    public A setToScopes(int index,String item){
+<span class="nc bnc" id="L114" title="All 2 branches missed.">            if (this.scopes == null) {this.scopes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L115">            this.scopes.set(index, item); return (A)this;</span>
+    }
+
+    public A addToScopes(String... items){
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            if (this.scopes == null) {this.scopes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            for (String item : items) {this.scopes.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToScopes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            if (this.scopes == null) {this.scopes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            for (String item : items) {this.scopes.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromScopes(String... items){
+<span class="nc bnc" id="L129" title="All 4 branches missed.">            for (String item : items) {if (this.scopes!= null){ this.scopes.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromScopes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L133" title="All 4 branches missed.">            for (String item : items) {if (this.scopes!= null){ this.scopes.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getScopes(){
+<span class="nc" id="L137">            return this.scopes;</span>
+    }
+
+    public String getScope(int index){
+<span class="nc" id="L141">            return this.scopes.get(index);</span>
+    }
+
+    public String getFirstScope(){
+<span class="nc" id="L145">            return this.scopes.get(0);</span>
+    }
+
+    public String getLastScope(){
+<span class="nc" id="L149">            return this.scopes.get(scopes.size() - 1);</span>
+    }
+
+    public String getMatchingScope(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L153" title="All 4 branches missed.">            for (String item: scopes) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withScopes(List&lt;String&gt; scopes){
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            if (this.scopes != null) { _visitables.removeAll(this.scopes);}</span>
+<span class="nc bnc" id="L158" title="All 4 branches missed.">            if (scopes != null) {this.scopes = new ArrayList&lt;String&gt;(); for (String item : scopes){this.addToScopes(item);}} else { this.scopes = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withScopes(String... scopes){
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (this.scopes != null) {this.scopes.clear();}</span>
+<span class="nc bnc" id="L163" title="All 4 branches missed.">            if (scopes != null) {for (String item :scopes){ this.addToScopes(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasScopes(){
+<span class="nc bnc" id="L167" title="All 4 branches missed.">            return scopes != null &amp;&amp; !scopes.isEmpty();</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L171" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L172" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L174">            ResourceQuotaSpecFluentImpl that = (ResourceQuotaSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L175" title="All 6 branches missed.">            if (hard != null ? !hard.equals(that.hard) :that.hard != null) return false;</span>
+<span class="nc bnc" id="L176" title="All 6 branches missed.">            if (scopeSelector != null ? !scopeSelector.equals(that.scopeSelector) :that.scopeSelector != null) return false;</span>
+<span class="nc bnc" id="L177" title="All 6 branches missed.">            if (scopes != null ? !scopes.equals(that.scopes) :that.scopes != null) return false;</span>
+<span class="nc" id="L178">            return true;</span>
+    }
+
+
+    public class ScopeSelectorNestedImpl&lt;N&gt; extends ScopeSelectorFluentImpl&lt;ResourceQuotaSpecFluent.ScopeSelectorNested&lt;N&gt;&gt; implements ResourceQuotaSpecFluent.ScopeSelectorNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ScopeSelectorBuilder builder;
+    
+<span class="nc" id="L186">            ScopeSelectorNestedImpl(ScopeSelector item){</span>
+<span class="nc" id="L187">                    this.builder = new ScopeSelectorBuilder(this, item);</span>
+<span class="nc" id="L188">            }</span>
+<span class="nc" id="L189">            ScopeSelectorNestedImpl(){</span>
+<span class="nc" id="L190">                    this.builder = new ScopeSelectorBuilder(this);</span>
+<span class="nc" id="L191">            }</span>
+    
+    public N and(){
+<span class="nc" id="L194">            return (N) ResourceQuotaSpecFluentImpl.this.withScopeSelector(builder.build());</span>
+    }
+    public N endScopeSelector(){
+<span class="nc" id="L197">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

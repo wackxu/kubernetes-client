@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImageBuilder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">ImageBuilder.java</span></div><h1>ImageBuilder.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import io.fabric8.kubernetes.api.builder.VisitableBuilder;
+import java.lang.Object;
+import java.lang.Boolean;
+import javax.validation.Validator;
+
+public class ImageBuilder extends ImageFluentImpl&lt;ImageBuilder&gt; implements VisitableBuilder&lt;Image,ImageBuilder&gt;{
+
+    ImageFluent&lt;?&gt; fluent;
+    Boolean validationEnabled;
+    Validator validator;
+
+    public ImageBuilder(){
+<span class="fc" id="L15">            this(true);</span>
+<span class="fc" id="L16">    }</span>
+    public ImageBuilder(Boolean validationEnabled){
+<span class="fc" id="L18">            this(new Image(), validationEnabled);</span>
+<span class="fc" id="L19">    }</span>
+    public ImageBuilder(ImageFluent&lt;?&gt; fluent){
+<span class="nc" id="L21">            this(fluent, true);</span>
+<span class="nc" id="L22">    }</span>
+    public ImageBuilder(ImageFluent&lt;?&gt; fluent,Boolean validationEnabled){
+<span class="nc" id="L24">            this(fluent, new Image(), validationEnabled);</span>
+<span class="nc" id="L25">    }</span>
+    public ImageBuilder(ImageFluent&lt;?&gt; fluent,Image instance){
+<span class="nc" id="L27">            this(fluent, instance, true);</span>
+<span class="nc" id="L28">    }</span>
+<span class="nc" id="L29">    public ImageBuilder(ImageFluent&lt;?&gt; fluent,Image instance,Boolean validationEnabled){</span>
+<span class="nc" id="L30">            this.fluent = fluent; </span>
+<span class="nc" id="L31">            fluent.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L32">            fluent.withDockerImageConfig(instance.getDockerImageConfig()); </span>
+<span class="nc" id="L33">            fluent.withDockerImageLayers(instance.getDockerImageLayers()); </span>
+<span class="nc" id="L34">            fluent.withDockerImageManifest(instance.getDockerImageManifest()); </span>
+<span class="nc" id="L35">            fluent.withDockerImageManifestMediaType(instance.getDockerImageManifestMediaType()); </span>
+<span class="nc" id="L36">            fluent.withDockerImageMetadata(instance.getDockerImageMetadata()); </span>
+<span class="nc" id="L37">            fluent.withDockerImageMetadataVersion(instance.getDockerImageMetadataVersion()); </span>
+<span class="nc" id="L38">            fluent.withDockerImageReference(instance.getDockerImageReference()); </span>
+<span class="nc" id="L39">            fluent.withDockerImageSignatures(instance.getDockerImageSignatures()); </span>
+<span class="nc" id="L40">            fluent.withKind(instance.getKind()); </span>
+<span class="nc" id="L41">            fluent.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L42">            fluent.withSignatures(instance.getSignatures()); </span>
+<span class="nc" id="L43">            this.validationEnabled = validationEnabled; </span>
+<span class="nc" id="L44">    }</span>
+    public ImageBuilder(Image instance){
+<span class="fc" id="L46">            this(instance,true);</span>
+<span class="fc" id="L47">    }</span>
+<span class="fc" id="L48">    public ImageBuilder(Image instance,Boolean validationEnabled){</span>
+<span class="fc" id="L49">            this.fluent = this; </span>
+<span class="fc" id="L50">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="fc" id="L51">            this.withDockerImageConfig(instance.getDockerImageConfig()); </span>
+<span class="fc" id="L52">            this.withDockerImageLayers(instance.getDockerImageLayers()); </span>
+<span class="fc" id="L53">            this.withDockerImageManifest(instance.getDockerImageManifest()); </span>
+<span class="fc" id="L54">            this.withDockerImageManifestMediaType(instance.getDockerImageManifestMediaType()); </span>
+<span class="fc" id="L55">            this.withDockerImageMetadata(instance.getDockerImageMetadata()); </span>
+<span class="fc" id="L56">            this.withDockerImageMetadataVersion(instance.getDockerImageMetadataVersion()); </span>
+<span class="fc" id="L57">            this.withDockerImageReference(instance.getDockerImageReference()); </span>
+<span class="fc" id="L58">            this.withDockerImageSignatures(instance.getDockerImageSignatures()); </span>
+<span class="fc" id="L59">            this.withKind(instance.getKind()); </span>
+<span class="fc" id="L60">            this.withMetadata(instance.getMetadata()); </span>
+<span class="fc" id="L61">            this.withSignatures(instance.getSignatures()); </span>
+<span class="fc" id="L62">            this.validationEnabled = validationEnabled; </span>
+<span class="fc" id="L63">    }</span>
+    public ImageBuilder(Validator validator){
+<span class="nc" id="L65">            this(new Image(), true);</span>
+<span class="nc" id="L66">    }</span>
+<span class="nc" id="L67">    public ImageBuilder(ImageFluent&lt;?&gt; fluent,Image instance,Validator validator){</span>
+<span class="nc" id="L68">            this.fluent = fluent; </span>
+<span class="nc" id="L69">            fluent.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L70">            fluent.withDockerImageConfig(instance.getDockerImageConfig()); </span>
+<span class="nc" id="L71">            fluent.withDockerImageLayers(instance.getDockerImageLayers()); </span>
+<span class="nc" id="L72">            fluent.withDockerImageManifest(instance.getDockerImageManifest()); </span>
+<span class="nc" id="L73">            fluent.withDockerImageManifestMediaType(instance.getDockerImageManifestMediaType()); </span>
+<span class="nc" id="L74">            fluent.withDockerImageMetadata(instance.getDockerImageMetadata()); </span>
+<span class="nc" id="L75">            fluent.withDockerImageMetadataVersion(instance.getDockerImageMetadataVersion()); </span>
+<span class="nc" id="L76">            fluent.withDockerImageReference(instance.getDockerImageReference()); </span>
+<span class="nc" id="L77">            fluent.withDockerImageSignatures(instance.getDockerImageSignatures()); </span>
+<span class="nc" id="L78">            fluent.withKind(instance.getKind()); </span>
+<span class="nc" id="L79">            fluent.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L80">            fluent.withSignatures(instance.getSignatures()); </span>
+<span class="nc" id="L81">            this.validator = validator;</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            this.validationEnabled = validator != null; </span>
+<span class="nc" id="L83">    }</span>
+<span class="nc" id="L84">    public ImageBuilder(Image instance,Validator validator){</span>
+<span class="nc" id="L85">            this.fluent = this; </span>
+<span class="nc" id="L86">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L87">            this.withDockerImageConfig(instance.getDockerImageConfig()); </span>
+<span class="nc" id="L88">            this.withDockerImageLayers(instance.getDockerImageLayers()); </span>
+<span class="nc" id="L89">            this.withDockerImageManifest(instance.getDockerImageManifest()); </span>
+<span class="nc" id="L90">            this.withDockerImageManifestMediaType(instance.getDockerImageManifestMediaType()); </span>
+<span class="nc" id="L91">            this.withDockerImageMetadata(instance.getDockerImageMetadata()); </span>
+<span class="nc" id="L92">            this.withDockerImageMetadataVersion(instance.getDockerImageMetadataVersion()); </span>
+<span class="nc" id="L93">            this.withDockerImageReference(instance.getDockerImageReference()); </span>
+<span class="nc" id="L94">            this.withDockerImageSignatures(instance.getDockerImageSignatures()); </span>
+<span class="nc" id="L95">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L96">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L97">            this.withSignatures(instance.getSignatures()); </span>
+<span class="nc" id="L98">            this.validator = validator; </span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            this.validationEnabled = validator != null; </span>
+<span class="nc" id="L100">    }</span>
+
+    public Image build(){
+<span class="fc" id="L103">            Image buildable = new Image(fluent.getApiVersion(),fluent.getDockerImageConfig(),fluent.getDockerImageLayers(),fluent.getDockerImageManifest(),fluent.getDockerImageManifestMediaType(),fluent.getDockerImageMetadata(),fluent.getDockerImageMetadataVersion(),fluent.getDockerImageReference(),fluent.getDockerImageSignatures(),fluent.getKind(),fluent.getMetadata(),fluent.getSignatures());</span>
+<span class="pc bpc" id="L104" title="1 of 2 branches missed.">            if (validationEnabled) {io.fabric8.kubernetes.api.builder.ValidationUtils.validate(buildable, validator);}</span>
+<span class="fc" id="L105">            return buildable;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L110" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L112">            ImageBuilder that = (ImageBuilder) o;</span>
+<span class="nc bnc" id="L113" title="All 10 branches missed.">            if (fluent != null &amp;&amp;fluent != this ? !fluent.equals(that.fluent) :that.fluent != null &amp;&amp;fluent != this ) return false;</span>
+
+<span class="nc bnc" id="L115" title="All 6 branches missed.">            if (validationEnabled != null ? !validationEnabled.equals(that.validationEnabled) :that.validationEnabled != null) return false;</span>
+<span class="nc" id="L116">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

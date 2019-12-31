@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContainerStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ContainerStatusFluentImpl.java</span></div><h1>ContainerStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import javax.validation.constraints.Pattern;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.validation.constraints.Size;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Integer;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+
+public class ContainerStatusFluentImpl&lt;A extends ContainerStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ContainerStatusFluent&lt;A&gt;{
+
+    private String containerID;
+    private String image;
+    private String imageID;
+    private ContainerStateBuilder lastState;
+    private String name;
+    private Boolean ready;
+    private Integer restartCount;
+    private ContainerStateBuilder state;
+
+<span class="nc" id="L26">    public ContainerStatusFluentImpl(){</span>
+<span class="nc" id="L27">    }</span>
+<span class="nc" id="L28">    public ContainerStatusFluentImpl(ContainerStatus instance){</span>
+<span class="nc" id="L29">            this.withContainerID(instance.getContainerID()); </span>
+<span class="nc" id="L30">            this.withImage(instance.getImage()); </span>
+<span class="nc" id="L31">            this.withImageID(instance.getImageID()); </span>
+<span class="nc" id="L32">            this.withLastState(instance.getLastState()); </span>
+<span class="nc" id="L33">            this.withName(instance.getName()); </span>
+<span class="nc" id="L34">            this.withReady(instance.getReady()); </span>
+<span class="nc" id="L35">            this.withRestartCount(instance.getRestartCount()); </span>
+<span class="nc" id="L36">            this.withState(instance.getState()); </span>
+<span class="nc" id="L37">    }</span>
+
+    public String getContainerID(){
+<span class="nc" id="L40">            return this.containerID;</span>
+    }
+
+    public A withContainerID(String containerID){
+<span class="nc" id="L44">            this.containerID=containerID; return (A) this;</span>
+    }
+
+    public Boolean hasContainerID(){
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            return this.containerID != null;</span>
+    }
+
+    public String getImage(){
+<span class="nc" id="L52">            return this.image;</span>
+    }
+
+    public A withImage(String image){
+<span class="nc" id="L56">            this.image=image; return (A) this;</span>
+    }
+
+    public Boolean hasImage(){
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            return this.image != null;</span>
+    }
+
+    public String getImageID(){
+<span class="nc" id="L64">            return this.imageID;</span>
+    }
+
+    public A withImageID(String imageID){
+<span class="nc" id="L68">            this.imageID=imageID; return (A) this;</span>
+    }
+
+    public Boolean hasImageID(){
+<span class="nc bnc" id="L72" title="All 2 branches missed.">            return this.imageID != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildLastState instead.
+ * @return The buildable object.
+ */
+@Deprecated public ContainerState getLastState(){
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            return this.lastState!=null?this.lastState.build():null;</span>
+    }
+
+    public ContainerState buildLastState(){
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            return this.lastState!=null?this.lastState.build():null;</span>
+    }
+
+    public A withLastState(ContainerState lastState){
+<span class="nc" id="L89">            _visitables.remove(this.lastState);</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            if (lastState!=null){ this.lastState= new ContainerStateBuilder(lastState); _visitables.add(this.lastState);} return (A) this;</span>
+    }
+
+    public Boolean hasLastState(){
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            return this.lastState != null;</span>
+    }
+
+    public ContainerStatusFluent.LastStateNested&lt;A&gt; withNewLastState(){
+<span class="nc" id="L98">            return new LastStateNestedImpl();</span>
+    }
+
+    public ContainerStatusFluent.LastStateNested&lt;A&gt; withNewLastStateLike(ContainerState item){
+<span class="nc" id="L102">            return new LastStateNestedImpl(item);</span>
+    }
+
+    public ContainerStatusFluent.LastStateNested&lt;A&gt; editLastState(){
+<span class="nc" id="L106">            return withNewLastStateLike(getLastState());</span>
+    }
+
+    public ContainerStatusFluent.LastStateNested&lt;A&gt; editOrNewLastState(){
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            return withNewLastStateLike(getLastState() != null ? getLastState(): new ContainerStateBuilder().build());</span>
+    }
+
+    public ContainerStatusFluent.LastStateNested&lt;A&gt; editOrNewLastStateLike(ContainerState item){
+<span class="nc bnc" id="L114" title="All 2 branches missed.">            return withNewLastStateLike(getLastState() != null ? getLastState(): item);</span>
+    }
+
+    public String getName(){
+<span class="nc" id="L118">            return this.name;</span>
+    }
+
+    public A withName(String name){
+<span class="nc" id="L122">            this.name=name; return (A) this;</span>
+    }
+
+    public Boolean hasName(){
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            return this.name != null;</span>
+    }
+
+    public Boolean isReady(){
+<span class="nc" id="L130">            return this.ready;</span>
+    }
+
+    public A withReady(Boolean ready){
+<span class="nc" id="L134">            this.ready=ready; return (A) this;</span>
+    }
+
+    public Boolean hasReady(){
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            return this.ready != null;</span>
+    }
+
+    public A withNewReady(String arg1){
+<span class="nc" id="L142">            return (A)withReady(new Boolean(arg1));</span>
+    }
+
+    public A withNewReady(boolean arg1){
+<span class="nc" id="L146">            return (A)withReady(new Boolean(arg1));</span>
+    }
+
+    public Integer getRestartCount(){
+<span class="nc" id="L150">            return this.restartCount;</span>
+    }
+
+    public A withRestartCount(Integer restartCount){
+<span class="nc" id="L154">            this.restartCount=restartCount; return (A) this;</span>
+    }
+
+    public Boolean hasRestartCount(){
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            return this.restartCount != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildState instead.
+ * @return The buildable object.
+ */
+@Deprecated public ContainerState getState(){
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            return this.state!=null?this.state.build():null;</span>
+    }
+
+    public ContainerState buildState(){
+<span class="nc bnc" id="L171" title="All 2 branches missed.">            return this.state!=null?this.state.build():null;</span>
+    }
+
+    public A withState(ContainerState state){
+<span class="nc" id="L175">            _visitables.remove(this.state);</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">            if (state!=null){ this.state= new ContainerStateBuilder(state); _visitables.add(this.state);} return (A) this;</span>
+    }
+
+    public Boolean hasState(){
+<span class="nc bnc" id="L180" title="All 2 branches missed.">            return this.state != null;</span>
+    }
+
+    public ContainerStatusFluent.StateNested&lt;A&gt; withNewState(){
+<span class="nc" id="L184">            return new StateNestedImpl();</span>
+    }
+
+    public ContainerStatusFluent.StateNested&lt;A&gt; withNewStateLike(ContainerState item){
+<span class="nc" id="L188">            return new StateNestedImpl(item);</span>
+    }
+
+    public ContainerStatusFluent.StateNested&lt;A&gt; editState(){
+<span class="nc" id="L192">            return withNewStateLike(getState());</span>
+    }
+
+    public ContainerStatusFluent.StateNested&lt;A&gt; editOrNewState(){
+<span class="nc bnc" id="L196" title="All 2 branches missed.">            return withNewStateLike(getState() != null ? getState(): new ContainerStateBuilder().build());</span>
+    }
+
+    public ContainerStatusFluent.StateNested&lt;A&gt; editOrNewStateLike(ContainerState item){
+<span class="nc bnc" id="L200" title="All 2 branches missed.">            return withNewStateLike(getState() != null ? getState(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L204" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L205" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L207">            ContainerStatusFluentImpl that = (ContainerStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L208" title="All 6 branches missed.">            if (containerID != null ? !containerID.equals(that.containerID) :that.containerID != null) return false;</span>
+<span class="nc bnc" id="L209" title="All 6 branches missed.">            if (image != null ? !image.equals(that.image) :that.image != null) return false;</span>
+<span class="nc bnc" id="L210" title="All 6 branches missed.">            if (imageID != null ? !imageID.equals(that.imageID) :that.imageID != null) return false;</span>
+<span class="nc bnc" id="L211" title="All 6 branches missed.">            if (lastState != null ? !lastState.equals(that.lastState) :that.lastState != null) return false;</span>
+<span class="nc bnc" id="L212" title="All 6 branches missed.">            if (name != null ? !name.equals(that.name) :that.name != null) return false;</span>
+<span class="nc bnc" id="L213" title="All 6 branches missed.">            if (ready != null ? !ready.equals(that.ready) :that.ready != null) return false;</span>
+<span class="nc bnc" id="L214" title="All 6 branches missed.">            if (restartCount != null ? !restartCount.equals(that.restartCount) :that.restartCount != null) return false;</span>
+<span class="nc bnc" id="L215" title="All 6 branches missed.">            if (state != null ? !state.equals(that.state) :that.state != null) return false;</span>
+<span class="nc" id="L216">            return true;</span>
+    }
+
+
+    public class LastStateNestedImpl&lt;N&gt; extends ContainerStateFluentImpl&lt;ContainerStatusFluent.LastStateNested&lt;N&gt;&gt; implements ContainerStatusFluent.LastStateNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ContainerStateBuilder builder;
+    
+<span class="nc" id="L224">            LastStateNestedImpl(ContainerState item){</span>
+<span class="nc" id="L225">                    this.builder = new ContainerStateBuilder(this, item);</span>
+<span class="nc" id="L226">            }</span>
+<span class="nc" id="L227">            LastStateNestedImpl(){</span>
+<span class="nc" id="L228">                    this.builder = new ContainerStateBuilder(this);</span>
+<span class="nc" id="L229">            }</span>
+    
+    public N and(){
+<span class="nc" id="L232">            return (N) ContainerStatusFluentImpl.this.withLastState(builder.build());</span>
+    }
+    public N endLastState(){
+<span class="nc" id="L235">            return and();</span>
+    }
+
+}
+    public class StateNestedImpl&lt;N&gt; extends ContainerStateFluentImpl&lt;ContainerStatusFluent.StateNested&lt;N&gt;&gt; implements ContainerStatusFluent.StateNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ContainerStateBuilder builder;
+    
+<span class="nc" id="L243">            StateNestedImpl(ContainerState item){</span>
+<span class="nc" id="L244">                    this.builder = new ContainerStateBuilder(this, item);</span>
+<span class="nc" id="L245">            }</span>
+<span class="nc" id="L246">            StateNestedImpl(){</span>
+<span class="nc" id="L247">                    this.builder = new ContainerStateBuilder(this);</span>
+<span class="nc" id="L248">            }</span>
+    
+    public N and(){
+<span class="nc" id="L251">            return (N) ContainerStatusFluentImpl.this.withState(builder.build());</span>
+    }
+    public N endState(){
+<span class="nc" id="L254">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

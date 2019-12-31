@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IPBlockFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.networking</a> &gt; <span class="el_source">IPBlockFluentImpl.java</span></div><h1>IPBlockFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.networking;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class IPBlockFluentImpl&lt;A extends IPBlockFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements IPBlockFluent&lt;A&gt;{
+
+    private String cidr;
+    private List&lt;String&gt; except;
+
+<span class="nc" id="L20">    public IPBlockFluentImpl(){</span>
+<span class="nc" id="L21">    }</span>
+<span class="nc" id="L22">    public IPBlockFluentImpl(IPBlock instance){</span>
+<span class="nc" id="L23">            this.withCidr(instance.getCidr()); </span>
+<span class="nc" id="L24">            this.withExcept(instance.getExcept()); </span>
+<span class="nc" id="L25">    }</span>
+
+    public String getCidr(){
+<span class="nc" id="L28">            return this.cidr;</span>
+    }
+
+    public A withCidr(String cidr){
+<span class="nc" id="L32">            this.cidr=cidr; return (A) this;</span>
+    }
+
+    public Boolean hasCidr(){
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            return this.cidr != null;</span>
+    }
+
+    public A addToExcept(int index,String item){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            if (this.except == null) {this.except = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L41">            this.except.add(index, item);</span>
+<span class="nc" id="L42">            return (A)this;</span>
+    }
+
+    public A setToExcept(int index,String item){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (this.except == null) {this.except = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L47">            this.except.set(index, item); return (A)this;</span>
+    }
+
+    public A addToExcept(String... items){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            if (this.except == null) {this.except = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            for (String item : items) {this.except.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToExcept(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            if (this.except == null) {this.except = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            for (String item : items) {this.except.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromExcept(String... items){
+<span class="nc bnc" id="L61" title="All 4 branches missed.">            for (String item : items) {if (this.except!= null){ this.except.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromExcept(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L65" title="All 4 branches missed.">            for (String item : items) {if (this.except!= null){ this.except.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getExcept(){
+<span class="nc" id="L69">            return this.except;</span>
+    }
+
+    public String getExcept(int index){
+<span class="nc" id="L73">            return this.except.get(index);</span>
+    }
+
+    public String getFirstExcept(){
+<span class="nc" id="L77">            return this.except.get(0);</span>
+    }
+
+    public String getLastExcept(){
+<span class="nc" id="L81">            return this.except.get(except.size() - 1);</span>
+    }
+
+    public String getMatchingExcept(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L85" title="All 4 branches missed.">            for (String item: except) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withExcept(List&lt;String&gt; except){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (this.except != null) { _visitables.removeAll(this.except);}</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">            if (except != null) {this.except = new ArrayList&lt;String&gt;(); for (String item : except){this.addToExcept(item);}} else { this.except = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withExcept(String... except){
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            if (this.except != null) {this.except.clear();}</span>
+<span class="nc bnc" id="L95" title="All 4 branches missed.">            if (except != null) {for (String item :except){ this.addToExcept(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasExcept(){
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            return except != null &amp;&amp; !except.isEmpty();</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L104" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L106">            IPBlockFluentImpl that = (IPBlockFluentImpl) o;</span>
+<span class="nc bnc" id="L107" title="All 6 branches missed.">            if (cidr != null ? !cidr.equals(that.cidr) :that.cidr != null) return false;</span>
+<span class="nc bnc" id="L108" title="All 6 branches missed.">            if (except != null ? !except.equals(that.except) :that.except != null) return false;</span>
+<span class="nc" id="L109">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

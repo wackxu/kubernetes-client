@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NamedTagEventListFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">NamedTagEventListFluentImpl.java</span></div><h1>NamedTagEventListFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.lang.Long;
+import java.util.Collection;
+import java.lang.Object;
+
+public class NamedTagEventListFluentImpl&lt;A extends NamedTagEventListFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements NamedTagEventListFluent&lt;A&gt;{
+
+    private List&lt;TagEventConditionBuilder&gt; conditions;
+    private List&lt;TagEventBuilder&gt; items;
+    private String tag;
+
+<span class="nc" id="L24">    public NamedTagEventListFluentImpl(){</span>
+<span class="nc" id="L25">    }</span>
+<span class="nc" id="L26">    public NamedTagEventListFluentImpl(NamedTagEventList instance){</span>
+<span class="nc" id="L27">            this.withConditions(instance.getConditions()); </span>
+<span class="nc" id="L28">            this.withItems(instance.getItems()); </span>
+<span class="nc" id="L29">            this.withTag(instance.getTag()); </span>
+<span class="nc" id="L30">    }</span>
+
+    public A addToConditions(int index,TagEventCondition item){
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;TagEventConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L34" title="All 4 branches missed.">            TagEventConditionBuilder builder = new TagEventConditionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.conditions.add(index &gt;= 0 ? index : conditions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToConditions(int index,TagEventCondition item){
+<span class="nc bnc" id="L38" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;TagEventConditionBuilder&gt;();}</span>
+<span class="nc" id="L39">            TagEventConditionBuilder builder = new TagEventConditionBuilder(item);</span>
+<span class="nc bnc" id="L40" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L41" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= conditions.size()) { conditions.add(builder); } else { conditions.set(index, builder);}</span>
+<span class="nc" id="L42">             return (A)this;</span>
+    }
+
+    public A addToConditions(TagEventCondition... items){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;TagEventConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            for (TagEventCondition item : items) {TagEventConditionBuilder builder = new TagEventConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToConditions(Collection&lt;TagEventCondition&gt; items){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;TagEventConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            for (TagEventCondition item : items) {TagEventConditionBuilder builder = new TagEventConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromConditions(TagEventCondition... items){
+<span class="nc bnc" id="L56" title="All 4 branches missed.">            for (TagEventCondition item : items) {TagEventConditionBuilder builder = new TagEventConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromConditions(Collection&lt;TagEventCondition&gt; items){
+<span class="nc bnc" id="L60" title="All 4 branches missed.">            for (TagEventCondition item : items) {TagEventConditionBuilder builder = new TagEventConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildConditions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;TagEventCondition&gt; getConditions(){
+<span class="nc" id="L69">            return build(conditions);</span>
+    }
+
+    public List&lt;TagEventCondition&gt; buildConditions(){
+<span class="nc" id="L73">            return build(conditions);</span>
+    }
+
+    public TagEventCondition buildCondition(int index){
+<span class="nc" id="L77">            return this.conditions.get(index).build();</span>
+    }
+
+    public TagEventCondition buildFirstCondition(){
+<span class="nc" id="L81">            return this.conditions.get(0).build();</span>
+    }
+
+    public TagEventCondition buildLastCondition(){
+<span class="nc" id="L85">            return this.conditions.get(conditions.size() - 1).build();</span>
+    }
+
+    public TagEventCondition buildMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;TagEventConditionBuilder&gt; predicate){
+<span class="nc bnc" id="L89" title="All 4 branches missed.">            for (TagEventConditionBuilder item: conditions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withConditions(List&lt;TagEventCondition&gt; conditions){
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            if (this.conditions != null) { _visitables.removeAll(this.conditions);}</span>
+<span class="nc bnc" id="L94" title="All 4 branches missed.">            if (conditions != null) {this.conditions = new ArrayList&lt;TagEventConditionBuilder&gt;(); for (TagEventCondition item : conditions){this.addToConditions(item);}} else { this.conditions = new ArrayList&lt;TagEventConditionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withConditions(TagEventCondition... conditions){
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            if (this.conditions != null) {this.conditions.clear();}</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            if (conditions != null) {for (TagEventCondition item :conditions){ this.addToConditions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasConditions(){
+<span class="nc bnc" id="L103" title="All 4 branches missed.">            return conditions != null &amp;&amp; !conditions.isEmpty();</span>
+    }
+
+    public NamedTagEventListFluent.ConditionsNested&lt;A&gt; addNewCondition(){
+<span class="nc" id="L107">            return new ConditionsNestedImpl();</span>
+    }
+
+    public NamedTagEventListFluent.ConditionsNested&lt;A&gt; addNewConditionLike(TagEventCondition item){
+<span class="nc" id="L111">            return new ConditionsNestedImpl(-1, item);</span>
+    }
+
+    public NamedTagEventListFluent.ConditionsNested&lt;A&gt; setNewConditionLike(int index,TagEventCondition item){
+<span class="nc" id="L115">            return new ConditionsNestedImpl(index, item);</span>
+    }
+
+    public NamedTagEventListFluent.ConditionsNested&lt;A&gt; editCondition(int index){
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            if (conditions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit conditions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L120">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public NamedTagEventListFluent.ConditionsNested&lt;A&gt; editFirstCondition(){
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            if (conditions.size() == 0) throw new RuntimeException(&quot;Can't edit first conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L125">            return setNewConditionLike(0, buildCondition(0));</span>
+    }
+
+    public NamedTagEventListFluent.ConditionsNested&lt;A&gt; editLastCondition(){
+<span class="nc" id="L129">            int index = conditions.size() - 1;</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L131">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public NamedTagEventListFluent.ConditionsNested&lt;A&gt; editMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;TagEventConditionBuilder&gt; predicate){
+<span class="nc" id="L135">            int index = -1;</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            for (int i=0;i&lt;conditions.size();i++) { </span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            if (predicate.apply(conditions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching conditions. No match found.&quot;);</span>
+<span class="nc" id="L140">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public A addToItems(int index,TagEvent item){
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            if (this.items == null) {this.items = new ArrayList&lt;TagEventBuilder&gt;();}</span>
+<span class="nc bnc" id="L145" title="All 4 branches missed.">            TagEventBuilder builder = new TagEventBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.items.add(index &gt;= 0 ? index : items.size(), builder); return (A)this;</span>
+    }
+
+    public A setToItems(int index,TagEvent item){
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (this.items == null) {this.items = new ArrayList&lt;TagEventBuilder&gt;();}</span>
+<span class="nc" id="L150">            TagEventBuilder builder = new TagEventBuilder(item);</span>
+<span class="nc bnc" id="L151" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L152" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= items.size()) { items.add(builder); } else { items.set(index, builder);}</span>
+<span class="nc" id="L153">             return (A)this;</span>
+    }
+
+    public A addToItems(TagEvent... items){
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            if (this.items == null) {this.items = new ArrayList&lt;TagEventBuilder&gt;();}</span>
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            for (TagEvent item : items) {TagEventBuilder builder = new TagEventBuilder(item);_visitables.add(builder);this.items.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToItems(Collection&lt;TagEvent&gt; items){
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (this.items == null) {this.items = new ArrayList&lt;TagEventBuilder&gt;();}</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            for (TagEvent item : items) {TagEventBuilder builder = new TagEventBuilder(item);_visitables.add(builder);this.items.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromItems(TagEvent... items){
+<span class="nc bnc" id="L167" title="All 4 branches missed.">            for (TagEvent item : items) {TagEventBuilder builder = new TagEventBuilder(item);_visitables.remove(builder);if (this.items != null) {this.items.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromItems(Collection&lt;TagEvent&gt; items){
+<span class="nc bnc" id="L171" title="All 4 branches missed.">            for (TagEvent item : items) {TagEventBuilder builder = new TagEventBuilder(item);_visitables.remove(builder);if (this.items != null) {this.items.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildItems instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;TagEvent&gt; getItems(){
+<span class="nc" id="L180">            return build(items);</span>
+    }
+
+    public List&lt;TagEvent&gt; buildItems(){
+<span class="nc" id="L184">            return build(items);</span>
+    }
+
+    public TagEvent buildItem(int index){
+<span class="nc" id="L188">            return this.items.get(index).build();</span>
+    }
+
+    public TagEvent buildFirstItem(){
+<span class="nc" id="L192">            return this.items.get(0).build();</span>
+    }
+
+    public TagEvent buildLastItem(){
+<span class="nc" id="L196">            return this.items.get(items.size() - 1).build();</span>
+    }
+
+    public TagEvent buildMatchingItem(io.fabric8.kubernetes.api.builder.Predicate&lt;TagEventBuilder&gt; predicate){
+<span class="nc bnc" id="L200" title="All 4 branches missed.">            for (TagEventBuilder item: items) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withItems(List&lt;TagEvent&gt; items){
+<span class="nc bnc" id="L204" title="All 2 branches missed.">            if (this.items != null) { _visitables.removeAll(this.items);}</span>
+<span class="nc bnc" id="L205" title="All 4 branches missed.">            if (items != null) {this.items = new ArrayList&lt;TagEventBuilder&gt;(); for (TagEvent item : items){this.addToItems(item);}} else { this.items = new ArrayList&lt;TagEventBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withItems(TagEvent... items){
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            if (this.items != null) {this.items.clear();}</span>
+<span class="nc bnc" id="L210" title="All 4 branches missed.">            if (items != null) {for (TagEvent item :items){ this.addToItems(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasItems(){
+<span class="nc bnc" id="L214" title="All 4 branches missed.">            return items != null &amp;&amp; !items.isEmpty();</span>
+    }
+
+    public A addNewItem(String created,String dockerImageReference,Long generation,String image){
+<span class="nc" id="L218">            return (A)addToItems(new TagEvent(created, dockerImageReference, generation, image));</span>
+    }
+
+    public NamedTagEventListFluent.ItemsNested&lt;A&gt; addNewItem(){
+<span class="nc" id="L222">            return new ItemsNestedImpl();</span>
+    }
+
+    public NamedTagEventListFluent.ItemsNested&lt;A&gt; addNewItemLike(TagEvent item){
+<span class="nc" id="L226">            return new ItemsNestedImpl(-1, item);</span>
+    }
+
+    public NamedTagEventListFluent.ItemsNested&lt;A&gt; setNewItemLike(int index,TagEvent item){
+<span class="nc" id="L230">            return new ItemsNestedImpl(index, item);</span>
+    }
+
+    public NamedTagEventListFluent.ItemsNested&lt;A&gt; editItem(int index){
+<span class="nc bnc" id="L234" title="All 2 branches missed.">            if (items.size() &lt;= index) throw new RuntimeException(&quot;Can't edit items. Index exceeds size.&quot;);</span>
+<span class="nc" id="L235">            return setNewItemLike(index, buildItem(index));</span>
+    }
+
+    public NamedTagEventListFluent.ItemsNested&lt;A&gt; editFirstItem(){
+<span class="nc bnc" id="L239" title="All 2 branches missed.">            if (items.size() == 0) throw new RuntimeException(&quot;Can't edit first items. The list is empty.&quot;);</span>
+<span class="nc" id="L240">            return setNewItemLike(0, buildItem(0));</span>
+    }
+
+    public NamedTagEventListFluent.ItemsNested&lt;A&gt; editLastItem(){
+<span class="nc" id="L244">            int index = items.size() - 1;</span>
+<span class="nc bnc" id="L245" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last items. The list is empty.&quot;);</span>
+<span class="nc" id="L246">            return setNewItemLike(index, buildItem(index));</span>
+    }
+
+    public NamedTagEventListFluent.ItemsNested&lt;A&gt; editMatchingItem(io.fabric8.kubernetes.api.builder.Predicate&lt;TagEventBuilder&gt; predicate){
+<span class="nc" id="L250">            int index = -1;</span>
+<span class="nc bnc" id="L251" title="All 2 branches missed.">            for (int i=0;i&lt;items.size();i++) { </span>
+<span class="nc bnc" id="L252" title="All 2 branches missed.">            if (predicate.apply(items.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L254" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching items. No match found.&quot;);</span>
+<span class="nc" id="L255">            return setNewItemLike(index, buildItem(index));</span>
+    }
+
+    public String getTag(){
+<span class="nc" id="L259">            return this.tag;</span>
+    }
+
+    public A withTag(String tag){
+<span class="nc" id="L263">            this.tag=tag; return (A) this;</span>
+    }
+
+    public Boolean hasTag(){
+<span class="nc bnc" id="L267" title="All 2 branches missed.">            return this.tag != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L271" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L272" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L273" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L274">            NamedTagEventListFluentImpl that = (NamedTagEventListFluentImpl) o;</span>
+<span class="nc bnc" id="L275" title="All 6 branches missed.">            if (conditions != null ? !conditions.equals(that.conditions) :that.conditions != null) return false;</span>
+<span class="nc bnc" id="L276" title="All 6 branches missed.">            if (items != null ? !items.equals(that.items) :that.items != null) return false;</span>
+<span class="nc bnc" id="L277" title="All 6 branches missed.">            if (tag != null ? !tag.equals(that.tag) :that.tag != null) return false;</span>
+<span class="nc" id="L278">            return true;</span>
+    }
+
+
+    public class ConditionsNestedImpl&lt;N&gt; extends TagEventConditionFluentImpl&lt;NamedTagEventListFluent.ConditionsNested&lt;N&gt;&gt; implements NamedTagEventListFluent.ConditionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TagEventConditionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L287">            ConditionsNestedImpl(int index,TagEventCondition item){</span>
+<span class="nc" id="L288">                    this.index = index;</span>
+<span class="nc" id="L289">                    this.builder = new TagEventConditionBuilder(this, item);</span>
+<span class="nc" id="L290">            }</span>
+<span class="nc" id="L291">            ConditionsNestedImpl(){</span>
+<span class="nc" id="L292">                    this.index = -1;</span>
+<span class="nc" id="L293">                    this.builder = new TagEventConditionBuilder(this);</span>
+<span class="nc" id="L294">            }</span>
+    
+    public N and(){
+<span class="nc" id="L297">            return (N) NamedTagEventListFluentImpl.this.setToConditions(index, builder.build());</span>
+    }
+    public N endCondition(){
+<span class="nc" id="L300">            return and();</span>
+    }
+
+}
+    public class ItemsNestedImpl&lt;N&gt; extends TagEventFluentImpl&lt;NamedTagEventListFluent.ItemsNested&lt;N&gt;&gt; implements NamedTagEventListFluent.ItemsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TagEventBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L309">            ItemsNestedImpl(int index,TagEvent item){</span>
+<span class="nc" id="L310">                    this.index = index;</span>
+<span class="nc" id="L311">                    this.builder = new TagEventBuilder(this, item);</span>
+<span class="nc" id="L312">            }</span>
+<span class="nc" id="L313">            ItemsNestedImpl(){</span>
+<span class="nc" id="L314">                    this.index = -1;</span>
+<span class="nc" id="L315">                    this.builder = new TagEventBuilder(this);</span>
+<span class="nc" id="L316">            }</span>
+    
+    public N and(){
+<span class="nc" id="L319">            return (N) NamedTagEventListFluentImpl.this.setToItems(index, builder.build());</span>
+    }
+    public N endItem(){
+<span class="nc" id="L322">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

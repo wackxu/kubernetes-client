@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EventListFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">EventListFluentImpl.java</span></div><h1>EventListFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class EventListFluentImpl&lt;A extends EventListFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements EventListFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private List&lt;EventBuilder&gt; items;
+    private String kind;
+    private ListMetaBuilder metadata;
+
+<span class="nc" id="L24">    public EventListFluentImpl(){</span>
+<span class="nc" id="L25">    }</span>
+<span class="nc" id="L26">    public EventListFluentImpl(EventList instance){</span>
+<span class="nc" id="L27">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L28">            this.withItems(instance.getItems()); </span>
+<span class="nc" id="L29">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L30">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L31">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L34">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L38">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public A addToItems(int index,Event item){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (this.items == null) {this.items = new ArrayList&lt;EventBuilder&gt;();}</span>
+<span class="nc bnc" id="L47" title="All 4 branches missed.">            EventBuilder builder = new EventBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.items.add(index &gt;= 0 ? index : items.size(), builder); return (A)this;</span>
+    }
+
+    public A setToItems(int index,Event item){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            if (this.items == null) {this.items = new ArrayList&lt;EventBuilder&gt;();}</span>
+<span class="nc" id="L52">            EventBuilder builder = new EventBuilder(item);</span>
+<span class="nc bnc" id="L53" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L54" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= items.size()) { items.add(builder); } else { items.set(index, builder);}</span>
+<span class="nc" id="L55">             return (A)this;</span>
+    }
+
+    public A addToItems(Event... items){
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            if (this.items == null) {this.items = new ArrayList&lt;EventBuilder&gt;();}</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            for (Event item : items) {EventBuilder builder = new EventBuilder(item);_visitables.add(builder);this.items.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToItems(Collection&lt;Event&gt; items){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            if (this.items == null) {this.items = new ArrayList&lt;EventBuilder&gt;();}</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            for (Event item : items) {EventBuilder builder = new EventBuilder(item);_visitables.add(builder);this.items.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromItems(Event... items){
+<span class="nc bnc" id="L69" title="All 4 branches missed.">            for (Event item : items) {EventBuilder builder = new EventBuilder(item);_visitables.remove(builder);if (this.items != null) {this.items.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromItems(Collection&lt;Event&gt; items){
+<span class="nc bnc" id="L73" title="All 4 branches missed.">            for (Event item : items) {EventBuilder builder = new EventBuilder(item);_visitables.remove(builder);if (this.items != null) {this.items.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildItems instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;Event&gt; getItems(){
+<span class="nc" id="L82">            return build(items);</span>
+    }
+
+    public List&lt;Event&gt; buildItems(){
+<span class="nc" id="L86">            return build(items);</span>
+    }
+
+    public Event buildItem(int index){
+<span class="nc" id="L90">            return this.items.get(index).build();</span>
+    }
+
+    public Event buildFirstItem(){
+<span class="nc" id="L94">            return this.items.get(0).build();</span>
+    }
+
+    public Event buildLastItem(){
+<span class="nc" id="L98">            return this.items.get(items.size() - 1).build();</span>
+    }
+
+    public Event buildMatchingItem(io.fabric8.kubernetes.api.builder.Predicate&lt;EventBuilder&gt; predicate){
+<span class="nc bnc" id="L102" title="All 4 branches missed.">            for (EventBuilder item: items) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withItems(List&lt;Event&gt; items){
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            if (this.items != null) { _visitables.removeAll(this.items);}</span>
+<span class="nc bnc" id="L107" title="All 4 branches missed.">            if (items != null) {this.items = new ArrayList&lt;EventBuilder&gt;(); for (Event item : items){this.addToItems(item);}} else { this.items = new ArrayList&lt;EventBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withItems(Event... items){
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            if (this.items != null) {this.items.clear();}</span>
+<span class="nc bnc" id="L112" title="All 4 branches missed.">            if (items != null) {for (Event item :items){ this.addToItems(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasItems(){
+<span class="nc bnc" id="L116" title="All 4 branches missed.">            return items != null &amp;&amp; !items.isEmpty();</span>
+    }
+
+    public EventListFluent.ItemsNested&lt;A&gt; addNewItem(){
+<span class="nc" id="L120">            return new ItemsNestedImpl();</span>
+    }
+
+    public EventListFluent.ItemsNested&lt;A&gt; addNewItemLike(Event item){
+<span class="nc" id="L124">            return new ItemsNestedImpl(-1, item);</span>
+    }
+
+    public EventListFluent.ItemsNested&lt;A&gt; setNewItemLike(int index,Event item){
+<span class="nc" id="L128">            return new ItemsNestedImpl(index, item);</span>
+    }
+
+    public EventListFluent.ItemsNested&lt;A&gt; editItem(int index){
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            if (items.size() &lt;= index) throw new RuntimeException(&quot;Can't edit items. Index exceeds size.&quot;);</span>
+<span class="nc" id="L133">            return setNewItemLike(index, buildItem(index));</span>
+    }
+
+    public EventListFluent.ItemsNested&lt;A&gt; editFirstItem(){
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            if (items.size() == 0) throw new RuntimeException(&quot;Can't edit first items. The list is empty.&quot;);</span>
+<span class="nc" id="L138">            return setNewItemLike(0, buildItem(0));</span>
+    }
+
+    public EventListFluent.ItemsNested&lt;A&gt; editLastItem(){
+<span class="nc" id="L142">            int index = items.size() - 1;</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last items. The list is empty.&quot;);</span>
+<span class="nc" id="L144">            return setNewItemLike(index, buildItem(index));</span>
+    }
+
+    public EventListFluent.ItemsNested&lt;A&gt; editMatchingItem(io.fabric8.kubernetes.api.builder.Predicate&lt;EventBuilder&gt; predicate){
+<span class="nc" id="L148">            int index = -1;</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            for (int i=0;i&lt;items.size();i++) { </span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">            if (predicate.apply(items.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching items. No match found.&quot;);</span>
+<span class="nc" id="L153">            return setNewItemLike(index, buildItem(index));</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L157">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L161">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L165" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ListMeta getMetadata(){
+<span class="nc bnc" id="L174" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ListMeta buildMetadata(){
+<span class="nc bnc" id="L178" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ListMeta metadata){
+<span class="nc" id="L182">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ListMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L187" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public A withNewMetadata(String _continue,String resourceVersion,String selfLink){
+<span class="nc" id="L191">            return (A)withMetadata(new ListMeta(_continue, resourceVersion, selfLink));</span>
+    }
+
+    public EventListFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L195">            return new MetadataNestedImpl();</span>
+    }
+
+    public EventListFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ListMeta item){
+<span class="nc" id="L199">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public EventListFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L203">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public EventListFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L207" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ListMetaBuilder().build());</span>
+    }
+
+    public EventListFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ListMeta item){
+<span class="nc bnc" id="L211" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L215" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L216" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L218">            EventListFluentImpl that = (EventListFluentImpl) o;</span>
+<span class="nc bnc" id="L219" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L220" title="All 6 branches missed.">            if (items != null ? !items.equals(that.items) :that.items != null) return false;</span>
+<span class="nc bnc" id="L221" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L222" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc" id="L223">            return true;</span>
+    }
+
+
+    public class ItemsNestedImpl&lt;N&gt; extends EventFluentImpl&lt;EventListFluent.ItemsNested&lt;N&gt;&gt; implements EventListFluent.ItemsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EventBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L232">            ItemsNestedImpl(int index,Event item){</span>
+<span class="nc" id="L233">                    this.index = index;</span>
+<span class="nc" id="L234">                    this.builder = new EventBuilder(this, item);</span>
+<span class="nc" id="L235">            }</span>
+<span class="nc" id="L236">            ItemsNestedImpl(){</span>
+<span class="nc" id="L237">                    this.index = -1;</span>
+<span class="nc" id="L238">                    this.builder = new EventBuilder(this);</span>
+<span class="nc" id="L239">            }</span>
+    
+    public N and(){
+<span class="nc" id="L242">            return (N) EventListFluentImpl.this.setToItems(index, builder.build());</span>
+    }
+    public N endItem(){
+<span class="nc" id="L245">            return and();</span>
+    }
+
+}
+    public class MetadataNestedImpl&lt;N&gt; extends ListMetaFluentImpl&lt;EventListFluent.MetadataNested&lt;N&gt;&gt; implements EventListFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ListMetaBuilder builder;
+    
+<span class="nc" id="L253">            MetadataNestedImpl(ListMeta item){</span>
+<span class="nc" id="L254">                    this.builder = new ListMetaBuilder(this, item);</span>
+<span class="nc" id="L255">            }</span>
+<span class="nc" id="L256">            MetadataNestedImpl(){</span>
+<span class="nc" id="L257">                    this.builder = new ListMetaBuilder(this);</span>
+<span class="nc" id="L258">            }</span>
+    
+    public N and(){
+<span class="nc" id="L261">            return (N) EventListFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L264">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ObjectMetaBuilder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ObjectMetaBuilder.java</span></div><h1>ObjectMetaBuilder.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import io.fabric8.kubernetes.api.builder.VisitableBuilder;
+import java.lang.Object;
+import java.lang.Boolean;
+import javax.validation.Validator;
+
+public class ObjectMetaBuilder extends ObjectMetaFluentImpl&lt;ObjectMetaBuilder&gt; implements VisitableBuilder&lt;ObjectMeta,ObjectMetaBuilder&gt;{
+
+    ObjectMetaFluent&lt;?&gt; fluent;
+    Boolean validationEnabled;
+    Validator validator;
+
+    public ObjectMetaBuilder(){
+<span class="nc" id="L15">            this(true);</span>
+<span class="nc" id="L16">    }</span>
+    public ObjectMetaBuilder(Boolean validationEnabled){
+<span class="nc" id="L18">            this(new ObjectMeta(), validationEnabled);</span>
+<span class="nc" id="L19">    }</span>
+    public ObjectMetaBuilder(ObjectMetaFluent&lt;?&gt; fluent){
+<span class="fc" id="L21">            this(fluent, true);</span>
+<span class="fc" id="L22">    }</span>
+    public ObjectMetaBuilder(ObjectMetaFluent&lt;?&gt; fluent,Boolean validationEnabled){
+<span class="fc" id="L24">            this(fluent, new ObjectMeta(), validationEnabled);</span>
+<span class="fc" id="L25">    }</span>
+    public ObjectMetaBuilder(ObjectMetaFluent&lt;?&gt; fluent,ObjectMeta instance){
+<span class="nc" id="L27">            this(fluent, instance, true);</span>
+<span class="nc" id="L28">    }</span>
+<span class="fc" id="L29">    public ObjectMetaBuilder(ObjectMetaFluent&lt;?&gt; fluent,ObjectMeta instance,Boolean validationEnabled){</span>
+<span class="fc" id="L30">            this.fluent = fluent; </span>
+<span class="fc" id="L31">            fluent.withAnnotations(instance.getAnnotations()); </span>
+<span class="fc" id="L32">            fluent.withClusterName(instance.getClusterName()); </span>
+<span class="fc" id="L33">            fluent.withCreationTimestamp(instance.getCreationTimestamp()); </span>
+<span class="fc" id="L34">            fluent.withDeletionGracePeriodSeconds(instance.getDeletionGracePeriodSeconds()); </span>
+<span class="fc" id="L35">            fluent.withDeletionTimestamp(instance.getDeletionTimestamp()); </span>
+<span class="fc" id="L36">            fluent.withFinalizers(instance.getFinalizers()); </span>
+<span class="fc" id="L37">            fluent.withGenerateName(instance.getGenerateName()); </span>
+<span class="fc" id="L38">            fluent.withGeneration(instance.getGeneration()); </span>
+<span class="fc" id="L39">            fluent.withInitializers(instance.getInitializers()); </span>
+<span class="fc" id="L40">            fluent.withLabels(instance.getLabels()); </span>
+<span class="fc" id="L41">            fluent.withName(instance.getName()); </span>
+<span class="fc" id="L42">            fluent.withNamespace(instance.getNamespace()); </span>
+<span class="fc" id="L43">            fluent.withOwnerReferences(instance.getOwnerReferences()); </span>
+<span class="fc" id="L44">            fluent.withResourceVersion(instance.getResourceVersion()); </span>
+<span class="fc" id="L45">            fluent.withSelfLink(instance.getSelfLink()); </span>
+<span class="fc" id="L46">            fluent.withUid(instance.getUid()); </span>
+<span class="fc" id="L47">            this.validationEnabled = validationEnabled; </span>
+<span class="fc" id="L48">    }</span>
+    public ObjectMetaBuilder(ObjectMeta instance){
+<span class="fc" id="L50">            this(instance,true);</span>
+<span class="fc" id="L51">    }</span>
+<span class="fc" id="L52">    public ObjectMetaBuilder(ObjectMeta instance,Boolean validationEnabled){</span>
+<span class="fc" id="L53">            this.fluent = this; </span>
+<span class="fc" id="L54">            this.withAnnotations(instance.getAnnotations()); </span>
+<span class="fc" id="L55">            this.withClusterName(instance.getClusterName()); </span>
+<span class="fc" id="L56">            this.withCreationTimestamp(instance.getCreationTimestamp()); </span>
+<span class="fc" id="L57">            this.withDeletionGracePeriodSeconds(instance.getDeletionGracePeriodSeconds()); </span>
+<span class="fc" id="L58">            this.withDeletionTimestamp(instance.getDeletionTimestamp()); </span>
+<span class="fc" id="L59">            this.withFinalizers(instance.getFinalizers()); </span>
+<span class="fc" id="L60">            this.withGenerateName(instance.getGenerateName()); </span>
+<span class="fc" id="L61">            this.withGeneration(instance.getGeneration()); </span>
+<span class="fc" id="L62">            this.withInitializers(instance.getInitializers()); </span>
+<span class="fc" id="L63">            this.withLabels(instance.getLabels()); </span>
+<span class="fc" id="L64">            this.withName(instance.getName()); </span>
+<span class="fc" id="L65">            this.withNamespace(instance.getNamespace()); </span>
+<span class="fc" id="L66">            this.withOwnerReferences(instance.getOwnerReferences()); </span>
+<span class="fc" id="L67">            this.withResourceVersion(instance.getResourceVersion()); </span>
+<span class="fc" id="L68">            this.withSelfLink(instance.getSelfLink()); </span>
+<span class="fc" id="L69">            this.withUid(instance.getUid()); </span>
+<span class="fc" id="L70">            this.validationEnabled = validationEnabled; </span>
+<span class="fc" id="L71">    }</span>
+    public ObjectMetaBuilder(Validator validator){
+<span class="nc" id="L73">            this(new ObjectMeta(), true);</span>
+<span class="nc" id="L74">    }</span>
+<span class="nc" id="L75">    public ObjectMetaBuilder(ObjectMetaFluent&lt;?&gt; fluent,ObjectMeta instance,Validator validator){</span>
+<span class="nc" id="L76">            this.fluent = fluent; </span>
+<span class="nc" id="L77">            fluent.withAnnotations(instance.getAnnotations()); </span>
+<span class="nc" id="L78">            fluent.withClusterName(instance.getClusterName()); </span>
+<span class="nc" id="L79">            fluent.withCreationTimestamp(instance.getCreationTimestamp()); </span>
+<span class="nc" id="L80">            fluent.withDeletionGracePeriodSeconds(instance.getDeletionGracePeriodSeconds()); </span>
+<span class="nc" id="L81">            fluent.withDeletionTimestamp(instance.getDeletionTimestamp()); </span>
+<span class="nc" id="L82">            fluent.withFinalizers(instance.getFinalizers()); </span>
+<span class="nc" id="L83">            fluent.withGenerateName(instance.getGenerateName()); </span>
+<span class="nc" id="L84">            fluent.withGeneration(instance.getGeneration()); </span>
+<span class="nc" id="L85">            fluent.withInitializers(instance.getInitializers()); </span>
+<span class="nc" id="L86">            fluent.withLabels(instance.getLabels()); </span>
+<span class="nc" id="L87">            fluent.withName(instance.getName()); </span>
+<span class="nc" id="L88">            fluent.withNamespace(instance.getNamespace()); </span>
+<span class="nc" id="L89">            fluent.withOwnerReferences(instance.getOwnerReferences()); </span>
+<span class="nc" id="L90">            fluent.withResourceVersion(instance.getResourceVersion()); </span>
+<span class="nc" id="L91">            fluent.withSelfLink(instance.getSelfLink()); </span>
+<span class="nc" id="L92">            fluent.withUid(instance.getUid()); </span>
+<span class="nc" id="L93">            this.validator = validator;</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            this.validationEnabled = validator != null; </span>
+<span class="nc" id="L95">    }</span>
+<span class="nc" id="L96">    public ObjectMetaBuilder(ObjectMeta instance,Validator validator){</span>
+<span class="nc" id="L97">            this.fluent = this; </span>
+<span class="nc" id="L98">            this.withAnnotations(instance.getAnnotations()); </span>
+<span class="nc" id="L99">            this.withClusterName(instance.getClusterName()); </span>
+<span class="nc" id="L100">            this.withCreationTimestamp(instance.getCreationTimestamp()); </span>
+<span class="nc" id="L101">            this.withDeletionGracePeriodSeconds(instance.getDeletionGracePeriodSeconds()); </span>
+<span class="nc" id="L102">            this.withDeletionTimestamp(instance.getDeletionTimestamp()); </span>
+<span class="nc" id="L103">            this.withFinalizers(instance.getFinalizers()); </span>
+<span class="nc" id="L104">            this.withGenerateName(instance.getGenerateName()); </span>
+<span class="nc" id="L105">            this.withGeneration(instance.getGeneration()); </span>
+<span class="nc" id="L106">            this.withInitializers(instance.getInitializers()); </span>
+<span class="nc" id="L107">            this.withLabels(instance.getLabels()); </span>
+<span class="nc" id="L108">            this.withName(instance.getName()); </span>
+<span class="nc" id="L109">            this.withNamespace(instance.getNamespace()); </span>
+<span class="nc" id="L110">            this.withOwnerReferences(instance.getOwnerReferences()); </span>
+<span class="nc" id="L111">            this.withResourceVersion(instance.getResourceVersion()); </span>
+<span class="nc" id="L112">            this.withSelfLink(instance.getSelfLink()); </span>
+<span class="nc" id="L113">            this.withUid(instance.getUid()); </span>
+<span class="nc" id="L114">            this.validator = validator; </span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            this.validationEnabled = validator != null; </span>
+<span class="nc" id="L116">    }</span>
+
+    public ObjectMeta build(){
+<span class="fc" id="L119">            ObjectMeta buildable = new ObjectMeta(fluent.getAnnotations(),fluent.getClusterName(),fluent.getCreationTimestamp(),fluent.getDeletionGracePeriodSeconds(),fluent.getDeletionTimestamp(),fluent.getFinalizers(),fluent.getGenerateName(),fluent.getGeneration(),fluent.getInitializers(),fluent.getLabels(),fluent.getName(),fluent.getNamespace(),fluent.getOwnerReferences(),fluent.getResourceVersion(),fluent.getSelfLink(),fluent.getUid());</span>
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">            if (validationEnabled) {io.fabric8.kubernetes.api.builder.ValidationUtils.validate(buildable, validator);}</span>
+<span class="fc" id="L121">            return buildable;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L126" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L128">            ObjectMetaBuilder that = (ObjectMetaBuilder) o;</span>
+<span class="nc bnc" id="L129" title="All 10 branches missed.">            if (fluent != null &amp;&amp;fluent != this ? !fluent.equals(that.fluent) :that.fluent != null &amp;&amp;fluent != this ) return false;</span>
+
+<span class="nc bnc" id="L131" title="All 6 branches missed.">            if (validationEnabled != null ? !validationEnabled.equals(that.validationEnabled) :that.validationEnabled != null) return false;</span>
+<span class="nc" id="L132">            return true;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

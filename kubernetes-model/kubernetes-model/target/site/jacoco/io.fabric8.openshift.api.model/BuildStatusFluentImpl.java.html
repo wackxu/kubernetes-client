@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuildStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">BuildStatusFluentImpl.java</span></div><h1>BuildStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectReferenceFluentImpl;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.ObjectReferenceBuilder;
+import java.lang.Long;
+import java.util.Collection;
+import java.lang.Object;
+
+public class BuildStatusFluentImpl&lt;A extends BuildStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements BuildStatusFluent&lt;A&gt;{
+
+    private Boolean cancelled;
+    private String completionTimestamp;
+    private ObjectReferenceBuilder config;
+    private Long duration;
+    private String logSnippet;
+    private String message;
+    private BuildStatusOutputBuilder output;
+    private String outputDockerImageReference;
+    private String phase;
+    private String reason;
+    private List&lt;StageInfoBuilder&gt; stages;
+    private String startTimestamp;
+
+<span class="nc" id="L36">    public BuildStatusFluentImpl(){</span>
+<span class="nc" id="L37">    }</span>
+<span class="nc" id="L38">    public BuildStatusFluentImpl(BuildStatus instance){</span>
+<span class="nc" id="L39">            this.withCancelled(instance.getCancelled()); </span>
+<span class="nc" id="L40">            this.withCompletionTimestamp(instance.getCompletionTimestamp()); </span>
+<span class="nc" id="L41">            this.withConfig(instance.getConfig()); </span>
+<span class="nc" id="L42">            this.withDuration(instance.getDuration()); </span>
+<span class="nc" id="L43">            this.withLogSnippet(instance.getLogSnippet()); </span>
+<span class="nc" id="L44">            this.withMessage(instance.getMessage()); </span>
+<span class="nc" id="L45">            this.withOutput(instance.getOutput()); </span>
+<span class="nc" id="L46">            this.withOutputDockerImageReference(instance.getOutputDockerImageReference()); </span>
+<span class="nc" id="L47">            this.withPhase(instance.getPhase()); </span>
+<span class="nc" id="L48">            this.withReason(instance.getReason()); </span>
+<span class="nc" id="L49">            this.withStages(instance.getStages()); </span>
+<span class="nc" id="L50">            this.withStartTimestamp(instance.getStartTimestamp()); </span>
+<span class="nc" id="L51">    }</span>
+
+    public Boolean isCancelled(){
+<span class="nc" id="L54">            return this.cancelled;</span>
+    }
+
+    public A withCancelled(Boolean cancelled){
+<span class="nc" id="L58">            this.cancelled=cancelled; return (A) this;</span>
+    }
+
+    public Boolean hasCancelled(){
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            return this.cancelled != null;</span>
+    }
+
+    public A withNewCancelled(String arg1){
+<span class="nc" id="L66">            return (A)withCancelled(new Boolean(arg1));</span>
+    }
+
+    public A withNewCancelled(boolean arg1){
+<span class="nc" id="L70">            return (A)withCancelled(new Boolean(arg1));</span>
+    }
+
+    public String getCompletionTimestamp(){
+<span class="nc" id="L74">            return this.completionTimestamp;</span>
+    }
+
+    public A withCompletionTimestamp(String completionTimestamp){
+<span class="nc" id="L78">            this.completionTimestamp=completionTimestamp; return (A) this;</span>
+    }
+
+    public Boolean hasCompletionTimestamp(){
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            return this.completionTimestamp != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildConfig instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getConfig(){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            return this.config!=null?this.config.build():null;</span>
+    }
+
+    public ObjectReference buildConfig(){
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            return this.config!=null?this.config.build():null;</span>
+    }
+
+    public A withConfig(ObjectReference config){
+<span class="nc" id="L99">            _visitables.remove(this.config);</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            if (config!=null){ this.config= new ObjectReferenceBuilder(config); _visitables.add(this.config);} return (A) this;</span>
+    }
+
+    public Boolean hasConfig(){
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            return this.config != null;</span>
+    }
+
+    public BuildStatusFluent.ConfigNested&lt;A&gt; withNewConfig(){
+<span class="nc" id="L108">            return new ConfigNestedImpl();</span>
+    }
+
+    public BuildStatusFluent.ConfigNested&lt;A&gt; withNewConfigLike(ObjectReference item){
+<span class="nc" id="L112">            return new ConfigNestedImpl(item);</span>
+    }
+
+    public BuildStatusFluent.ConfigNested&lt;A&gt; editConfig(){
+<span class="nc" id="L116">            return withNewConfigLike(getConfig());</span>
+    }
+
+    public BuildStatusFluent.ConfigNested&lt;A&gt; editOrNewConfig(){
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            return withNewConfigLike(getConfig() != null ? getConfig(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public BuildStatusFluent.ConfigNested&lt;A&gt; editOrNewConfigLike(ObjectReference item){
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            return withNewConfigLike(getConfig() != null ? getConfig(): item);</span>
+    }
+
+    public Long getDuration(){
+<span class="nc" id="L128">            return this.duration;</span>
+    }
+
+    public A withDuration(Long duration){
+<span class="nc" id="L132">            this.duration=duration; return (A) this;</span>
+    }
+
+    public Boolean hasDuration(){
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            return this.duration != null;</span>
+    }
+
+    public A withNewDuration(String arg1){
+<span class="nc" id="L140">            return (A)withDuration(new Long(arg1));</span>
+    }
+
+    public A withNewDuration(long arg1){
+<span class="nc" id="L144">            return (A)withDuration(new Long(arg1));</span>
+    }
+
+    public String getLogSnippet(){
+<span class="nc" id="L148">            return this.logSnippet;</span>
+    }
+
+    public A withLogSnippet(String logSnippet){
+<span class="nc" id="L152">            this.logSnippet=logSnippet; return (A) this;</span>
+    }
+
+    public Boolean hasLogSnippet(){
+<span class="nc bnc" id="L156" title="All 2 branches missed.">            return this.logSnippet != null;</span>
+    }
+
+    public String getMessage(){
+<span class="nc" id="L160">            return this.message;</span>
+    }
+
+    public A withMessage(String message){
+<span class="nc" id="L164">            this.message=message; return (A) this;</span>
+    }
+
+    public Boolean hasMessage(){
+<span class="nc bnc" id="L168" title="All 2 branches missed.">            return this.message != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildOutput instead.
+ * @return The buildable object.
+ */
+@Deprecated public BuildStatusOutput getOutput(){
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            return this.output!=null?this.output.build():null;</span>
+    }
+
+    public BuildStatusOutput buildOutput(){
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            return this.output!=null?this.output.build():null;</span>
+    }
+
+    public A withOutput(BuildStatusOutput output){
+<span class="nc" id="L185">            _visitables.remove(this.output);</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">            if (output!=null){ this.output= new BuildStatusOutputBuilder(output); _visitables.add(this.output);} return (A) this;</span>
+    }
+
+    public Boolean hasOutput(){
+<span class="nc bnc" id="L190" title="All 2 branches missed.">            return this.output != null;</span>
+    }
+
+    public BuildStatusFluent.OutputNested&lt;A&gt; withNewOutput(){
+<span class="nc" id="L194">            return new OutputNestedImpl();</span>
+    }
+
+    public BuildStatusFluent.OutputNested&lt;A&gt; withNewOutputLike(BuildStatusOutput item){
+<span class="nc" id="L198">            return new OutputNestedImpl(item);</span>
+    }
+
+    public BuildStatusFluent.OutputNested&lt;A&gt; editOutput(){
+<span class="nc" id="L202">            return withNewOutputLike(getOutput());</span>
+    }
+
+    public BuildStatusFluent.OutputNested&lt;A&gt; editOrNewOutput(){
+<span class="nc bnc" id="L206" title="All 2 branches missed.">            return withNewOutputLike(getOutput() != null ? getOutput(): new BuildStatusOutputBuilder().build());</span>
+    }
+
+    public BuildStatusFluent.OutputNested&lt;A&gt; editOrNewOutputLike(BuildStatusOutput item){
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            return withNewOutputLike(getOutput() != null ? getOutput(): item);</span>
+    }
+
+    public String getOutputDockerImageReference(){
+<span class="nc" id="L214">            return this.outputDockerImageReference;</span>
+    }
+
+    public A withOutputDockerImageReference(String outputDockerImageReference){
+<span class="nc" id="L218">            this.outputDockerImageReference=outputDockerImageReference; return (A) this;</span>
+    }
+
+    public Boolean hasOutputDockerImageReference(){
+<span class="nc bnc" id="L222" title="All 2 branches missed.">            return this.outputDockerImageReference != null;</span>
+    }
+
+    public String getPhase(){
+<span class="nc" id="L226">            return this.phase;</span>
+    }
+
+    public A withPhase(String phase){
+<span class="nc" id="L230">            this.phase=phase; return (A) this;</span>
+    }
+
+    public Boolean hasPhase(){
+<span class="nc bnc" id="L234" title="All 2 branches missed.">            return this.phase != null;</span>
+    }
+
+    public String getReason(){
+<span class="nc" id="L238">            return this.reason;</span>
+    }
+
+    public A withReason(String reason){
+<span class="nc" id="L242">            this.reason=reason; return (A) this;</span>
+    }
+
+    public Boolean hasReason(){
+<span class="nc bnc" id="L246" title="All 2 branches missed.">            return this.reason != null;</span>
+    }
+
+    public A addToStages(int index,StageInfo item){
+<span class="nc bnc" id="L250" title="All 2 branches missed.">            if (this.stages == null) {this.stages = new ArrayList&lt;StageInfoBuilder&gt;();}</span>
+<span class="nc bnc" id="L251" title="All 4 branches missed.">            StageInfoBuilder builder = new StageInfoBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.stages.add(index &gt;= 0 ? index : stages.size(), builder); return (A)this;</span>
+    }
+
+    public A setToStages(int index,StageInfo item){
+<span class="nc bnc" id="L255" title="All 2 branches missed.">            if (this.stages == null) {this.stages = new ArrayList&lt;StageInfoBuilder&gt;();}</span>
+<span class="nc" id="L256">            StageInfoBuilder builder = new StageInfoBuilder(item);</span>
+<span class="nc bnc" id="L257" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L258" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= stages.size()) { stages.add(builder); } else { stages.set(index, builder);}</span>
+<span class="nc" id="L259">             return (A)this;</span>
+    }
+
+    public A addToStages(StageInfo... items){
+<span class="nc bnc" id="L263" title="All 2 branches missed.">            if (this.stages == null) {this.stages = new ArrayList&lt;StageInfoBuilder&gt;();}</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">            for (StageInfo item : items) {StageInfoBuilder builder = new StageInfoBuilder(item);_visitables.add(builder);this.stages.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToStages(Collection&lt;StageInfo&gt; items){
+<span class="nc bnc" id="L268" title="All 2 branches missed.">            if (this.stages == null) {this.stages = new ArrayList&lt;StageInfoBuilder&gt;();}</span>
+<span class="nc bnc" id="L269" title="All 2 branches missed.">            for (StageInfo item : items) {StageInfoBuilder builder = new StageInfoBuilder(item);_visitables.add(builder);this.stages.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromStages(StageInfo... items){
+<span class="nc bnc" id="L273" title="All 4 branches missed.">            for (StageInfo item : items) {StageInfoBuilder builder = new StageInfoBuilder(item);_visitables.remove(builder);if (this.stages != null) {this.stages.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromStages(Collection&lt;StageInfo&gt; items){
+<span class="nc bnc" id="L277" title="All 4 branches missed.">            for (StageInfo item : items) {StageInfoBuilder builder = new StageInfoBuilder(item);_visitables.remove(builder);if (this.stages != null) {this.stages.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildStages instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;StageInfo&gt; getStages(){
+<span class="nc" id="L286">            return build(stages);</span>
+    }
+
+    public List&lt;StageInfo&gt; buildStages(){
+<span class="nc" id="L290">            return build(stages);</span>
+    }
+
+    public StageInfo buildStage(int index){
+<span class="nc" id="L294">            return this.stages.get(index).build();</span>
+    }
+
+    public StageInfo buildFirstStage(){
+<span class="nc" id="L298">            return this.stages.get(0).build();</span>
+    }
+
+    public StageInfo buildLastStage(){
+<span class="nc" id="L302">            return this.stages.get(stages.size() - 1).build();</span>
+    }
+
+    public StageInfo buildMatchingStage(io.fabric8.kubernetes.api.builder.Predicate&lt;StageInfoBuilder&gt; predicate){
+<span class="nc bnc" id="L306" title="All 4 branches missed.">            for (StageInfoBuilder item: stages) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withStages(List&lt;StageInfo&gt; stages){
+<span class="nc bnc" id="L310" title="All 2 branches missed.">            if (this.stages != null) { _visitables.removeAll(this.stages);}</span>
+<span class="nc bnc" id="L311" title="All 4 branches missed.">            if (stages != null) {this.stages = new ArrayList&lt;StageInfoBuilder&gt;(); for (StageInfo item : stages){this.addToStages(item);}} else { this.stages = new ArrayList&lt;StageInfoBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withStages(StageInfo... stages){
+<span class="nc bnc" id="L315" title="All 2 branches missed.">            if (this.stages != null) {this.stages.clear();}</span>
+<span class="nc bnc" id="L316" title="All 4 branches missed.">            if (stages != null) {for (StageInfo item :stages){ this.addToStages(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasStages(){
+<span class="nc bnc" id="L320" title="All 4 branches missed.">            return stages != null &amp;&amp; !stages.isEmpty();</span>
+    }
+
+    public BuildStatusFluent.StagesNested&lt;A&gt; addNewStage(){
+<span class="nc" id="L324">            return new StagesNestedImpl();</span>
+    }
+
+    public BuildStatusFluent.StagesNested&lt;A&gt; addNewStageLike(StageInfo item){
+<span class="nc" id="L328">            return new StagesNestedImpl(-1, item);</span>
+    }
+
+    public BuildStatusFluent.StagesNested&lt;A&gt; setNewStageLike(int index,StageInfo item){
+<span class="nc" id="L332">            return new StagesNestedImpl(index, item);</span>
+    }
+
+    public BuildStatusFluent.StagesNested&lt;A&gt; editStage(int index){
+<span class="nc bnc" id="L336" title="All 2 branches missed.">            if (stages.size() &lt;= index) throw new RuntimeException(&quot;Can't edit stages. Index exceeds size.&quot;);</span>
+<span class="nc" id="L337">            return setNewStageLike(index, buildStage(index));</span>
+    }
+
+    public BuildStatusFluent.StagesNested&lt;A&gt; editFirstStage(){
+<span class="nc bnc" id="L341" title="All 2 branches missed.">            if (stages.size() == 0) throw new RuntimeException(&quot;Can't edit first stages. The list is empty.&quot;);</span>
+<span class="nc" id="L342">            return setNewStageLike(0, buildStage(0));</span>
+    }
+
+    public BuildStatusFluent.StagesNested&lt;A&gt; editLastStage(){
+<span class="nc" id="L346">            int index = stages.size() - 1;</span>
+<span class="nc bnc" id="L347" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last stages. The list is empty.&quot;);</span>
+<span class="nc" id="L348">            return setNewStageLike(index, buildStage(index));</span>
+    }
+
+    public BuildStatusFluent.StagesNested&lt;A&gt; editMatchingStage(io.fabric8.kubernetes.api.builder.Predicate&lt;StageInfoBuilder&gt; predicate){
+<span class="nc" id="L352">            int index = -1;</span>
+<span class="nc bnc" id="L353" title="All 2 branches missed.">            for (int i=0;i&lt;stages.size();i++) { </span>
+<span class="nc bnc" id="L354" title="All 2 branches missed.">            if (predicate.apply(stages.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L356" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching stages. No match found.&quot;);</span>
+<span class="nc" id="L357">            return setNewStageLike(index, buildStage(index));</span>
+    }
+
+    public String getStartTimestamp(){
+<span class="nc" id="L361">            return this.startTimestamp;</span>
+    }
+
+    public A withStartTimestamp(String startTimestamp){
+<span class="nc" id="L365">            this.startTimestamp=startTimestamp; return (A) this;</span>
+    }
+
+    public Boolean hasStartTimestamp(){
+<span class="nc bnc" id="L369" title="All 2 branches missed.">            return this.startTimestamp != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L373" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L374" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L375" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L376">            BuildStatusFluentImpl that = (BuildStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L377" title="All 6 branches missed.">            if (cancelled != null ? !cancelled.equals(that.cancelled) :that.cancelled != null) return false;</span>
+<span class="nc bnc" id="L378" title="All 6 branches missed.">            if (completionTimestamp != null ? !completionTimestamp.equals(that.completionTimestamp) :that.completionTimestamp != null) return false;</span>
+<span class="nc bnc" id="L379" title="All 6 branches missed.">            if (config != null ? !config.equals(that.config) :that.config != null) return false;</span>
+<span class="nc bnc" id="L380" title="All 6 branches missed.">            if (duration != null ? !duration.equals(that.duration) :that.duration != null) return false;</span>
+<span class="nc bnc" id="L381" title="All 6 branches missed.">            if (logSnippet != null ? !logSnippet.equals(that.logSnippet) :that.logSnippet != null) return false;</span>
+<span class="nc bnc" id="L382" title="All 6 branches missed.">            if (message != null ? !message.equals(that.message) :that.message != null) return false;</span>
+<span class="nc bnc" id="L383" title="All 6 branches missed.">            if (output != null ? !output.equals(that.output) :that.output != null) return false;</span>
+<span class="nc bnc" id="L384" title="All 6 branches missed.">            if (outputDockerImageReference != null ? !outputDockerImageReference.equals(that.outputDockerImageReference) :that.outputDockerImageReference != null) return false;</span>
+<span class="nc bnc" id="L385" title="All 6 branches missed.">            if (phase != null ? !phase.equals(that.phase) :that.phase != null) return false;</span>
+<span class="nc bnc" id="L386" title="All 6 branches missed.">            if (reason != null ? !reason.equals(that.reason) :that.reason != null) return false;</span>
+<span class="nc bnc" id="L387" title="All 6 branches missed.">            if (stages != null ? !stages.equals(that.stages) :that.stages != null) return false;</span>
+<span class="nc bnc" id="L388" title="All 6 branches missed.">            if (startTimestamp != null ? !startTimestamp.equals(that.startTimestamp) :that.startTimestamp != null) return false;</span>
+<span class="nc" id="L389">            return true;</span>
+    }
+
+
+    public class ConfigNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;BuildStatusFluent.ConfigNested&lt;N&gt;&gt; implements BuildStatusFluent.ConfigNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L397">            ConfigNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L398">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L399">            }</span>
+<span class="nc" id="L400">            ConfigNestedImpl(){</span>
+<span class="nc" id="L401">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L402">            }</span>
+    
+    public N and(){
+<span class="nc" id="L405">            return (N) BuildStatusFluentImpl.this.withConfig(builder.build());</span>
+    }
+    public N endConfig(){
+<span class="nc" id="L408">            return and();</span>
+    }
+
+}
+    public class OutputNestedImpl&lt;N&gt; extends BuildStatusOutputFluentImpl&lt;BuildStatusFluent.OutputNested&lt;N&gt;&gt; implements BuildStatusFluent.OutputNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BuildStatusOutputBuilder builder;
+    
+<span class="nc" id="L416">            OutputNestedImpl(BuildStatusOutput item){</span>
+<span class="nc" id="L417">                    this.builder = new BuildStatusOutputBuilder(this, item);</span>
+<span class="nc" id="L418">            }</span>
+<span class="nc" id="L419">            OutputNestedImpl(){</span>
+<span class="nc" id="L420">                    this.builder = new BuildStatusOutputBuilder(this);</span>
+<span class="nc" id="L421">            }</span>
+    
+    public N and(){
+<span class="nc" id="L424">            return (N) BuildStatusFluentImpl.this.withOutput(builder.build());</span>
+    }
+    public N endOutput(){
+<span class="nc" id="L427">            return and();</span>
+    }
+
+}
+    public class StagesNestedImpl&lt;N&gt; extends StageInfoFluentImpl&lt;BuildStatusFluent.StagesNested&lt;N&gt;&gt; implements BuildStatusFluent.StagesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final StageInfoBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L436">            StagesNestedImpl(int index,StageInfo item){</span>
+<span class="nc" id="L437">                    this.index = index;</span>
+<span class="nc" id="L438">                    this.builder = new StageInfoBuilder(this, item);</span>
+<span class="nc" id="L439">            }</span>
+<span class="nc" id="L440">            StagesNestedImpl(){</span>
+<span class="nc" id="L441">                    this.index = -1;</span>
+<span class="nc" id="L442">                    this.builder = new StageInfoBuilder(this);</span>
+<span class="nc" id="L443">            }</span>
+    
+    public N and(){
+<span class="nc" id="L446">            return (N) BuildStatusFluentImpl.this.setToStages(index, builder.build());</span>
+    }
+    public N endStage(){
+<span class="nc" id="L449">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

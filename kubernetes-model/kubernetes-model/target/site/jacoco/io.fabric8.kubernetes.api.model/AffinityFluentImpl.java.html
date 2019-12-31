@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AffinityFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">AffinityFluentImpl.java</span></div><h1>AffinityFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.lang.Object;
+
+public class AffinityFluentImpl&lt;A extends AffinityFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements AffinityFluent&lt;A&gt;{
+
+    private NodeAffinityBuilder nodeAffinity;
+    private PodAffinityBuilder podAffinity;
+    private PodAntiAffinityBuilder podAntiAffinity;
+
+<span class="nc" id="L17">    public AffinityFluentImpl(){</span>
+<span class="nc" id="L18">    }</span>
+<span class="nc" id="L19">    public AffinityFluentImpl(Affinity instance){</span>
+<span class="nc" id="L20">            this.withNodeAffinity(instance.getNodeAffinity()); </span>
+<span class="nc" id="L21">            this.withPodAffinity(instance.getPodAffinity()); </span>
+<span class="nc" id="L22">            this.withPodAntiAffinity(instance.getPodAntiAffinity()); </span>
+<span class="nc" id="L23">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildNodeAffinity instead.
+ * @return The buildable object.
+ */
+@Deprecated public NodeAffinity getNodeAffinity(){
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            return this.nodeAffinity!=null?this.nodeAffinity.build():null;</span>
+    }
+
+    public NodeAffinity buildNodeAffinity(){
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            return this.nodeAffinity!=null?this.nodeAffinity.build():null;</span>
+    }
+
+    public A withNodeAffinity(NodeAffinity nodeAffinity){
+<span class="nc" id="L39">            _visitables.remove(this.nodeAffinity);</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            if (nodeAffinity!=null){ this.nodeAffinity= new NodeAffinityBuilder(nodeAffinity); _visitables.add(this.nodeAffinity);} return (A) this;</span>
+    }
+
+    public Boolean hasNodeAffinity(){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            return this.nodeAffinity != null;</span>
+    }
+
+    public AffinityFluent.NodeAffinityNested&lt;A&gt; withNewNodeAffinity(){
+<span class="nc" id="L48">            return new NodeAffinityNestedImpl();</span>
+    }
+
+    public AffinityFluent.NodeAffinityNested&lt;A&gt; withNewNodeAffinityLike(NodeAffinity item){
+<span class="nc" id="L52">            return new NodeAffinityNestedImpl(item);</span>
+    }
+
+    public AffinityFluent.NodeAffinityNested&lt;A&gt; editNodeAffinity(){
+<span class="nc" id="L56">            return withNewNodeAffinityLike(getNodeAffinity());</span>
+    }
+
+    public AffinityFluent.NodeAffinityNested&lt;A&gt; editOrNewNodeAffinity(){
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            return withNewNodeAffinityLike(getNodeAffinity() != null ? getNodeAffinity(): new NodeAffinityBuilder().build());</span>
+    }
+
+    public AffinityFluent.NodeAffinityNested&lt;A&gt; editOrNewNodeAffinityLike(NodeAffinity item){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            return withNewNodeAffinityLike(getNodeAffinity() != null ? getNodeAffinity(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPodAffinity instead.
+ * @return The buildable object.
+ */
+@Deprecated public PodAffinity getPodAffinity(){
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            return this.podAffinity!=null?this.podAffinity.build():null;</span>
+    }
+
+    public PodAffinity buildPodAffinity(){
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            return this.podAffinity!=null?this.podAffinity.build():null;</span>
+    }
+
+    public A withPodAffinity(PodAffinity podAffinity){
+<span class="nc" id="L81">            _visitables.remove(this.podAffinity);</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            if (podAffinity!=null){ this.podAffinity= new PodAffinityBuilder(podAffinity); _visitables.add(this.podAffinity);} return (A) this;</span>
+    }
+
+    public Boolean hasPodAffinity(){
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            return this.podAffinity != null;</span>
+    }
+
+    public AffinityFluent.PodAffinityNested&lt;A&gt; withNewPodAffinity(){
+<span class="nc" id="L90">            return new PodAffinityNestedImpl();</span>
+    }
+
+    public AffinityFluent.PodAffinityNested&lt;A&gt; withNewPodAffinityLike(PodAffinity item){
+<span class="nc" id="L94">            return new PodAffinityNestedImpl(item);</span>
+    }
+
+    public AffinityFluent.PodAffinityNested&lt;A&gt; editPodAffinity(){
+<span class="nc" id="L98">            return withNewPodAffinityLike(getPodAffinity());</span>
+    }
+
+    public AffinityFluent.PodAffinityNested&lt;A&gt; editOrNewPodAffinity(){
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            return withNewPodAffinityLike(getPodAffinity() != null ? getPodAffinity(): new PodAffinityBuilder().build());</span>
+    }
+
+    public AffinityFluent.PodAffinityNested&lt;A&gt; editOrNewPodAffinityLike(PodAffinity item){
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            return withNewPodAffinityLike(getPodAffinity() != null ? getPodAffinity(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPodAntiAffinity instead.
+ * @return The buildable object.
+ */
+@Deprecated public PodAntiAffinity getPodAntiAffinity(){
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            return this.podAntiAffinity!=null?this.podAntiAffinity.build():null;</span>
+    }
+
+    public PodAntiAffinity buildPodAntiAffinity(){
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            return this.podAntiAffinity!=null?this.podAntiAffinity.build():null;</span>
+    }
+
+    public A withPodAntiAffinity(PodAntiAffinity podAntiAffinity){
+<span class="nc" id="L123">            _visitables.remove(this.podAntiAffinity);</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            if (podAntiAffinity!=null){ this.podAntiAffinity= new PodAntiAffinityBuilder(podAntiAffinity); _visitables.add(this.podAntiAffinity);} return (A) this;</span>
+    }
+
+    public Boolean hasPodAntiAffinity(){
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            return this.podAntiAffinity != null;</span>
+    }
+
+    public AffinityFluent.PodAntiAffinityNested&lt;A&gt; withNewPodAntiAffinity(){
+<span class="nc" id="L132">            return new PodAntiAffinityNestedImpl();</span>
+    }
+
+    public AffinityFluent.PodAntiAffinityNested&lt;A&gt; withNewPodAntiAffinityLike(PodAntiAffinity item){
+<span class="nc" id="L136">            return new PodAntiAffinityNestedImpl(item);</span>
+    }
+
+    public AffinityFluent.PodAntiAffinityNested&lt;A&gt; editPodAntiAffinity(){
+<span class="nc" id="L140">            return withNewPodAntiAffinityLike(getPodAntiAffinity());</span>
+    }
+
+    public AffinityFluent.PodAntiAffinityNested&lt;A&gt; editOrNewPodAntiAffinity(){
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            return withNewPodAntiAffinityLike(getPodAntiAffinity() != null ? getPodAntiAffinity(): new PodAntiAffinityBuilder().build());</span>
+    }
+
+    public AffinityFluent.PodAntiAffinityNested&lt;A&gt; editOrNewPodAntiAffinityLike(PodAntiAffinity item){
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            return withNewPodAntiAffinityLike(getPodAntiAffinity() != null ? getPodAntiAffinity(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L153" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L155">            AffinityFluentImpl that = (AffinityFluentImpl) o;</span>
+<span class="nc bnc" id="L156" title="All 6 branches missed.">            if (nodeAffinity != null ? !nodeAffinity.equals(that.nodeAffinity) :that.nodeAffinity != null) return false;</span>
+<span class="nc bnc" id="L157" title="All 6 branches missed.">            if (podAffinity != null ? !podAffinity.equals(that.podAffinity) :that.podAffinity != null) return false;</span>
+<span class="nc bnc" id="L158" title="All 6 branches missed.">            if (podAntiAffinity != null ? !podAntiAffinity.equals(that.podAntiAffinity) :that.podAntiAffinity != null) return false;</span>
+<span class="nc" id="L159">            return true;</span>
+    }
+
+
+    public class NodeAffinityNestedImpl&lt;N&gt; extends NodeAffinityFluentImpl&lt;AffinityFluent.NodeAffinityNested&lt;N&gt;&gt; implements AffinityFluent.NodeAffinityNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NodeAffinityBuilder builder;
+    
+<span class="nc" id="L167">            NodeAffinityNestedImpl(NodeAffinity item){</span>
+<span class="nc" id="L168">                    this.builder = new NodeAffinityBuilder(this, item);</span>
+<span class="nc" id="L169">            }</span>
+<span class="nc" id="L170">            NodeAffinityNestedImpl(){</span>
+<span class="nc" id="L171">                    this.builder = new NodeAffinityBuilder(this);</span>
+<span class="nc" id="L172">            }</span>
+    
+    public N and(){
+<span class="nc" id="L175">            return (N) AffinityFluentImpl.this.withNodeAffinity(builder.build());</span>
+    }
+    public N endNodeAffinity(){
+<span class="nc" id="L178">            return and();</span>
+    }
+
+}
+    public class PodAffinityNestedImpl&lt;N&gt; extends PodAffinityFluentImpl&lt;AffinityFluent.PodAffinityNested&lt;N&gt;&gt; implements AffinityFluent.PodAffinityNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodAffinityBuilder builder;
+    
+<span class="nc" id="L186">            PodAffinityNestedImpl(PodAffinity item){</span>
+<span class="nc" id="L187">                    this.builder = new PodAffinityBuilder(this, item);</span>
+<span class="nc" id="L188">            }</span>
+<span class="nc" id="L189">            PodAffinityNestedImpl(){</span>
+<span class="nc" id="L190">                    this.builder = new PodAffinityBuilder(this);</span>
+<span class="nc" id="L191">            }</span>
+    
+    public N and(){
+<span class="nc" id="L194">            return (N) AffinityFluentImpl.this.withPodAffinity(builder.build());</span>
+    }
+    public N endPodAffinity(){
+<span class="nc" id="L197">            return and();</span>
+    }
+
+}
+    public class PodAntiAffinityNestedImpl&lt;N&gt; extends PodAntiAffinityFluentImpl&lt;AffinityFluent.PodAntiAffinityNested&lt;N&gt;&gt; implements AffinityFluent.PodAntiAffinityNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodAntiAffinityBuilder builder;
+    
+<span class="nc" id="L205">            PodAntiAffinityNestedImpl(PodAntiAffinity item){</span>
+<span class="nc" id="L206">                    this.builder = new PodAntiAffinityBuilder(this, item);</span>
+<span class="nc" id="L207">            }</span>
+<span class="nc" id="L208">            PodAntiAffinityNestedImpl(){</span>
+<span class="nc" id="L209">                    this.builder = new PodAntiAffinityBuilder(this);</span>
+<span class="nc" id="L210">            }</span>
+    
+    public N and(){
+<span class="nc" id="L213">            return (N) AffinityFluentImpl.this.withPodAntiAffinity(builder.build());</span>
+    }
+    public N endPodAntiAffinity(){
+<span class="nc" id="L216">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

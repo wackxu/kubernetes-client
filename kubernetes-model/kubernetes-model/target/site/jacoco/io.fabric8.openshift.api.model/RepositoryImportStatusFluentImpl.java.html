@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RepositoryImportStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">RepositoryImportStatusFluentImpl.java</span></div><h1>RepositoryImportStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.Status;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.StatusFluentImpl;
+import java.util.Collection;
+import io.fabric8.kubernetes.api.model.StatusBuilder;
+import java.lang.Object;
+
+public class RepositoryImportStatusFluentImpl&lt;A extends RepositoryImportStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements RepositoryImportStatusFluent&lt;A&gt;{
+
+    private List&lt;String&gt; additionalTags;
+    private List&lt;ImageImportStatusBuilder&gt; images;
+    private StatusBuilder status;
+
+<span class="nc" id="L26">    public RepositoryImportStatusFluentImpl(){</span>
+<span class="nc" id="L27">    }</span>
+<span class="nc" id="L28">    public RepositoryImportStatusFluentImpl(RepositoryImportStatus instance){</span>
+<span class="nc" id="L29">            this.withAdditionalTags(instance.getAdditionalTags()); </span>
+<span class="nc" id="L30">            this.withImages(instance.getImages()); </span>
+<span class="nc" id="L31">            this.withStatus(instance.getStatus()); </span>
+<span class="nc" id="L32">    }</span>
+
+    public A addToAdditionalTags(int index,String item){
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            if (this.additionalTags == null) {this.additionalTags = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L36">            this.additionalTags.add(index, item);</span>
+<span class="nc" id="L37">            return (A)this;</span>
+    }
+
+    public A setToAdditionalTags(int index,String item){
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            if (this.additionalTags == null) {this.additionalTags = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L42">            this.additionalTags.set(index, item); return (A)this;</span>
+    }
+
+    public A addToAdditionalTags(String... items){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (this.additionalTags == null) {this.additionalTags = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            for (String item : items) {this.additionalTags.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToAdditionalTags(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            if (this.additionalTags == null) {this.additionalTags = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            for (String item : items) {this.additionalTags.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromAdditionalTags(String... items){
+<span class="nc bnc" id="L56" title="All 4 branches missed.">            for (String item : items) {if (this.additionalTags!= null){ this.additionalTags.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAdditionalTags(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L60" title="All 4 branches missed.">            for (String item : items) {if (this.additionalTags!= null){ this.additionalTags.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getAdditionalTags(){
+<span class="nc" id="L64">            return this.additionalTags;</span>
+    }
+
+    public String getAdditionalTag(int index){
+<span class="nc" id="L68">            return this.additionalTags.get(index);</span>
+    }
+
+    public String getFirstAdditionalTag(){
+<span class="nc" id="L72">            return this.additionalTags.get(0);</span>
+    }
+
+    public String getLastAdditionalTag(){
+<span class="nc" id="L76">            return this.additionalTags.get(additionalTags.size() - 1);</span>
+    }
+
+    public String getMatchingAdditionalTag(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L80" title="All 4 branches missed.">            for (String item: additionalTags) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withAdditionalTags(List&lt;String&gt; additionalTags){
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            if (this.additionalTags != null) { _visitables.removeAll(this.additionalTags);}</span>
+<span class="nc bnc" id="L85" title="All 4 branches missed.">            if (additionalTags != null) {this.additionalTags = new ArrayList&lt;String&gt;(); for (String item : additionalTags){this.addToAdditionalTags(item);}} else { this.additionalTags = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withAdditionalTags(String... additionalTags){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (this.additionalTags != null) {this.additionalTags.clear();}</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">            if (additionalTags != null) {for (String item :additionalTags){ this.addToAdditionalTags(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAdditionalTags(){
+<span class="nc bnc" id="L94" title="All 4 branches missed.">            return additionalTags != null &amp;&amp; !additionalTags.isEmpty();</span>
+    }
+
+    public A addToImages(int index,ImageImportStatus item){
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            if (this.images == null) {this.images = new ArrayList&lt;ImageImportStatusBuilder&gt;();}</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            ImageImportStatusBuilder builder = new ImageImportStatusBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.images.add(index &gt;= 0 ? index : images.size(), builder); return (A)this;</span>
+    }
+
+    public A setToImages(int index,ImageImportStatus item){
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            if (this.images == null) {this.images = new ArrayList&lt;ImageImportStatusBuilder&gt;();}</span>
+<span class="nc" id="L104">            ImageImportStatusBuilder builder = new ImageImportStatusBuilder(item);</span>
+<span class="nc bnc" id="L105" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L106" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= images.size()) { images.add(builder); } else { images.set(index, builder);}</span>
+<span class="nc" id="L107">             return (A)this;</span>
+    }
+
+    public A addToImages(ImageImportStatus... items){
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            if (this.images == null) {this.images = new ArrayList&lt;ImageImportStatusBuilder&gt;();}</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            for (ImageImportStatus item : items) {ImageImportStatusBuilder builder = new ImageImportStatusBuilder(item);_visitables.add(builder);this.images.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToImages(Collection&lt;ImageImportStatus&gt; items){
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            if (this.images == null) {this.images = new ArrayList&lt;ImageImportStatusBuilder&gt;();}</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            for (ImageImportStatus item : items) {ImageImportStatusBuilder builder = new ImageImportStatusBuilder(item);_visitables.add(builder);this.images.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromImages(ImageImportStatus... items){
+<span class="nc bnc" id="L121" title="All 4 branches missed.">            for (ImageImportStatus item : items) {ImageImportStatusBuilder builder = new ImageImportStatusBuilder(item);_visitables.remove(builder);if (this.images != null) {this.images.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromImages(Collection&lt;ImageImportStatus&gt; items){
+<span class="nc bnc" id="L125" title="All 4 branches missed.">            for (ImageImportStatus item : items) {ImageImportStatusBuilder builder = new ImageImportStatusBuilder(item);_visitables.remove(builder);if (this.images != null) {this.images.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildImages instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;ImageImportStatus&gt; getImages(){
+<span class="nc" id="L134">            return build(images);</span>
+    }
+
+    public List&lt;ImageImportStatus&gt; buildImages(){
+<span class="nc" id="L138">            return build(images);</span>
+    }
+
+    public ImageImportStatus buildImage(int index){
+<span class="nc" id="L142">            return this.images.get(index).build();</span>
+    }
+
+    public ImageImportStatus buildFirstImage(){
+<span class="nc" id="L146">            return this.images.get(0).build();</span>
+    }
+
+    public ImageImportStatus buildLastImage(){
+<span class="nc" id="L150">            return this.images.get(images.size() - 1).build();</span>
+    }
+
+    public ImageImportStatus buildMatchingImage(io.fabric8.kubernetes.api.builder.Predicate&lt;ImageImportStatusBuilder&gt; predicate){
+<span class="nc bnc" id="L154" title="All 4 branches missed.">            for (ImageImportStatusBuilder item: images) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withImages(List&lt;ImageImportStatus&gt; images){
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            if (this.images != null) { _visitables.removeAll(this.images);}</span>
+<span class="nc bnc" id="L159" title="All 4 branches missed.">            if (images != null) {this.images = new ArrayList&lt;ImageImportStatusBuilder&gt;(); for (ImageImportStatus item : images){this.addToImages(item);}} else { this.images = new ArrayList&lt;ImageImportStatusBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withImages(ImageImportStatus... images){
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            if (this.images != null) {this.images.clear();}</span>
+<span class="nc bnc" id="L164" title="All 4 branches missed.">            if (images != null) {for (ImageImportStatus item :images){ this.addToImages(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasImages(){
+<span class="nc bnc" id="L168" title="All 4 branches missed.">            return images != null &amp;&amp; !images.isEmpty();</span>
+    }
+
+    public RepositoryImportStatusFluent.ImagesNested&lt;A&gt; addNewImage(){
+<span class="nc" id="L172">            return new ImagesNestedImpl();</span>
+    }
+
+    public RepositoryImportStatusFluent.ImagesNested&lt;A&gt; addNewImageLike(ImageImportStatus item){
+<span class="nc" id="L176">            return new ImagesNestedImpl(-1, item);</span>
+    }
+
+    public RepositoryImportStatusFluent.ImagesNested&lt;A&gt; setNewImageLike(int index,ImageImportStatus item){
+<span class="nc" id="L180">            return new ImagesNestedImpl(index, item);</span>
+    }
+
+    public RepositoryImportStatusFluent.ImagesNested&lt;A&gt; editImage(int index){
+<span class="nc bnc" id="L184" title="All 2 branches missed.">            if (images.size() &lt;= index) throw new RuntimeException(&quot;Can't edit images. Index exceeds size.&quot;);</span>
+<span class="nc" id="L185">            return setNewImageLike(index, buildImage(index));</span>
+    }
+
+    public RepositoryImportStatusFluent.ImagesNested&lt;A&gt; editFirstImage(){
+<span class="nc bnc" id="L189" title="All 2 branches missed.">            if (images.size() == 0) throw new RuntimeException(&quot;Can't edit first images. The list is empty.&quot;);</span>
+<span class="nc" id="L190">            return setNewImageLike(0, buildImage(0));</span>
+    }
+
+    public RepositoryImportStatusFluent.ImagesNested&lt;A&gt; editLastImage(){
+<span class="nc" id="L194">            int index = images.size() - 1;</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last images. The list is empty.&quot;);</span>
+<span class="nc" id="L196">            return setNewImageLike(index, buildImage(index));</span>
+    }
+
+    public RepositoryImportStatusFluent.ImagesNested&lt;A&gt; editMatchingImage(io.fabric8.kubernetes.api.builder.Predicate&lt;ImageImportStatusBuilder&gt; predicate){
+<span class="nc" id="L200">            int index = -1;</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">            for (int i=0;i&lt;images.size();i++) { </span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">            if (predicate.apply(images.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L204" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching images. No match found.&quot;);</span>
+<span class="nc" id="L205">            return setNewImageLike(index, buildImage(index));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildStatus instead.
+ * @return The buildable object.
+ */
+@Deprecated public Status getStatus(){
+<span class="nc bnc" id="L214" title="All 2 branches missed.">            return this.status!=null?this.status.build():null;</span>
+    }
+
+    public Status buildStatus(){
+<span class="nc bnc" id="L218" title="All 2 branches missed.">            return this.status!=null?this.status.build():null;</span>
+    }
+
+    public A withStatus(Status status){
+<span class="nc" id="L222">            _visitables.remove(this.status);</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">            if (status!=null){ this.status= new StatusBuilder(status); _visitables.add(this.status);} return (A) this;</span>
+    }
+
+    public Boolean hasStatus(){
+<span class="nc bnc" id="L227" title="All 2 branches missed.">            return this.status != null;</span>
+    }
+
+    public RepositoryImportStatusFluent.StatusNested&lt;A&gt; withNewStatus(){
+<span class="nc" id="L231">            return new StatusNestedImpl();</span>
+    }
+
+    public RepositoryImportStatusFluent.StatusNested&lt;A&gt; withNewStatusLike(Status item){
+<span class="nc" id="L235">            return new StatusNestedImpl(item);</span>
+    }
+
+    public RepositoryImportStatusFluent.StatusNested&lt;A&gt; editStatus(){
+<span class="nc" id="L239">            return withNewStatusLike(getStatus());</span>
+    }
+
+    public RepositoryImportStatusFluent.StatusNested&lt;A&gt; editOrNewStatus(){
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            return withNewStatusLike(getStatus() != null ? getStatus(): new StatusBuilder().build());</span>
+    }
+
+    public RepositoryImportStatusFluent.StatusNested&lt;A&gt; editOrNewStatusLike(Status item){
+<span class="nc bnc" id="L247" title="All 2 branches missed.">            return withNewStatusLike(getStatus() != null ? getStatus(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L251" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L252" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L253" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L254">            RepositoryImportStatusFluentImpl that = (RepositoryImportStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L255" title="All 6 branches missed.">            if (additionalTags != null ? !additionalTags.equals(that.additionalTags) :that.additionalTags != null) return false;</span>
+<span class="nc bnc" id="L256" title="All 6 branches missed.">            if (images != null ? !images.equals(that.images) :that.images != null) return false;</span>
+<span class="nc bnc" id="L257" title="All 6 branches missed.">            if (status != null ? !status.equals(that.status) :that.status != null) return false;</span>
+<span class="nc" id="L258">            return true;</span>
+    }
+
+
+    public class ImagesNestedImpl&lt;N&gt; extends ImageImportStatusFluentImpl&lt;RepositoryImportStatusFluent.ImagesNested&lt;N&gt;&gt; implements RepositoryImportStatusFluent.ImagesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageImportStatusBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L267">            ImagesNestedImpl(int index,ImageImportStatus item){</span>
+<span class="nc" id="L268">                    this.index = index;</span>
+<span class="nc" id="L269">                    this.builder = new ImageImportStatusBuilder(this, item);</span>
+<span class="nc" id="L270">            }</span>
+<span class="nc" id="L271">            ImagesNestedImpl(){</span>
+<span class="nc" id="L272">                    this.index = -1;</span>
+<span class="nc" id="L273">                    this.builder = new ImageImportStatusBuilder(this);</span>
+<span class="nc" id="L274">            }</span>
+    
+    public N and(){
+<span class="nc" id="L277">            return (N) RepositoryImportStatusFluentImpl.this.setToImages(index, builder.build());</span>
+    }
+    public N endImage(){
+<span class="nc" id="L280">            return and();</span>
+    }
+
+}
+    public class StatusNestedImpl&lt;N&gt; extends StatusFluentImpl&lt;RepositoryImportStatusFluent.StatusNested&lt;N&gt;&gt; implements RepositoryImportStatusFluent.StatusNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final StatusBuilder builder;
+    
+<span class="nc" id="L288">            StatusNestedImpl(Status item){</span>
+<span class="nc" id="L289">                    this.builder = new StatusBuilder(this, item);</span>
+<span class="nc" id="L290">            }</span>
+<span class="nc" id="L291">            StatusNestedImpl(){</span>
+<span class="nc" id="L292">                    this.builder = new StatusBuilder(this);</span>
+<span class="nc" id="L293">            }</span>
+    
+    public N and(){
+<span class="nc" id="L296">            return (N) RepositoryImportStatusFluentImpl.this.withStatus(builder.build());</span>
+    }
+    public N endStatus(){
+<span class="nc" id="L299">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

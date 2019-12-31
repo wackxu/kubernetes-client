@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ManagedOpenShiftClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Openshift :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.client.osgi</a> &gt; <span class="el_source">ManagedOpenShiftClient.java</span></div><h1>ManagedOpenShiftClient.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.fabric8.openshift.client.osgi;
+
+import io.fabric8.kubernetes.api.model.*;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinition;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinitionList;
+import io.fabric8.kubernetes.api.model.apiextensions.DoneableCustomResourceDefinition;
+import io.fabric8.kubernetes.client.BaseClient;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.RequestConfig;
+import io.fabric8.kubernetes.client.VersionInfo;
+import io.fabric8.kubernetes.client.dsl.*;
+import io.fabric8.kubernetes.client.utils.URLUtils;
+import io.fabric8.openshift.api.model.*;
+import io.fabric8.openshift.client.DefaultOpenShiftClient;
+import io.fabric8.openshift.client.NamespacedOpenShiftClient;
+import io.fabric8.openshift.client.OpenShiftClient;
+import io.fabric8.openshift.client.OpenShiftConfigBuilder;
+import io.fabric8.openshift.client.dsl.*;
+import org.apache.felix.scr.annotations.*;
+import org.apache.felix.scr.annotations.Service;
+
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Collection;
+import java.util.Map;
+
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_API_VERSION_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_AUTH_BASIC_PASSWORD_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_AUTH_BASIC_USERNAME_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_CA_CERTIFICATE_DATA_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_CA_CERTIFICATE_FILE_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_CLIENT_CERTIFICATE_DATA_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_CLIENT_CERTIFICATE_FILE_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_CLIENT_KEY_ALGO_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_CLIENT_KEY_DATA_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_CLIENT_KEY_FILE_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_CLIENT_KEY_PASSPHRASE_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_HTTPS_PROXY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_HTTP_PROXY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_MASTER_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_NAMESPACE_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_NO_PROXY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_OAUTH_TOKEN_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_REQUEST_TIMEOUT_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_WATCH_RECONNECT_INTERVAL_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_WATCH_RECONNECT_LIMIT_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_WEBSOCKET_PING_INTERVAL_SYSTEM_PROPERTY;
+import static io.fabric8.kubernetes.client.Config.KUBERNETES_WEBSOCKET_TIMEOUT_SYSTEM_PROPERTY;
+import static io.fabric8.openshift.client.OpenShiftConfig.*;
+
+@Component(immediate = true, configurationPid = &quot;io.fabric8.openshift.client&quot;, policy = ConfigurationPolicy.OPTIONAL)
+@Service({OpenShiftClient.class, NamespacedOpenShiftClient.class})
+<span class="nc" id="L69">public class ManagedOpenShiftClient extends BaseClient implements NamespacedOpenShiftClient {</span>
+
+  private DefaultOpenShiftClient delegate;
+
+  @Activate
+  public void activate(Map&lt;String, Object&gt; properties) {
+<span class="nc" id="L75">    final OpenShiftConfigBuilder builder = new OpenShiftConfigBuilder();</span>
+
+<span class="nc bnc" id="L77" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_MASTER_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L78">      builder.withMasterUrl((String) properties.get(KUBERNETES_MASTER_SYSTEM_PROPERTY));</span>
+    }
+<span class="nc bnc" id="L80" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_API_VERSION_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L81">      builder.withApiVersion((String) properties.get(KUBERNETES_API_VERSION_SYSTEM_PROPERTY));</span>
+    }
+<span class="nc bnc" id="L83" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_NAMESPACE_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L84">      builder.withNamespace((String) properties.get(KUBERNETES_NAMESPACE_SYSTEM_PROPERTY));</span>
+    }
+<span class="nc bnc" id="L86" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_CA_CERTIFICATE_FILE_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L87">      builder.withCaCertFile((String) properties.get(KUBERNETES_CA_CERTIFICATE_FILE_SYSTEM_PROPERTY));</span>
+    }
+<span class="nc bnc" id="L89" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_CA_CERTIFICATE_DATA_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L90">      builder.withCaCertData((String) properties.get(KUBERNETES_CA_CERTIFICATE_DATA_SYSTEM_PROPERTY));</span>
+    }
+<span class="nc bnc" id="L92" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_CLIENT_CERTIFICATE_FILE_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L93">      builder.withClientCertFile((String) properties.get(KUBERNETES_CLIENT_CERTIFICATE_FILE_SYSTEM_PROPERTY));</span>
+    }
+<span class="nc bnc" id="L95" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_CLIENT_CERTIFICATE_DATA_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L96">      builder.withClientCertData((String) properties.get(KUBERNETES_CLIENT_CERTIFICATE_DATA_SYSTEM_PROPERTY));</span>
+    }
+<span class="nc bnc" id="L98" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_CLIENT_KEY_FILE_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L99">      builder.withClientKeyFile((String) properties.get(KUBERNETES_CLIENT_KEY_FILE_SYSTEM_PROPERTY));</span>
+    }
+<span class="nc bnc" id="L101" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_CLIENT_KEY_DATA_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L102">      builder.withClientKeyData((String) properties.get(KUBERNETES_CLIENT_KEY_DATA_SYSTEM_PROPERTY));</span>
+    }
+<span class="nc bnc" id="L104" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_CLIENT_KEY_ALGO_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L105">      builder.withClientKeyAlgo((String) properties.get(KUBERNETES_CLIENT_KEY_ALGO_SYSTEM_PROPERTY));</span>
+    }
+<span class="nc bnc" id="L107" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_CLIENT_KEY_PASSPHRASE_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L108">      builder.withClientKeyPassphrase((String) properties.get(KUBERNETES_CLIENT_KEY_PASSPHRASE_SYSTEM_PROPERTY));</span>
+    }
+<span class="nc bnc" id="L110" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_AUTH_BASIC_USERNAME_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L111">      builder.withUsername((String) properties.get(KUBERNETES_AUTH_BASIC_USERNAME_SYSTEM_PROPERTY));</span>
+    }
+<span class="nc bnc" id="L113" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_AUTH_BASIC_PASSWORD_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L114">      builder.withPassword((String) properties.get(KUBERNETES_AUTH_BASIC_PASSWORD_SYSTEM_PROPERTY));</span>
+    }
+<span class="nc bnc" id="L116" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_OAUTH_TOKEN_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L117">      builder.withOauthToken((String) properties.get(KUBERNETES_OAUTH_TOKEN_SYSTEM_PROPERTY));</span>
+    }
+<span class="nc bnc" id="L119" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_WATCH_RECONNECT_INTERVAL_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L120">      builder.withWatchReconnectInterval(Integer.parseInt((String) properties.get(KUBERNETES_WATCH_RECONNECT_INTERVAL_SYSTEM_PROPERTY)));</span>
+    }
+<span class="nc bnc" id="L122" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_WATCH_RECONNECT_LIMIT_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L123">      builder.withWatchReconnectLimit(Integer.parseInt((String) properties.get(KUBERNETES_WATCH_RECONNECT_LIMIT_SYSTEM_PROPERTY)));</span>
+    }
+<span class="nc bnc" id="L125" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_REQUEST_TIMEOUT_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L126">      builder.withRequestTimeout(Integer.parseInt((String) properties.get(KUBERNETES_REQUEST_TIMEOUT_SYSTEM_PROPERTY)));</span>
+    }
+<span class="nc bnc" id="L128" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_HTTP_PROXY)) {</span>
+<span class="nc" id="L129">      builder.withHttpProxy((String) properties.get(KUBERNETES_HTTP_PROXY));</span>
+    }
+<span class="nc bnc" id="L131" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_HTTPS_PROXY)) {</span>
+<span class="nc" id="L132">      builder.withHttpsProxy((String) properties.get(KUBERNETES_HTTPS_PROXY));</span>
+    }
+<span class="nc bnc" id="L134" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_NO_PROXY)) {</span>
+<span class="nc" id="L135">      String noProxyProperty = (String) properties.get(KUBERNETES_NO_PROXY);</span>
+<span class="nc" id="L136">      builder.withNoProxy(noProxyProperty.split(&quot;,&quot;));</span>
+    }
+<span class="nc bnc" id="L138" title="All 2 branches missed.">    if (properties.containsKey(OPENSHIFT_URL_SYTEM_PROPERTY)) {</span>
+<span class="nc" id="L139">      builder.withOpenShiftUrl((String) properties.get(OPENSHIFT_URL_SYTEM_PROPERTY));</span>
+    } else {
+<span class="nc" id="L141">      builder.withOpenShiftUrl(URLUtils.join(builder.getMasterUrl(), &quot;oapi&quot;, builder.getOapiVersion()));</span>
+    }
+<span class="nc bnc" id="L143" title="All 2 branches missed.">    if (properties.containsKey(OPENSHIFT_BUILD_TIMEOUT_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L144">      builder.withBuildTimeout(Integer.parseInt((String) properties.get(OPENSHIFT_BUILD_TIMEOUT_SYSTEM_PROPERTY)));</span>
+    } else {
+<span class="nc" id="L146">      builder.withBuildTimeout(DEFAULT_BUILD_TIMEOUT);</span>
+    }
+<span class="nc bnc" id="L148" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_WEBSOCKET_TIMEOUT_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L149">      builder.withWebsocketTimeout(Long.parseLong((String) properties.get(KUBERNETES_WEBSOCKET_TIMEOUT_SYSTEM_PROPERTY)));</span>
+    }
+<span class="nc bnc" id="L151" title="All 2 branches missed.">    if (properties.containsKey(KUBERNETES_WEBSOCKET_PING_INTERVAL_SYSTEM_PROPERTY)) {</span>
+<span class="nc" id="L152">      builder.withWebsocketPingInterval(Long.parseLong((String) properties.get(KUBERNETES_WEBSOCKET_PING_INTERVAL_SYSTEM_PROPERTY)));</span>
+    }
+
+<span class="nc" id="L155">    delegate = new DefaultOpenShiftClient(builder.build());</span>
+<span class="nc" id="L156">  }</span>
+
+  @Deactivate
+  public void deactivate() {
+<span class="nc" id="L160">    delegate.close();</span>
+<span class="nc" id="L161">  }</span>
+
+  @Override
+  public URL getOpenshiftUrl() {
+<span class="nc" id="L165">    return delegate.getOpenshiftUrl();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Build, BuildList, DoneableBuild, BuildResource&lt;Build, DoneableBuild, String, LogWatch&gt;&gt; builds() {
+<span class="nc" id="L170">    return delegate.builds();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ComponentStatus, ComponentStatusList, DoneableComponentStatus, Resource&lt;ComponentStatus, DoneableComponentStatus&gt;&gt; componentstatuses() {
+<span class="nc" id="L175">    return delegate.componentstatuses();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;BuildConfig, BuildConfigList, DoneableBuildConfig, BuildConfigResource&lt;BuildConfig, DoneableBuildConfig, Void, Build&gt;&gt; buildConfigs() {
+<span class="nc" id="L180">    return delegate.buildConfigs();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;DeploymentConfig, DeploymentConfigList, DoneableDeploymentConfig, DeployableScalableResource&lt;DeploymentConfig, DoneableDeploymentConfig&gt;&gt; deploymentConfigs() {
+<span class="nc" id="L185">    return delegate.deploymentConfigs();</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;Group, GroupList, DoneableGroup, Resource&lt;Group, DoneableGroup&gt;&gt; groups() {
+<span class="nc" id="L190">    return delegate.groups();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ImageStream, ImageStreamList, DoneableImageStream, Resource&lt;ImageStream, DoneableImageStream&gt;&gt; imageStreams() {
+<span class="nc" id="L195">    return delegate.imageStreams();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ImageStreamTag, ImageStreamTagList, DoneableImageStreamTag, Resource&lt;ImageStreamTag, DoneableImageStreamTag&gt;&gt; imageStreamTags() {
+<span class="nc" id="L200">    return delegate.imageStreamTags();</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;OAuthAccessToken, OAuthAccessTokenList, DoneableOAuthAccessToken, Resource&lt;OAuthAccessToken, DoneableOAuthAccessToken&gt;&gt; oAuthAccessTokens() {
+<span class="nc" id="L205">    return delegate.oAuthAccessTokens();</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;OAuthAuthorizeToken, OAuthAuthorizeTokenList, DoneableOAuthAuthorizeToken, Resource&lt;OAuthAuthorizeToken, DoneableOAuthAuthorizeToken&gt;&gt; oAuthAuthorizeTokens() {
+<span class="nc" id="L210">    return delegate.oAuthAuthorizeTokens();</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;OAuthClient, OAuthClientList, DoneableOAuthClient, Resource&lt;OAuthClient, DoneableOAuthClient&gt;&gt; oAuthClients() {
+<span class="nc" id="L215">    return delegate.oAuthClients();</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;Project, ProjectList, DoneableProject, Resource&lt;Project, DoneableProject&gt;&gt; projects() {
+<span class="nc" id="L220">    return delegate.projects();</span>
+  }
+
+  @Override
+  public ProjectRequestOperation projectrequests() {
+<span class="nc" id="L225">    return delegate.projectrequests();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;OpenshiftRole, OpenshiftRoleList, DoneableOpenshiftRole, Resource&lt;OpenshiftRole, DoneableOpenshiftRole&gt;&gt; roles() {
+<span class="nc" id="L230">    return delegate.roles();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;OpenshiftRoleBinding, OpenshiftRoleBindingList, DoneableOpenshiftRoleBinding, Resource&lt;OpenshiftRoleBinding, DoneableOpenshiftRoleBinding&gt;&gt; roleBindings() {
+<span class="nc" id="L235">    return delegate.roleBindings();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Route, RouteList, DoneableRoute, Resource&lt;Route, DoneableRoute&gt;&gt; routes() {
+<span class="nc" id="L240">    return delegate.routes();</span>
+  }
+
+  @Override
+  public ParameterMixedOperation&lt;Template, TemplateList, DoneableTemplate, TemplateResource&lt;Template, KubernetesList, DoneableTemplate&gt;&gt; templates() {
+<span class="nc" id="L245">    return delegate.templates();</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;User, UserList, DoneableUser, Resource&lt;User, DoneableUser&gt;&gt; users() {
+<span class="nc" id="L250">    return delegate.users();</span>
+  }
+
+  @Override
+  public SubjectAccessReviewOperation&lt;CreateableSubjectAccessReview, CreateableLocalSubjectAccessReview&gt; subjectAccessReviews() {
+<span class="nc" id="L255">    return delegate.subjectAccessReviews();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;OpenshiftClusterRoleBinding, OpenshiftClusterRoleBindingList, DoneableOpenshiftClusterRoleBinding, Resource&lt;OpenshiftClusterRoleBinding, DoneableOpenshiftClusterRoleBinding&gt;&gt; clusterRoleBindings() {
+<span class="nc" id="L260">    return delegate.clusterRoleBindings();</span>
+  }
+
+  @Override
+  public ParameterNamespaceListVisitFromServerGetDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; load(InputStream is) {
+<span class="nc" id="L265">    return delegate.load(is);</span>
+  }
+
+  @Override
+  public NamespaceListVisitFromServerGetDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resourceList(KubernetesResourceList is) {
+<span class="nc" id="L270">    return delegate.resourceList(is);</span>
+  }
+
+  @Override
+  public NamespaceListVisitFromServerGetDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resourceList(HasMetadata... items) {
+<span class="nc" id="L275">    return delegate.resourceList(items);</span>
+  }
+
+  @Override
+  public NamespaceListVisitFromServerGetDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resourceList(Collection&lt;HasMetadata&gt; items) {
+<span class="nc" id="L280">    return delegate.resourceList(items);</span>
+  }
+
+  @Override
+  public ParameterNamespaceListVisitFromServerGetDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resourceList(String s) {
+<span class="nc" id="L285">    return delegate.resourceList(s);</span>
+  }
+
+  @Override
+  public NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resource(HasMetadata item) {
+<span class="nc" id="L290">    return delegate.resource(item);</span>
+  }
+
+  @Override
+  public NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicable&lt;HasMetadata, Boolean&gt; resource(String s) {
+<span class="nc" id="L295">    return delegate.resource(s);</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Endpoints, EndpointsList, DoneableEndpoints, Resource&lt;Endpoints, DoneableEndpoints&gt;&gt; endpoints() {
+<span class="nc" id="L300">    return delegate.endpoints();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Event, EventList, DoneableEvent, Resource&lt;Event, DoneableEvent&gt;&gt; events() {
+<span class="nc" id="L305">    return delegate.events();</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;Namespace, NamespaceList, DoneableNamespace, Resource&lt;Namespace, DoneableNamespace&gt;&gt; namespaces() {
+<span class="nc" id="L310">    return delegate.namespaces();</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;Node, NodeList, DoneableNode, Resource&lt;Node, DoneableNode&gt;&gt; nodes() {
+<span class="nc" id="L315">    return delegate.nodes();</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;PersistentVolume, PersistentVolumeList, DoneablePersistentVolume, Resource&lt;PersistentVolume, DoneablePersistentVolume&gt;&gt; persistentVolumes() {
+<span class="nc" id="L320">    return delegate.persistentVolumes();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;PersistentVolumeClaim, PersistentVolumeClaimList, DoneablePersistentVolumeClaim, Resource&lt;PersistentVolumeClaim, DoneablePersistentVolumeClaim&gt;&gt; persistentVolumeClaims() {
+<span class="nc" id="L325">    return delegate.persistentVolumeClaims();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Pod, PodList, DoneablePod, PodResource&lt;Pod, DoneablePod&gt;&gt; pods() {
+<span class="nc" id="L330">    return delegate.pods();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ReplicationController, ReplicationControllerList, DoneableReplicationController, RollableScalableResource&lt;ReplicationController, DoneableReplicationController&gt;&gt; replicationControllers() {
+<span class="nc" id="L335">    return delegate.replicationControllers();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ResourceQuota, ResourceQuotaList, DoneableResourceQuota, Resource&lt;ResourceQuota, DoneableResourceQuota&gt;&gt; resourceQuotas() {
+<span class="nc" id="L340">    return delegate.resourceQuotas();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;Secret, SecretList, DoneableSecret, Resource&lt;Secret, DoneableSecret&gt;&gt; secrets() {
+<span class="nc" id="L345">    return delegate.secrets();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;io.fabric8.kubernetes.api.model.Service, ServiceList, DoneableService, ServiceResource&lt;io.fabric8.kubernetes.api.model.Service, DoneableService&gt;&gt; services() {
+<span class="nc" id="L350">    return delegate.services();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ServiceAccount, ServiceAccountList, DoneableServiceAccount, Resource&lt;ServiceAccount, DoneableServiceAccount&gt;&gt; serviceAccounts() {
+<span class="nc" id="L355">    return delegate.serviceAccounts();</span>
+  }
+
+  @Override
+  public KubernetesListMixedOperation lists() {
+<span class="nc" id="L360">    return delegate.lists();</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;SecurityContextConstraints, SecurityContextConstraintsList, DoneableSecurityContextConstraints, Resource&lt;SecurityContextConstraints, DoneableSecurityContextConstraints&gt;&gt; securityContextConstraints() {
+<span class="nc" id="L365">    return delegate.securityContextConstraints();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;ConfigMap, ConfigMapList, DoneableConfigMap, Resource&lt;ConfigMap, DoneableConfigMap&gt;&gt; configMaps() {
+<span class="nc" id="L370">    return delegate.configMaps();</span>
+  }
+
+  @Override
+  public MixedOperation&lt;LimitRange, LimitRangeList, DoneableLimitRange, Resource&lt;LimitRange, DoneableLimitRange&gt;&gt; limitRanges() {
+<span class="nc" id="L375">    return delegate.limitRanges();</span>
+  }
+
+  @Override
+  public &lt;T extends HasMetadata, L extends KubernetesResourceList, D extends Doneable&lt;T&gt;&gt; MixedOperation&lt;T, L, D, Resource&lt;T, D&gt;&gt; customResources(CustomResourceDefinition crd, Class&lt;T&gt; resourceType, Class&lt;L&gt; listClass, Class&lt;D&gt; doneClass) {
+<span class="nc" id="L380">    return delegate.customResources(crd, resourceType, listClass, doneClass);</span>
+  }
+
+  @Override
+  public &lt;T extends HasMetadata, L extends KubernetesResourceList, D extends Doneable&lt;T&gt;&gt; MixedOperation&lt;T, L, D, Resource&lt;T, D&gt;&gt; customResource(CustomResourceDefinition crd, Class&lt;T&gt; resourceType, Class&lt;L&gt; listClass, Class&lt;D&gt; doneClass) {
+<span class="nc" id="L385">    return customResources(crd, resourceType, listClass, doneClass);</span>
+  }
+
+  @Override
+  public NonNamespaceOperation&lt;CustomResourceDefinition, CustomResourceDefinitionList, DoneableCustomResourceDefinition, Resource&lt;CustomResourceDefinition, DoneableCustomResourceDefinition&gt;&gt; customResourceDefinitions() {
+<span class="nc" id="L390">    return delegate.customResourceDefinitions();</span>
+  }
+
+  @Override
+  public &lt;C&gt; C adapt(Class&lt;C&gt; type) {
+<span class="nc" id="L395">    return delegate.adapt(type);</span>
+  }
+
+  @Override
+  public URL getMasterUrl() {
+<span class="nc" id="L400">    return delegate.getMasterUrl();</span>
+  }
+
+  @Override
+  public String getApiVersion() {
+<span class="nc" id="L405">    return delegate.getApiVersion();</span>
+  }
+
+  @Override
+  public String getNamespace() {
+<span class="nc" id="L410">    return delegate.getNamespace();</span>
+  }
+
+  @Override
+  public RootPaths rootPaths() {
+<span class="nc" id="L415">    return delegate.rootPaths();</span>
+  }
+
+  @Override
+  public void close() {
+<span class="nc" id="L420">    delegate.close();</span>
+<span class="nc" id="L421">  }</span>
+
+  @Override
+  public Config getConfiguration() {
+<span class="nc" id="L425">    return delegate.getConfiguration();</span>
+  }
+
+  @Override
+  public ExtensionsAPIGroupDSL extensions() {
+<span class="nc" id="L430">    return delegate.extensions();</span>
+  }
+
+  @Override
+  public VersionInfo getVersion() {
+<span class="nc" id="L435">    return delegate.getVersion();</span>
+  }
+
+  @Override
+  public AppsAPIGroupDSL apps() {
+<span class="nc" id="L440">    return delegate.apps();</span>
+  }
+
+  @Override
+  public AutoscalingAPIGroupDSL autoscaling() {
+<span class="nc" id="L445">    return delegate.autoscaling();</span>
+  }
+
+  @Override
+<span class="nc" id="L449">  public NetworkAPIGroupDSL network() { return delegate.network(); }</span>
+
+  @Override
+<span class="nc" id="L452">  public StorageAPIGroupDSL storage() { return delegate.storage(); }</span>
+
+  @Override
+<span class="nc" id="L455">  public BatchAPIGroupDSL batch() { return delegate.batch(); }</span>
+
+  @Override
+<span class="nc" id="L458">  public PolicyAPIGroupDSL policy() { return delegate.policy(); }</span>
+
+  @Override
+<span class="nc" id="L461">  public RbacAPIGroupDSL rbac() { return delegate.rbac(); }</span>
+
+  @Override
+<span class="nc" id="L464">  public SchedulingAPIGroupDSL scheduling() { return delegate.scheduling(); }</span>
+
+  @Override
+<span class="nc" id="L467">  public SettingsAPIGroupDSL settings() { return delegate.settings(); }</span>
+
+  @Override
+  public NamespacedOpenShiftClient inAnyNamespace() {
+<span class="nc" id="L471">    return delegate.inAnyNamespace();</span>
+  }
+
+  @Override
+  public NamespacedOpenShiftClient inNamespace(String name) {
+<span class="nc" id="L476">    return delegate.inNamespace(name);</span>
+  }
+
+  @Override
+  public FunctionCallable&lt;NamespacedOpenShiftClient&gt; withRequestConfig(RequestConfig requestConfig) {
+<span class="nc" id="L481">    return delegate.withRequestConfig(requestConfig);</span>
+  }
+
+  @Override
+  public User currentUser() {
+<span class="nc" id="L486">    return delegate.currentUser();</span>
+  }
+
+  @Override
+  public boolean supportsOpenShiftAPIGroup(String apiGroup) {
+<span class="nc" id="L491">    return delegate.supportsOpenShiftAPIGroup(apiGroup);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

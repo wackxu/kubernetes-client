@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LoadBalancerStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">LoadBalancerStatusFluentImpl.java</span></div><h1>LoadBalancerStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class LoadBalancerStatusFluentImpl&lt;A extends LoadBalancerStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements LoadBalancerStatusFluent&lt;A&gt;{
+
+    private List&lt;LoadBalancerIngressBuilder&gt; ingress;
+
+<span class="nc" id="L21">    public LoadBalancerStatusFluentImpl(){</span>
+<span class="nc" id="L22">    }</span>
+<span class="nc" id="L23">    public LoadBalancerStatusFluentImpl(LoadBalancerStatus instance){</span>
+<span class="nc" id="L24">            this.withIngress(instance.getIngress()); </span>
+<span class="nc" id="L25">    }</span>
+
+    public A addToIngress(int index,LoadBalancerIngress item){
+<span class="nc bnc" id="L28" title="All 2 branches missed.">            if (this.ingress == null) {this.ingress = new ArrayList&lt;LoadBalancerIngressBuilder&gt;();}</span>
+<span class="nc bnc" id="L29" title="All 4 branches missed.">            LoadBalancerIngressBuilder builder = new LoadBalancerIngressBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.ingress.add(index &gt;= 0 ? index : ingress.size(), builder); return (A)this;</span>
+    }
+
+    public A setToIngress(int index,LoadBalancerIngress item){
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            if (this.ingress == null) {this.ingress = new ArrayList&lt;LoadBalancerIngressBuilder&gt;();}</span>
+<span class="nc" id="L34">            LoadBalancerIngressBuilder builder = new LoadBalancerIngressBuilder(item);</span>
+<span class="nc bnc" id="L35" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L36" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= ingress.size()) { ingress.add(builder); } else { ingress.set(index, builder);}</span>
+<span class="nc" id="L37">             return (A)this;</span>
+    }
+
+    public A addToIngress(LoadBalancerIngress... items){
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            if (this.ingress == null) {this.ingress = new ArrayList&lt;LoadBalancerIngressBuilder&gt;();}</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            for (LoadBalancerIngress item : items) {LoadBalancerIngressBuilder builder = new LoadBalancerIngressBuilder(item);_visitables.add(builder);this.ingress.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToIngress(Collection&lt;LoadBalancerIngress&gt; items){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (this.ingress == null) {this.ingress = new ArrayList&lt;LoadBalancerIngressBuilder&gt;();}</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            for (LoadBalancerIngress item : items) {LoadBalancerIngressBuilder builder = new LoadBalancerIngressBuilder(item);_visitables.add(builder);this.ingress.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromIngress(LoadBalancerIngress... items){
+<span class="nc bnc" id="L51" title="All 4 branches missed.">            for (LoadBalancerIngress item : items) {LoadBalancerIngressBuilder builder = new LoadBalancerIngressBuilder(item);_visitables.remove(builder);if (this.ingress != null) {this.ingress.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromIngress(Collection&lt;LoadBalancerIngress&gt; items){
+<span class="nc bnc" id="L55" title="All 4 branches missed.">            for (LoadBalancerIngress item : items) {LoadBalancerIngressBuilder builder = new LoadBalancerIngressBuilder(item);_visitables.remove(builder);if (this.ingress != null) {this.ingress.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildIngress instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;LoadBalancerIngress&gt; getIngress(){
+<span class="nc" id="L64">            return build(ingress);</span>
+    }
+
+    public List&lt;LoadBalancerIngress&gt; buildIngress(){
+<span class="nc" id="L68">            return build(ingress);</span>
+    }
+
+    public LoadBalancerIngress buildIngress(int index){
+<span class="nc" id="L72">            return this.ingress.get(index).build();</span>
+    }
+
+    public LoadBalancerIngress buildFirstIngress(){
+<span class="nc" id="L76">            return this.ingress.get(0).build();</span>
+    }
+
+    public LoadBalancerIngress buildLastIngress(){
+<span class="nc" id="L80">            return this.ingress.get(ingress.size() - 1).build();</span>
+    }
+
+    public LoadBalancerIngress buildMatchingIngress(io.fabric8.kubernetes.api.builder.Predicate&lt;LoadBalancerIngressBuilder&gt; predicate){
+<span class="nc bnc" id="L84" title="All 4 branches missed.">            for (LoadBalancerIngressBuilder item: ingress) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withIngress(List&lt;LoadBalancerIngress&gt; ingress){
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            if (this.ingress != null) { _visitables.removeAll(this.ingress);}</span>
+<span class="nc bnc" id="L89" title="All 4 branches missed.">            if (ingress != null) {this.ingress = new ArrayList&lt;LoadBalancerIngressBuilder&gt;(); for (LoadBalancerIngress item : ingress){this.addToIngress(item);}} else { this.ingress = new ArrayList&lt;LoadBalancerIngressBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withIngress(LoadBalancerIngress... ingress){
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            if (this.ingress != null) {this.ingress.clear();}</span>
+<span class="nc bnc" id="L94" title="All 4 branches missed.">            if (ingress != null) {for (LoadBalancerIngress item :ingress){ this.addToIngress(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasIngress(){
+<span class="nc bnc" id="L98" title="All 4 branches missed.">            return ingress != null &amp;&amp; !ingress.isEmpty();</span>
+    }
+
+    public A addNewIngress(String hostname,String ip){
+<span class="nc" id="L102">            return (A)addToIngress(new LoadBalancerIngress(hostname, ip));</span>
+    }
+
+    public LoadBalancerStatusFluent.IngressNested&lt;A&gt; addNewIngress(){
+<span class="nc" id="L106">            return new IngressNestedImpl();</span>
+    }
+
+    public LoadBalancerStatusFluent.IngressNested&lt;A&gt; addNewIngressLike(LoadBalancerIngress item){
+<span class="nc" id="L110">            return new IngressNestedImpl(-1, item);</span>
+    }
+
+    public LoadBalancerStatusFluent.IngressNested&lt;A&gt; setNewIngressLike(int index,LoadBalancerIngress item){
+<span class="nc" id="L114">            return new IngressNestedImpl(index, item);</span>
+    }
+
+    public LoadBalancerStatusFluent.IngressNested&lt;A&gt; editIngress(int index){
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            if (ingress.size() &lt;= index) throw new RuntimeException(&quot;Can't edit ingress. Index exceeds size.&quot;);</span>
+<span class="nc" id="L119">            return setNewIngressLike(index, buildIngress(index));</span>
+    }
+
+    public LoadBalancerStatusFluent.IngressNested&lt;A&gt; editFirstIngress(){
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            if (ingress.size() == 0) throw new RuntimeException(&quot;Can't edit first ingress. The list is empty.&quot;);</span>
+<span class="nc" id="L124">            return setNewIngressLike(0, buildIngress(0));</span>
+    }
+
+    public LoadBalancerStatusFluent.IngressNested&lt;A&gt; editLastIngress(){
+<span class="nc" id="L128">            int index = ingress.size() - 1;</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last ingress. The list is empty.&quot;);</span>
+<span class="nc" id="L130">            return setNewIngressLike(index, buildIngress(index));</span>
+    }
+
+    public LoadBalancerStatusFluent.IngressNested&lt;A&gt; editMatchingIngress(io.fabric8.kubernetes.api.builder.Predicate&lt;LoadBalancerIngressBuilder&gt; predicate){
+<span class="nc" id="L134">            int index = -1;</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            for (int i=0;i&lt;ingress.size();i++) { </span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            if (predicate.apply(ingress.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching ingress. No match found.&quot;);</span>
+<span class="nc" id="L139">            return setNewIngressLike(index, buildIngress(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L144" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L146">            LoadBalancerStatusFluentImpl that = (LoadBalancerStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L147" title="All 6 branches missed.">            if (ingress != null ? !ingress.equals(that.ingress) :that.ingress != null) return false;</span>
+<span class="nc" id="L148">            return true;</span>
+    }
+
+
+    public class IngressNestedImpl&lt;N&gt; extends LoadBalancerIngressFluentImpl&lt;LoadBalancerStatusFluent.IngressNested&lt;N&gt;&gt; implements LoadBalancerStatusFluent.IngressNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LoadBalancerIngressBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L157">            IngressNestedImpl(int index,LoadBalancerIngress item){</span>
+<span class="nc" id="L158">                    this.index = index;</span>
+<span class="nc" id="L159">                    this.builder = new LoadBalancerIngressBuilder(this, item);</span>
+<span class="nc" id="L160">            }</span>
+<span class="nc" id="L161">            IngressNestedImpl(){</span>
+<span class="nc" id="L162">                    this.index = -1;</span>
+<span class="nc" id="L163">                    this.builder = new LoadBalancerIngressBuilder(this);</span>
+<span class="nc" id="L164">            }</span>
+    
+    public N and(){
+<span class="nc" id="L167">            return (N) LoadBalancerStatusFluentImpl.this.setToIngress(index, builder.build());</span>
+    }
+    public N endIngress(){
+<span class="nc" id="L170">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

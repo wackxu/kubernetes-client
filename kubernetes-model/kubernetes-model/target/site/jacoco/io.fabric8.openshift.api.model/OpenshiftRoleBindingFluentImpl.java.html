@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OpenshiftRoleBindingFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">OpenshiftRoleBindingFluentImpl.java</span></div><h1>OpenshiftRoleBindingFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.ObjectMetaFluentImpl;
+import io.fabric8.kubernetes.api.model.ObjectReferenceFluentImpl;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.ObjectReferenceBuilder;
+import java.util.Collection;
+import java.lang.Object;
+
+public class OpenshiftRoleBindingFluentImpl&lt;A extends OpenshiftRoleBindingFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements OpenshiftRoleBindingFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private List&lt;String&gt; groupNames;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+    private ObjectReferenceBuilder roleRef;
+    private List&lt;ObjectReferenceBuilder&gt; subjects;
+    private List&lt;String&gt; userNames;
+
+<span class="nc" id="L34">    public OpenshiftRoleBindingFluentImpl(){</span>
+<span class="nc" id="L35">    }</span>
+<span class="nc" id="L36">    public OpenshiftRoleBindingFluentImpl(OpenshiftRoleBinding instance){</span>
+<span class="nc" id="L37">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L38">            this.withGroupNames(instance.getGroupNames()); </span>
+<span class="nc" id="L39">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L40">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L41">            this.withRoleRef(instance.getRoleRef()); </span>
+<span class="nc" id="L42">            this.withSubjects(instance.getSubjects()); </span>
+<span class="nc" id="L43">            this.withUserNames(instance.getUserNames()); </span>
+<span class="nc" id="L44">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L47">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L51">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public A addToGroupNames(int index,String item){
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            if (this.groupNames == null) {this.groupNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L60">            this.groupNames.add(index, item);</span>
+<span class="nc" id="L61">            return (A)this;</span>
+    }
+
+    public A setToGroupNames(int index,String item){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (this.groupNames == null) {this.groupNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L66">            this.groupNames.set(index, item); return (A)this;</span>
+    }
+
+    public A addToGroupNames(String... items){
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            if (this.groupNames == null) {this.groupNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            for (String item : items) {this.groupNames.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToGroupNames(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            if (this.groupNames == null) {this.groupNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">            for (String item : items) {this.groupNames.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromGroupNames(String... items){
+<span class="nc bnc" id="L80" title="All 4 branches missed.">            for (String item : items) {if (this.groupNames!= null){ this.groupNames.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromGroupNames(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L84" title="All 4 branches missed.">            for (String item : items) {if (this.groupNames!= null){ this.groupNames.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getGroupNames(){
+<span class="nc" id="L88">            return this.groupNames;</span>
+    }
+
+    public String getGroupName(int index){
+<span class="nc" id="L92">            return this.groupNames.get(index);</span>
+    }
+
+    public String getFirstGroupName(){
+<span class="nc" id="L96">            return this.groupNames.get(0);</span>
+    }
+
+    public String getLastGroupName(){
+<span class="nc" id="L100">            return this.groupNames.get(groupNames.size() - 1);</span>
+    }
+
+    public String getMatchingGroupName(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L104" title="All 4 branches missed.">            for (String item: groupNames) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withGroupNames(List&lt;String&gt; groupNames){
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            if (this.groupNames != null) { _visitables.removeAll(this.groupNames);}</span>
+<span class="nc bnc" id="L109" title="All 4 branches missed.">            if (groupNames != null) {this.groupNames = new ArrayList&lt;String&gt;(); for (String item : groupNames){this.addToGroupNames(item);}} else { this.groupNames = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withGroupNames(String... groupNames){
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            if (this.groupNames != null) {this.groupNames.clear();}</span>
+<span class="nc bnc" id="L114" title="All 4 branches missed.">            if (groupNames != null) {for (String item :groupNames){ this.addToGroupNames(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasGroupNames(){
+<span class="nc bnc" id="L118" title="All 4 branches missed.">            return groupNames != null &amp;&amp; !groupNames.isEmpty();</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L122">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L126">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L147">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public OpenshiftRoleBindingFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L156">            return new MetadataNestedImpl();</span>
+    }
+
+    public OpenshiftRoleBindingFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L160">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public OpenshiftRoleBindingFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L164">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public OpenshiftRoleBindingFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L168" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public OpenshiftRoleBindingFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L172" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildRoleRef instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getRoleRef(){
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            return this.roleRef!=null?this.roleRef.build():null;</span>
+    }
+
+    public ObjectReference buildRoleRef(){
+<span class="nc bnc" id="L185" title="All 2 branches missed.">            return this.roleRef!=null?this.roleRef.build():null;</span>
+    }
+
+    public A withRoleRef(ObjectReference roleRef){
+<span class="nc" id="L189">            _visitables.remove(this.roleRef);</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">            if (roleRef!=null){ this.roleRef= new ObjectReferenceBuilder(roleRef); _visitables.add(this.roleRef);} return (A) this;</span>
+    }
+
+    public Boolean hasRoleRef(){
+<span class="nc bnc" id="L194" title="All 2 branches missed.">            return this.roleRef != null;</span>
+    }
+
+    public OpenshiftRoleBindingFluent.RoleRefNested&lt;A&gt; withNewRoleRef(){
+<span class="nc" id="L198">            return new RoleRefNestedImpl();</span>
+    }
+
+    public OpenshiftRoleBindingFluent.RoleRefNested&lt;A&gt; withNewRoleRefLike(ObjectReference item){
+<span class="nc" id="L202">            return new RoleRefNestedImpl(item);</span>
+    }
+
+    public OpenshiftRoleBindingFluent.RoleRefNested&lt;A&gt; editRoleRef(){
+<span class="nc" id="L206">            return withNewRoleRefLike(getRoleRef());</span>
+    }
+
+    public OpenshiftRoleBindingFluent.RoleRefNested&lt;A&gt; editOrNewRoleRef(){
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            return withNewRoleRefLike(getRoleRef() != null ? getRoleRef(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public OpenshiftRoleBindingFluent.RoleRefNested&lt;A&gt; editOrNewRoleRefLike(ObjectReference item){
+<span class="nc bnc" id="L214" title="All 2 branches missed.">            return withNewRoleRefLike(getRoleRef() != null ? getRoleRef(): item);</span>
+    }
+
+    public A addToSubjects(int index,ObjectReference item){
+<span class="nc bnc" id="L218" title="All 2 branches missed.">            if (this.subjects == null) {this.subjects = new ArrayList&lt;ObjectReferenceBuilder&gt;();}</span>
+<span class="nc bnc" id="L219" title="All 4 branches missed.">            ObjectReferenceBuilder builder = new ObjectReferenceBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.subjects.add(index &gt;= 0 ? index : subjects.size(), builder); return (A)this;</span>
+    }
+
+    public A setToSubjects(int index,ObjectReference item){
+<span class="nc bnc" id="L223" title="All 2 branches missed.">            if (this.subjects == null) {this.subjects = new ArrayList&lt;ObjectReferenceBuilder&gt;();}</span>
+<span class="nc" id="L224">            ObjectReferenceBuilder builder = new ObjectReferenceBuilder(item);</span>
+<span class="nc bnc" id="L225" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L226" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= subjects.size()) { subjects.add(builder); } else { subjects.set(index, builder);}</span>
+<span class="nc" id="L227">             return (A)this;</span>
+    }
+
+    public A addToSubjects(ObjectReference... items){
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            if (this.subjects == null) {this.subjects = new ArrayList&lt;ObjectReferenceBuilder&gt;();}</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">            for (ObjectReference item : items) {ObjectReferenceBuilder builder = new ObjectReferenceBuilder(item);_visitables.add(builder);this.subjects.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToSubjects(Collection&lt;ObjectReference&gt; items){
+<span class="nc bnc" id="L236" title="All 2 branches missed.">            if (this.subjects == null) {this.subjects = new ArrayList&lt;ObjectReferenceBuilder&gt;();}</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">            for (ObjectReference item : items) {ObjectReferenceBuilder builder = new ObjectReferenceBuilder(item);_visitables.add(builder);this.subjects.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromSubjects(ObjectReference... items){
+<span class="nc bnc" id="L241" title="All 4 branches missed.">            for (ObjectReference item : items) {ObjectReferenceBuilder builder = new ObjectReferenceBuilder(item);_visitables.remove(builder);if (this.subjects != null) {this.subjects.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromSubjects(Collection&lt;ObjectReference&gt; items){
+<span class="nc bnc" id="L245" title="All 4 branches missed.">            for (ObjectReference item : items) {ObjectReferenceBuilder builder = new ObjectReferenceBuilder(item);_visitables.remove(builder);if (this.subjects != null) {this.subjects.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSubjects instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;ObjectReference&gt; getSubjects(){
+<span class="nc" id="L254">            return build(subjects);</span>
+    }
+
+    public List&lt;ObjectReference&gt; buildSubjects(){
+<span class="nc" id="L258">            return build(subjects);</span>
+    }
+
+    public ObjectReference buildSubject(int index){
+<span class="nc" id="L262">            return this.subjects.get(index).build();</span>
+    }
+
+    public ObjectReference buildFirstSubject(){
+<span class="nc" id="L266">            return this.subjects.get(0).build();</span>
+    }
+
+    public ObjectReference buildLastSubject(){
+<span class="nc" id="L270">            return this.subjects.get(subjects.size() - 1).build();</span>
+    }
+
+    public ObjectReference buildMatchingSubject(io.fabric8.kubernetes.api.builder.Predicate&lt;ObjectReferenceBuilder&gt; predicate){
+<span class="nc bnc" id="L274" title="All 4 branches missed.">            for (ObjectReferenceBuilder item: subjects) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withSubjects(List&lt;ObjectReference&gt; subjects){
+<span class="nc bnc" id="L278" title="All 2 branches missed.">            if (this.subjects != null) { _visitables.removeAll(this.subjects);}</span>
+<span class="nc bnc" id="L279" title="All 4 branches missed.">            if (subjects != null) {this.subjects = new ArrayList&lt;ObjectReferenceBuilder&gt;(); for (ObjectReference item : subjects){this.addToSubjects(item);}} else { this.subjects = new ArrayList&lt;ObjectReferenceBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withSubjects(ObjectReference... subjects){
+<span class="nc bnc" id="L283" title="All 2 branches missed.">            if (this.subjects != null) {this.subjects.clear();}</span>
+<span class="nc bnc" id="L284" title="All 4 branches missed.">            if (subjects != null) {for (ObjectReference item :subjects){ this.addToSubjects(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasSubjects(){
+<span class="nc bnc" id="L288" title="All 4 branches missed.">            return subjects != null &amp;&amp; !subjects.isEmpty();</span>
+    }
+
+    public OpenshiftRoleBindingFluent.SubjectsNested&lt;A&gt; addNewSubject(){
+<span class="nc" id="L292">            return new SubjectsNestedImpl();</span>
+    }
+
+    public OpenshiftRoleBindingFluent.SubjectsNested&lt;A&gt; addNewSubjectLike(ObjectReference item){
+<span class="nc" id="L296">            return new SubjectsNestedImpl(-1, item);</span>
+    }
+
+    public OpenshiftRoleBindingFluent.SubjectsNested&lt;A&gt; setNewSubjectLike(int index,ObjectReference item){
+<span class="nc" id="L300">            return new SubjectsNestedImpl(index, item);</span>
+    }
+
+    public OpenshiftRoleBindingFluent.SubjectsNested&lt;A&gt; editSubject(int index){
+<span class="nc bnc" id="L304" title="All 2 branches missed.">            if (subjects.size() &lt;= index) throw new RuntimeException(&quot;Can't edit subjects. Index exceeds size.&quot;);</span>
+<span class="nc" id="L305">            return setNewSubjectLike(index, buildSubject(index));</span>
+    }
+
+    public OpenshiftRoleBindingFluent.SubjectsNested&lt;A&gt; editFirstSubject(){
+<span class="nc bnc" id="L309" title="All 2 branches missed.">            if (subjects.size() == 0) throw new RuntimeException(&quot;Can't edit first subjects. The list is empty.&quot;);</span>
+<span class="nc" id="L310">            return setNewSubjectLike(0, buildSubject(0));</span>
+    }
+
+    public OpenshiftRoleBindingFluent.SubjectsNested&lt;A&gt; editLastSubject(){
+<span class="nc" id="L314">            int index = subjects.size() - 1;</span>
+<span class="nc bnc" id="L315" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last subjects. The list is empty.&quot;);</span>
+<span class="nc" id="L316">            return setNewSubjectLike(index, buildSubject(index));</span>
+    }
+
+    public OpenshiftRoleBindingFluent.SubjectsNested&lt;A&gt; editMatchingSubject(io.fabric8.kubernetes.api.builder.Predicate&lt;ObjectReferenceBuilder&gt; predicate){
+<span class="nc" id="L320">            int index = -1;</span>
+<span class="nc bnc" id="L321" title="All 2 branches missed.">            for (int i=0;i&lt;subjects.size();i++) { </span>
+<span class="nc bnc" id="L322" title="All 2 branches missed.">            if (predicate.apply(subjects.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L324" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching subjects. No match found.&quot;);</span>
+<span class="nc" id="L325">            return setNewSubjectLike(index, buildSubject(index));</span>
+    }
+
+    public A addToUserNames(int index,String item){
+<span class="nc bnc" id="L329" title="All 2 branches missed.">            if (this.userNames == null) {this.userNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L330">            this.userNames.add(index, item);</span>
+<span class="nc" id="L331">            return (A)this;</span>
+    }
+
+    public A setToUserNames(int index,String item){
+<span class="nc bnc" id="L335" title="All 2 branches missed.">            if (this.userNames == null) {this.userNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L336">            this.userNames.set(index, item); return (A)this;</span>
+    }
+
+    public A addToUserNames(String... items){
+<span class="nc bnc" id="L340" title="All 2 branches missed.">            if (this.userNames == null) {this.userNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L341" title="All 2 branches missed.">            for (String item : items) {this.userNames.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToUserNames(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L345" title="All 2 branches missed.">            if (this.userNames == null) {this.userNames = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L346" title="All 2 branches missed.">            for (String item : items) {this.userNames.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromUserNames(String... items){
+<span class="nc bnc" id="L350" title="All 4 branches missed.">            for (String item : items) {if (this.userNames!= null){ this.userNames.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromUserNames(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L354" title="All 4 branches missed.">            for (String item : items) {if (this.userNames!= null){ this.userNames.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getUserNames(){
+<span class="nc" id="L358">            return this.userNames;</span>
+    }
+
+    public String getUserName(int index){
+<span class="nc" id="L362">            return this.userNames.get(index);</span>
+    }
+
+    public String getFirstUserName(){
+<span class="nc" id="L366">            return this.userNames.get(0);</span>
+    }
+
+    public String getLastUserName(){
+<span class="nc" id="L370">            return this.userNames.get(userNames.size() - 1);</span>
+    }
+
+    public String getMatchingUserName(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L374" title="All 4 branches missed.">            for (String item: userNames) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withUserNames(List&lt;String&gt; userNames){
+<span class="nc bnc" id="L378" title="All 2 branches missed.">            if (this.userNames != null) { _visitables.removeAll(this.userNames);}</span>
+<span class="nc bnc" id="L379" title="All 4 branches missed.">            if (userNames != null) {this.userNames = new ArrayList&lt;String&gt;(); for (String item : userNames){this.addToUserNames(item);}} else { this.userNames = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withUserNames(String... userNames){
+<span class="nc bnc" id="L383" title="All 2 branches missed.">            if (this.userNames != null) {this.userNames.clear();}</span>
+<span class="nc bnc" id="L384" title="All 4 branches missed.">            if (userNames != null) {for (String item :userNames){ this.addToUserNames(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasUserNames(){
+<span class="nc bnc" id="L388" title="All 4 branches missed.">            return userNames != null &amp;&amp; !userNames.isEmpty();</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L392" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L393" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L394" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L395">            OpenshiftRoleBindingFluentImpl that = (OpenshiftRoleBindingFluentImpl) o;</span>
+<span class="nc bnc" id="L396" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L397" title="All 6 branches missed.">            if (groupNames != null ? !groupNames.equals(that.groupNames) :that.groupNames != null) return false;</span>
+<span class="nc bnc" id="L398" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L399" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L400" title="All 6 branches missed.">            if (roleRef != null ? !roleRef.equals(that.roleRef) :that.roleRef != null) return false;</span>
+<span class="nc bnc" id="L401" title="All 6 branches missed.">            if (subjects != null ? !subjects.equals(that.subjects) :that.subjects != null) return false;</span>
+<span class="nc bnc" id="L402" title="All 6 branches missed.">            if (userNames != null ? !userNames.equals(that.userNames) :that.userNames != null) return false;</span>
+<span class="nc" id="L403">            return true;</span>
+    }
+
+
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;OpenshiftRoleBindingFluent.MetadataNested&lt;N&gt;&gt; implements OpenshiftRoleBindingFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L411">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L412">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L413">            }</span>
+<span class="nc" id="L414">            MetadataNestedImpl(){</span>
+<span class="nc" id="L415">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L416">            }</span>
+    
+    public N and(){
+<span class="nc" id="L419">            return (N) OpenshiftRoleBindingFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L422">            return and();</span>
+    }
+
+}
+    public class RoleRefNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;OpenshiftRoleBindingFluent.RoleRefNested&lt;N&gt;&gt; implements OpenshiftRoleBindingFluent.RoleRefNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L430">            RoleRefNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L431">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L432">            }</span>
+<span class="nc" id="L433">            RoleRefNestedImpl(){</span>
+<span class="nc" id="L434">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L435">            }</span>
+    
+    public N and(){
+<span class="nc" id="L438">            return (N) OpenshiftRoleBindingFluentImpl.this.withRoleRef(builder.build());</span>
+    }
+    public N endRoleRef(){
+<span class="nc" id="L441">            return and();</span>
+    }
+
+}
+    public class SubjectsNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;OpenshiftRoleBindingFluent.SubjectsNested&lt;N&gt;&gt; implements OpenshiftRoleBindingFluent.SubjectsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L450">            SubjectsNestedImpl(int index,ObjectReference item){</span>
+<span class="nc" id="L451">                    this.index = index;</span>
+<span class="nc" id="L452">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L453">            }</span>
+<span class="nc" id="L454">            SubjectsNestedImpl(){</span>
+<span class="nc" id="L455">                    this.index = -1;</span>
+<span class="nc" id="L456">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L457">            }</span>
+    
+    public N and(){
+<span class="nc" id="L460">            return (N) OpenshiftRoleBindingFluentImpl.this.setToSubjects(index, builder.build());</span>
+    }
+    public N endSubject(){
+<span class="nc" id="L463">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

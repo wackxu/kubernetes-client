@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdmissionRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.admission</a> &gt; <span class="el_source">AdmissionRequest.java</span></div><h1>AdmissionRequest.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.admission;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.GroupVersionKind;
+import io.fabric8.kubernetes.api.model.GroupVersionResource;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.fabric8.kubernetes.api.model.authentication.UserInfo;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;dryRun&quot;,
+    &quot;name&quot;,
+    &quot;namespace&quot;,
+    &quot;object&quot;,
+    &quot;oldObject&quot;,
+    &quot;operation&quot;,
+    &quot;resource&quot;,
+    &quot;subResource&quot;,
+    &quot;uid&quot;,
+    &quot;userInfo&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L49">@ToString</span>
+<span class="nc bnc" id="L50" title="All 102 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class AdmissionRequest implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;dryRun&quot;)
+    private Boolean dryRun;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;kind&quot;)
+    @Valid
+    private GroupVersionKind kind;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;name&quot;)
+    private String name;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;namespace&quot;)
+    private String namespace;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;object&quot;)
+    @Valid
+    private HasMetadata object;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;oldObject&quot;)
+    @Valid
+    private HasMetadata oldObject;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;operation&quot;)
+    private String operation;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;resource&quot;)
+    @Valid
+    private GroupVersionResource resource;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;subResource&quot;)
+    private String subResource;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;uid&quot;)
+    private String uid;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;userInfo&quot;)
+    @Valid
+    private UserInfo userInfo;
+<span class="nc" id="L126">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L133">    public AdmissionRequest() {</span>
+<span class="nc" id="L134">    }</span>
+
+    /**
+     * 
+     * @param uid
+     * @param userInfo
+     * @param dryRun
+     * @param resource
+     * @param kind
+     * @param name
+     * @param namespace
+     * @param oldObject
+     * @param subResource
+     * @param operation
+     * @param object
+     */
+<span class="nc" id="L150">    public AdmissionRequest(Boolean dryRun, GroupVersionKind kind, String name, String namespace, HasMetadata object, HasMetadata oldObject, String operation, GroupVersionResource resource, String subResource, String uid, UserInfo userInfo) {</span>
+<span class="nc" id="L151">        this.dryRun = dryRun;</span>
+<span class="nc" id="L152">        this.kind = kind;</span>
+<span class="nc" id="L153">        this.name = name;</span>
+<span class="nc" id="L154">        this.namespace = namespace;</span>
+<span class="nc" id="L155">        this.object = object;</span>
+<span class="nc" id="L156">        this.oldObject = oldObject;</span>
+<span class="nc" id="L157">        this.operation = operation;</span>
+<span class="nc" id="L158">        this.resource = resource;</span>
+<span class="nc" id="L159">        this.subResource = subResource;</span>
+<span class="nc" id="L160">        this.uid = uid;</span>
+<span class="nc" id="L161">        this.userInfo = userInfo;</span>
+<span class="nc" id="L162">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The dryRun
+     */
+    @JsonProperty(&quot;dryRun&quot;)
+    public Boolean getDryRun() {
+<span class="nc" id="L172">        return dryRun;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param dryRun
+     *     The dryRun
+     */
+    @JsonProperty(&quot;dryRun&quot;)
+    public void setDryRun(Boolean dryRun) {
+<span class="nc" id="L183">        this.dryRun = dryRun;</span>
+<span class="nc" id="L184">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public GroupVersionKind getKind() {
+<span class="nc" id="L194">        return kind;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param kind
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public void setKind(GroupVersionKind kind) {
+<span class="nc" id="L205">        this.kind = kind;</span>
+<span class="nc" id="L206">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The name
+     */
+    @JsonProperty(&quot;name&quot;)
+    public String getName() {
+<span class="nc" id="L216">        return name;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param name
+     *     The name
+     */
+    @JsonProperty(&quot;name&quot;)
+    public void setName(String name) {
+<span class="nc" id="L227">        this.name = name;</span>
+<span class="nc" id="L228">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The namespace
+     */
+    @JsonProperty(&quot;namespace&quot;)
+    public String getNamespace() {
+<span class="nc" id="L238">        return namespace;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param namespace
+     *     The namespace
+     */
+    @JsonProperty(&quot;namespace&quot;)
+    public void setNamespace(String namespace) {
+<span class="nc" id="L249">        this.namespace = namespace;</span>
+<span class="nc" id="L250">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The object
+     */
+    @JsonProperty(&quot;object&quot;)
+    public HasMetadata getObject() {
+<span class="nc" id="L260">        return object;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param object
+     *     The object
+     */
+    @JsonProperty(&quot;object&quot;)
+    public void setObject(HasMetadata object) {
+<span class="nc" id="L271">        this.object = object;</span>
+<span class="nc" id="L272">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The oldObject
+     */
+    @JsonProperty(&quot;oldObject&quot;)
+    public HasMetadata getOldObject() {
+<span class="nc" id="L282">        return oldObject;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param oldObject
+     *     The oldObject
+     */
+    @JsonProperty(&quot;oldObject&quot;)
+    public void setOldObject(HasMetadata oldObject) {
+<span class="nc" id="L293">        this.oldObject = oldObject;</span>
+<span class="nc" id="L294">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The operation
+     */
+    @JsonProperty(&quot;operation&quot;)
+    public String getOperation() {
+<span class="nc" id="L304">        return operation;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param operation
+     *     The operation
+     */
+    @JsonProperty(&quot;operation&quot;)
+    public void setOperation(String operation) {
+<span class="nc" id="L315">        this.operation = operation;</span>
+<span class="nc" id="L316">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The resource
+     */
+    @JsonProperty(&quot;resource&quot;)
+    public GroupVersionResource getResource() {
+<span class="nc" id="L326">        return resource;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param resource
+     *     The resource
+     */
+    @JsonProperty(&quot;resource&quot;)
+    public void setResource(GroupVersionResource resource) {
+<span class="nc" id="L337">        this.resource = resource;</span>
+<span class="nc" id="L338">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The subResource
+     */
+    @JsonProperty(&quot;subResource&quot;)
+    public String getSubResource() {
+<span class="nc" id="L348">        return subResource;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param subResource
+     *     The subResource
+     */
+    @JsonProperty(&quot;subResource&quot;)
+    public void setSubResource(String subResource) {
+<span class="nc" id="L359">        this.subResource = subResource;</span>
+<span class="nc" id="L360">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The uid
+     */
+    @JsonProperty(&quot;uid&quot;)
+    public String getUid() {
+<span class="nc" id="L370">        return uid;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param uid
+     *     The uid
+     */
+    @JsonProperty(&quot;uid&quot;)
+    public void setUid(String uid) {
+<span class="nc" id="L381">        this.uid = uid;</span>
+<span class="nc" id="L382">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The userInfo
+     */
+    @JsonProperty(&quot;userInfo&quot;)
+    public UserInfo getUserInfo() {
+<span class="nc" id="L392">        return userInfo;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param userInfo
+     *     The userInfo
+     */
+    @JsonProperty(&quot;userInfo&quot;)
+    public void setUserInfo(UserInfo userInfo) {
+<span class="nc" id="L403">        this.userInfo = userInfo;</span>
+<span class="nc" id="L404">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L408">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L413">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L414">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdmissionResponseFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.admission</a> &gt; <span class="el_source">AdmissionResponseFluentImpl.java</span></div><h1>AdmissionResponseFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.admission;
+
+import io.fabric8.kubernetes.api.model.Status;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.util.LinkedHashMap;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.StatusFluentImpl;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import io.fabric8.kubernetes.api.model.StatusBuilder;
+import java.lang.Object;
+import java.lang.Boolean;
+import java.util.Map;
+
+public class AdmissionResponseFluentImpl&lt;A extends AdmissionResponseFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements AdmissionResponseFluent&lt;A&gt;{
+
+    private Boolean allowed;
+    private Map&lt;String,String&gt; auditAnnotations;
+    private String patch;
+    private String patchType;
+    private StatusBuilder status;
+    private String uid;
+
+<span class="nc" id="L26">    public AdmissionResponseFluentImpl(){</span>
+<span class="nc" id="L27">    }</span>
+<span class="nc" id="L28">    public AdmissionResponseFluentImpl(AdmissionResponse instance){</span>
+<span class="nc" id="L29">            this.withAllowed(instance.getAllowed()); </span>
+<span class="nc" id="L30">            this.withAuditAnnotations(instance.getAuditAnnotations()); </span>
+<span class="nc" id="L31">            this.withPatch(instance.getPatch()); </span>
+<span class="nc" id="L32">            this.withPatchType(instance.getPatchType()); </span>
+<span class="nc" id="L33">            this.withStatus(instance.getStatus()); </span>
+<span class="nc" id="L34">            this.withUid(instance.getUid()); </span>
+<span class="nc" id="L35">    }</span>
+
+    public Boolean isAllowed(){
+<span class="nc" id="L38">            return this.allowed;</span>
+    }
+
+    public A withAllowed(Boolean allowed){
+<span class="nc" id="L42">            this.allowed=allowed; return (A) this;</span>
+    }
+
+    public Boolean hasAllowed(){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            return this.allowed != null;</span>
+    }
+
+    public A withNewAllowed(String arg1){
+<span class="nc" id="L50">            return (A)withAllowed(new Boolean(arg1));</span>
+    }
+
+    public A withNewAllowed(boolean arg1){
+<span class="nc" id="L54">            return (A)withAllowed(new Boolean(arg1));</span>
+    }
+
+    public A addToAuditAnnotations(String key,String value){
+<span class="nc bnc" id="L58" title="All 6 branches missed.">            if(this.auditAnnotations == null &amp;&amp; key != null &amp;&amp; value != null) { this.auditAnnotations = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L59" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.auditAnnotations.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToAuditAnnotations(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L63" title="All 4 branches missed.">            if(this.auditAnnotations == null &amp;&amp; map != null) { this.auditAnnotations = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            if(map != null) { this.auditAnnotations.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromAuditAnnotations(String key){
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            if(this.auditAnnotations == null) { return (A) this; }</span>
+<span class="nc bnc" id="L69" title="All 4 branches missed.">            if(key != null &amp;&amp; this.auditAnnotations != null) {this.auditAnnotations.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromAuditAnnotations(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if(this.auditAnnotations == null) { return (A) this; }</span>
+<span class="nc bnc" id="L74" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.auditAnnotations != null){this.auditAnnotations.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getAuditAnnotations(){
+<span class="nc" id="L78">            return this.auditAnnotations;</span>
+    }
+
+    public A withAuditAnnotations(Map&lt;String,String&gt; auditAnnotations){
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            if (auditAnnotations == null) { this.auditAnnotations =  new LinkedHashMap&lt;String,String&gt;();} else {this.auditAnnotations = new LinkedHashMap&lt;String,String&gt;(auditAnnotations);} return (A) this;</span>
+    }
+
+    public Boolean hasAuditAnnotations(){
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            return this.auditAnnotations != null;</span>
+    }
+
+    public String getPatch(){
+<span class="nc" id="L90">            return this.patch;</span>
+    }
+
+    public A withPatch(String patch){
+<span class="nc" id="L94">            this.patch=patch; return (A) this;</span>
+    }
+
+    public Boolean hasPatch(){
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            return this.patch != null;</span>
+    }
+
+    public String getPatchType(){
+<span class="nc" id="L102">            return this.patchType;</span>
+    }
+
+    public A withPatchType(String patchType){
+<span class="nc" id="L106">            this.patchType=patchType; return (A) this;</span>
+    }
+
+    public Boolean hasPatchType(){
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            return this.patchType != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildStatus instead.
+ * @return The buildable object.
+ */
+@Deprecated public Status getStatus(){
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            return this.status!=null?this.status.build():null;</span>
+    }
+
+    public Status buildStatus(){
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            return this.status!=null?this.status.build():null;</span>
+    }
+
+    public A withStatus(Status status){
+<span class="nc" id="L127">            _visitables.remove(this.status);</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            if (status!=null){ this.status= new StatusBuilder(status); _visitables.add(this.status);} return (A) this;</span>
+    }
+
+    public Boolean hasStatus(){
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            return this.status != null;</span>
+    }
+
+    public AdmissionResponseFluent.StatusNested&lt;A&gt; withNewStatus(){
+<span class="nc" id="L136">            return new StatusNestedImpl();</span>
+    }
+
+    public AdmissionResponseFluent.StatusNested&lt;A&gt; withNewStatusLike(Status item){
+<span class="nc" id="L140">            return new StatusNestedImpl(item);</span>
+    }
+
+    public AdmissionResponseFluent.StatusNested&lt;A&gt; editStatus(){
+<span class="nc" id="L144">            return withNewStatusLike(getStatus());</span>
+    }
+
+    public AdmissionResponseFluent.StatusNested&lt;A&gt; editOrNewStatus(){
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            return withNewStatusLike(getStatus() != null ? getStatus(): new StatusBuilder().build());</span>
+    }
+
+    public AdmissionResponseFluent.StatusNested&lt;A&gt; editOrNewStatusLike(Status item){
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            return withNewStatusLike(getStatus() != null ? getStatus(): item);</span>
+    }
+
+    public String getUid(){
+<span class="nc" id="L156">            return this.uid;</span>
+    }
+
+    public A withUid(String uid){
+<span class="nc" id="L160">            this.uid=uid; return (A) this;</span>
+    }
+
+    public Boolean hasUid(){
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            return this.uid != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L168" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L169" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L171">            AdmissionResponseFluentImpl that = (AdmissionResponseFluentImpl) o;</span>
+<span class="nc bnc" id="L172" title="All 6 branches missed.">            if (allowed != null ? !allowed.equals(that.allowed) :that.allowed != null) return false;</span>
+<span class="nc bnc" id="L173" title="All 6 branches missed.">            if (auditAnnotations != null ? !auditAnnotations.equals(that.auditAnnotations) :that.auditAnnotations != null) return false;</span>
+<span class="nc bnc" id="L174" title="All 6 branches missed.">            if (patch != null ? !patch.equals(that.patch) :that.patch != null) return false;</span>
+<span class="nc bnc" id="L175" title="All 6 branches missed.">            if (patchType != null ? !patchType.equals(that.patchType) :that.patchType != null) return false;</span>
+<span class="nc bnc" id="L176" title="All 6 branches missed.">            if (status != null ? !status.equals(that.status) :that.status != null) return false;</span>
+<span class="nc bnc" id="L177" title="All 6 branches missed.">            if (uid != null ? !uid.equals(that.uid) :that.uid != null) return false;</span>
+<span class="nc" id="L178">            return true;</span>
+    }
+
+
+    public class StatusNestedImpl&lt;N&gt; extends StatusFluentImpl&lt;AdmissionResponseFluent.StatusNested&lt;N&gt;&gt; implements AdmissionResponseFluent.StatusNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final StatusBuilder builder;
+    
+<span class="nc" id="L186">            StatusNestedImpl(Status item){</span>
+<span class="nc" id="L187">                    this.builder = new StatusBuilder(this, item);</span>
+<span class="nc" id="L188">            }</span>
+<span class="nc" id="L189">            StatusNestedImpl(){</span>
+<span class="nc" id="L190">                    this.builder = new StatusBuilder(this);</span>
+<span class="nc" id="L191">            }</span>
+    
+    public N and(){
+<span class="nc" id="L194">            return (N) AdmissionResponseFluentImpl.this.withStatus(builder.build());</span>
+    }
+    public N endStatus(){
+<span class="nc" id="L197">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

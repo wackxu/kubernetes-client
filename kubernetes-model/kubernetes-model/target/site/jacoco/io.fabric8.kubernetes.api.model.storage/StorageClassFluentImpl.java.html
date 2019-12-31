@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StorageClassFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.storage</a> &gt; <span class="el_source">StorageClassFluentImpl.java</span></div><h1>StorageClassFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.storage;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.TopologySelectorTerm;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.util.LinkedHashMap;
+import io.fabric8.kubernetes.api.model.TopologySelectorTermFluentImpl;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.model.TopologySelectorTermBuilder;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.ObjectMetaFluentImpl;
+import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.Map;
+
+public class StorageClassFluentImpl&lt;A extends StorageClassFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements StorageClassFluent&lt;A&gt;{
+
+    private Boolean allowVolumeExpansion;
+    private List&lt;TopologySelectorTermBuilder&gt; allowedTopologies;
+    private String apiVersion;
+    private String kind;
+    private ObjectMetaBuilder metadata;
+    private List&lt;String&gt; mountOptions;
+    private Map&lt;String,String&gt; parameters;
+    private String provisioner;
+    private String reclaimPolicy;
+    private String volumeBindingMode;
+
+<span class="nc" id="L40">    public StorageClassFluentImpl(){</span>
+<span class="nc" id="L41">    }</span>
+<span class="nc" id="L42">    public StorageClassFluentImpl(StorageClass instance){</span>
+<span class="nc" id="L43">            this.withAllowVolumeExpansion(instance.getAllowVolumeExpansion()); </span>
+<span class="nc" id="L44">            this.withAllowedTopologies(instance.getAllowedTopologies()); </span>
+<span class="nc" id="L45">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L46">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L47">            this.withMetadata(instance.getMetadata()); </span>
+<span class="nc" id="L48">            this.withMountOptions(instance.getMountOptions()); </span>
+<span class="nc" id="L49">            this.withParameters(instance.getParameters()); </span>
+<span class="nc" id="L50">            this.withProvisioner(instance.getProvisioner()); </span>
+<span class="nc" id="L51">            this.withReclaimPolicy(instance.getReclaimPolicy()); </span>
+<span class="nc" id="L52">            this.withVolumeBindingMode(instance.getVolumeBindingMode()); </span>
+<span class="nc" id="L53">    }</span>
+
+    public Boolean isAllowVolumeExpansion(){
+<span class="nc" id="L56">            return this.allowVolumeExpansion;</span>
+    }
+
+    public A withAllowVolumeExpansion(Boolean allowVolumeExpansion){
+<span class="nc" id="L60">            this.allowVolumeExpansion=allowVolumeExpansion; return (A) this;</span>
+    }
+
+    public Boolean hasAllowVolumeExpansion(){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            return this.allowVolumeExpansion != null;</span>
+    }
+
+    public A withNewAllowVolumeExpansion(String arg1){
+<span class="nc" id="L68">            return (A)withAllowVolumeExpansion(new Boolean(arg1));</span>
+    }
+
+    public A withNewAllowVolumeExpansion(boolean arg1){
+<span class="nc" id="L72">            return (A)withAllowVolumeExpansion(new Boolean(arg1));</span>
+    }
+
+    public A addToAllowedTopologies(int index,TopologySelectorTerm item){
+<span class="nc bnc" id="L76" title="All 2 branches missed.">            if (this.allowedTopologies == null) {this.allowedTopologies = new ArrayList&lt;TopologySelectorTermBuilder&gt;();}</span>
+<span class="nc bnc" id="L77" title="All 4 branches missed.">            TopologySelectorTermBuilder builder = new TopologySelectorTermBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.allowedTopologies.add(index &gt;= 0 ? index : allowedTopologies.size(), builder); return (A)this;</span>
+    }
+
+    public A setToAllowedTopologies(int index,TopologySelectorTerm item){
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            if (this.allowedTopologies == null) {this.allowedTopologies = new ArrayList&lt;TopologySelectorTermBuilder&gt;();}</span>
+<span class="nc" id="L82">            TopologySelectorTermBuilder builder = new TopologySelectorTermBuilder(item);</span>
+<span class="nc bnc" id="L83" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L84" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= allowedTopologies.size()) { allowedTopologies.add(builder); } else { allowedTopologies.set(index, builder);}</span>
+<span class="nc" id="L85">             return (A)this;</span>
+    }
+
+    public A addToAllowedTopologies(TopologySelectorTerm... items){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (this.allowedTopologies == null) {this.allowedTopologies = new ArrayList&lt;TopologySelectorTermBuilder&gt;();}</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            for (TopologySelectorTerm item : items) {TopologySelectorTermBuilder builder = new TopologySelectorTermBuilder(item);_visitables.add(builder);this.allowedTopologies.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToAllowedTopologies(Collection&lt;TopologySelectorTerm&gt; items){
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            if (this.allowedTopologies == null) {this.allowedTopologies = new ArrayList&lt;TopologySelectorTermBuilder&gt;();}</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            for (TopologySelectorTerm item : items) {TopologySelectorTermBuilder builder = new TopologySelectorTermBuilder(item);_visitables.add(builder);this.allowedTopologies.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromAllowedTopologies(TopologySelectorTerm... items){
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            for (TopologySelectorTerm item : items) {TopologySelectorTermBuilder builder = new TopologySelectorTermBuilder(item);_visitables.remove(builder);if (this.allowedTopologies != null) {this.allowedTopologies.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAllowedTopologies(Collection&lt;TopologySelectorTerm&gt; items){
+<span class="nc bnc" id="L103" title="All 4 branches missed.">            for (TopologySelectorTerm item : items) {TopologySelectorTermBuilder builder = new TopologySelectorTermBuilder(item);_visitables.remove(builder);if (this.allowedTopologies != null) {this.allowedTopologies.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildAllowedTopologies instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;TopologySelectorTerm&gt; getAllowedTopologies(){
+<span class="nc" id="L112">            return build(allowedTopologies);</span>
+    }
+
+    public List&lt;TopologySelectorTerm&gt; buildAllowedTopologies(){
+<span class="nc" id="L116">            return build(allowedTopologies);</span>
+    }
+
+    public TopologySelectorTerm buildAllowedTopology(int index){
+<span class="nc" id="L120">            return this.allowedTopologies.get(index).build();</span>
+    }
+
+    public TopologySelectorTerm buildFirstAllowedTopology(){
+<span class="nc" id="L124">            return this.allowedTopologies.get(0).build();</span>
+    }
+
+    public TopologySelectorTerm buildLastAllowedTopology(){
+<span class="nc" id="L128">            return this.allowedTopologies.get(allowedTopologies.size() - 1).build();</span>
+    }
+
+    public TopologySelectorTerm buildMatchingAllowedTopology(io.fabric8.kubernetes.api.builder.Predicate&lt;TopologySelectorTermBuilder&gt; predicate){
+<span class="nc bnc" id="L132" title="All 4 branches missed.">            for (TopologySelectorTermBuilder item: allowedTopologies) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withAllowedTopologies(List&lt;TopologySelectorTerm&gt; allowedTopologies){
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            if (this.allowedTopologies != null) { _visitables.removeAll(this.allowedTopologies);}</span>
+<span class="nc bnc" id="L137" title="All 4 branches missed.">            if (allowedTopologies != null) {this.allowedTopologies = new ArrayList&lt;TopologySelectorTermBuilder&gt;(); for (TopologySelectorTerm item : allowedTopologies){this.addToAllowedTopologies(item);}} else { this.allowedTopologies = new ArrayList&lt;TopologySelectorTermBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withAllowedTopologies(TopologySelectorTerm... allowedTopologies){
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            if (this.allowedTopologies != null) {this.allowedTopologies.clear();}</span>
+<span class="nc bnc" id="L142" title="All 4 branches missed.">            if (allowedTopologies != null) {for (TopologySelectorTerm item :allowedTopologies){ this.addToAllowedTopologies(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAllowedTopologies(){
+<span class="nc bnc" id="L146" title="All 4 branches missed.">            return allowedTopologies != null &amp;&amp; !allowedTopologies.isEmpty();</span>
+    }
+
+    public StorageClassFluent.AllowedTopologiesNested&lt;A&gt; addNewAllowedTopology(){
+<span class="nc" id="L150">            return new AllowedTopologiesNestedImpl();</span>
+    }
+
+    public StorageClassFluent.AllowedTopologiesNested&lt;A&gt; addNewAllowedTopologyLike(TopologySelectorTerm item){
+<span class="nc" id="L154">            return new AllowedTopologiesNestedImpl(-1, item);</span>
+    }
+
+    public StorageClassFluent.AllowedTopologiesNested&lt;A&gt; setNewAllowedTopologyLike(int index,TopologySelectorTerm item){
+<span class="nc" id="L158">            return new AllowedTopologiesNestedImpl(index, item);</span>
+    }
+
+    public StorageClassFluent.AllowedTopologiesNested&lt;A&gt; editAllowedTopology(int index){
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (allowedTopologies.size() &lt;= index) throw new RuntimeException(&quot;Can't edit allowedTopologies. Index exceeds size.&quot;);</span>
+<span class="nc" id="L163">            return setNewAllowedTopologyLike(index, buildAllowedTopology(index));</span>
+    }
+
+    public StorageClassFluent.AllowedTopologiesNested&lt;A&gt; editFirstAllowedTopology(){
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (allowedTopologies.size() == 0) throw new RuntimeException(&quot;Can't edit first allowedTopologies. The list is empty.&quot;);</span>
+<span class="nc" id="L168">            return setNewAllowedTopologyLike(0, buildAllowedTopology(0));</span>
+    }
+
+    public StorageClassFluent.AllowedTopologiesNested&lt;A&gt; editLastAllowedTopology(){
+<span class="nc" id="L172">            int index = allowedTopologies.size() - 1;</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last allowedTopologies. The list is empty.&quot;);</span>
+<span class="nc" id="L174">            return setNewAllowedTopologyLike(index, buildAllowedTopology(index));</span>
+    }
+
+    public StorageClassFluent.AllowedTopologiesNested&lt;A&gt; editMatchingAllowedTopology(io.fabric8.kubernetes.api.builder.Predicate&lt;TopologySelectorTermBuilder&gt; predicate){
+<span class="nc" id="L178">            int index = -1;</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">            for (int i=0;i&lt;allowedTopologies.size();i++) { </span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">            if (predicate.apply(allowedTopologies.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L182" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching allowedTopologies. No match found.&quot;);</span>
+<span class="nc" id="L183">            return setNewAllowedTopologyLike(index, buildAllowedTopology(index));</span>
+    }
+
+    public String getApiVersion(){
+<span class="nc" id="L187">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L191">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L195" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L199">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L203">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L207" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMetadata instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMeta getMetadata(){
+<span class="nc bnc" id="L216" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public ObjectMeta buildMetadata(){
+<span class="nc bnc" id="L220" title="All 2 branches missed.">            return this.metadata!=null?this.metadata.build():null;</span>
+    }
+
+    public A withMetadata(ObjectMeta metadata){
+<span class="nc" id="L224">            _visitables.remove(this.metadata);</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">            if (metadata!=null){ this.metadata= new ObjectMetaBuilder(metadata); _visitables.add(this.metadata);} return (A) this;</span>
+    }
+
+    public Boolean hasMetadata(){
+<span class="nc bnc" id="L229" title="All 2 branches missed.">            return this.metadata != null;</span>
+    }
+
+    public StorageClassFluent.MetadataNested&lt;A&gt; withNewMetadata(){
+<span class="nc" id="L233">            return new MetadataNestedImpl();</span>
+    }
+
+    public StorageClassFluent.MetadataNested&lt;A&gt; withNewMetadataLike(ObjectMeta item){
+<span class="nc" id="L237">            return new MetadataNestedImpl(item);</span>
+    }
+
+    public StorageClassFluent.MetadataNested&lt;A&gt; editMetadata(){
+<span class="nc" id="L241">            return withNewMetadataLike(getMetadata());</span>
+    }
+
+    public StorageClassFluent.MetadataNested&lt;A&gt; editOrNewMetadata(){
+<span class="nc bnc" id="L245" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): new ObjectMetaBuilder().build());</span>
+    }
+
+    public StorageClassFluent.MetadataNested&lt;A&gt; editOrNewMetadataLike(ObjectMeta item){
+<span class="nc bnc" id="L249" title="All 2 branches missed.">            return withNewMetadataLike(getMetadata() != null ? getMetadata(): item);</span>
+    }
+
+    public A addToMountOptions(int index,String item){
+<span class="nc bnc" id="L253" title="All 2 branches missed.">            if (this.mountOptions == null) {this.mountOptions = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L254">            this.mountOptions.add(index, item);</span>
+<span class="nc" id="L255">            return (A)this;</span>
+    }
+
+    public A setToMountOptions(int index,String item){
+<span class="nc bnc" id="L259" title="All 2 branches missed.">            if (this.mountOptions == null) {this.mountOptions = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L260">            this.mountOptions.set(index, item); return (A)this;</span>
+    }
+
+    public A addToMountOptions(String... items){
+<span class="nc bnc" id="L264" title="All 2 branches missed.">            if (this.mountOptions == null) {this.mountOptions = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">            for (String item : items) {this.mountOptions.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToMountOptions(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L269" title="All 2 branches missed.">            if (this.mountOptions == null) {this.mountOptions = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L270" title="All 2 branches missed.">            for (String item : items) {this.mountOptions.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromMountOptions(String... items){
+<span class="nc bnc" id="L274" title="All 4 branches missed.">            for (String item : items) {if (this.mountOptions!= null){ this.mountOptions.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromMountOptions(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L278" title="All 4 branches missed.">            for (String item : items) {if (this.mountOptions!= null){ this.mountOptions.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getMountOptions(){
+<span class="nc" id="L282">            return this.mountOptions;</span>
+    }
+
+    public String getMountOption(int index){
+<span class="nc" id="L286">            return this.mountOptions.get(index);</span>
+    }
+
+    public String getFirstMountOption(){
+<span class="nc" id="L290">            return this.mountOptions.get(0);</span>
+    }
+
+    public String getLastMountOption(){
+<span class="nc" id="L294">            return this.mountOptions.get(mountOptions.size() - 1);</span>
+    }
+
+    public String getMatchingMountOption(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L298" title="All 4 branches missed.">            for (String item: mountOptions) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withMountOptions(List&lt;String&gt; mountOptions){
+<span class="nc bnc" id="L302" title="All 2 branches missed.">            if (this.mountOptions != null) { _visitables.removeAll(this.mountOptions);}</span>
+<span class="nc bnc" id="L303" title="All 4 branches missed.">            if (mountOptions != null) {this.mountOptions = new ArrayList&lt;String&gt;(); for (String item : mountOptions){this.addToMountOptions(item);}} else { this.mountOptions = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withMountOptions(String... mountOptions){
+<span class="nc bnc" id="L307" title="All 2 branches missed.">            if (this.mountOptions != null) {this.mountOptions.clear();}</span>
+<span class="nc bnc" id="L308" title="All 4 branches missed.">            if (mountOptions != null) {for (String item :mountOptions){ this.addToMountOptions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasMountOptions(){
+<span class="nc bnc" id="L312" title="All 4 branches missed.">            return mountOptions != null &amp;&amp; !mountOptions.isEmpty();</span>
+    }
+
+    public A addToParameters(String key,String value){
+<span class="nc bnc" id="L316" title="All 6 branches missed.">            if(this.parameters == null &amp;&amp; key != null &amp;&amp; value != null) { this.parameters = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L317" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.parameters.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToParameters(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L321" title="All 4 branches missed.">            if(this.parameters == null &amp;&amp; map != null) { this.parameters = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L322" title="All 2 branches missed.">            if(map != null) { this.parameters.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromParameters(String key){
+<span class="nc bnc" id="L326" title="All 2 branches missed.">            if(this.parameters == null) { return (A) this; }</span>
+<span class="nc bnc" id="L327" title="All 4 branches missed.">            if(key != null &amp;&amp; this.parameters != null) {this.parameters.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromParameters(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L331" title="All 2 branches missed.">            if(this.parameters == null) { return (A) this; }</span>
+<span class="nc bnc" id="L332" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.parameters != null){this.parameters.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getParameters(){
+<span class="nc" id="L336">            return this.parameters;</span>
+    }
+
+    public A withParameters(Map&lt;String,String&gt; parameters){
+<span class="nc bnc" id="L340" title="All 2 branches missed.">            if (parameters == null) { this.parameters =  new LinkedHashMap&lt;String,String&gt;();} else {this.parameters = new LinkedHashMap&lt;String,String&gt;(parameters);} return (A) this;</span>
+    }
+
+    public Boolean hasParameters(){
+<span class="nc bnc" id="L344" title="All 2 branches missed.">            return this.parameters != null;</span>
+    }
+
+    public String getProvisioner(){
+<span class="nc" id="L348">            return this.provisioner;</span>
+    }
+
+    public A withProvisioner(String provisioner){
+<span class="nc" id="L352">            this.provisioner=provisioner; return (A) this;</span>
+    }
+
+    public Boolean hasProvisioner(){
+<span class="nc bnc" id="L356" title="All 2 branches missed.">            return this.provisioner != null;</span>
+    }
+
+    public String getReclaimPolicy(){
+<span class="nc" id="L360">            return this.reclaimPolicy;</span>
+    }
+
+    public A withReclaimPolicy(String reclaimPolicy){
+<span class="nc" id="L364">            this.reclaimPolicy=reclaimPolicy; return (A) this;</span>
+    }
+
+    public Boolean hasReclaimPolicy(){
+<span class="nc bnc" id="L368" title="All 2 branches missed.">            return this.reclaimPolicy != null;</span>
+    }
+
+    public String getVolumeBindingMode(){
+<span class="nc" id="L372">            return this.volumeBindingMode;</span>
+    }
+
+    public A withVolumeBindingMode(String volumeBindingMode){
+<span class="nc" id="L376">            this.volumeBindingMode=volumeBindingMode; return (A) this;</span>
+    }
+
+    public Boolean hasVolumeBindingMode(){
+<span class="nc bnc" id="L380" title="All 2 branches missed.">            return this.volumeBindingMode != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L384" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L385" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L386" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L387">            StorageClassFluentImpl that = (StorageClassFluentImpl) o;</span>
+<span class="nc bnc" id="L388" title="All 6 branches missed.">            if (allowVolumeExpansion != null ? !allowVolumeExpansion.equals(that.allowVolumeExpansion) :that.allowVolumeExpansion != null) return false;</span>
+<span class="nc bnc" id="L389" title="All 6 branches missed.">            if (allowedTopologies != null ? !allowedTopologies.equals(that.allowedTopologies) :that.allowedTopologies != null) return false;</span>
+<span class="nc bnc" id="L390" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L391" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L392" title="All 6 branches missed.">            if (metadata != null ? !metadata.equals(that.metadata) :that.metadata != null) return false;</span>
+<span class="nc bnc" id="L393" title="All 6 branches missed.">            if (mountOptions != null ? !mountOptions.equals(that.mountOptions) :that.mountOptions != null) return false;</span>
+<span class="nc bnc" id="L394" title="All 6 branches missed.">            if (parameters != null ? !parameters.equals(that.parameters) :that.parameters != null) return false;</span>
+<span class="nc bnc" id="L395" title="All 6 branches missed.">            if (provisioner != null ? !provisioner.equals(that.provisioner) :that.provisioner != null) return false;</span>
+<span class="nc bnc" id="L396" title="All 6 branches missed.">            if (reclaimPolicy != null ? !reclaimPolicy.equals(that.reclaimPolicy) :that.reclaimPolicy != null) return false;</span>
+<span class="nc bnc" id="L397" title="All 6 branches missed.">            if (volumeBindingMode != null ? !volumeBindingMode.equals(that.volumeBindingMode) :that.volumeBindingMode != null) return false;</span>
+<span class="nc" id="L398">            return true;</span>
+    }
+
+
+    public class AllowedTopologiesNestedImpl&lt;N&gt; extends TopologySelectorTermFluentImpl&lt;StorageClassFluent.AllowedTopologiesNested&lt;N&gt;&gt; implements StorageClassFluent.AllowedTopologiesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TopologySelectorTermBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L407">            AllowedTopologiesNestedImpl(int index,TopologySelectorTerm item){</span>
+<span class="nc" id="L408">                    this.index = index;</span>
+<span class="nc" id="L409">                    this.builder = new TopologySelectorTermBuilder(this, item);</span>
+<span class="nc" id="L410">            }</span>
+<span class="nc" id="L411">            AllowedTopologiesNestedImpl(){</span>
+<span class="nc" id="L412">                    this.index = -1;</span>
+<span class="nc" id="L413">                    this.builder = new TopologySelectorTermBuilder(this);</span>
+<span class="nc" id="L414">            }</span>
+    
+    public N and(){
+<span class="nc" id="L417">            return (N) StorageClassFluentImpl.this.setToAllowedTopologies(index, builder.build());</span>
+    }
+    public N endAllowedTopology(){
+<span class="nc" id="L420">            return and();</span>
+    }
+
+}
+    public class MetadataNestedImpl&lt;N&gt; extends ObjectMetaFluentImpl&lt;StorageClassFluent.MetadataNested&lt;N&gt;&gt; implements StorageClassFluent.MetadataNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetaBuilder builder;
+    
+<span class="nc" id="L428">            MetadataNestedImpl(ObjectMeta item){</span>
+<span class="nc" id="L429">                    this.builder = new ObjectMetaBuilder(this, item);</span>
+<span class="nc" id="L430">            }</span>
+<span class="nc" id="L431">            MetadataNestedImpl(){</span>
+<span class="nc" id="L432">                    this.builder = new ObjectMetaBuilder(this);</span>
+<span class="nc" id="L433">            }</span>
+    
+    public N and(){
+<span class="nc" id="L436">            return (N) StorageClassFluentImpl.this.withMetadata(builder.build());</span>
+    }
+    public N endMetadata(){
+<span class="nc" id="L439">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

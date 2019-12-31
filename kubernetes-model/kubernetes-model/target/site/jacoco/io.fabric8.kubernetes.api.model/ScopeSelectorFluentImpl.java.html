@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ScopeSelectorFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ScopeSelectorFluentImpl.java</span></div><h1>ScopeSelectorFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class ScopeSelectorFluentImpl&lt;A extends ScopeSelectorFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ScopeSelectorFluent&lt;A&gt;{
+
+    private List&lt;ScopedResourceSelectorRequirementBuilder&gt; matchExpressions;
+
+<span class="nc" id="L20">    public ScopeSelectorFluentImpl(){</span>
+<span class="nc" id="L21">    }</span>
+<span class="nc" id="L22">    public ScopeSelectorFluentImpl(ScopeSelector instance){</span>
+<span class="nc" id="L23">            this.withMatchExpressions(instance.getMatchExpressions()); </span>
+<span class="nc" id="L24">    }</span>
+
+    public A addToMatchExpressions(int index,ScopedResourceSelectorRequirement item){
+<span class="nc bnc" id="L27" title="All 2 branches missed.">            if (this.matchExpressions == null) {this.matchExpressions = new ArrayList&lt;ScopedResourceSelectorRequirementBuilder&gt;();}</span>
+<span class="nc bnc" id="L28" title="All 4 branches missed.">            ScopedResourceSelectorRequirementBuilder builder = new ScopedResourceSelectorRequirementBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.matchExpressions.add(index &gt;= 0 ? index : matchExpressions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToMatchExpressions(int index,ScopedResourceSelectorRequirement item){
+<span class="nc bnc" id="L32" title="All 2 branches missed.">            if (this.matchExpressions == null) {this.matchExpressions = new ArrayList&lt;ScopedResourceSelectorRequirementBuilder&gt;();}</span>
+<span class="nc" id="L33">            ScopedResourceSelectorRequirementBuilder builder = new ScopedResourceSelectorRequirementBuilder(item);</span>
+<span class="nc bnc" id="L34" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L35" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= matchExpressions.size()) { matchExpressions.add(builder); } else { matchExpressions.set(index, builder);}</span>
+<span class="nc" id="L36">             return (A)this;</span>
+    }
+
+    public A addToMatchExpressions(ScopedResourceSelectorRequirement... items){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            if (this.matchExpressions == null) {this.matchExpressions = new ArrayList&lt;ScopedResourceSelectorRequirementBuilder&gt;();}</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            for (ScopedResourceSelectorRequirement item : items) {ScopedResourceSelectorRequirementBuilder builder = new ScopedResourceSelectorRequirementBuilder(item);_visitables.add(builder);this.matchExpressions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToMatchExpressions(Collection&lt;ScopedResourceSelectorRequirement&gt; items){
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            if (this.matchExpressions == null) {this.matchExpressions = new ArrayList&lt;ScopedResourceSelectorRequirementBuilder&gt;();}</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            for (ScopedResourceSelectorRequirement item : items) {ScopedResourceSelectorRequirementBuilder builder = new ScopedResourceSelectorRequirementBuilder(item);_visitables.add(builder);this.matchExpressions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromMatchExpressions(ScopedResourceSelectorRequirement... items){
+<span class="nc bnc" id="L50" title="All 4 branches missed.">            for (ScopedResourceSelectorRequirement item : items) {ScopedResourceSelectorRequirementBuilder builder = new ScopedResourceSelectorRequirementBuilder(item);_visitables.remove(builder);if (this.matchExpressions != null) {this.matchExpressions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromMatchExpressions(Collection&lt;ScopedResourceSelectorRequirement&gt; items){
+<span class="nc bnc" id="L54" title="All 4 branches missed.">            for (ScopedResourceSelectorRequirement item : items) {ScopedResourceSelectorRequirementBuilder builder = new ScopedResourceSelectorRequirementBuilder(item);_visitables.remove(builder);if (this.matchExpressions != null) {this.matchExpressions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMatchExpressions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;ScopedResourceSelectorRequirement&gt; getMatchExpressions(){
+<span class="nc" id="L63">            return build(matchExpressions);</span>
+    }
+
+    public List&lt;ScopedResourceSelectorRequirement&gt; buildMatchExpressions(){
+<span class="nc" id="L67">            return build(matchExpressions);</span>
+    }
+
+    public ScopedResourceSelectorRequirement buildMatchExpression(int index){
+<span class="nc" id="L71">            return this.matchExpressions.get(index).build();</span>
+    }
+
+    public ScopedResourceSelectorRequirement buildFirstMatchExpression(){
+<span class="nc" id="L75">            return this.matchExpressions.get(0).build();</span>
+    }
+
+    public ScopedResourceSelectorRequirement buildLastMatchExpression(){
+<span class="nc" id="L79">            return this.matchExpressions.get(matchExpressions.size() - 1).build();</span>
+    }
+
+    public ScopedResourceSelectorRequirement buildMatchingMatchExpression(io.fabric8.kubernetes.api.builder.Predicate&lt;ScopedResourceSelectorRequirementBuilder&gt; predicate){
+<span class="nc bnc" id="L83" title="All 4 branches missed.">            for (ScopedResourceSelectorRequirementBuilder item: matchExpressions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withMatchExpressions(List&lt;ScopedResourceSelectorRequirement&gt; matchExpressions){
+<span class="nc bnc" id="L87" title="All 2 branches missed.">            if (this.matchExpressions != null) { _visitables.removeAll(this.matchExpressions);}</span>
+<span class="nc bnc" id="L88" title="All 4 branches missed.">            if (matchExpressions != null) {this.matchExpressions = new ArrayList&lt;ScopedResourceSelectorRequirementBuilder&gt;(); for (ScopedResourceSelectorRequirement item : matchExpressions){this.addToMatchExpressions(item);}} else { this.matchExpressions = new ArrayList&lt;ScopedResourceSelectorRequirementBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withMatchExpressions(ScopedResourceSelectorRequirement... matchExpressions){
+<span class="nc bnc" id="L92" title="All 2 branches missed.">            if (this.matchExpressions != null) {this.matchExpressions.clear();}</span>
+<span class="nc bnc" id="L93" title="All 4 branches missed.">            if (matchExpressions != null) {for (ScopedResourceSelectorRequirement item :matchExpressions){ this.addToMatchExpressions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasMatchExpressions(){
+<span class="nc bnc" id="L97" title="All 4 branches missed.">            return matchExpressions != null &amp;&amp; !matchExpressions.isEmpty();</span>
+    }
+
+    public ScopeSelectorFluent.MatchExpressionsNested&lt;A&gt; addNewMatchExpression(){
+<span class="nc" id="L101">            return new MatchExpressionsNestedImpl();</span>
+    }
+
+    public ScopeSelectorFluent.MatchExpressionsNested&lt;A&gt; addNewMatchExpressionLike(ScopedResourceSelectorRequirement item){
+<span class="nc" id="L105">            return new MatchExpressionsNestedImpl(-1, item);</span>
+    }
+
+    public ScopeSelectorFluent.MatchExpressionsNested&lt;A&gt; setNewMatchExpressionLike(int index,ScopedResourceSelectorRequirement item){
+<span class="nc" id="L109">            return new MatchExpressionsNestedImpl(index, item);</span>
+    }
+
+    public ScopeSelectorFluent.MatchExpressionsNested&lt;A&gt; editMatchExpression(int index){
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            if (matchExpressions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit matchExpressions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L114">            return setNewMatchExpressionLike(index, buildMatchExpression(index));</span>
+    }
+
+    public ScopeSelectorFluent.MatchExpressionsNested&lt;A&gt; editFirstMatchExpression(){
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            if (matchExpressions.size() == 0) throw new RuntimeException(&quot;Can't edit first matchExpressions. The list is empty.&quot;);</span>
+<span class="nc" id="L119">            return setNewMatchExpressionLike(0, buildMatchExpression(0));</span>
+    }
+
+    public ScopeSelectorFluent.MatchExpressionsNested&lt;A&gt; editLastMatchExpression(){
+<span class="nc" id="L123">            int index = matchExpressions.size() - 1;</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last matchExpressions. The list is empty.&quot;);</span>
+<span class="nc" id="L125">            return setNewMatchExpressionLike(index, buildMatchExpression(index));</span>
+    }
+
+    public ScopeSelectorFluent.MatchExpressionsNested&lt;A&gt; editMatchingMatchExpression(io.fabric8.kubernetes.api.builder.Predicate&lt;ScopedResourceSelectorRequirementBuilder&gt; predicate){
+<span class="nc" id="L129">            int index = -1;</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            for (int i=0;i&lt;matchExpressions.size();i++) { </span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">            if (predicate.apply(matchExpressions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching matchExpressions. No match found.&quot;);</span>
+<span class="nc" id="L134">            return setNewMatchExpressionLike(index, buildMatchExpression(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L139" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L141">            ScopeSelectorFluentImpl that = (ScopeSelectorFluentImpl) o;</span>
+<span class="nc bnc" id="L142" title="All 6 branches missed.">            if (matchExpressions != null ? !matchExpressions.equals(that.matchExpressions) :that.matchExpressions != null) return false;</span>
+<span class="nc" id="L143">            return true;</span>
+    }
+
+
+    public class MatchExpressionsNestedImpl&lt;N&gt; extends ScopedResourceSelectorRequirementFluentImpl&lt;ScopeSelectorFluent.MatchExpressionsNested&lt;N&gt;&gt; implements ScopeSelectorFluent.MatchExpressionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ScopedResourceSelectorRequirementBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L152">            MatchExpressionsNestedImpl(int index,ScopedResourceSelectorRequirement item){</span>
+<span class="nc" id="L153">                    this.index = index;</span>
+<span class="nc" id="L154">                    this.builder = new ScopedResourceSelectorRequirementBuilder(this, item);</span>
+<span class="nc" id="L155">            }</span>
+<span class="nc" id="L156">            MatchExpressionsNestedImpl(){</span>
+<span class="nc" id="L157">                    this.index = -1;</span>
+<span class="nc" id="L158">                    this.builder = new ScopedResourceSelectorRequirementBuilder(this);</span>
+<span class="nc" id="L159">            }</span>
+    
+    public N and(){
+<span class="nc" id="L162">            return (N) ScopeSelectorFluentImpl.this.setToMatchExpressions(index, builder.build());</span>
+    }
+    public N endMatchExpression(){
+<span class="nc" id="L165">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

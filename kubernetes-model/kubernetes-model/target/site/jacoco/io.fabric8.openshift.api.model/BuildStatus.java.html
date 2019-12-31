@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuildStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">BuildStatus.java</span></div><h1>BuildStatus.java</h1><pre class="source lang-java linenums">
+package io.fabric8.openshift.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;cancelled&quot;,
+    &quot;completionTimestamp&quot;,
+    &quot;config&quot;,
+    &quot;duration&quot;,
+    &quot;logSnippet&quot;,
+    &quot;message&quot;,
+    &quot;output&quot;,
+    &quot;outputDockerImageReference&quot;,
+    &quot;phase&quot;,
+    &quot;reason&quot;,
+    &quot;stages&quot;,
+    &quot;startTimestamp&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L50">@ToString</span>
+<span class="nc bnc" id="L51" title="All 110 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class BuildStatus implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;cancelled&quot;)
+    private Boolean cancelled;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;completionTimestamp&quot;)
+    @Valid
+    private String completionTimestamp;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;config&quot;)
+    @Valid
+    private ObjectReference config;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;duration&quot;)
+    private Long duration;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;logSnippet&quot;)
+    private java.lang.String logSnippet;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;message&quot;)
+    private java.lang.String message;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;output&quot;)
+    @Valid
+    private BuildStatusOutput output;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;outputDockerImageReference&quot;)
+    private java.lang.String outputDockerImageReference;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;phase&quot;)
+    private java.lang.String phase;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;reason&quot;)
+    private java.lang.String reason;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L123">    @JsonProperty(&quot;stages&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;StageInfo&gt; stages = new ArrayList&lt;StageInfo&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;startTimestamp&quot;)
+    @Valid
+    private String startTimestamp;
+<span class="nc" id="L134">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L141">    public BuildStatus() {</span>
+<span class="nc" id="L142">    }</span>
+
+    /**
+     * 
+     * @param duration
+     * @param output
+     * @param phase
+     * @param reason
+     * @param completionTimestamp
+     * @param stages
+     * @param cancelled
+     * @param message
+     * @param config
+     * @param logSnippet
+     * @param outputDockerImageReference
+     * @param startTimestamp
+     */
+<span class="nc" id="L159">    public BuildStatus(Boolean cancelled, String completionTimestamp, ObjectReference config, Long duration, java.lang.String logSnippet, java.lang.String message, BuildStatusOutput output, java.lang.String outputDockerImageReference, java.lang.String phase, java.lang.String reason, List&lt;StageInfo&gt; stages, String startTimestamp) {</span>
+<span class="nc" id="L160">        this.cancelled = cancelled;</span>
+<span class="nc" id="L161">        this.completionTimestamp = completionTimestamp;</span>
+<span class="nc" id="L162">        this.config = config;</span>
+<span class="nc" id="L163">        this.duration = duration;</span>
+<span class="nc" id="L164">        this.logSnippet = logSnippet;</span>
+<span class="nc" id="L165">        this.message = message;</span>
+<span class="nc" id="L166">        this.output = output;</span>
+<span class="nc" id="L167">        this.outputDockerImageReference = outputDockerImageReference;</span>
+<span class="nc" id="L168">        this.phase = phase;</span>
+<span class="nc" id="L169">        this.reason = reason;</span>
+<span class="nc" id="L170">        this.stages = stages;</span>
+<span class="nc" id="L171">        this.startTimestamp = startTimestamp;</span>
+<span class="nc" id="L172">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The cancelled
+     */
+    @JsonProperty(&quot;cancelled&quot;)
+    public Boolean getCancelled() {
+<span class="nc" id="L182">        return cancelled;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param cancelled
+     *     The cancelled
+     */
+    @JsonProperty(&quot;cancelled&quot;)
+    public void setCancelled(Boolean cancelled) {
+<span class="nc" id="L193">        this.cancelled = cancelled;</span>
+<span class="nc" id="L194">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The completionTimestamp
+     */
+    @JsonProperty(&quot;completionTimestamp&quot;)
+    public String getCompletionTimestamp() {
+<span class="nc" id="L204">        return completionTimestamp;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param completionTimestamp
+     *     The completionTimestamp
+     */
+    @JsonProperty(&quot;completionTimestamp&quot;)
+    public void setCompletionTimestamp(String completionTimestamp) {
+<span class="nc" id="L215">        this.completionTimestamp = completionTimestamp;</span>
+<span class="nc" id="L216">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The config
+     */
+    @JsonProperty(&quot;config&quot;)
+    public ObjectReference getConfig() {
+<span class="nc" id="L226">        return config;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param config
+     *     The config
+     */
+    @JsonProperty(&quot;config&quot;)
+    public void setConfig(ObjectReference config) {
+<span class="nc" id="L237">        this.config = config;</span>
+<span class="nc" id="L238">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The duration
+     */
+    @JsonProperty(&quot;duration&quot;)
+    public Long getDuration() {
+<span class="nc" id="L248">        return duration;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param duration
+     *     The duration
+     */
+    @JsonProperty(&quot;duration&quot;)
+    public void setDuration(Long duration) {
+<span class="nc" id="L259">        this.duration = duration;</span>
+<span class="nc" id="L260">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The logSnippet
+     */
+    @JsonProperty(&quot;logSnippet&quot;)
+    public java.lang.String getLogSnippet() {
+<span class="nc" id="L270">        return logSnippet;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param logSnippet
+     *     The logSnippet
+     */
+    @JsonProperty(&quot;logSnippet&quot;)
+    public void setLogSnippet(java.lang.String logSnippet) {
+<span class="nc" id="L281">        this.logSnippet = logSnippet;</span>
+<span class="nc" id="L282">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The message
+     */
+    @JsonProperty(&quot;message&quot;)
+    public java.lang.String getMessage() {
+<span class="nc" id="L292">        return message;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param message
+     *     The message
+     */
+    @JsonProperty(&quot;message&quot;)
+    public void setMessage(java.lang.String message) {
+<span class="nc" id="L303">        this.message = message;</span>
+<span class="nc" id="L304">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The output
+     */
+    @JsonProperty(&quot;output&quot;)
+    public BuildStatusOutput getOutput() {
+<span class="nc" id="L314">        return output;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param output
+     *     The output
+     */
+    @JsonProperty(&quot;output&quot;)
+    public void setOutput(BuildStatusOutput output) {
+<span class="nc" id="L325">        this.output = output;</span>
+<span class="nc" id="L326">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The outputDockerImageReference
+     */
+    @JsonProperty(&quot;outputDockerImageReference&quot;)
+    public java.lang.String getOutputDockerImageReference() {
+<span class="nc" id="L336">        return outputDockerImageReference;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param outputDockerImageReference
+     *     The outputDockerImageReference
+     */
+    @JsonProperty(&quot;outputDockerImageReference&quot;)
+    public void setOutputDockerImageReference(java.lang.String outputDockerImageReference) {
+<span class="nc" id="L347">        this.outputDockerImageReference = outputDockerImageReference;</span>
+<span class="nc" id="L348">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The phase
+     */
+    @JsonProperty(&quot;phase&quot;)
+    public java.lang.String getPhase() {
+<span class="nc" id="L358">        return phase;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param phase
+     *     The phase
+     */
+    @JsonProperty(&quot;phase&quot;)
+    public void setPhase(java.lang.String phase) {
+<span class="nc" id="L369">        this.phase = phase;</span>
+<span class="nc" id="L370">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The reason
+     */
+    @JsonProperty(&quot;reason&quot;)
+    public java.lang.String getReason() {
+<span class="nc" id="L380">        return reason;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param reason
+     *     The reason
+     */
+    @JsonProperty(&quot;reason&quot;)
+    public void setReason(java.lang.String reason) {
+<span class="nc" id="L391">        this.reason = reason;</span>
+<span class="nc" id="L392">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The stages
+     */
+    @JsonProperty(&quot;stages&quot;)
+    public List&lt;StageInfo&gt; getStages() {
+<span class="nc" id="L402">        return stages;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param stages
+     *     The stages
+     */
+    @JsonProperty(&quot;stages&quot;)
+    public void setStages(List&lt;StageInfo&gt; stages) {
+<span class="nc" id="L413">        this.stages = stages;</span>
+<span class="nc" id="L414">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The startTimestamp
+     */
+    @JsonProperty(&quot;startTimestamp&quot;)
+    public String getStartTimestamp() {
+<span class="nc" id="L424">        return startTimestamp;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param startTimestamp
+     *     The startTimestamp
+     */
+    @JsonProperty(&quot;startTimestamp&quot;)
+    public void setStartTimestamp(String startTimestamp) {
+<span class="nc" id="L435">        this.startTimestamp = startTimestamp;</span>
+<span class="nc" id="L436">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L440">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L445">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L446">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

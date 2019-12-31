@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NodeAffinityFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">NodeAffinityFluentImpl.java</span></div><h1>NodeAffinityFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class NodeAffinityFluentImpl&lt;A extends NodeAffinityFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements NodeAffinityFluent&lt;A&gt;{
+
+    private List&lt;PreferredSchedulingTermBuilder&gt; preferredDuringSchedulingIgnoredDuringExecution;
+    private NodeSelectorBuilder requiredDuringSchedulingIgnoredDuringExecution;
+
+<span class="nc" id="L21">    public NodeAffinityFluentImpl(){</span>
+<span class="nc" id="L22">    }</span>
+<span class="nc" id="L23">    public NodeAffinityFluentImpl(NodeAffinity instance){</span>
+<span class="nc" id="L24">            this.withPreferredDuringSchedulingIgnoredDuringExecution(instance.getPreferredDuringSchedulingIgnoredDuringExecution()); </span>
+<span class="nc" id="L25">            this.withRequiredDuringSchedulingIgnoredDuringExecution(instance.getRequiredDuringSchedulingIgnoredDuringExecution()); </span>
+<span class="nc" id="L26">    }</span>
+
+    public A addToPreferredDuringSchedulingIgnoredDuringExecution(int index,PreferredSchedulingTerm item){
+<span class="nc bnc" id="L29" title="All 2 branches missed.">            if (this.preferredDuringSchedulingIgnoredDuringExecution == null) {this.preferredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;PreferredSchedulingTermBuilder&gt;();}</span>
+<span class="nc bnc" id="L30" title="All 4 branches missed.">            PreferredSchedulingTermBuilder builder = new PreferredSchedulingTermBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.preferredDuringSchedulingIgnoredDuringExecution.add(index &gt;= 0 ? index : preferredDuringSchedulingIgnoredDuringExecution.size(), builder); return (A)this;</span>
+    }
+
+    public A setToPreferredDuringSchedulingIgnoredDuringExecution(int index,PreferredSchedulingTerm item){
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            if (this.preferredDuringSchedulingIgnoredDuringExecution == null) {this.preferredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;PreferredSchedulingTermBuilder&gt;();}</span>
+<span class="nc" id="L35">            PreferredSchedulingTermBuilder builder = new PreferredSchedulingTermBuilder(item);</span>
+<span class="nc bnc" id="L36" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L37" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= preferredDuringSchedulingIgnoredDuringExecution.size()) { preferredDuringSchedulingIgnoredDuringExecution.add(builder); } else { preferredDuringSchedulingIgnoredDuringExecution.set(index, builder);}</span>
+<span class="nc" id="L38">             return (A)this;</span>
+    }
+
+    public A addToPreferredDuringSchedulingIgnoredDuringExecution(PreferredSchedulingTerm... items){
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            if (this.preferredDuringSchedulingIgnoredDuringExecution == null) {this.preferredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;PreferredSchedulingTermBuilder&gt;();}</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            for (PreferredSchedulingTerm item : items) {PreferredSchedulingTermBuilder builder = new PreferredSchedulingTermBuilder(item);_visitables.add(builder);this.preferredDuringSchedulingIgnoredDuringExecution.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToPreferredDuringSchedulingIgnoredDuringExecution(Collection&lt;PreferredSchedulingTerm&gt; items){
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            if (this.preferredDuringSchedulingIgnoredDuringExecution == null) {this.preferredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;PreferredSchedulingTermBuilder&gt;();}</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            for (PreferredSchedulingTerm item : items) {PreferredSchedulingTermBuilder builder = new PreferredSchedulingTermBuilder(item);_visitables.add(builder);this.preferredDuringSchedulingIgnoredDuringExecution.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromPreferredDuringSchedulingIgnoredDuringExecution(PreferredSchedulingTerm... items){
+<span class="nc bnc" id="L52" title="All 4 branches missed.">            for (PreferredSchedulingTerm item : items) {PreferredSchedulingTermBuilder builder = new PreferredSchedulingTermBuilder(item);_visitables.remove(builder);if (this.preferredDuringSchedulingIgnoredDuringExecution != null) {this.preferredDuringSchedulingIgnoredDuringExecution.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromPreferredDuringSchedulingIgnoredDuringExecution(Collection&lt;PreferredSchedulingTerm&gt; items){
+<span class="nc bnc" id="L56" title="All 4 branches missed.">            for (PreferredSchedulingTerm item : items) {PreferredSchedulingTermBuilder builder = new PreferredSchedulingTermBuilder(item);_visitables.remove(builder);if (this.preferredDuringSchedulingIgnoredDuringExecution != null) {this.preferredDuringSchedulingIgnoredDuringExecution.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPreferredDuringSchedulingIgnoredDuringExecution instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;PreferredSchedulingTerm&gt; getPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L65">            return build(preferredDuringSchedulingIgnoredDuringExecution);</span>
+    }
+
+    public List&lt;PreferredSchedulingTerm&gt; buildPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L69">            return build(preferredDuringSchedulingIgnoredDuringExecution);</span>
+    }
+
+    public PreferredSchedulingTerm buildPreferredDuringSchedulingIgnoredDuringExecution(int index){
+<span class="nc" id="L73">            return this.preferredDuringSchedulingIgnoredDuringExecution.get(index).build();</span>
+    }
+
+    public PreferredSchedulingTerm buildFirstPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L77">            return this.preferredDuringSchedulingIgnoredDuringExecution.get(0).build();</span>
+    }
+
+    public PreferredSchedulingTerm buildLastPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L81">            return this.preferredDuringSchedulingIgnoredDuringExecution.get(preferredDuringSchedulingIgnoredDuringExecution.size() - 1).build();</span>
+    }
+
+    public PreferredSchedulingTerm buildMatchingPreferredDuringSchedulingIgnoredDuringExecution(io.fabric8.kubernetes.api.builder.Predicate&lt;PreferredSchedulingTermBuilder&gt; predicate){
+<span class="nc bnc" id="L85" title="All 4 branches missed.">            for (PreferredSchedulingTermBuilder item: preferredDuringSchedulingIgnoredDuringExecution) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withPreferredDuringSchedulingIgnoredDuringExecution(List&lt;PreferredSchedulingTerm&gt; preferredDuringSchedulingIgnoredDuringExecution){
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (this.preferredDuringSchedulingIgnoredDuringExecution != null) { _visitables.removeAll(this.preferredDuringSchedulingIgnoredDuringExecution);}</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">            if (preferredDuringSchedulingIgnoredDuringExecution != null) {this.preferredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;PreferredSchedulingTermBuilder&gt;(); for (PreferredSchedulingTerm item : preferredDuringSchedulingIgnoredDuringExecution){this.addToPreferredDuringSchedulingIgnoredDuringExecution(item);}} else { this.preferredDuringSchedulingIgnoredDuringExecution = new ArrayList&lt;PreferredSchedulingTermBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withPreferredDuringSchedulingIgnoredDuringExecution(PreferredSchedulingTerm... preferredDuringSchedulingIgnoredDuringExecution){
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            if (this.preferredDuringSchedulingIgnoredDuringExecution != null) {this.preferredDuringSchedulingIgnoredDuringExecution.clear();}</span>
+<span class="nc bnc" id="L95" title="All 4 branches missed.">            if (preferredDuringSchedulingIgnoredDuringExecution != null) {for (PreferredSchedulingTerm item :preferredDuringSchedulingIgnoredDuringExecution){ this.addToPreferredDuringSchedulingIgnoredDuringExecution(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            return preferredDuringSchedulingIgnoredDuringExecution != null &amp;&amp; !preferredDuringSchedulingIgnoredDuringExecution.isEmpty();</span>
+    }
+
+    public NodeAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; addNewPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L103">            return new PreferredDuringSchedulingIgnoredDuringExecutionNestedImpl();</span>
+    }
+
+    public NodeAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; addNewPreferredDuringSchedulingIgnoredDuringExecutionLike(PreferredSchedulingTerm item){
+<span class="nc" id="L107">            return new PreferredDuringSchedulingIgnoredDuringExecutionNestedImpl(-1, item);</span>
+    }
+
+    public NodeAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; setNewPreferredDuringSchedulingIgnoredDuringExecutionLike(int index,PreferredSchedulingTerm item){
+<span class="nc" id="L111">            return new PreferredDuringSchedulingIgnoredDuringExecutionNestedImpl(index, item);</span>
+    }
+
+    public NodeAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; editPreferredDuringSchedulingIgnoredDuringExecution(int index){
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            if (preferredDuringSchedulingIgnoredDuringExecution.size() &lt;= index) throw new RuntimeException(&quot;Can't edit preferredDuringSchedulingIgnoredDuringExecution. Index exceeds size.&quot;);</span>
+<span class="nc" id="L116">            return setNewPreferredDuringSchedulingIgnoredDuringExecutionLike(index, buildPreferredDuringSchedulingIgnoredDuringExecution(index));</span>
+    }
+
+    public NodeAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; editFirstPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            if (preferredDuringSchedulingIgnoredDuringExecution.size() == 0) throw new RuntimeException(&quot;Can't edit first preferredDuringSchedulingIgnoredDuringExecution. The list is empty.&quot;);</span>
+<span class="nc" id="L121">            return setNewPreferredDuringSchedulingIgnoredDuringExecutionLike(0, buildPreferredDuringSchedulingIgnoredDuringExecution(0));</span>
+    }
+
+    public NodeAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; editLastPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L125">            int index = preferredDuringSchedulingIgnoredDuringExecution.size() - 1;</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last preferredDuringSchedulingIgnoredDuringExecution. The list is empty.&quot;);</span>
+<span class="nc" id="L127">            return setNewPreferredDuringSchedulingIgnoredDuringExecutionLike(index, buildPreferredDuringSchedulingIgnoredDuringExecution(index));</span>
+    }
+
+    public NodeAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; editMatchingPreferredDuringSchedulingIgnoredDuringExecution(io.fabric8.kubernetes.api.builder.Predicate&lt;PreferredSchedulingTermBuilder&gt; predicate){
+<span class="nc" id="L131">            int index = -1;</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            for (int i=0;i&lt;preferredDuringSchedulingIgnoredDuringExecution.size();i++) { </span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (predicate.apply(preferredDuringSchedulingIgnoredDuringExecution.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching preferredDuringSchedulingIgnoredDuringExecution. No match found.&quot;);</span>
+<span class="nc" id="L136">            return setNewPreferredDuringSchedulingIgnoredDuringExecutionLike(index, buildPreferredDuringSchedulingIgnoredDuringExecution(index));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildRequiredDuringSchedulingIgnoredDuringExecution instead.
+ * @return The buildable object.
+ */
+@Deprecated public NodeSelector getRequiredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            return this.requiredDuringSchedulingIgnoredDuringExecution!=null?this.requiredDuringSchedulingIgnoredDuringExecution.build():null;</span>
+    }
+
+    public NodeSelector buildRequiredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            return this.requiredDuringSchedulingIgnoredDuringExecution!=null?this.requiredDuringSchedulingIgnoredDuringExecution.build():null;</span>
+    }
+
+    public A withRequiredDuringSchedulingIgnoredDuringExecution(NodeSelector requiredDuringSchedulingIgnoredDuringExecution){
+<span class="nc" id="L153">            _visitables.remove(this.requiredDuringSchedulingIgnoredDuringExecution);</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            if (requiredDuringSchedulingIgnoredDuringExecution!=null){ this.requiredDuringSchedulingIgnoredDuringExecution= new NodeSelectorBuilder(requiredDuringSchedulingIgnoredDuringExecution); _visitables.add(this.requiredDuringSchedulingIgnoredDuringExecution);} return (A) this;</span>
+    }
+
+    public Boolean hasRequiredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            return this.requiredDuringSchedulingIgnoredDuringExecution != null;</span>
+    }
+
+    public NodeAffinityFluent.RequiredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; withNewRequiredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L162">            return new RequiredDuringSchedulingIgnoredDuringExecutionNestedImpl();</span>
+    }
+
+    public NodeAffinityFluent.RequiredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; withNewRequiredDuringSchedulingIgnoredDuringExecutionLike(NodeSelector item){
+<span class="nc" id="L166">            return new RequiredDuringSchedulingIgnoredDuringExecutionNestedImpl(item);</span>
+    }
+
+    public NodeAffinityFluent.RequiredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; editRequiredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L170">            return withNewRequiredDuringSchedulingIgnoredDuringExecutionLike(getRequiredDuringSchedulingIgnoredDuringExecution());</span>
+    }
+
+    public NodeAffinityFluent.RequiredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; editOrNewRequiredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc bnc" id="L174" title="All 2 branches missed.">            return withNewRequiredDuringSchedulingIgnoredDuringExecutionLike(getRequiredDuringSchedulingIgnoredDuringExecution() != null ? getRequiredDuringSchedulingIgnoredDuringExecution(): new NodeSelectorBuilder().build());</span>
+    }
+
+    public NodeAffinityFluent.RequiredDuringSchedulingIgnoredDuringExecutionNested&lt;A&gt; editOrNewRequiredDuringSchedulingIgnoredDuringExecutionLike(NodeSelector item){
+<span class="nc bnc" id="L178" title="All 2 branches missed.">            return withNewRequiredDuringSchedulingIgnoredDuringExecutionLike(getRequiredDuringSchedulingIgnoredDuringExecution() != null ? getRequiredDuringSchedulingIgnoredDuringExecution(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L182" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L183" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L185">            NodeAffinityFluentImpl that = (NodeAffinityFluentImpl) o;</span>
+<span class="nc bnc" id="L186" title="All 6 branches missed.">            if (preferredDuringSchedulingIgnoredDuringExecution != null ? !preferredDuringSchedulingIgnoredDuringExecution.equals(that.preferredDuringSchedulingIgnoredDuringExecution) :that.preferredDuringSchedulingIgnoredDuringExecution != null) return false;</span>
+<span class="nc bnc" id="L187" title="All 6 branches missed.">            if (requiredDuringSchedulingIgnoredDuringExecution != null ? !requiredDuringSchedulingIgnoredDuringExecution.equals(that.requiredDuringSchedulingIgnoredDuringExecution) :that.requiredDuringSchedulingIgnoredDuringExecution != null) return false;</span>
+<span class="nc" id="L188">            return true;</span>
+    }
+
+
+    public class PreferredDuringSchedulingIgnoredDuringExecutionNestedImpl&lt;N&gt; extends PreferredSchedulingTermFluentImpl&lt;NodeAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;N&gt;&gt; implements NodeAffinityFluent.PreferredDuringSchedulingIgnoredDuringExecutionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PreferredSchedulingTermBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L197">            PreferredDuringSchedulingIgnoredDuringExecutionNestedImpl(int index,PreferredSchedulingTerm item){</span>
+<span class="nc" id="L198">                    this.index = index;</span>
+<span class="nc" id="L199">                    this.builder = new PreferredSchedulingTermBuilder(this, item);</span>
+<span class="nc" id="L200">            }</span>
+<span class="nc" id="L201">            PreferredDuringSchedulingIgnoredDuringExecutionNestedImpl(){</span>
+<span class="nc" id="L202">                    this.index = -1;</span>
+<span class="nc" id="L203">                    this.builder = new PreferredSchedulingTermBuilder(this);</span>
+<span class="nc" id="L204">            }</span>
+    
+    public N and(){
+<span class="nc" id="L207">            return (N) NodeAffinityFluentImpl.this.setToPreferredDuringSchedulingIgnoredDuringExecution(index, builder.build());</span>
+    }
+    public N endPreferredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L210">            return and();</span>
+    }
+
+}
+    public class RequiredDuringSchedulingIgnoredDuringExecutionNestedImpl&lt;N&gt; extends NodeSelectorFluentImpl&lt;NodeAffinityFluent.RequiredDuringSchedulingIgnoredDuringExecutionNested&lt;N&gt;&gt; implements NodeAffinityFluent.RequiredDuringSchedulingIgnoredDuringExecutionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NodeSelectorBuilder builder;
+    
+<span class="nc" id="L218">            RequiredDuringSchedulingIgnoredDuringExecutionNestedImpl(NodeSelector item){</span>
+<span class="nc" id="L219">                    this.builder = new NodeSelectorBuilder(this, item);</span>
+<span class="nc" id="L220">            }</span>
+<span class="nc" id="L221">            RequiredDuringSchedulingIgnoredDuringExecutionNestedImpl(){</span>
+<span class="nc" id="L222">                    this.builder = new NodeSelectorBuilder(this);</span>
+<span class="nc" id="L223">            }</span>
+    
+    public N and(){
+<span class="nc" id="L226">            return (N) NodeAffinityFluentImpl.this.withRequiredDuringSchedulingIgnoredDuringExecution(builder.build());</span>
+    }
+    public N endRequiredDuringSchedulingIgnoredDuringExecution(){
+<span class="nc" id="L229">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

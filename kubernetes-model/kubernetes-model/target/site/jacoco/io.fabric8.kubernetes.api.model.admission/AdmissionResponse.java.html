@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdmissionResponse.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.admission</a> &gt; <span class="el_source">AdmissionResponse.java</span></div><h1>AdmissionResponse.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.admission;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.fabric8.kubernetes.api.model.Status;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;allowed&quot;,
+    &quot;auditAnnotations&quot;,
+    &quot;patch&quot;,
+    &quot;patchType&quot;,
+    &quot;status&quot;,
+    &quot;uid&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L42">@ToString</span>
+<span class="nc bnc" id="L43" title="All 62 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class AdmissionResponse implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;allowed&quot;)
+    private Boolean allowed;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;auditAnnotations&quot;)
+    @Valid
+    private Map&lt;String, String&gt; auditAnnotations;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;patch&quot;)
+    private java.lang.String patch;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;patchType&quot;)
+    private java.lang.String patchType;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;status&quot;)
+    @Valid
+    private Status status;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;uid&quot;)
+    private java.lang.String uid;
+<span class="nc" id="L86">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L93">    public AdmissionResponse() {</span>
+<span class="nc" id="L94">    }</span>
+
+    /**
+     * 
+     * @param patch
+     * @param uid
+     * @param patchType
+     * @param allowed
+     * @param auditAnnotations
+     * @param status
+     */
+<span class="nc" id="L105">    public AdmissionResponse(Boolean allowed, Map&lt;String, String&gt; auditAnnotations, java.lang.String patch, java.lang.String patchType, Status status, java.lang.String uid) {</span>
+<span class="nc" id="L106">        this.allowed = allowed;</span>
+<span class="nc" id="L107">        this.auditAnnotations = auditAnnotations;</span>
+<span class="nc" id="L108">        this.patch = patch;</span>
+<span class="nc" id="L109">        this.patchType = patchType;</span>
+<span class="nc" id="L110">        this.status = status;</span>
+<span class="nc" id="L111">        this.uid = uid;</span>
+<span class="nc" id="L112">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The allowed
+     */
+    @JsonProperty(&quot;allowed&quot;)
+    public Boolean getAllowed() {
+<span class="nc" id="L122">        return allowed;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param allowed
+     *     The allowed
+     */
+    @JsonProperty(&quot;allowed&quot;)
+    public void setAllowed(Boolean allowed) {
+<span class="nc" id="L133">        this.allowed = allowed;</span>
+<span class="nc" id="L134">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The auditAnnotations
+     */
+    @JsonProperty(&quot;auditAnnotations&quot;)
+    public Map&lt;String, String&gt; getAuditAnnotations() {
+<span class="nc" id="L144">        return auditAnnotations;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param auditAnnotations
+     *     The auditAnnotations
+     */
+    @JsonProperty(&quot;auditAnnotations&quot;)
+    public void setAuditAnnotations(Map&lt;String, String&gt; auditAnnotations) {
+<span class="nc" id="L155">        this.auditAnnotations = auditAnnotations;</span>
+<span class="nc" id="L156">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The patch
+     */
+    @JsonProperty(&quot;patch&quot;)
+    public java.lang.String getPatch() {
+<span class="nc" id="L166">        return patch;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param patch
+     *     The patch
+     */
+    @JsonProperty(&quot;patch&quot;)
+    public void setPatch(java.lang.String patch) {
+<span class="nc" id="L177">        this.patch = patch;</span>
+<span class="nc" id="L178">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The patchType
+     */
+    @JsonProperty(&quot;patchType&quot;)
+    public java.lang.String getPatchType() {
+<span class="nc" id="L188">        return patchType;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param patchType
+     *     The patchType
+     */
+    @JsonProperty(&quot;patchType&quot;)
+    public void setPatchType(java.lang.String patchType) {
+<span class="nc" id="L199">        this.patchType = patchType;</span>
+<span class="nc" id="L200">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The status
+     */
+    @JsonProperty(&quot;status&quot;)
+    public Status getStatus() {
+<span class="nc" id="L210">        return status;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param status
+     *     The status
+     */
+    @JsonProperty(&quot;status&quot;)
+    public void setStatus(Status status) {
+<span class="nc" id="L221">        this.status = status;</span>
+<span class="nc" id="L222">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The uid
+     */
+    @JsonProperty(&quot;uid&quot;)
+    public java.lang.String getUid() {
+<span class="nc" id="L232">        return uid;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param uid
+     *     The uid
+     */
+    @JsonProperty(&quot;uid&quot;)
+    public void setUid(java.lang.String uid) {
+<span class="nc" id="L243">        this.uid = uid;</span>
+<span class="nc" id="L244">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L248">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L253">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L254">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

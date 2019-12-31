@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DockerBuildStrategyFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">DockerBuildStrategyFluentImpl.java</span></div><h1>DockerBuildStrategyFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.model.EnvVarBuilder;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import io.fabric8.kubernetes.api.model.ObjectReference;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import io.fabric8.kubernetes.api.model.LocalObjectReferenceFluentImpl;
+import io.fabric8.kubernetes.api.model.EnvVar;
+import java.util.List;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.ObjectReferenceFluentImpl;
+import io.fabric8.kubernetes.api.model.LocalObjectReferenceBuilder;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.ObjectReferenceBuilder;
+import io.fabric8.kubernetes.api.model.LocalObjectReference;
+import java.util.Collection;
+import io.fabric8.kubernetes.api.model.EnvVarFluentImpl;
+import java.lang.Object;
+
+public class DockerBuildStrategyFluentImpl&lt;A extends DockerBuildStrategyFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements DockerBuildStrategyFluent&lt;A&gt;{
+
+    private List&lt;EnvVarBuilder&gt; buildArgs;
+    private String dockerfilePath;
+    private List&lt;EnvVarBuilder&gt; env;
+    private Boolean forcePull;
+    private ObjectReferenceBuilder from;
+    private String imageOptimizationPolicy;
+    private Boolean noCache;
+    private LocalObjectReferenceBuilder pullSecret;
+
+<span class="nc" id="L37">    public DockerBuildStrategyFluentImpl(){</span>
+<span class="nc" id="L38">    }</span>
+<span class="nc" id="L39">    public DockerBuildStrategyFluentImpl(DockerBuildStrategy instance){</span>
+<span class="nc" id="L40">            this.withBuildArgs(instance.getBuildArgs()); </span>
+<span class="nc" id="L41">            this.withDockerfilePath(instance.getDockerfilePath()); </span>
+<span class="nc" id="L42">            this.withEnv(instance.getEnv()); </span>
+<span class="nc" id="L43">            this.withForcePull(instance.getForcePull()); </span>
+<span class="nc" id="L44">            this.withFrom(instance.getFrom()); </span>
+<span class="nc" id="L45">            this.withImageOptimizationPolicy(instance.getImageOptimizationPolicy()); </span>
+<span class="nc" id="L46">            this.withNoCache(instance.getNoCache()); </span>
+<span class="nc" id="L47">            this.withPullSecret(instance.getPullSecret()); </span>
+<span class="nc" id="L48">    }</span>
+
+    public A addToBuildArgs(int index,EnvVar item){
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            if (this.buildArgs == null) {this.buildArgs = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L52" title="All 4 branches missed.">            EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.buildArgs.add(index &gt;= 0 ? index : buildArgs.size(), builder); return (A)this;</span>
+    }
+
+    public A setToBuildArgs(int index,EnvVar item){
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            if (this.buildArgs == null) {this.buildArgs = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc" id="L57">            EnvVarBuilder builder = new EnvVarBuilder(item);</span>
+<span class="nc bnc" id="L58" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L59" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= buildArgs.size()) { buildArgs.add(builder); } else { buildArgs.set(index, builder);}</span>
+<span class="nc" id="L60">             return (A)this;</span>
+    }
+
+    public A addToBuildArgs(EnvVar... items){
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            if (this.buildArgs == null) {this.buildArgs = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(builder);this.buildArgs.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToBuildArgs(Collection&lt;EnvVar&gt; items){
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if (this.buildArgs == null) {this.buildArgs = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(builder);this.buildArgs.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromBuildArgs(EnvVar... items){
+<span class="nc bnc" id="L74" title="All 4 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.remove(builder);if (this.buildArgs != null) {this.buildArgs.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromBuildArgs(Collection&lt;EnvVar&gt; items){
+<span class="nc bnc" id="L78" title="All 4 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.remove(builder);if (this.buildArgs != null) {this.buildArgs.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildBuildArgs instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;EnvVar&gt; getBuildArgs(){
+<span class="nc" id="L87">            return build(buildArgs);</span>
+    }
+
+    public List&lt;EnvVar&gt; buildBuildArgs(){
+<span class="nc" id="L91">            return build(buildArgs);</span>
+    }
+
+    public EnvVar buildBuildArg(int index){
+<span class="nc" id="L95">            return this.buildArgs.get(index).build();</span>
+    }
+
+    public EnvVar buildFirstBuildArg(){
+<span class="nc" id="L99">            return this.buildArgs.get(0).build();</span>
+    }
+
+    public EnvVar buildLastBuildArg(){
+<span class="nc" id="L103">            return this.buildArgs.get(buildArgs.size() - 1).build();</span>
+    }
+
+    public EnvVar buildMatchingBuildArg(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvVarBuilder&gt; predicate){
+<span class="nc bnc" id="L107" title="All 4 branches missed.">            for (EnvVarBuilder item: buildArgs) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withBuildArgs(List&lt;EnvVar&gt; buildArgs){
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            if (this.buildArgs != null) { _visitables.removeAll(this.buildArgs);}</span>
+<span class="nc bnc" id="L112" title="All 4 branches missed.">            if (buildArgs != null) {this.buildArgs = new ArrayList&lt;EnvVarBuilder&gt;(); for (EnvVar item : buildArgs){this.addToBuildArgs(item);}} else { this.buildArgs = new ArrayList&lt;EnvVarBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withBuildArgs(EnvVar... buildArgs){
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            if (this.buildArgs != null) {this.buildArgs.clear();}</span>
+<span class="nc bnc" id="L117" title="All 4 branches missed.">            if (buildArgs != null) {for (EnvVar item :buildArgs){ this.addToBuildArgs(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasBuildArgs(){
+<span class="nc bnc" id="L121" title="All 4 branches missed.">            return buildArgs != null &amp;&amp; !buildArgs.isEmpty();</span>
+    }
+
+    public DockerBuildStrategyFluent.BuildArgsNested&lt;A&gt; addNewBuildArg(){
+<span class="nc" id="L125">            return new BuildArgsNestedImpl();</span>
+    }
+
+    public DockerBuildStrategyFluent.BuildArgsNested&lt;A&gt; addNewBuildArgLike(EnvVar item){
+<span class="nc" id="L129">            return new BuildArgsNestedImpl(-1, item);</span>
+    }
+
+    public DockerBuildStrategyFluent.BuildArgsNested&lt;A&gt; setNewBuildArgLike(int index,EnvVar item){
+<span class="nc" id="L133">            return new BuildArgsNestedImpl(index, item);</span>
+    }
+
+    public DockerBuildStrategyFluent.BuildArgsNested&lt;A&gt; editBuildArg(int index){
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            if (buildArgs.size() &lt;= index) throw new RuntimeException(&quot;Can't edit buildArgs. Index exceeds size.&quot;);</span>
+<span class="nc" id="L138">            return setNewBuildArgLike(index, buildBuildArg(index));</span>
+    }
+
+    public DockerBuildStrategyFluent.BuildArgsNested&lt;A&gt; editFirstBuildArg(){
+<span class="nc bnc" id="L142" title="All 2 branches missed.">            if (buildArgs.size() == 0) throw new RuntimeException(&quot;Can't edit first buildArgs. The list is empty.&quot;);</span>
+<span class="nc" id="L143">            return setNewBuildArgLike(0, buildBuildArg(0));</span>
+    }
+
+    public DockerBuildStrategyFluent.BuildArgsNested&lt;A&gt; editLastBuildArg(){
+<span class="nc" id="L147">            int index = buildArgs.size() - 1;</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last buildArgs. The list is empty.&quot;);</span>
+<span class="nc" id="L149">            return setNewBuildArgLike(index, buildBuildArg(index));</span>
+    }
+
+    public DockerBuildStrategyFluent.BuildArgsNested&lt;A&gt; editMatchingBuildArg(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvVarBuilder&gt; predicate){
+<span class="nc" id="L153">            int index = -1;</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            for (int i=0;i&lt;buildArgs.size();i++) { </span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            if (predicate.apply(buildArgs.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching buildArgs. No match found.&quot;);</span>
+<span class="nc" id="L158">            return setNewBuildArgLike(index, buildBuildArg(index));</span>
+    }
+
+    public String getDockerfilePath(){
+<span class="nc" id="L162">            return this.dockerfilePath;</span>
+    }
+
+    public A withDockerfilePath(String dockerfilePath){
+<span class="nc" id="L166">            this.dockerfilePath=dockerfilePath; return (A) this;</span>
+    }
+
+    public Boolean hasDockerfilePath(){
+<span class="nc bnc" id="L170" title="All 2 branches missed.">            return this.dockerfilePath != null;</span>
+    }
+
+    public A addToEnv(int index,EnvVar item){
+<span class="nc bnc" id="L174" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L175" title="All 4 branches missed.">            EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.env.add(index &gt;= 0 ? index : env.size(), builder); return (A)this;</span>
+    }
+
+    public A setToEnv(int index,EnvVar item){
+<span class="nc bnc" id="L179" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc" id="L180">            EnvVarBuilder builder = new EnvVarBuilder(item);</span>
+<span class="nc bnc" id="L181" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L182" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= env.size()) { env.add(builder); } else { env.set(index, builder);}</span>
+<span class="nc" id="L183">             return (A)this;</span>
+    }
+
+    public A addToEnv(EnvVar... items){
+<span class="nc bnc" id="L187" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L188" title="All 2 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(builder);this.env.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToEnv(Collection&lt;EnvVar&gt; items){
+<span class="nc bnc" id="L192" title="All 2 branches missed.">            if (this.env == null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;();}</span>
+<span class="nc bnc" id="L193" title="All 2 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.add(builder);this.env.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromEnv(EnvVar... items){
+<span class="nc bnc" id="L197" title="All 4 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.remove(builder);if (this.env != null) {this.env.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromEnv(Collection&lt;EnvVar&gt; items){
+<span class="nc bnc" id="L201" title="All 4 branches missed.">            for (EnvVar item : items) {EnvVarBuilder builder = new EnvVarBuilder(item);_visitables.remove(builder);if (this.env != null) {this.env.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildEnv instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;EnvVar&gt; getEnv(){
+<span class="nc" id="L210">            return build(env);</span>
+    }
+
+    public List&lt;EnvVar&gt; buildEnv(){
+<span class="nc" id="L214">            return build(env);</span>
+    }
+
+    public EnvVar buildEnv(int index){
+<span class="nc" id="L218">            return this.env.get(index).build();</span>
+    }
+
+    public EnvVar buildFirstEnv(){
+<span class="nc" id="L222">            return this.env.get(0).build();</span>
+    }
+
+    public EnvVar buildLastEnv(){
+<span class="nc" id="L226">            return this.env.get(env.size() - 1).build();</span>
+    }
+
+    public EnvVar buildMatchingEnv(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvVarBuilder&gt; predicate){
+<span class="nc bnc" id="L230" title="All 4 branches missed.">            for (EnvVarBuilder item: env) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withEnv(List&lt;EnvVar&gt; env){
+<span class="nc bnc" id="L234" title="All 2 branches missed.">            if (this.env != null) { _visitables.removeAll(this.env);}</span>
+<span class="nc bnc" id="L235" title="All 4 branches missed.">            if (env != null) {this.env = new ArrayList&lt;EnvVarBuilder&gt;(); for (EnvVar item : env){this.addToEnv(item);}} else { this.env = new ArrayList&lt;EnvVarBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withEnv(EnvVar... env){
+<span class="nc bnc" id="L239" title="All 2 branches missed.">            if (this.env != null) {this.env.clear();}</span>
+<span class="nc bnc" id="L240" title="All 4 branches missed.">            if (env != null) {for (EnvVar item :env){ this.addToEnv(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasEnv(){
+<span class="nc bnc" id="L244" title="All 4 branches missed.">            return env != null &amp;&amp; !env.isEmpty();</span>
+    }
+
+    public DockerBuildStrategyFluent.EnvNested&lt;A&gt; addNewEnv(){
+<span class="nc" id="L248">            return new EnvNestedImpl();</span>
+    }
+
+    public DockerBuildStrategyFluent.EnvNested&lt;A&gt; addNewEnvLike(EnvVar item){
+<span class="nc" id="L252">            return new EnvNestedImpl(-1, item);</span>
+    }
+
+    public DockerBuildStrategyFluent.EnvNested&lt;A&gt; setNewEnvLike(int index,EnvVar item){
+<span class="nc" id="L256">            return new EnvNestedImpl(index, item);</span>
+    }
+
+    public DockerBuildStrategyFluent.EnvNested&lt;A&gt; editEnv(int index){
+<span class="nc bnc" id="L260" title="All 2 branches missed.">            if (env.size() &lt;= index) throw new RuntimeException(&quot;Can't edit env. Index exceeds size.&quot;);</span>
+<span class="nc" id="L261">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    public DockerBuildStrategyFluent.EnvNested&lt;A&gt; editFirstEnv(){
+<span class="nc bnc" id="L265" title="All 2 branches missed.">            if (env.size() == 0) throw new RuntimeException(&quot;Can't edit first env. The list is empty.&quot;);</span>
+<span class="nc" id="L266">            return setNewEnvLike(0, buildEnv(0));</span>
+    }
+
+    public DockerBuildStrategyFluent.EnvNested&lt;A&gt; editLastEnv(){
+<span class="nc" id="L270">            int index = env.size() - 1;</span>
+<span class="nc bnc" id="L271" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last env. The list is empty.&quot;);</span>
+<span class="nc" id="L272">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    public DockerBuildStrategyFluent.EnvNested&lt;A&gt; editMatchingEnv(io.fabric8.kubernetes.api.builder.Predicate&lt;EnvVarBuilder&gt; predicate){
+<span class="nc" id="L276">            int index = -1;</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">            for (int i=0;i&lt;env.size();i++) { </span>
+<span class="nc bnc" id="L278" title="All 2 branches missed.">            if (predicate.apply(env.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L280" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching env. No match found.&quot;);</span>
+<span class="nc" id="L281">            return setNewEnvLike(index, buildEnv(index));</span>
+    }
+
+    public Boolean isForcePull(){
+<span class="nc" id="L285">            return this.forcePull;</span>
+    }
+
+    public A withForcePull(Boolean forcePull){
+<span class="nc" id="L289">            this.forcePull=forcePull; return (A) this;</span>
+    }
+
+    public Boolean hasForcePull(){
+<span class="nc bnc" id="L293" title="All 2 branches missed.">            return this.forcePull != null;</span>
+    }
+
+    public A withNewForcePull(String arg1){
+<span class="nc" id="L297">            return (A)withForcePull(new Boolean(arg1));</span>
+    }
+
+    public A withNewForcePull(boolean arg1){
+<span class="nc" id="L301">            return (A)withForcePull(new Boolean(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildFrom instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectReference getFrom(){
+<span class="nc bnc" id="L310" title="All 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public ObjectReference buildFrom(){
+<span class="nc bnc" id="L314" title="All 2 branches missed.">            return this.from!=null?this.from.build():null;</span>
+    }
+
+    public A withFrom(ObjectReference from){
+<span class="nc" id="L318">            _visitables.remove(this.from);</span>
+<span class="nc bnc" id="L319" title="All 2 branches missed.">            if (from!=null){ this.from= new ObjectReferenceBuilder(from); _visitables.add(this.from);} return (A) this;</span>
+    }
+
+    public Boolean hasFrom(){
+<span class="nc bnc" id="L323" title="All 2 branches missed.">            return this.from != null;</span>
+    }
+
+    public DockerBuildStrategyFluent.FromNested&lt;A&gt; withNewFrom(){
+<span class="nc" id="L327">            return new FromNestedImpl();</span>
+    }
+
+    public DockerBuildStrategyFluent.FromNested&lt;A&gt; withNewFromLike(ObjectReference item){
+<span class="nc" id="L331">            return new FromNestedImpl(item);</span>
+    }
+
+    public DockerBuildStrategyFluent.FromNested&lt;A&gt; editFrom(){
+<span class="nc" id="L335">            return withNewFromLike(getFrom());</span>
+    }
+
+    public DockerBuildStrategyFluent.FromNested&lt;A&gt; editOrNewFrom(){
+<span class="nc bnc" id="L339" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): new ObjectReferenceBuilder().build());</span>
+    }
+
+    public DockerBuildStrategyFluent.FromNested&lt;A&gt; editOrNewFromLike(ObjectReference item){
+<span class="nc bnc" id="L343" title="All 2 branches missed.">            return withNewFromLike(getFrom() != null ? getFrom(): item);</span>
+    }
+
+    public String getImageOptimizationPolicy(){
+<span class="nc" id="L347">            return this.imageOptimizationPolicy;</span>
+    }
+
+    public A withImageOptimizationPolicy(String imageOptimizationPolicy){
+<span class="nc" id="L351">            this.imageOptimizationPolicy=imageOptimizationPolicy; return (A) this;</span>
+    }
+
+    public Boolean hasImageOptimizationPolicy(){
+<span class="nc bnc" id="L355" title="All 2 branches missed.">            return this.imageOptimizationPolicy != null;</span>
+    }
+
+    public Boolean isNoCache(){
+<span class="nc" id="L359">            return this.noCache;</span>
+    }
+
+    public A withNoCache(Boolean noCache){
+<span class="nc" id="L363">            this.noCache=noCache; return (A) this;</span>
+    }
+
+    public Boolean hasNoCache(){
+<span class="nc bnc" id="L367" title="All 2 branches missed.">            return this.noCache != null;</span>
+    }
+
+    public A withNewNoCache(String arg1){
+<span class="nc" id="L371">            return (A)withNoCache(new Boolean(arg1));</span>
+    }
+
+    public A withNewNoCache(boolean arg1){
+<span class="nc" id="L375">            return (A)withNoCache(new Boolean(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPullSecret instead.
+ * @return The buildable object.
+ */
+@Deprecated public LocalObjectReference getPullSecret(){
+<span class="nc bnc" id="L384" title="All 2 branches missed.">            return this.pullSecret!=null?this.pullSecret.build():null;</span>
+    }
+
+    public LocalObjectReference buildPullSecret(){
+<span class="nc bnc" id="L388" title="All 2 branches missed.">            return this.pullSecret!=null?this.pullSecret.build():null;</span>
+    }
+
+    public A withPullSecret(LocalObjectReference pullSecret){
+<span class="nc" id="L392">            _visitables.remove(this.pullSecret);</span>
+<span class="nc bnc" id="L393" title="All 2 branches missed.">            if (pullSecret!=null){ this.pullSecret= new LocalObjectReferenceBuilder(pullSecret); _visitables.add(this.pullSecret);} return (A) this;</span>
+    }
+
+    public Boolean hasPullSecret(){
+<span class="nc bnc" id="L397" title="All 2 branches missed.">            return this.pullSecret != null;</span>
+    }
+
+    public A withNewPullSecret(String name){
+<span class="nc" id="L401">            return (A)withPullSecret(new LocalObjectReference(name));</span>
+    }
+
+    public DockerBuildStrategyFluent.PullSecretNested&lt;A&gt; withNewPullSecret(){
+<span class="nc" id="L405">            return new PullSecretNestedImpl();</span>
+    }
+
+    public DockerBuildStrategyFluent.PullSecretNested&lt;A&gt; withNewPullSecretLike(LocalObjectReference item){
+<span class="nc" id="L409">            return new PullSecretNestedImpl(item);</span>
+    }
+
+    public DockerBuildStrategyFluent.PullSecretNested&lt;A&gt; editPullSecret(){
+<span class="nc" id="L413">            return withNewPullSecretLike(getPullSecret());</span>
+    }
+
+    public DockerBuildStrategyFluent.PullSecretNested&lt;A&gt; editOrNewPullSecret(){
+<span class="nc bnc" id="L417" title="All 2 branches missed.">            return withNewPullSecretLike(getPullSecret() != null ? getPullSecret(): new LocalObjectReferenceBuilder().build());</span>
+    }
+
+    public DockerBuildStrategyFluent.PullSecretNested&lt;A&gt; editOrNewPullSecretLike(LocalObjectReference item){
+<span class="nc bnc" id="L421" title="All 2 branches missed.">            return withNewPullSecretLike(getPullSecret() != null ? getPullSecret(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L425" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L426" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L427" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L428">            DockerBuildStrategyFluentImpl that = (DockerBuildStrategyFluentImpl) o;</span>
+<span class="nc bnc" id="L429" title="All 6 branches missed.">            if (buildArgs != null ? !buildArgs.equals(that.buildArgs) :that.buildArgs != null) return false;</span>
+<span class="nc bnc" id="L430" title="All 6 branches missed.">            if (dockerfilePath != null ? !dockerfilePath.equals(that.dockerfilePath) :that.dockerfilePath != null) return false;</span>
+<span class="nc bnc" id="L431" title="All 6 branches missed.">            if (env != null ? !env.equals(that.env) :that.env != null) return false;</span>
+<span class="nc bnc" id="L432" title="All 6 branches missed.">            if (forcePull != null ? !forcePull.equals(that.forcePull) :that.forcePull != null) return false;</span>
+<span class="nc bnc" id="L433" title="All 6 branches missed.">            if (from != null ? !from.equals(that.from) :that.from != null) return false;</span>
+<span class="nc bnc" id="L434" title="All 6 branches missed.">            if (imageOptimizationPolicy != null ? !imageOptimizationPolicy.equals(that.imageOptimizationPolicy) :that.imageOptimizationPolicy != null) return false;</span>
+<span class="nc bnc" id="L435" title="All 6 branches missed.">            if (noCache != null ? !noCache.equals(that.noCache) :that.noCache != null) return false;</span>
+<span class="nc bnc" id="L436" title="All 6 branches missed.">            if (pullSecret != null ? !pullSecret.equals(that.pullSecret) :that.pullSecret != null) return false;</span>
+<span class="nc" id="L437">            return true;</span>
+    }
+
+
+    public class BuildArgsNestedImpl&lt;N&gt; extends EnvVarFluentImpl&lt;DockerBuildStrategyFluent.BuildArgsNested&lt;N&gt;&gt; implements DockerBuildStrategyFluent.BuildArgsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EnvVarBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L446">            BuildArgsNestedImpl(int index,EnvVar item){</span>
+<span class="nc" id="L447">                    this.index = index;</span>
+<span class="nc" id="L448">                    this.builder = new EnvVarBuilder(this, item);</span>
+<span class="nc" id="L449">            }</span>
+<span class="nc" id="L450">            BuildArgsNestedImpl(){</span>
+<span class="nc" id="L451">                    this.index = -1;</span>
+<span class="nc" id="L452">                    this.builder = new EnvVarBuilder(this);</span>
+<span class="nc" id="L453">            }</span>
+    
+    public N and(){
+<span class="nc" id="L456">            return (N) DockerBuildStrategyFluentImpl.this.setToBuildArgs(index, builder.build());</span>
+    }
+    public N endBuildArg(){
+<span class="nc" id="L459">            return and();</span>
+    }
+
+}
+    public class EnvNestedImpl&lt;N&gt; extends EnvVarFluentImpl&lt;DockerBuildStrategyFluent.EnvNested&lt;N&gt;&gt; implements DockerBuildStrategyFluent.EnvNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EnvVarBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L468">            EnvNestedImpl(int index,EnvVar item){</span>
+<span class="nc" id="L469">                    this.index = index;</span>
+<span class="nc" id="L470">                    this.builder = new EnvVarBuilder(this, item);</span>
+<span class="nc" id="L471">            }</span>
+<span class="nc" id="L472">            EnvNestedImpl(){</span>
+<span class="nc" id="L473">                    this.index = -1;</span>
+<span class="nc" id="L474">                    this.builder = new EnvVarBuilder(this);</span>
+<span class="nc" id="L475">            }</span>
+    
+    public N and(){
+<span class="nc" id="L478">            return (N) DockerBuildStrategyFluentImpl.this.setToEnv(index, builder.build());</span>
+    }
+    public N endEnv(){
+<span class="nc" id="L481">            return and();</span>
+    }
+
+}
+    public class FromNestedImpl&lt;N&gt; extends ObjectReferenceFluentImpl&lt;DockerBuildStrategyFluent.FromNested&lt;N&gt;&gt; implements DockerBuildStrategyFluent.FromNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectReferenceBuilder builder;
+    
+<span class="nc" id="L489">            FromNestedImpl(ObjectReference item){</span>
+<span class="nc" id="L490">                    this.builder = new ObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L491">            }</span>
+<span class="nc" id="L492">            FromNestedImpl(){</span>
+<span class="nc" id="L493">                    this.builder = new ObjectReferenceBuilder(this);</span>
+<span class="nc" id="L494">            }</span>
+    
+    public N and(){
+<span class="nc" id="L497">            return (N) DockerBuildStrategyFluentImpl.this.withFrom(builder.build());</span>
+    }
+    public N endFrom(){
+<span class="nc" id="L500">            return and();</span>
+    }
+
+}
+    public class PullSecretNestedImpl&lt;N&gt; extends LocalObjectReferenceFluentImpl&lt;DockerBuildStrategyFluent.PullSecretNested&lt;N&gt;&gt; implements DockerBuildStrategyFluent.PullSecretNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LocalObjectReferenceBuilder builder;
+    
+<span class="nc" id="L508">            PullSecretNestedImpl(LocalObjectReference item){</span>
+<span class="nc" id="L509">                    this.builder = new LocalObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L510">            }</span>
+<span class="nc" id="L511">            PullSecretNestedImpl(){</span>
+<span class="nc" id="L512">                    this.builder = new LocalObjectReferenceBuilder(this);</span>
+<span class="nc" id="L513">            }</span>
+    
+    public N and(){
+<span class="nc" id="L516">            return (N) DockerBuildStrategyFluentImpl.this.withPullSecret(builder.build());</span>
+    }
+    public N endPullSecret(){
+<span class="nc" id="L519">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

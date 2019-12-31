@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NetworkPolicyPeer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.networking</a> &gt; <span class="el_source">NetworkPolicyPeer.java</span></div><h1>NetworkPolicyPeer.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.networking;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.fabric8.kubernetes.api.model.LabelSelector;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;ipBlock&quot;,
+    &quot;namespaceSelector&quot;,
+    &quot;podSelector&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L39">@ToString</span>
+<span class="nc bnc" id="L40" title="All 38 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class NetworkPolicyPeer implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;ipBlock&quot;)
+    @Valid
+    private IPBlock ipBlock;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;namespaceSelector&quot;)
+    @Valid
+    private LabelSelector namespaceSelector;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;podSelector&quot;)
+    @Valid
+    private LabelSelector podSelector;
+<span class="nc" id="L66">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L73">    public NetworkPolicyPeer() {</span>
+<span class="nc" id="L74">    }</span>
+
+    /**
+     * 
+     * @param podSelector
+     * @param ipBlock
+     * @param namespaceSelector
+     */
+<span class="nc" id="L82">    public NetworkPolicyPeer(IPBlock ipBlock, LabelSelector namespaceSelector, LabelSelector podSelector) {</span>
+<span class="nc" id="L83">        this.ipBlock = ipBlock;</span>
+<span class="nc" id="L84">        this.namespaceSelector = namespaceSelector;</span>
+<span class="nc" id="L85">        this.podSelector = podSelector;</span>
+<span class="nc" id="L86">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The ipBlock
+     */
+    @JsonProperty(&quot;ipBlock&quot;)
+    public IPBlock getIpBlock() {
+<span class="nc" id="L96">        return ipBlock;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param ipBlock
+     *     The ipBlock
+     */
+    @JsonProperty(&quot;ipBlock&quot;)
+    public void setIpBlock(IPBlock ipBlock) {
+<span class="nc" id="L107">        this.ipBlock = ipBlock;</span>
+<span class="nc" id="L108">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The namespaceSelector
+     */
+    @JsonProperty(&quot;namespaceSelector&quot;)
+    public LabelSelector getNamespaceSelector() {
+<span class="nc" id="L118">        return namespaceSelector;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param namespaceSelector
+     *     The namespaceSelector
+     */
+    @JsonProperty(&quot;namespaceSelector&quot;)
+    public void setNamespaceSelector(LabelSelector namespaceSelector) {
+<span class="nc" id="L129">        this.namespaceSelector = namespaceSelector;</span>
+<span class="nc" id="L130">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The podSelector
+     */
+    @JsonProperty(&quot;podSelector&quot;)
+    public LabelSelector getPodSelector() {
+<span class="nc" id="L140">        return podSelector;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param podSelector
+     *     The podSelector
+     */
+    @JsonProperty(&quot;podSelector&quot;)
+    public void setPodSelector(LabelSelector podSelector) {
+<span class="nc" id="L151">        this.podSelector = podSelector;</span>
+<span class="nc" id="L152">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L156">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L161">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L162">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

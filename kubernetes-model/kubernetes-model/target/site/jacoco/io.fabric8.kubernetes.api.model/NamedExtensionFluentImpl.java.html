@@ -1,0 +1,2571 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NamedExtensionFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">NamedExtensionFluentImpl.java</span></div><h1>NamedExtensionFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import io.fabric8.kubernetes.api.model.rbac.ClusterRoleBinding;
+import io.fabric8.openshift.api.model.DeploymentConfigBuilder;
+import io.fabric8.openshift.api.model.OpenshiftClusterRoleBindingFluentImpl;
+import java.lang.String;
+import io.fabric8.kubernetes.api.model.admissionregistration.MutatingWebhookConfigurationBuilder;
+import io.fabric8.openshift.api.model.OAuthAccessTokenBuilder;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinitionFluentImpl;
+import io.fabric8.openshift.api.model.OAuthAccessTokenFluentImpl;
+import io.fabric8.openshift.api.model.UserBuilder;
+import io.fabric8.kubernetes.api.model.admissionregistration.ValidatingWebhookConfiguration;
+import io.fabric8.kubernetes.api.model.scheduling.PriorityClass;
+import io.fabric8.openshift.api.model.OpenshiftRoleBindingRestrictionBuilder;
+import io.fabric8.kubernetes.api.model.networking.NetworkPolicyBuilder;
+import io.fabric8.kubernetes.api.model.rbac.ClusterRole;
+import io.fabric8.openshift.api.model.Project;
+import io.fabric8.kubernetes.api.model.settings.PodPresetBuilder;
+import io.fabric8.kubernetes.api.model.authorization.SubjectAccessReviewBuilder;
+import io.fabric8.openshift.api.model.OAuthAccessToken;
+import io.fabric8.openshift.api.model.DeploymentConfig;
+import io.fabric8.openshift.api.model.OAuthClientAuthorization;
+import io.fabric8.openshift.api.model.OAuthClientBuilder;
+import io.fabric8.openshift.api.model.Group;
+import io.fabric8.openshift.api.model.RouteBuilder;
+import io.fabric8.openshift.api.model.BuildRequestFluentImpl;
+import io.fabric8.kubernetes.api.model.storage.StorageClassBuilder;
+import io.fabric8.kubernetes.api.model.apps.StatefulSetBuilder;
+import io.fabric8.kubernetes.api.model.authorization.SubjectAccessReview;
+import io.fabric8.openshift.api.model.IdentityFluentImpl;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.model.extensions.PodSecurityPolicy;
+import io.fabric8.kubernetes.api.model.apps.ReplicaSet;
+import io.fabric8.openshift.api.model.BuildConfigFluentImpl;
+import io.fabric8.kubernetes.api.model.storage.StorageClass;
+import io.fabric8.kubernetes.api.model.authorization.SubjectAccessReviewFluentImpl;
+import io.fabric8.openshift.api.model.SecurityContextConstraints;
+import io.fabric8.openshift.api.model.OAuthAuthorizeTokenBuilder;
+import io.fabric8.openshift.api.model.ImageSignatureBuilder;
+import io.fabric8.kubernetes.api.model.authorization.LocalSubjectAccessReviewBuilder;
+import io.fabric8.openshift.api.model.ImageSignatureFluentImpl;
+import io.fabric8.kubernetes.api.model.authentication.TokenReviewFluentImpl;
+import io.fabric8.kubernetes.api.model.extensions.IngressFluentImpl;
+import io.fabric8.kubernetes.api.model.extensions.ScaleFluentImpl;
+import io.fabric8.kubernetes.api.model.policy.PodDisruptionBudgetFluentImpl;
+import io.fabric8.openshift.api.model.OpenshiftRoleBindingFluentImpl;
+import io.fabric8.openshift.api.model.GroupBuilder;
+import io.fabric8.openshift.api.model.OpenshiftClusterRoleBindingBuilder;
+import io.fabric8.kubernetes.api.model.apps.Deployment;
+import io.fabric8.openshift.api.model.ImageStreamImport;
+import io.fabric8.openshift.api.model.Route;
+import io.fabric8.openshift.api.model.RouteFluentImpl;
+import io.fabric8.openshift.api.model.SecurityContextConstraintsFluentImpl;
+import io.fabric8.kubernetes.api.model.rbac.ClusterRoleBindingBuilder;
+import io.fabric8.openshift.api.model.ProjectRequestFluentImpl;
+import io.fabric8.kubernetes.api.model.certificates.CertificateSigningRequest;
+import io.fabric8.openshift.api.model.ImageStreamImportFluentImpl;
+import io.fabric8.openshift.api.model.OAuthAuthorizeToken;
+import io.fabric8.kubernetes.api.model.rbac.Role;
+import io.fabric8.openshift.api.model.ImageFluentImpl;
+import io.fabric8.openshift.api.model.ProjectBuilder;
+import io.fabric8.openshift.api.model.OAuthClientAuthorizationBuilder;
+import io.fabric8.kubernetes.api.model.admissionregistration.MutatingWebhookConfiguration;
+import io.fabric8.kubernetes.api.model.batch.JobFluentImpl;
+import io.fabric8.kubernetes.api.model.apps.DaemonSet;
+import io.fabric8.openshift.api.model.ProjectFluentImpl;
+import io.fabric8.kubernetes.api.model.apps.ReplicaSetFluentImpl;
+import io.fabric8.kubernetes.api.model.settings.PodPresetFluentImpl;
+import io.fabric8.kubernetes.api.model.admissionregistration.ValidatingWebhookConfigurationFluentImpl;
+import io.fabric8.openshift.api.model.ImageBuilder;
+import io.fabric8.openshift.api.model.ImageStreamTagBuilder;
+import io.fabric8.kubernetes.api.model.rbac.ClusterRoleBindingFluentImpl;
+import io.fabric8.kubernetes.api.model.storage.StorageClassFluentImpl;
+import io.fabric8.kubernetes.api.model.extensions.PodSecurityPolicyFluentImpl;
+import io.fabric8.kubernetes.api.model.authorization.LocalSubjectAccessReview;
+import io.fabric8.kubernetes.api.model.rbac.RoleBuilder;
+import io.fabric8.kubernetes.api.model.extensions.IngressBuilder;
+import io.fabric8.openshift.api.model.UserFluentImpl;
+import io.fabric8.openshift.api.model.ProjectRequestBuilder;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.rbac.ClusterRoleFluentImpl;
+import io.fabric8.openshift.api.model.ImageStreamTag;
+import io.fabric8.openshift.api.model.Image;
+import io.fabric8.openshift.api.model.ImageStreamBuilder;
+import io.fabric8.openshift.api.model.BuildRequestBuilder;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import io.fabric8.kubernetes.api.model.scheduling.PriorityClassBuilder;
+import io.fabric8.openshift.api.model.BuildConfig;
+import io.fabric8.openshift.api.model.SecurityContextConstraintsBuilder;
+import io.fabric8.openshift.api.model.Identity;
+import java.lang.Boolean;
+import io.fabric8.kubernetes.api.model.rbac.ClusterRoleBuilder;
+import io.fabric8.openshift.api.model.OAuthClientAuthorizationFluentImpl;
+import io.fabric8.openshift.api.model.OpenshiftRoleBindingRestrictionFluentImpl;
+import io.fabric8.kubernetes.api.model.networking.NetworkPolicy;
+import io.fabric8.kubernetes.api.model.batch.JobBuilder;
+import io.fabric8.kubernetes.api.model.apps.DaemonSetFluentImpl;
+import io.fabric8.openshift.api.model.BuildBuilder;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.model.batch.CronJob;
+import io.fabric8.openshift.api.model.ProjectRequest;
+import io.fabric8.openshift.api.model.OpenshiftClusterRoleFluentImpl;
+import java.lang.Object;
+import io.fabric8.kubernetes.api.model.apps.DeploymentBuilder;
+import io.fabric8.kubernetes.api.model.scheduling.PriorityClassFluentImpl;
+import io.fabric8.kubernetes.api.model.certificates.CertificateSigningRequestBuilder;
+import io.fabric8.openshift.api.model.ImageStreamTagFluentImpl;
+import io.fabric8.openshift.api.model.OpenshiftRoleFluentImpl;
+import io.fabric8.openshift.api.model.NetNamespaceBuilder;
+import io.fabric8.openshift.api.model.OpenshiftRoleBinding;
+import io.fabric8.openshift.api.model.TemplateFluentImpl;
+import io.fabric8.openshift.api.model.DeploymentConfigFluentImpl;
+import io.fabric8.kubernetes.api.model.authentication.TokenReviewBuilder;
+import io.fabric8.openshift.api.model.OpenshiftRoleBindingRestriction;
+import io.fabric8.kubernetes.api.model.rbac.RoleFluentImpl;
+import io.fabric8.kubernetes.api.model.authentication.TokenReview;
+import io.fabric8.openshift.api.model.OpenshiftClusterRoleBuilder;
+import io.fabric8.kubernetes.api.model.certificates.CertificateSigningRequestFluentImpl;
+import io.fabric8.openshift.api.model.ImageSignature;
+import io.fabric8.openshift.api.model.ImageStreamImportBuilder;
+import io.fabric8.kubernetes.api.model.admissionregistration.MutatingWebhookConfigurationFluentImpl;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinitionBuilder;
+import io.fabric8.openshift.api.model.OAuthAuthorizeTokenFluentImpl;
+import io.fabric8.openshift.api.model.GroupFluentImpl;
+import io.fabric8.kubernetes.api.builder.VisitableBuilder;
+import io.fabric8.kubernetes.api.model.authorization.LocalSubjectAccessReviewFluentImpl;
+import io.fabric8.openshift.api.model.OpenshiftClusterRoleBinding;
+import io.fabric8.openshift.api.model.TemplateBuilder;
+import io.fabric8.openshift.api.model.ImageStream;
+import io.fabric8.kubernetes.api.model.settings.PodPreset;
+import io.fabric8.kubernetes.api.model.apps.DeploymentFluentImpl;
+import io.fabric8.kubernetes.api.model.policy.PodDisruptionBudgetBuilder;
+import io.fabric8.openshift.api.model.BuildConfigBuilder;
+import io.fabric8.openshift.api.model.Template;
+import io.fabric8.openshift.api.model.Build;
+import io.fabric8.kubernetes.api.model.rbac.RoleBinding;
+import io.fabric8.kubernetes.api.model.batch.Job;
+import io.fabric8.kubernetes.api.model.extensions.ScaleBuilder;
+import io.fabric8.openshift.api.model.OpenshiftClusterRole;
+import io.fabric8.kubernetes.api.model.networking.NetworkPolicyFluentImpl;
+import io.fabric8.kubernetes.api.model.rbac.RoleBindingBuilder;
+import io.fabric8.kubernetes.api.model.extensions.Ingress;
+import io.fabric8.kubernetes.api.model.batch.CronJobBuilder;
+import io.fabric8.openshift.api.model.BuildFluentImpl;
+import io.fabric8.openshift.api.model.BuildRequest;
+import io.fabric8.openshift.api.model.OAuthClientFluentImpl;
+import io.fabric8.openshift.api.model.IdentityBuilder;
+import io.fabric8.kubernetes.api.model.admissionregistration.ValidatingWebhookConfigurationBuilder;
+import io.fabric8.kubernetes.api.model.apps.StatefulSet;
+import io.fabric8.openshift.api.model.OpenshiftRole;
+import io.fabric8.openshift.api.model.ImageStreamFluentImpl;
+import io.fabric8.openshift.api.model.User;
+import io.fabric8.kubernetes.api.model.policy.PodDisruptionBudget;
+import io.fabric8.openshift.api.model.OAuthClient;
+import io.fabric8.kubernetes.api.builder.Nested;
+import io.fabric8.openshift.api.model.NetNamespaceFluentImpl;
+import io.fabric8.kubernetes.api.model.apps.DaemonSetBuilder;
+import io.fabric8.kubernetes.api.model.batch.CronJobFluentImpl;
+import io.fabric8.kubernetes.api.model.apps.ReplicaSetBuilder;
+import io.fabric8.kubernetes.api.model.apps.StatefulSetFluentImpl;
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinition;
+import io.fabric8.openshift.api.model.NetNamespace;
+import io.fabric8.kubernetes.api.model.extensions.Scale;
+import io.fabric8.openshift.api.model.OpenshiftRoleBuilder;
+import io.fabric8.kubernetes.api.model.rbac.RoleBindingFluentImpl;
+import io.fabric8.openshift.api.model.OpenshiftRoleBindingBuilder;
+import io.fabric8.kubernetes.api.model.extensions.PodSecurityPolicyBuilder;
+
+public class NamedExtensionFluentImpl&lt;A extends NamedExtensionFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements NamedExtensionFluent&lt;A&gt;{
+
+    private VisitableBuilder&lt;? extends HasMetadata,?&gt; extension;
+    private String name;
+
+<span class="nc" id="L174">    public NamedExtensionFluentImpl(){</span>
+<span class="nc" id="L175">    }</span>
+<span class="nc" id="L176">    public NamedExtensionFluentImpl(NamedExtension instance){</span>
+<span class="nc" id="L177">            this.withExtension(instance.getExtension()); </span>
+<span class="nc" id="L178">            this.withName(instance.getName()); </span>
+<span class="nc" id="L179">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildExtension instead.
+ * @return The buildable object.
+ */
+@Deprecated public HasMetadata getExtension(){
+<span class="nc bnc" id="L187" title="All 2 branches missed.">            return this.extension!=null?this.extension.build():null;</span>
+    }
+
+    public HasMetadata buildExtension(){
+<span class="nc bnc" id="L191" title="All 2 branches missed.">            return this.extension!=null?this.extension.build():null;</span>
+    }
+
+    public A withExtension(HasMetadata extension){
+<span class="nc bnc" id="L195" title="All 2 branches missed.">            if (extension instanceof ValidatingWebhookConfiguration){ this.extension= new ValidatingWebhookConfigurationBuilder((ValidatingWebhookConfiguration)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">            if (extension instanceof StorageClass){ this.extension= new StorageClassBuilder((StorageClass)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L197" title="All 2 branches missed.">            if (extension instanceof ClusterRoleBinding){ this.extension= new ClusterRoleBindingBuilder((ClusterRoleBinding)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">            if (extension instanceof OpenshiftRoleBinding){ this.extension= new OpenshiftRoleBindingBuilder((OpenshiftRoleBinding)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">            if (extension instanceof PodDisruptionBudget){ this.extension= new PodDisruptionBudgetBuilder((PodDisruptionBudget)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L200" title="All 2 branches missed.">            if (extension instanceof NetworkPolicy){ this.extension= new NetworkPolicyBuilder((NetworkPolicy)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">            if (extension instanceof OpenshiftClusterRoleBinding){ this.extension= new OpenshiftClusterRoleBindingBuilder((OpenshiftClusterRoleBinding)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">            if (extension instanceof Route){ this.extension= new RouteBuilder((Route)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">            if (extension instanceof Namespace){ this.extension= new NamespaceBuilder((Namespace)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L204" title="All 2 branches missed.">            if (extension instanceof LocalSubjectAccessReview){ this.extension= new LocalSubjectAccessReviewBuilder((LocalSubjectAccessReview)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            if (extension instanceof Service){ this.extension= new ServiceBuilder((Service)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">            if (extension instanceof ReplicationController){ this.extension= new ReplicationControllerBuilder((ReplicationController)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L207" title="All 2 branches missed.">            if (extension instanceof SubjectAccessReview){ this.extension= new SubjectAccessReviewBuilder((SubjectAccessReview)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">            if (extension instanceof MutatingWebhookConfiguration){ this.extension= new MutatingWebhookConfigurationBuilder((MutatingWebhookConfiguration)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            if (extension instanceof HorizontalPodAutoscaler){ this.extension= new HorizontalPodAutoscalerBuilder((HorizontalPodAutoscaler)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            if (extension instanceof Scale){ this.extension= new ScaleBuilder((Scale)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L211" title="All 2 branches missed.">            if (extension instanceof Image){ this.extension= new ImageBuilder((Image)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L212" title="All 2 branches missed.">            if (extension instanceof ReplicaSet){ this.extension= new ReplicaSetBuilder((ReplicaSet)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L213" title="All 2 branches missed.">            if (extension instanceof PodSecurityPolicy){ this.extension= new PodSecurityPolicyBuilder((PodSecurityPolicy)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L214" title="All 2 branches missed.">            if (extension instanceof CronJob){ this.extension= new CronJobBuilder((CronJob)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L215" title="All 2 branches missed.">            if (extension instanceof Endpoints){ this.extension= new EndpointsBuilder((Endpoints)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L216" title="All 2 branches missed.">            if (extension instanceof Pod){ this.extension= new PodBuilder((Pod)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">            if (extension instanceof ConfigMap){ this.extension= new ConfigMapBuilder((ConfigMap)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L218" title="All 2 branches missed.">            if (extension instanceof CustomResourceDefinition){ this.extension= new CustomResourceDefinitionBuilder((CustomResourceDefinition)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            if (extension instanceof Build){ this.extension= new BuildBuilder((Build)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">            if (extension instanceof ImageStreamTag){ this.extension= new ImageStreamTagBuilder((ImageStreamTag)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">            if (extension instanceof Group){ this.extension= new GroupBuilder((Group)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L222" title="All 2 branches missed.">            if (extension instanceof ImageSignature){ this.extension= new ImageSignatureBuilder((ImageSignature)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">            if (extension instanceof ResourceQuota){ this.extension= new ResourceQuotaBuilder((ResourceQuota)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L224" title="All 2 branches missed.">            if (extension instanceof BuildRequest){ this.extension= new BuildRequestBuilder((BuildRequest)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">            if (extension instanceof DaemonSet){ this.extension= new DaemonSetBuilder((DaemonSet)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">            if (extension instanceof ImageStream){ this.extension= new ImageStreamBuilder((ImageStream)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L227" title="All 2 branches missed.">            if (extension instanceof OpenshiftRole){ this.extension= new OpenshiftRoleBuilder((OpenshiftRole)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L228" title="All 2 branches missed.">            if (extension instanceof OAuthClient){ this.extension= new OAuthClientBuilder((OAuthClient)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">            if (extension instanceof Identity){ this.extension= new IdentityBuilder((Identity)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L230" title="All 2 branches missed.">            if (extension instanceof LimitRange){ this.extension= new LimitRangeBuilder((LimitRange)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            if (extension instanceof ImageStreamImport){ this.extension= new ImageStreamImportBuilder((ImageStreamImport)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">            if (extension instanceof OpenshiftRoleBindingRestriction){ this.extension= new OpenshiftRoleBindingRestrictionBuilder((OpenshiftRoleBindingRestriction)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">            if (extension instanceof RoleBinding){ this.extension= new RoleBindingBuilder((RoleBinding)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L234" title="All 2 branches missed.">            if (extension instanceof PodPreset){ this.extension= new PodPresetBuilder((PodPreset)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L235" title="All 2 branches missed.">            if (extension instanceof Project){ this.extension= new ProjectBuilder((Project)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L236" title="All 2 branches missed.">            if (extension instanceof BuildConfig){ this.extension= new BuildConfigBuilder((BuildConfig)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">            if (extension instanceof ClusterRole){ this.extension= new ClusterRoleBuilder((ClusterRole)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L238" title="All 2 branches missed.">            if (extension instanceof OAuthAuthorizeToken){ this.extension= new OAuthAuthorizeTokenBuilder((OAuthAuthorizeToken)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">            if (extension instanceof ProjectRequest){ this.extension= new ProjectRequestBuilder((ProjectRequest)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L240" title="All 2 branches missed.">            if (extension instanceof PriorityClass){ this.extension= new PriorityClassBuilder((PriorityClass)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">            if (extension instanceof Template){ this.extension= new TemplateBuilder((Template)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L242" title="All 2 branches missed.">            if (extension instanceof OAuthClientAuthorization){ this.extension= new OAuthClientAuthorizationBuilder((OAuthClientAuthorization)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            if (extension instanceof Deployment){ this.extension= new DeploymentBuilder((Deployment)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">            if (extension instanceof PodTemplate){ this.extension= new PodTemplateBuilder((PodTemplate)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L245" title="All 2 branches missed.">            if (extension instanceof Event){ this.extension= new EventBuilder((Event)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">            if (extension instanceof Ingress){ this.extension= new IngressBuilder((Ingress)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L247" title="All 2 branches missed.">            if (extension instanceof DeploymentConfig){ this.extension= new DeploymentConfigBuilder((DeploymentConfig)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L248" title="All 2 branches missed.">            if (extension instanceof OAuthAccessToken){ this.extension= new OAuthAccessTokenBuilder((OAuthAccessToken)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L249" title="All 2 branches missed.">            if (extension instanceof PersistentVolume){ this.extension= new PersistentVolumeBuilder((PersistentVolume)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L250" title="All 2 branches missed.">            if (extension instanceof PersistentVolumeClaim){ this.extension= new PersistentVolumeClaimBuilder((PersistentVolumeClaim)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L251" title="All 2 branches missed.">            if (extension instanceof io.fabric8.kubernetes.api.model.events.Event){ this.extension= new io.fabric8.kubernetes.api.model.events.EventBuilder((io.fabric8.kubernetes.api.model.events.Event)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L252" title="All 2 branches missed.">            if (extension instanceof StatefulSet){ this.extension= new StatefulSetBuilder((StatefulSet)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L253" title="All 2 branches missed.">            if (extension instanceof OpenshiftClusterRole){ this.extension= new OpenshiftClusterRoleBuilder((OpenshiftClusterRole)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">            if (extension instanceof Role){ this.extension= new RoleBuilder((Role)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">            if (extension instanceof User){ this.extension= new UserBuilder((User)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L256" title="All 2 branches missed.">            if (extension instanceof ComponentStatus){ this.extension= new ComponentStatusBuilder((ComponentStatus)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L257" title="All 2 branches missed.">            if (extension instanceof TokenReview){ this.extension= new TokenReviewBuilder((TokenReview)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L258" title="All 2 branches missed.">            if (extension instanceof Binding){ this.extension= new BindingBuilder((Binding)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">            if (extension instanceof Secret){ this.extension= new SecretBuilder((Secret)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L260" title="All 2 branches missed.">            if (extension instanceof SecurityContextConstraints){ this.extension= new SecurityContextConstraintsBuilder((SecurityContextConstraints)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L261" title="All 2 branches missed.">            if (extension instanceof NetNamespace){ this.extension= new NetNamespaceBuilder((NetNamespace)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L262" title="All 2 branches missed.">            if (extension instanceof Node){ this.extension= new NodeBuilder((Node)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L263" title="All 2 branches missed.">            if (extension instanceof Job){ this.extension= new JobBuilder((Job)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">            if (extension instanceof CertificateSigningRequest){ this.extension= new CertificateSigningRequestBuilder((CertificateSigningRequest)extension); _visitables.add(this.extension);}</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">            if (extension instanceof ServiceAccount){ this.extension= new ServiceAccountBuilder((ServiceAccount)extension); _visitables.add(this.extension);}</span>
+<span class="nc" id="L266">            return (A) this;</span>
+    }
+
+    public Boolean hasExtension(){
+<span class="nc bnc" id="L270" title="All 2 branches missed.">            return this.extension != null;</span>
+    }
+
+    public A withValidatingWebhookConfigurationExtension(ValidatingWebhookConfiguration validatingWebhookConfigurationExtension){
+<span class="nc" id="L274">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L275" title="All 2 branches missed.">            if (validatingWebhookConfigurationExtension!=null){ this.extension= new ValidatingWebhookConfigurationBuilder(validatingWebhookConfigurationExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ValidatingWebhookConfigurationExtensionNested&lt;A&gt; withNewValidatingWebhookConfigurationExtension(){
+<span class="nc" id="L279">            return new ValidatingWebhookConfigurationExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ValidatingWebhookConfigurationExtensionNested&lt;A&gt; withNewValidatingWebhookConfigurationExtensionLike(ValidatingWebhookConfiguration item){
+<span class="nc" id="L283">            return new ValidatingWebhookConfigurationExtensionNestedImpl(item);</span>
+    }
+
+    public A withStorageClassExtension(StorageClass storageClassExtension){
+<span class="nc" id="L287">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L288" title="All 2 branches missed.">            if (storageClassExtension!=null){ this.extension= new StorageClassBuilder(storageClassExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.StorageClassExtensionNested&lt;A&gt; withNewStorageClassExtension(){
+<span class="nc" id="L292">            return new StorageClassExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.StorageClassExtensionNested&lt;A&gt; withNewStorageClassExtensionLike(StorageClass item){
+<span class="nc" id="L296">            return new StorageClassExtensionNestedImpl(item);</span>
+    }
+
+    public A withClusterRoleBindingExtension(ClusterRoleBinding clusterRoleBindingExtension){
+<span class="nc" id="L300">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L301" title="All 2 branches missed.">            if (clusterRoleBindingExtension!=null){ this.extension= new ClusterRoleBindingBuilder(clusterRoleBindingExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ClusterRoleBindingExtensionNested&lt;A&gt; withNewClusterRoleBindingExtension(){
+<span class="nc" id="L305">            return new ClusterRoleBindingExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ClusterRoleBindingExtensionNested&lt;A&gt; withNewClusterRoleBindingExtensionLike(ClusterRoleBinding item){
+<span class="nc" id="L309">            return new ClusterRoleBindingExtensionNestedImpl(item);</span>
+    }
+
+    public A withOpenshiftRoleBindingExtension(OpenshiftRoleBinding openshiftRoleBindingExtension){
+<span class="nc" id="L313">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L314" title="All 2 branches missed.">            if (openshiftRoleBindingExtension!=null){ this.extension= new OpenshiftRoleBindingBuilder(openshiftRoleBindingExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.OpenshiftRoleBindingExtensionNested&lt;A&gt; withNewOpenshiftRoleBindingExtension(){
+<span class="nc" id="L318">            return new OpenshiftRoleBindingExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.OpenshiftRoleBindingExtensionNested&lt;A&gt; withNewOpenshiftRoleBindingExtensionLike(OpenshiftRoleBinding item){
+<span class="nc" id="L322">            return new OpenshiftRoleBindingExtensionNestedImpl(item);</span>
+    }
+
+    public A withPodDisruptionBudgetExtension(PodDisruptionBudget podDisruptionBudgetExtension){
+<span class="nc" id="L326">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L327" title="All 2 branches missed.">            if (podDisruptionBudgetExtension!=null){ this.extension= new PodDisruptionBudgetBuilder(podDisruptionBudgetExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.PodDisruptionBudgetExtensionNested&lt;A&gt; withNewPodDisruptionBudgetExtension(){
+<span class="nc" id="L331">            return new PodDisruptionBudgetExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.PodDisruptionBudgetExtensionNested&lt;A&gt; withNewPodDisruptionBudgetExtensionLike(PodDisruptionBudget item){
+<span class="nc" id="L335">            return new PodDisruptionBudgetExtensionNestedImpl(item);</span>
+    }
+
+    public A withNetworkPolicyExtension(NetworkPolicy networkPolicyExtension){
+<span class="nc" id="L339">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L340" title="All 2 branches missed.">            if (networkPolicyExtension!=null){ this.extension= new NetworkPolicyBuilder(networkPolicyExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.NetworkPolicyExtensionNested&lt;A&gt; withNewNetworkPolicyExtension(){
+<span class="nc" id="L344">            return new NetworkPolicyExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.NetworkPolicyExtensionNested&lt;A&gt; withNewNetworkPolicyExtensionLike(NetworkPolicy item){
+<span class="nc" id="L348">            return new NetworkPolicyExtensionNestedImpl(item);</span>
+    }
+
+    public A withOpenshiftClusterRoleBindingExtension(OpenshiftClusterRoleBinding openshiftClusterRoleBindingExtension){
+<span class="nc" id="L352">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L353" title="All 2 branches missed.">            if (openshiftClusterRoleBindingExtension!=null){ this.extension= new OpenshiftClusterRoleBindingBuilder(openshiftClusterRoleBindingExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.OpenshiftClusterRoleBindingExtensionNested&lt;A&gt; withNewOpenshiftClusterRoleBindingExtension(){
+<span class="nc" id="L357">            return new OpenshiftClusterRoleBindingExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.OpenshiftClusterRoleBindingExtensionNested&lt;A&gt; withNewOpenshiftClusterRoleBindingExtensionLike(OpenshiftClusterRoleBinding item){
+<span class="nc" id="L361">            return new OpenshiftClusterRoleBindingExtensionNestedImpl(item);</span>
+    }
+
+    public A withRouteExtension(Route routeExtension){
+<span class="nc" id="L365">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L366" title="All 2 branches missed.">            if (routeExtension!=null){ this.extension= new RouteBuilder(routeExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.RouteExtensionNested&lt;A&gt; withNewRouteExtension(){
+<span class="nc" id="L370">            return new RouteExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.RouteExtensionNested&lt;A&gt; withNewRouteExtensionLike(Route item){
+<span class="nc" id="L374">            return new RouteExtensionNestedImpl(item);</span>
+    }
+
+    public A withNamespaceExtension(Namespace namespaceExtension){
+<span class="nc" id="L378">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L379" title="All 2 branches missed.">            if (namespaceExtension!=null){ this.extension= new NamespaceBuilder(namespaceExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.NamespaceExtensionNested&lt;A&gt; withNewNamespaceExtension(){
+<span class="nc" id="L383">            return new NamespaceExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.NamespaceExtensionNested&lt;A&gt; withNewNamespaceExtensionLike(Namespace item){
+<span class="nc" id="L387">            return new NamespaceExtensionNestedImpl(item);</span>
+    }
+
+    public A withLocalSubjectAccessReviewExtension(LocalSubjectAccessReview localSubjectAccessReviewExtension){
+<span class="nc" id="L391">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L392" title="All 2 branches missed.">            if (localSubjectAccessReviewExtension!=null){ this.extension= new LocalSubjectAccessReviewBuilder(localSubjectAccessReviewExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.LocalSubjectAccessReviewExtensionNested&lt;A&gt; withNewLocalSubjectAccessReviewExtension(){
+<span class="nc" id="L396">            return new LocalSubjectAccessReviewExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.LocalSubjectAccessReviewExtensionNested&lt;A&gt; withNewLocalSubjectAccessReviewExtensionLike(LocalSubjectAccessReview item){
+<span class="nc" id="L400">            return new LocalSubjectAccessReviewExtensionNestedImpl(item);</span>
+    }
+
+    public A withServiceExtension(Service serviceExtension){
+<span class="nc" id="L404">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L405" title="All 2 branches missed.">            if (serviceExtension!=null){ this.extension= new ServiceBuilder(serviceExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ServiceExtensionNested&lt;A&gt; withNewServiceExtension(){
+<span class="nc" id="L409">            return new ServiceExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ServiceExtensionNested&lt;A&gt; withNewServiceExtensionLike(Service item){
+<span class="nc" id="L413">            return new ServiceExtensionNestedImpl(item);</span>
+    }
+
+    public A withReplicationControllerExtension(ReplicationController replicationControllerExtension){
+<span class="nc" id="L417">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L418" title="All 2 branches missed.">            if (replicationControllerExtension!=null){ this.extension= new ReplicationControllerBuilder(replicationControllerExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ReplicationControllerExtensionNested&lt;A&gt; withNewReplicationControllerExtension(){
+<span class="nc" id="L422">            return new ReplicationControllerExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ReplicationControllerExtensionNested&lt;A&gt; withNewReplicationControllerExtensionLike(ReplicationController item){
+<span class="nc" id="L426">            return new ReplicationControllerExtensionNestedImpl(item);</span>
+    }
+
+    public A withSubjectAccessReviewExtension(SubjectAccessReview subjectAccessReviewExtension){
+<span class="nc" id="L430">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L431" title="All 2 branches missed.">            if (subjectAccessReviewExtension!=null){ this.extension= new SubjectAccessReviewBuilder(subjectAccessReviewExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.SubjectAccessReviewExtensionNested&lt;A&gt; withNewSubjectAccessReviewExtension(){
+<span class="nc" id="L435">            return new SubjectAccessReviewExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.SubjectAccessReviewExtensionNested&lt;A&gt; withNewSubjectAccessReviewExtensionLike(SubjectAccessReview item){
+<span class="nc" id="L439">            return new SubjectAccessReviewExtensionNestedImpl(item);</span>
+    }
+
+    public A withMutatingWebhookConfigurationExtension(MutatingWebhookConfiguration mutatingWebhookConfigurationExtension){
+<span class="nc" id="L443">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L444" title="All 2 branches missed.">            if (mutatingWebhookConfigurationExtension!=null){ this.extension= new MutatingWebhookConfigurationBuilder(mutatingWebhookConfigurationExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.MutatingWebhookConfigurationExtensionNested&lt;A&gt; withNewMutatingWebhookConfigurationExtension(){
+<span class="nc" id="L448">            return new MutatingWebhookConfigurationExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.MutatingWebhookConfigurationExtensionNested&lt;A&gt; withNewMutatingWebhookConfigurationExtensionLike(MutatingWebhookConfiguration item){
+<span class="nc" id="L452">            return new MutatingWebhookConfigurationExtensionNestedImpl(item);</span>
+    }
+
+    public A withHorizontalPodAutoscalerExtension(HorizontalPodAutoscaler horizontalPodAutoscalerExtension){
+<span class="nc" id="L456">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L457" title="All 2 branches missed.">            if (horizontalPodAutoscalerExtension!=null){ this.extension= new HorizontalPodAutoscalerBuilder(horizontalPodAutoscalerExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.HorizontalPodAutoscalerExtensionNested&lt;A&gt; withNewHorizontalPodAutoscalerExtension(){
+<span class="nc" id="L461">            return new HorizontalPodAutoscalerExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.HorizontalPodAutoscalerExtensionNested&lt;A&gt; withNewHorizontalPodAutoscalerExtensionLike(HorizontalPodAutoscaler item){
+<span class="nc" id="L465">            return new HorizontalPodAutoscalerExtensionNestedImpl(item);</span>
+    }
+
+    public A withScaleExtension(Scale scaleExtension){
+<span class="nc" id="L469">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L470" title="All 2 branches missed.">            if (scaleExtension!=null){ this.extension= new ScaleBuilder(scaleExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ScaleExtensionNested&lt;A&gt; withNewScaleExtension(){
+<span class="nc" id="L474">            return new ScaleExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ScaleExtensionNested&lt;A&gt; withNewScaleExtensionLike(Scale item){
+<span class="nc" id="L478">            return new ScaleExtensionNestedImpl(item);</span>
+    }
+
+    public A withImageExtension(Image imageExtension){
+<span class="nc" id="L482">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L483" title="All 2 branches missed.">            if (imageExtension!=null){ this.extension= new ImageBuilder(imageExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ImageExtensionNested&lt;A&gt; withNewImageExtension(){
+<span class="nc" id="L487">            return new ImageExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ImageExtensionNested&lt;A&gt; withNewImageExtensionLike(Image item){
+<span class="nc" id="L491">            return new ImageExtensionNestedImpl(item);</span>
+    }
+
+    public A withReplicaSetExtension(ReplicaSet replicaSetExtension){
+<span class="nc" id="L495">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L496" title="All 2 branches missed.">            if (replicaSetExtension!=null){ this.extension= new ReplicaSetBuilder(replicaSetExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ReplicaSetExtensionNested&lt;A&gt; withNewReplicaSetExtension(){
+<span class="nc" id="L500">            return new ReplicaSetExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ReplicaSetExtensionNested&lt;A&gt; withNewReplicaSetExtensionLike(ReplicaSet item){
+<span class="nc" id="L504">            return new ReplicaSetExtensionNestedImpl(item);</span>
+    }
+
+    public A withPodSecurityPolicyExtension(PodSecurityPolicy podSecurityPolicyExtension){
+<span class="nc" id="L508">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L509" title="All 2 branches missed.">            if (podSecurityPolicyExtension!=null){ this.extension= new PodSecurityPolicyBuilder(podSecurityPolicyExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.PodSecurityPolicyExtensionNested&lt;A&gt; withNewPodSecurityPolicyExtension(){
+<span class="nc" id="L513">            return new PodSecurityPolicyExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.PodSecurityPolicyExtensionNested&lt;A&gt; withNewPodSecurityPolicyExtensionLike(PodSecurityPolicy item){
+<span class="nc" id="L517">            return new PodSecurityPolicyExtensionNestedImpl(item);</span>
+    }
+
+    public A withCronJobExtension(CronJob cronJobExtension){
+<span class="nc" id="L521">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L522" title="All 2 branches missed.">            if (cronJobExtension!=null){ this.extension= new CronJobBuilder(cronJobExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.CronJobExtensionNested&lt;A&gt; withNewCronJobExtension(){
+<span class="nc" id="L526">            return new CronJobExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.CronJobExtensionNested&lt;A&gt; withNewCronJobExtensionLike(CronJob item){
+<span class="nc" id="L530">            return new CronJobExtensionNestedImpl(item);</span>
+    }
+
+    public A withEndpointsExtension(Endpoints endpointsExtension){
+<span class="nc" id="L534">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L535" title="All 2 branches missed.">            if (endpointsExtension!=null){ this.extension= new EndpointsBuilder(endpointsExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.EndpointsExtensionNested&lt;A&gt; withNewEndpointsExtension(){
+<span class="nc" id="L539">            return new EndpointsExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.EndpointsExtensionNested&lt;A&gt; withNewEndpointsExtensionLike(Endpoints item){
+<span class="nc" id="L543">            return new EndpointsExtensionNestedImpl(item);</span>
+    }
+
+    public A withPodExtension(Pod podExtension){
+<span class="nc" id="L547">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L548" title="All 2 branches missed.">            if (podExtension!=null){ this.extension= new PodBuilder(podExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.PodExtensionNested&lt;A&gt; withNewPodExtension(){
+<span class="nc" id="L552">            return new PodExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.PodExtensionNested&lt;A&gt; withNewPodExtensionLike(Pod item){
+<span class="nc" id="L556">            return new PodExtensionNestedImpl(item);</span>
+    }
+
+    public A withConfigMapExtension(ConfigMap configMapExtension){
+<span class="nc" id="L560">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L561" title="All 2 branches missed.">            if (configMapExtension!=null){ this.extension= new ConfigMapBuilder(configMapExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ConfigMapExtensionNested&lt;A&gt; withNewConfigMapExtension(){
+<span class="nc" id="L565">            return new ConfigMapExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ConfigMapExtensionNested&lt;A&gt; withNewConfigMapExtensionLike(ConfigMap item){
+<span class="nc" id="L569">            return new ConfigMapExtensionNestedImpl(item);</span>
+    }
+
+    public A withCustomResourceDefinitionExtension(CustomResourceDefinition customResourceDefinitionExtension){
+<span class="nc" id="L573">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L574" title="All 2 branches missed.">            if (customResourceDefinitionExtension!=null){ this.extension= new CustomResourceDefinitionBuilder(customResourceDefinitionExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.CustomResourceDefinitionExtensionNested&lt;A&gt; withNewCustomResourceDefinitionExtension(){
+<span class="nc" id="L578">            return new CustomResourceDefinitionExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.CustomResourceDefinitionExtensionNested&lt;A&gt; withNewCustomResourceDefinitionExtensionLike(CustomResourceDefinition item){
+<span class="nc" id="L582">            return new CustomResourceDefinitionExtensionNestedImpl(item);</span>
+    }
+
+    public A withBuildExtension(Build buildExtension){
+<span class="nc" id="L586">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L587" title="All 2 branches missed.">            if (buildExtension!=null){ this.extension= new BuildBuilder(buildExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.BuildExtensionNested&lt;A&gt; withNewBuildExtension(){
+<span class="nc" id="L591">            return new BuildExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.BuildExtensionNested&lt;A&gt; withNewBuildExtensionLike(Build item){
+<span class="nc" id="L595">            return new BuildExtensionNestedImpl(item);</span>
+    }
+
+    public A withImageStreamTagExtension(ImageStreamTag imageStreamTagExtension){
+<span class="nc" id="L599">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L600" title="All 2 branches missed.">            if (imageStreamTagExtension!=null){ this.extension= new ImageStreamTagBuilder(imageStreamTagExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ImageStreamTagExtensionNested&lt;A&gt; withNewImageStreamTagExtension(){
+<span class="nc" id="L604">            return new ImageStreamTagExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ImageStreamTagExtensionNested&lt;A&gt; withNewImageStreamTagExtensionLike(ImageStreamTag item){
+<span class="nc" id="L608">            return new ImageStreamTagExtensionNestedImpl(item);</span>
+    }
+
+    public A withGroupExtension(Group groupExtension){
+<span class="nc" id="L612">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L613" title="All 2 branches missed.">            if (groupExtension!=null){ this.extension= new GroupBuilder(groupExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.GroupExtensionNested&lt;A&gt; withNewGroupExtension(){
+<span class="nc" id="L617">            return new GroupExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.GroupExtensionNested&lt;A&gt; withNewGroupExtensionLike(Group item){
+<span class="nc" id="L621">            return new GroupExtensionNestedImpl(item);</span>
+    }
+
+    public A withImageSignatureExtension(ImageSignature imageSignatureExtension){
+<span class="nc" id="L625">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L626" title="All 2 branches missed.">            if (imageSignatureExtension!=null){ this.extension= new ImageSignatureBuilder(imageSignatureExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ImageSignatureExtensionNested&lt;A&gt; withNewImageSignatureExtension(){
+<span class="nc" id="L630">            return new ImageSignatureExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ImageSignatureExtensionNested&lt;A&gt; withNewImageSignatureExtensionLike(ImageSignature item){
+<span class="nc" id="L634">            return new ImageSignatureExtensionNestedImpl(item);</span>
+    }
+
+    public A withResourceQuotaExtension(ResourceQuota resourceQuotaExtension){
+<span class="nc" id="L638">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L639" title="All 2 branches missed.">            if (resourceQuotaExtension!=null){ this.extension= new ResourceQuotaBuilder(resourceQuotaExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ResourceQuotaExtensionNested&lt;A&gt; withNewResourceQuotaExtension(){
+<span class="nc" id="L643">            return new ResourceQuotaExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ResourceQuotaExtensionNested&lt;A&gt; withNewResourceQuotaExtensionLike(ResourceQuota item){
+<span class="nc" id="L647">            return new ResourceQuotaExtensionNestedImpl(item);</span>
+    }
+
+    public A withBuildRequestExtension(BuildRequest buildRequestExtension){
+<span class="nc" id="L651">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L652" title="All 2 branches missed.">            if (buildRequestExtension!=null){ this.extension= new BuildRequestBuilder(buildRequestExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.BuildRequestExtensionNested&lt;A&gt; withNewBuildRequestExtension(){
+<span class="nc" id="L656">            return new BuildRequestExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.BuildRequestExtensionNested&lt;A&gt; withNewBuildRequestExtensionLike(BuildRequest item){
+<span class="nc" id="L660">            return new BuildRequestExtensionNestedImpl(item);</span>
+    }
+
+    public A withDaemonSetExtension(DaemonSet daemonSetExtension){
+<span class="nc" id="L664">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L665" title="All 2 branches missed.">            if (daemonSetExtension!=null){ this.extension= new DaemonSetBuilder(daemonSetExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.DaemonSetExtensionNested&lt;A&gt; withNewDaemonSetExtension(){
+<span class="nc" id="L669">            return new DaemonSetExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.DaemonSetExtensionNested&lt;A&gt; withNewDaemonSetExtensionLike(DaemonSet item){
+<span class="nc" id="L673">            return new DaemonSetExtensionNestedImpl(item);</span>
+    }
+
+    public A withImageStreamExtension(ImageStream imageStreamExtension){
+<span class="nc" id="L677">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L678" title="All 2 branches missed.">            if (imageStreamExtension!=null){ this.extension= new ImageStreamBuilder(imageStreamExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ImageStreamExtensionNested&lt;A&gt; withNewImageStreamExtension(){
+<span class="nc" id="L682">            return new ImageStreamExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ImageStreamExtensionNested&lt;A&gt; withNewImageStreamExtensionLike(ImageStream item){
+<span class="nc" id="L686">            return new ImageStreamExtensionNestedImpl(item);</span>
+    }
+
+    public A withOpenshiftRoleExtension(OpenshiftRole openshiftRoleExtension){
+<span class="nc" id="L690">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L691" title="All 2 branches missed.">            if (openshiftRoleExtension!=null){ this.extension= new OpenshiftRoleBuilder(openshiftRoleExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.OpenshiftRoleExtensionNested&lt;A&gt; withNewOpenshiftRoleExtension(){
+<span class="nc" id="L695">            return new OpenshiftRoleExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.OpenshiftRoleExtensionNested&lt;A&gt; withNewOpenshiftRoleExtensionLike(OpenshiftRole item){
+<span class="nc" id="L699">            return new OpenshiftRoleExtensionNestedImpl(item);</span>
+    }
+
+    public A withOAuthClientExtension(OAuthClient oAuthClientExtension){
+<span class="nc" id="L703">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L704" title="All 2 branches missed.">            if (oAuthClientExtension!=null){ this.extension= new OAuthClientBuilder(oAuthClientExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.OAuthClientExtensionNested&lt;A&gt; withNewOAuthClientExtension(){
+<span class="nc" id="L708">            return new OAuthClientExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.OAuthClientExtensionNested&lt;A&gt; withNewOAuthClientExtensionLike(OAuthClient item){
+<span class="nc" id="L712">            return new OAuthClientExtensionNestedImpl(item);</span>
+    }
+
+    public A withIdentityExtension(Identity identityExtension){
+<span class="nc" id="L716">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L717" title="All 2 branches missed.">            if (identityExtension!=null){ this.extension= new IdentityBuilder(identityExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.IdentityExtensionNested&lt;A&gt; withNewIdentityExtension(){
+<span class="nc" id="L721">            return new IdentityExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.IdentityExtensionNested&lt;A&gt; withNewIdentityExtensionLike(Identity item){
+<span class="nc" id="L725">            return new IdentityExtensionNestedImpl(item);</span>
+    }
+
+    public A withLimitRangeExtension(LimitRange limitRangeExtension){
+<span class="nc" id="L729">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L730" title="All 2 branches missed.">            if (limitRangeExtension!=null){ this.extension= new LimitRangeBuilder(limitRangeExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.LimitRangeExtensionNested&lt;A&gt; withNewLimitRangeExtension(){
+<span class="nc" id="L734">            return new LimitRangeExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.LimitRangeExtensionNested&lt;A&gt; withNewLimitRangeExtensionLike(LimitRange item){
+<span class="nc" id="L738">            return new LimitRangeExtensionNestedImpl(item);</span>
+    }
+
+    public A withImageStreamImportExtension(ImageStreamImport imageStreamImportExtension){
+<span class="nc" id="L742">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L743" title="All 2 branches missed.">            if (imageStreamImportExtension!=null){ this.extension= new ImageStreamImportBuilder(imageStreamImportExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ImageStreamImportExtensionNested&lt;A&gt; withNewImageStreamImportExtension(){
+<span class="nc" id="L747">            return new ImageStreamImportExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ImageStreamImportExtensionNested&lt;A&gt; withNewImageStreamImportExtensionLike(ImageStreamImport item){
+<span class="nc" id="L751">            return new ImageStreamImportExtensionNestedImpl(item);</span>
+    }
+
+    public A withOpenshiftRoleBindingRestrictionExtension(OpenshiftRoleBindingRestriction openshiftRoleBindingRestrictionExtension){
+<span class="nc" id="L755">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L756" title="All 2 branches missed.">            if (openshiftRoleBindingRestrictionExtension!=null){ this.extension= new OpenshiftRoleBindingRestrictionBuilder(openshiftRoleBindingRestrictionExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.OpenshiftRoleBindingRestrictionExtensionNested&lt;A&gt; withNewOpenshiftRoleBindingRestrictionExtension(){
+<span class="nc" id="L760">            return new OpenshiftRoleBindingRestrictionExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.OpenshiftRoleBindingRestrictionExtensionNested&lt;A&gt; withNewOpenshiftRoleBindingRestrictionExtensionLike(OpenshiftRoleBindingRestriction item){
+<span class="nc" id="L764">            return new OpenshiftRoleBindingRestrictionExtensionNestedImpl(item);</span>
+    }
+
+    public A withRoleBindingExtension(RoleBinding roleBindingExtension){
+<span class="nc" id="L768">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L769" title="All 2 branches missed.">            if (roleBindingExtension!=null){ this.extension= new RoleBindingBuilder(roleBindingExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.RoleBindingExtensionNested&lt;A&gt; withNewRoleBindingExtension(){
+<span class="nc" id="L773">            return new RoleBindingExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.RoleBindingExtensionNested&lt;A&gt; withNewRoleBindingExtensionLike(RoleBinding item){
+<span class="nc" id="L777">            return new RoleBindingExtensionNestedImpl(item);</span>
+    }
+
+    public A withPodPresetExtension(PodPreset podPresetExtension){
+<span class="nc" id="L781">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L782" title="All 2 branches missed.">            if (podPresetExtension!=null){ this.extension= new PodPresetBuilder(podPresetExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.PodPresetExtensionNested&lt;A&gt; withNewPodPresetExtension(){
+<span class="nc" id="L786">            return new PodPresetExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.PodPresetExtensionNested&lt;A&gt; withNewPodPresetExtensionLike(PodPreset item){
+<span class="nc" id="L790">            return new PodPresetExtensionNestedImpl(item);</span>
+    }
+
+    public A withProjectExtension(Project projectExtension){
+<span class="nc" id="L794">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L795" title="All 2 branches missed.">            if (projectExtension!=null){ this.extension= new ProjectBuilder(projectExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ProjectExtensionNested&lt;A&gt; withNewProjectExtension(){
+<span class="nc" id="L799">            return new ProjectExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ProjectExtensionNested&lt;A&gt; withNewProjectExtensionLike(Project item){
+<span class="nc" id="L803">            return new ProjectExtensionNestedImpl(item);</span>
+    }
+
+    public A withBuildConfigExtension(BuildConfig buildConfigExtension){
+<span class="nc" id="L807">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L808" title="All 2 branches missed.">            if (buildConfigExtension!=null){ this.extension= new BuildConfigBuilder(buildConfigExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.BuildConfigExtensionNested&lt;A&gt; withNewBuildConfigExtension(){
+<span class="nc" id="L812">            return new BuildConfigExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.BuildConfigExtensionNested&lt;A&gt; withNewBuildConfigExtensionLike(BuildConfig item){
+<span class="nc" id="L816">            return new BuildConfigExtensionNestedImpl(item);</span>
+    }
+
+    public A withClusterRoleExtension(ClusterRole clusterRoleExtension){
+<span class="nc" id="L820">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L821" title="All 2 branches missed.">            if (clusterRoleExtension!=null){ this.extension= new ClusterRoleBuilder(clusterRoleExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ClusterRoleExtensionNested&lt;A&gt; withNewClusterRoleExtension(){
+<span class="nc" id="L825">            return new ClusterRoleExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ClusterRoleExtensionNested&lt;A&gt; withNewClusterRoleExtensionLike(ClusterRole item){
+<span class="nc" id="L829">            return new ClusterRoleExtensionNestedImpl(item);</span>
+    }
+
+    public A withOAuthAuthorizeTokenExtension(OAuthAuthorizeToken oAuthAuthorizeTokenExtension){
+<span class="nc" id="L833">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L834" title="All 2 branches missed.">            if (oAuthAuthorizeTokenExtension!=null){ this.extension= new OAuthAuthorizeTokenBuilder(oAuthAuthorizeTokenExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.OAuthAuthorizeTokenExtensionNested&lt;A&gt; withNewOAuthAuthorizeTokenExtension(){
+<span class="nc" id="L838">            return new OAuthAuthorizeTokenExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.OAuthAuthorizeTokenExtensionNested&lt;A&gt; withNewOAuthAuthorizeTokenExtensionLike(OAuthAuthorizeToken item){
+<span class="nc" id="L842">            return new OAuthAuthorizeTokenExtensionNestedImpl(item);</span>
+    }
+
+    public A withProjectRequestExtension(ProjectRequest projectRequestExtension){
+<span class="nc" id="L846">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L847" title="All 2 branches missed.">            if (projectRequestExtension!=null){ this.extension= new ProjectRequestBuilder(projectRequestExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ProjectRequestExtensionNested&lt;A&gt; withNewProjectRequestExtension(){
+<span class="nc" id="L851">            return new ProjectRequestExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ProjectRequestExtensionNested&lt;A&gt; withNewProjectRequestExtensionLike(ProjectRequest item){
+<span class="nc" id="L855">            return new ProjectRequestExtensionNestedImpl(item);</span>
+    }
+
+    public A withPriorityClassExtension(PriorityClass priorityClassExtension){
+<span class="nc" id="L859">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L860" title="All 2 branches missed.">            if (priorityClassExtension!=null){ this.extension= new PriorityClassBuilder(priorityClassExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.PriorityClassExtensionNested&lt;A&gt; withNewPriorityClassExtension(){
+<span class="nc" id="L864">            return new PriorityClassExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.PriorityClassExtensionNested&lt;A&gt; withNewPriorityClassExtensionLike(PriorityClass item){
+<span class="nc" id="L868">            return new PriorityClassExtensionNestedImpl(item);</span>
+    }
+
+    public A withTemplateExtension(Template templateExtension){
+<span class="nc" id="L872">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L873" title="All 2 branches missed.">            if (templateExtension!=null){ this.extension= new TemplateBuilder(templateExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.TemplateExtensionNested&lt;A&gt; withNewTemplateExtension(){
+<span class="nc" id="L877">            return new TemplateExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.TemplateExtensionNested&lt;A&gt; withNewTemplateExtensionLike(Template item){
+<span class="nc" id="L881">            return new TemplateExtensionNestedImpl(item);</span>
+    }
+
+    public A withOAuthClientAuthorizationExtension(OAuthClientAuthorization oAuthClientAuthorizationExtension){
+<span class="nc" id="L885">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L886" title="All 2 branches missed.">            if (oAuthClientAuthorizationExtension!=null){ this.extension= new OAuthClientAuthorizationBuilder(oAuthClientAuthorizationExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.OAuthClientAuthorizationExtensionNested&lt;A&gt; withNewOAuthClientAuthorizationExtension(){
+<span class="nc" id="L890">            return new OAuthClientAuthorizationExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.OAuthClientAuthorizationExtensionNested&lt;A&gt; withNewOAuthClientAuthorizationExtensionLike(OAuthClientAuthorization item){
+<span class="nc" id="L894">            return new OAuthClientAuthorizationExtensionNestedImpl(item);</span>
+    }
+
+    public A withDeploymentExtension(Deployment deploymentExtension){
+<span class="nc" id="L898">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L899" title="All 2 branches missed.">            if (deploymentExtension!=null){ this.extension= new DeploymentBuilder(deploymentExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.DeploymentExtensionNested&lt;A&gt; withNewDeploymentExtension(){
+<span class="nc" id="L903">            return new DeploymentExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.DeploymentExtensionNested&lt;A&gt; withNewDeploymentExtensionLike(Deployment item){
+<span class="nc" id="L907">            return new DeploymentExtensionNestedImpl(item);</span>
+    }
+
+    public A withPodTemplateExtension(PodTemplate podTemplateExtension){
+<span class="nc" id="L911">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L912" title="All 2 branches missed.">            if (podTemplateExtension!=null){ this.extension= new PodTemplateBuilder(podTemplateExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.PodTemplateExtensionNested&lt;A&gt; withNewPodTemplateExtension(){
+<span class="nc" id="L916">            return new PodTemplateExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.PodTemplateExtensionNested&lt;A&gt; withNewPodTemplateExtensionLike(PodTemplate item){
+<span class="nc" id="L920">            return new PodTemplateExtensionNestedImpl(item);</span>
+    }
+
+    public A withEventExtension(Event eventExtension){
+<span class="nc" id="L924">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L925" title="All 2 branches missed.">            if (eventExtension!=null){ this.extension= new EventBuilder(eventExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.EventExtensionNested&lt;A&gt; withNewEventExtension(){
+<span class="nc" id="L929">            return new EventExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.EventExtensionNested&lt;A&gt; withNewEventExtensionLike(Event item){
+<span class="nc" id="L933">            return new EventExtensionNestedImpl(item);</span>
+    }
+
+    public A withIngressExtension(Ingress ingressExtension){
+<span class="nc" id="L937">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L938" title="All 2 branches missed.">            if (ingressExtension!=null){ this.extension= new IngressBuilder(ingressExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.IngressExtensionNested&lt;A&gt; withNewIngressExtension(){
+<span class="nc" id="L942">            return new IngressExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.IngressExtensionNested&lt;A&gt; withNewIngressExtensionLike(Ingress item){
+<span class="nc" id="L946">            return new IngressExtensionNestedImpl(item);</span>
+    }
+
+    public A withDeploymentConfigExtension(DeploymentConfig deploymentConfigExtension){
+<span class="nc" id="L950">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L951" title="All 2 branches missed.">            if (deploymentConfigExtension!=null){ this.extension= new DeploymentConfigBuilder(deploymentConfigExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.DeploymentConfigExtensionNested&lt;A&gt; withNewDeploymentConfigExtension(){
+<span class="nc" id="L955">            return new DeploymentConfigExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.DeploymentConfigExtensionNested&lt;A&gt; withNewDeploymentConfigExtensionLike(DeploymentConfig item){
+<span class="nc" id="L959">            return new DeploymentConfigExtensionNestedImpl(item);</span>
+    }
+
+    public A withOAuthAccessTokenExtension(OAuthAccessToken oAuthAccessTokenExtension){
+<span class="nc" id="L963">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L964" title="All 2 branches missed.">            if (oAuthAccessTokenExtension!=null){ this.extension= new OAuthAccessTokenBuilder(oAuthAccessTokenExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.OAuthAccessTokenExtensionNested&lt;A&gt; withNewOAuthAccessTokenExtension(){
+<span class="nc" id="L968">            return new OAuthAccessTokenExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.OAuthAccessTokenExtensionNested&lt;A&gt; withNewOAuthAccessTokenExtensionLike(OAuthAccessToken item){
+<span class="nc" id="L972">            return new OAuthAccessTokenExtensionNestedImpl(item);</span>
+    }
+
+    public A withPersistentVolumeExtension(PersistentVolume persistentVolumeExtension){
+<span class="nc" id="L976">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L977" title="All 2 branches missed.">            if (persistentVolumeExtension!=null){ this.extension= new PersistentVolumeBuilder(persistentVolumeExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.PersistentVolumeExtensionNested&lt;A&gt; withNewPersistentVolumeExtension(){
+<span class="nc" id="L981">            return new PersistentVolumeExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.PersistentVolumeExtensionNested&lt;A&gt; withNewPersistentVolumeExtensionLike(PersistentVolume item){
+<span class="nc" id="L985">            return new PersistentVolumeExtensionNestedImpl(item);</span>
+    }
+
+    public A withPersistentVolumeClaimExtension(PersistentVolumeClaim persistentVolumeClaimExtension){
+<span class="nc" id="L989">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L990" title="All 2 branches missed.">            if (persistentVolumeClaimExtension!=null){ this.extension= new PersistentVolumeClaimBuilder(persistentVolumeClaimExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.PersistentVolumeClaimExtensionNested&lt;A&gt; withNewPersistentVolumeClaimExtension(){
+<span class="nc" id="L994">            return new PersistentVolumeClaimExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.PersistentVolumeClaimExtensionNested&lt;A&gt; withNewPersistentVolumeClaimExtensionLike(PersistentVolumeClaim item){
+<span class="nc" id="L998">            return new PersistentVolumeClaimExtensionNestedImpl(item);</span>
+    }
+
+    public A withEventExtension(io.fabric8.kubernetes.api.model.events.Event eventExtension){
+<span class="nc" id="L1002">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L1003" title="All 2 branches missed.">            if (eventExtension!=null){ this.extension= new io.fabric8.kubernetes.api.model.events.EventBuilder(eventExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.EventsEventExtensionNested&lt;A&gt; withNewEventsEventExtension(){
+<span class="nc" id="L1007">            return new EventsEventExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.EventsEventExtensionNested&lt;A&gt; withNewEventExtensionLike(io.fabric8.kubernetes.api.model.events.Event item){
+<span class="nc" id="L1011">            return new EventsEventExtensionNestedImpl(item);</span>
+    }
+
+    public A withStatefulSetExtension(StatefulSet statefulSetExtension){
+<span class="nc" id="L1015">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L1016" title="All 2 branches missed.">            if (statefulSetExtension!=null){ this.extension= new StatefulSetBuilder(statefulSetExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.StatefulSetExtensionNested&lt;A&gt; withNewStatefulSetExtension(){
+<span class="nc" id="L1020">            return new StatefulSetExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.StatefulSetExtensionNested&lt;A&gt; withNewStatefulSetExtensionLike(StatefulSet item){
+<span class="nc" id="L1024">            return new StatefulSetExtensionNestedImpl(item);</span>
+    }
+
+    public A withOpenshiftClusterRoleExtension(OpenshiftClusterRole openshiftClusterRoleExtension){
+<span class="nc" id="L1028">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L1029" title="All 2 branches missed.">            if (openshiftClusterRoleExtension!=null){ this.extension= new OpenshiftClusterRoleBuilder(openshiftClusterRoleExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.OpenshiftClusterRoleExtensionNested&lt;A&gt; withNewOpenshiftClusterRoleExtension(){
+<span class="nc" id="L1033">            return new OpenshiftClusterRoleExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.OpenshiftClusterRoleExtensionNested&lt;A&gt; withNewOpenshiftClusterRoleExtensionLike(OpenshiftClusterRole item){
+<span class="nc" id="L1037">            return new OpenshiftClusterRoleExtensionNestedImpl(item);</span>
+    }
+
+    public A withRoleExtension(Role roleExtension){
+<span class="nc" id="L1041">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L1042" title="All 2 branches missed.">            if (roleExtension!=null){ this.extension= new RoleBuilder(roleExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.RoleExtensionNested&lt;A&gt; withNewRoleExtension(){
+<span class="nc" id="L1046">            return new RoleExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.RoleExtensionNested&lt;A&gt; withNewRoleExtensionLike(Role item){
+<span class="nc" id="L1050">            return new RoleExtensionNestedImpl(item);</span>
+    }
+
+    public A withUserExtension(User userExtension){
+<span class="nc" id="L1054">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L1055" title="All 2 branches missed.">            if (userExtension!=null){ this.extension= new UserBuilder(userExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.UserExtensionNested&lt;A&gt; withNewUserExtension(){
+<span class="nc" id="L1059">            return new UserExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.UserExtensionNested&lt;A&gt; withNewUserExtensionLike(User item){
+<span class="nc" id="L1063">            return new UserExtensionNestedImpl(item);</span>
+    }
+
+    public A withComponentStatusExtension(ComponentStatus componentStatusExtension){
+<span class="nc" id="L1067">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L1068" title="All 2 branches missed.">            if (componentStatusExtension!=null){ this.extension= new ComponentStatusBuilder(componentStatusExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ComponentStatusExtensionNested&lt;A&gt; withNewComponentStatusExtension(){
+<span class="nc" id="L1072">            return new ComponentStatusExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ComponentStatusExtensionNested&lt;A&gt; withNewComponentStatusExtensionLike(ComponentStatus item){
+<span class="nc" id="L1076">            return new ComponentStatusExtensionNestedImpl(item);</span>
+    }
+
+    public A withTokenReviewExtension(TokenReview tokenReviewExtension){
+<span class="nc" id="L1080">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L1081" title="All 2 branches missed.">            if (tokenReviewExtension!=null){ this.extension= new TokenReviewBuilder(tokenReviewExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.TokenReviewExtensionNested&lt;A&gt; withNewTokenReviewExtension(){
+<span class="nc" id="L1085">            return new TokenReviewExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.TokenReviewExtensionNested&lt;A&gt; withNewTokenReviewExtensionLike(TokenReview item){
+<span class="nc" id="L1089">            return new TokenReviewExtensionNestedImpl(item);</span>
+    }
+
+    public A withBindingExtension(Binding bindingExtension){
+<span class="nc" id="L1093">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L1094" title="All 2 branches missed.">            if (bindingExtension!=null){ this.extension= new BindingBuilder(bindingExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.BindingExtensionNested&lt;A&gt; withNewBindingExtension(){
+<span class="nc" id="L1098">            return new BindingExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.BindingExtensionNested&lt;A&gt; withNewBindingExtensionLike(Binding item){
+<span class="nc" id="L1102">            return new BindingExtensionNestedImpl(item);</span>
+    }
+
+    public A withSecretExtension(Secret secretExtension){
+<span class="nc" id="L1106">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L1107" title="All 2 branches missed.">            if (secretExtension!=null){ this.extension= new SecretBuilder(secretExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.SecretExtensionNested&lt;A&gt; withNewSecretExtension(){
+<span class="nc" id="L1111">            return new SecretExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.SecretExtensionNested&lt;A&gt; withNewSecretExtensionLike(Secret item){
+<span class="nc" id="L1115">            return new SecretExtensionNestedImpl(item);</span>
+    }
+
+    public A withSecurityContextConstraintsExtension(SecurityContextConstraints securityContextConstraintsExtension){
+<span class="nc" id="L1119">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L1120" title="All 2 branches missed.">            if (securityContextConstraintsExtension!=null){ this.extension= new SecurityContextConstraintsBuilder(securityContextConstraintsExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.SecurityContextConstraintsExtensionNested&lt;A&gt; withNewSecurityContextConstraintsExtension(){
+<span class="nc" id="L1124">            return new SecurityContextConstraintsExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.SecurityContextConstraintsExtensionNested&lt;A&gt; withNewSecurityContextConstraintsExtensionLike(SecurityContextConstraints item){
+<span class="nc" id="L1128">            return new SecurityContextConstraintsExtensionNestedImpl(item);</span>
+    }
+
+    public A withNetNamespaceExtension(NetNamespace netNamespaceExtension){
+<span class="nc" id="L1132">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L1133" title="All 2 branches missed.">            if (netNamespaceExtension!=null){ this.extension= new NetNamespaceBuilder(netNamespaceExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.NetNamespaceExtensionNested&lt;A&gt; withNewNetNamespaceExtension(){
+<span class="nc" id="L1137">            return new NetNamespaceExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.NetNamespaceExtensionNested&lt;A&gt; withNewNetNamespaceExtensionLike(NetNamespace item){
+<span class="nc" id="L1141">            return new NetNamespaceExtensionNestedImpl(item);</span>
+    }
+
+    public A withNodeExtension(Node nodeExtension){
+<span class="nc" id="L1145">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L1146" title="All 2 branches missed.">            if (nodeExtension!=null){ this.extension= new NodeBuilder(nodeExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.NodeExtensionNested&lt;A&gt; withNewNodeExtension(){
+<span class="nc" id="L1150">            return new NodeExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.NodeExtensionNested&lt;A&gt; withNewNodeExtensionLike(Node item){
+<span class="nc" id="L1154">            return new NodeExtensionNestedImpl(item);</span>
+    }
+
+    public A withJobExtension(Job jobExtension){
+<span class="nc" id="L1158">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L1159" title="All 2 branches missed.">            if (jobExtension!=null){ this.extension= new JobBuilder(jobExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.JobExtensionNested&lt;A&gt; withNewJobExtension(){
+<span class="nc" id="L1163">            return new JobExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.JobExtensionNested&lt;A&gt; withNewJobExtensionLike(Job item){
+<span class="nc" id="L1167">            return new JobExtensionNestedImpl(item);</span>
+    }
+
+    public A withCertificateSigningRequestExtension(CertificateSigningRequest certificateSigningRequestExtension){
+<span class="nc" id="L1171">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L1172" title="All 2 branches missed.">            if (certificateSigningRequestExtension!=null){ this.extension= new CertificateSigningRequestBuilder(certificateSigningRequestExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.CertificateSigningRequestExtensionNested&lt;A&gt; withNewCertificateSigningRequestExtension(){
+<span class="nc" id="L1176">            return new CertificateSigningRequestExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.CertificateSigningRequestExtensionNested&lt;A&gt; withNewCertificateSigningRequestExtensionLike(CertificateSigningRequest item){
+<span class="nc" id="L1180">            return new CertificateSigningRequestExtensionNestedImpl(item);</span>
+    }
+
+    public A withServiceAccountExtension(ServiceAccount serviceAccountExtension){
+<span class="nc" id="L1184">            _visitables.remove(this.extension);</span>
+<span class="nc bnc" id="L1185" title="All 2 branches missed.">            if (serviceAccountExtension!=null){ this.extension= new ServiceAccountBuilder(serviceAccountExtension); _visitables.add(this.extension);} return (A) this;</span>
+    }
+
+    public NamedExtensionFluent.ServiceAccountExtensionNested&lt;A&gt; withNewServiceAccountExtension(){
+<span class="nc" id="L1189">            return new ServiceAccountExtensionNestedImpl();</span>
+    }
+
+    public NamedExtensionFluent.ServiceAccountExtensionNested&lt;A&gt; withNewServiceAccountExtensionLike(ServiceAccount item){
+<span class="nc" id="L1193">            return new ServiceAccountExtensionNestedImpl(item);</span>
+    }
+
+    public String getName(){
+<span class="nc" id="L1197">            return this.name;</span>
+    }
+
+    public A withName(String name){
+<span class="nc" id="L1201">            this.name=name; return (A) this;</span>
+    }
+
+    public Boolean hasName(){
+<span class="nc bnc" id="L1205" title="All 2 branches missed.">            return this.name != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L1209" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L1210" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L1211" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L1212">            NamedExtensionFluentImpl that = (NamedExtensionFluentImpl) o;</span>
+<span class="nc bnc" id="L1213" title="All 6 branches missed.">            if (extension != null ? !extension.equals(that.extension) :that.extension != null) return false;</span>
+<span class="nc bnc" id="L1214" title="All 6 branches missed.">            if (name != null ? !name.equals(that.name) :that.name != null) return false;</span>
+<span class="nc" id="L1215">            return true;</span>
+    }
+
+
+    public class ValidatingWebhookConfigurationExtensionNestedImpl&lt;N&gt; extends ValidatingWebhookConfigurationFluentImpl&lt;NamedExtensionFluent.ValidatingWebhookConfigurationExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ValidatingWebhookConfigurationExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ValidatingWebhookConfigurationBuilder builder;
+    
+<span class="nc" id="L1223">            ValidatingWebhookConfigurationExtensionNestedImpl(ValidatingWebhookConfiguration item){</span>
+<span class="nc" id="L1224">                    this.builder = new ValidatingWebhookConfigurationBuilder(this, item);</span>
+<span class="nc" id="L1225">            }</span>
+<span class="nc" id="L1226">            ValidatingWebhookConfigurationExtensionNestedImpl(){</span>
+<span class="nc" id="L1227">                    this.builder = new ValidatingWebhookConfigurationBuilder(this);</span>
+<span class="nc" id="L1228">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1231">            return (N) NamedExtensionFluentImpl.this.withValidatingWebhookConfigurationExtension(builder.build());</span>
+    }
+    public N endValidatingWebhookConfigurationExtension(){
+<span class="nc" id="L1234">            return and();</span>
+    }
+
+}
+    public class StorageClassExtensionNestedImpl&lt;N&gt; extends StorageClassFluentImpl&lt;NamedExtensionFluent.StorageClassExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.StorageClassExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final StorageClassBuilder builder;
+    
+<span class="nc" id="L1242">            StorageClassExtensionNestedImpl(StorageClass item){</span>
+<span class="nc" id="L1243">                    this.builder = new StorageClassBuilder(this, item);</span>
+<span class="nc" id="L1244">            }</span>
+<span class="nc" id="L1245">            StorageClassExtensionNestedImpl(){</span>
+<span class="nc" id="L1246">                    this.builder = new StorageClassBuilder(this);</span>
+<span class="nc" id="L1247">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1250">            return (N) NamedExtensionFluentImpl.this.withStorageClassExtension(builder.build());</span>
+    }
+    public N endStorageClassExtension(){
+<span class="nc" id="L1253">            return and();</span>
+    }
+
+}
+    public class ClusterRoleBindingExtensionNestedImpl&lt;N&gt; extends ClusterRoleBindingFluentImpl&lt;NamedExtensionFluent.ClusterRoleBindingExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ClusterRoleBindingExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ClusterRoleBindingBuilder builder;
+    
+<span class="nc" id="L1261">            ClusterRoleBindingExtensionNestedImpl(ClusterRoleBinding item){</span>
+<span class="nc" id="L1262">                    this.builder = new ClusterRoleBindingBuilder(this, item);</span>
+<span class="nc" id="L1263">            }</span>
+<span class="nc" id="L1264">            ClusterRoleBindingExtensionNestedImpl(){</span>
+<span class="nc" id="L1265">                    this.builder = new ClusterRoleBindingBuilder(this);</span>
+<span class="nc" id="L1266">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1269">            return (N) NamedExtensionFluentImpl.this.withClusterRoleBindingExtension(builder.build());</span>
+    }
+    public N endClusterRoleBindingExtension(){
+<span class="nc" id="L1272">            return and();</span>
+    }
+
+}
+    public class OpenshiftRoleBindingExtensionNestedImpl&lt;N&gt; extends OpenshiftRoleBindingFluentImpl&lt;NamedExtensionFluent.OpenshiftRoleBindingExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.OpenshiftRoleBindingExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OpenshiftRoleBindingBuilder builder;
+    
+<span class="nc" id="L1280">            OpenshiftRoleBindingExtensionNestedImpl(OpenshiftRoleBinding item){</span>
+<span class="nc" id="L1281">                    this.builder = new OpenshiftRoleBindingBuilder(this, item);</span>
+<span class="nc" id="L1282">            }</span>
+<span class="nc" id="L1283">            OpenshiftRoleBindingExtensionNestedImpl(){</span>
+<span class="nc" id="L1284">                    this.builder = new OpenshiftRoleBindingBuilder(this);</span>
+<span class="nc" id="L1285">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1288">            return (N) NamedExtensionFluentImpl.this.withOpenshiftRoleBindingExtension(builder.build());</span>
+    }
+    public N endOpenshiftRoleBindingExtension(){
+<span class="nc" id="L1291">            return and();</span>
+    }
+
+}
+    public class PodDisruptionBudgetExtensionNestedImpl&lt;N&gt; extends PodDisruptionBudgetFluentImpl&lt;NamedExtensionFluent.PodDisruptionBudgetExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.PodDisruptionBudgetExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodDisruptionBudgetBuilder builder;
+    
+<span class="nc" id="L1299">            PodDisruptionBudgetExtensionNestedImpl(PodDisruptionBudget item){</span>
+<span class="nc" id="L1300">                    this.builder = new PodDisruptionBudgetBuilder(this, item);</span>
+<span class="nc" id="L1301">            }</span>
+<span class="nc" id="L1302">            PodDisruptionBudgetExtensionNestedImpl(){</span>
+<span class="nc" id="L1303">                    this.builder = new PodDisruptionBudgetBuilder(this);</span>
+<span class="nc" id="L1304">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1307">            return (N) NamedExtensionFluentImpl.this.withPodDisruptionBudgetExtension(builder.build());</span>
+    }
+    public N endPodDisruptionBudgetExtension(){
+<span class="nc" id="L1310">            return and();</span>
+    }
+
+}
+    public class NetworkPolicyExtensionNestedImpl&lt;N&gt; extends NetworkPolicyFluentImpl&lt;NamedExtensionFluent.NetworkPolicyExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.NetworkPolicyExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NetworkPolicyBuilder builder;
+    
+<span class="nc" id="L1318">            NetworkPolicyExtensionNestedImpl(NetworkPolicy item){</span>
+<span class="nc" id="L1319">                    this.builder = new NetworkPolicyBuilder(this, item);</span>
+<span class="nc" id="L1320">            }</span>
+<span class="nc" id="L1321">            NetworkPolicyExtensionNestedImpl(){</span>
+<span class="nc" id="L1322">                    this.builder = new NetworkPolicyBuilder(this);</span>
+<span class="nc" id="L1323">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1326">            return (N) NamedExtensionFluentImpl.this.withNetworkPolicyExtension(builder.build());</span>
+    }
+    public N endNetworkPolicyExtension(){
+<span class="nc" id="L1329">            return and();</span>
+    }
+
+}
+    public class OpenshiftClusterRoleBindingExtensionNestedImpl&lt;N&gt; extends OpenshiftClusterRoleBindingFluentImpl&lt;NamedExtensionFluent.OpenshiftClusterRoleBindingExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.OpenshiftClusterRoleBindingExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OpenshiftClusterRoleBindingBuilder builder;
+    
+<span class="nc" id="L1337">            OpenshiftClusterRoleBindingExtensionNestedImpl(OpenshiftClusterRoleBinding item){</span>
+<span class="nc" id="L1338">                    this.builder = new OpenshiftClusterRoleBindingBuilder(this, item);</span>
+<span class="nc" id="L1339">            }</span>
+<span class="nc" id="L1340">            OpenshiftClusterRoleBindingExtensionNestedImpl(){</span>
+<span class="nc" id="L1341">                    this.builder = new OpenshiftClusterRoleBindingBuilder(this);</span>
+<span class="nc" id="L1342">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1345">            return (N) NamedExtensionFluentImpl.this.withOpenshiftClusterRoleBindingExtension(builder.build());</span>
+    }
+    public N endOpenshiftClusterRoleBindingExtension(){
+<span class="nc" id="L1348">            return and();</span>
+    }
+
+}
+    public class RouteExtensionNestedImpl&lt;N&gt; extends RouteFluentImpl&lt;NamedExtensionFluent.RouteExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.RouteExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RouteBuilder builder;
+    
+<span class="nc" id="L1356">            RouteExtensionNestedImpl(Route item){</span>
+<span class="nc" id="L1357">                    this.builder = new RouteBuilder(this, item);</span>
+<span class="nc" id="L1358">            }</span>
+<span class="nc" id="L1359">            RouteExtensionNestedImpl(){</span>
+<span class="nc" id="L1360">                    this.builder = new RouteBuilder(this);</span>
+<span class="nc" id="L1361">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1364">            return (N) NamedExtensionFluentImpl.this.withRouteExtension(builder.build());</span>
+    }
+    public N endRouteExtension(){
+<span class="nc" id="L1367">            return and();</span>
+    }
+
+}
+    public class NamespaceExtensionNestedImpl&lt;N&gt; extends NamespaceFluentImpl&lt;NamedExtensionFluent.NamespaceExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.NamespaceExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NamespaceBuilder builder;
+    
+<span class="nc" id="L1375">            NamespaceExtensionNestedImpl(Namespace item){</span>
+<span class="nc" id="L1376">                    this.builder = new NamespaceBuilder(this, item);</span>
+<span class="nc" id="L1377">            }</span>
+<span class="nc" id="L1378">            NamespaceExtensionNestedImpl(){</span>
+<span class="nc" id="L1379">                    this.builder = new NamespaceBuilder(this);</span>
+<span class="nc" id="L1380">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1383">            return (N) NamedExtensionFluentImpl.this.withNamespaceExtension(builder.build());</span>
+    }
+    public N endNamespaceExtension(){
+<span class="nc" id="L1386">            return and();</span>
+    }
+
+}
+    public class LocalSubjectAccessReviewExtensionNestedImpl&lt;N&gt; extends LocalSubjectAccessReviewFluentImpl&lt;NamedExtensionFluent.LocalSubjectAccessReviewExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.LocalSubjectAccessReviewExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LocalSubjectAccessReviewBuilder builder;
+    
+<span class="nc" id="L1394">            LocalSubjectAccessReviewExtensionNestedImpl(LocalSubjectAccessReview item){</span>
+<span class="nc" id="L1395">                    this.builder = new LocalSubjectAccessReviewBuilder(this, item);</span>
+<span class="nc" id="L1396">            }</span>
+<span class="nc" id="L1397">            LocalSubjectAccessReviewExtensionNestedImpl(){</span>
+<span class="nc" id="L1398">                    this.builder = new LocalSubjectAccessReviewBuilder(this);</span>
+<span class="nc" id="L1399">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1402">            return (N) NamedExtensionFluentImpl.this.withLocalSubjectAccessReviewExtension(builder.build());</span>
+    }
+    public N endLocalSubjectAccessReviewExtension(){
+<span class="nc" id="L1405">            return and();</span>
+    }
+
+}
+    public class ServiceExtensionNestedImpl&lt;N&gt; extends ServiceFluentImpl&lt;NamedExtensionFluent.ServiceExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ServiceExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ServiceBuilder builder;
+    
+<span class="nc" id="L1413">            ServiceExtensionNestedImpl(Service item){</span>
+<span class="nc" id="L1414">                    this.builder = new ServiceBuilder(this, item);</span>
+<span class="nc" id="L1415">            }</span>
+<span class="nc" id="L1416">            ServiceExtensionNestedImpl(){</span>
+<span class="nc" id="L1417">                    this.builder = new ServiceBuilder(this);</span>
+<span class="nc" id="L1418">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1421">            return (N) NamedExtensionFluentImpl.this.withServiceExtension(builder.build());</span>
+    }
+    public N endServiceExtension(){
+<span class="nc" id="L1424">            return and();</span>
+    }
+
+}
+    public class ReplicationControllerExtensionNestedImpl&lt;N&gt; extends ReplicationControllerFluentImpl&lt;NamedExtensionFluent.ReplicationControllerExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ReplicationControllerExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ReplicationControllerBuilder builder;
+    
+<span class="nc" id="L1432">            ReplicationControllerExtensionNestedImpl(ReplicationController item){</span>
+<span class="nc" id="L1433">                    this.builder = new ReplicationControllerBuilder(this, item);</span>
+<span class="nc" id="L1434">            }</span>
+<span class="nc" id="L1435">            ReplicationControllerExtensionNestedImpl(){</span>
+<span class="nc" id="L1436">                    this.builder = new ReplicationControllerBuilder(this);</span>
+<span class="nc" id="L1437">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1440">            return (N) NamedExtensionFluentImpl.this.withReplicationControllerExtension(builder.build());</span>
+    }
+    public N endReplicationControllerExtension(){
+<span class="nc" id="L1443">            return and();</span>
+    }
+
+}
+    public class SubjectAccessReviewExtensionNestedImpl&lt;N&gt; extends SubjectAccessReviewFluentImpl&lt;NamedExtensionFluent.SubjectAccessReviewExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.SubjectAccessReviewExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SubjectAccessReviewBuilder builder;
+    
+<span class="nc" id="L1451">            SubjectAccessReviewExtensionNestedImpl(SubjectAccessReview item){</span>
+<span class="nc" id="L1452">                    this.builder = new SubjectAccessReviewBuilder(this, item);</span>
+<span class="nc" id="L1453">            }</span>
+<span class="nc" id="L1454">            SubjectAccessReviewExtensionNestedImpl(){</span>
+<span class="nc" id="L1455">                    this.builder = new SubjectAccessReviewBuilder(this);</span>
+<span class="nc" id="L1456">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1459">            return (N) NamedExtensionFluentImpl.this.withSubjectAccessReviewExtension(builder.build());</span>
+    }
+    public N endSubjectAccessReviewExtension(){
+<span class="nc" id="L1462">            return and();</span>
+    }
+
+}
+    public class MutatingWebhookConfigurationExtensionNestedImpl&lt;N&gt; extends MutatingWebhookConfigurationFluentImpl&lt;NamedExtensionFluent.MutatingWebhookConfigurationExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.MutatingWebhookConfigurationExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final MutatingWebhookConfigurationBuilder builder;
+    
+<span class="nc" id="L1470">            MutatingWebhookConfigurationExtensionNestedImpl(MutatingWebhookConfiguration item){</span>
+<span class="nc" id="L1471">                    this.builder = new MutatingWebhookConfigurationBuilder(this, item);</span>
+<span class="nc" id="L1472">            }</span>
+<span class="nc" id="L1473">            MutatingWebhookConfigurationExtensionNestedImpl(){</span>
+<span class="nc" id="L1474">                    this.builder = new MutatingWebhookConfigurationBuilder(this);</span>
+<span class="nc" id="L1475">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1478">            return (N) NamedExtensionFluentImpl.this.withMutatingWebhookConfigurationExtension(builder.build());</span>
+    }
+    public N endMutatingWebhookConfigurationExtension(){
+<span class="nc" id="L1481">            return and();</span>
+    }
+
+}
+    public class HorizontalPodAutoscalerExtensionNestedImpl&lt;N&gt; extends HorizontalPodAutoscalerFluentImpl&lt;NamedExtensionFluent.HorizontalPodAutoscalerExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.HorizontalPodAutoscalerExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final HorizontalPodAutoscalerBuilder builder;
+    
+<span class="nc" id="L1489">            HorizontalPodAutoscalerExtensionNestedImpl(HorizontalPodAutoscaler item){</span>
+<span class="nc" id="L1490">                    this.builder = new HorizontalPodAutoscalerBuilder(this, item);</span>
+<span class="nc" id="L1491">            }</span>
+<span class="nc" id="L1492">            HorizontalPodAutoscalerExtensionNestedImpl(){</span>
+<span class="nc" id="L1493">                    this.builder = new HorizontalPodAutoscalerBuilder(this);</span>
+<span class="nc" id="L1494">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1497">            return (N) NamedExtensionFluentImpl.this.withHorizontalPodAutoscalerExtension(builder.build());</span>
+    }
+    public N endHorizontalPodAutoscalerExtension(){
+<span class="nc" id="L1500">            return and();</span>
+    }
+
+}
+    public class ScaleExtensionNestedImpl&lt;N&gt; extends ScaleFluentImpl&lt;NamedExtensionFluent.ScaleExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ScaleExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ScaleBuilder builder;
+    
+<span class="nc" id="L1508">            ScaleExtensionNestedImpl(Scale item){</span>
+<span class="nc" id="L1509">                    this.builder = new ScaleBuilder(this, item);</span>
+<span class="nc" id="L1510">            }</span>
+<span class="nc" id="L1511">            ScaleExtensionNestedImpl(){</span>
+<span class="nc" id="L1512">                    this.builder = new ScaleBuilder(this);</span>
+<span class="nc" id="L1513">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1516">            return (N) NamedExtensionFluentImpl.this.withScaleExtension(builder.build());</span>
+    }
+    public N endScaleExtension(){
+<span class="nc" id="L1519">            return and();</span>
+    }
+
+}
+    public class ImageExtensionNestedImpl&lt;N&gt; extends ImageFluentImpl&lt;NamedExtensionFluent.ImageExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ImageExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageBuilder builder;
+    
+<span class="nc" id="L1527">            ImageExtensionNestedImpl(Image item){</span>
+<span class="nc" id="L1528">                    this.builder = new ImageBuilder(this, item);</span>
+<span class="nc" id="L1529">            }</span>
+<span class="nc" id="L1530">            ImageExtensionNestedImpl(){</span>
+<span class="nc" id="L1531">                    this.builder = new ImageBuilder(this);</span>
+<span class="nc" id="L1532">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1535">            return (N) NamedExtensionFluentImpl.this.withImageExtension(builder.build());</span>
+    }
+    public N endImageExtension(){
+<span class="nc" id="L1538">            return and();</span>
+    }
+
+}
+    public class ReplicaSetExtensionNestedImpl&lt;N&gt; extends ReplicaSetFluentImpl&lt;NamedExtensionFluent.ReplicaSetExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ReplicaSetExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ReplicaSetBuilder builder;
+    
+<span class="nc" id="L1546">            ReplicaSetExtensionNestedImpl(ReplicaSet item){</span>
+<span class="nc" id="L1547">                    this.builder = new ReplicaSetBuilder(this, item);</span>
+<span class="nc" id="L1548">            }</span>
+<span class="nc" id="L1549">            ReplicaSetExtensionNestedImpl(){</span>
+<span class="nc" id="L1550">                    this.builder = new ReplicaSetBuilder(this);</span>
+<span class="nc" id="L1551">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1554">            return (N) NamedExtensionFluentImpl.this.withReplicaSetExtension(builder.build());</span>
+    }
+    public N endReplicaSetExtension(){
+<span class="nc" id="L1557">            return and();</span>
+    }
+
+}
+    public class PodSecurityPolicyExtensionNestedImpl&lt;N&gt; extends PodSecurityPolicyFluentImpl&lt;NamedExtensionFluent.PodSecurityPolicyExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.PodSecurityPolicyExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodSecurityPolicyBuilder builder;
+    
+<span class="nc" id="L1565">            PodSecurityPolicyExtensionNestedImpl(PodSecurityPolicy item){</span>
+<span class="nc" id="L1566">                    this.builder = new PodSecurityPolicyBuilder(this, item);</span>
+<span class="nc" id="L1567">            }</span>
+<span class="nc" id="L1568">            PodSecurityPolicyExtensionNestedImpl(){</span>
+<span class="nc" id="L1569">                    this.builder = new PodSecurityPolicyBuilder(this);</span>
+<span class="nc" id="L1570">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1573">            return (N) NamedExtensionFluentImpl.this.withPodSecurityPolicyExtension(builder.build());</span>
+    }
+    public N endPodSecurityPolicyExtension(){
+<span class="nc" id="L1576">            return and();</span>
+    }
+
+}
+    public class CronJobExtensionNestedImpl&lt;N&gt; extends CronJobFluentImpl&lt;NamedExtensionFluent.CronJobExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.CronJobExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CronJobBuilder builder;
+    
+<span class="nc" id="L1584">            CronJobExtensionNestedImpl(CronJob item){</span>
+<span class="nc" id="L1585">                    this.builder = new CronJobBuilder(this, item);</span>
+<span class="nc" id="L1586">            }</span>
+<span class="nc" id="L1587">            CronJobExtensionNestedImpl(){</span>
+<span class="nc" id="L1588">                    this.builder = new CronJobBuilder(this);</span>
+<span class="nc" id="L1589">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1592">            return (N) NamedExtensionFluentImpl.this.withCronJobExtension(builder.build());</span>
+    }
+    public N endCronJobExtension(){
+<span class="nc" id="L1595">            return and();</span>
+    }
+
+}
+    public class EndpointsExtensionNestedImpl&lt;N&gt; extends EndpointsFluentImpl&lt;NamedExtensionFluent.EndpointsExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.EndpointsExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EndpointsBuilder builder;
+    
+<span class="nc" id="L1603">            EndpointsExtensionNestedImpl(Endpoints item){</span>
+<span class="nc" id="L1604">                    this.builder = new EndpointsBuilder(this, item);</span>
+<span class="nc" id="L1605">            }</span>
+<span class="nc" id="L1606">            EndpointsExtensionNestedImpl(){</span>
+<span class="nc" id="L1607">                    this.builder = new EndpointsBuilder(this);</span>
+<span class="nc" id="L1608">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1611">            return (N) NamedExtensionFluentImpl.this.withEndpointsExtension(builder.build());</span>
+    }
+    public N endEndpointsExtension(){
+<span class="nc" id="L1614">            return and();</span>
+    }
+
+}
+    public class PodExtensionNestedImpl&lt;N&gt; extends PodFluentImpl&lt;NamedExtensionFluent.PodExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.PodExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodBuilder builder;
+    
+<span class="nc" id="L1622">            PodExtensionNestedImpl(Pod item){</span>
+<span class="nc" id="L1623">                    this.builder = new PodBuilder(this, item);</span>
+<span class="nc" id="L1624">            }</span>
+<span class="nc" id="L1625">            PodExtensionNestedImpl(){</span>
+<span class="nc" id="L1626">                    this.builder = new PodBuilder(this);</span>
+<span class="nc" id="L1627">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1630">            return (N) NamedExtensionFluentImpl.this.withPodExtension(builder.build());</span>
+    }
+    public N endPodExtension(){
+<span class="nc" id="L1633">            return and();</span>
+    }
+
+}
+    public class ConfigMapExtensionNestedImpl&lt;N&gt; extends ConfigMapFluentImpl&lt;NamedExtensionFluent.ConfigMapExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ConfigMapExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ConfigMapBuilder builder;
+    
+<span class="nc" id="L1641">            ConfigMapExtensionNestedImpl(ConfigMap item){</span>
+<span class="nc" id="L1642">                    this.builder = new ConfigMapBuilder(this, item);</span>
+<span class="nc" id="L1643">            }</span>
+<span class="nc" id="L1644">            ConfigMapExtensionNestedImpl(){</span>
+<span class="nc" id="L1645">                    this.builder = new ConfigMapBuilder(this);</span>
+<span class="nc" id="L1646">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1649">            return (N) NamedExtensionFluentImpl.this.withConfigMapExtension(builder.build());</span>
+    }
+    public N endConfigMapExtension(){
+<span class="nc" id="L1652">            return and();</span>
+    }
+
+}
+    public class CustomResourceDefinitionExtensionNestedImpl&lt;N&gt; extends CustomResourceDefinitionFluentImpl&lt;NamedExtensionFluent.CustomResourceDefinitionExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.CustomResourceDefinitionExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CustomResourceDefinitionBuilder builder;
+    
+<span class="nc" id="L1660">            CustomResourceDefinitionExtensionNestedImpl(CustomResourceDefinition item){</span>
+<span class="nc" id="L1661">                    this.builder = new CustomResourceDefinitionBuilder(this, item);</span>
+<span class="nc" id="L1662">            }</span>
+<span class="nc" id="L1663">            CustomResourceDefinitionExtensionNestedImpl(){</span>
+<span class="nc" id="L1664">                    this.builder = new CustomResourceDefinitionBuilder(this);</span>
+<span class="nc" id="L1665">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1668">            return (N) NamedExtensionFluentImpl.this.withCustomResourceDefinitionExtension(builder.build());</span>
+    }
+    public N endCustomResourceDefinitionExtension(){
+<span class="nc" id="L1671">            return and();</span>
+    }
+
+}
+    public class BuildExtensionNestedImpl&lt;N&gt; extends BuildFluentImpl&lt;NamedExtensionFluent.BuildExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.BuildExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BuildBuilder builder;
+    
+<span class="nc" id="L1679">            BuildExtensionNestedImpl(Build item){</span>
+<span class="nc" id="L1680">                    this.builder = new BuildBuilder(this, item);</span>
+<span class="nc" id="L1681">            }</span>
+<span class="nc" id="L1682">            BuildExtensionNestedImpl(){</span>
+<span class="nc" id="L1683">                    this.builder = new BuildBuilder(this);</span>
+<span class="nc" id="L1684">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1687">            return (N) NamedExtensionFluentImpl.this.withBuildExtension(builder.build());</span>
+    }
+    public N endBuildExtension(){
+<span class="nc" id="L1690">            return and();</span>
+    }
+
+}
+    public class ImageStreamTagExtensionNestedImpl&lt;N&gt; extends ImageStreamTagFluentImpl&lt;NamedExtensionFluent.ImageStreamTagExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ImageStreamTagExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageStreamTagBuilder builder;
+    
+<span class="nc" id="L1698">            ImageStreamTagExtensionNestedImpl(ImageStreamTag item){</span>
+<span class="nc" id="L1699">                    this.builder = new ImageStreamTagBuilder(this, item);</span>
+<span class="nc" id="L1700">            }</span>
+<span class="nc" id="L1701">            ImageStreamTagExtensionNestedImpl(){</span>
+<span class="nc" id="L1702">                    this.builder = new ImageStreamTagBuilder(this);</span>
+<span class="nc" id="L1703">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1706">            return (N) NamedExtensionFluentImpl.this.withImageStreamTagExtension(builder.build());</span>
+    }
+    public N endImageStreamTagExtension(){
+<span class="nc" id="L1709">            return and();</span>
+    }
+
+}
+    public class GroupExtensionNestedImpl&lt;N&gt; extends GroupFluentImpl&lt;NamedExtensionFluent.GroupExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.GroupExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final GroupBuilder builder;
+    
+<span class="nc" id="L1717">            GroupExtensionNestedImpl(Group item){</span>
+<span class="nc" id="L1718">                    this.builder = new GroupBuilder(this, item);</span>
+<span class="nc" id="L1719">            }</span>
+<span class="nc" id="L1720">            GroupExtensionNestedImpl(){</span>
+<span class="nc" id="L1721">                    this.builder = new GroupBuilder(this);</span>
+<span class="nc" id="L1722">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1725">            return (N) NamedExtensionFluentImpl.this.withGroupExtension(builder.build());</span>
+    }
+    public N endGroupExtension(){
+<span class="nc" id="L1728">            return and();</span>
+    }
+
+}
+    public class ImageSignatureExtensionNestedImpl&lt;N&gt; extends ImageSignatureFluentImpl&lt;NamedExtensionFluent.ImageSignatureExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ImageSignatureExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageSignatureBuilder builder;
+    
+<span class="nc" id="L1736">            ImageSignatureExtensionNestedImpl(ImageSignature item){</span>
+<span class="nc" id="L1737">                    this.builder = new ImageSignatureBuilder(this, item);</span>
+<span class="nc" id="L1738">            }</span>
+<span class="nc" id="L1739">            ImageSignatureExtensionNestedImpl(){</span>
+<span class="nc" id="L1740">                    this.builder = new ImageSignatureBuilder(this);</span>
+<span class="nc" id="L1741">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1744">            return (N) NamedExtensionFluentImpl.this.withImageSignatureExtension(builder.build());</span>
+    }
+    public N endImageSignatureExtension(){
+<span class="nc" id="L1747">            return and();</span>
+    }
+
+}
+    public class ResourceQuotaExtensionNestedImpl&lt;N&gt; extends ResourceQuotaFluentImpl&lt;NamedExtensionFluent.ResourceQuotaExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ResourceQuotaExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ResourceQuotaBuilder builder;
+    
+<span class="nc" id="L1755">            ResourceQuotaExtensionNestedImpl(ResourceQuota item){</span>
+<span class="nc" id="L1756">                    this.builder = new ResourceQuotaBuilder(this, item);</span>
+<span class="nc" id="L1757">            }</span>
+<span class="nc" id="L1758">            ResourceQuotaExtensionNestedImpl(){</span>
+<span class="nc" id="L1759">                    this.builder = new ResourceQuotaBuilder(this);</span>
+<span class="nc" id="L1760">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1763">            return (N) NamedExtensionFluentImpl.this.withResourceQuotaExtension(builder.build());</span>
+    }
+    public N endResourceQuotaExtension(){
+<span class="nc" id="L1766">            return and();</span>
+    }
+
+}
+    public class BuildRequestExtensionNestedImpl&lt;N&gt; extends BuildRequestFluentImpl&lt;NamedExtensionFluent.BuildRequestExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.BuildRequestExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BuildRequestBuilder builder;
+    
+<span class="nc" id="L1774">            BuildRequestExtensionNestedImpl(BuildRequest item){</span>
+<span class="nc" id="L1775">                    this.builder = new BuildRequestBuilder(this, item);</span>
+<span class="nc" id="L1776">            }</span>
+<span class="nc" id="L1777">            BuildRequestExtensionNestedImpl(){</span>
+<span class="nc" id="L1778">                    this.builder = new BuildRequestBuilder(this);</span>
+<span class="nc" id="L1779">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1782">            return (N) NamedExtensionFluentImpl.this.withBuildRequestExtension(builder.build());</span>
+    }
+    public N endBuildRequestExtension(){
+<span class="nc" id="L1785">            return and();</span>
+    }
+
+}
+    public class DaemonSetExtensionNestedImpl&lt;N&gt; extends DaemonSetFluentImpl&lt;NamedExtensionFluent.DaemonSetExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.DaemonSetExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final DaemonSetBuilder builder;
+    
+<span class="nc" id="L1793">            DaemonSetExtensionNestedImpl(DaemonSet item){</span>
+<span class="nc" id="L1794">                    this.builder = new DaemonSetBuilder(this, item);</span>
+<span class="nc" id="L1795">            }</span>
+<span class="nc" id="L1796">            DaemonSetExtensionNestedImpl(){</span>
+<span class="nc" id="L1797">                    this.builder = new DaemonSetBuilder(this);</span>
+<span class="nc" id="L1798">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1801">            return (N) NamedExtensionFluentImpl.this.withDaemonSetExtension(builder.build());</span>
+    }
+    public N endDaemonSetExtension(){
+<span class="nc" id="L1804">            return and();</span>
+    }
+
+}
+    public class ImageStreamExtensionNestedImpl&lt;N&gt; extends ImageStreamFluentImpl&lt;NamedExtensionFluent.ImageStreamExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ImageStreamExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageStreamBuilder builder;
+    
+<span class="nc" id="L1812">            ImageStreamExtensionNestedImpl(ImageStream item){</span>
+<span class="nc" id="L1813">                    this.builder = new ImageStreamBuilder(this, item);</span>
+<span class="nc" id="L1814">            }</span>
+<span class="nc" id="L1815">            ImageStreamExtensionNestedImpl(){</span>
+<span class="nc" id="L1816">                    this.builder = new ImageStreamBuilder(this);</span>
+<span class="nc" id="L1817">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1820">            return (N) NamedExtensionFluentImpl.this.withImageStreamExtension(builder.build());</span>
+    }
+    public N endImageStreamExtension(){
+<span class="nc" id="L1823">            return and();</span>
+    }
+
+}
+    public class OpenshiftRoleExtensionNestedImpl&lt;N&gt; extends OpenshiftRoleFluentImpl&lt;NamedExtensionFluent.OpenshiftRoleExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.OpenshiftRoleExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OpenshiftRoleBuilder builder;
+    
+<span class="nc" id="L1831">            OpenshiftRoleExtensionNestedImpl(OpenshiftRole item){</span>
+<span class="nc" id="L1832">                    this.builder = new OpenshiftRoleBuilder(this, item);</span>
+<span class="nc" id="L1833">            }</span>
+<span class="nc" id="L1834">            OpenshiftRoleExtensionNestedImpl(){</span>
+<span class="nc" id="L1835">                    this.builder = new OpenshiftRoleBuilder(this);</span>
+<span class="nc" id="L1836">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1839">            return (N) NamedExtensionFluentImpl.this.withOpenshiftRoleExtension(builder.build());</span>
+    }
+    public N endOpenshiftRoleExtension(){
+<span class="nc" id="L1842">            return and();</span>
+    }
+
+}
+    public class OAuthClientExtensionNestedImpl&lt;N&gt; extends OAuthClientFluentImpl&lt;NamedExtensionFluent.OAuthClientExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.OAuthClientExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OAuthClientBuilder builder;
+    
+<span class="nc" id="L1850">            OAuthClientExtensionNestedImpl(OAuthClient item){</span>
+<span class="nc" id="L1851">                    this.builder = new OAuthClientBuilder(this, item);</span>
+<span class="nc" id="L1852">            }</span>
+<span class="nc" id="L1853">            OAuthClientExtensionNestedImpl(){</span>
+<span class="nc" id="L1854">                    this.builder = new OAuthClientBuilder(this);</span>
+<span class="nc" id="L1855">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1858">            return (N) NamedExtensionFluentImpl.this.withOAuthClientExtension(builder.build());</span>
+    }
+    public N endOAuthClientExtension(){
+<span class="nc" id="L1861">            return and();</span>
+    }
+
+}
+    public class IdentityExtensionNestedImpl&lt;N&gt; extends IdentityFluentImpl&lt;NamedExtensionFluent.IdentityExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.IdentityExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final IdentityBuilder builder;
+    
+<span class="nc" id="L1869">            IdentityExtensionNestedImpl(Identity item){</span>
+<span class="nc" id="L1870">                    this.builder = new IdentityBuilder(this, item);</span>
+<span class="nc" id="L1871">            }</span>
+<span class="nc" id="L1872">            IdentityExtensionNestedImpl(){</span>
+<span class="nc" id="L1873">                    this.builder = new IdentityBuilder(this);</span>
+<span class="nc" id="L1874">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1877">            return (N) NamedExtensionFluentImpl.this.withIdentityExtension(builder.build());</span>
+    }
+    public N endIdentityExtension(){
+<span class="nc" id="L1880">            return and();</span>
+    }
+
+}
+    public class LimitRangeExtensionNestedImpl&lt;N&gt; extends LimitRangeFluentImpl&lt;NamedExtensionFluent.LimitRangeExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.LimitRangeExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LimitRangeBuilder builder;
+    
+<span class="nc" id="L1888">            LimitRangeExtensionNestedImpl(LimitRange item){</span>
+<span class="nc" id="L1889">                    this.builder = new LimitRangeBuilder(this, item);</span>
+<span class="nc" id="L1890">            }</span>
+<span class="nc" id="L1891">            LimitRangeExtensionNestedImpl(){</span>
+<span class="nc" id="L1892">                    this.builder = new LimitRangeBuilder(this);</span>
+<span class="nc" id="L1893">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1896">            return (N) NamedExtensionFluentImpl.this.withLimitRangeExtension(builder.build());</span>
+    }
+    public N endLimitRangeExtension(){
+<span class="nc" id="L1899">            return and();</span>
+    }
+
+}
+    public class ImageStreamImportExtensionNestedImpl&lt;N&gt; extends ImageStreamImportFluentImpl&lt;NamedExtensionFluent.ImageStreamImportExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ImageStreamImportExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageStreamImportBuilder builder;
+    
+<span class="nc" id="L1907">            ImageStreamImportExtensionNestedImpl(ImageStreamImport item){</span>
+<span class="nc" id="L1908">                    this.builder = new ImageStreamImportBuilder(this, item);</span>
+<span class="nc" id="L1909">            }</span>
+<span class="nc" id="L1910">            ImageStreamImportExtensionNestedImpl(){</span>
+<span class="nc" id="L1911">                    this.builder = new ImageStreamImportBuilder(this);</span>
+<span class="nc" id="L1912">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1915">            return (N) NamedExtensionFluentImpl.this.withImageStreamImportExtension(builder.build());</span>
+    }
+    public N endImageStreamImportExtension(){
+<span class="nc" id="L1918">            return and();</span>
+    }
+
+}
+    public class OpenshiftRoleBindingRestrictionExtensionNestedImpl&lt;N&gt; extends OpenshiftRoleBindingRestrictionFluentImpl&lt;NamedExtensionFluent.OpenshiftRoleBindingRestrictionExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.OpenshiftRoleBindingRestrictionExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OpenshiftRoleBindingRestrictionBuilder builder;
+    
+<span class="nc" id="L1926">            OpenshiftRoleBindingRestrictionExtensionNestedImpl(OpenshiftRoleBindingRestriction item){</span>
+<span class="nc" id="L1927">                    this.builder = new OpenshiftRoleBindingRestrictionBuilder(this, item);</span>
+<span class="nc" id="L1928">            }</span>
+<span class="nc" id="L1929">            OpenshiftRoleBindingRestrictionExtensionNestedImpl(){</span>
+<span class="nc" id="L1930">                    this.builder = new OpenshiftRoleBindingRestrictionBuilder(this);</span>
+<span class="nc" id="L1931">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1934">            return (N) NamedExtensionFluentImpl.this.withOpenshiftRoleBindingRestrictionExtension(builder.build());</span>
+    }
+    public N endOpenshiftRoleBindingRestrictionExtension(){
+<span class="nc" id="L1937">            return and();</span>
+    }
+
+}
+    public class RoleBindingExtensionNestedImpl&lt;N&gt; extends RoleBindingFluentImpl&lt;NamedExtensionFluent.RoleBindingExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.RoleBindingExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RoleBindingBuilder builder;
+    
+<span class="nc" id="L1945">            RoleBindingExtensionNestedImpl(RoleBinding item){</span>
+<span class="nc" id="L1946">                    this.builder = new RoleBindingBuilder(this, item);</span>
+<span class="nc" id="L1947">            }</span>
+<span class="nc" id="L1948">            RoleBindingExtensionNestedImpl(){</span>
+<span class="nc" id="L1949">                    this.builder = new RoleBindingBuilder(this);</span>
+<span class="nc" id="L1950">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1953">            return (N) NamedExtensionFluentImpl.this.withRoleBindingExtension(builder.build());</span>
+    }
+    public N endRoleBindingExtension(){
+<span class="nc" id="L1956">            return and();</span>
+    }
+
+}
+    public class PodPresetExtensionNestedImpl&lt;N&gt; extends PodPresetFluentImpl&lt;NamedExtensionFluent.PodPresetExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.PodPresetExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodPresetBuilder builder;
+    
+<span class="nc" id="L1964">            PodPresetExtensionNestedImpl(PodPreset item){</span>
+<span class="nc" id="L1965">                    this.builder = new PodPresetBuilder(this, item);</span>
+<span class="nc" id="L1966">            }</span>
+<span class="nc" id="L1967">            PodPresetExtensionNestedImpl(){</span>
+<span class="nc" id="L1968">                    this.builder = new PodPresetBuilder(this);</span>
+<span class="nc" id="L1969">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1972">            return (N) NamedExtensionFluentImpl.this.withPodPresetExtension(builder.build());</span>
+    }
+    public N endPodPresetExtension(){
+<span class="nc" id="L1975">            return and();</span>
+    }
+
+}
+    public class ProjectExtensionNestedImpl&lt;N&gt; extends ProjectFluentImpl&lt;NamedExtensionFluent.ProjectExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ProjectExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ProjectBuilder builder;
+    
+<span class="nc" id="L1983">            ProjectExtensionNestedImpl(Project item){</span>
+<span class="nc" id="L1984">                    this.builder = new ProjectBuilder(this, item);</span>
+<span class="nc" id="L1985">            }</span>
+<span class="nc" id="L1986">            ProjectExtensionNestedImpl(){</span>
+<span class="nc" id="L1987">                    this.builder = new ProjectBuilder(this);</span>
+<span class="nc" id="L1988">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1991">            return (N) NamedExtensionFluentImpl.this.withProjectExtension(builder.build());</span>
+    }
+    public N endProjectExtension(){
+<span class="nc" id="L1994">            return and();</span>
+    }
+
+}
+    public class BuildConfigExtensionNestedImpl&lt;N&gt; extends BuildConfigFluentImpl&lt;NamedExtensionFluent.BuildConfigExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.BuildConfigExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BuildConfigBuilder builder;
+    
+<span class="nc" id="L2002">            BuildConfigExtensionNestedImpl(BuildConfig item){</span>
+<span class="nc" id="L2003">                    this.builder = new BuildConfigBuilder(this, item);</span>
+<span class="nc" id="L2004">            }</span>
+<span class="nc" id="L2005">            BuildConfigExtensionNestedImpl(){</span>
+<span class="nc" id="L2006">                    this.builder = new BuildConfigBuilder(this);</span>
+<span class="nc" id="L2007">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2010">            return (N) NamedExtensionFluentImpl.this.withBuildConfigExtension(builder.build());</span>
+    }
+    public N endBuildConfigExtension(){
+<span class="nc" id="L2013">            return and();</span>
+    }
+
+}
+    public class ClusterRoleExtensionNestedImpl&lt;N&gt; extends ClusterRoleFluentImpl&lt;NamedExtensionFluent.ClusterRoleExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ClusterRoleExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ClusterRoleBuilder builder;
+    
+<span class="nc" id="L2021">            ClusterRoleExtensionNestedImpl(ClusterRole item){</span>
+<span class="nc" id="L2022">                    this.builder = new ClusterRoleBuilder(this, item);</span>
+<span class="nc" id="L2023">            }</span>
+<span class="nc" id="L2024">            ClusterRoleExtensionNestedImpl(){</span>
+<span class="nc" id="L2025">                    this.builder = new ClusterRoleBuilder(this);</span>
+<span class="nc" id="L2026">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2029">            return (N) NamedExtensionFluentImpl.this.withClusterRoleExtension(builder.build());</span>
+    }
+    public N endClusterRoleExtension(){
+<span class="nc" id="L2032">            return and();</span>
+    }
+
+}
+    public class OAuthAuthorizeTokenExtensionNestedImpl&lt;N&gt; extends OAuthAuthorizeTokenFluentImpl&lt;NamedExtensionFluent.OAuthAuthorizeTokenExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.OAuthAuthorizeTokenExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OAuthAuthorizeTokenBuilder builder;
+    
+<span class="nc" id="L2040">            OAuthAuthorizeTokenExtensionNestedImpl(OAuthAuthorizeToken item){</span>
+<span class="nc" id="L2041">                    this.builder = new OAuthAuthorizeTokenBuilder(this, item);</span>
+<span class="nc" id="L2042">            }</span>
+<span class="nc" id="L2043">            OAuthAuthorizeTokenExtensionNestedImpl(){</span>
+<span class="nc" id="L2044">                    this.builder = new OAuthAuthorizeTokenBuilder(this);</span>
+<span class="nc" id="L2045">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2048">            return (N) NamedExtensionFluentImpl.this.withOAuthAuthorizeTokenExtension(builder.build());</span>
+    }
+    public N endOAuthAuthorizeTokenExtension(){
+<span class="nc" id="L2051">            return and();</span>
+    }
+
+}
+    public class ProjectRequestExtensionNestedImpl&lt;N&gt; extends ProjectRequestFluentImpl&lt;NamedExtensionFluent.ProjectRequestExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ProjectRequestExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ProjectRequestBuilder builder;
+    
+<span class="nc" id="L2059">            ProjectRequestExtensionNestedImpl(ProjectRequest item){</span>
+<span class="nc" id="L2060">                    this.builder = new ProjectRequestBuilder(this, item);</span>
+<span class="nc" id="L2061">            }</span>
+<span class="nc" id="L2062">            ProjectRequestExtensionNestedImpl(){</span>
+<span class="nc" id="L2063">                    this.builder = new ProjectRequestBuilder(this);</span>
+<span class="nc" id="L2064">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2067">            return (N) NamedExtensionFluentImpl.this.withProjectRequestExtension(builder.build());</span>
+    }
+    public N endProjectRequestExtension(){
+<span class="nc" id="L2070">            return and();</span>
+    }
+
+}
+    public class PriorityClassExtensionNestedImpl&lt;N&gt; extends PriorityClassFluentImpl&lt;NamedExtensionFluent.PriorityClassExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.PriorityClassExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PriorityClassBuilder builder;
+    
+<span class="nc" id="L2078">            PriorityClassExtensionNestedImpl(PriorityClass item){</span>
+<span class="nc" id="L2079">                    this.builder = new PriorityClassBuilder(this, item);</span>
+<span class="nc" id="L2080">            }</span>
+<span class="nc" id="L2081">            PriorityClassExtensionNestedImpl(){</span>
+<span class="nc" id="L2082">                    this.builder = new PriorityClassBuilder(this);</span>
+<span class="nc" id="L2083">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2086">            return (N) NamedExtensionFluentImpl.this.withPriorityClassExtension(builder.build());</span>
+    }
+    public N endPriorityClassExtension(){
+<span class="nc" id="L2089">            return and();</span>
+    }
+
+}
+    public class TemplateExtensionNestedImpl&lt;N&gt; extends TemplateFluentImpl&lt;NamedExtensionFluent.TemplateExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.TemplateExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TemplateBuilder builder;
+    
+<span class="nc" id="L2097">            TemplateExtensionNestedImpl(Template item){</span>
+<span class="nc" id="L2098">                    this.builder = new TemplateBuilder(this, item);</span>
+<span class="nc" id="L2099">            }</span>
+<span class="nc" id="L2100">            TemplateExtensionNestedImpl(){</span>
+<span class="nc" id="L2101">                    this.builder = new TemplateBuilder(this);</span>
+<span class="nc" id="L2102">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2105">            return (N) NamedExtensionFluentImpl.this.withTemplateExtension(builder.build());</span>
+    }
+    public N endTemplateExtension(){
+<span class="nc" id="L2108">            return and();</span>
+    }
+
+}
+    public class OAuthClientAuthorizationExtensionNestedImpl&lt;N&gt; extends OAuthClientAuthorizationFluentImpl&lt;NamedExtensionFluent.OAuthClientAuthorizationExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.OAuthClientAuthorizationExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OAuthClientAuthorizationBuilder builder;
+    
+<span class="nc" id="L2116">            OAuthClientAuthorizationExtensionNestedImpl(OAuthClientAuthorization item){</span>
+<span class="nc" id="L2117">                    this.builder = new OAuthClientAuthorizationBuilder(this, item);</span>
+<span class="nc" id="L2118">            }</span>
+<span class="nc" id="L2119">            OAuthClientAuthorizationExtensionNestedImpl(){</span>
+<span class="nc" id="L2120">                    this.builder = new OAuthClientAuthorizationBuilder(this);</span>
+<span class="nc" id="L2121">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2124">            return (N) NamedExtensionFluentImpl.this.withOAuthClientAuthorizationExtension(builder.build());</span>
+    }
+    public N endOAuthClientAuthorizationExtension(){
+<span class="nc" id="L2127">            return and();</span>
+    }
+
+}
+    public class DeploymentExtensionNestedImpl&lt;N&gt; extends DeploymentFluentImpl&lt;NamedExtensionFluent.DeploymentExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.DeploymentExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final DeploymentBuilder builder;
+    
+<span class="nc" id="L2135">            DeploymentExtensionNestedImpl(Deployment item){</span>
+<span class="nc" id="L2136">                    this.builder = new DeploymentBuilder(this, item);</span>
+<span class="nc" id="L2137">            }</span>
+<span class="nc" id="L2138">            DeploymentExtensionNestedImpl(){</span>
+<span class="nc" id="L2139">                    this.builder = new DeploymentBuilder(this);</span>
+<span class="nc" id="L2140">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2143">            return (N) NamedExtensionFluentImpl.this.withDeploymentExtension(builder.build());</span>
+    }
+    public N endDeploymentExtension(){
+<span class="nc" id="L2146">            return and();</span>
+    }
+
+}
+    public class PodTemplateExtensionNestedImpl&lt;N&gt; extends PodTemplateFluentImpl&lt;NamedExtensionFluent.PodTemplateExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.PodTemplateExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodTemplateBuilder builder;
+    
+<span class="nc" id="L2154">            PodTemplateExtensionNestedImpl(PodTemplate item){</span>
+<span class="nc" id="L2155">                    this.builder = new PodTemplateBuilder(this, item);</span>
+<span class="nc" id="L2156">            }</span>
+<span class="nc" id="L2157">            PodTemplateExtensionNestedImpl(){</span>
+<span class="nc" id="L2158">                    this.builder = new PodTemplateBuilder(this);</span>
+<span class="nc" id="L2159">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2162">            return (N) NamedExtensionFluentImpl.this.withPodTemplateExtension(builder.build());</span>
+    }
+    public N endPodTemplateExtension(){
+<span class="nc" id="L2165">            return and();</span>
+    }
+
+}
+    public class EventExtensionNestedImpl&lt;N&gt; extends EventFluentImpl&lt;NamedExtensionFluent.EventExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.EventExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final EventBuilder builder;
+    
+<span class="nc" id="L2173">            EventExtensionNestedImpl(Event item){</span>
+<span class="nc" id="L2174">                    this.builder = new EventBuilder(this, item);</span>
+<span class="nc" id="L2175">            }</span>
+<span class="nc" id="L2176">            EventExtensionNestedImpl(){</span>
+<span class="nc" id="L2177">                    this.builder = new EventBuilder(this);</span>
+<span class="nc" id="L2178">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2181">            return (N) NamedExtensionFluentImpl.this.withEventExtension(builder.build());</span>
+    }
+    public N endEventExtension(){
+<span class="nc" id="L2184">            return and();</span>
+    }
+
+}
+    public class IngressExtensionNestedImpl&lt;N&gt; extends IngressFluentImpl&lt;NamedExtensionFluent.IngressExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.IngressExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final IngressBuilder builder;
+    
+<span class="nc" id="L2192">            IngressExtensionNestedImpl(Ingress item){</span>
+<span class="nc" id="L2193">                    this.builder = new IngressBuilder(this, item);</span>
+<span class="nc" id="L2194">            }</span>
+<span class="nc" id="L2195">            IngressExtensionNestedImpl(){</span>
+<span class="nc" id="L2196">                    this.builder = new IngressBuilder(this);</span>
+<span class="nc" id="L2197">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2200">            return (N) NamedExtensionFluentImpl.this.withIngressExtension(builder.build());</span>
+    }
+    public N endIngressExtension(){
+<span class="nc" id="L2203">            return and();</span>
+    }
+
+}
+    public class DeploymentConfigExtensionNestedImpl&lt;N&gt; extends DeploymentConfigFluentImpl&lt;NamedExtensionFluent.DeploymentConfigExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.DeploymentConfigExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final DeploymentConfigBuilder builder;
+    
+<span class="nc" id="L2211">            DeploymentConfigExtensionNestedImpl(DeploymentConfig item){</span>
+<span class="nc" id="L2212">                    this.builder = new DeploymentConfigBuilder(this, item);</span>
+<span class="nc" id="L2213">            }</span>
+<span class="nc" id="L2214">            DeploymentConfigExtensionNestedImpl(){</span>
+<span class="nc" id="L2215">                    this.builder = new DeploymentConfigBuilder(this);</span>
+<span class="nc" id="L2216">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2219">            return (N) NamedExtensionFluentImpl.this.withDeploymentConfigExtension(builder.build());</span>
+    }
+    public N endDeploymentConfigExtension(){
+<span class="nc" id="L2222">            return and();</span>
+    }
+
+}
+    public class OAuthAccessTokenExtensionNestedImpl&lt;N&gt; extends OAuthAccessTokenFluentImpl&lt;NamedExtensionFluent.OAuthAccessTokenExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.OAuthAccessTokenExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OAuthAccessTokenBuilder builder;
+    
+<span class="nc" id="L2230">            OAuthAccessTokenExtensionNestedImpl(OAuthAccessToken item){</span>
+<span class="nc" id="L2231">                    this.builder = new OAuthAccessTokenBuilder(this, item);</span>
+<span class="nc" id="L2232">            }</span>
+<span class="nc" id="L2233">            OAuthAccessTokenExtensionNestedImpl(){</span>
+<span class="nc" id="L2234">                    this.builder = new OAuthAccessTokenBuilder(this);</span>
+<span class="nc" id="L2235">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2238">            return (N) NamedExtensionFluentImpl.this.withOAuthAccessTokenExtension(builder.build());</span>
+    }
+    public N endOAuthAccessTokenExtension(){
+<span class="nc" id="L2241">            return and();</span>
+    }
+
+}
+    public class PersistentVolumeExtensionNestedImpl&lt;N&gt; extends PersistentVolumeFluentImpl&lt;NamedExtensionFluent.PersistentVolumeExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.PersistentVolumeExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PersistentVolumeBuilder builder;
+    
+<span class="nc" id="L2249">            PersistentVolumeExtensionNestedImpl(PersistentVolume item){</span>
+<span class="nc" id="L2250">                    this.builder = new PersistentVolumeBuilder(this, item);</span>
+<span class="nc" id="L2251">            }</span>
+<span class="nc" id="L2252">            PersistentVolumeExtensionNestedImpl(){</span>
+<span class="nc" id="L2253">                    this.builder = new PersistentVolumeBuilder(this);</span>
+<span class="nc" id="L2254">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2257">            return (N) NamedExtensionFluentImpl.this.withPersistentVolumeExtension(builder.build());</span>
+    }
+    public N endPersistentVolumeExtension(){
+<span class="nc" id="L2260">            return and();</span>
+    }
+
+}
+    public class PersistentVolumeClaimExtensionNestedImpl&lt;N&gt; extends PersistentVolumeClaimFluentImpl&lt;NamedExtensionFluent.PersistentVolumeClaimExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.PersistentVolumeClaimExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PersistentVolumeClaimBuilder builder;
+    
+<span class="nc" id="L2268">            PersistentVolumeClaimExtensionNestedImpl(PersistentVolumeClaim item){</span>
+<span class="nc" id="L2269">                    this.builder = new PersistentVolumeClaimBuilder(this, item);</span>
+<span class="nc" id="L2270">            }</span>
+<span class="nc" id="L2271">            PersistentVolumeClaimExtensionNestedImpl(){</span>
+<span class="nc" id="L2272">                    this.builder = new PersistentVolumeClaimBuilder(this);</span>
+<span class="nc" id="L2273">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2276">            return (N) NamedExtensionFluentImpl.this.withPersistentVolumeClaimExtension(builder.build());</span>
+    }
+    public N endPersistentVolumeClaimExtension(){
+<span class="nc" id="L2279">            return and();</span>
+    }
+
+}
+    public class EventsEventExtensionNestedImpl&lt;N&gt; extends io.fabric8.kubernetes.api.model.events.EventFluentImpl&lt;NamedExtensionFluent.EventsEventExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.EventsEventExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final io.fabric8.kubernetes.api.model.events.EventBuilder builder;
+    
+<span class="nc" id="L2287">            EventsEventExtensionNestedImpl(io.fabric8.kubernetes.api.model.events.Event item){</span>
+<span class="nc" id="L2288">                    this.builder = new io.fabric8.kubernetes.api.model.events.EventBuilder(this, item);</span>
+<span class="nc" id="L2289">            }</span>
+<span class="nc" id="L2290">            EventsEventExtensionNestedImpl(){</span>
+<span class="nc" id="L2291">                    this.builder = new io.fabric8.kubernetes.api.model.events.EventBuilder(this);</span>
+<span class="nc" id="L2292">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2295">            return (N) NamedExtensionFluentImpl.this.withEventExtension(builder.build());</span>
+    }
+    public N endEventsEventExtension(){
+<span class="nc" id="L2298">            return and();</span>
+    }
+
+}
+    public class StatefulSetExtensionNestedImpl&lt;N&gt; extends StatefulSetFluentImpl&lt;NamedExtensionFluent.StatefulSetExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.StatefulSetExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final StatefulSetBuilder builder;
+    
+<span class="nc" id="L2306">            StatefulSetExtensionNestedImpl(StatefulSet item){</span>
+<span class="nc" id="L2307">                    this.builder = new StatefulSetBuilder(this, item);</span>
+<span class="nc" id="L2308">            }</span>
+<span class="nc" id="L2309">            StatefulSetExtensionNestedImpl(){</span>
+<span class="nc" id="L2310">                    this.builder = new StatefulSetBuilder(this);</span>
+<span class="nc" id="L2311">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2314">            return (N) NamedExtensionFluentImpl.this.withStatefulSetExtension(builder.build());</span>
+    }
+    public N endStatefulSetExtension(){
+<span class="nc" id="L2317">            return and();</span>
+    }
+
+}
+    public class OpenshiftClusterRoleExtensionNestedImpl&lt;N&gt; extends OpenshiftClusterRoleFluentImpl&lt;NamedExtensionFluent.OpenshiftClusterRoleExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.OpenshiftClusterRoleExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final OpenshiftClusterRoleBuilder builder;
+    
+<span class="nc" id="L2325">            OpenshiftClusterRoleExtensionNestedImpl(OpenshiftClusterRole item){</span>
+<span class="nc" id="L2326">                    this.builder = new OpenshiftClusterRoleBuilder(this, item);</span>
+<span class="nc" id="L2327">            }</span>
+<span class="nc" id="L2328">            OpenshiftClusterRoleExtensionNestedImpl(){</span>
+<span class="nc" id="L2329">                    this.builder = new OpenshiftClusterRoleBuilder(this);</span>
+<span class="nc" id="L2330">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2333">            return (N) NamedExtensionFluentImpl.this.withOpenshiftClusterRoleExtension(builder.build());</span>
+    }
+    public N endOpenshiftClusterRoleExtension(){
+<span class="nc" id="L2336">            return and();</span>
+    }
+
+}
+    public class RoleExtensionNestedImpl&lt;N&gt; extends RoleFluentImpl&lt;NamedExtensionFluent.RoleExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.RoleExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RoleBuilder builder;
+    
+<span class="nc" id="L2344">            RoleExtensionNestedImpl(Role item){</span>
+<span class="nc" id="L2345">                    this.builder = new RoleBuilder(this, item);</span>
+<span class="nc" id="L2346">            }</span>
+<span class="nc" id="L2347">            RoleExtensionNestedImpl(){</span>
+<span class="nc" id="L2348">                    this.builder = new RoleBuilder(this);</span>
+<span class="nc" id="L2349">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2352">            return (N) NamedExtensionFluentImpl.this.withRoleExtension(builder.build());</span>
+    }
+    public N endRoleExtension(){
+<span class="nc" id="L2355">            return and();</span>
+    }
+
+}
+    public class UserExtensionNestedImpl&lt;N&gt; extends UserFluentImpl&lt;NamedExtensionFluent.UserExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.UserExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final UserBuilder builder;
+    
+<span class="nc" id="L2363">            UserExtensionNestedImpl(User item){</span>
+<span class="nc" id="L2364">                    this.builder = new UserBuilder(this, item);</span>
+<span class="nc" id="L2365">            }</span>
+<span class="nc" id="L2366">            UserExtensionNestedImpl(){</span>
+<span class="nc" id="L2367">                    this.builder = new UserBuilder(this);</span>
+<span class="nc" id="L2368">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2371">            return (N) NamedExtensionFluentImpl.this.withUserExtension(builder.build());</span>
+    }
+    public N endUserExtension(){
+<span class="nc" id="L2374">            return and();</span>
+    }
+
+}
+    public class ComponentStatusExtensionNestedImpl&lt;N&gt; extends ComponentStatusFluentImpl&lt;NamedExtensionFluent.ComponentStatusExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ComponentStatusExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ComponentStatusBuilder builder;
+    
+<span class="nc" id="L2382">            ComponentStatusExtensionNestedImpl(ComponentStatus item){</span>
+<span class="nc" id="L2383">                    this.builder = new ComponentStatusBuilder(this, item);</span>
+<span class="nc" id="L2384">            }</span>
+<span class="nc" id="L2385">            ComponentStatusExtensionNestedImpl(){</span>
+<span class="nc" id="L2386">                    this.builder = new ComponentStatusBuilder(this);</span>
+<span class="nc" id="L2387">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2390">            return (N) NamedExtensionFluentImpl.this.withComponentStatusExtension(builder.build());</span>
+    }
+    public N endComponentStatusExtension(){
+<span class="nc" id="L2393">            return and();</span>
+    }
+
+}
+    public class TokenReviewExtensionNestedImpl&lt;N&gt; extends TokenReviewFluentImpl&lt;NamedExtensionFluent.TokenReviewExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.TokenReviewExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TokenReviewBuilder builder;
+    
+<span class="nc" id="L2401">            TokenReviewExtensionNestedImpl(TokenReview item){</span>
+<span class="nc" id="L2402">                    this.builder = new TokenReviewBuilder(this, item);</span>
+<span class="nc" id="L2403">            }</span>
+<span class="nc" id="L2404">            TokenReviewExtensionNestedImpl(){</span>
+<span class="nc" id="L2405">                    this.builder = new TokenReviewBuilder(this);</span>
+<span class="nc" id="L2406">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2409">            return (N) NamedExtensionFluentImpl.this.withTokenReviewExtension(builder.build());</span>
+    }
+    public N endTokenReviewExtension(){
+<span class="nc" id="L2412">            return and();</span>
+    }
+
+}
+    public class BindingExtensionNestedImpl&lt;N&gt; extends BindingFluentImpl&lt;NamedExtensionFluent.BindingExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.BindingExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final BindingBuilder builder;
+    
+<span class="nc" id="L2420">            BindingExtensionNestedImpl(Binding item){</span>
+<span class="nc" id="L2421">                    this.builder = new BindingBuilder(this, item);</span>
+<span class="nc" id="L2422">            }</span>
+<span class="nc" id="L2423">            BindingExtensionNestedImpl(){</span>
+<span class="nc" id="L2424">                    this.builder = new BindingBuilder(this);</span>
+<span class="nc" id="L2425">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2428">            return (N) NamedExtensionFluentImpl.this.withBindingExtension(builder.build());</span>
+    }
+    public N endBindingExtension(){
+<span class="nc" id="L2431">            return and();</span>
+    }
+
+}
+    public class SecretExtensionNestedImpl&lt;N&gt; extends SecretFluentImpl&lt;NamedExtensionFluent.SecretExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.SecretExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SecretBuilder builder;
+    
+<span class="nc" id="L2439">            SecretExtensionNestedImpl(Secret item){</span>
+<span class="nc" id="L2440">                    this.builder = new SecretBuilder(this, item);</span>
+<span class="nc" id="L2441">            }</span>
+<span class="nc" id="L2442">            SecretExtensionNestedImpl(){</span>
+<span class="nc" id="L2443">                    this.builder = new SecretBuilder(this);</span>
+<span class="nc" id="L2444">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2447">            return (N) NamedExtensionFluentImpl.this.withSecretExtension(builder.build());</span>
+    }
+    public N endSecretExtension(){
+<span class="nc" id="L2450">            return and();</span>
+    }
+
+}
+    public class SecurityContextConstraintsExtensionNestedImpl&lt;N&gt; extends SecurityContextConstraintsFluentImpl&lt;NamedExtensionFluent.SecurityContextConstraintsExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.SecurityContextConstraintsExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SecurityContextConstraintsBuilder builder;
+    
+<span class="nc" id="L2458">            SecurityContextConstraintsExtensionNestedImpl(SecurityContextConstraints item){</span>
+<span class="nc" id="L2459">                    this.builder = new SecurityContextConstraintsBuilder(this, item);</span>
+<span class="nc" id="L2460">            }</span>
+<span class="nc" id="L2461">            SecurityContextConstraintsExtensionNestedImpl(){</span>
+<span class="nc" id="L2462">                    this.builder = new SecurityContextConstraintsBuilder(this);</span>
+<span class="nc" id="L2463">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2466">            return (N) NamedExtensionFluentImpl.this.withSecurityContextConstraintsExtension(builder.build());</span>
+    }
+    public N endSecurityContextConstraintsExtension(){
+<span class="nc" id="L2469">            return and();</span>
+    }
+
+}
+    public class NetNamespaceExtensionNestedImpl&lt;N&gt; extends NetNamespaceFluentImpl&lt;NamedExtensionFluent.NetNamespaceExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.NetNamespaceExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NetNamespaceBuilder builder;
+    
+<span class="nc" id="L2477">            NetNamespaceExtensionNestedImpl(NetNamespace item){</span>
+<span class="nc" id="L2478">                    this.builder = new NetNamespaceBuilder(this, item);</span>
+<span class="nc" id="L2479">            }</span>
+<span class="nc" id="L2480">            NetNamespaceExtensionNestedImpl(){</span>
+<span class="nc" id="L2481">                    this.builder = new NetNamespaceBuilder(this);</span>
+<span class="nc" id="L2482">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2485">            return (N) NamedExtensionFluentImpl.this.withNetNamespaceExtension(builder.build());</span>
+    }
+    public N endNetNamespaceExtension(){
+<span class="nc" id="L2488">            return and();</span>
+    }
+
+}
+    public class NodeExtensionNestedImpl&lt;N&gt; extends NodeFluentImpl&lt;NamedExtensionFluent.NodeExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.NodeExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NodeBuilder builder;
+    
+<span class="nc" id="L2496">            NodeExtensionNestedImpl(Node item){</span>
+<span class="nc" id="L2497">                    this.builder = new NodeBuilder(this, item);</span>
+<span class="nc" id="L2498">            }</span>
+<span class="nc" id="L2499">            NodeExtensionNestedImpl(){</span>
+<span class="nc" id="L2500">                    this.builder = new NodeBuilder(this);</span>
+<span class="nc" id="L2501">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2504">            return (N) NamedExtensionFluentImpl.this.withNodeExtension(builder.build());</span>
+    }
+    public N endNodeExtension(){
+<span class="nc" id="L2507">            return and();</span>
+    }
+
+}
+    public class JobExtensionNestedImpl&lt;N&gt; extends JobFluentImpl&lt;NamedExtensionFluent.JobExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.JobExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final JobBuilder builder;
+    
+<span class="nc" id="L2515">            JobExtensionNestedImpl(Job item){</span>
+<span class="nc" id="L2516">                    this.builder = new JobBuilder(this, item);</span>
+<span class="nc" id="L2517">            }</span>
+<span class="nc" id="L2518">            JobExtensionNestedImpl(){</span>
+<span class="nc" id="L2519">                    this.builder = new JobBuilder(this);</span>
+<span class="nc" id="L2520">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2523">            return (N) NamedExtensionFluentImpl.this.withJobExtension(builder.build());</span>
+    }
+    public N endJobExtension(){
+<span class="nc" id="L2526">            return and();</span>
+    }
+
+}
+    public class CertificateSigningRequestExtensionNestedImpl&lt;N&gt; extends CertificateSigningRequestFluentImpl&lt;NamedExtensionFluent.CertificateSigningRequestExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.CertificateSigningRequestExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final CertificateSigningRequestBuilder builder;
+    
+<span class="nc" id="L2534">            CertificateSigningRequestExtensionNestedImpl(CertificateSigningRequest item){</span>
+<span class="nc" id="L2535">                    this.builder = new CertificateSigningRequestBuilder(this, item);</span>
+<span class="nc" id="L2536">            }</span>
+<span class="nc" id="L2537">            CertificateSigningRequestExtensionNestedImpl(){</span>
+<span class="nc" id="L2538">                    this.builder = new CertificateSigningRequestBuilder(this);</span>
+<span class="nc" id="L2539">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2542">            return (N) NamedExtensionFluentImpl.this.withCertificateSigningRequestExtension(builder.build());</span>
+    }
+    public N endCertificateSigningRequestExtension(){
+<span class="nc" id="L2545">            return and();</span>
+    }
+
+}
+    public class ServiceAccountExtensionNestedImpl&lt;N&gt; extends ServiceAccountFluentImpl&lt;NamedExtensionFluent.ServiceAccountExtensionNested&lt;N&gt;&gt; implements NamedExtensionFluent.ServiceAccountExtensionNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ServiceAccountBuilder builder;
+    
+<span class="nc" id="L2553">            ServiceAccountExtensionNestedImpl(ServiceAccount item){</span>
+<span class="nc" id="L2554">                    this.builder = new ServiceAccountBuilder(this, item);</span>
+<span class="nc" id="L2555">            }</span>
+<span class="nc" id="L2556">            ServiceAccountExtensionNestedImpl(){</span>
+<span class="nc" id="L2557">                    this.builder = new ServiceAccountBuilder(this);</span>
+<span class="nc" id="L2558">            }</span>
+    
+    public N and(){
+<span class="nc" id="L2561">            return (N) NamedExtensionFluentImpl.this.withServiceAccountExtension(builder.build());</span>
+    }
+    public N endServiceAccountExtension(){
+<span class="nc" id="L2564">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

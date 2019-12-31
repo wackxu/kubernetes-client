@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DoneablePodList.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">DoneablePodList.java</span></div><h1>DoneablePodList.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import io.fabric8.kubernetes.api.builder.Function;
+
+public class DoneablePodList extends PodListFluentImpl&lt;DoneablePodList&gt; implements Doneable&lt;PodList&gt;{
+
+    private final PodListBuilder builder;
+    private final io.fabric8.kubernetes.api.builder.Function&lt;PodList,PodList&gt; function;
+
+    public DoneablePodList(io.fabric8.kubernetes.api.builder.Function&lt;PodList,PodList&gt; function){
+<span class="nc" id="L11">            super();this.builder=new PodListBuilder(this);this.function=function;</span>
+<span class="nc" id="L12">    }</span>
+    public DoneablePodList(PodList item,io.fabric8.kubernetes.api.builder.Function&lt;PodList,PodList&gt; function){
+<span class="nc" id="L14">            super(item);this.builder=new PodListBuilder(this, item);this.function=function;</span>
+<span class="nc" id="L15">    }</span>
+    public DoneablePodList(PodList item){
+<span class="nc" id="L17">            super(item);this.builder=new PodListBuilder(this, item);this.function=new Function&lt;PodList, PodList&gt;() {</span>
+    public PodList apply(PodList item) {
+<span class="nc" id="L19">        return item;</span>
+    }
+}
+;
+<span class="nc" id="L23">    }</span>
+
+    public PodList done(){
+<span class="nc" id="L26">             return function.apply(builder.build());</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PodStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">PodStatus.java</span></div><h1>PodStatus.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;conditions&quot;,
+    &quot;containerStatuses&quot;,
+    &quot;hostIP&quot;,
+    &quot;initContainerStatuses&quot;,
+    &quot;message&quot;,
+    &quot;nominatedNodeName&quot;,
+    &quot;phase&quot;,
+    &quot;podIP&quot;,
+    &quot;qosClass&quot;,
+    &quot;reason&quot;,
+    &quot;startTime&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L47">@ToString</span>
+<span class="nc bnc" id="L48" title="All 102 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class PodStatus implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L57">    @JsonProperty(&quot;conditions&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;PodCondition&gt; conditions = new ArrayList&lt;PodCondition&gt;();
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L65">    @JsonProperty(&quot;containerStatuses&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;ContainerStatus&gt; containerStatuses = new ArrayList&lt;ContainerStatus&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;hostIP&quot;)
+    private java.lang.String hostIP;
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L79">    @JsonProperty(&quot;initContainerStatuses&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;ContainerStatus&gt; initContainerStatuses = new ArrayList&lt;ContainerStatus&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;message&quot;)
+    private java.lang.String message;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;nominatedNodeName&quot;)
+    private java.lang.String nominatedNodeName;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;phase&quot;)
+    private java.lang.String phase;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;podIP&quot;)
+    private java.lang.String podIP;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;qosClass&quot;)
+    private java.lang.String qosClass;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;reason&quot;)
+    private java.lang.String reason;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;startTime&quot;)
+    @Valid
+    private String startTime;
+<span class="nc" id="L126">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L133">    public PodStatus() {</span>
+<span class="nc" id="L134">    }</span>
+
+    /**
+     * 
+     * @param phase
+     * @param reason
+     * @param podIP
+     * @param containerStatuses
+     * @param hostIP
+     * @param startTime
+     * @param nominatedNodeName
+     * @param qosClass
+     * @param conditions
+     * @param message
+     * @param initContainerStatuses
+     */
+<span class="nc" id="L150">    public PodStatus(List&lt;PodCondition&gt; conditions, List&lt;ContainerStatus&gt; containerStatuses, java.lang.String hostIP, List&lt;ContainerStatus&gt; initContainerStatuses, java.lang.String message, java.lang.String nominatedNodeName, java.lang.String phase, java.lang.String podIP, java.lang.String qosClass, java.lang.String reason, String startTime) {</span>
+<span class="nc" id="L151">        this.conditions = conditions;</span>
+<span class="nc" id="L152">        this.containerStatuses = containerStatuses;</span>
+<span class="nc" id="L153">        this.hostIP = hostIP;</span>
+<span class="nc" id="L154">        this.initContainerStatuses = initContainerStatuses;</span>
+<span class="nc" id="L155">        this.message = message;</span>
+<span class="nc" id="L156">        this.nominatedNodeName = nominatedNodeName;</span>
+<span class="nc" id="L157">        this.phase = phase;</span>
+<span class="nc" id="L158">        this.podIP = podIP;</span>
+<span class="nc" id="L159">        this.qosClass = qosClass;</span>
+<span class="nc" id="L160">        this.reason = reason;</span>
+<span class="nc" id="L161">        this.startTime = startTime;</span>
+<span class="nc" id="L162">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The conditions
+     */
+    @JsonProperty(&quot;conditions&quot;)
+    public List&lt;PodCondition&gt; getConditions() {
+<span class="nc" id="L172">        return conditions;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param conditions
+     *     The conditions
+     */
+    @JsonProperty(&quot;conditions&quot;)
+    public void setConditions(List&lt;PodCondition&gt; conditions) {
+<span class="nc" id="L183">        this.conditions = conditions;</span>
+<span class="nc" id="L184">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The containerStatuses
+     */
+    @JsonProperty(&quot;containerStatuses&quot;)
+    public List&lt;ContainerStatus&gt; getContainerStatuses() {
+<span class="nc" id="L194">        return containerStatuses;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param containerStatuses
+     *     The containerStatuses
+     */
+    @JsonProperty(&quot;containerStatuses&quot;)
+    public void setContainerStatuses(List&lt;ContainerStatus&gt; containerStatuses) {
+<span class="nc" id="L205">        this.containerStatuses = containerStatuses;</span>
+<span class="nc" id="L206">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The hostIP
+     */
+    @JsonProperty(&quot;hostIP&quot;)
+    public java.lang.String getHostIP() {
+<span class="nc" id="L216">        return hostIP;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param hostIP
+     *     The hostIP
+     */
+    @JsonProperty(&quot;hostIP&quot;)
+    public void setHostIP(java.lang.String hostIP) {
+<span class="nc" id="L227">        this.hostIP = hostIP;</span>
+<span class="nc" id="L228">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The initContainerStatuses
+     */
+    @JsonProperty(&quot;initContainerStatuses&quot;)
+    public List&lt;ContainerStatus&gt; getInitContainerStatuses() {
+<span class="nc" id="L238">        return initContainerStatuses;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param initContainerStatuses
+     *     The initContainerStatuses
+     */
+    @JsonProperty(&quot;initContainerStatuses&quot;)
+    public void setInitContainerStatuses(List&lt;ContainerStatus&gt; initContainerStatuses) {
+<span class="nc" id="L249">        this.initContainerStatuses = initContainerStatuses;</span>
+<span class="nc" id="L250">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The message
+     */
+    @JsonProperty(&quot;message&quot;)
+    public java.lang.String getMessage() {
+<span class="nc" id="L260">        return message;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param message
+     *     The message
+     */
+    @JsonProperty(&quot;message&quot;)
+    public void setMessage(java.lang.String message) {
+<span class="nc" id="L271">        this.message = message;</span>
+<span class="nc" id="L272">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The nominatedNodeName
+     */
+    @JsonProperty(&quot;nominatedNodeName&quot;)
+    public java.lang.String getNominatedNodeName() {
+<span class="nc" id="L282">        return nominatedNodeName;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param nominatedNodeName
+     *     The nominatedNodeName
+     */
+    @JsonProperty(&quot;nominatedNodeName&quot;)
+    public void setNominatedNodeName(java.lang.String nominatedNodeName) {
+<span class="nc" id="L293">        this.nominatedNodeName = nominatedNodeName;</span>
+<span class="nc" id="L294">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The phase
+     */
+    @JsonProperty(&quot;phase&quot;)
+    public java.lang.String getPhase() {
+<span class="nc" id="L304">        return phase;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param phase
+     *     The phase
+     */
+    @JsonProperty(&quot;phase&quot;)
+    public void setPhase(java.lang.String phase) {
+<span class="nc" id="L315">        this.phase = phase;</span>
+<span class="nc" id="L316">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The podIP
+     */
+    @JsonProperty(&quot;podIP&quot;)
+    public java.lang.String getPodIP() {
+<span class="nc" id="L326">        return podIP;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param podIP
+     *     The podIP
+     */
+    @JsonProperty(&quot;podIP&quot;)
+    public void setPodIP(java.lang.String podIP) {
+<span class="nc" id="L337">        this.podIP = podIP;</span>
+<span class="nc" id="L338">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The qosClass
+     */
+    @JsonProperty(&quot;qosClass&quot;)
+    public java.lang.String getQosClass() {
+<span class="nc" id="L348">        return qosClass;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param qosClass
+     *     The qosClass
+     */
+    @JsonProperty(&quot;qosClass&quot;)
+    public void setQosClass(java.lang.String qosClass) {
+<span class="nc" id="L359">        this.qosClass = qosClass;</span>
+<span class="nc" id="L360">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The reason
+     */
+    @JsonProperty(&quot;reason&quot;)
+    public java.lang.String getReason() {
+<span class="nc" id="L370">        return reason;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param reason
+     *     The reason
+     */
+    @JsonProperty(&quot;reason&quot;)
+    public void setReason(java.lang.String reason) {
+<span class="nc" id="L381">        this.reason = reason;</span>
+<span class="nc" id="L382">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The startTime
+     */
+    @JsonProperty(&quot;startTime&quot;)
+    public String getStartTime() {
+<span class="nc" id="L392">        return startTime;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param startTime
+     *     The startTime
+     */
+    @JsonProperty(&quot;startTime&quot;)
+    public void setStartTime(String startTime) {
+<span class="nc" id="L403">        this.startTime = startTime;</span>
+<span class="nc" id="L404">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L408">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L413">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L414">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

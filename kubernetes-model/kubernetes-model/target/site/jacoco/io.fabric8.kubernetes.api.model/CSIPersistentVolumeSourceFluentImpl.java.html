@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CSIPersistentVolumeSourceFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">CSIPersistentVolumeSourceFluentImpl.java</span></div><h1>CSIPersistentVolumeSourceFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.util.LinkedHashMap;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Object;
+import java.lang.Boolean;
+import java.util.Map;
+
+public class CSIPersistentVolumeSourceFluentImpl&lt;A extends CSIPersistentVolumeSourceFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements CSIPersistentVolumeSourceFluent&lt;A&gt;{
+
+    private SecretReferenceBuilder controllerPublishSecretRef;
+    private String driver;
+    private String fsType;
+    private SecretReferenceBuilder nodePublishSecretRef;
+    private SecretReferenceBuilder nodeStageSecretRef;
+    private Boolean readOnly;
+    private Map&lt;String,String&gt; volumeAttributes;
+    private String volumeHandle;
+
+<span class="nc" id="L25">    public CSIPersistentVolumeSourceFluentImpl(){</span>
+<span class="nc" id="L26">    }</span>
+<span class="nc" id="L27">    public CSIPersistentVolumeSourceFluentImpl(CSIPersistentVolumeSource instance){</span>
+<span class="nc" id="L28">            this.withControllerPublishSecretRef(instance.getControllerPublishSecretRef()); </span>
+<span class="nc" id="L29">            this.withDriver(instance.getDriver()); </span>
+<span class="nc" id="L30">            this.withFsType(instance.getFsType()); </span>
+<span class="nc" id="L31">            this.withNodePublishSecretRef(instance.getNodePublishSecretRef()); </span>
+<span class="nc" id="L32">            this.withNodeStageSecretRef(instance.getNodeStageSecretRef()); </span>
+<span class="nc" id="L33">            this.withReadOnly(instance.getReadOnly()); </span>
+<span class="nc" id="L34">            this.withVolumeAttributes(instance.getVolumeAttributes()); </span>
+<span class="nc" id="L35">            this.withVolumeHandle(instance.getVolumeHandle()); </span>
+<span class="nc" id="L36">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildControllerPublishSecretRef instead.
+ * @return The buildable object.
+ */
+@Deprecated public SecretReference getControllerPublishSecretRef(){
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            return this.controllerPublishSecretRef!=null?this.controllerPublishSecretRef.build():null;</span>
+    }
+
+    public SecretReference buildControllerPublishSecretRef(){
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            return this.controllerPublishSecretRef!=null?this.controllerPublishSecretRef.build():null;</span>
+    }
+
+    public A withControllerPublishSecretRef(SecretReference controllerPublishSecretRef){
+<span class="nc" id="L52">            _visitables.remove(this.controllerPublishSecretRef);</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            if (controllerPublishSecretRef!=null){ this.controllerPublishSecretRef= new SecretReferenceBuilder(controllerPublishSecretRef); _visitables.add(this.controllerPublishSecretRef);} return (A) this;</span>
+    }
+
+    public Boolean hasControllerPublishSecretRef(){
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            return this.controllerPublishSecretRef != null;</span>
+    }
+
+    public A withNewControllerPublishSecretRef(String name,String namespace){
+<span class="nc" id="L61">            return (A)withControllerPublishSecretRef(new SecretReference(name, namespace));</span>
+    }
+
+    public CSIPersistentVolumeSourceFluent.ControllerPublishSecretRefNested&lt;A&gt; withNewControllerPublishSecretRef(){
+<span class="nc" id="L65">            return new ControllerPublishSecretRefNestedImpl();</span>
+    }
+
+    public CSIPersistentVolumeSourceFluent.ControllerPublishSecretRefNested&lt;A&gt; withNewControllerPublishSecretRefLike(SecretReference item){
+<span class="nc" id="L69">            return new ControllerPublishSecretRefNestedImpl(item);</span>
+    }
+
+    public CSIPersistentVolumeSourceFluent.ControllerPublishSecretRefNested&lt;A&gt; editControllerPublishSecretRef(){
+<span class="nc" id="L73">            return withNewControllerPublishSecretRefLike(getControllerPublishSecretRef());</span>
+    }
+
+    public CSIPersistentVolumeSourceFluent.ControllerPublishSecretRefNested&lt;A&gt; editOrNewControllerPublishSecretRef(){
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            return withNewControllerPublishSecretRefLike(getControllerPublishSecretRef() != null ? getControllerPublishSecretRef(): new SecretReferenceBuilder().build());</span>
+    }
+
+    public CSIPersistentVolumeSourceFluent.ControllerPublishSecretRefNested&lt;A&gt; editOrNewControllerPublishSecretRefLike(SecretReference item){
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            return withNewControllerPublishSecretRefLike(getControllerPublishSecretRef() != null ? getControllerPublishSecretRef(): item);</span>
+    }
+
+    public String getDriver(){
+<span class="nc" id="L85">            return this.driver;</span>
+    }
+
+    public A withDriver(String driver){
+<span class="nc" id="L89">            this.driver=driver; return (A) this;</span>
+    }
+
+    public Boolean hasDriver(){
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            return this.driver != null;</span>
+    }
+
+    public String getFsType(){
+<span class="nc" id="L97">            return this.fsType;</span>
+    }
+
+    public A withFsType(String fsType){
+<span class="nc" id="L101">            this.fsType=fsType; return (A) this;</span>
+    }
+
+    public Boolean hasFsType(){
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            return this.fsType != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildNodePublishSecretRef instead.
+ * @return The buildable object.
+ */
+@Deprecated public SecretReference getNodePublishSecretRef(){
+<span class="nc bnc" id="L114" title="All 2 branches missed.">            return this.nodePublishSecretRef!=null?this.nodePublishSecretRef.build():null;</span>
+    }
+
+    public SecretReference buildNodePublishSecretRef(){
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            return this.nodePublishSecretRef!=null?this.nodePublishSecretRef.build():null;</span>
+    }
+
+    public A withNodePublishSecretRef(SecretReference nodePublishSecretRef){
+<span class="nc" id="L122">            _visitables.remove(this.nodePublishSecretRef);</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            if (nodePublishSecretRef!=null){ this.nodePublishSecretRef= new SecretReferenceBuilder(nodePublishSecretRef); _visitables.add(this.nodePublishSecretRef);} return (A) this;</span>
+    }
+
+    public Boolean hasNodePublishSecretRef(){
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            return this.nodePublishSecretRef != null;</span>
+    }
+
+    public A withNewNodePublishSecretRef(String name,String namespace){
+<span class="nc" id="L131">            return (A)withNodePublishSecretRef(new SecretReference(name, namespace));</span>
+    }
+
+    public CSIPersistentVolumeSourceFluent.NodePublishSecretRefNested&lt;A&gt; withNewNodePublishSecretRef(){
+<span class="nc" id="L135">            return new NodePublishSecretRefNestedImpl();</span>
+    }
+
+    public CSIPersistentVolumeSourceFluent.NodePublishSecretRefNested&lt;A&gt; withNewNodePublishSecretRefLike(SecretReference item){
+<span class="nc" id="L139">            return new NodePublishSecretRefNestedImpl(item);</span>
+    }
+
+    public CSIPersistentVolumeSourceFluent.NodePublishSecretRefNested&lt;A&gt; editNodePublishSecretRef(){
+<span class="nc" id="L143">            return withNewNodePublishSecretRefLike(getNodePublishSecretRef());</span>
+    }
+
+    public CSIPersistentVolumeSourceFluent.NodePublishSecretRefNested&lt;A&gt; editOrNewNodePublishSecretRef(){
+<span class="nc bnc" id="L147" title="All 2 branches missed.">            return withNewNodePublishSecretRefLike(getNodePublishSecretRef() != null ? getNodePublishSecretRef(): new SecretReferenceBuilder().build());</span>
+    }
+
+    public CSIPersistentVolumeSourceFluent.NodePublishSecretRefNested&lt;A&gt; editOrNewNodePublishSecretRefLike(SecretReference item){
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            return withNewNodePublishSecretRefLike(getNodePublishSecretRef() != null ? getNodePublishSecretRef(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildNodeStageSecretRef instead.
+ * @return The buildable object.
+ */
+@Deprecated public SecretReference getNodeStageSecretRef(){
+<span class="nc bnc" id="L160" title="All 2 branches missed.">            return this.nodeStageSecretRef!=null?this.nodeStageSecretRef.build():null;</span>
+    }
+
+    public SecretReference buildNodeStageSecretRef(){
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            return this.nodeStageSecretRef!=null?this.nodeStageSecretRef.build():null;</span>
+    }
+
+    public A withNodeStageSecretRef(SecretReference nodeStageSecretRef){
+<span class="nc" id="L168">            _visitables.remove(this.nodeStageSecretRef);</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">            if (nodeStageSecretRef!=null){ this.nodeStageSecretRef= new SecretReferenceBuilder(nodeStageSecretRef); _visitables.add(this.nodeStageSecretRef);} return (A) this;</span>
+    }
+
+    public Boolean hasNodeStageSecretRef(){
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            return this.nodeStageSecretRef != null;</span>
+    }
+
+    public A withNewNodeStageSecretRef(String name,String namespace){
+<span class="nc" id="L177">            return (A)withNodeStageSecretRef(new SecretReference(name, namespace));</span>
+    }
+
+    public CSIPersistentVolumeSourceFluent.NodeStageSecretRefNested&lt;A&gt; withNewNodeStageSecretRef(){
+<span class="nc" id="L181">            return new NodeStageSecretRefNestedImpl();</span>
+    }
+
+    public CSIPersistentVolumeSourceFluent.NodeStageSecretRefNested&lt;A&gt; withNewNodeStageSecretRefLike(SecretReference item){
+<span class="nc" id="L185">            return new NodeStageSecretRefNestedImpl(item);</span>
+    }
+
+    public CSIPersistentVolumeSourceFluent.NodeStageSecretRefNested&lt;A&gt; editNodeStageSecretRef(){
+<span class="nc" id="L189">            return withNewNodeStageSecretRefLike(getNodeStageSecretRef());</span>
+    }
+
+    public CSIPersistentVolumeSourceFluent.NodeStageSecretRefNested&lt;A&gt; editOrNewNodeStageSecretRef(){
+<span class="nc bnc" id="L193" title="All 2 branches missed.">            return withNewNodeStageSecretRefLike(getNodeStageSecretRef() != null ? getNodeStageSecretRef(): new SecretReferenceBuilder().build());</span>
+    }
+
+    public CSIPersistentVolumeSourceFluent.NodeStageSecretRefNested&lt;A&gt; editOrNewNodeStageSecretRefLike(SecretReference item){
+<span class="nc bnc" id="L197" title="All 2 branches missed.">            return withNewNodeStageSecretRefLike(getNodeStageSecretRef() != null ? getNodeStageSecretRef(): item);</span>
+    }
+
+    public Boolean isReadOnly(){
+<span class="nc" id="L201">            return this.readOnly;</span>
+    }
+
+    public A withReadOnly(Boolean readOnly){
+<span class="nc" id="L205">            this.readOnly=readOnly; return (A) this;</span>
+    }
+
+    public Boolean hasReadOnly(){
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            return this.readOnly != null;</span>
+    }
+
+    public A withNewReadOnly(String arg1){
+<span class="nc" id="L213">            return (A)withReadOnly(new Boolean(arg1));</span>
+    }
+
+    public A withNewReadOnly(boolean arg1){
+<span class="nc" id="L217">            return (A)withReadOnly(new Boolean(arg1));</span>
+    }
+
+    public A addToVolumeAttributes(String key,String value){
+<span class="nc bnc" id="L221" title="All 6 branches missed.">            if(this.volumeAttributes == null &amp;&amp; key != null &amp;&amp; value != null) { this.volumeAttributes = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L222" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.volumeAttributes.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToVolumeAttributes(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L226" title="All 4 branches missed.">            if(this.volumeAttributes == null &amp;&amp; map != null) { this.volumeAttributes = new LinkedHashMap&lt;String,String&gt;(); }</span>
+<span class="nc bnc" id="L227" title="All 2 branches missed.">            if(map != null) { this.volumeAttributes.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromVolumeAttributes(String key){
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            if(this.volumeAttributes == null) { return (A) this; }</span>
+<span class="nc bnc" id="L232" title="All 4 branches missed.">            if(key != null &amp;&amp; this.volumeAttributes != null) {this.volumeAttributes.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromVolumeAttributes(Map&lt;String,String&gt; map){
+<span class="nc bnc" id="L236" title="All 2 branches missed.">            if(this.volumeAttributes == null) { return (A) this; }</span>
+<span class="nc bnc" id="L237" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.volumeAttributes != null){this.volumeAttributes.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,String&gt; getVolumeAttributes(){
+<span class="nc" id="L241">            return this.volumeAttributes;</span>
+    }
+
+    public A withVolumeAttributes(Map&lt;String,String&gt; volumeAttributes){
+<span class="nc bnc" id="L245" title="All 2 branches missed.">            if (volumeAttributes == null) { this.volumeAttributes =  new LinkedHashMap&lt;String,String&gt;();} else {this.volumeAttributes = new LinkedHashMap&lt;String,String&gt;(volumeAttributes);} return (A) this;</span>
+    }
+
+    public Boolean hasVolumeAttributes(){
+<span class="nc bnc" id="L249" title="All 2 branches missed.">            return this.volumeAttributes != null;</span>
+    }
+
+    public String getVolumeHandle(){
+<span class="nc" id="L253">            return this.volumeHandle;</span>
+    }
+
+    public A withVolumeHandle(String volumeHandle){
+<span class="nc" id="L257">            this.volumeHandle=volumeHandle; return (A) this;</span>
+    }
+
+    public Boolean hasVolumeHandle(){
+<span class="nc bnc" id="L261" title="All 2 branches missed.">            return this.volumeHandle != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L265" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L266" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L267" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L268">            CSIPersistentVolumeSourceFluentImpl that = (CSIPersistentVolumeSourceFluentImpl) o;</span>
+<span class="nc bnc" id="L269" title="All 6 branches missed.">            if (controllerPublishSecretRef != null ? !controllerPublishSecretRef.equals(that.controllerPublishSecretRef) :that.controllerPublishSecretRef != null) return false;</span>
+<span class="nc bnc" id="L270" title="All 6 branches missed.">            if (driver != null ? !driver.equals(that.driver) :that.driver != null) return false;</span>
+<span class="nc bnc" id="L271" title="All 6 branches missed.">            if (fsType != null ? !fsType.equals(that.fsType) :that.fsType != null) return false;</span>
+<span class="nc bnc" id="L272" title="All 6 branches missed.">            if (nodePublishSecretRef != null ? !nodePublishSecretRef.equals(that.nodePublishSecretRef) :that.nodePublishSecretRef != null) return false;</span>
+<span class="nc bnc" id="L273" title="All 6 branches missed.">            if (nodeStageSecretRef != null ? !nodeStageSecretRef.equals(that.nodeStageSecretRef) :that.nodeStageSecretRef != null) return false;</span>
+<span class="nc bnc" id="L274" title="All 6 branches missed.">            if (readOnly != null ? !readOnly.equals(that.readOnly) :that.readOnly != null) return false;</span>
+<span class="nc bnc" id="L275" title="All 6 branches missed.">            if (volumeAttributes != null ? !volumeAttributes.equals(that.volumeAttributes) :that.volumeAttributes != null) return false;</span>
+<span class="nc bnc" id="L276" title="All 6 branches missed.">            if (volumeHandle != null ? !volumeHandle.equals(that.volumeHandle) :that.volumeHandle != null) return false;</span>
+<span class="nc" id="L277">            return true;</span>
+    }
+
+
+    public class ControllerPublishSecretRefNestedImpl&lt;N&gt; extends SecretReferenceFluentImpl&lt;CSIPersistentVolumeSourceFluent.ControllerPublishSecretRefNested&lt;N&gt;&gt; implements CSIPersistentVolumeSourceFluent.ControllerPublishSecretRefNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SecretReferenceBuilder builder;
+    
+<span class="nc" id="L285">            ControllerPublishSecretRefNestedImpl(SecretReference item){</span>
+<span class="nc" id="L286">                    this.builder = new SecretReferenceBuilder(this, item);</span>
+<span class="nc" id="L287">            }</span>
+<span class="nc" id="L288">            ControllerPublishSecretRefNestedImpl(){</span>
+<span class="nc" id="L289">                    this.builder = new SecretReferenceBuilder(this);</span>
+<span class="nc" id="L290">            }</span>
+    
+    public N and(){
+<span class="nc" id="L293">            return (N) CSIPersistentVolumeSourceFluentImpl.this.withControllerPublishSecretRef(builder.build());</span>
+    }
+    public N endControllerPublishSecretRef(){
+<span class="nc" id="L296">            return and();</span>
+    }
+
+}
+    public class NodePublishSecretRefNestedImpl&lt;N&gt; extends SecretReferenceFluentImpl&lt;CSIPersistentVolumeSourceFluent.NodePublishSecretRefNested&lt;N&gt;&gt; implements CSIPersistentVolumeSourceFluent.NodePublishSecretRefNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SecretReferenceBuilder builder;
+    
+<span class="nc" id="L304">            NodePublishSecretRefNestedImpl(SecretReference item){</span>
+<span class="nc" id="L305">                    this.builder = new SecretReferenceBuilder(this, item);</span>
+<span class="nc" id="L306">            }</span>
+<span class="nc" id="L307">            NodePublishSecretRefNestedImpl(){</span>
+<span class="nc" id="L308">                    this.builder = new SecretReferenceBuilder(this);</span>
+<span class="nc" id="L309">            }</span>
+    
+    public N and(){
+<span class="nc" id="L312">            return (N) CSIPersistentVolumeSourceFluentImpl.this.withNodePublishSecretRef(builder.build());</span>
+    }
+    public N endNodePublishSecretRef(){
+<span class="nc" id="L315">            return and();</span>
+    }
+
+}
+    public class NodeStageSecretRefNestedImpl&lt;N&gt; extends SecretReferenceFluentImpl&lt;CSIPersistentVolumeSourceFluent.NodeStageSecretRefNested&lt;N&gt;&gt; implements CSIPersistentVolumeSourceFluent.NodeStageSecretRefNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SecretReferenceBuilder builder;
+    
+<span class="nc" id="L323">            NodeStageSecretRefNestedImpl(SecretReference item){</span>
+<span class="nc" id="L324">                    this.builder = new SecretReferenceBuilder(this, item);</span>
+<span class="nc" id="L325">            }</span>
+<span class="nc" id="L326">            NodeStageSecretRefNestedImpl(){</span>
+<span class="nc" id="L327">                    this.builder = new SecretReferenceBuilder(this);</span>
+<span class="nc" id="L328">            }</span>
+    
+    public N and(){
+<span class="nc" id="L331">            return (N) CSIPersistentVolumeSourceFluentImpl.this.withNodeStageSecretRef(builder.build());</span>
+    }
+    public N endNodeStageSecretRef(){
+<span class="nc" id="L334">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SubjectAccessReviewOperationImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Openshift :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.client.dsl.internal</a> &gt; <span class="el_source">SubjectAccessReviewOperationImpl.java</span></div><h1>SubjectAccessReviewOperationImpl.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.fabric8.openshift.client.dsl.internal;
+
+import okhttp3.OkHttpClient;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.dsl.base.OperationSupport;
+import io.fabric8.kubernetes.client.utils.Utils;
+import io.fabric8.openshift.api.model.LocalSubjectAccessReview;
+import io.fabric8.openshift.api.model.LocalSubjectAccessReviewBuilder;
+import io.fabric8.openshift.api.model.SubjectAccessReview;
+import io.fabric8.openshift.api.model.SubjectAccessReviewBuilder;
+import io.fabric8.openshift.api.model.SubjectAccessReviewResponse;
+import io.fabric8.openshift.client.OpenShiftConfig;
+import io.fabric8.openshift.client.dsl.SubjectAccessReviewOperation;
+import io.fabric8.openshift.client.dsl.CreateableLocalSubjectAccessReview;
+import io.fabric8.openshift.client.dsl.CreateableSubjectAccessReview;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.ExecutionException;
+
+import static io.fabric8.openshift.client.OpenShiftAPIGroups.AUTHORIZATION;
+
+public class SubjectAccessReviewOperationImpl extends OperationSupport implements SubjectAccessReviewOperation&lt;CreateableSubjectAccessReview, CreateableLocalSubjectAccessReview&gt; {
+
+
+  public SubjectAccessReviewOperationImpl(OkHttpClient client, OpenShiftConfig config) {
+<span class="nc" id="L45">    this(client, config, null, null);</span>
+<span class="nc" id="L46">  }</span>
+
+  public SubjectAccessReviewOperationImpl(OkHttpClient client, OpenShiftConfig config, String apiVersion, String namespace) {
+<span class="nc" id="L49">    super(client, OpenShiftOperation.withApiGroup(client, AUTHORIZATION, apiVersion, config), &quot;subjectaccessreviews&quot;, namespace, null);</span>
+<span class="nc" id="L50">  }</span>
+
+  @Override
+  public CreateableLocalSubjectAccessReview inNamespace(String namespace) {
+<span class="nc" id="L54">    return new SubjectAccessReviewOperationImpl(client, OpenShiftConfig.wrap(getConfig()), null, namespace).local();</span>
+  }
+
+  @Override
+  public SubjectAccessReviewResponse create(SubjectAccessReview... item) {
+<span class="nc" id="L59">    return new CreateableSubjectAccessReviewImpl(client).create(item);</span>
+  }
+
+  @Override
+  public CreateableSubjectAccessReview createNew() {
+<span class="nc" id="L64">    return new CreateableSubjectAccessReviewImpl(client).createNew();</span>
+  }
+
+  @Override
+  public URL getRootUrl() {
+    try {
+<span class="nc" id="L70">      return new URL(OpenShiftConfig.wrap(getConfig()).getOpenShiftUrl());</span>
+<span class="nc" id="L71">    } catch (MalformedURLException e) {</span>
+<span class="nc" id="L72">      throw KubernetesClientException.launderThrowable(e);</span>
+    }
+  }
+
+
+  private class CreateableLocalSubjectAccessReviewImpl extends CreateableLocalSubjectAccessReview {
+    private final OkHttpClient client;
+    private final LocalSubjectAccessReviewBuilder builder;
+
+<span class="nc" id="L81">    private CreateableLocalSubjectAccessReviewImpl(OkHttpClient client) {</span>
+<span class="nc" id="L82">      this.client = client;</span>
+<span class="nc" id="L83">      this.builder = new LocalSubjectAccessReviewBuilder(CreateableLocalSubjectAccessReviewImpl.this);</span>
+<span class="nc" id="L84">    }</span>
+
+<span class="nc" id="L86">    private CreateableLocalSubjectAccessReviewImpl(OkHttpClient client, LocalSubjectAccessReviewBuilder builder) {</span>
+<span class="nc" id="L87">      this.client = client;</span>
+<span class="nc" id="L88">      this.builder = builder;</span>
+<span class="nc" id="L89">    }</span>
+
+    @Override
+    public SubjectAccessReviewResponse create(LocalSubjectAccessReview... resources) {
+      try {
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        if (resources.length &gt; 1) {</span>
+<span class="nc" id="L95">          throw new IllegalArgumentException(&quot;Too many items to create.&quot;);</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        } else if (resources.length == 1) {</span>
+<span class="nc" id="L97">          return handleCreate(resources[0], SubjectAccessReviewResponse.class);</span>
+        } else {
+<span class="nc" id="L99">          throw new IllegalArgumentException(&quot;Nothing to create.&quot;);</span>
+        }
+<span class="nc" id="L101">      } catch (InterruptedException | ExecutionException | IOException e) {</span>
+<span class="nc" id="L102">        throw KubernetesClientException.launderThrowable(e);</span>
+      }
+    }
+
+    @Override
+    public CreateableLocalSubjectAccessReview createNew() {
+<span class="nc" id="L108">      return this;</span>
+    }
+
+    @Override
+    public SubjectAccessReviewResponse done() {
+<span class="nc" id="L113">      return create(builder.build());</span>
+    }
+  }
+
+  private CreateableLocalSubjectAccessReview local() {
+<span class="nc" id="L118">    return new CreateableLocalSubjectAccessReviewImpl(client);</span>
+  }
+
+  //Subject Access Review is a category on its own so we need to override the default behavior.
+  @Override
+  protected &lt;T&gt; String checkNamespace(T item) {
+<span class="nc" id="L124">    String operationNs = getNamespace();</span>
+<span class="nc bnc" id="L125" title="All 4 branches missed.">    String itemNs = (item instanceof HasMetadata &amp;&amp; ((HasMetadata)item).getMetadata() != null) ? ((HasMetadata) item).getMetadata().getNamespace() : null;</span>
+<span class="nc bnc" id="L126" title="All 4 branches missed.">    if (Utils.isNullOrEmpty(operationNs) &amp;&amp; Utils.isNullOrEmpty(itemNs)) {</span>
+<span class="nc" id="L127">      return null;</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">    } else if (Utils.isNullOrEmpty(itemNs)) {</span>
+<span class="nc" id="L129">      return operationNs;</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">    } else if (Utils.isNullOrEmpty(operationNs)) {</span>
+<span class="nc" id="L131">      return itemNs;</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">    } else if (itemNs.equals(operationNs)) {</span>
+<span class="nc" id="L133">      return itemNs;</span>
+    }
+<span class="nc" id="L135">    throw new KubernetesClientException(&quot;Namespace mismatch. Item namespace:&quot; + itemNs + &quot;. Operation namespace:&quot; + operationNs + &quot;.&quot;);</span>
+  }
+
+  private class CreateableSubjectAccessReviewImpl extends CreateableSubjectAccessReview {
+    private final OkHttpClient client;
+    private final SubjectAccessReviewBuilder builder;
+
+<span class="nc" id="L142">    private CreateableSubjectAccessReviewImpl(OkHttpClient client) {</span>
+<span class="nc" id="L143">      this.client = client;</span>
+<span class="nc" id="L144">      this.builder = new SubjectAccessReviewBuilder(CreateableSubjectAccessReviewImpl.this);</span>
+<span class="nc" id="L145">    }</span>
+
+<span class="nc" id="L147">    private CreateableSubjectAccessReviewImpl(OkHttpClient client, SubjectAccessReviewBuilder builder) {</span>
+<span class="nc" id="L148">      this.client = client;</span>
+<span class="nc" id="L149">      this.builder = builder;</span>
+<span class="nc" id="L150">    }</span>
+
+    @Override
+    public SubjectAccessReviewResponse create(SubjectAccessReview... resources) {
+      try {
+<span class="nc bnc" id="L155" title="All 2 branches missed.">        if (resources.length &gt; 1) {</span>
+<span class="nc" id="L156">          throw new IllegalArgumentException(&quot;Too many items to create.&quot;);</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">        } else if (resources.length == 1) {</span>
+<span class="nc" id="L158">          return handleCreate(resources[0], SubjectAccessReviewResponse.class);</span>
+        } else {
+<span class="nc" id="L160">          throw new IllegalArgumentException(&quot;Nothing to create.&quot;);</span>
+        }
+<span class="nc" id="L162">      } catch (InterruptedException | ExecutionException | IOException e) {</span>
+<span class="nc" id="L163">        throw KubernetesClientException.launderThrowable(e);</span>
+      }
+    }
+
+    @Override
+    public CreateableSubjectAccessReview createNew() {
+<span class="nc" id="L169">      return this;</span>
+    }
+
+    @Override
+    public SubjectAccessReviewResponse done() {
+<span class="nc" id="L174">      return create(builder.build());</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

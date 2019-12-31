@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MetricSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">MetricSpecFluentImpl.java</span></div><h1>MetricSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.String;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.lang.Object;
+
+public class MetricSpecFluentImpl&lt;A extends MetricSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements MetricSpecFluent&lt;A&gt;{
+
+    private ExternalMetricSourceBuilder external;
+    private ObjectMetricSourceBuilder object;
+    private PodsMetricSourceBuilder pods;
+    private ResourceMetricSourceBuilder resource;
+    private String type;
+
+<span class="nc" id="L20">    public MetricSpecFluentImpl(){</span>
+<span class="nc" id="L21">    }</span>
+<span class="nc" id="L22">    public MetricSpecFluentImpl(MetricSpec instance){</span>
+<span class="nc" id="L23">            this.withExternal(instance.getExternal()); </span>
+<span class="nc" id="L24">            this.withObject(instance.getObject()); </span>
+<span class="nc" id="L25">            this.withPods(instance.getPods()); </span>
+<span class="nc" id="L26">            this.withResource(instance.getResource()); </span>
+<span class="nc" id="L27">            this.withType(instance.getType()); </span>
+<span class="nc" id="L28">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildExternal instead.
+ * @return The buildable object.
+ */
+@Deprecated public ExternalMetricSource getExternal(){
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            return this.external!=null?this.external.build():null;</span>
+    }
+
+    public ExternalMetricSource buildExternal(){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            return this.external!=null?this.external.build():null;</span>
+    }
+
+    public A withExternal(ExternalMetricSource external){
+<span class="nc" id="L44">            _visitables.remove(this.external);</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            if (external!=null){ this.external= new ExternalMetricSourceBuilder(external); _visitables.add(this.external);} return (A) this;</span>
+    }
+
+    public Boolean hasExternal(){
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            return this.external != null;</span>
+    }
+
+    public MetricSpecFluent.ExternalNested&lt;A&gt; withNewExternal(){
+<span class="nc" id="L53">            return new ExternalNestedImpl();</span>
+    }
+
+    public MetricSpecFluent.ExternalNested&lt;A&gt; withNewExternalLike(ExternalMetricSource item){
+<span class="nc" id="L57">            return new ExternalNestedImpl(item);</span>
+    }
+
+    public MetricSpecFluent.ExternalNested&lt;A&gt; editExternal(){
+<span class="nc" id="L61">            return withNewExternalLike(getExternal());</span>
+    }
+
+    public MetricSpecFluent.ExternalNested&lt;A&gt; editOrNewExternal(){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            return withNewExternalLike(getExternal() != null ? getExternal(): new ExternalMetricSourceBuilder().build());</span>
+    }
+
+    public MetricSpecFluent.ExternalNested&lt;A&gt; editOrNewExternalLike(ExternalMetricSource item){
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            return withNewExternalLike(getExternal() != null ? getExternal(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildObject instead.
+ * @return The buildable object.
+ */
+@Deprecated public ObjectMetricSource getObject(){
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            return this.object!=null?this.object.build():null;</span>
+    }
+
+    public ObjectMetricSource buildObject(){
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            return this.object!=null?this.object.build():null;</span>
+    }
+
+    public A withObject(ObjectMetricSource object){
+<span class="nc" id="L86">            _visitables.remove(this.object);</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">            if (object!=null){ this.object= new ObjectMetricSourceBuilder(object); _visitables.add(this.object);} return (A) this;</span>
+    }
+
+    public Boolean hasObject(){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            return this.object != null;</span>
+    }
+
+    public MetricSpecFluent.ObjectNested&lt;A&gt; withNewObject(){
+<span class="nc" id="L95">            return new ObjectNestedImpl();</span>
+    }
+
+    public MetricSpecFluent.ObjectNested&lt;A&gt; withNewObjectLike(ObjectMetricSource item){
+<span class="nc" id="L99">            return new ObjectNestedImpl(item);</span>
+    }
+
+    public MetricSpecFluent.ObjectNested&lt;A&gt; editObject(){
+<span class="nc" id="L103">            return withNewObjectLike(getObject());</span>
+    }
+
+    public MetricSpecFluent.ObjectNested&lt;A&gt; editOrNewObject(){
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            return withNewObjectLike(getObject() != null ? getObject(): new ObjectMetricSourceBuilder().build());</span>
+    }
+
+    public MetricSpecFluent.ObjectNested&lt;A&gt; editOrNewObjectLike(ObjectMetricSource item){
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            return withNewObjectLike(getObject() != null ? getObject(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPods instead.
+ * @return The buildable object.
+ */
+@Deprecated public PodsMetricSource getPods(){
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            return this.pods!=null?this.pods.build():null;</span>
+    }
+
+    public PodsMetricSource buildPods(){
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            return this.pods!=null?this.pods.build():null;</span>
+    }
+
+    public A withPods(PodsMetricSource pods){
+<span class="nc" id="L128">            _visitables.remove(this.pods);</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            if (pods!=null){ this.pods= new PodsMetricSourceBuilder(pods); _visitables.add(this.pods);} return (A) this;</span>
+    }
+
+    public Boolean hasPods(){
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            return this.pods != null;</span>
+    }
+
+    public MetricSpecFluent.PodsNested&lt;A&gt; withNewPods(){
+<span class="nc" id="L137">            return new PodsNestedImpl();</span>
+    }
+
+    public MetricSpecFluent.PodsNested&lt;A&gt; withNewPodsLike(PodsMetricSource item){
+<span class="nc" id="L141">            return new PodsNestedImpl(item);</span>
+    }
+
+    public MetricSpecFluent.PodsNested&lt;A&gt; editPods(){
+<span class="nc" id="L145">            return withNewPodsLike(getPods());</span>
+    }
+
+    public MetricSpecFluent.PodsNested&lt;A&gt; editOrNewPods(){
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            return withNewPodsLike(getPods() != null ? getPods(): new PodsMetricSourceBuilder().build());</span>
+    }
+
+    public MetricSpecFluent.PodsNested&lt;A&gt; editOrNewPodsLike(PodsMetricSource item){
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            return withNewPodsLike(getPods() != null ? getPods(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildResource instead.
+ * @return The buildable object.
+ */
+@Deprecated public ResourceMetricSource getResource(){
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            return this.resource!=null?this.resource.build():null;</span>
+    }
+
+    public ResourceMetricSource buildResource(){
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            return this.resource!=null?this.resource.build():null;</span>
+    }
+
+    public A withResource(ResourceMetricSource resource){
+<span class="nc" id="L170">            _visitables.remove(this.resource);</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">            if (resource!=null){ this.resource= new ResourceMetricSourceBuilder(resource); _visitables.add(this.resource);} return (A) this;</span>
+    }
+
+    public Boolean hasResource(){
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            return this.resource != null;</span>
+    }
+
+    public MetricSpecFluent.ResourceNested&lt;A&gt; withNewResource(){
+<span class="nc" id="L179">            return new ResourceNestedImpl();</span>
+    }
+
+    public MetricSpecFluent.ResourceNested&lt;A&gt; withNewResourceLike(ResourceMetricSource item){
+<span class="nc" id="L183">            return new ResourceNestedImpl(item);</span>
+    }
+
+    public MetricSpecFluent.ResourceNested&lt;A&gt; editResource(){
+<span class="nc" id="L187">            return withNewResourceLike(getResource());</span>
+    }
+
+    public MetricSpecFluent.ResourceNested&lt;A&gt; editOrNewResource(){
+<span class="nc bnc" id="L191" title="All 2 branches missed.">            return withNewResourceLike(getResource() != null ? getResource(): new ResourceMetricSourceBuilder().build());</span>
+    }
+
+    public MetricSpecFluent.ResourceNested&lt;A&gt; editOrNewResourceLike(ResourceMetricSource item){
+<span class="nc bnc" id="L195" title="All 2 branches missed.">            return withNewResourceLike(getResource() != null ? getResource(): item);</span>
+    }
+
+    public String getType(){
+<span class="nc" id="L199">            return this.type;</span>
+    }
+
+    public A withType(String type){
+<span class="nc" id="L203">            this.type=type; return (A) this;</span>
+    }
+
+    public Boolean hasType(){
+<span class="nc bnc" id="L207" title="All 2 branches missed.">            return this.type != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L211" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L212" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L213" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L214">            MetricSpecFluentImpl that = (MetricSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L215" title="All 6 branches missed.">            if (external != null ? !external.equals(that.external) :that.external != null) return false;</span>
+<span class="nc bnc" id="L216" title="All 6 branches missed.">            if (object != null ? !object.equals(that.object) :that.object != null) return false;</span>
+<span class="nc bnc" id="L217" title="All 6 branches missed.">            if (pods != null ? !pods.equals(that.pods) :that.pods != null) return false;</span>
+<span class="nc bnc" id="L218" title="All 6 branches missed.">            if (resource != null ? !resource.equals(that.resource) :that.resource != null) return false;</span>
+<span class="nc bnc" id="L219" title="All 6 branches missed.">            if (type != null ? !type.equals(that.type) :that.type != null) return false;</span>
+<span class="nc" id="L220">            return true;</span>
+    }
+
+
+    public class ExternalNestedImpl&lt;N&gt; extends ExternalMetricSourceFluentImpl&lt;MetricSpecFluent.ExternalNested&lt;N&gt;&gt; implements MetricSpecFluent.ExternalNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ExternalMetricSourceBuilder builder;
+    
+<span class="nc" id="L228">            ExternalNestedImpl(ExternalMetricSource item){</span>
+<span class="nc" id="L229">                    this.builder = new ExternalMetricSourceBuilder(this, item);</span>
+<span class="nc" id="L230">            }</span>
+<span class="nc" id="L231">            ExternalNestedImpl(){</span>
+<span class="nc" id="L232">                    this.builder = new ExternalMetricSourceBuilder(this);</span>
+<span class="nc" id="L233">            }</span>
+    
+    public N and(){
+<span class="nc" id="L236">            return (N) MetricSpecFluentImpl.this.withExternal(builder.build());</span>
+    }
+    public N endExternal(){
+<span class="nc" id="L239">            return and();</span>
+    }
+
+}
+    public class ObjectNestedImpl&lt;N&gt; extends ObjectMetricSourceFluentImpl&lt;MetricSpecFluent.ObjectNested&lt;N&gt;&gt; implements MetricSpecFluent.ObjectNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ObjectMetricSourceBuilder builder;
+    
+<span class="nc" id="L247">            ObjectNestedImpl(ObjectMetricSource item){</span>
+<span class="nc" id="L248">                    this.builder = new ObjectMetricSourceBuilder(this, item);</span>
+<span class="nc" id="L249">            }</span>
+<span class="nc" id="L250">            ObjectNestedImpl(){</span>
+<span class="nc" id="L251">                    this.builder = new ObjectMetricSourceBuilder(this);</span>
+<span class="nc" id="L252">            }</span>
+    
+    public N and(){
+<span class="nc" id="L255">            return (N) MetricSpecFluentImpl.this.withObject(builder.build());</span>
+    }
+    public N endObject(){
+<span class="nc" id="L258">            return and();</span>
+    }
+
+}
+    public class PodsNestedImpl&lt;N&gt; extends PodsMetricSourceFluentImpl&lt;MetricSpecFluent.PodsNested&lt;N&gt;&gt; implements MetricSpecFluent.PodsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PodsMetricSourceBuilder builder;
+    
+<span class="nc" id="L266">            PodsNestedImpl(PodsMetricSource item){</span>
+<span class="nc" id="L267">                    this.builder = new PodsMetricSourceBuilder(this, item);</span>
+<span class="nc" id="L268">            }</span>
+<span class="nc" id="L269">            PodsNestedImpl(){</span>
+<span class="nc" id="L270">                    this.builder = new PodsMetricSourceBuilder(this);</span>
+<span class="nc" id="L271">            }</span>
+    
+    public N and(){
+<span class="nc" id="L274">            return (N) MetricSpecFluentImpl.this.withPods(builder.build());</span>
+    }
+    public N endPods(){
+<span class="nc" id="L277">            return and();</span>
+    }
+
+}
+    public class ResourceNestedImpl&lt;N&gt; extends ResourceMetricSourceFluentImpl&lt;MetricSpecFluent.ResourceNested&lt;N&gt;&gt; implements MetricSpecFluent.ResourceNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ResourceMetricSourceBuilder builder;
+    
+<span class="nc" id="L285">            ResourceNestedImpl(ResourceMetricSource item){</span>
+<span class="nc" id="L286">                    this.builder = new ResourceMetricSourceBuilder(this, item);</span>
+<span class="nc" id="L287">            }</span>
+<span class="nc" id="L288">            ResourceNestedImpl(){</span>
+<span class="nc" id="L289">                    this.builder = new ResourceMetricSourceBuilder(this);</span>
+<span class="nc" id="L290">            }</span>
+    
+    public N and(){
+<span class="nc" id="L293">            return (N) MetricSpecFluentImpl.this.withResource(builder.build());</span>
+    }
+    public N endResource(){
+<span class="nc" id="L296">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

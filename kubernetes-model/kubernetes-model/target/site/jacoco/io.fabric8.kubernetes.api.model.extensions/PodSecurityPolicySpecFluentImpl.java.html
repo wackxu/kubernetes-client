@@ -1,0 +1,1401 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PodSecurityPolicySpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.extensions</a> &gt; <span class="el_source">PodSecurityPolicySpecFluentImpl.java</span></div><h1>PodSecurityPolicySpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.extensions;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.Deprecated;
+import java.lang.Integer;
+
+public class PodSecurityPolicySpecFluentImpl&lt;A extends PodSecurityPolicySpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements PodSecurityPolicySpecFluent&lt;A&gt;{
+
+    private Boolean allowPrivilegeEscalation;
+    private List&lt;String&gt; allowedCapabilities;
+    private List&lt;AllowedFlexVolumeBuilder&gt; allowedFlexVolumes;
+    private List&lt;AllowedHostPathBuilder&gt; allowedHostPaths;
+    private List&lt;String&gt; allowedProcMountTypes;
+    private List&lt;String&gt; allowedUnsafeSysctls;
+    private List&lt;String&gt; defaultAddCapabilities;
+    private Boolean defaultAllowPrivilegeEscalation;
+    private List&lt;String&gt; forbiddenSysctls;
+    private FSGroupStrategyOptionsBuilder fsGroup;
+    private Boolean hostIPC;
+    private Boolean hostNetwork;
+    private Boolean hostPID;
+    private List&lt;HostPortRangeBuilder&gt; hostPorts;
+    private Boolean privileged;
+    private Boolean readOnlyRootFilesystem;
+    private List&lt;String&gt; requiredDropCapabilities;
+    private RunAsGroupStrategyOptionsBuilder runAsGroup;
+    private KubernetesRunAsUserStrategyOptionsBuilder runAsUser;
+    private SELinuxStrategyOptionsBuilder seLinux;
+    private SupplementalGroupsStrategyOptionsBuilder supplementalGroups;
+    private List&lt;String&gt; volumes;
+
+<span class="nc" id="L43">    public PodSecurityPolicySpecFluentImpl(){</span>
+<span class="nc" id="L44">    }</span>
+<span class="nc" id="L45">    public PodSecurityPolicySpecFluentImpl(PodSecurityPolicySpec instance){</span>
+<span class="nc" id="L46">            this.withAllowPrivilegeEscalation(instance.getAllowPrivilegeEscalation()); </span>
+<span class="nc" id="L47">            this.withAllowedCapabilities(instance.getAllowedCapabilities()); </span>
+<span class="nc" id="L48">            this.withAllowedFlexVolumes(instance.getAllowedFlexVolumes()); </span>
+<span class="nc" id="L49">            this.withAllowedHostPaths(instance.getAllowedHostPaths()); </span>
+<span class="nc" id="L50">            this.withAllowedProcMountTypes(instance.getAllowedProcMountTypes()); </span>
+<span class="nc" id="L51">            this.withAllowedUnsafeSysctls(instance.getAllowedUnsafeSysctls()); </span>
+<span class="nc" id="L52">            this.withDefaultAddCapabilities(instance.getDefaultAddCapabilities()); </span>
+<span class="nc" id="L53">            this.withDefaultAllowPrivilegeEscalation(instance.getDefaultAllowPrivilegeEscalation()); </span>
+<span class="nc" id="L54">            this.withForbiddenSysctls(instance.getForbiddenSysctls()); </span>
+<span class="nc" id="L55">            this.withFsGroup(instance.getFsGroup()); </span>
+<span class="nc" id="L56">            this.withHostIPC(instance.getHostIPC()); </span>
+<span class="nc" id="L57">            this.withHostNetwork(instance.getHostNetwork()); </span>
+<span class="nc" id="L58">            this.withHostPID(instance.getHostPID()); </span>
+<span class="nc" id="L59">            this.withHostPorts(instance.getHostPorts()); </span>
+<span class="nc" id="L60">            this.withPrivileged(instance.getPrivileged()); </span>
+<span class="nc" id="L61">            this.withReadOnlyRootFilesystem(instance.getReadOnlyRootFilesystem()); </span>
+<span class="nc" id="L62">            this.withRequiredDropCapabilities(instance.getRequiredDropCapabilities()); </span>
+<span class="nc" id="L63">            this.withRunAsGroup(instance.getRunAsGroup()); </span>
+<span class="nc" id="L64">            this.withRunAsUser(instance.getRunAsUser()); </span>
+<span class="nc" id="L65">            this.withSeLinux(instance.getSeLinux()); </span>
+<span class="nc" id="L66">            this.withSupplementalGroups(instance.getSupplementalGroups()); </span>
+<span class="nc" id="L67">            this.withVolumes(instance.getVolumes()); </span>
+<span class="nc" id="L68">    }</span>
+
+    public Boolean isAllowPrivilegeEscalation(){
+<span class="nc" id="L71">            return this.allowPrivilegeEscalation;</span>
+    }
+
+    public A withAllowPrivilegeEscalation(Boolean allowPrivilegeEscalation){
+<span class="nc" id="L75">            this.allowPrivilegeEscalation=allowPrivilegeEscalation; return (A) this;</span>
+    }
+
+    public Boolean hasAllowPrivilegeEscalation(){
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            return this.allowPrivilegeEscalation != null;</span>
+    }
+
+    public A withNewAllowPrivilegeEscalation(String arg1){
+<span class="nc" id="L83">            return (A)withAllowPrivilegeEscalation(new Boolean(arg1));</span>
+    }
+
+    public A withNewAllowPrivilegeEscalation(boolean arg1){
+<span class="nc" id="L87">            return (A)withAllowPrivilegeEscalation(new Boolean(arg1));</span>
+    }
+
+    public A addToAllowedCapabilities(int index,String item){
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (this.allowedCapabilities == null) {this.allowedCapabilities = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L92">            this.allowedCapabilities.add(index, item);</span>
+<span class="nc" id="L93">            return (A)this;</span>
+    }
+
+    public A setToAllowedCapabilities(int index,String item){
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            if (this.allowedCapabilities == null) {this.allowedCapabilities = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L98">            this.allowedCapabilities.set(index, item); return (A)this;</span>
+    }
+
+    public A addToAllowedCapabilities(String... items){
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            if (this.allowedCapabilities == null) {this.allowedCapabilities = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            for (String item : items) {this.allowedCapabilities.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToAllowedCapabilities(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            if (this.allowedCapabilities == null) {this.allowedCapabilities = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            for (String item : items) {this.allowedCapabilities.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromAllowedCapabilities(String... items){
+<span class="nc bnc" id="L112" title="All 4 branches missed.">            for (String item : items) {if (this.allowedCapabilities!= null){ this.allowedCapabilities.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAllowedCapabilities(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L116" title="All 4 branches missed.">            for (String item : items) {if (this.allowedCapabilities!= null){ this.allowedCapabilities.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getAllowedCapabilities(){
+<span class="nc" id="L120">            return this.allowedCapabilities;</span>
+    }
+
+    public String getAllowedCapability(int index){
+<span class="nc" id="L124">            return this.allowedCapabilities.get(index);</span>
+    }
+
+    public String getFirstAllowedCapability(){
+<span class="nc" id="L128">            return this.allowedCapabilities.get(0);</span>
+    }
+
+    public String getLastAllowedCapability(){
+<span class="nc" id="L132">            return this.allowedCapabilities.get(allowedCapabilities.size() - 1);</span>
+    }
+
+    public String getMatchingAllowedCapability(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L136" title="All 4 branches missed.">            for (String item: allowedCapabilities) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withAllowedCapabilities(List&lt;String&gt; allowedCapabilities){
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            if (this.allowedCapabilities != null) { _visitables.removeAll(this.allowedCapabilities);}</span>
+<span class="nc bnc" id="L141" title="All 4 branches missed.">            if (allowedCapabilities != null) {this.allowedCapabilities = new ArrayList&lt;String&gt;(); for (String item : allowedCapabilities){this.addToAllowedCapabilities(item);}} else { this.allowedCapabilities = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withAllowedCapabilities(String... allowedCapabilities){
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (this.allowedCapabilities != null) {this.allowedCapabilities.clear();}</span>
+<span class="nc bnc" id="L146" title="All 4 branches missed.">            if (allowedCapabilities != null) {for (String item :allowedCapabilities){ this.addToAllowedCapabilities(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAllowedCapabilities(){
+<span class="nc bnc" id="L150" title="All 4 branches missed.">            return allowedCapabilities != null &amp;&amp; !allowedCapabilities.isEmpty();</span>
+    }
+
+    public A addToAllowedFlexVolumes(int index,AllowedFlexVolume item){
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            if (this.allowedFlexVolumes == null) {this.allowedFlexVolumes = new ArrayList&lt;AllowedFlexVolumeBuilder&gt;();}</span>
+<span class="nc bnc" id="L155" title="All 4 branches missed.">            AllowedFlexVolumeBuilder builder = new AllowedFlexVolumeBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.allowedFlexVolumes.add(index &gt;= 0 ? index : allowedFlexVolumes.size(), builder); return (A)this;</span>
+    }
+
+    public A setToAllowedFlexVolumes(int index,AllowedFlexVolume item){
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            if (this.allowedFlexVolumes == null) {this.allowedFlexVolumes = new ArrayList&lt;AllowedFlexVolumeBuilder&gt;();}</span>
+<span class="nc" id="L160">            AllowedFlexVolumeBuilder builder = new AllowedFlexVolumeBuilder(item);</span>
+<span class="nc bnc" id="L161" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L162" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= allowedFlexVolumes.size()) { allowedFlexVolumes.add(builder); } else { allowedFlexVolumes.set(index, builder);}</span>
+<span class="nc" id="L163">             return (A)this;</span>
+    }
+
+    public A addToAllowedFlexVolumes(AllowedFlexVolume... items){
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (this.allowedFlexVolumes == null) {this.allowedFlexVolumes = new ArrayList&lt;AllowedFlexVolumeBuilder&gt;();}</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">            for (AllowedFlexVolume item : items) {AllowedFlexVolumeBuilder builder = new AllowedFlexVolumeBuilder(item);_visitables.add(builder);this.allowedFlexVolumes.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToAllowedFlexVolumes(Collection&lt;AllowedFlexVolume&gt; items){
+<span class="nc bnc" id="L172" title="All 2 branches missed.">            if (this.allowedFlexVolumes == null) {this.allowedFlexVolumes = new ArrayList&lt;AllowedFlexVolumeBuilder&gt;();}</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            for (AllowedFlexVolume item : items) {AllowedFlexVolumeBuilder builder = new AllowedFlexVolumeBuilder(item);_visitables.add(builder);this.allowedFlexVolumes.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromAllowedFlexVolumes(AllowedFlexVolume... items){
+<span class="nc bnc" id="L177" title="All 4 branches missed.">            for (AllowedFlexVolume item : items) {AllowedFlexVolumeBuilder builder = new AllowedFlexVolumeBuilder(item);_visitables.remove(builder);if (this.allowedFlexVolumes != null) {this.allowedFlexVolumes.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAllowedFlexVolumes(Collection&lt;AllowedFlexVolume&gt; items){
+<span class="nc bnc" id="L181" title="All 4 branches missed.">            for (AllowedFlexVolume item : items) {AllowedFlexVolumeBuilder builder = new AllowedFlexVolumeBuilder(item);_visitables.remove(builder);if (this.allowedFlexVolumes != null) {this.allowedFlexVolumes.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildAllowedFlexVolumes instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;AllowedFlexVolume&gt; getAllowedFlexVolumes(){
+<span class="nc" id="L190">            return build(allowedFlexVolumes);</span>
+    }
+
+    public List&lt;AllowedFlexVolume&gt; buildAllowedFlexVolumes(){
+<span class="nc" id="L194">            return build(allowedFlexVolumes);</span>
+    }
+
+    public AllowedFlexVolume buildAllowedFlexVolume(int index){
+<span class="nc" id="L198">            return this.allowedFlexVolumes.get(index).build();</span>
+    }
+
+    public AllowedFlexVolume buildFirstAllowedFlexVolume(){
+<span class="nc" id="L202">            return this.allowedFlexVolumes.get(0).build();</span>
+    }
+
+    public AllowedFlexVolume buildLastAllowedFlexVolume(){
+<span class="nc" id="L206">            return this.allowedFlexVolumes.get(allowedFlexVolumes.size() - 1).build();</span>
+    }
+
+    public AllowedFlexVolume buildMatchingAllowedFlexVolume(io.fabric8.kubernetes.api.builder.Predicate&lt;AllowedFlexVolumeBuilder&gt; predicate){
+<span class="nc bnc" id="L210" title="All 4 branches missed.">            for (AllowedFlexVolumeBuilder item: allowedFlexVolumes) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withAllowedFlexVolumes(List&lt;AllowedFlexVolume&gt; allowedFlexVolumes){
+<span class="nc bnc" id="L214" title="All 2 branches missed.">            if (this.allowedFlexVolumes != null) { _visitables.removeAll(this.allowedFlexVolumes);}</span>
+<span class="nc bnc" id="L215" title="All 4 branches missed.">            if (allowedFlexVolumes != null) {this.allowedFlexVolumes = new ArrayList&lt;AllowedFlexVolumeBuilder&gt;(); for (AllowedFlexVolume item : allowedFlexVolumes){this.addToAllowedFlexVolumes(item);}} else { this.allowedFlexVolumes = new ArrayList&lt;AllowedFlexVolumeBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withAllowedFlexVolumes(AllowedFlexVolume... allowedFlexVolumes){
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            if (this.allowedFlexVolumes != null) {this.allowedFlexVolumes.clear();}</span>
+<span class="nc bnc" id="L220" title="All 4 branches missed.">            if (allowedFlexVolumes != null) {for (AllowedFlexVolume item :allowedFlexVolumes){ this.addToAllowedFlexVolumes(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAllowedFlexVolumes(){
+<span class="nc bnc" id="L224" title="All 4 branches missed.">            return allowedFlexVolumes != null &amp;&amp; !allowedFlexVolumes.isEmpty();</span>
+    }
+
+    public A addNewAllowedFlexVolume(String driver){
+<span class="nc" id="L228">            return (A)addToAllowedFlexVolumes(new AllowedFlexVolume(driver));</span>
+    }
+
+    public PodSecurityPolicySpecFluent.AllowedFlexVolumesNested&lt;A&gt; addNewAllowedFlexVolume(){
+<span class="nc" id="L232">            return new AllowedFlexVolumesNestedImpl();</span>
+    }
+
+    public PodSecurityPolicySpecFluent.AllowedFlexVolumesNested&lt;A&gt; addNewAllowedFlexVolumeLike(AllowedFlexVolume item){
+<span class="nc" id="L236">            return new AllowedFlexVolumesNestedImpl(-1, item);</span>
+    }
+
+    public PodSecurityPolicySpecFluent.AllowedFlexVolumesNested&lt;A&gt; setNewAllowedFlexVolumeLike(int index,AllowedFlexVolume item){
+<span class="nc" id="L240">            return new AllowedFlexVolumesNestedImpl(index, item);</span>
+    }
+
+    public PodSecurityPolicySpecFluent.AllowedFlexVolumesNested&lt;A&gt; editAllowedFlexVolume(int index){
+<span class="nc bnc" id="L244" title="All 2 branches missed.">            if (allowedFlexVolumes.size() &lt;= index) throw new RuntimeException(&quot;Can't edit allowedFlexVolumes. Index exceeds size.&quot;);</span>
+<span class="nc" id="L245">            return setNewAllowedFlexVolumeLike(index, buildAllowedFlexVolume(index));</span>
+    }
+
+    public PodSecurityPolicySpecFluent.AllowedFlexVolumesNested&lt;A&gt; editFirstAllowedFlexVolume(){
+<span class="nc bnc" id="L249" title="All 2 branches missed.">            if (allowedFlexVolumes.size() == 0) throw new RuntimeException(&quot;Can't edit first allowedFlexVolumes. The list is empty.&quot;);</span>
+<span class="nc" id="L250">            return setNewAllowedFlexVolumeLike(0, buildAllowedFlexVolume(0));</span>
+    }
+
+    public PodSecurityPolicySpecFluent.AllowedFlexVolumesNested&lt;A&gt; editLastAllowedFlexVolume(){
+<span class="nc" id="L254">            int index = allowedFlexVolumes.size() - 1;</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last allowedFlexVolumes. The list is empty.&quot;);</span>
+<span class="nc" id="L256">            return setNewAllowedFlexVolumeLike(index, buildAllowedFlexVolume(index));</span>
+    }
+
+    public PodSecurityPolicySpecFluent.AllowedFlexVolumesNested&lt;A&gt; editMatchingAllowedFlexVolume(io.fabric8.kubernetes.api.builder.Predicate&lt;AllowedFlexVolumeBuilder&gt; predicate){
+<span class="nc" id="L260">            int index = -1;</span>
+<span class="nc bnc" id="L261" title="All 2 branches missed.">            for (int i=0;i&lt;allowedFlexVolumes.size();i++) { </span>
+<span class="nc bnc" id="L262" title="All 2 branches missed.">            if (predicate.apply(allowedFlexVolumes.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L264" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching allowedFlexVolumes. No match found.&quot;);</span>
+<span class="nc" id="L265">            return setNewAllowedFlexVolumeLike(index, buildAllowedFlexVolume(index));</span>
+    }
+
+    public A addToAllowedHostPaths(int index,AllowedHostPath item){
+<span class="nc bnc" id="L269" title="All 2 branches missed.">            if (this.allowedHostPaths == null) {this.allowedHostPaths = new ArrayList&lt;AllowedHostPathBuilder&gt;();}</span>
+<span class="nc bnc" id="L270" title="All 4 branches missed.">            AllowedHostPathBuilder builder = new AllowedHostPathBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.allowedHostPaths.add(index &gt;= 0 ? index : allowedHostPaths.size(), builder); return (A)this;</span>
+    }
+
+    public A setToAllowedHostPaths(int index,AllowedHostPath item){
+<span class="nc bnc" id="L274" title="All 2 branches missed.">            if (this.allowedHostPaths == null) {this.allowedHostPaths = new ArrayList&lt;AllowedHostPathBuilder&gt;();}</span>
+<span class="nc" id="L275">            AllowedHostPathBuilder builder = new AllowedHostPathBuilder(item);</span>
+<span class="nc bnc" id="L276" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L277" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= allowedHostPaths.size()) { allowedHostPaths.add(builder); } else { allowedHostPaths.set(index, builder);}</span>
+<span class="nc" id="L278">             return (A)this;</span>
+    }
+
+    public A addToAllowedHostPaths(AllowedHostPath... items){
+<span class="nc bnc" id="L282" title="All 2 branches missed.">            if (this.allowedHostPaths == null) {this.allowedHostPaths = new ArrayList&lt;AllowedHostPathBuilder&gt;();}</span>
+<span class="nc bnc" id="L283" title="All 2 branches missed.">            for (AllowedHostPath item : items) {AllowedHostPathBuilder builder = new AllowedHostPathBuilder(item);_visitables.add(builder);this.allowedHostPaths.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToAllowedHostPaths(Collection&lt;AllowedHostPath&gt; items){
+<span class="nc bnc" id="L287" title="All 2 branches missed.">            if (this.allowedHostPaths == null) {this.allowedHostPaths = new ArrayList&lt;AllowedHostPathBuilder&gt;();}</span>
+<span class="nc bnc" id="L288" title="All 2 branches missed.">            for (AllowedHostPath item : items) {AllowedHostPathBuilder builder = new AllowedHostPathBuilder(item);_visitables.add(builder);this.allowedHostPaths.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromAllowedHostPaths(AllowedHostPath... items){
+<span class="nc bnc" id="L292" title="All 4 branches missed.">            for (AllowedHostPath item : items) {AllowedHostPathBuilder builder = new AllowedHostPathBuilder(item);_visitables.remove(builder);if (this.allowedHostPaths != null) {this.allowedHostPaths.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAllowedHostPaths(Collection&lt;AllowedHostPath&gt; items){
+<span class="nc bnc" id="L296" title="All 4 branches missed.">            for (AllowedHostPath item : items) {AllowedHostPathBuilder builder = new AllowedHostPathBuilder(item);_visitables.remove(builder);if (this.allowedHostPaths != null) {this.allowedHostPaths.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildAllowedHostPaths instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;AllowedHostPath&gt; getAllowedHostPaths(){
+<span class="nc" id="L305">            return build(allowedHostPaths);</span>
+    }
+
+    public List&lt;AllowedHostPath&gt; buildAllowedHostPaths(){
+<span class="nc" id="L309">            return build(allowedHostPaths);</span>
+    }
+
+    public AllowedHostPath buildAllowedHostPath(int index){
+<span class="nc" id="L313">            return this.allowedHostPaths.get(index).build();</span>
+    }
+
+    public AllowedHostPath buildFirstAllowedHostPath(){
+<span class="nc" id="L317">            return this.allowedHostPaths.get(0).build();</span>
+    }
+
+    public AllowedHostPath buildLastAllowedHostPath(){
+<span class="nc" id="L321">            return this.allowedHostPaths.get(allowedHostPaths.size() - 1).build();</span>
+    }
+
+    public AllowedHostPath buildMatchingAllowedHostPath(io.fabric8.kubernetes.api.builder.Predicate&lt;AllowedHostPathBuilder&gt; predicate){
+<span class="nc bnc" id="L325" title="All 4 branches missed.">            for (AllowedHostPathBuilder item: allowedHostPaths) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withAllowedHostPaths(List&lt;AllowedHostPath&gt; allowedHostPaths){
+<span class="nc bnc" id="L329" title="All 2 branches missed.">            if (this.allowedHostPaths != null) { _visitables.removeAll(this.allowedHostPaths);}</span>
+<span class="nc bnc" id="L330" title="All 4 branches missed.">            if (allowedHostPaths != null) {this.allowedHostPaths = new ArrayList&lt;AllowedHostPathBuilder&gt;(); for (AllowedHostPath item : allowedHostPaths){this.addToAllowedHostPaths(item);}} else { this.allowedHostPaths = new ArrayList&lt;AllowedHostPathBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withAllowedHostPaths(AllowedHostPath... allowedHostPaths){
+<span class="nc bnc" id="L334" title="All 2 branches missed.">            if (this.allowedHostPaths != null) {this.allowedHostPaths.clear();}</span>
+<span class="nc bnc" id="L335" title="All 4 branches missed.">            if (allowedHostPaths != null) {for (AllowedHostPath item :allowedHostPaths){ this.addToAllowedHostPaths(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAllowedHostPaths(){
+<span class="nc bnc" id="L339" title="All 4 branches missed.">            return allowedHostPaths != null &amp;&amp; !allowedHostPaths.isEmpty();</span>
+    }
+
+    public A addNewAllowedHostPath(String pathPrefix,Boolean readOnly){
+<span class="nc" id="L343">            return (A)addToAllowedHostPaths(new AllowedHostPath(pathPrefix, readOnly));</span>
+    }
+
+    public PodSecurityPolicySpecFluent.AllowedHostPathsNested&lt;A&gt; addNewAllowedHostPath(){
+<span class="nc" id="L347">            return new AllowedHostPathsNestedImpl();</span>
+    }
+
+    public PodSecurityPolicySpecFluent.AllowedHostPathsNested&lt;A&gt; addNewAllowedHostPathLike(AllowedHostPath item){
+<span class="nc" id="L351">            return new AllowedHostPathsNestedImpl(-1, item);</span>
+    }
+
+    public PodSecurityPolicySpecFluent.AllowedHostPathsNested&lt;A&gt; setNewAllowedHostPathLike(int index,AllowedHostPath item){
+<span class="nc" id="L355">            return new AllowedHostPathsNestedImpl(index, item);</span>
+    }
+
+    public PodSecurityPolicySpecFluent.AllowedHostPathsNested&lt;A&gt; editAllowedHostPath(int index){
+<span class="nc bnc" id="L359" title="All 2 branches missed.">            if (allowedHostPaths.size() &lt;= index) throw new RuntimeException(&quot;Can't edit allowedHostPaths. Index exceeds size.&quot;);</span>
+<span class="nc" id="L360">            return setNewAllowedHostPathLike(index, buildAllowedHostPath(index));</span>
+    }
+
+    public PodSecurityPolicySpecFluent.AllowedHostPathsNested&lt;A&gt; editFirstAllowedHostPath(){
+<span class="nc bnc" id="L364" title="All 2 branches missed.">            if (allowedHostPaths.size() == 0) throw new RuntimeException(&quot;Can't edit first allowedHostPaths. The list is empty.&quot;);</span>
+<span class="nc" id="L365">            return setNewAllowedHostPathLike(0, buildAllowedHostPath(0));</span>
+    }
+
+    public PodSecurityPolicySpecFluent.AllowedHostPathsNested&lt;A&gt; editLastAllowedHostPath(){
+<span class="nc" id="L369">            int index = allowedHostPaths.size() - 1;</span>
+<span class="nc bnc" id="L370" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last allowedHostPaths. The list is empty.&quot;);</span>
+<span class="nc" id="L371">            return setNewAllowedHostPathLike(index, buildAllowedHostPath(index));</span>
+    }
+
+    public PodSecurityPolicySpecFluent.AllowedHostPathsNested&lt;A&gt; editMatchingAllowedHostPath(io.fabric8.kubernetes.api.builder.Predicate&lt;AllowedHostPathBuilder&gt; predicate){
+<span class="nc" id="L375">            int index = -1;</span>
+<span class="nc bnc" id="L376" title="All 2 branches missed.">            for (int i=0;i&lt;allowedHostPaths.size();i++) { </span>
+<span class="nc bnc" id="L377" title="All 2 branches missed.">            if (predicate.apply(allowedHostPaths.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L379" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching allowedHostPaths. No match found.&quot;);</span>
+<span class="nc" id="L380">            return setNewAllowedHostPathLike(index, buildAllowedHostPath(index));</span>
+    }
+
+    public A addToAllowedProcMountTypes(int index,String item){
+<span class="nc bnc" id="L384" title="All 2 branches missed.">            if (this.allowedProcMountTypes == null) {this.allowedProcMountTypes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L385">            this.allowedProcMountTypes.add(index, item);</span>
+<span class="nc" id="L386">            return (A)this;</span>
+    }
+
+    public A setToAllowedProcMountTypes(int index,String item){
+<span class="nc bnc" id="L390" title="All 2 branches missed.">            if (this.allowedProcMountTypes == null) {this.allowedProcMountTypes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L391">            this.allowedProcMountTypes.set(index, item); return (A)this;</span>
+    }
+
+    public A addToAllowedProcMountTypes(String... items){
+<span class="nc bnc" id="L395" title="All 2 branches missed.">            if (this.allowedProcMountTypes == null) {this.allowedProcMountTypes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L396" title="All 2 branches missed.">            for (String item : items) {this.allowedProcMountTypes.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToAllowedProcMountTypes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L400" title="All 2 branches missed.">            if (this.allowedProcMountTypes == null) {this.allowedProcMountTypes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L401" title="All 2 branches missed.">            for (String item : items) {this.allowedProcMountTypes.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromAllowedProcMountTypes(String... items){
+<span class="nc bnc" id="L405" title="All 4 branches missed.">            for (String item : items) {if (this.allowedProcMountTypes!= null){ this.allowedProcMountTypes.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAllowedProcMountTypes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L409" title="All 4 branches missed.">            for (String item : items) {if (this.allowedProcMountTypes!= null){ this.allowedProcMountTypes.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getAllowedProcMountTypes(){
+<span class="nc" id="L413">            return this.allowedProcMountTypes;</span>
+    }
+
+    public String getAllowedProcMountType(int index){
+<span class="nc" id="L417">            return this.allowedProcMountTypes.get(index);</span>
+    }
+
+    public String getFirstAllowedProcMountType(){
+<span class="nc" id="L421">            return this.allowedProcMountTypes.get(0);</span>
+    }
+
+    public String getLastAllowedProcMountType(){
+<span class="nc" id="L425">            return this.allowedProcMountTypes.get(allowedProcMountTypes.size() - 1);</span>
+    }
+
+    public String getMatchingAllowedProcMountType(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L429" title="All 4 branches missed.">            for (String item: allowedProcMountTypes) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withAllowedProcMountTypes(List&lt;String&gt; allowedProcMountTypes){
+<span class="nc bnc" id="L433" title="All 2 branches missed.">            if (this.allowedProcMountTypes != null) { _visitables.removeAll(this.allowedProcMountTypes);}</span>
+<span class="nc bnc" id="L434" title="All 4 branches missed.">            if (allowedProcMountTypes != null) {this.allowedProcMountTypes = new ArrayList&lt;String&gt;(); for (String item : allowedProcMountTypes){this.addToAllowedProcMountTypes(item);}} else { this.allowedProcMountTypes = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withAllowedProcMountTypes(String... allowedProcMountTypes){
+<span class="nc bnc" id="L438" title="All 2 branches missed.">            if (this.allowedProcMountTypes != null) {this.allowedProcMountTypes.clear();}</span>
+<span class="nc bnc" id="L439" title="All 4 branches missed.">            if (allowedProcMountTypes != null) {for (String item :allowedProcMountTypes){ this.addToAllowedProcMountTypes(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAllowedProcMountTypes(){
+<span class="nc bnc" id="L443" title="All 4 branches missed.">            return allowedProcMountTypes != null &amp;&amp; !allowedProcMountTypes.isEmpty();</span>
+    }
+
+    public A addToAllowedUnsafeSysctls(int index,String item){
+<span class="nc bnc" id="L447" title="All 2 branches missed.">            if (this.allowedUnsafeSysctls == null) {this.allowedUnsafeSysctls = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L448">            this.allowedUnsafeSysctls.add(index, item);</span>
+<span class="nc" id="L449">            return (A)this;</span>
+    }
+
+    public A setToAllowedUnsafeSysctls(int index,String item){
+<span class="nc bnc" id="L453" title="All 2 branches missed.">            if (this.allowedUnsafeSysctls == null) {this.allowedUnsafeSysctls = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L454">            this.allowedUnsafeSysctls.set(index, item); return (A)this;</span>
+    }
+
+    public A addToAllowedUnsafeSysctls(String... items){
+<span class="nc bnc" id="L458" title="All 2 branches missed.">            if (this.allowedUnsafeSysctls == null) {this.allowedUnsafeSysctls = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L459" title="All 2 branches missed.">            for (String item : items) {this.allowedUnsafeSysctls.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToAllowedUnsafeSysctls(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L463" title="All 2 branches missed.">            if (this.allowedUnsafeSysctls == null) {this.allowedUnsafeSysctls = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L464" title="All 2 branches missed.">            for (String item : items) {this.allowedUnsafeSysctls.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromAllowedUnsafeSysctls(String... items){
+<span class="nc bnc" id="L468" title="All 4 branches missed.">            for (String item : items) {if (this.allowedUnsafeSysctls!= null){ this.allowedUnsafeSysctls.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAllowedUnsafeSysctls(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L472" title="All 4 branches missed.">            for (String item : items) {if (this.allowedUnsafeSysctls!= null){ this.allowedUnsafeSysctls.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getAllowedUnsafeSysctls(){
+<span class="nc" id="L476">            return this.allowedUnsafeSysctls;</span>
+    }
+
+    public String getAllowedUnsafeSysctl(int index){
+<span class="nc" id="L480">            return this.allowedUnsafeSysctls.get(index);</span>
+    }
+
+    public String getFirstAllowedUnsafeSysctl(){
+<span class="nc" id="L484">            return this.allowedUnsafeSysctls.get(0);</span>
+    }
+
+    public String getLastAllowedUnsafeSysctl(){
+<span class="nc" id="L488">            return this.allowedUnsafeSysctls.get(allowedUnsafeSysctls.size() - 1);</span>
+    }
+
+    public String getMatchingAllowedUnsafeSysctl(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L492" title="All 4 branches missed.">            for (String item: allowedUnsafeSysctls) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withAllowedUnsafeSysctls(List&lt;String&gt; allowedUnsafeSysctls){
+<span class="nc bnc" id="L496" title="All 2 branches missed.">            if (this.allowedUnsafeSysctls != null) { _visitables.removeAll(this.allowedUnsafeSysctls);}</span>
+<span class="nc bnc" id="L497" title="All 4 branches missed.">            if (allowedUnsafeSysctls != null) {this.allowedUnsafeSysctls = new ArrayList&lt;String&gt;(); for (String item : allowedUnsafeSysctls){this.addToAllowedUnsafeSysctls(item);}} else { this.allowedUnsafeSysctls = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withAllowedUnsafeSysctls(String... allowedUnsafeSysctls){
+<span class="nc bnc" id="L501" title="All 2 branches missed.">            if (this.allowedUnsafeSysctls != null) {this.allowedUnsafeSysctls.clear();}</span>
+<span class="nc bnc" id="L502" title="All 4 branches missed.">            if (allowedUnsafeSysctls != null) {for (String item :allowedUnsafeSysctls){ this.addToAllowedUnsafeSysctls(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAllowedUnsafeSysctls(){
+<span class="nc bnc" id="L506" title="All 4 branches missed.">            return allowedUnsafeSysctls != null &amp;&amp; !allowedUnsafeSysctls.isEmpty();</span>
+    }
+
+    public A addToDefaultAddCapabilities(int index,String item){
+<span class="nc bnc" id="L510" title="All 2 branches missed.">            if (this.defaultAddCapabilities == null) {this.defaultAddCapabilities = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L511">            this.defaultAddCapabilities.add(index, item);</span>
+<span class="nc" id="L512">            return (A)this;</span>
+    }
+
+    public A setToDefaultAddCapabilities(int index,String item){
+<span class="nc bnc" id="L516" title="All 2 branches missed.">            if (this.defaultAddCapabilities == null) {this.defaultAddCapabilities = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L517">            this.defaultAddCapabilities.set(index, item); return (A)this;</span>
+    }
+
+    public A addToDefaultAddCapabilities(String... items){
+<span class="nc bnc" id="L521" title="All 2 branches missed.">            if (this.defaultAddCapabilities == null) {this.defaultAddCapabilities = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L522" title="All 2 branches missed.">            for (String item : items) {this.defaultAddCapabilities.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToDefaultAddCapabilities(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L526" title="All 2 branches missed.">            if (this.defaultAddCapabilities == null) {this.defaultAddCapabilities = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L527" title="All 2 branches missed.">            for (String item : items) {this.defaultAddCapabilities.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromDefaultAddCapabilities(String... items){
+<span class="nc bnc" id="L531" title="All 4 branches missed.">            for (String item : items) {if (this.defaultAddCapabilities!= null){ this.defaultAddCapabilities.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromDefaultAddCapabilities(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L535" title="All 4 branches missed.">            for (String item : items) {if (this.defaultAddCapabilities!= null){ this.defaultAddCapabilities.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getDefaultAddCapabilities(){
+<span class="nc" id="L539">            return this.defaultAddCapabilities;</span>
+    }
+
+    public String getDefaultAddCapability(int index){
+<span class="nc" id="L543">            return this.defaultAddCapabilities.get(index);</span>
+    }
+
+    public String getFirstDefaultAddCapability(){
+<span class="nc" id="L547">            return this.defaultAddCapabilities.get(0);</span>
+    }
+
+    public String getLastDefaultAddCapability(){
+<span class="nc" id="L551">            return this.defaultAddCapabilities.get(defaultAddCapabilities.size() - 1);</span>
+    }
+
+    public String getMatchingDefaultAddCapability(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L555" title="All 4 branches missed.">            for (String item: defaultAddCapabilities) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withDefaultAddCapabilities(List&lt;String&gt; defaultAddCapabilities){
+<span class="nc bnc" id="L559" title="All 2 branches missed.">            if (this.defaultAddCapabilities != null) { _visitables.removeAll(this.defaultAddCapabilities);}</span>
+<span class="nc bnc" id="L560" title="All 4 branches missed.">            if (defaultAddCapabilities != null) {this.defaultAddCapabilities = new ArrayList&lt;String&gt;(); for (String item : defaultAddCapabilities){this.addToDefaultAddCapabilities(item);}} else { this.defaultAddCapabilities = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withDefaultAddCapabilities(String... defaultAddCapabilities){
+<span class="nc bnc" id="L564" title="All 2 branches missed.">            if (this.defaultAddCapabilities != null) {this.defaultAddCapabilities.clear();}</span>
+<span class="nc bnc" id="L565" title="All 4 branches missed.">            if (defaultAddCapabilities != null) {for (String item :defaultAddCapabilities){ this.addToDefaultAddCapabilities(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasDefaultAddCapabilities(){
+<span class="nc bnc" id="L569" title="All 4 branches missed.">            return defaultAddCapabilities != null &amp;&amp; !defaultAddCapabilities.isEmpty();</span>
+    }
+
+    public Boolean isDefaultAllowPrivilegeEscalation(){
+<span class="nc" id="L573">            return this.defaultAllowPrivilegeEscalation;</span>
+    }
+
+    public A withDefaultAllowPrivilegeEscalation(Boolean defaultAllowPrivilegeEscalation){
+<span class="nc" id="L577">            this.defaultAllowPrivilegeEscalation=defaultAllowPrivilegeEscalation; return (A) this;</span>
+    }
+
+    public Boolean hasDefaultAllowPrivilegeEscalation(){
+<span class="nc bnc" id="L581" title="All 2 branches missed.">            return this.defaultAllowPrivilegeEscalation != null;</span>
+    }
+
+    public A withNewDefaultAllowPrivilegeEscalation(String arg1){
+<span class="nc" id="L585">            return (A)withDefaultAllowPrivilegeEscalation(new Boolean(arg1));</span>
+    }
+
+    public A withNewDefaultAllowPrivilegeEscalation(boolean arg1){
+<span class="nc" id="L589">            return (A)withDefaultAllowPrivilegeEscalation(new Boolean(arg1));</span>
+    }
+
+    public A addToForbiddenSysctls(int index,String item){
+<span class="nc bnc" id="L593" title="All 2 branches missed.">            if (this.forbiddenSysctls == null) {this.forbiddenSysctls = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L594">            this.forbiddenSysctls.add(index, item);</span>
+<span class="nc" id="L595">            return (A)this;</span>
+    }
+
+    public A setToForbiddenSysctls(int index,String item){
+<span class="nc bnc" id="L599" title="All 2 branches missed.">            if (this.forbiddenSysctls == null) {this.forbiddenSysctls = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L600">            this.forbiddenSysctls.set(index, item); return (A)this;</span>
+    }
+
+    public A addToForbiddenSysctls(String... items){
+<span class="nc bnc" id="L604" title="All 2 branches missed.">            if (this.forbiddenSysctls == null) {this.forbiddenSysctls = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L605" title="All 2 branches missed.">            for (String item : items) {this.forbiddenSysctls.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToForbiddenSysctls(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L609" title="All 2 branches missed.">            if (this.forbiddenSysctls == null) {this.forbiddenSysctls = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L610" title="All 2 branches missed.">            for (String item : items) {this.forbiddenSysctls.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromForbiddenSysctls(String... items){
+<span class="nc bnc" id="L614" title="All 4 branches missed.">            for (String item : items) {if (this.forbiddenSysctls!= null){ this.forbiddenSysctls.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromForbiddenSysctls(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L618" title="All 4 branches missed.">            for (String item : items) {if (this.forbiddenSysctls!= null){ this.forbiddenSysctls.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getForbiddenSysctls(){
+<span class="nc" id="L622">            return this.forbiddenSysctls;</span>
+    }
+
+    public String getForbiddenSysctl(int index){
+<span class="nc" id="L626">            return this.forbiddenSysctls.get(index);</span>
+    }
+
+    public String getFirstForbiddenSysctl(){
+<span class="nc" id="L630">            return this.forbiddenSysctls.get(0);</span>
+    }
+
+    public String getLastForbiddenSysctl(){
+<span class="nc" id="L634">            return this.forbiddenSysctls.get(forbiddenSysctls.size() - 1);</span>
+    }
+
+    public String getMatchingForbiddenSysctl(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L638" title="All 4 branches missed.">            for (String item: forbiddenSysctls) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withForbiddenSysctls(List&lt;String&gt; forbiddenSysctls){
+<span class="nc bnc" id="L642" title="All 2 branches missed.">            if (this.forbiddenSysctls != null) { _visitables.removeAll(this.forbiddenSysctls);}</span>
+<span class="nc bnc" id="L643" title="All 4 branches missed.">            if (forbiddenSysctls != null) {this.forbiddenSysctls = new ArrayList&lt;String&gt;(); for (String item : forbiddenSysctls){this.addToForbiddenSysctls(item);}} else { this.forbiddenSysctls = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withForbiddenSysctls(String... forbiddenSysctls){
+<span class="nc bnc" id="L647" title="All 2 branches missed.">            if (this.forbiddenSysctls != null) {this.forbiddenSysctls.clear();}</span>
+<span class="nc bnc" id="L648" title="All 4 branches missed.">            if (forbiddenSysctls != null) {for (String item :forbiddenSysctls){ this.addToForbiddenSysctls(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasForbiddenSysctls(){
+<span class="nc bnc" id="L652" title="All 4 branches missed.">            return forbiddenSysctls != null &amp;&amp; !forbiddenSysctls.isEmpty();</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildFsGroup instead.
+ * @return The buildable object.
+ */
+@Deprecated public FSGroupStrategyOptions getFsGroup(){
+<span class="nc bnc" id="L661" title="All 2 branches missed.">            return this.fsGroup!=null?this.fsGroup.build():null;</span>
+    }
+
+    public FSGroupStrategyOptions buildFsGroup(){
+<span class="nc bnc" id="L665" title="All 2 branches missed.">            return this.fsGroup!=null?this.fsGroup.build():null;</span>
+    }
+
+    public A withFsGroup(FSGroupStrategyOptions fsGroup){
+<span class="nc" id="L669">            _visitables.remove(this.fsGroup);</span>
+<span class="nc bnc" id="L670" title="All 2 branches missed.">            if (fsGroup!=null){ this.fsGroup= new FSGroupStrategyOptionsBuilder(fsGroup); _visitables.add(this.fsGroup);} return (A) this;</span>
+    }
+
+    public Boolean hasFsGroup(){
+<span class="nc bnc" id="L674" title="All 2 branches missed.">            return this.fsGroup != null;</span>
+    }
+
+    public PodSecurityPolicySpecFluent.FsGroupNested&lt;A&gt; withNewFsGroup(){
+<span class="nc" id="L678">            return new FsGroupNestedImpl();</span>
+    }
+
+    public PodSecurityPolicySpecFluent.FsGroupNested&lt;A&gt; withNewFsGroupLike(FSGroupStrategyOptions item){
+<span class="nc" id="L682">            return new FsGroupNestedImpl(item);</span>
+    }
+
+    public PodSecurityPolicySpecFluent.FsGroupNested&lt;A&gt; editFsGroup(){
+<span class="nc" id="L686">            return withNewFsGroupLike(getFsGroup());</span>
+    }
+
+    public PodSecurityPolicySpecFluent.FsGroupNested&lt;A&gt; editOrNewFsGroup(){
+<span class="nc bnc" id="L690" title="All 2 branches missed.">            return withNewFsGroupLike(getFsGroup() != null ? getFsGroup(): new FSGroupStrategyOptionsBuilder().build());</span>
+    }
+
+    public PodSecurityPolicySpecFluent.FsGroupNested&lt;A&gt; editOrNewFsGroupLike(FSGroupStrategyOptions item){
+<span class="nc bnc" id="L694" title="All 2 branches missed.">            return withNewFsGroupLike(getFsGroup() != null ? getFsGroup(): item);</span>
+    }
+
+    public Boolean isHostIPC(){
+<span class="nc" id="L698">            return this.hostIPC;</span>
+    }
+
+    public A withHostIPC(Boolean hostIPC){
+<span class="nc" id="L702">            this.hostIPC=hostIPC; return (A) this;</span>
+    }
+
+    public Boolean hasHostIPC(){
+<span class="nc bnc" id="L706" title="All 2 branches missed.">            return this.hostIPC != null;</span>
+    }
+
+    public A withNewHostIPC(String arg1){
+<span class="nc" id="L710">            return (A)withHostIPC(new Boolean(arg1));</span>
+    }
+
+    public A withNewHostIPC(boolean arg1){
+<span class="nc" id="L714">            return (A)withHostIPC(new Boolean(arg1));</span>
+    }
+
+    public Boolean isHostNetwork(){
+<span class="nc" id="L718">            return this.hostNetwork;</span>
+    }
+
+    public A withHostNetwork(Boolean hostNetwork){
+<span class="nc" id="L722">            this.hostNetwork=hostNetwork; return (A) this;</span>
+    }
+
+    public Boolean hasHostNetwork(){
+<span class="nc bnc" id="L726" title="All 2 branches missed.">            return this.hostNetwork != null;</span>
+    }
+
+    public A withNewHostNetwork(String arg1){
+<span class="nc" id="L730">            return (A)withHostNetwork(new Boolean(arg1));</span>
+    }
+
+    public A withNewHostNetwork(boolean arg1){
+<span class="nc" id="L734">            return (A)withHostNetwork(new Boolean(arg1));</span>
+    }
+
+    public Boolean isHostPID(){
+<span class="nc" id="L738">            return this.hostPID;</span>
+    }
+
+    public A withHostPID(Boolean hostPID){
+<span class="nc" id="L742">            this.hostPID=hostPID; return (A) this;</span>
+    }
+
+    public Boolean hasHostPID(){
+<span class="nc bnc" id="L746" title="All 2 branches missed.">            return this.hostPID != null;</span>
+    }
+
+    public A withNewHostPID(String arg1){
+<span class="nc" id="L750">            return (A)withHostPID(new Boolean(arg1));</span>
+    }
+
+    public A withNewHostPID(boolean arg1){
+<span class="nc" id="L754">            return (A)withHostPID(new Boolean(arg1));</span>
+    }
+
+    public A addToHostPorts(int index,HostPortRange item){
+<span class="nc bnc" id="L758" title="All 2 branches missed.">            if (this.hostPorts == null) {this.hostPorts = new ArrayList&lt;HostPortRangeBuilder&gt;();}</span>
+<span class="nc bnc" id="L759" title="All 4 branches missed.">            HostPortRangeBuilder builder = new HostPortRangeBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.hostPorts.add(index &gt;= 0 ? index : hostPorts.size(), builder); return (A)this;</span>
+    }
+
+    public A setToHostPorts(int index,HostPortRange item){
+<span class="nc bnc" id="L763" title="All 2 branches missed.">            if (this.hostPorts == null) {this.hostPorts = new ArrayList&lt;HostPortRangeBuilder&gt;();}</span>
+<span class="nc" id="L764">            HostPortRangeBuilder builder = new HostPortRangeBuilder(item);</span>
+<span class="nc bnc" id="L765" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L766" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= hostPorts.size()) { hostPorts.add(builder); } else { hostPorts.set(index, builder);}</span>
+<span class="nc" id="L767">             return (A)this;</span>
+    }
+
+    public A addToHostPorts(HostPortRange... items){
+<span class="nc bnc" id="L771" title="All 2 branches missed.">            if (this.hostPorts == null) {this.hostPorts = new ArrayList&lt;HostPortRangeBuilder&gt;();}</span>
+<span class="nc bnc" id="L772" title="All 2 branches missed.">            for (HostPortRange item : items) {HostPortRangeBuilder builder = new HostPortRangeBuilder(item);_visitables.add(builder);this.hostPorts.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToHostPorts(Collection&lt;HostPortRange&gt; items){
+<span class="nc bnc" id="L776" title="All 2 branches missed.">            if (this.hostPorts == null) {this.hostPorts = new ArrayList&lt;HostPortRangeBuilder&gt;();}</span>
+<span class="nc bnc" id="L777" title="All 2 branches missed.">            for (HostPortRange item : items) {HostPortRangeBuilder builder = new HostPortRangeBuilder(item);_visitables.add(builder);this.hostPorts.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromHostPorts(HostPortRange... items){
+<span class="nc bnc" id="L781" title="All 4 branches missed.">            for (HostPortRange item : items) {HostPortRangeBuilder builder = new HostPortRangeBuilder(item);_visitables.remove(builder);if (this.hostPorts != null) {this.hostPorts.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromHostPorts(Collection&lt;HostPortRange&gt; items){
+<span class="nc bnc" id="L785" title="All 4 branches missed.">            for (HostPortRange item : items) {HostPortRangeBuilder builder = new HostPortRangeBuilder(item);_visitables.remove(builder);if (this.hostPorts != null) {this.hostPorts.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildHostPorts instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;HostPortRange&gt; getHostPorts(){
+<span class="nc" id="L794">            return build(hostPorts);</span>
+    }
+
+    public List&lt;HostPortRange&gt; buildHostPorts(){
+<span class="nc" id="L798">            return build(hostPorts);</span>
+    }
+
+    public HostPortRange buildHostPort(int index){
+<span class="nc" id="L802">            return this.hostPorts.get(index).build();</span>
+    }
+
+    public HostPortRange buildFirstHostPort(){
+<span class="nc" id="L806">            return this.hostPorts.get(0).build();</span>
+    }
+
+    public HostPortRange buildLastHostPort(){
+<span class="nc" id="L810">            return this.hostPorts.get(hostPorts.size() - 1).build();</span>
+    }
+
+    public HostPortRange buildMatchingHostPort(io.fabric8.kubernetes.api.builder.Predicate&lt;HostPortRangeBuilder&gt; predicate){
+<span class="nc bnc" id="L814" title="All 4 branches missed.">            for (HostPortRangeBuilder item: hostPorts) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withHostPorts(List&lt;HostPortRange&gt; hostPorts){
+<span class="nc bnc" id="L818" title="All 2 branches missed.">            if (this.hostPorts != null) { _visitables.removeAll(this.hostPorts);}</span>
+<span class="nc bnc" id="L819" title="All 4 branches missed.">            if (hostPorts != null) {this.hostPorts = new ArrayList&lt;HostPortRangeBuilder&gt;(); for (HostPortRange item : hostPorts){this.addToHostPorts(item);}} else { this.hostPorts = new ArrayList&lt;HostPortRangeBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withHostPorts(HostPortRange... hostPorts){
+<span class="nc bnc" id="L823" title="All 2 branches missed.">            if (this.hostPorts != null) {this.hostPorts.clear();}</span>
+<span class="nc bnc" id="L824" title="All 4 branches missed.">            if (hostPorts != null) {for (HostPortRange item :hostPorts){ this.addToHostPorts(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasHostPorts(){
+<span class="nc bnc" id="L828" title="All 4 branches missed.">            return hostPorts != null &amp;&amp; !hostPorts.isEmpty();</span>
+    }
+
+    public A addNewHostPort(Integer max,Integer min){
+<span class="nc" id="L832">            return (A)addToHostPorts(new HostPortRange(max, min));</span>
+    }
+
+    public PodSecurityPolicySpecFluent.HostPortsNested&lt;A&gt; addNewHostPort(){
+<span class="nc" id="L836">            return new HostPortsNestedImpl();</span>
+    }
+
+    public PodSecurityPolicySpecFluent.HostPortsNested&lt;A&gt; addNewHostPortLike(HostPortRange item){
+<span class="nc" id="L840">            return new HostPortsNestedImpl(-1, item);</span>
+    }
+
+    public PodSecurityPolicySpecFluent.HostPortsNested&lt;A&gt; setNewHostPortLike(int index,HostPortRange item){
+<span class="nc" id="L844">            return new HostPortsNestedImpl(index, item);</span>
+    }
+
+    public PodSecurityPolicySpecFluent.HostPortsNested&lt;A&gt; editHostPort(int index){
+<span class="nc bnc" id="L848" title="All 2 branches missed.">            if (hostPorts.size() &lt;= index) throw new RuntimeException(&quot;Can't edit hostPorts. Index exceeds size.&quot;);</span>
+<span class="nc" id="L849">            return setNewHostPortLike(index, buildHostPort(index));</span>
+    }
+
+    public PodSecurityPolicySpecFluent.HostPortsNested&lt;A&gt; editFirstHostPort(){
+<span class="nc bnc" id="L853" title="All 2 branches missed.">            if (hostPorts.size() == 0) throw new RuntimeException(&quot;Can't edit first hostPorts. The list is empty.&quot;);</span>
+<span class="nc" id="L854">            return setNewHostPortLike(0, buildHostPort(0));</span>
+    }
+
+    public PodSecurityPolicySpecFluent.HostPortsNested&lt;A&gt; editLastHostPort(){
+<span class="nc" id="L858">            int index = hostPorts.size() - 1;</span>
+<span class="nc bnc" id="L859" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last hostPorts. The list is empty.&quot;);</span>
+<span class="nc" id="L860">            return setNewHostPortLike(index, buildHostPort(index));</span>
+    }
+
+    public PodSecurityPolicySpecFluent.HostPortsNested&lt;A&gt; editMatchingHostPort(io.fabric8.kubernetes.api.builder.Predicate&lt;HostPortRangeBuilder&gt; predicate){
+<span class="nc" id="L864">            int index = -1;</span>
+<span class="nc bnc" id="L865" title="All 2 branches missed.">            for (int i=0;i&lt;hostPorts.size();i++) { </span>
+<span class="nc bnc" id="L866" title="All 2 branches missed.">            if (predicate.apply(hostPorts.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L868" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching hostPorts. No match found.&quot;);</span>
+<span class="nc" id="L869">            return setNewHostPortLike(index, buildHostPort(index));</span>
+    }
+
+    public Boolean isPrivileged(){
+<span class="nc" id="L873">            return this.privileged;</span>
+    }
+
+    public A withPrivileged(Boolean privileged){
+<span class="nc" id="L877">            this.privileged=privileged; return (A) this;</span>
+    }
+
+    public Boolean hasPrivileged(){
+<span class="nc bnc" id="L881" title="All 2 branches missed.">            return this.privileged != null;</span>
+    }
+
+    public A withNewPrivileged(String arg1){
+<span class="nc" id="L885">            return (A)withPrivileged(new Boolean(arg1));</span>
+    }
+
+    public A withNewPrivileged(boolean arg1){
+<span class="nc" id="L889">            return (A)withPrivileged(new Boolean(arg1));</span>
+    }
+
+    public Boolean isReadOnlyRootFilesystem(){
+<span class="nc" id="L893">            return this.readOnlyRootFilesystem;</span>
+    }
+
+    public A withReadOnlyRootFilesystem(Boolean readOnlyRootFilesystem){
+<span class="nc" id="L897">            this.readOnlyRootFilesystem=readOnlyRootFilesystem; return (A) this;</span>
+    }
+
+    public Boolean hasReadOnlyRootFilesystem(){
+<span class="nc bnc" id="L901" title="All 2 branches missed.">            return this.readOnlyRootFilesystem != null;</span>
+    }
+
+    public A withNewReadOnlyRootFilesystem(String arg1){
+<span class="nc" id="L905">            return (A)withReadOnlyRootFilesystem(new Boolean(arg1));</span>
+    }
+
+    public A withNewReadOnlyRootFilesystem(boolean arg1){
+<span class="nc" id="L909">            return (A)withReadOnlyRootFilesystem(new Boolean(arg1));</span>
+    }
+
+    public A addToRequiredDropCapabilities(int index,String item){
+<span class="nc bnc" id="L913" title="All 2 branches missed.">            if (this.requiredDropCapabilities == null) {this.requiredDropCapabilities = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L914">            this.requiredDropCapabilities.add(index, item);</span>
+<span class="nc" id="L915">            return (A)this;</span>
+    }
+
+    public A setToRequiredDropCapabilities(int index,String item){
+<span class="nc bnc" id="L919" title="All 2 branches missed.">            if (this.requiredDropCapabilities == null) {this.requiredDropCapabilities = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L920">            this.requiredDropCapabilities.set(index, item); return (A)this;</span>
+    }
+
+    public A addToRequiredDropCapabilities(String... items){
+<span class="nc bnc" id="L924" title="All 2 branches missed.">            if (this.requiredDropCapabilities == null) {this.requiredDropCapabilities = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L925" title="All 2 branches missed.">            for (String item : items) {this.requiredDropCapabilities.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToRequiredDropCapabilities(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L929" title="All 2 branches missed.">            if (this.requiredDropCapabilities == null) {this.requiredDropCapabilities = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L930" title="All 2 branches missed.">            for (String item : items) {this.requiredDropCapabilities.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromRequiredDropCapabilities(String... items){
+<span class="nc bnc" id="L934" title="All 4 branches missed.">            for (String item : items) {if (this.requiredDropCapabilities!= null){ this.requiredDropCapabilities.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromRequiredDropCapabilities(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L938" title="All 4 branches missed.">            for (String item : items) {if (this.requiredDropCapabilities!= null){ this.requiredDropCapabilities.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getRequiredDropCapabilities(){
+<span class="nc" id="L942">            return this.requiredDropCapabilities;</span>
+    }
+
+    public String getRequiredDropCapability(int index){
+<span class="nc" id="L946">            return this.requiredDropCapabilities.get(index);</span>
+    }
+
+    public String getFirstRequiredDropCapability(){
+<span class="nc" id="L950">            return this.requiredDropCapabilities.get(0);</span>
+    }
+
+    public String getLastRequiredDropCapability(){
+<span class="nc" id="L954">            return this.requiredDropCapabilities.get(requiredDropCapabilities.size() - 1);</span>
+    }
+
+    public String getMatchingRequiredDropCapability(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L958" title="All 4 branches missed.">            for (String item: requiredDropCapabilities) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withRequiredDropCapabilities(List&lt;String&gt; requiredDropCapabilities){
+<span class="nc bnc" id="L962" title="All 2 branches missed.">            if (this.requiredDropCapabilities != null) { _visitables.removeAll(this.requiredDropCapabilities);}</span>
+<span class="nc bnc" id="L963" title="All 4 branches missed.">            if (requiredDropCapabilities != null) {this.requiredDropCapabilities = new ArrayList&lt;String&gt;(); for (String item : requiredDropCapabilities){this.addToRequiredDropCapabilities(item);}} else { this.requiredDropCapabilities = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withRequiredDropCapabilities(String... requiredDropCapabilities){
+<span class="nc bnc" id="L967" title="All 2 branches missed.">            if (this.requiredDropCapabilities != null) {this.requiredDropCapabilities.clear();}</span>
+<span class="nc bnc" id="L968" title="All 4 branches missed.">            if (requiredDropCapabilities != null) {for (String item :requiredDropCapabilities){ this.addToRequiredDropCapabilities(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasRequiredDropCapabilities(){
+<span class="nc bnc" id="L972" title="All 4 branches missed.">            return requiredDropCapabilities != null &amp;&amp; !requiredDropCapabilities.isEmpty();</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildRunAsGroup instead.
+ * @return The buildable object.
+ */
+@Deprecated public RunAsGroupStrategyOptions getRunAsGroup(){
+<span class="nc bnc" id="L981" title="All 2 branches missed.">            return this.runAsGroup!=null?this.runAsGroup.build():null;</span>
+    }
+
+    public RunAsGroupStrategyOptions buildRunAsGroup(){
+<span class="nc bnc" id="L985" title="All 2 branches missed.">            return this.runAsGroup!=null?this.runAsGroup.build():null;</span>
+    }
+
+    public A withRunAsGroup(RunAsGroupStrategyOptions runAsGroup){
+<span class="nc" id="L989">            _visitables.remove(this.runAsGroup);</span>
+<span class="nc bnc" id="L990" title="All 2 branches missed.">            if (runAsGroup!=null){ this.runAsGroup= new RunAsGroupStrategyOptionsBuilder(runAsGroup); _visitables.add(this.runAsGroup);} return (A) this;</span>
+    }
+
+    public Boolean hasRunAsGroup(){
+<span class="nc bnc" id="L994" title="All 2 branches missed.">            return this.runAsGroup != null;</span>
+    }
+
+    public PodSecurityPolicySpecFluent.RunAsGroupNested&lt;A&gt; withNewRunAsGroup(){
+<span class="nc" id="L998">            return new RunAsGroupNestedImpl();</span>
+    }
+
+    public PodSecurityPolicySpecFluent.RunAsGroupNested&lt;A&gt; withNewRunAsGroupLike(RunAsGroupStrategyOptions item){
+<span class="nc" id="L1002">            return new RunAsGroupNestedImpl(item);</span>
+    }
+
+    public PodSecurityPolicySpecFluent.RunAsGroupNested&lt;A&gt; editRunAsGroup(){
+<span class="nc" id="L1006">            return withNewRunAsGroupLike(getRunAsGroup());</span>
+    }
+
+    public PodSecurityPolicySpecFluent.RunAsGroupNested&lt;A&gt; editOrNewRunAsGroup(){
+<span class="nc bnc" id="L1010" title="All 2 branches missed.">            return withNewRunAsGroupLike(getRunAsGroup() != null ? getRunAsGroup(): new RunAsGroupStrategyOptionsBuilder().build());</span>
+    }
+
+    public PodSecurityPolicySpecFluent.RunAsGroupNested&lt;A&gt; editOrNewRunAsGroupLike(RunAsGroupStrategyOptions item){
+<span class="nc bnc" id="L1014" title="All 2 branches missed.">            return withNewRunAsGroupLike(getRunAsGroup() != null ? getRunAsGroup(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildRunAsUser instead.
+ * @return The buildable object.
+ */
+@Deprecated public KubernetesRunAsUserStrategyOptions getRunAsUser(){
+<span class="nc bnc" id="L1023" title="All 2 branches missed.">            return this.runAsUser!=null?this.runAsUser.build():null;</span>
+    }
+
+    public KubernetesRunAsUserStrategyOptions buildRunAsUser(){
+<span class="nc bnc" id="L1027" title="All 2 branches missed.">            return this.runAsUser!=null?this.runAsUser.build():null;</span>
+    }
+
+    public A withRunAsUser(KubernetesRunAsUserStrategyOptions runAsUser){
+<span class="nc" id="L1031">            _visitables.remove(this.runAsUser);</span>
+<span class="nc bnc" id="L1032" title="All 2 branches missed.">            if (runAsUser!=null){ this.runAsUser= new KubernetesRunAsUserStrategyOptionsBuilder(runAsUser); _visitables.add(this.runAsUser);} return (A) this;</span>
+    }
+
+    public Boolean hasRunAsUser(){
+<span class="nc bnc" id="L1036" title="All 2 branches missed.">            return this.runAsUser != null;</span>
+    }
+
+    public PodSecurityPolicySpecFluent.RunAsUserNested&lt;A&gt; withNewRunAsUser(){
+<span class="nc" id="L1040">            return new RunAsUserNestedImpl();</span>
+    }
+
+    public PodSecurityPolicySpecFluent.RunAsUserNested&lt;A&gt; withNewRunAsUserLike(KubernetesRunAsUserStrategyOptions item){
+<span class="nc" id="L1044">            return new RunAsUserNestedImpl(item);</span>
+    }
+
+    public PodSecurityPolicySpecFluent.RunAsUserNested&lt;A&gt; editRunAsUser(){
+<span class="nc" id="L1048">            return withNewRunAsUserLike(getRunAsUser());</span>
+    }
+
+    public PodSecurityPolicySpecFluent.RunAsUserNested&lt;A&gt; editOrNewRunAsUser(){
+<span class="nc bnc" id="L1052" title="All 2 branches missed.">            return withNewRunAsUserLike(getRunAsUser() != null ? getRunAsUser(): new KubernetesRunAsUserStrategyOptionsBuilder().build());</span>
+    }
+
+    public PodSecurityPolicySpecFluent.RunAsUserNested&lt;A&gt; editOrNewRunAsUserLike(KubernetesRunAsUserStrategyOptions item){
+<span class="nc bnc" id="L1056" title="All 2 branches missed.">            return withNewRunAsUserLike(getRunAsUser() != null ? getRunAsUser(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSeLinux instead.
+ * @return The buildable object.
+ */
+@Deprecated public SELinuxStrategyOptions getSeLinux(){
+<span class="nc bnc" id="L1065" title="All 2 branches missed.">            return this.seLinux!=null?this.seLinux.build():null;</span>
+    }
+
+    public SELinuxStrategyOptions buildSeLinux(){
+<span class="nc bnc" id="L1069" title="All 2 branches missed.">            return this.seLinux!=null?this.seLinux.build():null;</span>
+    }
+
+    public A withSeLinux(SELinuxStrategyOptions seLinux){
+<span class="nc" id="L1073">            _visitables.remove(this.seLinux);</span>
+<span class="nc bnc" id="L1074" title="All 2 branches missed.">            if (seLinux!=null){ this.seLinux= new SELinuxStrategyOptionsBuilder(seLinux); _visitables.add(this.seLinux);} return (A) this;</span>
+    }
+
+    public Boolean hasSeLinux(){
+<span class="nc bnc" id="L1078" title="All 2 branches missed.">            return this.seLinux != null;</span>
+    }
+
+    public PodSecurityPolicySpecFluent.SeLinuxNested&lt;A&gt; withNewSeLinux(){
+<span class="nc" id="L1082">            return new SeLinuxNestedImpl();</span>
+    }
+
+    public PodSecurityPolicySpecFluent.SeLinuxNested&lt;A&gt; withNewSeLinuxLike(SELinuxStrategyOptions item){
+<span class="nc" id="L1086">            return new SeLinuxNestedImpl(item);</span>
+    }
+
+    public PodSecurityPolicySpecFluent.SeLinuxNested&lt;A&gt; editSeLinux(){
+<span class="nc" id="L1090">            return withNewSeLinuxLike(getSeLinux());</span>
+    }
+
+    public PodSecurityPolicySpecFluent.SeLinuxNested&lt;A&gt; editOrNewSeLinux(){
+<span class="nc bnc" id="L1094" title="All 2 branches missed.">            return withNewSeLinuxLike(getSeLinux() != null ? getSeLinux(): new SELinuxStrategyOptionsBuilder().build());</span>
+    }
+
+    public PodSecurityPolicySpecFluent.SeLinuxNested&lt;A&gt; editOrNewSeLinuxLike(SELinuxStrategyOptions item){
+<span class="nc bnc" id="L1098" title="All 2 branches missed.">            return withNewSeLinuxLike(getSeLinux() != null ? getSeLinux(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSupplementalGroups instead.
+ * @return The buildable object.
+ */
+@Deprecated public SupplementalGroupsStrategyOptions getSupplementalGroups(){
+<span class="nc bnc" id="L1107" title="All 2 branches missed.">            return this.supplementalGroups!=null?this.supplementalGroups.build():null;</span>
+    }
+
+    public SupplementalGroupsStrategyOptions buildSupplementalGroups(){
+<span class="nc bnc" id="L1111" title="All 2 branches missed.">            return this.supplementalGroups!=null?this.supplementalGroups.build():null;</span>
+    }
+
+    public A withSupplementalGroups(SupplementalGroupsStrategyOptions supplementalGroups){
+<span class="nc" id="L1115">            _visitables.remove(this.supplementalGroups);</span>
+<span class="nc bnc" id="L1116" title="All 2 branches missed.">            if (supplementalGroups!=null){ this.supplementalGroups= new SupplementalGroupsStrategyOptionsBuilder(supplementalGroups); _visitables.add(this.supplementalGroups);} return (A) this;</span>
+    }
+
+    public Boolean hasSupplementalGroups(){
+<span class="nc bnc" id="L1120" title="All 2 branches missed.">            return this.supplementalGroups != null;</span>
+    }
+
+    public PodSecurityPolicySpecFluent.SupplementalGroupsNested&lt;A&gt; withNewSupplementalGroups(){
+<span class="nc" id="L1124">            return new SupplementalGroupsNestedImpl();</span>
+    }
+
+    public PodSecurityPolicySpecFluent.SupplementalGroupsNested&lt;A&gt; withNewSupplementalGroupsLike(SupplementalGroupsStrategyOptions item){
+<span class="nc" id="L1128">            return new SupplementalGroupsNestedImpl(item);</span>
+    }
+
+    public PodSecurityPolicySpecFluent.SupplementalGroupsNested&lt;A&gt; editSupplementalGroups(){
+<span class="nc" id="L1132">            return withNewSupplementalGroupsLike(getSupplementalGroups());</span>
+    }
+
+    public PodSecurityPolicySpecFluent.SupplementalGroupsNested&lt;A&gt; editOrNewSupplementalGroups(){
+<span class="nc bnc" id="L1136" title="All 2 branches missed.">            return withNewSupplementalGroupsLike(getSupplementalGroups() != null ? getSupplementalGroups(): new SupplementalGroupsStrategyOptionsBuilder().build());</span>
+    }
+
+    public PodSecurityPolicySpecFluent.SupplementalGroupsNested&lt;A&gt; editOrNewSupplementalGroupsLike(SupplementalGroupsStrategyOptions item){
+<span class="nc bnc" id="L1140" title="All 2 branches missed.">            return withNewSupplementalGroupsLike(getSupplementalGroups() != null ? getSupplementalGroups(): item);</span>
+    }
+
+    public A addToVolumes(int index,String item){
+<span class="nc bnc" id="L1144" title="All 2 branches missed.">            if (this.volumes == null) {this.volumes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L1145">            this.volumes.add(index, item);</span>
+<span class="nc" id="L1146">            return (A)this;</span>
+    }
+
+    public A setToVolumes(int index,String item){
+<span class="nc bnc" id="L1150" title="All 2 branches missed.">            if (this.volumes == null) {this.volumes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L1151">            this.volumes.set(index, item); return (A)this;</span>
+    }
+
+    public A addToVolumes(String... items){
+<span class="nc bnc" id="L1155" title="All 2 branches missed.">            if (this.volumes == null) {this.volumes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L1156" title="All 2 branches missed.">            for (String item : items) {this.volumes.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToVolumes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L1160" title="All 2 branches missed.">            if (this.volumes == null) {this.volumes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L1161" title="All 2 branches missed.">            for (String item : items) {this.volumes.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromVolumes(String... items){
+<span class="nc bnc" id="L1165" title="All 4 branches missed.">            for (String item : items) {if (this.volumes!= null){ this.volumes.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromVolumes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L1169" title="All 4 branches missed.">            for (String item : items) {if (this.volumes!= null){ this.volumes.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getVolumes(){
+<span class="nc" id="L1173">            return this.volumes;</span>
+    }
+
+    public String getVolume(int index){
+<span class="nc" id="L1177">            return this.volumes.get(index);</span>
+    }
+
+    public String getFirstVolume(){
+<span class="nc" id="L1181">            return this.volumes.get(0);</span>
+    }
+
+    public String getLastVolume(){
+<span class="nc" id="L1185">            return this.volumes.get(volumes.size() - 1);</span>
+    }
+
+    public String getMatchingVolume(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L1189" title="All 4 branches missed.">            for (String item: volumes) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withVolumes(List&lt;String&gt; volumes){
+<span class="nc bnc" id="L1193" title="All 2 branches missed.">            if (this.volumes != null) { _visitables.removeAll(this.volumes);}</span>
+<span class="nc bnc" id="L1194" title="All 4 branches missed.">            if (volumes != null) {this.volumes = new ArrayList&lt;String&gt;(); for (String item : volumes){this.addToVolumes(item);}} else { this.volumes = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withVolumes(String... volumes){
+<span class="nc bnc" id="L1198" title="All 2 branches missed.">            if (this.volumes != null) {this.volumes.clear();}</span>
+<span class="nc bnc" id="L1199" title="All 4 branches missed.">            if (volumes != null) {for (String item :volumes){ this.addToVolumes(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasVolumes(){
+<span class="nc bnc" id="L1203" title="All 4 branches missed.">            return volumes != null &amp;&amp; !volumes.isEmpty();</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L1207" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L1208" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L1209" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L1210">            PodSecurityPolicySpecFluentImpl that = (PodSecurityPolicySpecFluentImpl) o;</span>
+<span class="nc bnc" id="L1211" title="All 6 branches missed.">            if (allowPrivilegeEscalation != null ? !allowPrivilegeEscalation.equals(that.allowPrivilegeEscalation) :that.allowPrivilegeEscalation != null) return false;</span>
+<span class="nc bnc" id="L1212" title="All 6 branches missed.">            if (allowedCapabilities != null ? !allowedCapabilities.equals(that.allowedCapabilities) :that.allowedCapabilities != null) return false;</span>
+<span class="nc bnc" id="L1213" title="All 6 branches missed.">            if (allowedFlexVolumes != null ? !allowedFlexVolumes.equals(that.allowedFlexVolumes) :that.allowedFlexVolumes != null) return false;</span>
+<span class="nc bnc" id="L1214" title="All 6 branches missed.">            if (allowedHostPaths != null ? !allowedHostPaths.equals(that.allowedHostPaths) :that.allowedHostPaths != null) return false;</span>
+<span class="nc bnc" id="L1215" title="All 6 branches missed.">            if (allowedProcMountTypes != null ? !allowedProcMountTypes.equals(that.allowedProcMountTypes) :that.allowedProcMountTypes != null) return false;</span>
+<span class="nc bnc" id="L1216" title="All 6 branches missed.">            if (allowedUnsafeSysctls != null ? !allowedUnsafeSysctls.equals(that.allowedUnsafeSysctls) :that.allowedUnsafeSysctls != null) return false;</span>
+<span class="nc bnc" id="L1217" title="All 6 branches missed.">            if (defaultAddCapabilities != null ? !defaultAddCapabilities.equals(that.defaultAddCapabilities) :that.defaultAddCapabilities != null) return false;</span>
+<span class="nc bnc" id="L1218" title="All 6 branches missed.">            if (defaultAllowPrivilegeEscalation != null ? !defaultAllowPrivilegeEscalation.equals(that.defaultAllowPrivilegeEscalation) :that.defaultAllowPrivilegeEscalation != null) return false;</span>
+<span class="nc bnc" id="L1219" title="All 6 branches missed.">            if (forbiddenSysctls != null ? !forbiddenSysctls.equals(that.forbiddenSysctls) :that.forbiddenSysctls != null) return false;</span>
+<span class="nc bnc" id="L1220" title="All 6 branches missed.">            if (fsGroup != null ? !fsGroup.equals(that.fsGroup) :that.fsGroup != null) return false;</span>
+<span class="nc bnc" id="L1221" title="All 6 branches missed.">            if (hostIPC != null ? !hostIPC.equals(that.hostIPC) :that.hostIPC != null) return false;</span>
+<span class="nc bnc" id="L1222" title="All 6 branches missed.">            if (hostNetwork != null ? !hostNetwork.equals(that.hostNetwork) :that.hostNetwork != null) return false;</span>
+<span class="nc bnc" id="L1223" title="All 6 branches missed.">            if (hostPID != null ? !hostPID.equals(that.hostPID) :that.hostPID != null) return false;</span>
+<span class="nc bnc" id="L1224" title="All 6 branches missed.">            if (hostPorts != null ? !hostPorts.equals(that.hostPorts) :that.hostPorts != null) return false;</span>
+<span class="nc bnc" id="L1225" title="All 6 branches missed.">            if (privileged != null ? !privileged.equals(that.privileged) :that.privileged != null) return false;</span>
+<span class="nc bnc" id="L1226" title="All 6 branches missed.">            if (readOnlyRootFilesystem != null ? !readOnlyRootFilesystem.equals(that.readOnlyRootFilesystem) :that.readOnlyRootFilesystem != null) return false;</span>
+<span class="nc bnc" id="L1227" title="All 6 branches missed.">            if (requiredDropCapabilities != null ? !requiredDropCapabilities.equals(that.requiredDropCapabilities) :that.requiredDropCapabilities != null) return false;</span>
+<span class="nc bnc" id="L1228" title="All 6 branches missed.">            if (runAsGroup != null ? !runAsGroup.equals(that.runAsGroup) :that.runAsGroup != null) return false;</span>
+<span class="nc bnc" id="L1229" title="All 6 branches missed.">            if (runAsUser != null ? !runAsUser.equals(that.runAsUser) :that.runAsUser != null) return false;</span>
+<span class="nc bnc" id="L1230" title="All 6 branches missed.">            if (seLinux != null ? !seLinux.equals(that.seLinux) :that.seLinux != null) return false;</span>
+<span class="nc bnc" id="L1231" title="All 6 branches missed.">            if (supplementalGroups != null ? !supplementalGroups.equals(that.supplementalGroups) :that.supplementalGroups != null) return false;</span>
+<span class="nc bnc" id="L1232" title="All 6 branches missed.">            if (volumes != null ? !volumes.equals(that.volumes) :that.volumes != null) return false;</span>
+<span class="nc" id="L1233">            return true;</span>
+    }
+
+
+    public class AllowedFlexVolumesNestedImpl&lt;N&gt; extends AllowedFlexVolumeFluentImpl&lt;PodSecurityPolicySpecFluent.AllowedFlexVolumesNested&lt;N&gt;&gt; implements PodSecurityPolicySpecFluent.AllowedFlexVolumesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final AllowedFlexVolumeBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L1242">            AllowedFlexVolumesNestedImpl(int index,AllowedFlexVolume item){</span>
+<span class="nc" id="L1243">                    this.index = index;</span>
+<span class="nc" id="L1244">                    this.builder = new AllowedFlexVolumeBuilder(this, item);</span>
+<span class="nc" id="L1245">            }</span>
+<span class="nc" id="L1246">            AllowedFlexVolumesNestedImpl(){</span>
+<span class="nc" id="L1247">                    this.index = -1;</span>
+<span class="nc" id="L1248">                    this.builder = new AllowedFlexVolumeBuilder(this);</span>
+<span class="nc" id="L1249">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1252">            return (N) PodSecurityPolicySpecFluentImpl.this.setToAllowedFlexVolumes(index, builder.build());</span>
+    }
+    public N endAllowedFlexVolume(){
+<span class="nc" id="L1255">            return and();</span>
+    }
+
+}
+    public class AllowedHostPathsNestedImpl&lt;N&gt; extends AllowedHostPathFluentImpl&lt;PodSecurityPolicySpecFluent.AllowedHostPathsNested&lt;N&gt;&gt; implements PodSecurityPolicySpecFluent.AllowedHostPathsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final AllowedHostPathBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L1264">            AllowedHostPathsNestedImpl(int index,AllowedHostPath item){</span>
+<span class="nc" id="L1265">                    this.index = index;</span>
+<span class="nc" id="L1266">                    this.builder = new AllowedHostPathBuilder(this, item);</span>
+<span class="nc" id="L1267">            }</span>
+<span class="nc" id="L1268">            AllowedHostPathsNestedImpl(){</span>
+<span class="nc" id="L1269">                    this.index = -1;</span>
+<span class="nc" id="L1270">                    this.builder = new AllowedHostPathBuilder(this);</span>
+<span class="nc" id="L1271">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1274">            return (N) PodSecurityPolicySpecFluentImpl.this.setToAllowedHostPaths(index, builder.build());</span>
+    }
+    public N endAllowedHostPath(){
+<span class="nc" id="L1277">            return and();</span>
+    }
+
+}
+    public class FsGroupNestedImpl&lt;N&gt; extends FSGroupStrategyOptionsFluentImpl&lt;PodSecurityPolicySpecFluent.FsGroupNested&lt;N&gt;&gt; implements PodSecurityPolicySpecFluent.FsGroupNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final FSGroupStrategyOptionsBuilder builder;
+    
+<span class="nc" id="L1285">            FsGroupNestedImpl(FSGroupStrategyOptions item){</span>
+<span class="nc" id="L1286">                    this.builder = new FSGroupStrategyOptionsBuilder(this, item);</span>
+<span class="nc" id="L1287">            }</span>
+<span class="nc" id="L1288">            FsGroupNestedImpl(){</span>
+<span class="nc" id="L1289">                    this.builder = new FSGroupStrategyOptionsBuilder(this);</span>
+<span class="nc" id="L1290">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1293">            return (N) PodSecurityPolicySpecFluentImpl.this.withFsGroup(builder.build());</span>
+    }
+    public N endFsGroup(){
+<span class="nc" id="L1296">            return and();</span>
+    }
+
+}
+    public class HostPortsNestedImpl&lt;N&gt; extends HostPortRangeFluentImpl&lt;PodSecurityPolicySpecFluent.HostPortsNested&lt;N&gt;&gt; implements PodSecurityPolicySpecFluent.HostPortsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final HostPortRangeBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L1305">            HostPortsNestedImpl(int index,HostPortRange item){</span>
+<span class="nc" id="L1306">                    this.index = index;</span>
+<span class="nc" id="L1307">                    this.builder = new HostPortRangeBuilder(this, item);</span>
+<span class="nc" id="L1308">            }</span>
+<span class="nc" id="L1309">            HostPortsNestedImpl(){</span>
+<span class="nc" id="L1310">                    this.index = -1;</span>
+<span class="nc" id="L1311">                    this.builder = new HostPortRangeBuilder(this);</span>
+<span class="nc" id="L1312">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1315">            return (N) PodSecurityPolicySpecFluentImpl.this.setToHostPorts(index, builder.build());</span>
+    }
+    public N endHostPort(){
+<span class="nc" id="L1318">            return and();</span>
+    }
+
+}
+    public class RunAsGroupNestedImpl&lt;N&gt; extends RunAsGroupStrategyOptionsFluentImpl&lt;PodSecurityPolicySpecFluent.RunAsGroupNested&lt;N&gt;&gt; implements PodSecurityPolicySpecFluent.RunAsGroupNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final RunAsGroupStrategyOptionsBuilder builder;
+    
+<span class="nc" id="L1326">            RunAsGroupNestedImpl(RunAsGroupStrategyOptions item){</span>
+<span class="nc" id="L1327">                    this.builder = new RunAsGroupStrategyOptionsBuilder(this, item);</span>
+<span class="nc" id="L1328">            }</span>
+<span class="nc" id="L1329">            RunAsGroupNestedImpl(){</span>
+<span class="nc" id="L1330">                    this.builder = new RunAsGroupStrategyOptionsBuilder(this);</span>
+<span class="nc" id="L1331">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1334">            return (N) PodSecurityPolicySpecFluentImpl.this.withRunAsGroup(builder.build());</span>
+    }
+    public N endRunAsGroup(){
+<span class="nc" id="L1337">            return and();</span>
+    }
+
+}
+    public class RunAsUserNestedImpl&lt;N&gt; extends KubernetesRunAsUserStrategyOptionsFluentImpl&lt;PodSecurityPolicySpecFluent.RunAsUserNested&lt;N&gt;&gt; implements PodSecurityPolicySpecFluent.RunAsUserNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final KubernetesRunAsUserStrategyOptionsBuilder builder;
+    
+<span class="nc" id="L1345">            RunAsUserNestedImpl(KubernetesRunAsUserStrategyOptions item){</span>
+<span class="nc" id="L1346">                    this.builder = new KubernetesRunAsUserStrategyOptionsBuilder(this, item);</span>
+<span class="nc" id="L1347">            }</span>
+<span class="nc" id="L1348">            RunAsUserNestedImpl(){</span>
+<span class="nc" id="L1349">                    this.builder = new KubernetesRunAsUserStrategyOptionsBuilder(this);</span>
+<span class="nc" id="L1350">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1353">            return (N) PodSecurityPolicySpecFluentImpl.this.withRunAsUser(builder.build());</span>
+    }
+    public N endRunAsUser(){
+<span class="nc" id="L1356">            return and();</span>
+    }
+
+}
+    public class SeLinuxNestedImpl&lt;N&gt; extends SELinuxStrategyOptionsFluentImpl&lt;PodSecurityPolicySpecFluent.SeLinuxNested&lt;N&gt;&gt; implements PodSecurityPolicySpecFluent.SeLinuxNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SELinuxStrategyOptionsBuilder builder;
+    
+<span class="nc" id="L1364">            SeLinuxNestedImpl(SELinuxStrategyOptions item){</span>
+<span class="nc" id="L1365">                    this.builder = new SELinuxStrategyOptionsBuilder(this, item);</span>
+<span class="nc" id="L1366">            }</span>
+<span class="nc" id="L1367">            SeLinuxNestedImpl(){</span>
+<span class="nc" id="L1368">                    this.builder = new SELinuxStrategyOptionsBuilder(this);</span>
+<span class="nc" id="L1369">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1372">            return (N) PodSecurityPolicySpecFluentImpl.this.withSeLinux(builder.build());</span>
+    }
+    public N endSeLinux(){
+<span class="nc" id="L1375">            return and();</span>
+    }
+
+}
+    public class SupplementalGroupsNestedImpl&lt;N&gt; extends SupplementalGroupsStrategyOptionsFluentImpl&lt;PodSecurityPolicySpecFluent.SupplementalGroupsNested&lt;N&gt;&gt; implements PodSecurityPolicySpecFluent.SupplementalGroupsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final SupplementalGroupsStrategyOptionsBuilder builder;
+    
+<span class="nc" id="L1383">            SupplementalGroupsNestedImpl(SupplementalGroupsStrategyOptions item){</span>
+<span class="nc" id="L1384">                    this.builder = new SupplementalGroupsStrategyOptionsBuilder(this, item);</span>
+<span class="nc" id="L1385">            }</span>
+<span class="nc" id="L1386">            SupplementalGroupsNestedImpl(){</span>
+<span class="nc" id="L1387">                    this.builder = new SupplementalGroupsStrategyOptionsBuilder(this);</span>
+<span class="nc" id="L1388">            }</span>
+    
+    public N and(){
+<span class="nc" id="L1391">            return (N) PodSecurityPolicySpecFluentImpl.this.withSupplementalGroups(builder.build());</span>
+    }
+    public N endSupplementalGroups(){
+<span class="nc" id="L1394">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeleteOptionsFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">DeleteOptionsFluentImpl.java</span></div><h1>DeleteOptionsFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import javax.validation.constraints.NotNull;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Long;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class DeleteOptionsFluentImpl&lt;A extends DeleteOptionsFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements DeleteOptionsFluent&lt;A&gt;{
+
+    private String apiVersion;
+    private List&lt;String&gt; dryRun;
+    private Long gracePeriodSeconds;
+    private String kind;
+    private Boolean orphanDependents;
+    private PreconditionsBuilder preconditions;
+    private String propagationPolicy;
+
+<span class="nc" id="L29">    public DeleteOptionsFluentImpl(){</span>
+<span class="nc" id="L30">    }</span>
+<span class="nc" id="L31">    public DeleteOptionsFluentImpl(DeleteOptions instance){</span>
+<span class="nc" id="L32">            this.withApiVersion(instance.getApiVersion()); </span>
+<span class="nc" id="L33">            this.withDryRun(instance.getDryRun()); </span>
+<span class="nc" id="L34">            this.withGracePeriodSeconds(instance.getGracePeriodSeconds()); </span>
+<span class="nc" id="L35">            this.withKind(instance.getKind()); </span>
+<span class="nc" id="L36">            this.withOrphanDependents(instance.getOrphanDependents()); </span>
+<span class="nc" id="L37">            this.withPreconditions(instance.getPreconditions()); </span>
+<span class="nc" id="L38">            this.withPropagationPolicy(instance.getPropagationPolicy()); </span>
+<span class="nc" id="L39">    }</span>
+
+    public String getApiVersion(){
+<span class="nc" id="L42">            return this.apiVersion;</span>
+    }
+
+    public A withApiVersion(String apiVersion){
+<span class="nc" id="L46">            this.apiVersion=apiVersion; return (A) this;</span>
+    }
+
+    public Boolean hasApiVersion(){
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            return this.apiVersion != null;</span>
+    }
+
+    public A addToDryRun(int index,String item){
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            if (this.dryRun == null) {this.dryRun = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L55">            this.dryRun.add(index, item);</span>
+<span class="nc" id="L56">            return (A)this;</span>
+    }
+
+    public A setToDryRun(int index,String item){
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            if (this.dryRun == null) {this.dryRun = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L61">            this.dryRun.set(index, item); return (A)this;</span>
+    }
+
+    public A addToDryRun(String... items){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (this.dryRun == null) {this.dryRun = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            for (String item : items) {this.dryRun.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToDryRun(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            if (this.dryRun == null) {this.dryRun = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            for (String item : items) {this.dryRun.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromDryRun(String... items){
+<span class="nc bnc" id="L75" title="All 4 branches missed.">            for (String item : items) {if (this.dryRun!= null){ this.dryRun.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromDryRun(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L79" title="All 4 branches missed.">            for (String item : items) {if (this.dryRun!= null){ this.dryRun.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getDryRun(){
+<span class="nc" id="L83">            return this.dryRun;</span>
+    }
+
+    public String getDryRun(int index){
+<span class="nc" id="L87">            return this.dryRun.get(index);</span>
+    }
+
+    public String getFirstDryRun(){
+<span class="nc" id="L91">            return this.dryRun.get(0);</span>
+    }
+
+    public String getLastDryRun(){
+<span class="nc" id="L95">            return this.dryRun.get(dryRun.size() - 1);</span>
+    }
+
+    public String getMatchingDryRun(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            for (String item: dryRun) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withDryRun(List&lt;String&gt; dryRun){
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            if (this.dryRun != null) { _visitables.removeAll(this.dryRun);}</span>
+<span class="nc bnc" id="L104" title="All 4 branches missed.">            if (dryRun != null) {this.dryRun = new ArrayList&lt;String&gt;(); for (String item : dryRun){this.addToDryRun(item);}} else { this.dryRun = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withDryRun(String... dryRun){
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            if (this.dryRun != null) {this.dryRun.clear();}</span>
+<span class="nc bnc" id="L109" title="All 4 branches missed.">            if (dryRun != null) {for (String item :dryRun){ this.addToDryRun(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasDryRun(){
+<span class="nc bnc" id="L113" title="All 4 branches missed.">            return dryRun != null &amp;&amp; !dryRun.isEmpty();</span>
+    }
+
+    public Long getGracePeriodSeconds(){
+<span class="nc" id="L117">            return this.gracePeriodSeconds;</span>
+    }
+
+    public A withGracePeriodSeconds(Long gracePeriodSeconds){
+<span class="nc" id="L121">            this.gracePeriodSeconds=gracePeriodSeconds; return (A) this;</span>
+    }
+
+    public Boolean hasGracePeriodSeconds(){
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            return this.gracePeriodSeconds != null;</span>
+    }
+
+    public A withNewGracePeriodSeconds(String arg1){
+<span class="nc" id="L129">            return (A)withGracePeriodSeconds(new Long(arg1));</span>
+    }
+
+    public A withNewGracePeriodSeconds(long arg1){
+<span class="nc" id="L133">            return (A)withGracePeriodSeconds(new Long(arg1));</span>
+    }
+
+    public String getKind(){
+<span class="nc" id="L137">            return this.kind;</span>
+    }
+
+    public A withKind(String kind){
+<span class="nc" id="L141">            this.kind=kind; return (A) this;</span>
+    }
+
+    public Boolean hasKind(){
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            return this.kind != null;</span>
+    }
+
+    public Boolean isOrphanDependents(){
+<span class="nc" id="L149">            return this.orphanDependents;</span>
+    }
+
+    public A withOrphanDependents(Boolean orphanDependents){
+<span class="nc" id="L153">            this.orphanDependents=orphanDependents; return (A) this;</span>
+    }
+
+    public Boolean hasOrphanDependents(){
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            return this.orphanDependents != null;</span>
+    }
+
+    public A withNewOrphanDependents(String arg1){
+<span class="nc" id="L161">            return (A)withOrphanDependents(new Boolean(arg1));</span>
+    }
+
+    public A withNewOrphanDependents(boolean arg1){
+<span class="nc" id="L165">            return (A)withOrphanDependents(new Boolean(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPreconditions instead.
+ * @return The buildable object.
+ */
+@Deprecated public Preconditions getPreconditions(){
+<span class="nc bnc" id="L174" title="All 2 branches missed.">            return this.preconditions!=null?this.preconditions.build():null;</span>
+    }
+
+    public Preconditions buildPreconditions(){
+<span class="nc bnc" id="L178" title="All 2 branches missed.">            return this.preconditions!=null?this.preconditions.build():null;</span>
+    }
+
+    public A withPreconditions(Preconditions preconditions){
+<span class="nc" id="L182">            _visitables.remove(this.preconditions);</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">            if (preconditions!=null){ this.preconditions= new PreconditionsBuilder(preconditions); _visitables.add(this.preconditions);} return (A) this;</span>
+    }
+
+    public Boolean hasPreconditions(){
+<span class="nc bnc" id="L187" title="All 2 branches missed.">            return this.preconditions != null;</span>
+    }
+
+    public A withNewPreconditions(String uid){
+<span class="nc" id="L191">            return (A)withPreconditions(new Preconditions(uid));</span>
+    }
+
+    public DeleteOptionsFluent.PreconditionsNested&lt;A&gt; withNewPreconditions(){
+<span class="nc" id="L195">            return new PreconditionsNestedImpl();</span>
+    }
+
+    public DeleteOptionsFluent.PreconditionsNested&lt;A&gt; withNewPreconditionsLike(Preconditions item){
+<span class="nc" id="L199">            return new PreconditionsNestedImpl(item);</span>
+    }
+
+    public DeleteOptionsFluent.PreconditionsNested&lt;A&gt; editPreconditions(){
+<span class="nc" id="L203">            return withNewPreconditionsLike(getPreconditions());</span>
+    }
+
+    public DeleteOptionsFluent.PreconditionsNested&lt;A&gt; editOrNewPreconditions(){
+<span class="nc bnc" id="L207" title="All 2 branches missed.">            return withNewPreconditionsLike(getPreconditions() != null ? getPreconditions(): new PreconditionsBuilder().build());</span>
+    }
+
+    public DeleteOptionsFluent.PreconditionsNested&lt;A&gt; editOrNewPreconditionsLike(Preconditions item){
+<span class="nc bnc" id="L211" title="All 2 branches missed.">            return withNewPreconditionsLike(getPreconditions() != null ? getPreconditions(): item);</span>
+    }
+
+    public String getPropagationPolicy(){
+<span class="nc" id="L215">            return this.propagationPolicy;</span>
+    }
+
+    public A withPropagationPolicy(String propagationPolicy){
+<span class="nc" id="L219">            this.propagationPolicy=propagationPolicy; return (A) this;</span>
+    }
+
+    public Boolean hasPropagationPolicy(){
+<span class="nc bnc" id="L223" title="All 2 branches missed.">            return this.propagationPolicy != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L227" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L228" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L230">            DeleteOptionsFluentImpl that = (DeleteOptionsFluentImpl) o;</span>
+<span class="nc bnc" id="L231" title="All 6 branches missed.">            if (apiVersion != null ? !apiVersion.equals(that.apiVersion) :that.apiVersion != null) return false;</span>
+<span class="nc bnc" id="L232" title="All 6 branches missed.">            if (dryRun != null ? !dryRun.equals(that.dryRun) :that.dryRun != null) return false;</span>
+<span class="nc bnc" id="L233" title="All 6 branches missed.">            if (gracePeriodSeconds != null ? !gracePeriodSeconds.equals(that.gracePeriodSeconds) :that.gracePeriodSeconds != null) return false;</span>
+<span class="nc bnc" id="L234" title="All 6 branches missed.">            if (kind != null ? !kind.equals(that.kind) :that.kind != null) return false;</span>
+<span class="nc bnc" id="L235" title="All 6 branches missed.">            if (orphanDependents != null ? !orphanDependents.equals(that.orphanDependents) :that.orphanDependents != null) return false;</span>
+<span class="nc bnc" id="L236" title="All 6 branches missed.">            if (preconditions != null ? !preconditions.equals(that.preconditions) :that.preconditions != null) return false;</span>
+<span class="nc bnc" id="L237" title="All 6 branches missed.">            if (propagationPolicy != null ? !propagationPolicy.equals(that.propagationPolicy) :that.propagationPolicy != null) return false;</span>
+<span class="nc" id="L238">            return true;</span>
+    }
+
+
+    public class PreconditionsNestedImpl&lt;N&gt; extends PreconditionsFluentImpl&lt;DeleteOptionsFluent.PreconditionsNested&lt;N&gt;&gt; implements DeleteOptionsFluent.PreconditionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PreconditionsBuilder builder;
+    
+<span class="nc" id="L246">            PreconditionsNestedImpl(Preconditions item){</span>
+<span class="nc" id="L247">                    this.builder = new PreconditionsBuilder(this, item);</span>
+<span class="nc" id="L248">            }</span>
+<span class="nc" id="L249">            PreconditionsNestedImpl(){</span>
+<span class="nc" id="L250">                    this.builder = new PreconditionsBuilder(this);</span>
+<span class="nc" id="L251">            }</span>
+    
+    public N and(){
+<span class="nc" id="L254">            return (N) DeleteOptionsFluentImpl.this.withPreconditions(builder.build());</span>
+    }
+    public N endPreconditions(){
+<span class="nc" id="L257">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

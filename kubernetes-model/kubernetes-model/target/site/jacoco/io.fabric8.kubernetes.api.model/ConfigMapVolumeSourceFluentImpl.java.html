@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConfigMapVolumeSourceFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ConfigMapVolumeSourceFluentImpl.java</span></div><h1>ConfigMapVolumeSourceFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Integer;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class ConfigMapVolumeSourceFluentImpl&lt;A extends ConfigMapVolumeSourceFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ConfigMapVolumeSourceFluent&lt;A&gt;{
+
+    private Integer defaultMode;
+    private List&lt;KeyToPathBuilder&gt; items;
+    private String name;
+    private Boolean optional;
+
+<span class="nc" id="L25">    public ConfigMapVolumeSourceFluentImpl(){</span>
+<span class="nc" id="L26">    }</span>
+<span class="nc" id="L27">    public ConfigMapVolumeSourceFluentImpl(ConfigMapVolumeSource instance){</span>
+<span class="nc" id="L28">            this.withDefaultMode(instance.getDefaultMode()); </span>
+<span class="nc" id="L29">            this.withItems(instance.getItems()); </span>
+<span class="nc" id="L30">            this.withName(instance.getName()); </span>
+<span class="nc" id="L31">            this.withOptional(instance.getOptional()); </span>
+<span class="nc" id="L32">    }</span>
+
+    public Integer getDefaultMode(){
+<span class="nc" id="L35">            return this.defaultMode;</span>
+    }
+
+    public A withDefaultMode(Integer defaultMode){
+<span class="nc" id="L39">            this.defaultMode=defaultMode; return (A) this;</span>
+    }
+
+    public Boolean hasDefaultMode(){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            return this.defaultMode != null;</span>
+    }
+
+    public A addToItems(int index,KeyToPath item){
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            if (this.items == null) {this.items = new ArrayList&lt;KeyToPathBuilder&gt;();}</span>
+<span class="nc bnc" id="L48" title="All 4 branches missed.">            KeyToPathBuilder builder = new KeyToPathBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.items.add(index &gt;= 0 ? index : items.size(), builder); return (A)this;</span>
+    }
+
+    public A setToItems(int index,KeyToPath item){
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            if (this.items == null) {this.items = new ArrayList&lt;KeyToPathBuilder&gt;();}</span>
+<span class="nc" id="L53">            KeyToPathBuilder builder = new KeyToPathBuilder(item);</span>
+<span class="nc bnc" id="L54" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L55" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= items.size()) { items.add(builder); } else { items.set(index, builder);}</span>
+<span class="nc" id="L56">             return (A)this;</span>
+    }
+
+    public A addToItems(KeyToPath... items){
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            if (this.items == null) {this.items = new ArrayList&lt;KeyToPathBuilder&gt;();}</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            for (KeyToPath item : items) {KeyToPathBuilder builder = new KeyToPathBuilder(item);_visitables.add(builder);this.items.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToItems(Collection&lt;KeyToPath&gt; items){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (this.items == null) {this.items = new ArrayList&lt;KeyToPathBuilder&gt;();}</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            for (KeyToPath item : items) {KeyToPathBuilder builder = new KeyToPathBuilder(item);_visitables.add(builder);this.items.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromItems(KeyToPath... items){
+<span class="nc bnc" id="L70" title="All 4 branches missed.">            for (KeyToPath item : items) {KeyToPathBuilder builder = new KeyToPathBuilder(item);_visitables.remove(builder);if (this.items != null) {this.items.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromItems(Collection&lt;KeyToPath&gt; items){
+<span class="nc bnc" id="L74" title="All 4 branches missed.">            for (KeyToPath item : items) {KeyToPathBuilder builder = new KeyToPathBuilder(item);_visitables.remove(builder);if (this.items != null) {this.items.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildItems instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;KeyToPath&gt; getItems(){
+<span class="nc" id="L83">            return build(items);</span>
+    }
+
+    public List&lt;KeyToPath&gt; buildItems(){
+<span class="nc" id="L87">            return build(items);</span>
+    }
+
+    public KeyToPath buildItem(int index){
+<span class="nc" id="L91">            return this.items.get(index).build();</span>
+    }
+
+    public KeyToPath buildFirstItem(){
+<span class="nc" id="L95">            return this.items.get(0).build();</span>
+    }
+
+    public KeyToPath buildLastItem(){
+<span class="nc" id="L99">            return this.items.get(items.size() - 1).build();</span>
+    }
+
+    public KeyToPath buildMatchingItem(io.fabric8.kubernetes.api.builder.Predicate&lt;KeyToPathBuilder&gt; predicate){
+<span class="nc bnc" id="L103" title="All 4 branches missed.">            for (KeyToPathBuilder item: items) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withItems(List&lt;KeyToPath&gt; items){
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            if (this.items != null) { _visitables.removeAll(this.items);}</span>
+<span class="nc bnc" id="L108" title="All 4 branches missed.">            if (items != null) {this.items = new ArrayList&lt;KeyToPathBuilder&gt;(); for (KeyToPath item : items){this.addToItems(item);}} else { this.items = new ArrayList&lt;KeyToPathBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withItems(KeyToPath... items){
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            if (this.items != null) {this.items.clear();}</span>
+<span class="nc bnc" id="L113" title="All 4 branches missed.">            if (items != null) {for (KeyToPath item :items){ this.addToItems(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasItems(){
+<span class="nc bnc" id="L117" title="All 4 branches missed.">            return items != null &amp;&amp; !items.isEmpty();</span>
+    }
+
+    public A addNewItem(String key,Integer mode,String path){
+<span class="nc" id="L121">            return (A)addToItems(new KeyToPath(key, mode, path));</span>
+    }
+
+    public ConfigMapVolumeSourceFluent.ItemsNested&lt;A&gt; addNewItem(){
+<span class="nc" id="L125">            return new ItemsNestedImpl();</span>
+    }
+
+    public ConfigMapVolumeSourceFluent.ItemsNested&lt;A&gt; addNewItemLike(KeyToPath item){
+<span class="nc" id="L129">            return new ItemsNestedImpl(-1, item);</span>
+    }
+
+    public ConfigMapVolumeSourceFluent.ItemsNested&lt;A&gt; setNewItemLike(int index,KeyToPath item){
+<span class="nc" id="L133">            return new ItemsNestedImpl(index, item);</span>
+    }
+
+    public ConfigMapVolumeSourceFluent.ItemsNested&lt;A&gt; editItem(int index){
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            if (items.size() &lt;= index) throw new RuntimeException(&quot;Can't edit items. Index exceeds size.&quot;);</span>
+<span class="nc" id="L138">            return setNewItemLike(index, buildItem(index));</span>
+    }
+
+    public ConfigMapVolumeSourceFluent.ItemsNested&lt;A&gt; editFirstItem(){
+<span class="nc bnc" id="L142" title="All 2 branches missed.">            if (items.size() == 0) throw new RuntimeException(&quot;Can't edit first items. The list is empty.&quot;);</span>
+<span class="nc" id="L143">            return setNewItemLike(0, buildItem(0));</span>
+    }
+
+    public ConfigMapVolumeSourceFluent.ItemsNested&lt;A&gt; editLastItem(){
+<span class="nc" id="L147">            int index = items.size() - 1;</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last items. The list is empty.&quot;);</span>
+<span class="nc" id="L149">            return setNewItemLike(index, buildItem(index));</span>
+    }
+
+    public ConfigMapVolumeSourceFluent.ItemsNested&lt;A&gt; editMatchingItem(io.fabric8.kubernetes.api.builder.Predicate&lt;KeyToPathBuilder&gt; predicate){
+<span class="nc" id="L153">            int index = -1;</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            for (int i=0;i&lt;items.size();i++) { </span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            if (predicate.apply(items.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching items. No match found.&quot;);</span>
+<span class="nc" id="L158">            return setNewItemLike(index, buildItem(index));</span>
+    }
+
+    public String getName(){
+<span class="nc" id="L162">            return this.name;</span>
+    }
+
+    public A withName(String name){
+<span class="nc" id="L166">            this.name=name; return (A) this;</span>
+    }
+
+    public Boolean hasName(){
+<span class="nc bnc" id="L170" title="All 2 branches missed.">            return this.name != null;</span>
+    }
+
+    public Boolean isOptional(){
+<span class="nc" id="L174">            return this.optional;</span>
+    }
+
+    public A withOptional(Boolean optional){
+<span class="nc" id="L178">            this.optional=optional; return (A) this;</span>
+    }
+
+    public Boolean hasOptional(){
+<span class="nc bnc" id="L182" title="All 2 branches missed.">            return this.optional != null;</span>
+    }
+
+    public A withNewOptional(String arg1){
+<span class="nc" id="L186">            return (A)withOptional(new Boolean(arg1));</span>
+    }
+
+    public A withNewOptional(boolean arg1){
+<span class="nc" id="L190">            return (A)withOptional(new Boolean(arg1));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L194" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L195" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L197">            ConfigMapVolumeSourceFluentImpl that = (ConfigMapVolumeSourceFluentImpl) o;</span>
+<span class="nc bnc" id="L198" title="All 6 branches missed.">            if (defaultMode != null ? !defaultMode.equals(that.defaultMode) :that.defaultMode != null) return false;</span>
+<span class="nc bnc" id="L199" title="All 6 branches missed.">            if (items != null ? !items.equals(that.items) :that.items != null) return false;</span>
+<span class="nc bnc" id="L200" title="All 6 branches missed.">            if (name != null ? !name.equals(that.name) :that.name != null) return false;</span>
+<span class="nc bnc" id="L201" title="All 6 branches missed.">            if (optional != null ? !optional.equals(that.optional) :that.optional != null) return false;</span>
+<span class="nc" id="L202">            return true;</span>
+    }
+
+
+    public class ItemsNestedImpl&lt;N&gt; extends KeyToPathFluentImpl&lt;ConfigMapVolumeSourceFluent.ItemsNested&lt;N&gt;&gt; implements ConfigMapVolumeSourceFluent.ItemsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final KeyToPathBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L211">            ItemsNestedImpl(int index,KeyToPath item){</span>
+<span class="nc" id="L212">                    this.index = index;</span>
+<span class="nc" id="L213">                    this.builder = new KeyToPathBuilder(this, item);</span>
+<span class="nc" id="L214">            }</span>
+<span class="nc" id="L215">            ItemsNestedImpl(){</span>
+<span class="nc" id="L216">                    this.index = -1;</span>
+<span class="nc" id="L217">                    this.builder = new KeyToPathBuilder(this);</span>
+<span class="nc" id="L218">            }</span>
+    
+    public N and(){
+<span class="nc" id="L221">            return (N) ConfigMapVolumeSourceFluentImpl.this.setToItems(index, builder.build());</span>
+    }
+    public N endItem(){
+<span class="nc" id="L224">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

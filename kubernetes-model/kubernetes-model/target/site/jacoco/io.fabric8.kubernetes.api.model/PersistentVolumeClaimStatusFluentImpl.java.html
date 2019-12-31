@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PersistentVolumeClaimStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">PersistentVolumeClaimStatusFluentImpl.java</span></div><h1>PersistentVolumeClaimStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.util.LinkedHashMap;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+import java.util.Map;
+
+public class PersistentVolumeClaimStatusFluentImpl&lt;A extends PersistentVolumeClaimStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements PersistentVolumeClaimStatusFluent&lt;A&gt;{
+
+    private List&lt;String&gt; accessModes;
+    private Map&lt;String,Quantity&gt; capacity;
+    private List&lt;PersistentVolumeClaimConditionBuilder&gt; conditions;
+    private String phase;
+
+<span class="nc" id="L26">    public PersistentVolumeClaimStatusFluentImpl(){</span>
+<span class="nc" id="L27">    }</span>
+<span class="nc" id="L28">    public PersistentVolumeClaimStatusFluentImpl(PersistentVolumeClaimStatus instance){</span>
+<span class="nc" id="L29">            this.withAccessModes(instance.getAccessModes()); </span>
+<span class="nc" id="L30">            this.withCapacity(instance.getCapacity()); </span>
+<span class="nc" id="L31">            this.withConditions(instance.getConditions()); </span>
+<span class="nc" id="L32">            this.withPhase(instance.getPhase()); </span>
+<span class="nc" id="L33">    }</span>
+
+    public A addToAccessModes(int index,String item){
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            if (this.accessModes == null) {this.accessModes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L37">            this.accessModes.add(index, item);</span>
+<span class="nc" id="L38">            return (A)this;</span>
+    }
+
+    public A setToAccessModes(int index,String item){
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            if (this.accessModes == null) {this.accessModes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L43">            this.accessModes.set(index, item); return (A)this;</span>
+    }
+
+    public A addToAccessModes(String... items){
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            if (this.accessModes == null) {this.accessModes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            for (String item : items) {this.accessModes.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToAccessModes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            if (this.accessModes == null) {this.accessModes = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            for (String item : items) {this.accessModes.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromAccessModes(String... items){
+<span class="nc bnc" id="L57" title="All 4 branches missed.">            for (String item : items) {if (this.accessModes!= null){ this.accessModes.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAccessModes(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L61" title="All 4 branches missed.">            for (String item : items) {if (this.accessModes!= null){ this.accessModes.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getAccessModes(){
+<span class="nc" id="L65">            return this.accessModes;</span>
+    }
+
+    public String getAccessMode(int index){
+<span class="nc" id="L69">            return this.accessModes.get(index);</span>
+    }
+
+    public String getFirstAccessMode(){
+<span class="nc" id="L73">            return this.accessModes.get(0);</span>
+    }
+
+    public String getLastAccessMode(){
+<span class="nc" id="L77">            return this.accessModes.get(accessModes.size() - 1);</span>
+    }
+
+    public String getMatchingAccessMode(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L81" title="All 4 branches missed.">            for (String item: accessModes) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withAccessModes(List&lt;String&gt; accessModes){
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            if (this.accessModes != null) { _visitables.removeAll(this.accessModes);}</span>
+<span class="nc bnc" id="L86" title="All 4 branches missed.">            if (accessModes != null) {this.accessModes = new ArrayList&lt;String&gt;(); for (String item : accessModes){this.addToAccessModes(item);}} else { this.accessModes = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withAccessModes(String... accessModes){
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            if (this.accessModes != null) {this.accessModes.clear();}</span>
+<span class="nc bnc" id="L91" title="All 4 branches missed.">            if (accessModes != null) {for (String item :accessModes){ this.addToAccessModes(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAccessModes(){
+<span class="nc bnc" id="L95" title="All 4 branches missed.">            return accessModes != null &amp;&amp; !accessModes.isEmpty();</span>
+    }
+
+    public A addToCapacity(String key,Quantity value){
+<span class="nc bnc" id="L99" title="All 6 branches missed.">            if(this.capacity == null &amp;&amp; key != null &amp;&amp; value != null) { this.capacity = new LinkedHashMap&lt;String,Quantity&gt;(); }</span>
+<span class="nc bnc" id="L100" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.capacity.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToCapacity(Map&lt;String,Quantity&gt; map){
+<span class="nc bnc" id="L104" title="All 4 branches missed.">            if(this.capacity == null &amp;&amp; map != null) { this.capacity = new LinkedHashMap&lt;String,Quantity&gt;(); }</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            if(map != null) { this.capacity.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromCapacity(String key){
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            if(this.capacity == null) { return (A) this; }</span>
+<span class="nc bnc" id="L110" title="All 4 branches missed.">            if(key != null &amp;&amp; this.capacity != null) {this.capacity.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromCapacity(Map&lt;String,Quantity&gt; map){
+<span class="nc bnc" id="L114" title="All 2 branches missed.">            if(this.capacity == null) { return (A) this; }</span>
+<span class="nc bnc" id="L115" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.capacity != null){this.capacity.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,Quantity&gt; getCapacity(){
+<span class="nc" id="L119">            return this.capacity;</span>
+    }
+
+    public A withCapacity(Map&lt;String,Quantity&gt; capacity){
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            if (capacity == null) { this.capacity =  new LinkedHashMap&lt;String,Quantity&gt;();} else {this.capacity = new LinkedHashMap&lt;String,Quantity&gt;(capacity);} return (A) this;</span>
+    }
+
+    public Boolean hasCapacity(){
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            return this.capacity != null;</span>
+    }
+
+    public A addToConditions(int index,PersistentVolumeClaimCondition item){
+<span class="nc bnc" id="L131" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;PersistentVolumeClaimConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L132" title="All 4 branches missed.">            PersistentVolumeClaimConditionBuilder builder = new PersistentVolumeClaimConditionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.conditions.add(index &gt;= 0 ? index : conditions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToConditions(int index,PersistentVolumeClaimCondition item){
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;PersistentVolumeClaimConditionBuilder&gt;();}</span>
+<span class="nc" id="L137">            PersistentVolumeClaimConditionBuilder builder = new PersistentVolumeClaimConditionBuilder(item);</span>
+<span class="nc bnc" id="L138" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L139" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= conditions.size()) { conditions.add(builder); } else { conditions.set(index, builder);}</span>
+<span class="nc" id="L140">             return (A)this;</span>
+    }
+
+    public A addToConditions(PersistentVolumeClaimCondition... items){
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;PersistentVolumeClaimConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            for (PersistentVolumeClaimCondition item : items) {PersistentVolumeClaimConditionBuilder builder = new PersistentVolumeClaimConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToConditions(Collection&lt;PersistentVolumeClaimCondition&gt; items){
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;PersistentVolumeClaimConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">            for (PersistentVolumeClaimCondition item : items) {PersistentVolumeClaimConditionBuilder builder = new PersistentVolumeClaimConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromConditions(PersistentVolumeClaimCondition... items){
+<span class="nc bnc" id="L154" title="All 4 branches missed.">            for (PersistentVolumeClaimCondition item : items) {PersistentVolumeClaimConditionBuilder builder = new PersistentVolumeClaimConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromConditions(Collection&lt;PersistentVolumeClaimCondition&gt; items){
+<span class="nc bnc" id="L158" title="All 4 branches missed.">            for (PersistentVolumeClaimCondition item : items) {PersistentVolumeClaimConditionBuilder builder = new PersistentVolumeClaimConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildConditions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;PersistentVolumeClaimCondition&gt; getConditions(){
+<span class="nc" id="L167">            return build(conditions);</span>
+    }
+
+    public List&lt;PersistentVolumeClaimCondition&gt; buildConditions(){
+<span class="nc" id="L171">            return build(conditions);</span>
+    }
+
+    public PersistentVolumeClaimCondition buildCondition(int index){
+<span class="nc" id="L175">            return this.conditions.get(index).build();</span>
+    }
+
+    public PersistentVolumeClaimCondition buildFirstCondition(){
+<span class="nc" id="L179">            return this.conditions.get(0).build();</span>
+    }
+
+    public PersistentVolumeClaimCondition buildLastCondition(){
+<span class="nc" id="L183">            return this.conditions.get(conditions.size() - 1).build();</span>
+    }
+
+    public PersistentVolumeClaimCondition buildMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;PersistentVolumeClaimConditionBuilder&gt; predicate){
+<span class="nc bnc" id="L187" title="All 4 branches missed.">            for (PersistentVolumeClaimConditionBuilder item: conditions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withConditions(List&lt;PersistentVolumeClaimCondition&gt; conditions){
+<span class="nc bnc" id="L191" title="All 2 branches missed.">            if (this.conditions != null) { _visitables.removeAll(this.conditions);}</span>
+<span class="nc bnc" id="L192" title="All 4 branches missed.">            if (conditions != null) {this.conditions = new ArrayList&lt;PersistentVolumeClaimConditionBuilder&gt;(); for (PersistentVolumeClaimCondition item : conditions){this.addToConditions(item);}} else { this.conditions = new ArrayList&lt;PersistentVolumeClaimConditionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withConditions(PersistentVolumeClaimCondition... conditions){
+<span class="nc bnc" id="L196" title="All 2 branches missed.">            if (this.conditions != null) {this.conditions.clear();}</span>
+<span class="nc bnc" id="L197" title="All 4 branches missed.">            if (conditions != null) {for (PersistentVolumeClaimCondition item :conditions){ this.addToConditions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasConditions(){
+<span class="nc bnc" id="L201" title="All 4 branches missed.">            return conditions != null &amp;&amp; !conditions.isEmpty();</span>
+    }
+
+    public PersistentVolumeClaimStatusFluent.ConditionsNested&lt;A&gt; addNewCondition(){
+<span class="nc" id="L205">            return new ConditionsNestedImpl();</span>
+    }
+
+    public PersistentVolumeClaimStatusFluent.ConditionsNested&lt;A&gt; addNewConditionLike(PersistentVolumeClaimCondition item){
+<span class="nc" id="L209">            return new ConditionsNestedImpl(-1, item);</span>
+    }
+
+    public PersistentVolumeClaimStatusFluent.ConditionsNested&lt;A&gt; setNewConditionLike(int index,PersistentVolumeClaimCondition item){
+<span class="nc" id="L213">            return new ConditionsNestedImpl(index, item);</span>
+    }
+
+    public PersistentVolumeClaimStatusFluent.ConditionsNested&lt;A&gt; editCondition(int index){
+<span class="nc bnc" id="L217" title="All 2 branches missed.">            if (conditions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit conditions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L218">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public PersistentVolumeClaimStatusFluent.ConditionsNested&lt;A&gt; editFirstCondition(){
+<span class="nc bnc" id="L222" title="All 2 branches missed.">            if (conditions.size() == 0) throw new RuntimeException(&quot;Can't edit first conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L223">            return setNewConditionLike(0, buildCondition(0));</span>
+    }
+
+    public PersistentVolumeClaimStatusFluent.ConditionsNested&lt;A&gt; editLastCondition(){
+<span class="nc" id="L227">            int index = conditions.size() - 1;</span>
+<span class="nc bnc" id="L228" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L229">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public PersistentVolumeClaimStatusFluent.ConditionsNested&lt;A&gt; editMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;PersistentVolumeClaimConditionBuilder&gt; predicate){
+<span class="nc" id="L233">            int index = -1;</span>
+<span class="nc bnc" id="L234" title="All 2 branches missed.">            for (int i=0;i&lt;conditions.size();i++) { </span>
+<span class="nc bnc" id="L235" title="All 2 branches missed.">            if (predicate.apply(conditions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L237" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching conditions. No match found.&quot;);</span>
+<span class="nc" id="L238">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public String getPhase(){
+<span class="nc" id="L242">            return this.phase;</span>
+    }
+
+    public A withPhase(String phase){
+<span class="nc" id="L246">            this.phase=phase; return (A) this;</span>
+    }
+
+    public Boolean hasPhase(){
+<span class="nc bnc" id="L250" title="All 2 branches missed.">            return this.phase != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L254" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L255" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L256" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L257">            PersistentVolumeClaimStatusFluentImpl that = (PersistentVolumeClaimStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L258" title="All 6 branches missed.">            if (accessModes != null ? !accessModes.equals(that.accessModes) :that.accessModes != null) return false;</span>
+<span class="nc bnc" id="L259" title="All 6 branches missed.">            if (capacity != null ? !capacity.equals(that.capacity) :that.capacity != null) return false;</span>
+<span class="nc bnc" id="L260" title="All 6 branches missed.">            if (conditions != null ? !conditions.equals(that.conditions) :that.conditions != null) return false;</span>
+<span class="nc bnc" id="L261" title="All 6 branches missed.">            if (phase != null ? !phase.equals(that.phase) :that.phase != null) return false;</span>
+<span class="nc" id="L262">            return true;</span>
+    }
+
+
+    public class ConditionsNestedImpl&lt;N&gt; extends PersistentVolumeClaimConditionFluentImpl&lt;PersistentVolumeClaimStatusFluent.ConditionsNested&lt;N&gt;&gt; implements PersistentVolumeClaimStatusFluent.ConditionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final PersistentVolumeClaimConditionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L271">            ConditionsNestedImpl(int index,PersistentVolumeClaimCondition item){</span>
+<span class="nc" id="L272">                    this.index = index;</span>
+<span class="nc" id="L273">                    this.builder = new PersistentVolumeClaimConditionBuilder(this, item);</span>
+<span class="nc" id="L274">            }</span>
+<span class="nc" id="L275">            ConditionsNestedImpl(){</span>
+<span class="nc" id="L276">                    this.index = -1;</span>
+<span class="nc" id="L277">                    this.builder = new PersistentVolumeClaimConditionBuilder(this);</span>
+<span class="nc" id="L278">            }</span>
+    
+    public N and(){
+<span class="nc" id="L281">            return (N) PersistentVolumeClaimStatusFluentImpl.this.setToConditions(index, builder.build());</span>
+    }
+    public N endCondition(){
+<span class="nc" id="L284">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

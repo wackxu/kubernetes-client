@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeploymentStrategy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">DeploymentStrategy.java</span></div><h1>DeploymentStrategy.java</h1><pre class="source lang-java linenums">
+package io.fabric8.openshift.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.fabric8.kubernetes.api.model.ResourceRequirements;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;activeDeadlineSeconds&quot;,
+    &quot;annotations&quot;,
+    &quot;customParams&quot;,
+    &quot;labels&quot;,
+    &quot;recreateParams&quot;,
+    &quot;resources&quot;,
+    &quot;rollingParams&quot;,
+    &quot;type&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L44">@ToString</span>
+<span class="pc bpc" id="L45" title="68 of 78 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class DeploymentStrategy implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;activeDeadlineSeconds&quot;)
+    private Long activeDeadlineSeconds;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;annotations&quot;)
+    @Valid
+    private Map&lt;String, String&gt; annotations;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;customParams&quot;)
+    @Valid
+    private CustomDeploymentStrategyParams customParams;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;labels&quot;)
+    @Valid
+    private Map&lt;String, String&gt; labels;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;recreateParams&quot;)
+    @Valid
+    private RecreateDeploymentStrategyParams recreateParams;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;resources&quot;)
+    @Valid
+    private ResourceRequirements resources;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;rollingParams&quot;)
+    @Valid
+    private RollingDeploymentStrategyParams rollingParams;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;type&quot;)
+    private java.lang.String type;
+<span class="fc" id="L104">    @JsonIgnore</span>
+    private Map&lt;java.lang.String, Object&gt; additionalProperties = new HashMap&lt;java.lang.String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L111">    public DeploymentStrategy() {</span>
+<span class="fc" id="L112">    }</span>
+
+    /**
+     * 
+     * @param recreateParams
+     * @param rollingParams
+     * @param customParams
+     * @param annotations
+     * @param resources
+     * @param type
+     * @param activeDeadlineSeconds
+     * @param labels
+     */
+<span class="fc" id="L125">    public DeploymentStrategy(Long activeDeadlineSeconds, Map&lt;String, String&gt; annotations, CustomDeploymentStrategyParams customParams, Map&lt;String, String&gt; labels, RecreateDeploymentStrategyParams recreateParams, ResourceRequirements resources, RollingDeploymentStrategyParams rollingParams, java.lang.String type) {</span>
+<span class="fc" id="L126">        this.activeDeadlineSeconds = activeDeadlineSeconds;</span>
+<span class="fc" id="L127">        this.annotations = annotations;</span>
+<span class="fc" id="L128">        this.customParams = customParams;</span>
+<span class="fc" id="L129">        this.labels = labels;</span>
+<span class="fc" id="L130">        this.recreateParams = recreateParams;</span>
+<span class="fc" id="L131">        this.resources = resources;</span>
+<span class="fc" id="L132">        this.rollingParams = rollingParams;</span>
+<span class="fc" id="L133">        this.type = type;</span>
+<span class="fc" id="L134">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The activeDeadlineSeconds
+     */
+    @JsonProperty(&quot;activeDeadlineSeconds&quot;)
+    public Long getActiveDeadlineSeconds() {
+<span class="fc" id="L144">        return activeDeadlineSeconds;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param activeDeadlineSeconds
+     *     The activeDeadlineSeconds
+     */
+    @JsonProperty(&quot;activeDeadlineSeconds&quot;)
+    public void setActiveDeadlineSeconds(Long activeDeadlineSeconds) {
+<span class="fc" id="L155">        this.activeDeadlineSeconds = activeDeadlineSeconds;</span>
+<span class="fc" id="L156">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The annotations
+     */
+    @JsonProperty(&quot;annotations&quot;)
+    public Map&lt;String, String&gt; getAnnotations() {
+<span class="fc" id="L166">        return annotations;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param annotations
+     *     The annotations
+     */
+    @JsonProperty(&quot;annotations&quot;)
+    public void setAnnotations(Map&lt;String, String&gt; annotations) {
+<span class="nc" id="L177">        this.annotations = annotations;</span>
+<span class="nc" id="L178">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The customParams
+     */
+    @JsonProperty(&quot;customParams&quot;)
+    public CustomDeploymentStrategyParams getCustomParams() {
+<span class="fc" id="L188">        return customParams;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param customParams
+     *     The customParams
+     */
+    @JsonProperty(&quot;customParams&quot;)
+    public void setCustomParams(CustomDeploymentStrategyParams customParams) {
+<span class="nc" id="L199">        this.customParams = customParams;</span>
+<span class="nc" id="L200">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The labels
+     */
+    @JsonProperty(&quot;labels&quot;)
+    public Map&lt;String, String&gt; getLabels() {
+<span class="fc" id="L210">        return labels;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param labels
+     *     The labels
+     */
+    @JsonProperty(&quot;labels&quot;)
+    public void setLabels(Map&lt;String, String&gt; labels) {
+<span class="nc" id="L221">        this.labels = labels;</span>
+<span class="nc" id="L222">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The recreateParams
+     */
+    @JsonProperty(&quot;recreateParams&quot;)
+    public RecreateDeploymentStrategyParams getRecreateParams() {
+<span class="fc" id="L232">        return recreateParams;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param recreateParams
+     *     The recreateParams
+     */
+    @JsonProperty(&quot;recreateParams&quot;)
+    public void setRecreateParams(RecreateDeploymentStrategyParams recreateParams) {
+<span class="nc" id="L243">        this.recreateParams = recreateParams;</span>
+<span class="nc" id="L244">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The resources
+     */
+    @JsonProperty(&quot;resources&quot;)
+    public ResourceRequirements getResources() {
+<span class="fc" id="L254">        return resources;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param resources
+     *     The resources
+     */
+    @JsonProperty(&quot;resources&quot;)
+    public void setResources(ResourceRequirements resources) {
+<span class="nc" id="L265">        this.resources = resources;</span>
+<span class="nc" id="L266">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The rollingParams
+     */
+    @JsonProperty(&quot;rollingParams&quot;)
+    public RollingDeploymentStrategyParams getRollingParams() {
+<span class="fc" id="L276">        return rollingParams;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param rollingParams
+     *     The rollingParams
+     */
+    @JsonProperty(&quot;rollingParams&quot;)
+    public void setRollingParams(RollingDeploymentStrategyParams rollingParams) {
+<span class="fc" id="L287">        this.rollingParams = rollingParams;</span>
+<span class="fc" id="L288">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The type
+     */
+    @JsonProperty(&quot;type&quot;)
+    public java.lang.String getType() {
+<span class="fc" id="L298">        return type;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param type
+     *     The type
+     */
+    @JsonProperty(&quot;type&quot;)
+    public void setType(java.lang.String type) {
+<span class="fc" id="L309">        this.type = type;</span>
+<span class="fc" id="L310">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;java.lang.String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L314">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(java.lang.String name, Object value) {
+<span class="nc" id="L319">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L320">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

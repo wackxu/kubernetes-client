@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RollingDeploymentStrategyParamsFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">RollingDeploymentStrategyParamsFluentImpl.java</span></div><h1>RollingDeploymentStrategyParamsFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.IntOrString;
+import io.fabric8.kubernetes.api.builder.Nested;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import java.lang.String;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import io.fabric8.kubernetes.api.model.IntOrStringBuilder;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import java.lang.Boolean;
+import java.lang.Override;
+import com.fasterxml.jackson.core.JsonParser;
+import java.lang.Integer;
+import javax.validation.Valid;
+import java.lang.Long;
+import java.lang.Object;
+import io.fabric8.kubernetes.api.model.IntOrStringFluentImpl;
+
+public class RollingDeploymentStrategyParamsFluentImpl&lt;A extends RollingDeploymentStrategyParamsFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements RollingDeploymentStrategyParamsFluent&lt;A&gt;{
+
+    private Long intervalSeconds;
+    private IntOrStringBuilder maxSurge;
+    private IntOrStringBuilder maxUnavailable;
+    private LifecycleHookBuilder post;
+    private LifecycleHookBuilder pre;
+    private Long timeoutSeconds;
+    private Long updatePeriodSeconds;
+
+<span class="fc" id="L34">    public RollingDeploymentStrategyParamsFluentImpl(){</span>
+<span class="fc" id="L35">    }</span>
+<span class="nc" id="L36">    public RollingDeploymentStrategyParamsFluentImpl(RollingDeploymentStrategyParams instance){</span>
+<span class="nc" id="L37">            this.withIntervalSeconds(instance.getIntervalSeconds()); </span>
+<span class="nc" id="L38">            this.withMaxSurge(instance.getMaxSurge()); </span>
+<span class="nc" id="L39">            this.withMaxUnavailable(instance.getMaxUnavailable()); </span>
+<span class="nc" id="L40">            this.withPost(instance.getPost()); </span>
+<span class="nc" id="L41">            this.withPre(instance.getPre()); </span>
+<span class="nc" id="L42">            this.withTimeoutSeconds(instance.getTimeoutSeconds()); </span>
+<span class="nc" id="L43">            this.withUpdatePeriodSeconds(instance.getUpdatePeriodSeconds()); </span>
+<span class="nc" id="L44">    }</span>
+
+    public Long getIntervalSeconds(){
+<span class="fc" id="L47">            return this.intervalSeconds;</span>
+    }
+
+    public A withIntervalSeconds(Long intervalSeconds){
+<span class="fc" id="L51">            this.intervalSeconds=intervalSeconds; return (A) this;</span>
+    }
+
+    public Boolean hasIntervalSeconds(){
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            return this.intervalSeconds != null;</span>
+    }
+
+    public A withNewIntervalSeconds(String arg1){
+<span class="nc" id="L59">            return (A)withIntervalSeconds(new Long(arg1));</span>
+    }
+
+    public A withNewIntervalSeconds(long arg1){
+<span class="nc" id="L63">            return (A)withIntervalSeconds(new Long(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMaxSurge instead.
+ * @return The buildable object.
+ */
+@Deprecated public IntOrString getMaxSurge(){
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">            return this.maxSurge!=null?this.maxSurge.build():null;</span>
+    }
+
+    public IntOrString buildMaxSurge(){
+<span class="nc bnc" id="L76" title="All 2 branches missed.">            return this.maxSurge!=null?this.maxSurge.build():null;</span>
+    }
+
+    public A withMaxSurge(IntOrString maxSurge){
+<span class="fc" id="L80">            _visitables.remove(this.maxSurge);</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">            if (maxSurge!=null){ this.maxSurge= new IntOrStringBuilder(maxSurge); _visitables.add(this.maxSurge);} return (A) this;</span>
+    }
+
+    public Boolean hasMaxSurge(){
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            return this.maxSurge != null;</span>
+    }
+
+    public A withNewMaxSurge(String strVal){
+<span class="nc" id="L89">            return (A)withMaxSurge(new IntOrString(strVal));</span>
+    }
+
+    public A withNewMaxSurge(Integer intVal){
+<span class="nc" id="L93">            return (A)withMaxSurge(new IntOrString(intVal));</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.MaxSurgeNested&lt;A&gt; withNewMaxSurge(){
+<span class="nc" id="L97">            return new MaxSurgeNestedImpl();</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.MaxSurgeNested&lt;A&gt; withNewMaxSurgeLike(IntOrString item){
+<span class="nc" id="L101">            return new MaxSurgeNestedImpl(item);</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.MaxSurgeNested&lt;A&gt; editMaxSurge(){
+<span class="nc" id="L105">            return withNewMaxSurgeLike(getMaxSurge());</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.MaxSurgeNested&lt;A&gt; editOrNewMaxSurge(){
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            return withNewMaxSurgeLike(getMaxSurge() != null ? getMaxSurge(): new IntOrStringBuilder().build());</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.MaxSurgeNested&lt;A&gt; editOrNewMaxSurgeLike(IntOrString item){
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            return withNewMaxSurgeLike(getMaxSurge() != null ? getMaxSurge(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMaxUnavailable instead.
+ * @return The buildable object.
+ */
+@Deprecated public IntOrString getMaxUnavailable(){
+<span class="pc bpc" id="L122" title="1 of 2 branches missed.">            return this.maxUnavailable!=null?this.maxUnavailable.build():null;</span>
+    }
+
+    public IntOrString buildMaxUnavailable(){
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            return this.maxUnavailable!=null?this.maxUnavailable.build():null;</span>
+    }
+
+    public A withMaxUnavailable(IntOrString maxUnavailable){
+<span class="fc" id="L130">            _visitables.remove(this.maxUnavailable);</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">            if (maxUnavailable!=null){ this.maxUnavailable= new IntOrStringBuilder(maxUnavailable); _visitables.add(this.maxUnavailable);} return (A) this;</span>
+    }
+
+    public Boolean hasMaxUnavailable(){
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            return this.maxUnavailable != null;</span>
+    }
+
+    public A withNewMaxUnavailable(String strVal){
+<span class="nc" id="L139">            return (A)withMaxUnavailable(new IntOrString(strVal));</span>
+    }
+
+    public A withNewMaxUnavailable(Integer intVal){
+<span class="nc" id="L143">            return (A)withMaxUnavailable(new IntOrString(intVal));</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.MaxUnavailableNested&lt;A&gt; withNewMaxUnavailable(){
+<span class="nc" id="L147">            return new MaxUnavailableNestedImpl();</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.MaxUnavailableNested&lt;A&gt; withNewMaxUnavailableLike(IntOrString item){
+<span class="nc" id="L151">            return new MaxUnavailableNestedImpl(item);</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.MaxUnavailableNested&lt;A&gt; editMaxUnavailable(){
+<span class="nc" id="L155">            return withNewMaxUnavailableLike(getMaxUnavailable());</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.MaxUnavailableNested&lt;A&gt; editOrNewMaxUnavailable(){
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            return withNewMaxUnavailableLike(getMaxUnavailable() != null ? getMaxUnavailable(): new IntOrStringBuilder().build());</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.MaxUnavailableNested&lt;A&gt; editOrNewMaxUnavailableLike(IntOrString item){
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            return withNewMaxUnavailableLike(getMaxUnavailable() != null ? getMaxUnavailable(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPost instead.
+ * @return The buildable object.
+ */
+@Deprecated public LifecycleHook getPost(){
+<span class="pc bpc" id="L172" title="1 of 2 branches missed.">            return this.post!=null?this.post.build():null;</span>
+    }
+
+    public LifecycleHook buildPost(){
+<span class="nc bnc" id="L176" title="All 2 branches missed.">            return this.post!=null?this.post.build():null;</span>
+    }
+
+    public A withPost(LifecycleHook post){
+<span class="fc" id="L180">            _visitables.remove(this.post);</span>
+<span class="fc bfc" id="L181" title="All 2 branches covered.">            if (post!=null){ this.post= new LifecycleHookBuilder(post); _visitables.add(this.post);} return (A) this;</span>
+    }
+
+    public Boolean hasPost(){
+<span class="nc bnc" id="L185" title="All 2 branches missed.">            return this.post != null;</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.PostNested&lt;A&gt; withNewPost(){
+<span class="fc" id="L189">            return new PostNestedImpl();</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.PostNested&lt;A&gt; withNewPostLike(LifecycleHook item){
+<span class="nc" id="L193">            return new PostNestedImpl(item);</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.PostNested&lt;A&gt; editPost(){
+<span class="nc" id="L197">            return withNewPostLike(getPost());</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.PostNested&lt;A&gt; editOrNewPost(){
+<span class="nc bnc" id="L201" title="All 2 branches missed.">            return withNewPostLike(getPost() != null ? getPost(): new LifecycleHookBuilder().build());</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.PostNested&lt;A&gt; editOrNewPostLike(LifecycleHook item){
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            return withNewPostLike(getPost() != null ? getPost(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildPre instead.
+ * @return The buildable object.
+ */
+@Deprecated public LifecycleHook getPre(){
+<span class="pc bpc" id="L214" title="1 of 2 branches missed.">            return this.pre!=null?this.pre.build():null;</span>
+    }
+
+    public LifecycleHook buildPre(){
+<span class="nc bnc" id="L218" title="All 2 branches missed.">            return this.pre!=null?this.pre.build():null;</span>
+    }
+
+    public A withPre(LifecycleHook pre){
+<span class="fc" id="L222">            _visitables.remove(this.pre);</span>
+<span class="fc bfc" id="L223" title="All 2 branches covered.">            if (pre!=null){ this.pre= new LifecycleHookBuilder(pre); _visitables.add(this.pre);} return (A) this;</span>
+    }
+
+    public Boolean hasPre(){
+<span class="nc bnc" id="L227" title="All 2 branches missed.">            return this.pre != null;</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.PreNested&lt;A&gt; withNewPre(){
+<span class="fc" id="L231">            return new PreNestedImpl();</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.PreNested&lt;A&gt; withNewPreLike(LifecycleHook item){
+<span class="nc" id="L235">            return new PreNestedImpl(item);</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.PreNested&lt;A&gt; editPre(){
+<span class="nc" id="L239">            return withNewPreLike(getPre());</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.PreNested&lt;A&gt; editOrNewPre(){
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            return withNewPreLike(getPre() != null ? getPre(): new LifecycleHookBuilder().build());</span>
+    }
+
+    public RollingDeploymentStrategyParamsFluent.PreNested&lt;A&gt; editOrNewPreLike(LifecycleHook item){
+<span class="nc bnc" id="L247" title="All 2 branches missed.">            return withNewPreLike(getPre() != null ? getPre(): item);</span>
+    }
+
+    public Long getTimeoutSeconds(){
+<span class="fc" id="L251">            return this.timeoutSeconds;</span>
+    }
+
+    public A withTimeoutSeconds(Long timeoutSeconds){
+<span class="fc" id="L255">            this.timeoutSeconds=timeoutSeconds; return (A) this;</span>
+    }
+
+    public Boolean hasTimeoutSeconds(){
+<span class="nc bnc" id="L259" title="All 2 branches missed.">            return this.timeoutSeconds != null;</span>
+    }
+
+    public A withNewTimeoutSeconds(String arg1){
+<span class="nc" id="L263">            return (A)withTimeoutSeconds(new Long(arg1));</span>
+    }
+
+    public A withNewTimeoutSeconds(long arg1){
+<span class="nc" id="L267">            return (A)withTimeoutSeconds(new Long(arg1));</span>
+    }
+
+    public Long getUpdatePeriodSeconds(){
+<span class="fc" id="L271">            return this.updatePeriodSeconds;</span>
+    }
+
+    public A withUpdatePeriodSeconds(Long updatePeriodSeconds){
+<span class="fc" id="L275">            this.updatePeriodSeconds=updatePeriodSeconds; return (A) this;</span>
+    }
+
+    public Boolean hasUpdatePeriodSeconds(){
+<span class="nc bnc" id="L279" title="All 2 branches missed.">            return this.updatePeriodSeconds != null;</span>
+    }
+
+    public A withNewUpdatePeriodSeconds(String arg1){
+<span class="nc" id="L283">            return (A)withUpdatePeriodSeconds(new Long(arg1));</span>
+    }
+
+    public A withNewUpdatePeriodSeconds(long arg1){
+<span class="nc" id="L287">            return (A)withUpdatePeriodSeconds(new Long(arg1));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L291" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L292" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L293" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L294">            RollingDeploymentStrategyParamsFluentImpl that = (RollingDeploymentStrategyParamsFluentImpl) o;</span>
+<span class="nc bnc" id="L295" title="All 6 branches missed.">            if (intervalSeconds != null ? !intervalSeconds.equals(that.intervalSeconds) :that.intervalSeconds != null) return false;</span>
+<span class="nc bnc" id="L296" title="All 6 branches missed.">            if (maxSurge != null ? !maxSurge.equals(that.maxSurge) :that.maxSurge != null) return false;</span>
+<span class="nc bnc" id="L297" title="All 6 branches missed.">            if (maxUnavailable != null ? !maxUnavailable.equals(that.maxUnavailable) :that.maxUnavailable != null) return false;</span>
+<span class="nc bnc" id="L298" title="All 6 branches missed.">            if (post != null ? !post.equals(that.post) :that.post != null) return false;</span>
+<span class="nc bnc" id="L299" title="All 6 branches missed.">            if (pre != null ? !pre.equals(that.pre) :that.pre != null) return false;</span>
+<span class="nc bnc" id="L300" title="All 6 branches missed.">            if (timeoutSeconds != null ? !timeoutSeconds.equals(that.timeoutSeconds) :that.timeoutSeconds != null) return false;</span>
+<span class="nc bnc" id="L301" title="All 6 branches missed.">            if (updatePeriodSeconds != null ? !updatePeriodSeconds.equals(that.updatePeriodSeconds) :that.updatePeriodSeconds != null) return false;</span>
+<span class="nc" id="L302">            return true;</span>
+    }
+
+
+    public class MaxSurgeNestedImpl&lt;N&gt; extends IntOrStringFluentImpl&lt;RollingDeploymentStrategyParamsFluent.MaxSurgeNested&lt;N&gt;&gt; implements RollingDeploymentStrategyParamsFluent.MaxSurgeNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final IntOrStringBuilder builder;
+    
+<span class="nc" id="L310">            MaxSurgeNestedImpl(IntOrString item){</span>
+<span class="nc" id="L311">                    this.builder = new IntOrStringBuilder(this, item);</span>
+<span class="nc" id="L312">            }</span>
+<span class="nc" id="L313">            MaxSurgeNestedImpl(){</span>
+<span class="nc" id="L314">                    this.builder = new IntOrStringBuilder(this);</span>
+<span class="nc" id="L315">            }</span>
+    
+    public N and(){
+<span class="nc" id="L318">            return (N) RollingDeploymentStrategyParamsFluentImpl.this.withMaxSurge(builder.build());</span>
+    }
+    public N endMaxSurge(){
+<span class="nc" id="L321">            return and();</span>
+    }
+
+}
+    public class MaxUnavailableNestedImpl&lt;N&gt; extends IntOrStringFluentImpl&lt;RollingDeploymentStrategyParamsFluent.MaxUnavailableNested&lt;N&gt;&gt; implements RollingDeploymentStrategyParamsFluent.MaxUnavailableNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final IntOrStringBuilder builder;
+    
+<span class="nc" id="L329">            MaxUnavailableNestedImpl(IntOrString item){</span>
+<span class="nc" id="L330">                    this.builder = new IntOrStringBuilder(this, item);</span>
+<span class="nc" id="L331">            }</span>
+<span class="nc" id="L332">            MaxUnavailableNestedImpl(){</span>
+<span class="nc" id="L333">                    this.builder = new IntOrStringBuilder(this);</span>
+<span class="nc" id="L334">            }</span>
+    
+    public N and(){
+<span class="nc" id="L337">            return (N) RollingDeploymentStrategyParamsFluentImpl.this.withMaxUnavailable(builder.build());</span>
+    }
+    public N endMaxUnavailable(){
+<span class="nc" id="L340">            return and();</span>
+    }
+
+}
+    public class PostNestedImpl&lt;N&gt; extends LifecycleHookFluentImpl&lt;RollingDeploymentStrategyParamsFluent.PostNested&lt;N&gt;&gt; implements RollingDeploymentStrategyParamsFluent.PostNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LifecycleHookBuilder builder;
+    
+<span class="nc" id="L348">            PostNestedImpl(LifecycleHook item){</span>
+<span class="nc" id="L349">                    this.builder = new LifecycleHookBuilder(this, item);</span>
+<span class="nc" id="L350">            }</span>
+<span class="fc" id="L351">            PostNestedImpl(){</span>
+<span class="fc" id="L352">                    this.builder = new LifecycleHookBuilder(this);</span>
+<span class="fc" id="L353">            }</span>
+    
+    public N and(){
+<span class="fc" id="L356">            return (N) RollingDeploymentStrategyParamsFluentImpl.this.withPost(builder.build());</span>
+    }
+    public N endPost(){
+<span class="fc" id="L359">            return and();</span>
+    }
+
+}
+    public class PreNestedImpl&lt;N&gt; extends LifecycleHookFluentImpl&lt;RollingDeploymentStrategyParamsFluent.PreNested&lt;N&gt;&gt; implements RollingDeploymentStrategyParamsFluent.PreNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LifecycleHookBuilder builder;
+    
+<span class="nc" id="L367">            PreNestedImpl(LifecycleHook item){</span>
+<span class="nc" id="L368">                    this.builder = new LifecycleHookBuilder(this, item);</span>
+<span class="nc" id="L369">            }</span>
+<span class="fc" id="L370">            PreNestedImpl(){</span>
+<span class="fc" id="L371">                    this.builder = new LifecycleHookBuilder(this);</span>
+<span class="fc" id="L372">            }</span>
+    
+    public N and(){
+<span class="fc" id="L375">            return (N) RollingDeploymentStrategyParamsFluentImpl.this.withPre(builder.build());</span>
+    }
+    public N endPre(){
+<span class="fc" id="L378">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,934 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NodeStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">NodeStatusFluentImpl.java</span></div><h1>NodeStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.util.LinkedHashMap;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.Map;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.lang.Deprecated;
+
+public class NodeStatusFluentImpl&lt;A extends NodeStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements NodeStatusFluent&lt;A&gt;{
+
+    private List&lt;NodeAddressBuilder&gt; addresses;
+    private Map&lt;String,Quantity&gt; allocatable;
+    private Map&lt;String,Quantity&gt; capacity;
+    private List&lt;NodeConditionBuilder&gt; conditions;
+    private NodeConfigStatusBuilder config;
+    private NodeDaemonEndpointsBuilder daemonEndpoints;
+    private List&lt;ContainerImageBuilder&gt; images;
+    private NodeSystemInfoBuilder nodeInfo;
+    private String phase;
+    private List&lt;AttachedVolumeBuilder&gt; volumesAttached;
+    private List&lt;String&gt; volumesInUse;
+
+<span class="nc" id="L33">    public NodeStatusFluentImpl(){</span>
+<span class="nc" id="L34">    }</span>
+<span class="nc" id="L35">    public NodeStatusFluentImpl(NodeStatus instance){</span>
+<span class="nc" id="L36">            this.withAddresses(instance.getAddresses()); </span>
+<span class="nc" id="L37">            this.withAllocatable(instance.getAllocatable()); </span>
+<span class="nc" id="L38">            this.withCapacity(instance.getCapacity()); </span>
+<span class="nc" id="L39">            this.withConditions(instance.getConditions()); </span>
+<span class="nc" id="L40">            this.withConfig(instance.getConfig()); </span>
+<span class="nc" id="L41">            this.withDaemonEndpoints(instance.getDaemonEndpoints()); </span>
+<span class="nc" id="L42">            this.withImages(instance.getImages()); </span>
+<span class="nc" id="L43">            this.withNodeInfo(instance.getNodeInfo()); </span>
+<span class="nc" id="L44">            this.withPhase(instance.getPhase()); </span>
+<span class="nc" id="L45">            this.withVolumesAttached(instance.getVolumesAttached()); </span>
+<span class="nc" id="L46">            this.withVolumesInUse(instance.getVolumesInUse()); </span>
+<span class="nc" id="L47">    }</span>
+
+    public A addToAddresses(int index,NodeAddress item){
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            if (this.addresses == null) {this.addresses = new ArrayList&lt;NodeAddressBuilder&gt;();}</span>
+<span class="nc bnc" id="L51" title="All 4 branches missed.">            NodeAddressBuilder builder = new NodeAddressBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.addresses.add(index &gt;= 0 ? index : addresses.size(), builder); return (A)this;</span>
+    }
+
+    public A setToAddresses(int index,NodeAddress item){
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            if (this.addresses == null) {this.addresses = new ArrayList&lt;NodeAddressBuilder&gt;();}</span>
+<span class="nc" id="L56">            NodeAddressBuilder builder = new NodeAddressBuilder(item);</span>
+<span class="nc bnc" id="L57" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L58" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= addresses.size()) { addresses.add(builder); } else { addresses.set(index, builder);}</span>
+<span class="nc" id="L59">             return (A)this;</span>
+    }
+
+    public A addToAddresses(NodeAddress... items){
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            if (this.addresses == null) {this.addresses = new ArrayList&lt;NodeAddressBuilder&gt;();}</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            for (NodeAddress item : items) {NodeAddressBuilder builder = new NodeAddressBuilder(item);_visitables.add(builder);this.addresses.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToAddresses(Collection&lt;NodeAddress&gt; items){
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            if (this.addresses == null) {this.addresses = new ArrayList&lt;NodeAddressBuilder&gt;();}</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            for (NodeAddress item : items) {NodeAddressBuilder builder = new NodeAddressBuilder(item);_visitables.add(builder);this.addresses.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromAddresses(NodeAddress... items){
+<span class="nc bnc" id="L73" title="All 4 branches missed.">            for (NodeAddress item : items) {NodeAddressBuilder builder = new NodeAddressBuilder(item);_visitables.remove(builder);if (this.addresses != null) {this.addresses.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromAddresses(Collection&lt;NodeAddress&gt; items){
+<span class="nc bnc" id="L77" title="All 4 branches missed.">            for (NodeAddress item : items) {NodeAddressBuilder builder = new NodeAddressBuilder(item);_visitables.remove(builder);if (this.addresses != null) {this.addresses.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildAddresses instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;NodeAddress&gt; getAddresses(){
+<span class="nc" id="L86">            return build(addresses);</span>
+    }
+
+    public List&lt;NodeAddress&gt; buildAddresses(){
+<span class="nc" id="L90">            return build(addresses);</span>
+    }
+
+    public NodeAddress buildAddress(int index){
+<span class="nc" id="L94">            return this.addresses.get(index).build();</span>
+    }
+
+    public NodeAddress buildFirstAddress(){
+<span class="nc" id="L98">            return this.addresses.get(0).build();</span>
+    }
+
+    public NodeAddress buildLastAddress(){
+<span class="nc" id="L102">            return this.addresses.get(addresses.size() - 1).build();</span>
+    }
+
+    public NodeAddress buildMatchingAddress(io.fabric8.kubernetes.api.builder.Predicate&lt;NodeAddressBuilder&gt; predicate){
+<span class="nc bnc" id="L106" title="All 4 branches missed.">            for (NodeAddressBuilder item: addresses) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withAddresses(List&lt;NodeAddress&gt; addresses){
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            if (this.addresses != null) { _visitables.removeAll(this.addresses);}</span>
+<span class="nc bnc" id="L111" title="All 4 branches missed.">            if (addresses != null) {this.addresses = new ArrayList&lt;NodeAddressBuilder&gt;(); for (NodeAddress item : addresses){this.addToAddresses(item);}} else { this.addresses = new ArrayList&lt;NodeAddressBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withAddresses(NodeAddress... addresses){
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            if (this.addresses != null) {this.addresses.clear();}</span>
+<span class="nc bnc" id="L116" title="All 4 branches missed.">            if (addresses != null) {for (NodeAddress item :addresses){ this.addToAddresses(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasAddresses(){
+<span class="nc bnc" id="L120" title="All 4 branches missed.">            return addresses != null &amp;&amp; !addresses.isEmpty();</span>
+    }
+
+    public A addNewAddress(String address,String type){
+<span class="nc" id="L124">            return (A)addToAddresses(new NodeAddress(address, type));</span>
+    }
+
+    public NodeStatusFluent.AddressesNested&lt;A&gt; addNewAddress(){
+<span class="nc" id="L128">            return new AddressesNestedImpl();</span>
+    }
+
+    public NodeStatusFluent.AddressesNested&lt;A&gt; addNewAddressLike(NodeAddress item){
+<span class="nc" id="L132">            return new AddressesNestedImpl(-1, item);</span>
+    }
+
+    public NodeStatusFluent.AddressesNested&lt;A&gt; setNewAddressLike(int index,NodeAddress item){
+<span class="nc" id="L136">            return new AddressesNestedImpl(index, item);</span>
+    }
+
+    public NodeStatusFluent.AddressesNested&lt;A&gt; editAddress(int index){
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            if (addresses.size() &lt;= index) throw new RuntimeException(&quot;Can't edit addresses. Index exceeds size.&quot;);</span>
+<span class="nc" id="L141">            return setNewAddressLike(index, buildAddress(index));</span>
+    }
+
+    public NodeStatusFluent.AddressesNested&lt;A&gt; editFirstAddress(){
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (addresses.size() == 0) throw new RuntimeException(&quot;Can't edit first addresses. The list is empty.&quot;);</span>
+<span class="nc" id="L146">            return setNewAddressLike(0, buildAddress(0));</span>
+    }
+
+    public NodeStatusFluent.AddressesNested&lt;A&gt; editLastAddress(){
+<span class="nc" id="L150">            int index = addresses.size() - 1;</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last addresses. The list is empty.&quot;);</span>
+<span class="nc" id="L152">            return setNewAddressLike(index, buildAddress(index));</span>
+    }
+
+    public NodeStatusFluent.AddressesNested&lt;A&gt; editMatchingAddress(io.fabric8.kubernetes.api.builder.Predicate&lt;NodeAddressBuilder&gt; predicate){
+<span class="nc" id="L156">            int index = -1;</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            for (int i=0;i&lt;addresses.size();i++) { </span>
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            if (predicate.apply(addresses.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L160" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching addresses. No match found.&quot;);</span>
+<span class="nc" id="L161">            return setNewAddressLike(index, buildAddress(index));</span>
+    }
+
+    public A addToAllocatable(String key,Quantity value){
+<span class="nc bnc" id="L165" title="All 6 branches missed.">            if(this.allocatable == null &amp;&amp; key != null &amp;&amp; value != null) { this.allocatable = new LinkedHashMap&lt;String,Quantity&gt;(); }</span>
+<span class="nc bnc" id="L166" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.allocatable.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToAllocatable(Map&lt;String,Quantity&gt; map){
+<span class="nc bnc" id="L170" title="All 4 branches missed.">            if(this.allocatable == null &amp;&amp; map != null) { this.allocatable = new LinkedHashMap&lt;String,Quantity&gt;(); }</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">            if(map != null) { this.allocatable.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromAllocatable(String key){
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            if(this.allocatable == null) { return (A) this; }</span>
+<span class="nc bnc" id="L176" title="All 4 branches missed.">            if(key != null &amp;&amp; this.allocatable != null) {this.allocatable.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromAllocatable(Map&lt;String,Quantity&gt; map){
+<span class="nc bnc" id="L180" title="All 2 branches missed.">            if(this.allocatable == null) { return (A) this; }</span>
+<span class="nc bnc" id="L181" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.allocatable != null){this.allocatable.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,Quantity&gt; getAllocatable(){
+<span class="nc" id="L185">            return this.allocatable;</span>
+    }
+
+    public A withAllocatable(Map&lt;String,Quantity&gt; allocatable){
+<span class="nc bnc" id="L189" title="All 2 branches missed.">            if (allocatable == null) { this.allocatable =  new LinkedHashMap&lt;String,Quantity&gt;();} else {this.allocatable = new LinkedHashMap&lt;String,Quantity&gt;(allocatable);} return (A) this;</span>
+    }
+
+    public Boolean hasAllocatable(){
+<span class="nc bnc" id="L193" title="All 2 branches missed.">            return this.allocatable != null;</span>
+    }
+
+    public A addToCapacity(String key,Quantity value){
+<span class="nc bnc" id="L197" title="All 6 branches missed.">            if(this.capacity == null &amp;&amp; key != null &amp;&amp; value != null) { this.capacity = new LinkedHashMap&lt;String,Quantity&gt;(); }</span>
+<span class="nc bnc" id="L198" title="All 4 branches missed.">            if(key != null &amp;&amp; value != null) {this.capacity.put(key, value);} return (A)this;</span>
+    }
+
+    public A addToCapacity(Map&lt;String,Quantity&gt; map){
+<span class="nc bnc" id="L202" title="All 4 branches missed.">            if(this.capacity == null &amp;&amp; map != null) { this.capacity = new LinkedHashMap&lt;String,Quantity&gt;(); }</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">            if(map != null) { this.capacity.putAll(map);} return (A)this;</span>
+    }
+
+    public A removeFromCapacity(String key){
+<span class="nc bnc" id="L207" title="All 2 branches missed.">            if(this.capacity == null) { return (A) this; }</span>
+<span class="nc bnc" id="L208" title="All 4 branches missed.">            if(key != null &amp;&amp; this.capacity != null) {this.capacity.remove(key);} return (A)this;</span>
+    }
+
+    public A removeFromCapacity(Map&lt;String,Quantity&gt; map){
+<span class="nc bnc" id="L212" title="All 2 branches missed.">            if(this.capacity == null) { return (A) this; }</span>
+<span class="nc bnc" id="L213" title="All 6 branches missed.">            if(map != null) { for(Object key : map.keySet()) {if (this.capacity != null){this.capacity.remove(key);}}} return (A)this;</span>
+    }
+
+    public Map&lt;String,Quantity&gt; getCapacity(){
+<span class="nc" id="L217">            return this.capacity;</span>
+    }
+
+    public A withCapacity(Map&lt;String,Quantity&gt; capacity){
+<span class="nc bnc" id="L221" title="All 2 branches missed.">            if (capacity == null) { this.capacity =  new LinkedHashMap&lt;String,Quantity&gt;();} else {this.capacity = new LinkedHashMap&lt;String,Quantity&gt;(capacity);} return (A) this;</span>
+    }
+
+    public Boolean hasCapacity(){
+<span class="nc bnc" id="L225" title="All 2 branches missed.">            return this.capacity != null;</span>
+    }
+
+    public A addToConditions(int index,NodeCondition item){
+<span class="nc bnc" id="L229" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;NodeConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L230" title="All 4 branches missed.">            NodeConditionBuilder builder = new NodeConditionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.conditions.add(index &gt;= 0 ? index : conditions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToConditions(int index,NodeCondition item){
+<span class="nc bnc" id="L234" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;NodeConditionBuilder&gt;();}</span>
+<span class="nc" id="L235">            NodeConditionBuilder builder = new NodeConditionBuilder(item);</span>
+<span class="nc bnc" id="L236" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L237" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= conditions.size()) { conditions.add(builder); } else { conditions.set(index, builder);}</span>
+<span class="nc" id="L238">             return (A)this;</span>
+    }
+
+    public A addToConditions(NodeCondition... items){
+<span class="nc bnc" id="L242" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;NodeConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            for (NodeCondition item : items) {NodeConditionBuilder builder = new NodeConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToConditions(Collection&lt;NodeCondition&gt; items){
+<span class="nc bnc" id="L247" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;NodeConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L248" title="All 2 branches missed.">            for (NodeCondition item : items) {NodeConditionBuilder builder = new NodeConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromConditions(NodeCondition... items){
+<span class="nc bnc" id="L252" title="All 4 branches missed.">            for (NodeCondition item : items) {NodeConditionBuilder builder = new NodeConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromConditions(Collection&lt;NodeCondition&gt; items){
+<span class="nc bnc" id="L256" title="All 4 branches missed.">            for (NodeCondition item : items) {NodeConditionBuilder builder = new NodeConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildConditions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;NodeCondition&gt; getConditions(){
+<span class="nc" id="L265">            return build(conditions);</span>
+    }
+
+    public List&lt;NodeCondition&gt; buildConditions(){
+<span class="nc" id="L269">            return build(conditions);</span>
+    }
+
+    public NodeCondition buildCondition(int index){
+<span class="nc" id="L273">            return this.conditions.get(index).build();</span>
+    }
+
+    public NodeCondition buildFirstCondition(){
+<span class="nc" id="L277">            return this.conditions.get(0).build();</span>
+    }
+
+    public NodeCondition buildLastCondition(){
+<span class="nc" id="L281">            return this.conditions.get(conditions.size() - 1).build();</span>
+    }
+
+    public NodeCondition buildMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;NodeConditionBuilder&gt; predicate){
+<span class="nc bnc" id="L285" title="All 4 branches missed.">            for (NodeConditionBuilder item: conditions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withConditions(List&lt;NodeCondition&gt; conditions){
+<span class="nc bnc" id="L289" title="All 2 branches missed.">            if (this.conditions != null) { _visitables.removeAll(this.conditions);}</span>
+<span class="nc bnc" id="L290" title="All 4 branches missed.">            if (conditions != null) {this.conditions = new ArrayList&lt;NodeConditionBuilder&gt;(); for (NodeCondition item : conditions){this.addToConditions(item);}} else { this.conditions = new ArrayList&lt;NodeConditionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withConditions(NodeCondition... conditions){
+<span class="nc bnc" id="L294" title="All 2 branches missed.">            if (this.conditions != null) {this.conditions.clear();}</span>
+<span class="nc bnc" id="L295" title="All 4 branches missed.">            if (conditions != null) {for (NodeCondition item :conditions){ this.addToConditions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasConditions(){
+<span class="nc bnc" id="L299" title="All 4 branches missed.">            return conditions != null &amp;&amp; !conditions.isEmpty();</span>
+    }
+
+    public NodeStatusFluent.ConditionsNested&lt;A&gt; addNewCondition(){
+<span class="nc" id="L303">            return new ConditionsNestedImpl();</span>
+    }
+
+    public NodeStatusFluent.ConditionsNested&lt;A&gt; addNewConditionLike(NodeCondition item){
+<span class="nc" id="L307">            return new ConditionsNestedImpl(-1, item);</span>
+    }
+
+    public NodeStatusFluent.ConditionsNested&lt;A&gt; setNewConditionLike(int index,NodeCondition item){
+<span class="nc" id="L311">            return new ConditionsNestedImpl(index, item);</span>
+    }
+
+    public NodeStatusFluent.ConditionsNested&lt;A&gt; editCondition(int index){
+<span class="nc bnc" id="L315" title="All 2 branches missed.">            if (conditions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit conditions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L316">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public NodeStatusFluent.ConditionsNested&lt;A&gt; editFirstCondition(){
+<span class="nc bnc" id="L320" title="All 2 branches missed.">            if (conditions.size() == 0) throw new RuntimeException(&quot;Can't edit first conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L321">            return setNewConditionLike(0, buildCondition(0));</span>
+    }
+
+    public NodeStatusFluent.ConditionsNested&lt;A&gt; editLastCondition(){
+<span class="nc" id="L325">            int index = conditions.size() - 1;</span>
+<span class="nc bnc" id="L326" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L327">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public NodeStatusFluent.ConditionsNested&lt;A&gt; editMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;NodeConditionBuilder&gt; predicate){
+<span class="nc" id="L331">            int index = -1;</span>
+<span class="nc bnc" id="L332" title="All 2 branches missed.">            for (int i=0;i&lt;conditions.size();i++) { </span>
+<span class="nc bnc" id="L333" title="All 2 branches missed.">            if (predicate.apply(conditions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L335" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching conditions. No match found.&quot;);</span>
+<span class="nc" id="L336">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildConfig instead.
+ * @return The buildable object.
+ */
+@Deprecated public NodeConfigStatus getConfig(){
+<span class="nc bnc" id="L345" title="All 2 branches missed.">            return this.config!=null?this.config.build():null;</span>
+    }
+
+    public NodeConfigStatus buildConfig(){
+<span class="nc bnc" id="L349" title="All 2 branches missed.">            return this.config!=null?this.config.build():null;</span>
+    }
+
+    public A withConfig(NodeConfigStatus config){
+<span class="nc" id="L353">            _visitables.remove(this.config);</span>
+<span class="nc bnc" id="L354" title="All 2 branches missed.">            if (config!=null){ this.config= new NodeConfigStatusBuilder(config); _visitables.add(this.config);} return (A) this;</span>
+    }
+
+    public Boolean hasConfig(){
+<span class="nc bnc" id="L358" title="All 2 branches missed.">            return this.config != null;</span>
+    }
+
+    public NodeStatusFluent.ConfigNested&lt;A&gt; withNewConfig(){
+<span class="nc" id="L362">            return new ConfigNestedImpl();</span>
+    }
+
+    public NodeStatusFluent.ConfigNested&lt;A&gt; withNewConfigLike(NodeConfigStatus item){
+<span class="nc" id="L366">            return new ConfigNestedImpl(item);</span>
+    }
+
+    public NodeStatusFluent.ConfigNested&lt;A&gt; editConfig(){
+<span class="nc" id="L370">            return withNewConfigLike(getConfig());</span>
+    }
+
+    public NodeStatusFluent.ConfigNested&lt;A&gt; editOrNewConfig(){
+<span class="nc bnc" id="L374" title="All 2 branches missed.">            return withNewConfigLike(getConfig() != null ? getConfig(): new NodeConfigStatusBuilder().build());</span>
+    }
+
+    public NodeStatusFluent.ConfigNested&lt;A&gt; editOrNewConfigLike(NodeConfigStatus item){
+<span class="nc bnc" id="L378" title="All 2 branches missed.">            return withNewConfigLike(getConfig() != null ? getConfig(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildDaemonEndpoints instead.
+ * @return The buildable object.
+ */
+@Deprecated public NodeDaemonEndpoints getDaemonEndpoints(){
+<span class="nc bnc" id="L387" title="All 2 branches missed.">            return this.daemonEndpoints!=null?this.daemonEndpoints.build():null;</span>
+    }
+
+    public NodeDaemonEndpoints buildDaemonEndpoints(){
+<span class="nc bnc" id="L391" title="All 2 branches missed.">            return this.daemonEndpoints!=null?this.daemonEndpoints.build():null;</span>
+    }
+
+    public A withDaemonEndpoints(NodeDaemonEndpoints daemonEndpoints){
+<span class="nc" id="L395">            _visitables.remove(this.daemonEndpoints);</span>
+<span class="nc bnc" id="L396" title="All 2 branches missed.">            if (daemonEndpoints!=null){ this.daemonEndpoints= new NodeDaemonEndpointsBuilder(daemonEndpoints); _visitables.add(this.daemonEndpoints);} return (A) this;</span>
+    }
+
+    public Boolean hasDaemonEndpoints(){
+<span class="nc bnc" id="L400" title="All 2 branches missed.">            return this.daemonEndpoints != null;</span>
+    }
+
+    public NodeStatusFluent.DaemonEndpointsNested&lt;A&gt; withNewDaemonEndpoints(){
+<span class="nc" id="L404">            return new DaemonEndpointsNestedImpl();</span>
+    }
+
+    public NodeStatusFluent.DaemonEndpointsNested&lt;A&gt; withNewDaemonEndpointsLike(NodeDaemonEndpoints item){
+<span class="nc" id="L408">            return new DaemonEndpointsNestedImpl(item);</span>
+    }
+
+    public NodeStatusFluent.DaemonEndpointsNested&lt;A&gt; editDaemonEndpoints(){
+<span class="nc" id="L412">            return withNewDaemonEndpointsLike(getDaemonEndpoints());</span>
+    }
+
+    public NodeStatusFluent.DaemonEndpointsNested&lt;A&gt; editOrNewDaemonEndpoints(){
+<span class="nc bnc" id="L416" title="All 2 branches missed.">            return withNewDaemonEndpointsLike(getDaemonEndpoints() != null ? getDaemonEndpoints(): new NodeDaemonEndpointsBuilder().build());</span>
+    }
+
+    public NodeStatusFluent.DaemonEndpointsNested&lt;A&gt; editOrNewDaemonEndpointsLike(NodeDaemonEndpoints item){
+<span class="nc bnc" id="L420" title="All 2 branches missed.">            return withNewDaemonEndpointsLike(getDaemonEndpoints() != null ? getDaemonEndpoints(): item);</span>
+    }
+
+    public A addToImages(int index,ContainerImage item){
+<span class="nc bnc" id="L424" title="All 2 branches missed.">            if (this.images == null) {this.images = new ArrayList&lt;ContainerImageBuilder&gt;();}</span>
+<span class="nc bnc" id="L425" title="All 4 branches missed.">            ContainerImageBuilder builder = new ContainerImageBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.images.add(index &gt;= 0 ? index : images.size(), builder); return (A)this;</span>
+    }
+
+    public A setToImages(int index,ContainerImage item){
+<span class="nc bnc" id="L429" title="All 2 branches missed.">            if (this.images == null) {this.images = new ArrayList&lt;ContainerImageBuilder&gt;();}</span>
+<span class="nc" id="L430">            ContainerImageBuilder builder = new ContainerImageBuilder(item);</span>
+<span class="nc bnc" id="L431" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L432" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= images.size()) { images.add(builder); } else { images.set(index, builder);}</span>
+<span class="nc" id="L433">             return (A)this;</span>
+    }
+
+    public A addToImages(ContainerImage... items){
+<span class="nc bnc" id="L437" title="All 2 branches missed.">            if (this.images == null) {this.images = new ArrayList&lt;ContainerImageBuilder&gt;();}</span>
+<span class="nc bnc" id="L438" title="All 2 branches missed.">            for (ContainerImage item : items) {ContainerImageBuilder builder = new ContainerImageBuilder(item);_visitables.add(builder);this.images.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToImages(Collection&lt;ContainerImage&gt; items){
+<span class="nc bnc" id="L442" title="All 2 branches missed.">            if (this.images == null) {this.images = new ArrayList&lt;ContainerImageBuilder&gt;();}</span>
+<span class="nc bnc" id="L443" title="All 2 branches missed.">            for (ContainerImage item : items) {ContainerImageBuilder builder = new ContainerImageBuilder(item);_visitables.add(builder);this.images.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromImages(ContainerImage... items){
+<span class="nc bnc" id="L447" title="All 4 branches missed.">            for (ContainerImage item : items) {ContainerImageBuilder builder = new ContainerImageBuilder(item);_visitables.remove(builder);if (this.images != null) {this.images.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromImages(Collection&lt;ContainerImage&gt; items){
+<span class="nc bnc" id="L451" title="All 4 branches missed.">            for (ContainerImage item : items) {ContainerImageBuilder builder = new ContainerImageBuilder(item);_visitables.remove(builder);if (this.images != null) {this.images.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildImages instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;ContainerImage&gt; getImages(){
+<span class="nc" id="L460">            return build(images);</span>
+    }
+
+    public List&lt;ContainerImage&gt; buildImages(){
+<span class="nc" id="L464">            return build(images);</span>
+    }
+
+    public ContainerImage buildImage(int index){
+<span class="nc" id="L468">            return this.images.get(index).build();</span>
+    }
+
+    public ContainerImage buildFirstImage(){
+<span class="nc" id="L472">            return this.images.get(0).build();</span>
+    }
+
+    public ContainerImage buildLastImage(){
+<span class="nc" id="L476">            return this.images.get(images.size() - 1).build();</span>
+    }
+
+    public ContainerImage buildMatchingImage(io.fabric8.kubernetes.api.builder.Predicate&lt;ContainerImageBuilder&gt; predicate){
+<span class="nc bnc" id="L480" title="All 4 branches missed.">            for (ContainerImageBuilder item: images) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withImages(List&lt;ContainerImage&gt; images){
+<span class="nc bnc" id="L484" title="All 2 branches missed.">            if (this.images != null) { _visitables.removeAll(this.images);}</span>
+<span class="nc bnc" id="L485" title="All 4 branches missed.">            if (images != null) {this.images = new ArrayList&lt;ContainerImageBuilder&gt;(); for (ContainerImage item : images){this.addToImages(item);}} else { this.images = new ArrayList&lt;ContainerImageBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withImages(ContainerImage... images){
+<span class="nc bnc" id="L489" title="All 2 branches missed.">            if (this.images != null) {this.images.clear();}</span>
+<span class="nc bnc" id="L490" title="All 4 branches missed.">            if (images != null) {for (ContainerImage item :images){ this.addToImages(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasImages(){
+<span class="nc bnc" id="L494" title="All 4 branches missed.">            return images != null &amp;&amp; !images.isEmpty();</span>
+    }
+
+    public NodeStatusFluent.ImagesNested&lt;A&gt; addNewImage(){
+<span class="nc" id="L498">            return new ImagesNestedImpl();</span>
+    }
+
+    public NodeStatusFluent.ImagesNested&lt;A&gt; addNewImageLike(ContainerImage item){
+<span class="nc" id="L502">            return new ImagesNestedImpl(-1, item);</span>
+    }
+
+    public NodeStatusFluent.ImagesNested&lt;A&gt; setNewImageLike(int index,ContainerImage item){
+<span class="nc" id="L506">            return new ImagesNestedImpl(index, item);</span>
+    }
+
+    public NodeStatusFluent.ImagesNested&lt;A&gt; editImage(int index){
+<span class="nc bnc" id="L510" title="All 2 branches missed.">            if (images.size() &lt;= index) throw new RuntimeException(&quot;Can't edit images. Index exceeds size.&quot;);</span>
+<span class="nc" id="L511">            return setNewImageLike(index, buildImage(index));</span>
+    }
+
+    public NodeStatusFluent.ImagesNested&lt;A&gt; editFirstImage(){
+<span class="nc bnc" id="L515" title="All 2 branches missed.">            if (images.size() == 0) throw new RuntimeException(&quot;Can't edit first images. The list is empty.&quot;);</span>
+<span class="nc" id="L516">            return setNewImageLike(0, buildImage(0));</span>
+    }
+
+    public NodeStatusFluent.ImagesNested&lt;A&gt; editLastImage(){
+<span class="nc" id="L520">            int index = images.size() - 1;</span>
+<span class="nc bnc" id="L521" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last images. The list is empty.&quot;);</span>
+<span class="nc" id="L522">            return setNewImageLike(index, buildImage(index));</span>
+    }
+
+    public NodeStatusFluent.ImagesNested&lt;A&gt; editMatchingImage(io.fabric8.kubernetes.api.builder.Predicate&lt;ContainerImageBuilder&gt; predicate){
+<span class="nc" id="L526">            int index = -1;</span>
+<span class="nc bnc" id="L527" title="All 2 branches missed.">            for (int i=0;i&lt;images.size();i++) { </span>
+<span class="nc bnc" id="L528" title="All 2 branches missed.">            if (predicate.apply(images.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L530" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching images. No match found.&quot;);</span>
+<span class="nc" id="L531">            return setNewImageLike(index, buildImage(index));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildNodeInfo instead.
+ * @return The buildable object.
+ */
+@Deprecated public NodeSystemInfo getNodeInfo(){
+<span class="nc bnc" id="L540" title="All 2 branches missed.">            return this.nodeInfo!=null?this.nodeInfo.build():null;</span>
+    }
+
+    public NodeSystemInfo buildNodeInfo(){
+<span class="nc bnc" id="L544" title="All 2 branches missed.">            return this.nodeInfo!=null?this.nodeInfo.build():null;</span>
+    }
+
+    public A withNodeInfo(NodeSystemInfo nodeInfo){
+<span class="nc" id="L548">            _visitables.remove(this.nodeInfo);</span>
+<span class="nc bnc" id="L549" title="All 2 branches missed.">            if (nodeInfo!=null){ this.nodeInfo= new NodeSystemInfoBuilder(nodeInfo); _visitables.add(this.nodeInfo);} return (A) this;</span>
+    }
+
+    public Boolean hasNodeInfo(){
+<span class="nc bnc" id="L553" title="All 2 branches missed.">            return this.nodeInfo != null;</span>
+    }
+
+    public NodeStatusFluent.NodeInfoNested&lt;A&gt; withNewNodeInfo(){
+<span class="nc" id="L557">            return new NodeInfoNestedImpl();</span>
+    }
+
+    public NodeStatusFluent.NodeInfoNested&lt;A&gt; withNewNodeInfoLike(NodeSystemInfo item){
+<span class="nc" id="L561">            return new NodeInfoNestedImpl(item);</span>
+    }
+
+    public NodeStatusFluent.NodeInfoNested&lt;A&gt; editNodeInfo(){
+<span class="nc" id="L565">            return withNewNodeInfoLike(getNodeInfo());</span>
+    }
+
+    public NodeStatusFluent.NodeInfoNested&lt;A&gt; editOrNewNodeInfo(){
+<span class="nc bnc" id="L569" title="All 2 branches missed.">            return withNewNodeInfoLike(getNodeInfo() != null ? getNodeInfo(): new NodeSystemInfoBuilder().build());</span>
+    }
+
+    public NodeStatusFluent.NodeInfoNested&lt;A&gt; editOrNewNodeInfoLike(NodeSystemInfo item){
+<span class="nc bnc" id="L573" title="All 2 branches missed.">            return withNewNodeInfoLike(getNodeInfo() != null ? getNodeInfo(): item);</span>
+    }
+
+    public String getPhase(){
+<span class="nc" id="L577">            return this.phase;</span>
+    }
+
+    public A withPhase(String phase){
+<span class="nc" id="L581">            this.phase=phase; return (A) this;</span>
+    }
+
+    public Boolean hasPhase(){
+<span class="nc bnc" id="L585" title="All 2 branches missed.">            return this.phase != null;</span>
+    }
+
+    public A addToVolumesAttached(int index,AttachedVolume item){
+<span class="nc bnc" id="L589" title="All 2 branches missed.">            if (this.volumesAttached == null) {this.volumesAttached = new ArrayList&lt;AttachedVolumeBuilder&gt;();}</span>
+<span class="nc bnc" id="L590" title="All 4 branches missed.">            AttachedVolumeBuilder builder = new AttachedVolumeBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.volumesAttached.add(index &gt;= 0 ? index : volumesAttached.size(), builder); return (A)this;</span>
+    }
+
+    public A setToVolumesAttached(int index,AttachedVolume item){
+<span class="nc bnc" id="L594" title="All 2 branches missed.">            if (this.volumesAttached == null) {this.volumesAttached = new ArrayList&lt;AttachedVolumeBuilder&gt;();}</span>
+<span class="nc" id="L595">            AttachedVolumeBuilder builder = new AttachedVolumeBuilder(item);</span>
+<span class="nc bnc" id="L596" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L597" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= volumesAttached.size()) { volumesAttached.add(builder); } else { volumesAttached.set(index, builder);}</span>
+<span class="nc" id="L598">             return (A)this;</span>
+    }
+
+    public A addToVolumesAttached(AttachedVolume... items){
+<span class="nc bnc" id="L602" title="All 2 branches missed.">            if (this.volumesAttached == null) {this.volumesAttached = new ArrayList&lt;AttachedVolumeBuilder&gt;();}</span>
+<span class="nc bnc" id="L603" title="All 2 branches missed.">            for (AttachedVolume item : items) {AttachedVolumeBuilder builder = new AttachedVolumeBuilder(item);_visitables.add(builder);this.volumesAttached.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToVolumesAttached(Collection&lt;AttachedVolume&gt; items){
+<span class="nc bnc" id="L607" title="All 2 branches missed.">            if (this.volumesAttached == null) {this.volumesAttached = new ArrayList&lt;AttachedVolumeBuilder&gt;();}</span>
+<span class="nc bnc" id="L608" title="All 2 branches missed.">            for (AttachedVolume item : items) {AttachedVolumeBuilder builder = new AttachedVolumeBuilder(item);_visitables.add(builder);this.volumesAttached.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromVolumesAttached(AttachedVolume... items){
+<span class="nc bnc" id="L612" title="All 4 branches missed.">            for (AttachedVolume item : items) {AttachedVolumeBuilder builder = new AttachedVolumeBuilder(item);_visitables.remove(builder);if (this.volumesAttached != null) {this.volumesAttached.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromVolumesAttached(Collection&lt;AttachedVolume&gt; items){
+<span class="nc bnc" id="L616" title="All 4 branches missed.">            for (AttachedVolume item : items) {AttachedVolumeBuilder builder = new AttachedVolumeBuilder(item);_visitables.remove(builder);if (this.volumesAttached != null) {this.volumesAttached.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildVolumesAttached instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;AttachedVolume&gt; getVolumesAttached(){
+<span class="nc" id="L625">            return build(volumesAttached);</span>
+    }
+
+    public List&lt;AttachedVolume&gt; buildVolumesAttached(){
+<span class="nc" id="L629">            return build(volumesAttached);</span>
+    }
+
+    public AttachedVolume buildVolumesAttached(int index){
+<span class="nc" id="L633">            return this.volumesAttached.get(index).build();</span>
+    }
+
+    public AttachedVolume buildFirstVolumesAttached(){
+<span class="nc" id="L637">            return this.volumesAttached.get(0).build();</span>
+    }
+
+    public AttachedVolume buildLastVolumesAttached(){
+<span class="nc" id="L641">            return this.volumesAttached.get(volumesAttached.size() - 1).build();</span>
+    }
+
+    public AttachedVolume buildMatchingVolumesAttached(io.fabric8.kubernetes.api.builder.Predicate&lt;AttachedVolumeBuilder&gt; predicate){
+<span class="nc bnc" id="L645" title="All 4 branches missed.">            for (AttachedVolumeBuilder item: volumesAttached) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withVolumesAttached(List&lt;AttachedVolume&gt; volumesAttached){
+<span class="nc bnc" id="L649" title="All 2 branches missed.">            if (this.volumesAttached != null) { _visitables.removeAll(this.volumesAttached);}</span>
+<span class="nc bnc" id="L650" title="All 4 branches missed.">            if (volumesAttached != null) {this.volumesAttached = new ArrayList&lt;AttachedVolumeBuilder&gt;(); for (AttachedVolume item : volumesAttached){this.addToVolumesAttached(item);}} else { this.volumesAttached = new ArrayList&lt;AttachedVolumeBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withVolumesAttached(AttachedVolume... volumesAttached){
+<span class="nc bnc" id="L654" title="All 2 branches missed.">            if (this.volumesAttached != null) {this.volumesAttached.clear();}</span>
+<span class="nc bnc" id="L655" title="All 4 branches missed.">            if (volumesAttached != null) {for (AttachedVolume item :volumesAttached){ this.addToVolumesAttached(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasVolumesAttached(){
+<span class="nc bnc" id="L659" title="All 4 branches missed.">            return volumesAttached != null &amp;&amp; !volumesAttached.isEmpty();</span>
+    }
+
+    public A addNewVolumesAttached(String devicePath,String name){
+<span class="nc" id="L663">            return (A)addToVolumesAttached(new AttachedVolume(devicePath, name));</span>
+    }
+
+    public NodeStatusFluent.VolumesAttachedNested&lt;A&gt; addNewVolumesAttached(){
+<span class="nc" id="L667">            return new VolumesAttachedNestedImpl();</span>
+    }
+
+    public NodeStatusFluent.VolumesAttachedNested&lt;A&gt; addNewVolumesAttachedLike(AttachedVolume item){
+<span class="nc" id="L671">            return new VolumesAttachedNestedImpl(-1, item);</span>
+    }
+
+    public NodeStatusFluent.VolumesAttachedNested&lt;A&gt; setNewVolumesAttachedLike(int index,AttachedVolume item){
+<span class="nc" id="L675">            return new VolumesAttachedNestedImpl(index, item);</span>
+    }
+
+    public NodeStatusFluent.VolumesAttachedNested&lt;A&gt; editVolumesAttached(int index){
+<span class="nc bnc" id="L679" title="All 2 branches missed.">            if (volumesAttached.size() &lt;= index) throw new RuntimeException(&quot;Can't edit volumesAttached. Index exceeds size.&quot;);</span>
+<span class="nc" id="L680">            return setNewVolumesAttachedLike(index, buildVolumesAttached(index));</span>
+    }
+
+    public NodeStatusFluent.VolumesAttachedNested&lt;A&gt; editFirstVolumesAttached(){
+<span class="nc bnc" id="L684" title="All 2 branches missed.">            if (volumesAttached.size() == 0) throw new RuntimeException(&quot;Can't edit first volumesAttached. The list is empty.&quot;);</span>
+<span class="nc" id="L685">            return setNewVolumesAttachedLike(0, buildVolumesAttached(0));</span>
+    }
+
+    public NodeStatusFluent.VolumesAttachedNested&lt;A&gt; editLastVolumesAttached(){
+<span class="nc" id="L689">            int index = volumesAttached.size() - 1;</span>
+<span class="nc bnc" id="L690" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last volumesAttached. The list is empty.&quot;);</span>
+<span class="nc" id="L691">            return setNewVolumesAttachedLike(index, buildVolumesAttached(index));</span>
+    }
+
+    public NodeStatusFluent.VolumesAttachedNested&lt;A&gt; editMatchingVolumesAttached(io.fabric8.kubernetes.api.builder.Predicate&lt;AttachedVolumeBuilder&gt; predicate){
+<span class="nc" id="L695">            int index = -1;</span>
+<span class="nc bnc" id="L696" title="All 2 branches missed.">            for (int i=0;i&lt;volumesAttached.size();i++) { </span>
+<span class="nc bnc" id="L697" title="All 2 branches missed.">            if (predicate.apply(volumesAttached.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L699" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching volumesAttached. No match found.&quot;);</span>
+<span class="nc" id="L700">            return setNewVolumesAttachedLike(index, buildVolumesAttached(index));</span>
+    }
+
+    public A addToVolumesInUse(int index,String item){
+<span class="nc bnc" id="L704" title="All 2 branches missed.">            if (this.volumesInUse == null) {this.volumesInUse = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L705">            this.volumesInUse.add(index, item);</span>
+<span class="nc" id="L706">            return (A)this;</span>
+    }
+
+    public A setToVolumesInUse(int index,String item){
+<span class="nc bnc" id="L710" title="All 2 branches missed.">            if (this.volumesInUse == null) {this.volumesInUse = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L711">            this.volumesInUse.set(index, item); return (A)this;</span>
+    }
+
+    public A addToVolumesInUse(String... items){
+<span class="nc bnc" id="L715" title="All 2 branches missed.">            if (this.volumesInUse == null) {this.volumesInUse = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L716" title="All 2 branches missed.">            for (String item : items) {this.volumesInUse.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToVolumesInUse(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L720" title="All 2 branches missed.">            if (this.volumesInUse == null) {this.volumesInUse = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L721" title="All 2 branches missed.">            for (String item : items) {this.volumesInUse.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromVolumesInUse(String... items){
+<span class="nc bnc" id="L725" title="All 4 branches missed.">            for (String item : items) {if (this.volumesInUse!= null){ this.volumesInUse.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromVolumesInUse(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L729" title="All 4 branches missed.">            for (String item : items) {if (this.volumesInUse!= null){ this.volumesInUse.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getVolumesInUse(){
+<span class="nc" id="L733">            return this.volumesInUse;</span>
+    }
+
+    public String getVolumesInUse(int index){
+<span class="nc" id="L737">            return this.volumesInUse.get(index);</span>
+    }
+
+    public String getFirstVolumesInUse(){
+<span class="nc" id="L741">            return this.volumesInUse.get(0);</span>
+    }
+
+    public String getLastVolumesInUse(){
+<span class="nc" id="L745">            return this.volumesInUse.get(volumesInUse.size() - 1);</span>
+    }
+
+    public String getMatchingVolumesInUse(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L749" title="All 4 branches missed.">            for (String item: volumesInUse) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withVolumesInUse(List&lt;String&gt; volumesInUse){
+<span class="nc bnc" id="L753" title="All 2 branches missed.">            if (this.volumesInUse != null) { _visitables.removeAll(this.volumesInUse);}</span>
+<span class="nc bnc" id="L754" title="All 4 branches missed.">            if (volumesInUse != null) {this.volumesInUse = new ArrayList&lt;String&gt;(); for (String item : volumesInUse){this.addToVolumesInUse(item);}} else { this.volumesInUse = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withVolumesInUse(String... volumesInUse){
+<span class="nc bnc" id="L758" title="All 2 branches missed.">            if (this.volumesInUse != null) {this.volumesInUse.clear();}</span>
+<span class="nc bnc" id="L759" title="All 4 branches missed.">            if (volumesInUse != null) {for (String item :volumesInUse){ this.addToVolumesInUse(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasVolumesInUse(){
+<span class="nc bnc" id="L763" title="All 4 branches missed.">            return volumesInUse != null &amp;&amp; !volumesInUse.isEmpty();</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L767" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L768" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L769" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L770">            NodeStatusFluentImpl that = (NodeStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L771" title="All 6 branches missed.">            if (addresses != null ? !addresses.equals(that.addresses) :that.addresses != null) return false;</span>
+<span class="nc bnc" id="L772" title="All 6 branches missed.">            if (allocatable != null ? !allocatable.equals(that.allocatable) :that.allocatable != null) return false;</span>
+<span class="nc bnc" id="L773" title="All 6 branches missed.">            if (capacity != null ? !capacity.equals(that.capacity) :that.capacity != null) return false;</span>
+<span class="nc bnc" id="L774" title="All 6 branches missed.">            if (conditions != null ? !conditions.equals(that.conditions) :that.conditions != null) return false;</span>
+<span class="nc bnc" id="L775" title="All 6 branches missed.">            if (config != null ? !config.equals(that.config) :that.config != null) return false;</span>
+<span class="nc bnc" id="L776" title="All 6 branches missed.">            if (daemonEndpoints != null ? !daemonEndpoints.equals(that.daemonEndpoints) :that.daemonEndpoints != null) return false;</span>
+<span class="nc bnc" id="L777" title="All 6 branches missed.">            if (images != null ? !images.equals(that.images) :that.images != null) return false;</span>
+<span class="nc bnc" id="L778" title="All 6 branches missed.">            if (nodeInfo != null ? !nodeInfo.equals(that.nodeInfo) :that.nodeInfo != null) return false;</span>
+<span class="nc bnc" id="L779" title="All 6 branches missed.">            if (phase != null ? !phase.equals(that.phase) :that.phase != null) return false;</span>
+<span class="nc bnc" id="L780" title="All 6 branches missed.">            if (volumesAttached != null ? !volumesAttached.equals(that.volumesAttached) :that.volumesAttached != null) return false;</span>
+<span class="nc bnc" id="L781" title="All 6 branches missed.">            if (volumesInUse != null ? !volumesInUse.equals(that.volumesInUse) :that.volumesInUse != null) return false;</span>
+<span class="nc" id="L782">            return true;</span>
+    }
+
+
+    public class AddressesNestedImpl&lt;N&gt; extends NodeAddressFluentImpl&lt;NodeStatusFluent.AddressesNested&lt;N&gt;&gt; implements NodeStatusFluent.AddressesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NodeAddressBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L791">            AddressesNestedImpl(int index,NodeAddress item){</span>
+<span class="nc" id="L792">                    this.index = index;</span>
+<span class="nc" id="L793">                    this.builder = new NodeAddressBuilder(this, item);</span>
+<span class="nc" id="L794">            }</span>
+<span class="nc" id="L795">            AddressesNestedImpl(){</span>
+<span class="nc" id="L796">                    this.index = -1;</span>
+<span class="nc" id="L797">                    this.builder = new NodeAddressBuilder(this);</span>
+<span class="nc" id="L798">            }</span>
+    
+    public N and(){
+<span class="nc" id="L801">            return (N) NodeStatusFluentImpl.this.setToAddresses(index, builder.build());</span>
+    }
+    public N endAddress(){
+<span class="nc" id="L804">            return and();</span>
+    }
+
+}
+    public class ConditionsNestedImpl&lt;N&gt; extends NodeConditionFluentImpl&lt;NodeStatusFluent.ConditionsNested&lt;N&gt;&gt; implements NodeStatusFluent.ConditionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NodeConditionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L813">            ConditionsNestedImpl(int index,NodeCondition item){</span>
+<span class="nc" id="L814">                    this.index = index;</span>
+<span class="nc" id="L815">                    this.builder = new NodeConditionBuilder(this, item);</span>
+<span class="nc" id="L816">            }</span>
+<span class="nc" id="L817">            ConditionsNestedImpl(){</span>
+<span class="nc" id="L818">                    this.index = -1;</span>
+<span class="nc" id="L819">                    this.builder = new NodeConditionBuilder(this);</span>
+<span class="nc" id="L820">            }</span>
+    
+    public N and(){
+<span class="nc" id="L823">            return (N) NodeStatusFluentImpl.this.setToConditions(index, builder.build());</span>
+    }
+    public N endCondition(){
+<span class="nc" id="L826">            return and();</span>
+    }
+
+}
+    public class ConfigNestedImpl&lt;N&gt; extends NodeConfigStatusFluentImpl&lt;NodeStatusFluent.ConfigNested&lt;N&gt;&gt; implements NodeStatusFluent.ConfigNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NodeConfigStatusBuilder builder;
+    
+<span class="nc" id="L834">            ConfigNestedImpl(NodeConfigStatus item){</span>
+<span class="nc" id="L835">                    this.builder = new NodeConfigStatusBuilder(this, item);</span>
+<span class="nc" id="L836">            }</span>
+<span class="nc" id="L837">            ConfigNestedImpl(){</span>
+<span class="nc" id="L838">                    this.builder = new NodeConfigStatusBuilder(this);</span>
+<span class="nc" id="L839">            }</span>
+    
+    public N and(){
+<span class="nc" id="L842">            return (N) NodeStatusFluentImpl.this.withConfig(builder.build());</span>
+    }
+    public N endConfig(){
+<span class="nc" id="L845">            return and();</span>
+    }
+
+}
+    public class DaemonEndpointsNestedImpl&lt;N&gt; extends NodeDaemonEndpointsFluentImpl&lt;NodeStatusFluent.DaemonEndpointsNested&lt;N&gt;&gt; implements NodeStatusFluent.DaemonEndpointsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NodeDaemonEndpointsBuilder builder;
+    
+<span class="nc" id="L853">            DaemonEndpointsNestedImpl(NodeDaemonEndpoints item){</span>
+<span class="nc" id="L854">                    this.builder = new NodeDaemonEndpointsBuilder(this, item);</span>
+<span class="nc" id="L855">            }</span>
+<span class="nc" id="L856">            DaemonEndpointsNestedImpl(){</span>
+<span class="nc" id="L857">                    this.builder = new NodeDaemonEndpointsBuilder(this);</span>
+<span class="nc" id="L858">            }</span>
+    
+    public N and(){
+<span class="nc" id="L861">            return (N) NodeStatusFluentImpl.this.withDaemonEndpoints(builder.build());</span>
+    }
+    public N endDaemonEndpoints(){
+<span class="nc" id="L864">            return and();</span>
+    }
+
+}
+    public class ImagesNestedImpl&lt;N&gt; extends ContainerImageFluentImpl&lt;NodeStatusFluent.ImagesNested&lt;N&gt;&gt; implements NodeStatusFluent.ImagesNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ContainerImageBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L873">            ImagesNestedImpl(int index,ContainerImage item){</span>
+<span class="nc" id="L874">                    this.index = index;</span>
+<span class="nc" id="L875">                    this.builder = new ContainerImageBuilder(this, item);</span>
+<span class="nc" id="L876">            }</span>
+<span class="nc" id="L877">            ImagesNestedImpl(){</span>
+<span class="nc" id="L878">                    this.index = -1;</span>
+<span class="nc" id="L879">                    this.builder = new ContainerImageBuilder(this);</span>
+<span class="nc" id="L880">            }</span>
+    
+    public N and(){
+<span class="nc" id="L883">            return (N) NodeStatusFluentImpl.this.setToImages(index, builder.build());</span>
+    }
+    public N endImage(){
+<span class="nc" id="L886">            return and();</span>
+    }
+
+}
+    public class NodeInfoNestedImpl&lt;N&gt; extends NodeSystemInfoFluentImpl&lt;NodeStatusFluent.NodeInfoNested&lt;N&gt;&gt; implements NodeStatusFluent.NodeInfoNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final NodeSystemInfoBuilder builder;
+    
+<span class="nc" id="L894">            NodeInfoNestedImpl(NodeSystemInfo item){</span>
+<span class="nc" id="L895">                    this.builder = new NodeSystemInfoBuilder(this, item);</span>
+<span class="nc" id="L896">            }</span>
+<span class="nc" id="L897">            NodeInfoNestedImpl(){</span>
+<span class="nc" id="L898">                    this.builder = new NodeSystemInfoBuilder(this);</span>
+<span class="nc" id="L899">            }</span>
+    
+    public N and(){
+<span class="nc" id="L902">            return (N) NodeStatusFluentImpl.this.withNodeInfo(builder.build());</span>
+    }
+    public N endNodeInfo(){
+<span class="nc" id="L905">            return and();</span>
+    }
+
+}
+    public class VolumesAttachedNestedImpl&lt;N&gt; extends AttachedVolumeFluentImpl&lt;NodeStatusFluent.VolumesAttachedNested&lt;N&gt;&gt; implements NodeStatusFluent.VolumesAttachedNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final AttachedVolumeBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L914">            VolumesAttachedNestedImpl(int index,AttachedVolume item){</span>
+<span class="nc" id="L915">                    this.index = index;</span>
+<span class="nc" id="L916">                    this.builder = new AttachedVolumeBuilder(this, item);</span>
+<span class="nc" id="L917">            }</span>
+<span class="nc" id="L918">            VolumesAttachedNestedImpl(){</span>
+<span class="nc" id="L919">                    this.index = -1;</span>
+<span class="nc" id="L920">                    this.builder = new AttachedVolumeBuilder(this);</span>
+<span class="nc" id="L921">            }</span>
+    
+    public N and(){
+<span class="nc" id="L924">            return (N) NodeStatusFluentImpl.this.setToVolumesAttached(index, builder.build());</span>
+    }
+    public N endVolumesAttached(){
+<span class="nc" id="L927">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

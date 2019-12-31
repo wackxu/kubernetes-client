@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PriorityClass.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.scheduling</a> &gt; <span class="el_source">PriorityClass.java</span></div><h1>PriorityClass.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model.scheduling;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.api.model.validators.CheckObjectMeta;
+import io.fabric8.kubernetes.model.annotation.ApiGroup;
+import io.fabric8.kubernetes.model.annotation.ApiVersion;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import io.sundr.transform.annotations.VelocityTransformation;
+import io.sundr.transform.annotations.VelocityTransformations;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;description&quot;,
+    &quot;globalDefault&quot;,
+    &quot;value&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L45">@ToString</span>
+<span class="nc bnc" id="L46" title="All 62 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+@ApiVersion(&quot;v1beta1&quot;)
+@ApiGroup(&quot;scheduling.k8s.io&quot;)
+@VelocityTransformations({
+    @VelocityTransformation(value = &quot;/manifest.vm&quot;, outputPath = &quot;kubernetes.properties&quot;, gather = true)
+})
+public class PriorityClass implements HasMetadata
+{
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L61">    @NotNull</span>
+    @JsonProperty(&quot;apiVersion&quot;)
+    private String apiVersion = &quot;scheduling.k8s.io/v1beta1&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;description&quot;)
+    private String description;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;globalDefault&quot;)
+    private Boolean globalDefault;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+<span class="nc" id="L81">    @NotNull</span>
+    @JsonProperty(&quot;kind&quot;)
+    private String kind = &quot;PriorityClass&quot;;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    @Valid
+    @CheckObjectMeta(regexp = &quot;^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$&quot;, max = 253)
+    private ObjectMeta metadata;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;value&quot;)
+    private Integer value;
+<span class="nc" id="L98">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L105">    public PriorityClass() {</span>
+<span class="nc" id="L106">    }</span>
+
+    /**
+     * 
+     * @param metadata
+     * @param apiVersion
+     * @param kind
+     * @param globalDefault
+     * @param description
+     * @param value
+     */
+<span class="nc" id="L117">    public PriorityClass(String apiVersion, String description, Boolean globalDefault, String kind, ObjectMeta metadata, Integer value) {</span>
+<span class="nc" id="L118">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L119">        this.description = description;</span>
+<span class="nc" id="L120">        this.globalDefault = globalDefault;</span>
+<span class="nc" id="L121">        this.kind = kind;</span>
+<span class="nc" id="L122">        this.metadata = metadata;</span>
+<span class="nc" id="L123">        this.value = value;</span>
+<span class="nc" id="L124">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public String getApiVersion() {
+<span class="nc" id="L135">        return apiVersion;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param apiVersion
+     *     The apiVersion
+     */
+    @JsonProperty(&quot;apiVersion&quot;)
+    public void setApiVersion(String apiVersion) {
+<span class="nc" id="L147">        this.apiVersion = apiVersion;</span>
+<span class="nc" id="L148">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The description
+     */
+    @JsonProperty(&quot;description&quot;)
+    public String getDescription() {
+<span class="nc" id="L158">        return description;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param description
+     *     The description
+     */
+    @JsonProperty(&quot;description&quot;)
+    public void setDescription(String description) {
+<span class="nc" id="L169">        this.description = description;</span>
+<span class="nc" id="L170">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The globalDefault
+     */
+    @JsonProperty(&quot;globalDefault&quot;)
+    public Boolean getGlobalDefault() {
+<span class="nc" id="L180">        return globalDefault;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param globalDefault
+     *     The globalDefault
+     */
+    @JsonProperty(&quot;globalDefault&quot;)
+    public void setGlobalDefault(Boolean globalDefault) {
+<span class="nc" id="L191">        this.globalDefault = globalDefault;</span>
+<span class="nc" id="L192">    }</span>
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public String getKind() {
+<span class="nc" id="L203">        return kind;</span>
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param kind
+     *     The kind
+     */
+    @JsonProperty(&quot;kind&quot;)
+    public void setKind(String kind) {
+<span class="nc" id="L215">        this.kind = kind;</span>
+<span class="nc" id="L216">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public ObjectMeta getMetadata() {
+<span class="nc" id="L226">        return metadata;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param metadata
+     *     The metadata
+     */
+    @JsonProperty(&quot;metadata&quot;)
+    public void setMetadata(ObjectMeta metadata) {
+<span class="nc" id="L237">        this.metadata = metadata;</span>
+<span class="nc" id="L238">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The value
+     */
+    @JsonProperty(&quot;value&quot;)
+    public Integer getValue() {
+<span class="nc" id="L248">        return value;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param value
+     *     The value
+     */
+    @JsonProperty(&quot;value&quot;)
+    public void setValue(Integer value) {
+<span class="nc" id="L259">        this.value = value;</span>
+<span class="nc" id="L260">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L264">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L269">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L270">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

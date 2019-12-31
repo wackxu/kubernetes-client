@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LogWatchCallback.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.dsl.internal</a> &gt; <span class="el_source">LogWatchCallback.java</span></div><h1>LogWatchCallback.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.dsl.internal;
+
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.dsl.LogWatch;
+import io.fabric8.kubernetes.client.utils.BlockingInputStreamPumper;
+import io.fabric8.kubernetes.client.utils.InputStreamPumper;
+import io.fabric8.kubernetes.client.utils.Utils;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import static io.fabric8.kubernetes.client.utils.Utils.closeQuietly;
+import static io.fabric8.kubernetes.client.utils.Utils.shutdownExecutorService;
+
+public class LogWatchCallback implements LogWatch, Callback, AutoCloseable {
+
+<span class="nc" id="L50">    private static final Logger LOGGER = LoggerFactory.getLogger(LogWatchCallback.class);</span>
+
+    private final Config config;
+    private final OutputStream out;
+    private final PipedInputStream output;
+<span class="nc" id="L55">    private final Set&lt;Closeable&gt; toClose = new LinkedHashSet&lt;&gt;();</span>
+
+<span class="nc" id="L57">    private final AtomicBoolean started = new AtomicBoolean(false);</span>
+<span class="nc" id="L58">    private final ArrayBlockingQueue&lt;Object&gt; queue = new ArrayBlockingQueue&lt;&gt;(1);</span>
+<span class="nc" id="L59">    private final ExecutorService executorService = Executors.newSingleThreadExecutor();</span>
+<span class="nc" id="L60">    private final AtomicBoolean closed = new AtomicBoolean(false);</span>
+
+    private InputStreamPumper pumper;
+
+    @Deprecated
+    public LogWatchCallback(OutputStream out) {
+<span class="nc" id="L66">        this(new Config(), out);</span>
+<span class="nc" id="L67">    }</span>
+
+<span class="nc" id="L69">  public LogWatchCallback(Config config, OutputStream out) {</span>
+<span class="nc" id="L70">    this.config = config;</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">    if (out == null) {</span>
+<span class="nc" id="L72">      this.out = new PipedOutputStream();</span>
+<span class="nc" id="L73">      this.output = new PipedInputStream();</span>
+<span class="nc" id="L74">      toClose.add(this.out);</span>
+<span class="nc" id="L75">      toClose.add(this.output);</span>
+    } else {
+<span class="nc" id="L77">      this.out = out;</span>
+<span class="nc" id="L78">      this.output = null;</span>
+    }
+
+    //We need to connect the pipe here, because onResponse might not be called in time (if log is empty)
+    //This will cause a `Pipe not connected` exception for everyone that tries to read. By always opening
+    //the pipe the user will get a ready to use inputstream, which will block until there is actually something to read.
+<span class="nc bnc" id="L84" title="All 4 branches missed.">    if (this.out instanceof PipedOutputStream &amp;&amp; this.output != null) {</span>
+      try {
+<span class="nc" id="L86">        this.output.connect((PipedOutputStream) this.out);</span>
+<span class="nc" id="L87">      } catch (IOException e) {</span>
+<span class="nc" id="L88">        throw KubernetesClientException.launderThrowable(e);</span>
+<span class="nc" id="L89">      }</span>
+    }
+<span class="nc" id="L91">  }</span>
+
+    @Override
+    public void close() {
+<span class="nc" id="L95">        cleanUp();</span>
+<span class="nc" id="L96">    }</span>
+
+    /**
+     * Performs the cleanup tasks:
+     * 1. closes the InputStream pumper
+     * 2. closes all internally managed closeables (piped streams).
+     *
+     * The order of these tasks can't change or its likely that the pumper will through errors,
+     * if the stream it uses closes before the pumper it self.
+     */
+    private void cleanUp() {
+      try {
+<span class="nc bnc" id="L108" title="All 2 branches missed.">        if (!closed.compareAndSet(false, true)) {</span>
+<span class="nc" id="L109">          return;</span>
+        }
+
+<span class="nc" id="L112">        closeQuietly(pumper);</span>
+<span class="nc" id="L113">        shutdownExecutorService(executorService);</span>
+      } finally {
+<span class="nc" id="L115">        closeQuietly(toClose);</span>
+      }
+<span class="nc" id="L117">    }</span>
+
+    public void waitUntilReady() {
+<span class="nc bnc" id="L120" title="All 2 branches missed.">      if (!Utils.waitUntilReady(queue, config.getRequestTimeout(), TimeUnit.MILLISECONDS)) {</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        if (LOGGER.isDebugEnabled()) {</span>
+<span class="nc" id="L122">          LOGGER.warn(&quot;Log watch request has not been opened within: &quot; + config.getRequestTimeout() + &quot; millis.&quot;);</span>
+        }
+      }
+<span class="nc" id="L125">    }</span>
+
+    public InputStream getOutput() {
+<span class="nc" id="L128">        return output;</span>
+    }
+
+    @Override
+    public void onFailure(Call call, IOException ioe) {
+        //If we have closed the watch ignore everything
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        if (closed.get())  {</span>
+<span class="nc" id="L135">            return;</span>
+        }
+
+<span class="nc" id="L138">        LOGGER.error(&quot;Log Callback Failure.&quot;, ioe);</span>
+        //We only need to queue startup failures.
+<span class="nc bnc" id="L140" title="All 2 branches missed.">        if (!started.get()) {</span>
+<span class="nc" id="L141">            queue.add(ioe);</span>
+        }
+<span class="nc" id="L143">    }</span>
+
+    @Override
+    public void onResponse(Call call, final Response response) throws IOException {
+<span class="nc" id="L147">       pumper = new BlockingInputStreamPumper(response.body().byteStream(), new io.fabric8.kubernetes.client.Callback&lt;byte[]&gt;(){</span>
+            @Override
+            public void call(byte[] input) {
+                try {
+<span class="nc" id="L151">                    out.write(input);</span>
+<span class="nc" id="L152">                } catch (IOException e) {</span>
+<span class="nc" id="L153">                    throw KubernetesClientException.launderThrowable(e);</span>
+<span class="nc" id="L154">                }</span>
+<span class="nc" id="L155">            }</span>
+<span class="nc" id="L156">        }, new Runnable() {</span>
+            @Override
+            public void run() {
+<span class="nc" id="L159">                response.close();</span>
+<span class="nc" id="L160">            }</span>
+        });
+<span class="nc" id="L162">        executorService.submit(pumper);</span>
+<span class="nc" id="L163">        started.set(true);</span>
+<span class="nc" id="L164">        queue.add(true);</span>
+
+<span class="nc" id="L166">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConfigMapProjection.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ConfigMapProjection.java</span></div><h1>ConfigMapProjection.java</h1><pre class="source lang-java linenums">
+package io.fabric8.kubernetes.api.model;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;items&quot;,
+    &quot;name&quot;,
+    &quot;optional&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L39">@ToString</span>
+<span class="nc bnc" id="L40" title="All 38 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class ConfigMapProjection implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+<span class="nc" id="L49">    @JsonProperty(&quot;items&quot;)</span>
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Valid
+    private List&lt;KeyToPath&gt; items = new ArrayList&lt;KeyToPath&gt;();
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;name&quot;)
+    private String name;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;optional&quot;)
+    private Boolean optional;
+<span class="nc" id="L65">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="nc" id="L72">    public ConfigMapProjection() {</span>
+<span class="nc" id="L73">    }</span>
+
+    /**
+     * 
+     * @param name
+     * @param optional
+     * @param items
+     */
+<span class="nc" id="L81">    public ConfigMapProjection(List&lt;KeyToPath&gt; items, String name, Boolean optional) {</span>
+<span class="nc" id="L82">        this.items = items;</span>
+<span class="nc" id="L83">        this.name = name;</span>
+<span class="nc" id="L84">        this.optional = optional;</span>
+<span class="nc" id="L85">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The items
+     */
+    @JsonProperty(&quot;items&quot;)
+    public List&lt;KeyToPath&gt; getItems() {
+<span class="nc" id="L95">        return items;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param items
+     *     The items
+     */
+    @JsonProperty(&quot;items&quot;)
+    public void setItems(List&lt;KeyToPath&gt; items) {
+<span class="nc" id="L106">        this.items = items;</span>
+<span class="nc" id="L107">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The name
+     */
+    @JsonProperty(&quot;name&quot;)
+    public String getName() {
+<span class="nc" id="L117">        return name;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param name
+     *     The name
+     */
+    @JsonProperty(&quot;name&quot;)
+    public void setName(String name) {
+<span class="nc" id="L128">        this.name = name;</span>
+<span class="nc" id="L129">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The optional
+     */
+    @JsonProperty(&quot;optional&quot;)
+    public Boolean getOptional() {
+<span class="nc" id="L139">        return optional;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param optional
+     *     The optional
+     */
+    @JsonProperty(&quot;optional&quot;)
+    public void setOptional(Boolean optional) {
+<span class="nc" id="L150">        this.optional = optional;</span>
+<span class="nc" id="L151">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L155">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L160">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L161">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

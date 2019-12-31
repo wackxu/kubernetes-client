@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RollableScalableResourceOperation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.dsl.internal</a> &gt; <span class="el_source">RollableScalableResourceOperation.java</span></div><h1>RollableScalableResourceOperation.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.dsl.internal;
+
+import io.fabric8.kubernetes.api.builder.Visitor;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.HasMetadata;
+import io.fabric8.kubernetes.api.model.KubernetesResourceList;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.dsl.Resource;
+import io.fabric8.kubernetes.client.dsl.RollableScalableResource;
+import io.fabric8.kubernetes.client.dsl.base.HasMetadataOperation;
+import io.fabric8.kubernetes.client.utils.ApiVersionUtil;
+import io.fabric8.kubernetes.client.utils.Utils;
+import okhttp3.OkHttpClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
+
+/**
+ * Operations for resources that represent scalable, rolling-updatable sets of Pods.
+ */
+public abstract class RollableScalableResourceOperation&lt;T extends HasMetadata, L extends KubernetesResourceList, D extends Doneable&lt;T&gt;, R extends Resource&lt;T, D&gt;&gt;
+  extends HasMetadataOperation&lt;T, L, D, R&gt; implements RollableScalableResource&lt;T, D&gt; {
+
+<span class="nc" id="L49">  private final Logger Log = LoggerFactory.getLogger(this.getClass());</span>
+
+  final Boolean rolling;
+  final long rollingTimeout;
+  final TimeUnit rollingTimeUnit;
+
+  public RollableScalableResourceOperation(OkHttpClient client, Config config, String apiVersionGroup, String apiVersionNumber, String resourceT, String namespace, String name, Boolean cascading, T item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields, Boolean rolling, long rollingTimeout, TimeUnit rollingTimeUnit) {
+<span class="nc" id="L56">    super(client, config, ApiVersionUtil.apiGroup(item, apiVersionGroup), ApiVersionUtil.apiVersion(item, apiVersionNumber), resourceT, namespace, name, cascading, item, resourceVersion, reloadingFromServer, gracePeriodSeconds, labels, labelsNot, labelsIn, labelsNotIn, fields);</span>
+<span class="nc" id="L57">    this.rolling = rolling;</span>
+<span class="nc" id="L58">    this.rollingTimeout = rollingTimeout;</span>
+<span class="nc" id="L59">    this.rollingTimeUnit = rollingTimeUnit;</span>
+<span class="nc" id="L60">    reaper = new ScalableReaper(this);</span>
+<span class="nc" id="L61">  }</span>
+
+  abstract T withReplicas(int count);
+  abstract RollingUpdater&lt;T, L, D&gt; getRollingUpdater(long rollingTimeout, TimeUnit rollingTimeUnit);
+
+  // There are no common interfaces through which we could get these values.
+  abstract int getCurrentReplicas(T current);
+  abstract int getDesiredReplicas(T item);
+  abstract long getObservedGeneration(T current);
+
+  @Override
+  public T scale(int count) {
+<span class="nc" id="L73">    return scale(count, false);</span>
+  }
+
+  @Override
+  public T scale(int count, boolean wait) {
+<span class="nc" id="L78">    T res = withReplicas(count);</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">    if (wait) {</span>
+<span class="nc" id="L80">      waitUntilScaled(count);</span>
+<span class="nc" id="L81">      res = getMandatory();</span>
+    }
+<span class="nc" id="L83">    return res;</span>
+  }
+
+  /**
+   * Let's wait until there are enough Ready pods.
+   */
+  private void waitUntilScaled(final int count) {
+<span class="nc" id="L90">    final ArrayBlockingQueue&lt;Object&gt; queue = new ArrayBlockingQueue&lt;&gt;(1);</span>
+<span class="nc" id="L91">    final AtomicReference&lt;Integer&gt; replicasRef = new AtomicReference&lt;&gt;(0);</span>
+
+<span class="nc" id="L93">    final String name = checkName(getItem());</span>
+<span class="nc" id="L94">    final String namespace = checkNamespace(getItem());</span>
+
+<span class="nc" id="L96">    final Runnable tPoller = new Runnable() {</span>
+      public void run() {
+        try {
+<span class="nc" id="L99">          T t = get();</span>
+          //If the resource is gone, we shouldn't wait.
+<span class="nc bnc" id="L101" title="All 2 branches missed.">          if (t == null) {</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            if (count == 0) {</span>
+<span class="nc" id="L103">              queue.put(true);</span>
+            } else {
+<span class="nc" id="L105">              queue.put(new IllegalStateException(&quot;Can't wait for &quot; + getType().getSimpleName() + &quot;: &quot; +name + &quot; in namespace: &quot; + namespace + &quot; to scale. Resource is no longer available.&quot;));</span>
+            }
+<span class="nc" id="L107">            return;</span>
+          }
+<span class="nc" id="L109">          int currentReplicas = getCurrentReplicas(t);</span>
+<span class="nc" id="L110">          int desiredReplicas = getDesiredReplicas(t);</span>
+<span class="nc" id="L111">          replicasRef.set(currentReplicas);</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">          long generation = t.getMetadata().getGeneration() != null ? t.getMetadata().getGeneration() : -1;</span>
+<span class="nc" id="L113">          long observedGeneration = getObservedGeneration(t);</span>
+<span class="nc bnc" id="L114" title="All 4 branches missed.">          if (observedGeneration &gt;= generation &amp;&amp; Objects.equals(desiredReplicas, currentReplicas)) {</span>
+<span class="nc" id="L115">            queue.put(true);</span>
+          }
+<span class="nc" id="L117">          Log.debug(&quot;Only {}/{} replicas scheduled for {}: {} in namespace: {} seconds so waiting...&quot;,</span>
+<span class="nc" id="L118">            currentReplicas, desiredReplicas, t.getKind(), t.getMetadata().getName(), namespace);</span>
+<span class="nc" id="L119">        } catch (Throwable t) {</span>
+<span class="nc" id="L120">          Log.error(&quot;Error while waiting for resource to be scaled.&quot;, t);</span>
+<span class="nc" id="L121">        }</span>
+<span class="nc" id="L122">      }</span>
+    };
+
+<span class="nc" id="L125">    ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();</span>
+<span class="nc" id="L126">    ScheduledFuture poller = executor.scheduleWithFixedDelay(tPoller, 0, POLL_INTERVAL_MS, TimeUnit.MILLISECONDS);</span>
+    try {
+<span class="nc bnc" id="L128" title="All 2 branches missed.">      if (Utils.waitUntilReady(queue, rollingTimeout, rollingTimeUnit)) {</span>
+<span class="nc" id="L129">        Log.debug(&quot;{}/{} pod(s) ready for {}: {} in namespace: {}.&quot;,</span>
+<span class="nc" id="L130">          replicasRef.get(), count, getType().getSimpleName(), name, namespace);</span>
+      } else {
+<span class="nc" id="L132">        Log.error(&quot;{}/{} pod(s) ready for {}: {} in namespace: {}  after waiting for {} seconds so giving up&quot;,</span>
+<span class="nc" id="L133">          replicasRef.get(), count, getType().getSimpleName(), name, namespace, rollingTimeUnit.toSeconds(rollingTimeout));</span>
+      }
+    } finally {
+<span class="nc" id="L136">      poller.cancel(true);</span>
+<span class="nc" id="L137">      executor.shutdown();</span>
+    }
+<span class="nc" id="L139">  }</span>
+
+  @Override
+  public D edit() {
+<span class="nc bnc" id="L143" title="All 2 branches missed.">    if (!rolling) {</span>
+<span class="nc" id="L144">      return super.edit();</span>
+    }
+
+<span class="nc" id="L147">    final Visitor&lt;T&gt; visitor = new Visitor&lt;T&gt;() {</span>
+      @Override
+      public void visit(T t) {
+        try {
+<span class="nc" id="L151">          getRollingUpdater(rollingTimeout, rollingTimeUnit).rollUpdate(getMandatory(), t);</span>
+<span class="nc" id="L152">        } catch (Exception e) {</span>
+<span class="nc" id="L153">          throw KubernetesClientException.launderThrowable(e);</span>
+<span class="nc" id="L154">        }</span>
+<span class="nc" id="L155">      }</span>
+    };
+
+    try {
+<span class="nc" id="L159">      return getDoneableType().getDeclaredConstructor(getType(), Visitor.class).newInstance(get(), visitor);</span>
+<span class="nc" id="L160">    } catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException | InstantiationException e) {</span>
+<span class="nc" id="L161">      throw KubernetesClientException.launderThrowable(e);</span>
+    }
+  }
+
+  @Override
+  public T replace(T t) {
+<span class="nc bnc" id="L167" title="All 2 branches missed.">    if (!rolling) {</span>
+<span class="nc" id="L168">      return super.replace(t);</span>
+    }
+<span class="nc" id="L170">    return getRollingUpdater(rollingTimeout, rollingTimeUnit).rollUpdate(getMandatory(), t);</span>
+  }
+
+  @Override
+  public T patch(T t) {
+<span class="nc bnc" id="L175" title="All 2 branches missed.">    if (!rolling) {</span>
+<span class="nc" id="L176">      return super.patch(t);</span>
+    }
+<span class="nc" id="L178">    return getRollingUpdater(rollingTimeout, rollingTimeUnit).rollUpdate(getMandatory(), t);</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StatefulSetOperationsImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.dsl.internal</a> &gt; <span class="el_source">StatefulSetOperationsImpl.java</span></div><h1>StatefulSetOperationsImpl.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.fabric8.kubernetes.client.dsl.internal;
+
+import io.fabric8.kubernetes.api.model.Container;
+import io.fabric8.kubernetes.api.model.ContainerBuilder;
+import io.fabric8.kubernetes.api.model.apps.DoneableStatefulSet;
+import io.fabric8.kubernetes.api.model.apps.StatefulSet;
+import io.fabric8.kubernetes.api.model.apps.StatefulSetBuilder;
+import io.fabric8.kubernetes.api.model.apps.StatefulSetList;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.Watch;
+import io.fabric8.kubernetes.client.Watcher;
+import io.fabric8.kubernetes.client.dsl.EditReplacePatchDeletable;
+import io.fabric8.kubernetes.client.dsl.ImageEditReplacePatchable;
+import io.fabric8.kubernetes.client.dsl.RollableScalableResource;
+import io.fabric8.kubernetes.client.dsl.TimeoutImageEditReplacePatchable;
+import io.fabric8.kubernetes.client.dsl.Watchable;
+import okhttp3.OkHttpClient;
+
+import java.util.Collections;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
+
+public class StatefulSetOperationsImpl extends RollableScalableResourceOperation&lt;StatefulSet, StatefulSetList, DoneableStatefulSet, RollableScalableResource&lt;StatefulSet, DoneableStatefulSet&gt;&gt;
+  implements TimeoutImageEditReplacePatchable&lt;StatefulSet, StatefulSet, DoneableStatefulSet&gt;
+{
+
+  public StatefulSetOperationsImpl(OkHttpClient client, Config config, String namespace) {
+<span class="nc" id="L45">    this(client, config, &quot;apps&quot;,&quot;v1&quot;, namespace, null, true, null, null, false, -1, new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String[]&gt;(), new TreeMap&lt;String, String&gt;(), false, config.getRollingTimeout(), TimeUnit.MILLISECONDS);</span>
+<span class="nc" id="L46">  }</span>
+
+  public StatefulSetOperationsImpl(OkHttpClient client, Config config, String apiGroup, String apiVersion, String namespace, String name, Boolean cascading, StatefulSet item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields) {
+<span class="nc" id="L49">    this(client, config, apiGroup, apiVersion, namespace, name, cascading, item, resourceVersion, reloadingFromServer, gracePeriodSeconds, labels, labelsNot, labelsIn, labelsNotIn, fields, false, config.getRollingTimeout(), TimeUnit.MILLISECONDS);</span>
+<span class="nc" id="L50">  }</span>
+
+  public StatefulSetOperationsImpl(OkHttpClient client, Config config, String apiGroup, String apiVersion, String namespace, String name, Boolean cascading, StatefulSet item, String resourceVersion, Boolean reloadingFromServer, long gracePeriodSeconds, Map&lt;String, String&gt; labels, Map&lt;String, String&gt; labelsNot, Map&lt;String, String[]&gt; labelsIn, Map&lt;String, String[]&gt; labelsNotIn, Map&lt;String, String&gt; fields, Boolean rolling, long rollingTimeout, TimeUnit rollingTimeUnit) {
+<span class="nc" id="L53">    super(client, config, apiGroup, apiVersion, &quot;statefulsets&quot;, namespace, name, cascading, item, resourceVersion, reloadingFromServer, gracePeriodSeconds, labels, labelsNot, labelsIn, labelsNotIn, fields, rolling, rollingTimeout, rollingTimeUnit);</span>
+<span class="nc" id="L54">  }</span>
+
+  @Override
+  public ImageEditReplacePatchable&lt;StatefulSet, StatefulSet, DoneableStatefulSet&gt; withTimeout(long timeout, TimeUnit unit) {
+<span class="nc" id="L58">    return new StatefulSetOperationsImpl(client, getConfig(), getAPIGroup(),  getAPIVersion(), namespace, getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), rolling, timeout, unit);</span>
+  }
+
+  @Override
+  public ImageEditReplacePatchable&lt;StatefulSet, StatefulSet, DoneableStatefulSet&gt; withTimeoutInMillis(long timeoutInMillis) {
+<span class="nc" id="L63">    return new StatefulSetOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), namespace, getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), rolling, timeoutInMillis, TimeUnit.MILLISECONDS);</span>
+  }
+
+  @Override
+  StatefulSet withReplicas(int count) {
+<span class="nc" id="L68">    return cascading(false).edit().editSpec().withReplicas(count).endSpec().done();</span>
+  }
+
+  @Override
+  RollingUpdater&lt;StatefulSet, StatefulSetList, DoneableStatefulSet&gt; getRollingUpdater(long rollingTimeout, TimeUnit rollingTimeUnit) {
+<span class="nc" id="L73">    return new StatefulSetRollingUpdater(client, config, getNamespace(), rollingTimeUnit.toMillis(rollingTimeout), config.getLoggingInterval());</span>
+  }
+
+  @Override
+  int getCurrentReplicas(StatefulSet current) {
+<span class="nc" id="L78">    return current.getStatus().getReplicas();</span>
+  }
+
+  @Override
+  int getDesiredReplicas(StatefulSet item) {
+<span class="nc" id="L83">    return item.getSpec().getReplicas();</span>
+  }
+
+  @Override
+  long getObservedGeneration(StatefulSet current) {
+<span class="nc bnc" id="L88" title="All 6 branches missed.">    return (current != null &amp;&amp; current.getStatus() != null &amp;&amp; current.getStatus().getObservedGeneration() != null)</span>
+<span class="nc" id="L89">      ? current.getStatus().getObservedGeneration() : -1;</span>
+  }
+
+  @Override
+  public RollableScalableResource&lt;StatefulSet, DoneableStatefulSet&gt; withName(String name) {
+<span class="nc bnc" id="L94" title="All 4 branches missed.">    if (name == null || name.length() == 0) {</span>
+<span class="nc" id="L95">      throw new IllegalArgumentException(&quot;Name must be provided.&quot;);</span>
+    }
+<span class="nc" id="L97">    return new StatefulSetOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), name, isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), rolling, rollingTimeout, rollingTimeUnit);</span>
+  }
+
+  @Override
+  public RollableScalableResource&lt;StatefulSet, DoneableStatefulSet&gt; fromServer() {
+<span class="nc" id="L102">    return new StatefulSetOperationsImpl(client, getConfig(), getAPIGroup(),  getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), getResourceVersion(), true, getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), rolling, rollingTimeout, rollingTimeUnit);</span>
+  }
+
+  @Override
+  public Watchable&lt;Watch, Watcher&lt;StatefulSet&gt;&gt; withResourceVersion(String resourceVersion) {
+<span class="nc" id="L107">    return new StatefulSetOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), resourceVersion, isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), rolling, rollingTimeout, rollingTimeUnit);</span>
+  }
+
+  @Override
+  public EditReplacePatchDeletable&lt;StatefulSet, StatefulSet, DoneableStatefulSet, Boolean&gt; cascading(boolean enabled) {
+<span class="nc" id="L112">    return new StatefulSetOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), enabled, getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), rolling, rollingTimeout, rollingTimeUnit);</span>
+  }
+
+  @Override
+  public StatefulSetOperationsImpl rolling() {
+<span class="nc" id="L117">    return new StatefulSetOperationsImpl(client, getConfig(), getAPIGroup(), getAPIVersion(), getNamespace(), getName(), isCascading(), getItem(), getResourceVersion(), isReloadingFromServer(), getGracePeriodSeconds(), getLabels(), getLabelsNot(), getLabelsIn(), getLabelsNotIn(), getFields(), true, rollingTimeout, rollingTimeUnit);</span>
+  }
+
+  @Override
+  public StatefulSet updateImage(String image) {
+<span class="nc" id="L122">    StatefulSet oldRC = get();</span>
+
+<span class="nc bnc" id="L124" title="All 2 branches missed.">    if (oldRC == null) {</span>
+<span class="nc" id="L125">      throw new KubernetesClientException(&quot;Existing StatefulSet doesn't exist&quot;);</span>
+    }
+<span class="nc bnc" id="L127" title="All 2 branches missed.">    if (oldRC.getSpec().getTemplate().getSpec().getContainers().size() &gt; 1) {</span>
+<span class="nc" id="L128">      throw new KubernetesClientException(&quot;Image update is not supported for multicontainer pods&quot;);</span>
+    }
+<span class="nc bnc" id="L130" title="All 2 branches missed.">    if (oldRC.getSpec().getTemplate().getSpec().getContainers().size() == 0) {</span>
+<span class="nc" id="L131">      throw new KubernetesClientException(&quot;Pod has no containers!&quot;);</span>
+    }
+
+<span class="nc" id="L134">    Container updatedContainer = new ContainerBuilder(oldRC.getSpec().getTemplate().getSpec().getContainers().iterator().next()).withImage(image).build();</span>
+
+<span class="nc" id="L136">    StatefulSetBuilder newRCBuilder = new StatefulSetBuilder(oldRC);</span>
+<span class="nc" id="L137">    newRCBuilder.editMetadata().withResourceVersion(null).endMetadata()</span>
+<span class="nc" id="L138">      .editSpec().editTemplate().editSpec().withContainers(Collections.singletonList(updatedContainer))</span>
+<span class="nc" id="L139">      .endSpec().endTemplate().endSpec();</span>
+
+<span class="nc" id="L141">    return new StatefulSetRollingUpdater(client, config, namespace).rollUpdate(oldRC, newRCBuilder.build());</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

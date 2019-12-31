@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ISCSIVolumeSourceFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model</a> &gt; <span class="el_source">ISCSIVolumeSourceFluentImpl.java</span></div><h1>ISCSIVolumeSourceFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Integer;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class ISCSIVolumeSourceFluentImpl&lt;A extends ISCSIVolumeSourceFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ISCSIVolumeSourceFluent&lt;A&gt;{
+
+    private Boolean chapAuthDiscovery;
+    private Boolean chapAuthSession;
+    private String fsType;
+    private String initiatorName;
+    private String iqn;
+    private String iscsiInterface;
+    private Integer lun;
+    private List&lt;String&gt; portals;
+    private Boolean readOnly;
+    private LocalObjectReferenceBuilder secretRef;
+    private String targetPortal;
+
+<span class="nc" id="L32">    public ISCSIVolumeSourceFluentImpl(){</span>
+<span class="nc" id="L33">    }</span>
+<span class="nc" id="L34">    public ISCSIVolumeSourceFluentImpl(ISCSIVolumeSource instance){</span>
+<span class="nc" id="L35">            this.withChapAuthDiscovery(instance.getChapAuthDiscovery()); </span>
+<span class="nc" id="L36">            this.withChapAuthSession(instance.getChapAuthSession()); </span>
+<span class="nc" id="L37">            this.withFsType(instance.getFsType()); </span>
+<span class="nc" id="L38">            this.withInitiatorName(instance.getInitiatorName()); </span>
+<span class="nc" id="L39">            this.withIqn(instance.getIqn()); </span>
+<span class="nc" id="L40">            this.withIscsiInterface(instance.getIscsiInterface()); </span>
+<span class="nc" id="L41">            this.withLun(instance.getLun()); </span>
+<span class="nc" id="L42">            this.withPortals(instance.getPortals()); </span>
+<span class="nc" id="L43">            this.withReadOnly(instance.getReadOnly()); </span>
+<span class="nc" id="L44">            this.withSecretRef(instance.getSecretRef()); </span>
+<span class="nc" id="L45">            this.withTargetPortal(instance.getTargetPortal()); </span>
+<span class="nc" id="L46">    }</span>
+
+    public Boolean isChapAuthDiscovery(){
+<span class="nc" id="L49">            return this.chapAuthDiscovery;</span>
+    }
+
+    public A withChapAuthDiscovery(Boolean chapAuthDiscovery){
+<span class="nc" id="L53">            this.chapAuthDiscovery=chapAuthDiscovery; return (A) this;</span>
+    }
+
+    public Boolean hasChapAuthDiscovery(){
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            return this.chapAuthDiscovery != null;</span>
+    }
+
+    public A withNewChapAuthDiscovery(String arg1){
+<span class="nc" id="L61">            return (A)withChapAuthDiscovery(new Boolean(arg1));</span>
+    }
+
+    public A withNewChapAuthDiscovery(boolean arg1){
+<span class="nc" id="L65">            return (A)withChapAuthDiscovery(new Boolean(arg1));</span>
+    }
+
+    public Boolean isChapAuthSession(){
+<span class="nc" id="L69">            return this.chapAuthSession;</span>
+    }
+
+    public A withChapAuthSession(Boolean chapAuthSession){
+<span class="nc" id="L73">            this.chapAuthSession=chapAuthSession; return (A) this;</span>
+    }
+
+    public Boolean hasChapAuthSession(){
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            return this.chapAuthSession != null;</span>
+    }
+
+    public A withNewChapAuthSession(String arg1){
+<span class="nc" id="L81">            return (A)withChapAuthSession(new Boolean(arg1));</span>
+    }
+
+    public A withNewChapAuthSession(boolean arg1){
+<span class="nc" id="L85">            return (A)withChapAuthSession(new Boolean(arg1));</span>
+    }
+
+    public String getFsType(){
+<span class="nc" id="L89">            return this.fsType;</span>
+    }
+
+    public A withFsType(String fsType){
+<span class="nc" id="L93">            this.fsType=fsType; return (A) this;</span>
+    }
+
+    public Boolean hasFsType(){
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            return this.fsType != null;</span>
+    }
+
+    public String getInitiatorName(){
+<span class="nc" id="L101">            return this.initiatorName;</span>
+    }
+
+    public A withInitiatorName(String initiatorName){
+<span class="nc" id="L105">            this.initiatorName=initiatorName; return (A) this;</span>
+    }
+
+    public Boolean hasInitiatorName(){
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            return this.initiatorName != null;</span>
+    }
+
+    public String getIqn(){
+<span class="nc" id="L113">            return this.iqn;</span>
+    }
+
+    public A withIqn(String iqn){
+<span class="nc" id="L117">            this.iqn=iqn; return (A) this;</span>
+    }
+
+    public Boolean hasIqn(){
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            return this.iqn != null;</span>
+    }
+
+    public String getIscsiInterface(){
+<span class="nc" id="L125">            return this.iscsiInterface;</span>
+    }
+
+    public A withIscsiInterface(String iscsiInterface){
+<span class="nc" id="L129">            this.iscsiInterface=iscsiInterface; return (A) this;</span>
+    }
+
+    public Boolean hasIscsiInterface(){
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            return this.iscsiInterface != null;</span>
+    }
+
+    public Integer getLun(){
+<span class="nc" id="L137">            return this.lun;</span>
+    }
+
+    public A withLun(Integer lun){
+<span class="nc" id="L141">            this.lun=lun; return (A) this;</span>
+    }
+
+    public Boolean hasLun(){
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            return this.lun != null;</span>
+    }
+
+    public A addToPortals(int index,String item){
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (this.portals == null) {this.portals = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L150">            this.portals.add(index, item);</span>
+<span class="nc" id="L151">            return (A)this;</span>
+    }
+
+    public A setToPortals(int index,String item){
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            if (this.portals == null) {this.portals = new ArrayList&lt;String&gt;();}</span>
+<span class="nc" id="L156">            this.portals.set(index, item); return (A)this;</span>
+    }
+
+    public A addToPortals(String... items){
+<span class="nc bnc" id="L160" title="All 2 branches missed.">            if (this.portals == null) {this.portals = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            for (String item : items) {this.portals.add(item);} return (A)this;</span>
+    }
+
+    public A addAllToPortals(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L165" title="All 2 branches missed.">            if (this.portals == null) {this.portals = new ArrayList&lt;String&gt;();}</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            for (String item : items) {this.portals.add(item);} return (A)this;</span>
+    }
+
+    public A removeFromPortals(String... items){
+<span class="nc bnc" id="L170" title="All 4 branches missed.">            for (String item : items) {if (this.portals!= null){ this.portals.remove(item);}} return (A)this;</span>
+    }
+
+    public A removeAllFromPortals(Collection&lt;String&gt; items){
+<span class="nc bnc" id="L174" title="All 4 branches missed.">            for (String item : items) {if (this.portals!= null){ this.portals.remove(item);}} return (A)this;</span>
+    }
+
+    public List&lt;String&gt; getPortals(){
+<span class="nc" id="L178">            return this.portals;</span>
+    }
+
+    public String getPortal(int index){
+<span class="nc" id="L182">            return this.portals.get(index);</span>
+    }
+
+    public String getFirstPortal(){
+<span class="nc" id="L186">            return this.portals.get(0);</span>
+    }
+
+    public String getLastPortal(){
+<span class="nc" id="L190">            return this.portals.get(portals.size() - 1);</span>
+    }
+
+    public String getMatchingPortal(io.fabric8.kubernetes.api.builder.Predicate&lt;String&gt; predicate){
+<span class="nc bnc" id="L194" title="All 4 branches missed.">            for (String item: portals) { if(predicate.apply(item)){return item;} } return null;</span>
+    }
+
+    public A withPortals(List&lt;String&gt; portals){
+<span class="nc bnc" id="L198" title="All 2 branches missed.">            if (this.portals != null) { _visitables.removeAll(this.portals);}</span>
+<span class="nc bnc" id="L199" title="All 4 branches missed.">            if (portals != null) {this.portals = new ArrayList&lt;String&gt;(); for (String item : portals){this.addToPortals(item);}} else { this.portals = new ArrayList&lt;String&gt;();} return (A) this;</span>
+    }
+
+    public A withPortals(String... portals){
+<span class="nc bnc" id="L203" title="All 2 branches missed.">            if (this.portals != null) {this.portals.clear();}</span>
+<span class="nc bnc" id="L204" title="All 4 branches missed.">            if (portals != null) {for (String item :portals){ this.addToPortals(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasPortals(){
+<span class="nc bnc" id="L208" title="All 4 branches missed.">            return portals != null &amp;&amp; !portals.isEmpty();</span>
+    }
+
+    public Boolean isReadOnly(){
+<span class="nc" id="L212">            return this.readOnly;</span>
+    }
+
+    public A withReadOnly(Boolean readOnly){
+<span class="nc" id="L216">            this.readOnly=readOnly; return (A) this;</span>
+    }
+
+    public Boolean hasReadOnly(){
+<span class="nc bnc" id="L220" title="All 2 branches missed.">            return this.readOnly != null;</span>
+    }
+
+    public A withNewReadOnly(String arg1){
+<span class="nc" id="L224">            return (A)withReadOnly(new Boolean(arg1));</span>
+    }
+
+    public A withNewReadOnly(boolean arg1){
+<span class="nc" id="L228">            return (A)withReadOnly(new Boolean(arg1));</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSecretRef instead.
+ * @return The buildable object.
+ */
+@Deprecated public LocalObjectReference getSecretRef(){
+<span class="nc bnc" id="L237" title="All 2 branches missed.">            return this.secretRef!=null?this.secretRef.build():null;</span>
+    }
+
+    public LocalObjectReference buildSecretRef(){
+<span class="nc bnc" id="L241" title="All 2 branches missed.">            return this.secretRef!=null?this.secretRef.build():null;</span>
+    }
+
+    public A withSecretRef(LocalObjectReference secretRef){
+<span class="nc" id="L245">            _visitables.remove(this.secretRef);</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">            if (secretRef!=null){ this.secretRef= new LocalObjectReferenceBuilder(secretRef); _visitables.add(this.secretRef);} return (A) this;</span>
+    }
+
+    public Boolean hasSecretRef(){
+<span class="nc bnc" id="L250" title="All 2 branches missed.">            return this.secretRef != null;</span>
+    }
+
+    public A withNewSecretRef(String name){
+<span class="nc" id="L254">            return (A)withSecretRef(new LocalObjectReference(name));</span>
+    }
+
+    public ISCSIVolumeSourceFluent.SecretRefNested&lt;A&gt; withNewSecretRef(){
+<span class="nc" id="L258">            return new SecretRefNestedImpl();</span>
+    }
+
+    public ISCSIVolumeSourceFluent.SecretRefNested&lt;A&gt; withNewSecretRefLike(LocalObjectReference item){
+<span class="nc" id="L262">            return new SecretRefNestedImpl(item);</span>
+    }
+
+    public ISCSIVolumeSourceFluent.SecretRefNested&lt;A&gt; editSecretRef(){
+<span class="nc" id="L266">            return withNewSecretRefLike(getSecretRef());</span>
+    }
+
+    public ISCSIVolumeSourceFluent.SecretRefNested&lt;A&gt; editOrNewSecretRef(){
+<span class="nc bnc" id="L270" title="All 2 branches missed.">            return withNewSecretRefLike(getSecretRef() != null ? getSecretRef(): new LocalObjectReferenceBuilder().build());</span>
+    }
+
+    public ISCSIVolumeSourceFluent.SecretRefNested&lt;A&gt; editOrNewSecretRefLike(LocalObjectReference item){
+<span class="nc bnc" id="L274" title="All 2 branches missed.">            return withNewSecretRefLike(getSecretRef() != null ? getSecretRef(): item);</span>
+    }
+
+    public String getTargetPortal(){
+<span class="nc" id="L278">            return this.targetPortal;</span>
+    }
+
+    public A withTargetPortal(String targetPortal){
+<span class="nc" id="L282">            this.targetPortal=targetPortal; return (A) this;</span>
+    }
+
+    public Boolean hasTargetPortal(){
+<span class="nc bnc" id="L286" title="All 2 branches missed.">            return this.targetPortal != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L290" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L291" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L292" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L293">            ISCSIVolumeSourceFluentImpl that = (ISCSIVolumeSourceFluentImpl) o;</span>
+<span class="nc bnc" id="L294" title="All 6 branches missed.">            if (chapAuthDiscovery != null ? !chapAuthDiscovery.equals(that.chapAuthDiscovery) :that.chapAuthDiscovery != null) return false;</span>
+<span class="nc bnc" id="L295" title="All 6 branches missed.">            if (chapAuthSession != null ? !chapAuthSession.equals(that.chapAuthSession) :that.chapAuthSession != null) return false;</span>
+<span class="nc bnc" id="L296" title="All 6 branches missed.">            if (fsType != null ? !fsType.equals(that.fsType) :that.fsType != null) return false;</span>
+<span class="nc bnc" id="L297" title="All 6 branches missed.">            if (initiatorName != null ? !initiatorName.equals(that.initiatorName) :that.initiatorName != null) return false;</span>
+<span class="nc bnc" id="L298" title="All 6 branches missed.">            if (iqn != null ? !iqn.equals(that.iqn) :that.iqn != null) return false;</span>
+<span class="nc bnc" id="L299" title="All 6 branches missed.">            if (iscsiInterface != null ? !iscsiInterface.equals(that.iscsiInterface) :that.iscsiInterface != null) return false;</span>
+<span class="nc bnc" id="L300" title="All 6 branches missed.">            if (lun != null ? !lun.equals(that.lun) :that.lun != null) return false;</span>
+<span class="nc bnc" id="L301" title="All 6 branches missed.">            if (portals != null ? !portals.equals(that.portals) :that.portals != null) return false;</span>
+<span class="nc bnc" id="L302" title="All 6 branches missed.">            if (readOnly != null ? !readOnly.equals(that.readOnly) :that.readOnly != null) return false;</span>
+<span class="nc bnc" id="L303" title="All 6 branches missed.">            if (secretRef != null ? !secretRef.equals(that.secretRef) :that.secretRef != null) return false;</span>
+<span class="nc bnc" id="L304" title="All 6 branches missed.">            if (targetPortal != null ? !targetPortal.equals(that.targetPortal) :that.targetPortal != null) return false;</span>
+<span class="nc" id="L305">            return true;</span>
+    }
+
+
+    public class SecretRefNestedImpl&lt;N&gt; extends LocalObjectReferenceFluentImpl&lt;ISCSIVolumeSourceFluent.SecretRefNested&lt;N&gt;&gt; implements ISCSIVolumeSourceFluent.SecretRefNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LocalObjectReferenceBuilder builder;
+    
+<span class="nc" id="L313">            SecretRefNestedImpl(LocalObjectReference item){</span>
+<span class="nc" id="L314">                    this.builder = new LocalObjectReferenceBuilder(this, item);</span>
+<span class="nc" id="L315">            }</span>
+<span class="nc" id="L316">            SecretRefNestedImpl(){</span>
+<span class="nc" id="L317">                    this.builder = new LocalObjectReferenceBuilder(this);</span>
+<span class="nc" id="L318">            }</span>
+    
+    public N and(){
+<span class="nc" id="L321">            return (N) ISCSIVolumeSourceFluentImpl.this.withSecretRef(builder.build());</span>
+    }
+    public N endSecretRef(){
+<span class="nc" id="L324">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PodDisruptionBudgetSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.policy</a> &gt; <span class="el_source">PodDisruptionBudgetSpecFluentImpl.java</span></div><h1>PodDisruptionBudgetSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.policy;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.fabric8.kubernetes.api.model.IntOrString;
+import io.fabric8.kubernetes.api.model.LabelSelectorFluentImpl;
+import io.fabric8.kubernetes.api.builder.Nested;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import java.lang.String;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import io.fabric8.kubernetes.api.model.IntOrStringBuilder;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import java.lang.Boolean;
+import java.lang.Override;
+import com.fasterxml.jackson.core.JsonParser;
+import io.fabric8.kubernetes.api.model.LabelSelectorBuilder;
+import io.fabric8.kubernetes.api.model.LabelSelector;
+import java.lang.Integer;
+import javax.validation.Valid;
+import java.lang.Object;
+import io.fabric8.kubernetes.api.model.IntOrStringFluentImpl;
+
+public class PodDisruptionBudgetSpecFluentImpl&lt;A extends PodDisruptionBudgetSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements PodDisruptionBudgetSpecFluent&lt;A&gt;{
+
+    private IntOrStringBuilder maxUnavailable;
+    private IntOrStringBuilder minAvailable;
+    private LabelSelectorBuilder selector;
+
+<span class="nc" id="L32">    public PodDisruptionBudgetSpecFluentImpl(){</span>
+<span class="nc" id="L33">    }</span>
+<span class="nc" id="L34">    public PodDisruptionBudgetSpecFluentImpl(PodDisruptionBudgetSpec instance){</span>
+<span class="nc" id="L35">            this.withMaxUnavailable(instance.getMaxUnavailable()); </span>
+<span class="nc" id="L36">            this.withMinAvailable(instance.getMinAvailable()); </span>
+<span class="nc" id="L37">            this.withSelector(instance.getSelector()); </span>
+<span class="nc" id="L38">    }</span>
+
+    
+/**
+ * This method has been deprecated, please use method buildMaxUnavailable instead.
+ * @return The buildable object.
+ */
+@Deprecated public IntOrString getMaxUnavailable(){
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            return this.maxUnavailable!=null?this.maxUnavailable.build():null;</span>
+    }
+
+    public IntOrString buildMaxUnavailable(){
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            return this.maxUnavailable!=null?this.maxUnavailable.build():null;</span>
+    }
+
+    public A withMaxUnavailable(IntOrString maxUnavailable){
+<span class="nc" id="L54">            _visitables.remove(this.maxUnavailable);</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            if (maxUnavailable!=null){ this.maxUnavailable= new IntOrStringBuilder(maxUnavailable); _visitables.add(this.maxUnavailable);} return (A) this;</span>
+    }
+
+    public Boolean hasMaxUnavailable(){
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            return this.maxUnavailable != null;</span>
+    }
+
+    public A withNewMaxUnavailable(String strVal){
+<span class="nc" id="L63">            return (A)withMaxUnavailable(new IntOrString(strVal));</span>
+    }
+
+    public A withNewMaxUnavailable(Integer intVal){
+<span class="nc" id="L67">            return (A)withMaxUnavailable(new IntOrString(intVal));</span>
+    }
+
+    public PodDisruptionBudgetSpecFluent.MaxUnavailableNested&lt;A&gt; withNewMaxUnavailable(){
+<span class="nc" id="L71">            return new MaxUnavailableNestedImpl();</span>
+    }
+
+    public PodDisruptionBudgetSpecFluent.MaxUnavailableNested&lt;A&gt; withNewMaxUnavailableLike(IntOrString item){
+<span class="nc" id="L75">            return new MaxUnavailableNestedImpl(item);</span>
+    }
+
+    public PodDisruptionBudgetSpecFluent.MaxUnavailableNested&lt;A&gt; editMaxUnavailable(){
+<span class="nc" id="L79">            return withNewMaxUnavailableLike(getMaxUnavailable());</span>
+    }
+
+    public PodDisruptionBudgetSpecFluent.MaxUnavailableNested&lt;A&gt; editOrNewMaxUnavailable(){
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            return withNewMaxUnavailableLike(getMaxUnavailable() != null ? getMaxUnavailable(): new IntOrStringBuilder().build());</span>
+    }
+
+    public PodDisruptionBudgetSpecFluent.MaxUnavailableNested&lt;A&gt; editOrNewMaxUnavailableLike(IntOrString item){
+<span class="nc bnc" id="L87" title="All 2 branches missed.">            return withNewMaxUnavailableLike(getMaxUnavailable() != null ? getMaxUnavailable(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildMinAvailable instead.
+ * @return The buildable object.
+ */
+@Deprecated public IntOrString getMinAvailable(){
+<span class="nc bnc" id="L96" title="All 2 branches missed.">            return this.minAvailable!=null?this.minAvailable.build():null;</span>
+    }
+
+    public IntOrString buildMinAvailable(){
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            return this.minAvailable!=null?this.minAvailable.build():null;</span>
+    }
+
+    public A withMinAvailable(IntOrString minAvailable){
+<span class="nc" id="L104">            _visitables.remove(this.minAvailable);</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            if (minAvailable!=null){ this.minAvailable= new IntOrStringBuilder(minAvailable); _visitables.add(this.minAvailable);} return (A) this;</span>
+    }
+
+    public Boolean hasMinAvailable(){
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            return this.minAvailable != null;</span>
+    }
+
+    public A withNewMinAvailable(String strVal){
+<span class="nc" id="L113">            return (A)withMinAvailable(new IntOrString(strVal));</span>
+    }
+
+    public A withNewMinAvailable(Integer intVal){
+<span class="nc" id="L117">            return (A)withMinAvailable(new IntOrString(intVal));</span>
+    }
+
+    public PodDisruptionBudgetSpecFluent.MinAvailableNested&lt;A&gt; withNewMinAvailable(){
+<span class="nc" id="L121">            return new MinAvailableNestedImpl();</span>
+    }
+
+    public PodDisruptionBudgetSpecFluent.MinAvailableNested&lt;A&gt; withNewMinAvailableLike(IntOrString item){
+<span class="nc" id="L125">            return new MinAvailableNestedImpl(item);</span>
+    }
+
+    public PodDisruptionBudgetSpecFluent.MinAvailableNested&lt;A&gt; editMinAvailable(){
+<span class="nc" id="L129">            return withNewMinAvailableLike(getMinAvailable());</span>
+    }
+
+    public PodDisruptionBudgetSpecFluent.MinAvailableNested&lt;A&gt; editOrNewMinAvailable(){
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            return withNewMinAvailableLike(getMinAvailable() != null ? getMinAvailable(): new IntOrStringBuilder().build());</span>
+    }
+
+    public PodDisruptionBudgetSpecFluent.MinAvailableNested&lt;A&gt; editOrNewMinAvailableLike(IntOrString item){
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            return withNewMinAvailableLike(getMinAvailable() != null ? getMinAvailable(): item);</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildSelector instead.
+ * @return The buildable object.
+ */
+@Deprecated public LabelSelector getSelector(){
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            return this.selector!=null?this.selector.build():null;</span>
+    }
+
+    public LabelSelector buildSelector(){
+<span class="nc bnc" id="L150" title="All 2 branches missed.">            return this.selector!=null?this.selector.build():null;</span>
+    }
+
+    public A withSelector(LabelSelector selector){
+<span class="nc" id="L154">            _visitables.remove(this.selector);</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            if (selector!=null){ this.selector= new LabelSelectorBuilder(selector); _visitables.add(this.selector);} return (A) this;</span>
+    }
+
+    public Boolean hasSelector(){
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            return this.selector != null;</span>
+    }
+
+    public PodDisruptionBudgetSpecFluent.SelectorNested&lt;A&gt; withNewSelector(){
+<span class="nc" id="L163">            return new SelectorNestedImpl();</span>
+    }
+
+    public PodDisruptionBudgetSpecFluent.SelectorNested&lt;A&gt; withNewSelectorLike(LabelSelector item){
+<span class="nc" id="L167">            return new SelectorNestedImpl(item);</span>
+    }
+
+    public PodDisruptionBudgetSpecFluent.SelectorNested&lt;A&gt; editSelector(){
+<span class="nc" id="L171">            return withNewSelectorLike(getSelector());</span>
+    }
+
+    public PodDisruptionBudgetSpecFluent.SelectorNested&lt;A&gt; editOrNewSelector(){
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            return withNewSelectorLike(getSelector() != null ? getSelector(): new LabelSelectorBuilder().build());</span>
+    }
+
+    public PodDisruptionBudgetSpecFluent.SelectorNested&lt;A&gt; editOrNewSelectorLike(LabelSelector item){
+<span class="nc bnc" id="L179" title="All 2 branches missed.">            return withNewSelectorLike(getSelector() != null ? getSelector(): item);</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L183" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L184" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L185" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L186">            PodDisruptionBudgetSpecFluentImpl that = (PodDisruptionBudgetSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L187" title="All 6 branches missed.">            if (maxUnavailable != null ? !maxUnavailable.equals(that.maxUnavailable) :that.maxUnavailable != null) return false;</span>
+<span class="nc bnc" id="L188" title="All 6 branches missed.">            if (minAvailable != null ? !minAvailable.equals(that.minAvailable) :that.minAvailable != null) return false;</span>
+<span class="nc bnc" id="L189" title="All 6 branches missed.">            if (selector != null ? !selector.equals(that.selector) :that.selector != null) return false;</span>
+<span class="nc" id="L190">            return true;</span>
+    }
+
+
+    public class MaxUnavailableNestedImpl&lt;N&gt; extends IntOrStringFluentImpl&lt;PodDisruptionBudgetSpecFluent.MaxUnavailableNested&lt;N&gt;&gt; implements PodDisruptionBudgetSpecFluent.MaxUnavailableNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final IntOrStringBuilder builder;
+    
+<span class="nc" id="L198">            MaxUnavailableNestedImpl(IntOrString item){</span>
+<span class="nc" id="L199">                    this.builder = new IntOrStringBuilder(this, item);</span>
+<span class="nc" id="L200">            }</span>
+<span class="nc" id="L201">            MaxUnavailableNestedImpl(){</span>
+<span class="nc" id="L202">                    this.builder = new IntOrStringBuilder(this);</span>
+<span class="nc" id="L203">            }</span>
+    
+    public N and(){
+<span class="nc" id="L206">            return (N) PodDisruptionBudgetSpecFluentImpl.this.withMaxUnavailable(builder.build());</span>
+    }
+    public N endMaxUnavailable(){
+<span class="nc" id="L209">            return and();</span>
+    }
+
+}
+    public class MinAvailableNestedImpl&lt;N&gt; extends IntOrStringFluentImpl&lt;PodDisruptionBudgetSpecFluent.MinAvailableNested&lt;N&gt;&gt; implements PodDisruptionBudgetSpecFluent.MinAvailableNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final IntOrStringBuilder builder;
+    
+<span class="nc" id="L217">            MinAvailableNestedImpl(IntOrString item){</span>
+<span class="nc" id="L218">                    this.builder = new IntOrStringBuilder(this, item);</span>
+<span class="nc" id="L219">            }</span>
+<span class="nc" id="L220">            MinAvailableNestedImpl(){</span>
+<span class="nc" id="L221">                    this.builder = new IntOrStringBuilder(this);</span>
+<span class="nc" id="L222">            }</span>
+    
+    public N and(){
+<span class="nc" id="L225">            return (N) PodDisruptionBudgetSpecFluentImpl.this.withMinAvailable(builder.build());</span>
+    }
+    public N endMinAvailable(){
+<span class="nc" id="L228">            return and();</span>
+    }
+
+}
+    public class SelectorNestedImpl&lt;N&gt; extends LabelSelectorFluentImpl&lt;PodDisruptionBudgetSpecFluent.SelectorNested&lt;N&gt;&gt; implements PodDisruptionBudgetSpecFluent.SelectorNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final LabelSelectorBuilder builder;
+    
+<span class="nc" id="L236">            SelectorNestedImpl(LabelSelector item){</span>
+<span class="nc" id="L237">                    this.builder = new LabelSelectorBuilder(this, item);</span>
+<span class="nc" id="L238">            }</span>
+<span class="nc" id="L239">            SelectorNestedImpl(){</span>
+<span class="nc" id="L240">                    this.builder = new LabelSelectorBuilder(this);</span>
+<span class="nc" id="L241">            }</span>
+    
+    public N and(){
+<span class="nc" id="L244">            return (N) PodDisruptionBudgetSpecFluentImpl.this.withSelector(builder.build());</span>
+    }
+    public N endSelector(){
+<span class="nc" id="L247">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

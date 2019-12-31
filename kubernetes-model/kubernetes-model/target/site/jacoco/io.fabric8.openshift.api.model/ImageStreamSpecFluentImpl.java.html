@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImageStreamSpecFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">ImageStreamSpecFluentImpl.java</span></div><h1>ImageStreamSpecFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.openshift.api.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Deprecated;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.util.List;
+import java.lang.Boolean;
+import javax.validation.Valid;
+import java.util.Collection;
+import java.lang.Object;
+
+public class ImageStreamSpecFluentImpl&lt;A extends ImageStreamSpecFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements ImageStreamSpecFluent&lt;A&gt;{
+
+    private String dockerImageRepository;
+    private ImageLookupPolicyBuilder lookupPolicy;
+    private List&lt;TagReferenceBuilder&gt; tags;
+
+<span class="nc" id="L23">    public ImageStreamSpecFluentImpl(){</span>
+<span class="nc" id="L24">    }</span>
+<span class="nc" id="L25">    public ImageStreamSpecFluentImpl(ImageStreamSpec instance){</span>
+<span class="nc" id="L26">            this.withDockerImageRepository(instance.getDockerImageRepository()); </span>
+<span class="nc" id="L27">            this.withLookupPolicy(instance.getLookupPolicy()); </span>
+<span class="nc" id="L28">            this.withTags(instance.getTags()); </span>
+<span class="nc" id="L29">    }</span>
+
+    public String getDockerImageRepository(){
+<span class="nc" id="L32">            return this.dockerImageRepository;</span>
+    }
+
+    public A withDockerImageRepository(String dockerImageRepository){
+<span class="nc" id="L36">            this.dockerImageRepository=dockerImageRepository; return (A) this;</span>
+    }
+
+    public Boolean hasDockerImageRepository(){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            return this.dockerImageRepository != null;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildLookupPolicy instead.
+ * @return The buildable object.
+ */
+@Deprecated public ImageLookupPolicy getLookupPolicy(){
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            return this.lookupPolicy!=null?this.lookupPolicy.build():null;</span>
+    }
+
+    public ImageLookupPolicy buildLookupPolicy(){
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            return this.lookupPolicy!=null?this.lookupPolicy.build():null;</span>
+    }
+
+    public A withLookupPolicy(ImageLookupPolicy lookupPolicy){
+<span class="nc" id="L57">            _visitables.remove(this.lookupPolicy);</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            if (lookupPolicy!=null){ this.lookupPolicy= new ImageLookupPolicyBuilder(lookupPolicy); _visitables.add(this.lookupPolicy);} return (A) this;</span>
+    }
+
+    public Boolean hasLookupPolicy(){
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            return this.lookupPolicy != null;</span>
+    }
+
+    public A withNewLookupPolicy(Boolean local){
+<span class="nc" id="L66">            return (A)withLookupPolicy(new ImageLookupPolicy(local));</span>
+    }
+
+    public ImageStreamSpecFluent.LookupPolicyNested&lt;A&gt; withNewLookupPolicy(){
+<span class="nc" id="L70">            return new LookupPolicyNestedImpl();</span>
+    }
+
+    public ImageStreamSpecFluent.LookupPolicyNested&lt;A&gt; withNewLookupPolicyLike(ImageLookupPolicy item){
+<span class="nc" id="L74">            return new LookupPolicyNestedImpl(item);</span>
+    }
+
+    public ImageStreamSpecFluent.LookupPolicyNested&lt;A&gt; editLookupPolicy(){
+<span class="nc" id="L78">            return withNewLookupPolicyLike(getLookupPolicy());</span>
+    }
+
+    public ImageStreamSpecFluent.LookupPolicyNested&lt;A&gt; editOrNewLookupPolicy(){
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            return withNewLookupPolicyLike(getLookupPolicy() != null ? getLookupPolicy(): new ImageLookupPolicyBuilder().build());</span>
+    }
+
+    public ImageStreamSpecFluent.LookupPolicyNested&lt;A&gt; editOrNewLookupPolicyLike(ImageLookupPolicy item){
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            return withNewLookupPolicyLike(getLookupPolicy() != null ? getLookupPolicy(): item);</span>
+    }
+
+    public A addToTags(int index,TagReference item){
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            if (this.tags == null) {this.tags = new ArrayList&lt;TagReferenceBuilder&gt;();}</span>
+<span class="nc bnc" id="L91" title="All 4 branches missed.">            TagReferenceBuilder builder = new TagReferenceBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.tags.add(index &gt;= 0 ? index : tags.size(), builder); return (A)this;</span>
+    }
+
+    public A setToTags(int index,TagReference item){
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (this.tags == null) {this.tags = new ArrayList&lt;TagReferenceBuilder&gt;();}</span>
+<span class="nc" id="L96">            TagReferenceBuilder builder = new TagReferenceBuilder(item);</span>
+<span class="nc bnc" id="L97" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L98" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= tags.size()) { tags.add(builder); } else { tags.set(index, builder);}</span>
+<span class="nc" id="L99">             return (A)this;</span>
+    }
+
+    public A addToTags(TagReference... items){
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            if (this.tags == null) {this.tags = new ArrayList&lt;TagReferenceBuilder&gt;();}</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            for (TagReference item : items) {TagReferenceBuilder builder = new TagReferenceBuilder(item);_visitables.add(builder);this.tags.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToTags(Collection&lt;TagReference&gt; items){
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            if (this.tags == null) {this.tags = new ArrayList&lt;TagReferenceBuilder&gt;();}</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            for (TagReference item : items) {TagReferenceBuilder builder = new TagReferenceBuilder(item);_visitables.add(builder);this.tags.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromTags(TagReference... items){
+<span class="nc bnc" id="L113" title="All 4 branches missed.">            for (TagReference item : items) {TagReferenceBuilder builder = new TagReferenceBuilder(item);_visitables.remove(builder);if (this.tags != null) {this.tags.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromTags(Collection&lt;TagReference&gt; items){
+<span class="nc bnc" id="L117" title="All 4 branches missed.">            for (TagReference item : items) {TagReferenceBuilder builder = new TagReferenceBuilder(item);_visitables.remove(builder);if (this.tags != null) {this.tags.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildTags instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;TagReference&gt; getTags(){
+<span class="nc" id="L126">            return build(tags);</span>
+    }
+
+    public List&lt;TagReference&gt; buildTags(){
+<span class="nc" id="L130">            return build(tags);</span>
+    }
+
+    public TagReference buildTag(int index){
+<span class="nc" id="L134">            return this.tags.get(index).build();</span>
+    }
+
+    public TagReference buildFirstTag(){
+<span class="nc" id="L138">            return this.tags.get(0).build();</span>
+    }
+
+    public TagReference buildLastTag(){
+<span class="nc" id="L142">            return this.tags.get(tags.size() - 1).build();</span>
+    }
+
+    public TagReference buildMatchingTag(io.fabric8.kubernetes.api.builder.Predicate&lt;TagReferenceBuilder&gt; predicate){
+<span class="nc bnc" id="L146" title="All 4 branches missed.">            for (TagReferenceBuilder item: tags) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withTags(List&lt;TagReference&gt; tags){
+<span class="nc bnc" id="L150" title="All 2 branches missed.">            if (this.tags != null) { _visitables.removeAll(this.tags);}</span>
+<span class="nc bnc" id="L151" title="All 4 branches missed.">            if (tags != null) {this.tags = new ArrayList&lt;TagReferenceBuilder&gt;(); for (TagReference item : tags){this.addToTags(item);}} else { this.tags = new ArrayList&lt;TagReferenceBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withTags(TagReference... tags){
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            if (this.tags != null) {this.tags.clear();}</span>
+<span class="nc bnc" id="L156" title="All 4 branches missed.">            if (tags != null) {for (TagReference item :tags){ this.addToTags(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasTags(){
+<span class="nc bnc" id="L160" title="All 4 branches missed.">            return tags != null &amp;&amp; !tags.isEmpty();</span>
+    }
+
+    public ImageStreamSpecFluent.TagsNested&lt;A&gt; addNewTag(){
+<span class="nc" id="L164">            return new TagsNestedImpl();</span>
+    }
+
+    public ImageStreamSpecFluent.TagsNested&lt;A&gt; addNewTagLike(TagReference item){
+<span class="nc" id="L168">            return new TagsNestedImpl(-1, item);</span>
+    }
+
+    public ImageStreamSpecFluent.TagsNested&lt;A&gt; setNewTagLike(int index,TagReference item){
+<span class="nc" id="L172">            return new TagsNestedImpl(index, item);</span>
+    }
+
+    public ImageStreamSpecFluent.TagsNested&lt;A&gt; editTag(int index){
+<span class="nc bnc" id="L176" title="All 2 branches missed.">            if (tags.size() &lt;= index) throw new RuntimeException(&quot;Can't edit tags. Index exceeds size.&quot;);</span>
+<span class="nc" id="L177">            return setNewTagLike(index, buildTag(index));</span>
+    }
+
+    public ImageStreamSpecFluent.TagsNested&lt;A&gt; editFirstTag(){
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            if (tags.size() == 0) throw new RuntimeException(&quot;Can't edit first tags. The list is empty.&quot;);</span>
+<span class="nc" id="L182">            return setNewTagLike(0, buildTag(0));</span>
+    }
+
+    public ImageStreamSpecFluent.TagsNested&lt;A&gt; editLastTag(){
+<span class="nc" id="L186">            int index = tags.size() - 1;</span>
+<span class="nc bnc" id="L187" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last tags. The list is empty.&quot;);</span>
+<span class="nc" id="L188">            return setNewTagLike(index, buildTag(index));</span>
+    }
+
+    public ImageStreamSpecFluent.TagsNested&lt;A&gt; editMatchingTag(io.fabric8.kubernetes.api.builder.Predicate&lt;TagReferenceBuilder&gt; predicate){
+<span class="nc" id="L192">            int index = -1;</span>
+<span class="nc bnc" id="L193" title="All 2 branches missed.">            for (int i=0;i&lt;tags.size();i++) { </span>
+<span class="nc bnc" id="L194" title="All 2 branches missed.">            if (predicate.apply(tags.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L196" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching tags. No match found.&quot;);</span>
+<span class="nc" id="L197">            return setNewTagLike(index, buildTag(index));</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L201" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L202" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L204">            ImageStreamSpecFluentImpl that = (ImageStreamSpecFluentImpl) o;</span>
+<span class="nc bnc" id="L205" title="All 6 branches missed.">            if (dockerImageRepository != null ? !dockerImageRepository.equals(that.dockerImageRepository) :that.dockerImageRepository != null) return false;</span>
+<span class="nc bnc" id="L206" title="All 6 branches missed.">            if (lookupPolicy != null ? !lookupPolicy.equals(that.lookupPolicy) :that.lookupPolicy != null) return false;</span>
+<span class="nc bnc" id="L207" title="All 6 branches missed.">            if (tags != null ? !tags.equals(that.tags) :that.tags != null) return false;</span>
+<span class="nc" id="L208">            return true;</span>
+    }
+
+
+    public class LookupPolicyNestedImpl&lt;N&gt; extends ImageLookupPolicyFluentImpl&lt;ImageStreamSpecFluent.LookupPolicyNested&lt;N&gt;&gt; implements ImageStreamSpecFluent.LookupPolicyNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final ImageLookupPolicyBuilder builder;
+    
+<span class="nc" id="L216">            LookupPolicyNestedImpl(ImageLookupPolicy item){</span>
+<span class="nc" id="L217">                    this.builder = new ImageLookupPolicyBuilder(this, item);</span>
+<span class="nc" id="L218">            }</span>
+<span class="nc" id="L219">            LookupPolicyNestedImpl(){</span>
+<span class="nc" id="L220">                    this.builder = new ImageLookupPolicyBuilder(this);</span>
+<span class="nc" id="L221">            }</span>
+    
+    public N and(){
+<span class="nc" id="L224">            return (N) ImageStreamSpecFluentImpl.this.withLookupPolicy(builder.build());</span>
+    }
+    public N endLookupPolicy(){
+<span class="nc" id="L227">            return and();</span>
+    }
+
+}
+    public class TagsNestedImpl&lt;N&gt; extends TagReferenceFluentImpl&lt;ImageStreamSpecFluent.TagsNested&lt;N&gt;&gt; implements ImageStreamSpecFluent.TagsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final TagReferenceBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L236">            TagsNestedImpl(int index,TagReference item){</span>
+<span class="nc" id="L237">                    this.index = index;</span>
+<span class="nc" id="L238">                    this.builder = new TagReferenceBuilder(this, item);</span>
+<span class="nc" id="L239">            }</span>
+<span class="nc" id="L240">            TagsNestedImpl(){</span>
+<span class="nc" id="L241">                    this.index = -1;</span>
+<span class="nc" id="L242">                    this.builder = new TagReferenceBuilder(this);</span>
+<span class="nc" id="L243">            }</span>
+    
+    public N and(){
+<span class="nc" id="L246">            return (N) ImageStreamSpecFluentImpl.this.setToTags(index, builder.build());</span>
+    }
+    public N endTag(){
+<span class="nc" id="L249">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

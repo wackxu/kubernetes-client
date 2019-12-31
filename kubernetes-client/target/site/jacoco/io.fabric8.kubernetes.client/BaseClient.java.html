@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BaseClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client</a> &gt; <span class="el_source">BaseClient.java</span></div><h1>BaseClient.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.fabric8.kubernetes.client;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import okhttp3.ConnectionPool;
+import okhttp3.Dispatcher;
+import okhttp3.OkHttpClient;
+import io.fabric8.kubernetes.api.model.RootPaths;
+import io.fabric8.kubernetes.client.dsl.base.BaseOperation;
+import io.fabric8.kubernetes.client.utils.HttpClientUtils;
+import io.fabric8.kubernetes.client.utils.Utils;
+
+import java.net.URL;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
+
+
+public abstract class BaseClient implements Client, HttpClientAware {
+
+<span class="fc" id="L38">  private static final Logger LOGGER = LoggerFactory.getLogger(BaseClient.class);</span>
+
+  protected OkHttpClient httpClient;
+  private URL masterUrl;
+  private String apiVersion;
+  private String namespace;
+  private Config configuration;
+
+  public BaseClient() throws KubernetesClientException {
+<span class="fc" id="L47">    this(new ConfigBuilder().build());</span>
+<span class="fc" id="L48">  }</span>
+
+  public BaseClient(String masterUrl) throws KubernetesClientException {
+<span class="nc" id="L51">    this(new ConfigBuilder().withMasterUrl(masterUrl).build());</span>
+<span class="nc" id="L52">  }</span>
+
+  public BaseClient(final Config config) throws KubernetesClientException {
+<span class="fc" id="L55">    this(HttpClientUtils.createHttpClient(config), config);</span>
+<span class="fc" id="L56">  }</span>
+
+<span class="fc" id="L58">  public BaseClient(final OkHttpClient httpClient, Config config) throws KubernetesClientException {</span>
+    try {
+<span class="fc" id="L60">      this.httpClient = httpClient;</span>
+<span class="fc" id="L61">      this.namespace = config.getNamespace();</span>
+<span class="fc" id="L62">      this.configuration = config;</span>
+<span class="fc" id="L63">      this.apiVersion = config.getApiVersion();</span>
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">      if (config.getMasterUrl() == null) {</span>
+<span class="nc" id="L65">        throw new KubernetesClientException(&quot;Unknown Kubernetes master URL - &quot; +</span>
+          &quot;please set with the builder, or set with either system property \&quot;&quot; + Config.KUBERNETES_MASTER_SYSTEM_PROPERTY + &quot;\&quot;&quot; +
+<span class="nc" id="L67">          &quot; or environment variable \&quot;&quot; + Utils.convertSystemPropertyNameToEnvVar(Config.KUBERNETES_MASTER_SYSTEM_PROPERTY) + &quot;\&quot;&quot;);</span>
+      }
+<span class="fc" id="L69">      this.masterUrl = new URL(config.getMasterUrl());</span>
+<span class="nc" id="L70">    } catch (Exception e) {</span>
+<span class="nc" id="L71">      throw KubernetesClientException.launderThrowable(e);</span>
+<span class="fc" id="L72">    }</span>
+<span class="fc" id="L73">  }</span>
+
+  @Override
+  public void close() {
+<span class="nc" id="L77">    ConnectionPool connectionPool = httpClient.connectionPool();</span>
+<span class="nc" id="L78">    Dispatcher dispatcher = httpClient.dispatcher();</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">    ExecutorService executorService = httpClient.dispatcher() != null ? httpClient.dispatcher().executorService() : null;</span>
+
+<span class="nc bnc" id="L81" title="All 2 branches missed.">    if (dispatcher != null) {</span>
+<span class="nc" id="L82">      dispatcher.cancelAll();</span>
+    }
+
+<span class="nc bnc" id="L85" title="All 2 branches missed.">    if (connectionPool != null) {</span>
+<span class="nc" id="L86">      connectionPool.evictAll();</span>
+    }
+
+<span class="nc" id="L89">    Utils.shutdownExecutorService(executorService);</span>
+<span class="nc" id="L90">  }</span>
+
+  @Override
+  public URL getMasterUrl() {
+<span class="fc" id="L94">    return masterUrl;</span>
+  }
+
+  @Override
+  public String getApiVersion() {
+<span class="nc" id="L99">    return apiVersion;</span>
+  }
+
+  @Override
+  public String getNamespace() {
+<span class="nc" id="L104">    return namespace;</span>
+  }
+
+
+  @Override
+  public Config getConfiguration() {
+<span class="fc" id="L110">    return configuration;</span>
+  }
+
+  @Override
+  public OkHttpClient getHttpClient() {
+<span class="fc" id="L115">    return httpClient;</span>
+  }
+
+  @Override
+  public &lt;C&gt; Boolean isAdaptable(Class&lt;C&gt; type) {
+<span class="fc" id="L120">    ExtensionAdapter&lt;C&gt; adapter = Adapters.get(type);</span>
+<span class="pc bpc" id="L121" title="1 of 2 branches missed.">    if (adapter != null) {</span>
+<span class="fc" id="L122">      return adapter.isAdaptable(this);</span>
+    } else {
+<span class="nc" id="L124">      return false;</span>
+    }
+  }
+
+  @Override
+  public &lt;C&gt; C adapt(Class&lt;C&gt; type) {
+<span class="fc" id="L130">    ExtensionAdapter&lt;C&gt; adapter = Adapters.get(type);</span>
+<span class="pc bpc" id="L131" title="1 of 2 branches missed.">    if (adapter != null) {</span>
+<span class="fc" id="L132">      return adapter.adapt(this);</span>
+    }
+<span class="nc" id="L134">    throw new IllegalStateException(&quot;No adapter available for type:&quot; + type);</span>
+  }
+
+  @Override
+  public RootPaths rootPaths() {
+<span class="nc" id="L139">    return new BaseOperation(httpClient, configuration, null, null, &quot;&quot;, null, null, false, null, null, false, RootPaths.class, null, null) {</span>
+<span class="nc" id="L140">    }.getRootPaths();</span>
+  }
+
+  @Override
+  public boolean supportsApiPath(String apiPath) {
+<span class="nc" id="L145">    RootPaths rootPaths = rootPaths();</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">    if (rootPaths != null) {</span>
+<span class="nc" id="L147">      List&lt;String&gt; paths = rootPaths.getPaths();</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">      if (paths != null) {</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">        for (String path : paths) {</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">          if (path.equals(apiPath)) {</span>
+<span class="nc" id="L151">            return true;</span>
+          }
+<span class="nc" id="L153">        }</span>
+      }
+    }
+<span class="nc" id="L156">    return false;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

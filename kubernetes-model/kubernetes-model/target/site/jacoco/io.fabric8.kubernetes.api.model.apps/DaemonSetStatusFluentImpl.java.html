@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DaemonSetStatusFluentImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.api.model.apps</a> &gt; <span class="el_source">DaemonSetStatusFluentImpl.java</span></div><h1>DaemonSetStatusFluentImpl.java</h1><pre class="source lang-java linenums">package io.fabric8.kubernetes.api.model.apps;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.fabric8.kubernetes.api.builder.Nested;
+import java.util.ArrayList;
+import java.lang.String;
+import io.fabric8.kubernetes.api.builder.Predicate;
+import java.lang.Integer;
+import java.lang.Deprecated;
+import javax.validation.Valid;
+import io.fabric8.kubernetes.api.builder.BaseFluent;
+import java.lang.Long;
+import java.util.Collection;
+import java.lang.Object;
+import java.util.List;
+import java.lang.Boolean;
+
+public class DaemonSetStatusFluentImpl&lt;A extends DaemonSetStatusFluent&lt;A&gt;&gt; extends io.fabric8.kubernetes.api.builder.BaseFluent&lt;A&gt; implements DaemonSetStatusFluent&lt;A&gt;{
+
+    private Integer collisionCount;
+    private List&lt;DaemonSetConditionBuilder&gt; conditions;
+    private Integer currentNumberScheduled;
+    private Integer desiredNumberScheduled;
+    private Integer numberAvailable;
+    private Integer numberMisscheduled;
+    private Integer numberReady;
+    private Integer numberUnavailable;
+    private Long observedGeneration;
+    private Integer updatedNumberScheduled;
+
+<span class="nc" id="L32">    public DaemonSetStatusFluentImpl(){</span>
+<span class="nc" id="L33">    }</span>
+<span class="nc" id="L34">    public DaemonSetStatusFluentImpl(DaemonSetStatus instance){</span>
+<span class="nc" id="L35">            this.withCollisionCount(instance.getCollisionCount()); </span>
+<span class="nc" id="L36">            this.withConditions(instance.getConditions()); </span>
+<span class="nc" id="L37">            this.withCurrentNumberScheduled(instance.getCurrentNumberScheduled()); </span>
+<span class="nc" id="L38">            this.withDesiredNumberScheduled(instance.getDesiredNumberScheduled()); </span>
+<span class="nc" id="L39">            this.withNumberAvailable(instance.getNumberAvailable()); </span>
+<span class="nc" id="L40">            this.withNumberMisscheduled(instance.getNumberMisscheduled()); </span>
+<span class="nc" id="L41">            this.withNumberReady(instance.getNumberReady()); </span>
+<span class="nc" id="L42">            this.withNumberUnavailable(instance.getNumberUnavailable()); </span>
+<span class="nc" id="L43">            this.withObservedGeneration(instance.getObservedGeneration()); </span>
+<span class="nc" id="L44">            this.withUpdatedNumberScheduled(instance.getUpdatedNumberScheduled()); </span>
+<span class="nc" id="L45">    }</span>
+
+    public Integer getCollisionCount(){
+<span class="nc" id="L48">            return this.collisionCount;</span>
+    }
+
+    public A withCollisionCount(Integer collisionCount){
+<span class="nc" id="L52">            this.collisionCount=collisionCount; return (A) this;</span>
+    }
+
+    public Boolean hasCollisionCount(){
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            return this.collisionCount != null;</span>
+    }
+
+    public A addToConditions(int index,DaemonSetCondition item){
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;DaemonSetConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L61" title="All 4 branches missed.">            DaemonSetConditionBuilder builder = new DaemonSetConditionBuilder(item);_visitables.add(index &gt;= 0 ? index : _visitables.size(), builder);this.conditions.add(index &gt;= 0 ? index : conditions.size(), builder); return (A)this;</span>
+    }
+
+    public A setToConditions(int index,DaemonSetCondition item){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;DaemonSetConditionBuilder&gt;();}</span>
+<span class="nc" id="L66">            DaemonSetConditionBuilder builder = new DaemonSetConditionBuilder(item);</span>
+<span class="nc bnc" id="L67" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= _visitables.size()) { _visitables.add(builder); } else { _visitables.set(index, builder);}</span>
+<span class="nc bnc" id="L68" title="All 4 branches missed.">            if (index &lt; 0 || index &gt;= conditions.size()) { conditions.add(builder); } else { conditions.set(index, builder);}</span>
+<span class="nc" id="L69">             return (A)this;</span>
+    }
+
+    public A addToConditions(DaemonSetCondition... items){
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;DaemonSetConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            for (DaemonSetCondition item : items) {DaemonSetConditionBuilder builder = new DaemonSetConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A addAllToConditions(Collection&lt;DaemonSetCondition&gt; items){
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (this.conditions == null) {this.conditions = new ArrayList&lt;DaemonSetConditionBuilder&gt;();}</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            for (DaemonSetCondition item : items) {DaemonSetConditionBuilder builder = new DaemonSetConditionBuilder(item);_visitables.add(builder);this.conditions.add(builder);} return (A)this;</span>
+    }
+
+    public A removeFromConditions(DaemonSetCondition... items){
+<span class="nc bnc" id="L83" title="All 4 branches missed.">            for (DaemonSetCondition item : items) {DaemonSetConditionBuilder builder = new DaemonSetConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    public A removeAllFromConditions(Collection&lt;DaemonSetCondition&gt; items){
+<span class="nc bnc" id="L87" title="All 4 branches missed.">            for (DaemonSetCondition item : items) {DaemonSetConditionBuilder builder = new DaemonSetConditionBuilder(item);_visitables.remove(builder);if (this.conditions != null) {this.conditions.remove(builder);}} return (A)this;</span>
+    }
+
+    
+/**
+ * This method has been deprecated, please use method buildConditions instead.
+ * @return The buildable object.
+ */
+@Deprecated public List&lt;DaemonSetCondition&gt; getConditions(){
+<span class="nc" id="L96">            return build(conditions);</span>
+    }
+
+    public List&lt;DaemonSetCondition&gt; buildConditions(){
+<span class="nc" id="L100">            return build(conditions);</span>
+    }
+
+    public DaemonSetCondition buildCondition(int index){
+<span class="nc" id="L104">            return this.conditions.get(index).build();</span>
+    }
+
+    public DaemonSetCondition buildFirstCondition(){
+<span class="nc" id="L108">            return this.conditions.get(0).build();</span>
+    }
+
+    public DaemonSetCondition buildLastCondition(){
+<span class="nc" id="L112">            return this.conditions.get(conditions.size() - 1).build();</span>
+    }
+
+    public DaemonSetCondition buildMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;DaemonSetConditionBuilder&gt; predicate){
+<span class="nc bnc" id="L116" title="All 4 branches missed.">            for (DaemonSetConditionBuilder item: conditions) { if(predicate.apply(item)){return item.build();} } return null;</span>
+    }
+
+    public A withConditions(List&lt;DaemonSetCondition&gt; conditions){
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            if (this.conditions != null) { _visitables.removeAll(this.conditions);}</span>
+<span class="nc bnc" id="L121" title="All 4 branches missed.">            if (conditions != null) {this.conditions = new ArrayList&lt;DaemonSetConditionBuilder&gt;(); for (DaemonSetCondition item : conditions){this.addToConditions(item);}} else { this.conditions = new ArrayList&lt;DaemonSetConditionBuilder&gt;();} return (A) this;</span>
+    }
+
+    public A withConditions(DaemonSetCondition... conditions){
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            if (this.conditions != null) {this.conditions.clear();}</span>
+<span class="nc bnc" id="L126" title="All 4 branches missed.">            if (conditions != null) {for (DaemonSetCondition item :conditions){ this.addToConditions(item);}} return (A) this;</span>
+    }
+
+    public Boolean hasConditions(){
+<span class="nc bnc" id="L130" title="All 4 branches missed.">            return conditions != null &amp;&amp; !conditions.isEmpty();</span>
+    }
+
+    public A addNewCondition(String lastTransitionTime,String message,String reason,String status,String type){
+<span class="nc" id="L134">            return (A)addToConditions(new DaemonSetCondition(lastTransitionTime, message, reason, status, type));</span>
+    }
+
+    public DaemonSetStatusFluent.ConditionsNested&lt;A&gt; addNewCondition(){
+<span class="nc" id="L138">            return new ConditionsNestedImpl();</span>
+    }
+
+    public DaemonSetStatusFluent.ConditionsNested&lt;A&gt; addNewConditionLike(DaemonSetCondition item){
+<span class="nc" id="L142">            return new ConditionsNestedImpl(-1, item);</span>
+    }
+
+    public DaemonSetStatusFluent.ConditionsNested&lt;A&gt; setNewConditionLike(int index,DaemonSetCondition item){
+<span class="nc" id="L146">            return new ConditionsNestedImpl(index, item);</span>
+    }
+
+    public DaemonSetStatusFluent.ConditionsNested&lt;A&gt; editCondition(int index){
+<span class="nc bnc" id="L150" title="All 2 branches missed.">            if (conditions.size() &lt;= index) throw new RuntimeException(&quot;Can't edit conditions. Index exceeds size.&quot;);</span>
+<span class="nc" id="L151">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public DaemonSetStatusFluent.ConditionsNested&lt;A&gt; editFirstCondition(){
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            if (conditions.size() == 0) throw new RuntimeException(&quot;Can't edit first conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L156">            return setNewConditionLike(0, buildCondition(0));</span>
+    }
+
+    public DaemonSetStatusFluent.ConditionsNested&lt;A&gt; editLastCondition(){
+<span class="nc" id="L160">            int index = conditions.size() - 1;</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit last conditions. The list is empty.&quot;);</span>
+<span class="nc" id="L162">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public DaemonSetStatusFluent.ConditionsNested&lt;A&gt; editMatchingCondition(io.fabric8.kubernetes.api.builder.Predicate&lt;DaemonSetConditionBuilder&gt; predicate){
+<span class="nc" id="L166">            int index = -1;</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            for (int i=0;i&lt;conditions.size();i++) { </span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">            if (predicate.apply(conditions.get(i))) {index = i; break;}</span>
+            } 
+<span class="nc bnc" id="L170" title="All 2 branches missed.">            if (index &lt; 0) throw new RuntimeException(&quot;Can't edit matching conditions. No match found.&quot;);</span>
+<span class="nc" id="L171">            return setNewConditionLike(index, buildCondition(index));</span>
+    }
+
+    public Integer getCurrentNumberScheduled(){
+<span class="nc" id="L175">            return this.currentNumberScheduled;</span>
+    }
+
+    public A withCurrentNumberScheduled(Integer currentNumberScheduled){
+<span class="nc" id="L179">            this.currentNumberScheduled=currentNumberScheduled; return (A) this;</span>
+    }
+
+    public Boolean hasCurrentNumberScheduled(){
+<span class="nc bnc" id="L183" title="All 2 branches missed.">            return this.currentNumberScheduled != null;</span>
+    }
+
+    public Integer getDesiredNumberScheduled(){
+<span class="nc" id="L187">            return this.desiredNumberScheduled;</span>
+    }
+
+    public A withDesiredNumberScheduled(Integer desiredNumberScheduled){
+<span class="nc" id="L191">            this.desiredNumberScheduled=desiredNumberScheduled; return (A) this;</span>
+    }
+
+    public Boolean hasDesiredNumberScheduled(){
+<span class="nc bnc" id="L195" title="All 2 branches missed.">            return this.desiredNumberScheduled != null;</span>
+    }
+
+    public Integer getNumberAvailable(){
+<span class="nc" id="L199">            return this.numberAvailable;</span>
+    }
+
+    public A withNumberAvailable(Integer numberAvailable){
+<span class="nc" id="L203">            this.numberAvailable=numberAvailable; return (A) this;</span>
+    }
+
+    public Boolean hasNumberAvailable(){
+<span class="nc bnc" id="L207" title="All 2 branches missed.">            return this.numberAvailable != null;</span>
+    }
+
+    public Integer getNumberMisscheduled(){
+<span class="nc" id="L211">            return this.numberMisscheduled;</span>
+    }
+
+    public A withNumberMisscheduled(Integer numberMisscheduled){
+<span class="nc" id="L215">            this.numberMisscheduled=numberMisscheduled; return (A) this;</span>
+    }
+
+    public Boolean hasNumberMisscheduled(){
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            return this.numberMisscheduled != null;</span>
+    }
+
+    public Integer getNumberReady(){
+<span class="nc" id="L223">            return this.numberReady;</span>
+    }
+
+    public A withNumberReady(Integer numberReady){
+<span class="nc" id="L227">            this.numberReady=numberReady; return (A) this;</span>
+    }
+
+    public Boolean hasNumberReady(){
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            return this.numberReady != null;</span>
+    }
+
+    public Integer getNumberUnavailable(){
+<span class="nc" id="L235">            return this.numberUnavailable;</span>
+    }
+
+    public A withNumberUnavailable(Integer numberUnavailable){
+<span class="nc" id="L239">            this.numberUnavailable=numberUnavailable; return (A) this;</span>
+    }
+
+    public Boolean hasNumberUnavailable(){
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            return this.numberUnavailable != null;</span>
+    }
+
+    public Long getObservedGeneration(){
+<span class="nc" id="L247">            return this.observedGeneration;</span>
+    }
+
+    public A withObservedGeneration(Long observedGeneration){
+<span class="nc" id="L251">            this.observedGeneration=observedGeneration; return (A) this;</span>
+    }
+
+    public Boolean hasObservedGeneration(){
+<span class="nc bnc" id="L255" title="All 2 branches missed.">            return this.observedGeneration != null;</span>
+    }
+
+    public A withNewObservedGeneration(String arg1){
+<span class="nc" id="L259">            return (A)withObservedGeneration(new Long(arg1));</span>
+    }
+
+    public A withNewObservedGeneration(long arg1){
+<span class="nc" id="L263">            return (A)withObservedGeneration(new Long(arg1));</span>
+    }
+
+    public Integer getUpdatedNumberScheduled(){
+<span class="nc" id="L267">            return this.updatedNumberScheduled;</span>
+    }
+
+    public A withUpdatedNumberScheduled(Integer updatedNumberScheduled){
+<span class="nc" id="L271">            this.updatedNumberScheduled=updatedNumberScheduled; return (A) this;</span>
+    }
+
+    public Boolean hasUpdatedNumberScheduled(){
+<span class="nc bnc" id="L275" title="All 2 branches missed.">            return this.updatedNumberScheduled != null;</span>
+    }
+
+    public boolean equals(Object o){
+<span class="nc bnc" id="L279" title="All 2 branches missed.">            if (this == o) return true;</span>
+<span class="nc bnc" id="L280" title="All 4 branches missed.">            if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc bnc" id="L281" title="All 2 branches missed.">            if (!super.equals(o)) return false;</span>
+<span class="nc" id="L282">            DaemonSetStatusFluentImpl that = (DaemonSetStatusFluentImpl) o;</span>
+<span class="nc bnc" id="L283" title="All 6 branches missed.">            if (collisionCount != null ? !collisionCount.equals(that.collisionCount) :that.collisionCount != null) return false;</span>
+<span class="nc bnc" id="L284" title="All 6 branches missed.">            if (conditions != null ? !conditions.equals(that.conditions) :that.conditions != null) return false;</span>
+<span class="nc bnc" id="L285" title="All 6 branches missed.">            if (currentNumberScheduled != null ? !currentNumberScheduled.equals(that.currentNumberScheduled) :that.currentNumberScheduled != null) return false;</span>
+<span class="nc bnc" id="L286" title="All 6 branches missed.">            if (desiredNumberScheduled != null ? !desiredNumberScheduled.equals(that.desiredNumberScheduled) :that.desiredNumberScheduled != null) return false;</span>
+<span class="nc bnc" id="L287" title="All 6 branches missed.">            if (numberAvailable != null ? !numberAvailable.equals(that.numberAvailable) :that.numberAvailable != null) return false;</span>
+<span class="nc bnc" id="L288" title="All 6 branches missed.">            if (numberMisscheduled != null ? !numberMisscheduled.equals(that.numberMisscheduled) :that.numberMisscheduled != null) return false;</span>
+<span class="nc bnc" id="L289" title="All 6 branches missed.">            if (numberReady != null ? !numberReady.equals(that.numberReady) :that.numberReady != null) return false;</span>
+<span class="nc bnc" id="L290" title="All 6 branches missed.">            if (numberUnavailable != null ? !numberUnavailable.equals(that.numberUnavailable) :that.numberUnavailable != null) return false;</span>
+<span class="nc bnc" id="L291" title="All 6 branches missed.">            if (observedGeneration != null ? !observedGeneration.equals(that.observedGeneration) :that.observedGeneration != null) return false;</span>
+<span class="nc bnc" id="L292" title="All 6 branches missed.">            if (updatedNumberScheduled != null ? !updatedNumberScheduled.equals(that.updatedNumberScheduled) :that.updatedNumberScheduled != null) return false;</span>
+<span class="nc" id="L293">            return true;</span>
+    }
+
+
+    public class ConditionsNestedImpl&lt;N&gt; extends DaemonSetConditionFluentImpl&lt;DaemonSetStatusFluent.ConditionsNested&lt;N&gt;&gt; implements DaemonSetStatusFluent.ConditionsNested&lt;N&gt;,io.fabric8.kubernetes.api.builder.Nested&lt;N&gt;{
+
+            private final DaemonSetConditionBuilder builder;
+        private final int index;
+    
+<span class="nc" id="L302">            ConditionsNestedImpl(int index,DaemonSetCondition item){</span>
+<span class="nc" id="L303">                    this.index = index;</span>
+<span class="nc" id="L304">                    this.builder = new DaemonSetConditionBuilder(this, item);</span>
+<span class="nc" id="L305">            }</span>
+<span class="nc" id="L306">            ConditionsNestedImpl(){</span>
+<span class="nc" id="L307">                    this.index = -1;</span>
+<span class="nc" id="L308">                    this.builder = new DaemonSetConditionBuilder(this);</span>
+<span class="nc" id="L309">            }</span>
+    
+    public N and(){
+<span class="nc" id="L312">            return (N) DaemonSetStatusFluentImpl.this.setToConditions(index, builder.build());</span>
+    }
+    public N endCondition(){
+<span class="nc" id="L315">            return and();</span>
+    }
+
+}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

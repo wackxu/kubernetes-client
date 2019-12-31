@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExecWebSocketListener.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes :: Java Client</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.kubernetes.client.dsl.internal</a> &gt; <span class="el_source">ExecWebSocketListener.java</span></div><h1>ExecWebSocketListener.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2015 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.fabric8.kubernetes.client.dsl.internal;
+
+import io.fabric8.kubernetes.api.model.Status;
+import io.fabric8.kubernetes.client.Callback;
+import io.fabric8.kubernetes.client.Config;
+import io.fabric8.kubernetes.client.KubernetesClientException;
+import io.fabric8.kubernetes.client.dsl.ExecListener;
+import io.fabric8.kubernetes.client.dsl.ExecWatch;
+import io.fabric8.kubernetes.client.dsl.base.OperationSupport;
+import io.fabric8.kubernetes.client.utils.InputStreamPumper;
+import io.fabric8.kubernetes.client.utils.NonBlockingInputStreamPumper;
+import io.fabric8.kubernetes.client.utils.Utils;
+import okhttp3.Response;
+import okhttp3.WebSocket;
+import okhttp3.WebSocketListener;
+import okio.ByteString;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
+
+import static io.fabric8.kubernetes.client.utils.Utils.closeQuietly;
+import static io.fabric8.kubernetes.client.utils.Utils.shutdownExecutorService;
+
+/**
+ * A {@link WebSocketListener} for exec operations.
+ *
+ * This listener, is only responsible for the resources it creates. Externally passed resource, will not get closed,
+ * by this listener.
+ *
+ * All other resources will be cleaned up once, ONLY when the close() method is called.
+ *
+ * ExecListener methods, onClose() and onFailure are mutually exclusive and are meant to be called once and only once.
+ * Failures that propagate after a close() operation will not be propagated.
+ *
+ */
+public class ExecWebSocketListener extends WebSocketListener implements ExecWatch, AutoCloseable {
+
+<span class="nc" id="L63">    private static final Logger LOGGER = LoggerFactory.getLogger(ExecWebSocketListener.class);</span>
+
+    private final Config config;
+    private final InputStream in;
+    private final OutputStream out;
+    private final OutputStream err;
+    private final OutputStream errChannel;
+
+    private final PipedOutputStream input;
+    private final PipedInputStream output;
+    private final PipedInputStream error;
+    private final PipedInputStream errorChannel;
+
+<span class="nc" id="L76">    private final AtomicReference&lt;WebSocket&gt; webSocketRef = new AtomicReference&lt;&gt;();</span>
+<span class="nc" id="L77">    private final ExecutorService executorService = Executors.newSingleThreadExecutor();</span>
+    private final InputStreamPumper pumper;
+
+<span class="nc" id="L80">    private final AtomicBoolean started = new AtomicBoolean(false);</span>
+<span class="nc" id="L81">    private final ArrayBlockingQueue&lt;Object&gt; queue = new ArrayBlockingQueue&lt;&gt;(1);</span>
+    private final ExecListener listener;
+
+<span class="nc" id="L84">    private final AtomicBoolean explicitlyClosed = new AtomicBoolean(false);</span>
+
+<span class="nc" id="L86">    private final AtomicBoolean failed = new AtomicBoolean(false);</span>
+<span class="nc" id="L87">    private final AtomicBoolean closed = new AtomicBoolean(false);</span>
+<span class="nc" id="L88">    private final AtomicBoolean cleaned = new AtomicBoolean(false);</span>
+
+<span class="nc" id="L90">    private final Set&lt;Closeable&gt; toClose = new LinkedHashSet&lt;&gt;();</span>
+
+    @Deprecated
+    public ExecWebSocketListener(InputStream in, OutputStream out, OutputStream err, PipedOutputStream inputPipe, PipedInputStream outputPipe, PipedInputStream errorPipe, ExecListener listener) {
+<span class="nc" id="L94">        this(new Config(), in, out, err, inputPipe, outputPipe, errorPipe, listener);</span>
+<span class="nc" id="L95">    }</span>
+
+    @Deprecated
+    public ExecWebSocketListener(Config config, InputStream in, OutputStream out, OutputStream err, PipedOutputStream inputPipe, PipedInputStream outputPipe, PipedInputStream errorPipe, ExecListener listener) {
+<span class="nc" id="L99">        this(config, in, out, err, null, inputPipe, outputPipe, errorPipe, null, listener);</span>
+<span class="nc" id="L100">    }</span>
+
+<span class="nc" id="L102">    public ExecWebSocketListener(Config config, InputStream in, OutputStream out, OutputStream err, OutputStream errChannel, PipedOutputStream inputPipe, PipedInputStream outputPipe, PipedInputStream errorPipe, PipedInputStream errorChannelPipe, ExecListener listener) {</span>
+<span class="nc" id="L103">        this.config = config;</span>
+<span class="nc" id="L104">        this.listener = listener;</span>
+<span class="nc" id="L105">        this.in = inputStreamOrPipe(in, inputPipe, toClose);</span>
+<span class="nc" id="L106">        this.out = outputStreamOrPipe(out, outputPipe, toClose);</span>
+<span class="nc" id="L107">        this.err = outputStreamOrPipe(err, errorPipe, toClose);</span>
+<span class="nc" id="L108">        this.errChannel = outputStreamOrPipe(errChannel, errorChannelPipe, toClose);</span>
+
+<span class="nc" id="L110">        this.input = inputPipe;</span>
+<span class="nc" id="L111">        this.output = outputPipe;</span>
+<span class="nc" id="L112">        this.error = errorPipe;</span>
+<span class="nc" id="L113">        this.errorChannel = errorChannelPipe;</span>
+<span class="nc" id="L114">        this.pumper = new NonBlockingInputStreamPumper(this.in, new Callback&lt;byte[]&gt;() {</span>
+            @Override
+            public void call(byte[] data) {
+                try {
+<span class="nc" id="L118">                    send(data);</span>
+<span class="nc" id="L119">                } catch (Exception e) {</span>
+                    //
+<span class="nc" id="L121">                }</span>
+<span class="nc" id="L122">            }</span>
+        });
+<span class="nc" id="L124">    }</span>
+
+
+    @Override
+    public void close() {
+<span class="nc" id="L129">      close(1000, &quot;Closing...&quot;);</span>
+<span class="nc" id="L130">    }</span>
+
+    public void close(int code, String reason) {
+<span class="nc" id="L133">      close(webSocketRef.get(), code, reason);</span>
+<span class="nc" id="L134">    }</span>
+
+  private void close(WebSocket ws, int code, String reason) {
+<span class="nc" id="L137">    explicitlyClosed.set(true);</span>
+<span class="nc" id="L138">    closeWebSocketOnce(code, reason);</span>
+<span class="nc" id="L139">    onClosed(ws, code, reason);</span>
+<span class="nc" id="L140">  }</span>
+
+  /**
+   * Performs the cleanup tasks:
+   * 1. closes the InputStream pumper
+   * 2. closes all internally managed closeables (piped streams).
+   *
+   * The order of these tasks can't change or its likely that the pumper will throw errors,
+   * if the stream it uses closes before the pumper it self.
+   */
+  private void cleanUpOnce() {
+<span class="nc bnc" id="L151" title="All 2 branches missed.">   if (!cleaned.compareAndSet(false, true)) {</span>
+<span class="nc" id="L152">        return;</span>
+   }
+
+    try {
+<span class="nc" id="L156">      closeQuietly(pumper);</span>
+<span class="nc" id="L157">      shutdownExecutorService(executorService);</span>
+    } finally {
+<span class="nc" id="L159">      closeQuietly(toClose);</span>
+    }
+<span class="nc" id="L161">  }</span>
+
+    private void closeWebSocketOnce(int code, String reason) {
+<span class="nc bnc" id="L164" title="All 2 branches missed.">      if (closed.get()) {</span>
+<span class="nc" id="L165">        return;</span>
+      }
+
+      try {
+<span class="nc" id="L169">        WebSocket ws = webSocketRef.get();</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">        if (ws != null) {</span>
+<span class="nc" id="L171">          ws.close(code, reason);</span>
+        }
+<span class="nc" id="L173">      } catch (Throwable t) {</span>
+<span class="nc" id="L174">        LOGGER.debug(&quot;Error closing WebSocket.&quot;, t);</span>
+<span class="nc" id="L175">      }</span>
+<span class="nc" id="L176">    }</span>
+
+    public void waitUntilReady() {
+<span class="nc" id="L179">      Utils.waitUntilReady(queue, config.getWebsocketTimeout(), TimeUnit.MILLISECONDS);</span>
+<span class="nc" id="L180">    }</span>
+
+    @Override
+    public void onOpen(WebSocket webSocket, Response response) {
+        try {
+<span class="nc bnc" id="L185" title="All 4 branches missed.">            if (in instanceof PipedInputStream &amp;&amp; input != null) {</span>
+<span class="nc" id="L186">                input.connect((PipedInputStream) in);</span>
+            }
+<span class="nc bnc" id="L188" title="All 4 branches missed.">            if (out instanceof PipedOutputStream &amp;&amp; output != null) {</span>
+<span class="nc" id="L189">                output.connect((PipedOutputStream) out);</span>
+            }
+<span class="nc bnc" id="L191" title="All 4 branches missed.">            if (err instanceof PipedOutputStream &amp;&amp; error != null) {</span>
+<span class="nc" id="L192">                error.connect((PipedOutputStream) err);</span>
+            }
+<span class="nc bnc" id="L194" title="All 4 branches missed.">            if (errChannel instanceof PipedOutputStream &amp;&amp; errorChannel != null) {</span>
+<span class="nc" id="L195">                errorChannel.connect((PipedOutputStream) errChannel);</span>
+            }
+
+<span class="nc" id="L198">            webSocketRef.set(webSocket);</span>
+<span class="nc" id="L199">            executorService.submit(pumper);</span>
+<span class="nc" id="L200">            started.set(true);</span>
+<span class="nc" id="L201">            queue.add(true);</span>
+<span class="nc" id="L202">        } catch (IOException e) {</span>
+<span class="nc" id="L203">            queue.add(new KubernetesClientException(OperationSupport.createStatus(response)));</span>
+        } finally {
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            if (listener != null) {</span>
+<span class="nc" id="L206">                listener.onOpen(response);</span>
+            }
+        }
+<span class="nc" id="L209">    }</span>
+
+  @Override
+  public void onFailure(WebSocket webSocket, Throwable t, Response response) {
+
+      //If we already called onClosed() or onFailed() before, we need to abort.
+<span class="nc bnc" id="L215" title="All 6 branches missed.">      if (explicitlyClosed.get() || closed.get() || !failed.compareAndSet(false, true) ) {</span>
+        //We are not going to notify the listener, sicne we've already called onClose(), so let's log a debug/warning.
+<span class="nc bnc" id="L217" title="All 2 branches missed.">        if (LOGGER.isDebugEnabled()) {</span>
+<span class="nc" id="L218">          LOGGER.warn(&quot;Received [&quot; + t.getClass().getCanonicalName() + &quot;], with message:[&quot; + t.getMessage() + &quot;] after ExecWebSocketListener is closed, Ignoring.&quot;);</span>
+        }
+<span class="nc" id="L220">        return;</span>
+      }
+
+      try {
+<span class="nc" id="L224">        Status status = OperationSupport.createStatus(response);</span>
+<span class="nc" id="L225">        LOGGER.error(&quot;Exec Failure: HTTP:&quot; + status.getCode() + &quot;. Message:&quot; + status.getMessage(), t);</span>
+        //We only need to queue startup failures.
+<span class="nc bnc" id="L227" title="All 2 branches missed.">        if (!started.get()) {</span>
+<span class="nc" id="L228">          queue.add(new KubernetesClientException(status));</span>
+        }
+
+<span class="nc" id="L231">        cleanUpOnce();</span>
+      } finally {
+<span class="nc bnc" id="L233" title="All 2 branches missed.">        if (listener != null) {</span>
+<span class="nc" id="L234">          listener.onFailure(t, response);</span>
+        }
+      }
+<span class="nc" id="L237">    }</span>
+
+    @Override
+    public void onMessage(WebSocket webSocket, ByteString bytes) {
+        try {
+<span class="nc" id="L242">            byte streamID = bytes.getByte(0);</span>
+<span class="nc" id="L243">            ByteString byteString = bytes.substring(1);</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">            if (byteString.size() &gt; 0) {</span>
+<span class="nc bnc" id="L245" title="All 4 branches missed.">                switch (streamID) {</span>
+                    case 1:
+<span class="nc bnc" id="L247" title="All 2 branches missed.">                        if (out != null) {</span>
+<span class="nc" id="L248">                            out.write(byteString.toByteArray());</span>
+                        }
+                        break;
+                    case 2:
+<span class="nc bnc" id="L252" title="All 2 branches missed.">                        if (err != null) {</span>
+<span class="nc" id="L253">                            err.write(byteString.toByteArray());</span>
+                        }
+                        break;
+                    case 3:
+<span class="nc bnc" id="L257" title="All 2 branches missed.">                        if (errChannel != null) {</span>
+<span class="nc" id="L258">                            errChannel.write(byteString.toByteArray());</span>
+                        }
+                        break;
+                    default:
+<span class="nc" id="L262">                        throw new IOException(&quot;Unknown stream ID &quot; + streamID);</span>
+                }
+            }
+<span class="nc" id="L265">        } catch (IOException e) {</span>
+<span class="nc" id="L266">            throw KubernetesClientException.launderThrowable(e);</span>
+<span class="nc" id="L267">        }</span>
+<span class="nc" id="L268">    }</span>
+
+  @Override
+  public void onClosing(WebSocket webSocket, int code, String reason) {
+<span class="nc" id="L272">    ExecWebSocketListener.this.close(webSocket, code, reason);</span>
+<span class="nc" id="L273">  }</span>
+
+  @Override
+    public void onClosed(WebSocket webSocket, int code, String reason) {
+       //If we already called onClosed() or onFailed() before, we need to abort.
+<span class="nc bnc" id="L278" title="All 4 branches missed.">       if (!closed.compareAndSet(false, true) || failed.get()) {</span>
+<span class="nc" id="L279">         return;</span>
+       }
+<span class="nc" id="L281">       LOGGER.debug(&quot;Exec Web Socket: On Close with code:[{}], due to: [{}]&quot;, code, reason);</span>
+        try {
+<span class="nc bnc" id="L283" title="All 2 branches missed.">            if (explicitlyClosed.get()) {</span>
+<span class="nc" id="L284">              cleanUpOnce();</span>
+            }
+        } finally {
+<span class="nc bnc" id="L287" title="All 2 branches missed.">            if (listener != null) {</span>
+<span class="nc" id="L288">              listener.onClose(code, reason);</span>
+            }
+        }
+<span class="nc" id="L291">    }</span>
+
+    public OutputStream getInput() {
+<span class="nc" id="L294">        return input;</span>
+    }
+
+    public InputStream getOutput() {
+<span class="nc" id="L298">        return output;</span>
+    }
+
+    public InputStream getError() {
+<span class="nc" id="L302">        return error;</span>
+    }
+
+    public InputStream getErrorChannel() {
+<span class="nc" id="L306">        return errorChannel;</span>
+    }
+
+    private void send(byte[] bytes) throws IOException {
+<span class="nc bnc" id="L310" title="All 2 branches missed.">        if (bytes.length &gt; 0) {</span>
+<span class="nc" id="L311">            WebSocket ws = webSocketRef.get();</span>
+<span class="nc bnc" id="L312" title="All 2 branches missed.">            if (ws != null) {</span>
+<span class="nc" id="L313">                byte[] toSend = new byte[bytes.length + 1];</span>
+<span class="nc" id="L314">                toSend[0] = 0;</span>
+<span class="nc" id="L315">                System.arraycopy(bytes, 0, toSend, 1, bytes.length);</span>
+<span class="nc" id="L316">                ws.send(ByteString.of(toSend));</span>
+            }
+        }
+<span class="nc" id="L319">    }</span>
+
+    private static InputStream inputStreamOrPipe(InputStream stream, PipedOutputStream out, Set&lt;Closeable&gt; toClose) {
+<span class="nc bnc" id="L322" title="All 2 branches missed.">        if (stream != null) {</span>
+<span class="nc" id="L323">            return stream;</span>
+<span class="nc bnc" id="L324" title="All 2 branches missed.">        } else if (out != null) {</span>
+<span class="nc" id="L325">            PipedInputStream pis = new PipedInputStream();</span>
+<span class="nc" id="L326">            toClose.add(out);</span>
+<span class="nc" id="L327">            toClose.add(pis);</span>
+<span class="nc" id="L328">            return pis;</span>
+        } else {
+<span class="nc" id="L330">            return null;</span>
+        }
+    }
+
+    private static OutputStream outputStreamOrPipe(OutputStream stream, PipedInputStream in, Set&lt;Closeable&gt; toClose) {
+<span class="nc bnc" id="L335" title="All 2 branches missed.">        if (stream != null) {</span>
+<span class="nc" id="L336">            return stream;</span>
+<span class="nc bnc" id="L337" title="All 2 branches missed.">        } else if (in != null) {</span>
+<span class="nc" id="L338">            PipedOutputStream pos = new PipedOutputStream();</span>
+<span class="nc" id="L339">            toClose.add(in);</span>
+<span class="nc" id="L340">            toClose.add(pos);</span>
+<span class="nc" id="L341">            return pos;</span>
+        } else {
+<span class="nc" id="L343">            return null;</span>
+        }
+    }
+ }
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

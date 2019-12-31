@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RollingDeploymentStrategyParams.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Fabric8 :: Kubernetes Model</a> &gt; <a href="index.source.html" class="el_package">io.fabric8.openshift.api.model</a> &gt; <span class="el_source">RollingDeploymentStrategyParams.java</span></div><h1>RollingDeploymentStrategyParams.java</h1><pre class="source lang-java linenums">
+package io.fabric8.openshift.api.model;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.fabric8.kubernetes.api.model.Doneable;
+import io.fabric8.kubernetes.api.model.IntOrString;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
+import io.sundr.builder.annotations.Buildable;
+import io.sundr.builder.annotations.Inline;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+
+/**
+ * 
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated(&quot;org.jsonschema2pojo&quot;)
+@JsonPropertyOrder({
+    &quot;apiVersion&quot;,
+    &quot;kind&quot;,
+    &quot;metadata&quot;,
+    &quot;intervalSeconds&quot;,
+    &quot;maxSurge&quot;,
+    &quot;maxUnavailable&quot;,
+    &quot;post&quot;,
+    &quot;pre&quot;,
+    &quot;timeoutSeconds&quot;,
+    &quot;updatePeriodSeconds&quot;
+})
+@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+<span class="nc" id="L43">@ToString</span>
+<span class="pc bpc" id="L44" title="61 of 70 branches missed.">@EqualsAndHashCode</span>
+@Buildable(editableEnabled = false, validationEnabled = true, generateBuilderPackage = true, builderPackage = &quot;io.fabric8.kubernetes.api.builder&quot;, inline = @Inline(type = Doneable.class, prefix = &quot;Doneable&quot;, value = &quot;done&quot;))
+public class RollingDeploymentStrategyParams implements KubernetesResource
+{
+
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;intervalSeconds&quot;)
+    private Long intervalSeconds;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;maxSurge&quot;)
+    @Valid
+    private IntOrString maxSurge;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;maxUnavailable&quot;)
+    @Valid
+    private IntOrString maxUnavailable;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;post&quot;)
+    @Valid
+    private LifecycleHook post;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;pre&quot;)
+    @Valid
+    private LifecycleHook pre;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;timeoutSeconds&quot;)
+    private Long timeoutSeconds;
+    /**
+     * 
+     * 
+     */
+    @JsonProperty(&quot;updatePeriodSeconds&quot;)
+    private Long updatePeriodSeconds;
+<span class="fc" id="L95">    @JsonIgnore</span>
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+<span class="fc" id="L102">    public RollingDeploymentStrategyParams() {</span>
+<span class="fc" id="L103">    }</span>
+
+    /**
+     * 
+     * @param maxSurge
+     * @param updatePeriodSeconds
+     * @param pre
+     * @param post
+     * @param maxUnavailable
+     * @param timeoutSeconds
+     * @param intervalSeconds
+     */
+<span class="fc" id="L115">    public RollingDeploymentStrategyParams(Long intervalSeconds, IntOrString maxSurge, IntOrString maxUnavailable, LifecycleHook post, LifecycleHook pre, Long timeoutSeconds, Long updatePeriodSeconds) {</span>
+<span class="fc" id="L116">        this.intervalSeconds = intervalSeconds;</span>
+<span class="fc" id="L117">        this.maxSurge = maxSurge;</span>
+<span class="fc" id="L118">        this.maxUnavailable = maxUnavailable;</span>
+<span class="fc" id="L119">        this.post = post;</span>
+<span class="fc" id="L120">        this.pre = pre;</span>
+<span class="fc" id="L121">        this.timeoutSeconds = timeoutSeconds;</span>
+<span class="fc" id="L122">        this.updatePeriodSeconds = updatePeriodSeconds;</span>
+<span class="fc" id="L123">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The intervalSeconds
+     */
+    @JsonProperty(&quot;intervalSeconds&quot;)
+    public Long getIntervalSeconds() {
+<span class="fc" id="L133">        return intervalSeconds;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param intervalSeconds
+     *     The intervalSeconds
+     */
+    @JsonProperty(&quot;intervalSeconds&quot;)
+    public void setIntervalSeconds(Long intervalSeconds) {
+<span class="fc" id="L144">        this.intervalSeconds = intervalSeconds;</span>
+<span class="fc" id="L145">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The maxSurge
+     */
+    @JsonProperty(&quot;maxSurge&quot;)
+    public IntOrString getMaxSurge() {
+<span class="fc" id="L155">        return maxSurge;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param maxSurge
+     *     The maxSurge
+     */
+    @JsonProperty(&quot;maxSurge&quot;)
+    public void setMaxSurge(IntOrString maxSurge) {
+<span class="fc" id="L166">        this.maxSurge = maxSurge;</span>
+<span class="fc" id="L167">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The maxUnavailable
+     */
+    @JsonProperty(&quot;maxUnavailable&quot;)
+    public IntOrString getMaxUnavailable() {
+<span class="fc" id="L177">        return maxUnavailable;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param maxUnavailable
+     *     The maxUnavailable
+     */
+    @JsonProperty(&quot;maxUnavailable&quot;)
+    public void setMaxUnavailable(IntOrString maxUnavailable) {
+<span class="fc" id="L188">        this.maxUnavailable = maxUnavailable;</span>
+<span class="fc" id="L189">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The post
+     */
+    @JsonProperty(&quot;post&quot;)
+    public LifecycleHook getPost() {
+<span class="fc" id="L199">        return post;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param post
+     *     The post
+     */
+    @JsonProperty(&quot;post&quot;)
+    public void setPost(LifecycleHook post) {
+<span class="fc" id="L210">        this.post = post;</span>
+<span class="fc" id="L211">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The pre
+     */
+    @JsonProperty(&quot;pre&quot;)
+    public LifecycleHook getPre() {
+<span class="fc" id="L221">        return pre;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param pre
+     *     The pre
+     */
+    @JsonProperty(&quot;pre&quot;)
+    public void setPre(LifecycleHook pre) {
+<span class="fc" id="L232">        this.pre = pre;</span>
+<span class="fc" id="L233">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The timeoutSeconds
+     */
+    @JsonProperty(&quot;timeoutSeconds&quot;)
+    public Long getTimeoutSeconds() {
+<span class="fc" id="L243">        return timeoutSeconds;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param timeoutSeconds
+     *     The timeoutSeconds
+     */
+    @JsonProperty(&quot;timeoutSeconds&quot;)
+    public void setTimeoutSeconds(Long timeoutSeconds) {
+<span class="fc" id="L254">        this.timeoutSeconds = timeoutSeconds;</span>
+<span class="fc" id="L255">    }</span>
+
+    /**
+     * 
+     * 
+     * @return
+     *     The updatePeriodSeconds
+     */
+    @JsonProperty(&quot;updatePeriodSeconds&quot;)
+    public Long getUpdatePeriodSeconds() {
+<span class="fc" id="L265">        return updatePeriodSeconds;</span>
+    }
+
+    /**
+     * 
+     * 
+     * @param updatePeriodSeconds
+     *     The updatePeriodSeconds
+     */
+    @JsonProperty(&quot;updatePeriodSeconds&quot;)
+    public void setUpdatePeriodSeconds(Long updatePeriodSeconds) {
+<span class="fc" id="L276">        this.updatePeriodSeconds = updatePeriodSeconds;</span>
+<span class="fc" id="L277">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="fc" id="L281">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L286">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L287">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
